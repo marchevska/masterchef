@@ -24,13 +24,14 @@ class CustomerStation(scraft.Dispatcher):
         self.HasOrder = False
         self.CrdX, self.CrdY = newX, newY
         self.NeededIndicators = []
-        self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX, newY, Crd_Indicator_DummyWidth,
-                                     Crd_Indicator_DummyHeight, Layer_Order)
+        self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
+                                     Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Order)
         self.TableSprite = MakeSimpleSprite(u"table", Layer_Order+1, self.CrdX, self.CrdY)
-        self.RecipeInfoSprite = MakeSimpleSprite(u"recipe-info", Layer_Order+1, self.CrdX + Crd_Indicator_DeltaX, self.CrdY)
+        self.RecipeInfoSprite = MakeSimpleSprite(u"recipe-info", Layer_Order+1,
+                                    self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
         self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
-                u"release-button", [0, 1, 2], Layer_PopupBtnTxt, newX, newY-50, 40, 30)
+                u"release-button", [0, 1, 2], Layer_PopupBtnTxt, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
         self.ReleaseButton.Show(False)
         self.State = CStationState_None
         
@@ -51,7 +52,7 @@ class CustomerStation(scraft.Dispatcher):
         self.OrderType = type
         self.RecipeInfoSprite.visible = True
         self.OrderSprite = MakeSimpleSprite(globalvars.CuisineInfo["Recipes"][type]["src"],
-                Layer_Order, self.CrdX, self.CrdY)
+                Layer_Order, self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy)
         tmpIng = globalvars.CuisineInfo["Recipes"][type]["requires"].keys()
         self.TokensNeeded = map(lambda x: { "item": x, "no": globalvars.CuisineInfo["Recipes"][type]["requires"][x] }, tmpIng)
         for i in range(len(self.TokensNeeded)):
@@ -67,6 +68,7 @@ class CustomerStation(scraft.Dispatcher):
         self.State = CStationState_Free
         self.HasOrder = False
         self.OrderSprite.Dispose()
+        self.RecipeInfoSprite.visible = False
         for tmp in self.NeededIndicators:
             tmp.Kill()
         self.NeededIndicators = []
@@ -144,6 +146,9 @@ class NeededIndicator:
         self.TokenSprite = MakeSimpleSprite(tokenKlass, newLayer, newX, newY)
         self.ValueTextSprite = MakeTextSprite(textKlass, newLayer, newX + Crd_IndicatorText_DeltaX, newY, scraft.HotspotLeftCenter)
         self.Checkersprite = MakeSimpleSprite(checkerKlass, newLayer, newX + Crd_IndicatorText_DeltaX, newY)
+        self.TokenSprite.xScale, self.TokenSprite.yScale = Crd_IndicatorScaleXY, Crd_IndicatorScaleXY
+        self.ValueTextSprite.xScale, self.ValueTextSprite.yScale = Crd_IndicatorScaleXY, Crd_IndicatorScaleXY
+        self.Checkersprite.xScale, self.Checkersprite.yScale = Crd_IndicatorScaleXY, Crd_IndicatorScaleXY
         self.SetValue(newValue)
         
     def SetValue(self, value):

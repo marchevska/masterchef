@@ -89,18 +89,29 @@ QueState_Passive = 2
 # координаты
 #------------
 
-Crd_Indicator_DummyWidth = 120
-Crd_Indicator_DummyHeight = 100
-Crd_Indicator_DeltaX = 60
-Crd_Indicator_DeltaY = -40
-Crd_IndicatorText_DeltaX = 30
-Crd_IndicatorSign_DeltaY = 30
+Crd_StationDummyWidth = 100
+Crd_StationDummyHeight = 130
+Crd_StationDummyDx = 30
+Crd_StationDummyDy = -20
+Crd_Indicator_DeltaX = 48
+Crd_Indicator_DeltaY = -80
+Crd_IndicatorScaleXY = 50
+Crd_IndicatorText_DeltaX = 12
+Crd_IndicatorSign_DeltaY = 20
 Crd_CustomerDx = 0
 Crd_CustomerDy = -65
 Crd_HeartsDx = -24
-Crd_HeartsDy = 30
+Crd_HeartsDy = 25
 Crd_HeartSpritesDx = 12
 Crd_HeartSpritesDy = 0
+Crd_RecipeSpriteDx = 0
+Crd_RecipeSpriteDy = -7
+Crd_RecipeInfoSpriteDx = 55
+Crd_RecipeInfoSpriteDy = -32
+
+Crd_ReleaseButtonDx = 55
+Crd_ReleaseButtonDy = 15
+
 Const_BuyPowerUpButton_Dx = 0
 Const_BuyPowerUpButton_Dy = 50
 

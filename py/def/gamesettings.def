@@ -1,0 +1,229 @@
+MasterChef {
+    GameSettings {
+        newCustomerTimeMin = "1"
+        newCustomerTimeMax = "3"
+        
+        tokensFallingTime = "0.2"
+        shuffleTime = "0.35"
+        magicWandConvertingTime = "0.5"
+        magicWandRadiusSquared = "5"
+        
+        heartsPerCompletedIngredient = "1"
+        approvalPerDollar = "0.2"
+        maxApproval = "5.0"
+        customerLossPrice = "100"
+        
+        powerups = "['Cross', 'Gift', 'Shuffle', 'Spoon', 'Sweet', 'Supersweet', 'Magicwand']"
+        tokensGroupMin = "1"
+        tokensGroupMax = "10"
+        tokenScores = "{ 1: 2, 2: 5, 3: 10, 4: 17, 5: 25, 6: 35, 7: 47, 8: 62, 9: 77, 10: 100 }"
+    }
+    
+    Customers {
+        Customer {
+            type = "Worker"
+            src = "customer.worker"
+            animation = "animation.worker"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "20"
+            patientTimeMax = "30"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 10, 2: 20, 3: 30, 4: 40, 5: 50 }"
+            takesIncompleteOrder = "yes"
+            allowsExcessIngredients = "yes"
+            likes = "nothing"
+            dislikes = "nothing"
+        }
+        
+        Customer {
+            type = "Vegetarian"
+            src = "customer.vegetarian"
+            animation = "animation.vegetarian"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "20"
+            patientTimeMax = "30"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 10, 2: 20, 3: 30, 4: 40, 5: 50 }"
+            takesIncompleteOrder = "yes"
+            allowsExcessIngredients = "yes"
+            likes = "nothing"
+            dislikes = "Meat"
+        }
+        
+        Customer {
+            type = "Schoolkid"
+            src = "customer.schoolkid"
+            animation = "animation.schoolkid"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "10"
+            patientTimeMax = "15"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 10, 2: 20, 3: 30, 4: 40, 5: 50 }"
+            takesIncompleteOrder = "yes"
+            allowsExcessIngredients = "yes"
+            likes = "sweet"
+            dislikes = "nothing"
+        }
+        
+        Customer {
+            type = "Student"
+            src = "customer.student"
+            animation = "animation.student"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "40"
+            patientTimeMax = "60"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 5, 2: 10, 3: 15, 4: 20, 5: 25 }"
+            takesIncompleteOrder = "yes"
+            allowsExcessIngredients = "yes"
+            likes = "fruit"
+            dislikes = "nothing"
+        }
+        
+        Customer {
+            type = "Oldlady"
+            src = "customer.oldlady"
+            animation = "animation.oldlady"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "40"
+            patientTimeMax = "60"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 20, 2: 40, 3: 60, 4: 80, 5: 100 }"
+            takesIncompleteOrder = "no"
+            allowsExcessIngredients = "no"
+            likes = "nothing"
+            dislikes = "soy"
+        }
+        
+        Customer {
+            type = "Critic"
+            src = "customer.critic"
+            animation = "animation.critic"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "20"
+            patientTimeMax = "30"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 20, 2: 40, 3: 60, 4: 80, 5: 100 }"
+            takesIncompleteOrder = "no"
+            allowsExcessIngredients = "no"
+            likes = "nothing"
+            dislikes = "nothing"
+        }
+        
+        Customer {
+            type = "Business"
+            src = "customer.business"
+            animation = "animation.business"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "10"
+            patientTimeMax = "15"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 20, 2: 40, 3: 60, 4: 80, 5: 100 }"
+            takesIncompleteOrder = "yes"
+            allowsExcessIngredients = "yes"
+            likes = "nothing"
+            dislikes = "nothing"
+        }
+        
+        Customer {
+            type = "Tourist"
+            src = "customer.tourist"
+            animation = "animation.tourist"
+            heartsOnStart = "4"
+            orderingTimeMin = "2"
+            orderingTimeMax = "5"
+            patientTimeMin = "40"
+            patientTimeMax = "60"
+            thankYouTime = "1"
+            goAwayTime = "1"
+            tips = "{ 1: 5, 2: 10, 3: 15, 4: 20, 5: 25 }"
+            takesIncompleteOrder = "yes"
+            allowsExcessIngredients = "yes"
+            likes = "fish"
+            dislikes = "nothing"
+        }
+        
+    }
+
+    PowerUps {
+        PowerUp {
+            type = "Cross"
+            src = "powerup.cross"
+            buttonSrc = "powerup.cross.button"
+            price = "2"
+        }
+        
+        PowerUp {
+            type = "Gift"
+            src = "powerup.gift"
+            buttonSrc = "powerup.gift.button"
+            price = "3"
+        }
+        
+        PowerUp {
+            type = "Magicwand"
+            src = "powerup.magicwand"
+            buttonSrc = "powerup.magicwand.button"
+            price = "3"
+        }
+        
+        PowerUp {
+            type = "Shuffle"
+            src = ""
+            buttonSrc = "powerup.shuffle.button"
+            price = "2"
+        }
+        
+        PowerUp {
+            type = "Spoon"
+            src = "powerup.spoon"
+            buttonSrc = "powerup.spoon.button"
+            price = "1"
+        }
+        
+        PowerUp {
+            type = "Sweet"
+            src = "powerup.sweet"
+            buttonSrc = "powerup.sweet.button"
+            price = "1"
+        }
+        
+        PowerUp {
+            type = "Supersweet"
+            src = "powerup.supersweet"
+            buttonSrc = "powerup.supersweet.button"
+            price = "2"
+        }
+        
+    }
+    
+    GameTips {
+        Tip { textId = "" firstLevel="" lastLevel="" }
+    }
+    
+    TutorialEvents {
+        Event { name = "" textId = "" firstLevel="" lastLevel="" }
+    }
+    
+}

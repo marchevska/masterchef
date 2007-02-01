@@ -1,0 +1,8 @@
+unit{
+  Player = 'None'
+  Hints = True
+  Mute = False
+  Fullscreen = False
+  Sound = 100
+  Music = 80
+}

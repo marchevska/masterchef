@@ -1,0 +1,45 @@
+MasterChef{
+    //source classes for ingredients
+    IngredientKlasses{
+        sprite(ingredient.shrimp) { bitmap = "img/ingredients/shrimp.png" type = "blend" }
+        sprite(ingredient.shoyu) { bitmap = "img/ingredients/shoyu.png" type = "blend" }
+        sprite(ingredient.sake) { bitmap = "img/ingredients/sake.png" type = "blend" }
+        sprite(ingredient.dashi) { bitmap = "img/ingredients/dashi.png" type = "blend" }
+        sprite(ingredient.tuna) { bitmap = "img/ingredients/tuna.png" type = "blend" }
+        sprite(ingredient.oyster) { bitmap = "img/ingredients/oyster.png" type = "blend" }
+        sprite(ingredient.salmon) { bitmap = "img/ingredients/salmon.png" type = "blend" }
+        sprite(ingredient.noodle) { bitmap = "img/ingredients/noodle.png" type = "blend" }
+        sprite(ingredient.seaweed) { bitmap = "img/ingredients/seaweed.png" type = "blend" }
+        sprite(ingredient.veggymix) { bitmap = "img/ingredients/veggymix.png" type = "blend" }
+        sprite(ingredient.rice) { bitmap = "img/ingredients/rice.png" type = "blend" }
+        sprite(ingredient.egg) { bitmap = "img/ingredients/egg.png" type = "blend" }
+        sprite(ingredient.miso) { bitmap = "img/ingredients/miso.png" type = "blend" }
+        sprite(ingredient.tofu) { bitmap = "img/ingredients/tofu.png" type = "blend" }
+    }
+    
+    //source classes for dishes
+    RecipeKlasses{
+        sprite(recipe.yosenabe) { bitmap = "img/recipes/yosenabe.png" type = "blend" }
+        sprite(recipe.ochazuke) { bitmap = "img/recipes/ochazuke.png" type = "blend" }
+        sprite(recipe.koyungohan) { bitmap = "img/recipes/koyungohan.png" type = "blend" }
+        sprite(recipe.onigiri) { bitmap = "img/recipes/onigiri.png" type = "blend" }
+    }
+    
+    //source classes for power-ups
+    PowerUpKlasses{
+        sprite(powerup.cross.button) { bitmap = "img/powerups/cross-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.gift.button) { bitmap = "img/powerups/gift-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.magicwand.button) { bitmap = "img/powerups/magicwand-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.shuffle.button) { bitmap = "img/powerups/shuffle-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.spoon.button) { bitmap = "img/powerups/spoon-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.supersweet.button) { bitmap = "img/powerups/supersweet-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.sweet.button) { bitmap = "img/powerups/sweet-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.cross) { bitmap = "img/powerups/cross.png" type = "blend" }
+        sprite(powerup.gift) { bitmap = "img/powerups/gift.png" type = "blend" }
+        sprite(powerup.magicwand) { bitmap = "img/powerups/magicwand.png" type = "blend" }
+        sprite(powerup.spoon) { bitmap = "img/powerups/spoon.png" type = "blend" }
+        sprite(powerup.supersweet) { bitmap = "img/powerups/supersweet.png" type = "blend" }
+        sprite(powerup.sweet) { bitmap = "img/powerups/sweet.png" type = "blend" }
+    }
+    
+}

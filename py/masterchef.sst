@@ -1,0 +1,322 @@
+#!SST
+
+###########
+# sprites #
+###########
+
+sprite cursor {
+bitmap = img/gui/cursor.png
+type   = blend
+hotspot = 4,0
+}
+
+sprite cell-marker {
+bitmap = img/common/cell-marker.png
+type   = blend
+}
+
+sprite select-marker {
+bitmap = img/common/select-marker.png
+type   = blend
+}
+
+
+sprite heart {
+bitmap = img/heart.png
+type   = blend
+}
+
+
+############
+# game hud #
+############
+
+sprite background {
+bitmap = img/background.png
+}
+
+sprite storage {
+bitmap = img/storage.png
+}
+
+sprite galka {
+bitmap = img/galka.png
+type   = blend
+}
+
+sprite release-button {
+bitmap = img/release-button.png
+layout = 1x3
+type   = blend
+}
+
+sprite buy-powerup-button {
+bitmap = img/buy-powerup-button.png
+layout = 1x4
+type   = blend
+}
+
+################
+# gui elements #
+################
+
+sprite button-120x40x4st {
+bitmap = img/gui/button-120x40x4st.png
+type   = blend
+layout = 1x4
+}
+
+sprite popup-background { 
+bitmap = img/gui/popup-background.png
+type = blend
+}
+
+sprite 2nd-popup-background { 
+bitmap = img/gui/2nd-popup-background.png
+type = blend
+}
+
+
+########################
+# main screen elements #
+########################
+
+sprite menu-background {
+bitmap  = img/gui/menu-background.bmp
+}
+
+sprite main-menu { 
+bitmap = img/gui/main-menu.png
+}
+
+sprite gray {
+bitmap = img/gui/gray.png
+type   = blend
+layout = 1x1
+}
+
+########################
+# help screen elements #
+########################
+
+sprite help-page1 {
+bitmap = img/gui/help-page1.bmp
+}
+
+sprite help-page2 {
+bitmap = img/gui/help-page2.bmp
+}
+
+sprite help-page3 {
+bitmap = img/gui/help-page3.bmp
+}
+
+###########################
+# players screen elements #
+###########################
+
+sprite players-select-button {
+bitmap = img/gui/players-select-button.bmp
+layout = 1x5
+}
+
+sprite players-arrow-up {
+bitmap = img/gui/players-arrow-up.bmp
+layout = 4x1
+}
+
+sprite players-arrow-down {
+bitmap = img/gui/players-arrow-down.bmp
+layout = 4x1
+}
+
+sprite textcursor {
+bitmap = img/gui/textcursor.bmp
+layout = 2x1
+}
+
+###########################
+# options dialog elements #
+###########################
+
+sprite options-slider {
+bitmap = img/gui/options-slider.png
+type = blend
+layout = 3x1
+}
+
+sprite slider-background {
+bitmap = img/gui/slider-background.png
+}
+
+sprite options-galka {
+bitmap = img/gui/options-galka.png
+type = blend
+}
+
+sprite options-checkbox {
+bitmap = img/gui/options-checkbox.png
+type = blend
+layout = 3x1
+}
+
+#######################
+# map dialog elements #
+#######################
+
+sprite map-background { 
+bitmap = img/gui/map-background.png
+}
+
+sprite map-dots {
+bitmap = img/gui/map-dots.png
+layout = 3x2
+}
+
+
+#########
+# other #
+#########
+
+sprite episode1-complete {
+bitmap = img/gui/episode1-complete.png
+}
+
+
+##########
+# sounds #
+##########
+
+#menu track
+sound menu {
+sample = sound/menu.ogg
+type = static
+}
+
+#game track 1
+sound track1 {
+sample = sound/track1.ogg
+type = static
+}
+
+#button click
+sound click {
+sample = sound/click.ogg
+}
+
+#placing marker flag
+sound marker {
+sample = sound/click.ogg
+}
+
+#level beginning
+sound startlevel {
+sample = sound/startlevel.ogg
+}
+
+#level end (victory)
+sound endlevel {
+sample = sound/endlevel.ogg
+}
+
+#episode complete (victory)
+sound endepisode {
+sample = sound/endepisode.ogg
+}
+
+#game won
+sound endgame {
+sample = sound/endgame.ogg
+}
+
+#opened trap (hero death)
+sound death {
+sample = sound/death.ogg
+}
+
+#defeat
+sound defeat {
+sample = sound/dedeat.ogg
+}
+
+#hero movement
+sound step {
+sample = sound/step.wav
+}
+
+#cell opening
+sound opencell {
+sample = sound/opencell.ogg
+}
+
+#cell disarming
+sound disarm {
+sample = sound/disarm.ogg
+}
+
+#setup bridge
+sound bridge {
+sample = sound/bridge.ogg
+}
+
+#explode obstacle
+sound explode {
+sample = sound/explode.ogg
+}
+
+#got bonus
+sound bonus {
+sample = sound/bonus.ogg
+}
+
+#extra time
+sound extratime {
+sample = sound/extratime.ogg
+}
+
+#level time warning
+sound timeover {
+sample = sound/timeover.ogg
+}
+
+
+#########
+# fonts #
+#########
+
+font arial18 {
+bitmap = img/fonts/arial18.bmp
+symbols=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -.
+type = colorkey
+keyrgb = ffeecc
+}
+
+font papyrus2 {
+bitmap = img/fonts/papyrus2.png
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
+type = blend
+}
+
+font papyrus2-roll {
+bitmap = img/fonts/papyrus2-roll.png
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
+type = blend
+}
+
+font papyrus2-down {
+bitmap = img/fonts/papyrus2-down.png
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
+type = blend
+}
+
+font papyrus2-inert {
+bitmap = img/fonts/papyrus2-inert.png
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
+type = blend
+}
+
+font papyrus-18px-numbers {
+bitmap = img/fonts/papyrus-18px-numbers.png
+symbols=0123456789+-/
+type = blend
+}

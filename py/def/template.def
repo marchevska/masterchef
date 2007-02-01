@@ -1,0 +1,46 @@
+level{
+    //overwrite global game settings
+    GameSettings{
+        newCustomerTimeMin = "1"
+        newCustomerTimeMax = "3"
+    }
+    
+    //overwrite basic customer settings
+    Customers{
+    }
+    
+    //customer appearance rates
+    CustomerRates{
+        Customer{ type = "Type1" rate = "1" }
+    }
+    
+    //recipe appearance rates
+    RecipeRates{
+        Recipe{ type = "Recipe1" rate = "1" }
+        Recipe{ type = "Recipe1" rate = "2" }
+        Recipe{ type = "Recipe1" rate = "3" }
+    }
+    
+    //ingredient appearance rates
+    IngredientRates{
+        Ingredient{ type = "tomato" rate = "10" }
+        Ingredient{ type = "cheese" rate = "20" }
+        Ingredient{ type = "olives" rate = "12" }
+    }
+    
+    //level settings
+    LevelSettings{
+        noCustomers = "10"
+        moneyGoal = "100"
+        expertGoal = "200"
+    }
+    
+    //level layout: customer stations, power-up buttons, decorations
+    //layout of the game field
+    Layout{
+        CustomerStation{ type = "" x = "200" y = "200" occupied = "1" }
+        CustomerStation{ type = "" x = "200" y = "320" occupied = "0" }
+        GameBoard{ XSize = "8" YSize = "8" X0 = 440 Y0 = 140 }
+    }
+    
+}

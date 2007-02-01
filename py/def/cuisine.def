@@ -1,0 +1,107 @@
+MasterChef {
+    IngredientTypes {
+        Type { name = "meat" }
+        Type { name = "fish" }
+        Type { name = "vegetable" }
+        Type { name = "fruit" }
+        Type { name = "pasta" }
+        Type { name = "dairy" }
+        Type { name = "sweet" }
+        Type { name = "spice" }
+        Type { name = "cereal" }
+        Type { name = "egg" }
+        Type { name = "soy" }
+    }
+    
+    Ingredients {
+        Ingredient { name = "tomato" type = "vegetable" src = "ingredient.tomato" }
+        Ingredient { name = "cheese" type = "dairy" src = "ingredient.cheese" }
+        Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" }
+        Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" }
+        Ingredient { name = "bacon" type = "meat" src = "ingredient.bacon" }
+        Ingredient { name = "olives" type = "vegetable" src = "ingredient.olives" }
+        Ingredient { name = "mushroom" type = "vegetable" src = "ingredient.mushroom" }
+        Ingredient { name = "shrimp" type = "fish" src = "ingredient.shrimp" }
+        Ingredient { name = "anchovies" type = "fish" src = "ingredient.anchovies" }
+        Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" }
+        Ingredient { name = "flour" type = "pasta" src = "ingredient.flour" }
+        Ingredient { name = "orange" type = "fruit" src = "ingredient.orange" }
+        Ingredient { name = "artichoke" type = "spice" src = "ingredient.artichoke" }
+        
+        Ingredient { name = "shoyu" type = "spice" src = "ingredient.shoyu" }
+        Ingredient { name = "sake" type = "spice" src = "ingredient.sake" }
+        Ingredient { name = "dashi" type = "fish" src = "ingredient.dashi" }
+        Ingredient { name = "tuna" type = "fish" src = "ingredient.tuna" }
+        Ingredient { name = "oyster" type = "fish" src = "ingredient.oyster" }
+        Ingredient { name = "salmon" type = "fish" src = "ingredient.salmon" }
+        Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" }
+        Ingredient { name = "seaweed" type = "vegetable" src = "ingredient.seaweed" }
+        Ingredient { name = "veggymix" type = "vegetable" src = "ingredient.veggymix" }
+        Ingredient { name = "rice" type = "cereal" src = "ingredient.rice" }
+        Ingredient { name = "egg" type = "egg" src = "ingredient.egg" }
+        Ingredient { name = "miso" type = "soy" src = "ingredient.miso" }
+        Ingredient { name = "tofu" type = "soy" src = "ingredient.tofu" }
+        
+        
+    }
+    
+    Recipes {
+        //Italian recipes
+        Recipe {
+            name = "Margherita"
+            type = "pizza, common"
+            src = "recipe.margherita"
+            requires = "{ 'tomato': 10, 'cheese': 15 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        //Japanese recipes
+        Recipe {
+            name = "Yosenabe"
+            type = "hot seafood plate"
+            src = "recipe.yosenabe"
+            //requires = "{ 'shrimp': 10, 'salmon': 20, 'tofu': 11, 'veggymix': 15 }"
+            //readyAt = "11"
+            requires = "{ 'shrimp': 3, 'salmon': 10, 'tofu': 4, 'veggymix': 6}"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Ochazuke"
+            type = "rice dish"
+            src = "recipe.ochazuke"
+            //requires = "{ 'rice': 20, 'dashi': 10, 'salmon': 15, 'seaweed': 5 }"
+            //readyAt = "10"
+            requires = "{ 'rice': 10, 'salmon': 5, 'seaweed': 2 }"
+            readyAt = "4"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Koyungohan"
+            type = "rice dish"
+            src = "recipe.koyungohan"
+            //requires = "{ 'rice': 12, 'dashi': 8, 'salmon': 8, 'tofu': 10 }"
+            //readyAt = "8"
+            requires = "{ 'rice': 8, 'salmon': 3, 'tofu': 5 }"
+            readyAt = "4"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Onigiri"
+            type = "rice dish"
+            src = "recipe.onigiri"
+            //requires = "{ 'rice': 15, 'seaweed': 4, 'miso': 6 }"
+            //readyAt = "6"
+            requires = "{ 'rice': 10, 'seaweed': 2 }"
+            readyAt = "3"
+            price = "100"
+        }
+        
+    }
+    
+    
+}

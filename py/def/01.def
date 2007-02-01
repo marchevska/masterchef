@@ -1,0 +1,61 @@
+Level{
+    //overwrite global game settings
+    GameSettings{
+        newCustomerTimeMin = "1"
+        newCustomerTimeMax = "3"
+    }
+    
+    //overwrite basic customer settings
+    Customers{
+    }
+    
+    //customer appearance rates
+    CustomerRates{
+        Customer{ type = "Worker" rate = "3" }
+        Customer{ type = "Oldlady" rate = "2" }
+        Customer{ type = "Business" rate = "1" }
+    }
+    
+    //recipe appearance rates
+    RecipeRates{
+        Recipe{ type = "Yosenabe" rate = "2" }
+        Recipe{ type = "Ochazuke" rate = "2" }
+        Recipe{ type = "Koyungohan" rate = "3" }
+        Recipe{ type = "Onigiri" rate = "2" }
+    }
+    
+    //ingredient appearance rates
+    IngredientRates{
+        Ingredient{ type = "shrimp" rate = "6" }
+        Ingredient{ type = "salmon" rate = "30" }
+        Ingredient{ type = "tofu" rate = "25" }
+        Ingredient{ type = "veggymix" rate = "12" }
+        Ingredient{ type = "rice" rate = "50" }
+        Ingredient{ type = "dashi" rate = "2" }
+        Ingredient{ type = "seaweed" rate = "12" }
+        Ingredient{ type = "miso" rate = "2" }
+    }
+    
+    //level settings
+    LevelSettings{
+        noCustomers = "10"
+        moneyGoal = "100"
+        expertGoal = "200"
+    }
+    
+    //level layout: customer stations, power-up buttons, decorations
+    //layout of the game field
+    Layout{
+        theme = "japanese" 
+        CustomerStation{ type = "" x = "200" y = "200" occupied = "yes" }
+        CustomerStation{ type = "" x = "200" y = "320" occupied = "no" }
+        CustomerStation{ type = "" x = "200" y = "500" occupied = "no" }
+        Field{ XSize = "8" YSize = "8" X0 = "440" Y0 = "120" }
+        Store { XSize = "4" YSize = "2" X0 = "540" Y0 = "500" }
+        Store { XSize = "2" YSize = "3" X0 = "720" Y0 = "440" }
+        PowerUp{ type = "Magicwand" x = "360" y = "500" }
+        PowerUp{ type = "Cross" x = "440" y = "500" }
+        Decoration { type = "" x = "100" y = "100" layer = "10" }
+    }
+    
+}

@@ -1,0 +1,180 @@
+[Tue Jan 30 13:51:45 2007]
+
+Teggo SpriteCraft 2D Engine, version 3.3.0.8880
+Copyright (c) 2002-2005, Alexey Suda-Chen & Olga Marchevska, Teggo FF
+
+WindowsXP Service Pack 2 [5.1.2600]
+AMD Turion(tm) 64 X2 Mobile Technology TL-56(MMX/MMX2/SSE)
+pagefile free: 1601M of 2168M
+memory   free:  333M of  894M
+
+engine: initialize engine....
+engine: using Direct3D7 device
+gfxd3d7: DDRAW  ddraw.dll    [5.3.2600.2180]
+gfxd3d7: D3DIM  d3dim700.dll [5.3.2600.2180]
+gfxd3d7: Microsoft Direct3D Hardware acceleration through Direct3D HAL
+gfxd3d7: can queue rendering commands after a page flip
+gfxd3d7: number of texture-blending stages supported: 8
+gfxd3d7: maximum texture: 2048 x 2048
+gfxd3d7: local free 177.1M of 177.1M
+gfxd3d7: nonlocal free 196.7M of 196.7M
+
+gfxd3d7: *windowed* 640x480x32@60
+gfxd3d7: TEXTURE (+) 16 bit RGB(7c00,03e0,001f)
+gfxd3d7: TEXTURE (+) 16 bit ARGB(8000,7c00,03e0,001f)
+gfxd3d7: TEXTURE (+) 16 bit ARGB(f000,0f00,00f0,000f)
+gfxd3d7: TEXTURE (-) 16 bit RGB(f800,07e0,001f)
+gfxd3d7: TEXTURE (-) 32 bit RGB(00ff0000,0000ff00,000000ff)
+gfxd3d7: TEXTURE (+) 32 bit ARGB(ff000000,00ff0000,0000ff00,000000ff)
+gfxd3d7: TEXTURE (+) 8 bit ALPHA
+engine: using WinAPI Input
+engine: engine initialized
+gfxd3d7: *windowed* 800x600x32@60
+gfxd3d7: TEXTURE (+) 16 bit RGB(7c00,03e0,001f)
+gfxd3d7: TEXTURE (+) 16 bit ARGB(8000,7c00,03e0,001f)
+gfxd3d7: TEXTURE (+) 16 bit ARGB(f000,0f00,00f0,000f)
+gfxd3d7: TEXTURE (-) 16 bit RGB(f800,07e0,001f)
+gfxd3d7: TEXTURE (-) 32 bit RGB(00ff0000,0000ff00,000000ff)
+gfxd3d7: TEXTURE (+) 32 bit ARGB(ff000000,00ff0000,0000ff00,000000ff)
+gfxd3d7: TEXTURE (+) 8 bit ALPHA
+sprites: restore sprites ....
+sprites: klass '$spritecraft$arial/14$' restored in 0 millis
+sprites: klass '$spritecraft$console$font$' restored in 0 millis
+sprites: klass '$spritecraft$font$' restored in 0 millis
+sprites: was restored in 0 millis
+rscmanager: setting resources path to 'C:/Projects/proto games/master chef/dist//'
+sstmanager: [+] 'masterchef.sst'
+sstmanager: sprite cursor
+sstmanager: sprite cell-marker
+sstmanager: sprite select-marker
+sstmanager: sprite heart
+sstmanager: sprite background
+sstmanager: sprite storage
+sstmanager: sprite galka
+sstmanager: sprite release-button
+sstmanager: sprite buy-powerup-button
+sstmanager: sprite button-120x40x4st
+sstmanager: sprite popup-background
+sstmanager: sprite 2nd-popup-background
+sstmanager: sprite menu-background
+sstmanager: sprite main-menu
+sstmanager: sprite gray
+sstmanager: sprite help-page1
+sstmanager: sprite help-page2
+sstmanager: sprite help-page3
+sstmanager: sprite players-select-button
+sstmanager: sprite players-arrow-up
+sstmanager: sprite players-arrow-down
+sstmanager: sprite textcursor
+sstmanager: sprite options-slider
+sstmanager: sprite slider-background
+sstmanager: sprite options-galka
+sstmanager: sprite options-checkbox
+sstmanager: sprite map-background
+sstmanager: sprite map-dots
+sstmanager: sprite episode1-complete
+sstmanager: sound menu
+sstmanager: sound track1
+sstmanager: sound click
+sstmanager: sound marker
+sstmanager: sound startlevel
+sstmanager: sound endlevel
+sstmanager: sound endepisode
+sstmanager: sound endgame
+sstmanager: sound death
+sstmanager: sound defeat
+sstmanager: sound step
+sstmanager: sound opencell
+sstmanager: sound disarm
+sstmanager: sound bridge
+sstmanager: sound explode
+sstmanager: sound bonus
+sstmanager: sound extratime
+sstmanager: sound timeover
+sstmanager: font arial18
+sstmanager: font papyrus2
+sstmanager: font papyrus2-roll
+sstmanager: font papyrus2-down
+sstmanager: font papyrus2-inert
+sstmanager: font papyrus-18px-numbers
+sstmanager: [-] 'masterchef.sst'
+sprites: creating texture object 0 [img/gui/menu-background.bmp, 256x256 +0, rgb5]
+sprites: creating texture object 1 [img/gui/menu-background.bmp, 256x32 +0, rgb5]
+sprites: 'menu-background' was load in 2 millis
+sprites: creating texture object 0 [img/gui/main-menu.png, 256x256 +0, rgb5]
+sprites: creating texture object 1 [img/gui/main-menu.png, 256x256 +0, rgb5]
+sprites: creating texture object 2 [img/gui/main-menu.png, 256x256 +0, rgb5]
+sprites: creating texture object 3 [img/gui/main-menu.png, 64x256 +0, rgb5]
+sprites: creating texture object 4 [img/gui/main-menu.png, 256x256 +0, rgb5]
+sprites: creating texture object 5 [img/gui/main-menu.png, 256x256 +0, rgb5]
+sprites: creating texture object 6 [img/gui/main-menu.png, 256x256 +0, rgb5]
+sprites: creating texture object 7 [img/gui/main-menu.png, 64x256 +0, rgb5]
+sprites: creating texture object 8 [img/gui/main-menu.png, 256x128 +0, rgb5]
+sprites: creating texture object 9 [img/gui/main-menu.png, 256x128 +0, rgb5]
+sprites: creating texture object 10 [img/gui/main-menu.png, 256x128 +0, rgb5]
+sprites: creating texture object 11 [img/gui/main-menu.png, 64x128 +0, rgb5]
+sprites: 'main-menu' was load in 42 millis
+sprites: creating shared texture [img/gui/button-120x40x4st.png,128x256 +0,rgb8a8]
+sprites: 'button-120x40x4st' was load in 2 millis
+sprites: creating shared texture [img/gui/cursor.png,32x32 +0,rgb8a8]
+sprites: 'cursor' was load in 1 millis
+sprites: creating shared texture [img/gui/map-dots.png,64x64 +0,rgb5]
+sprites: 'map-dots' was load in 3 millis
+sprites: creating texture object 0 [img/gui/map-background.png, 256x256 +0, rgb5]
+sprites: creating texture object 1 [img/gui/map-background.png, 256x256 +0, rgb5]
+sprites: creating texture object 2 [img/gui/map-background.png, 256x256 +0, rgb5]
+sprites: creating texture object 3 [img/gui/map-background.png, 256x256 +0, rgb5]
+sprites: creating texture object 4 [img/gui/map-background.png, 256x256 +0, rgb5]
+sprites: creating texture object 5 [img/gui/map-background.png, 256x256 +0, rgb5]
+sprites: 'map-background' was load in 118 millis
+sprites: creating shared texture [img/storage.png,64x64 +0,rgb5]
+sprites: 'storage' was load in 1 millis
+sprites: creating texture object 0 [img/background.png, 256x256 +0, rgb5]
+sprites: creating texture object 1 [img/background.png, 256x256 +0, rgb5]
+sprites: creating texture object 2 [img/background.png, 256x256 +0, rgb5]
+sprites: creating texture object 3 [img/background.png, 64x256 +0, rgb5]
+sprites: creating texture object 4 [img/background.png, 256x256 +0, rgb5]
+sprites: creating texture object 5 [img/background.png, 256x256 +0, rgb5]
+sprites: creating texture object 6 [img/background.png, 256x256 +0, rgb5]
+sprites: creating texture object 7 [img/background.png, 64x256 +0, rgb5]
+sprites: creating texture object 8 [img/background.png, 256x128 +0, rgb5]
+sprites: creating texture object 9 [img/background.png, 256x128 +0, rgb5]
+sprites: creating texture object 10 [img/background.png, 256x128 +0, rgb5]
+sprites: creating texture object 11 [img/background.png, 64x128 +0, rgb5]
+sprites: 'background' was load in 39 millis
+sprites: creating shared texture [img/heart.png,32x32 +0,rgb8a8]
+sprites: 'heart' was load in 1 millis
+sprites: creating texture object 0 [img/customers/worker.png, 256x256 +0, rgb8a8]
+sprites: 'customer.worker' was load in 4 millis
+sprites: creating shared texture [img/ingredients/tofu.png,64x64 +0,rgb8a8]
+sprites: 'ingredient.tofu' was load in 1 millis
+sprites: creating shared texture [img/ingredients/rice.png,64x64 +0,rgb8a8]
+sprites: 'ingredient.rice' was load in 1 millis
+sprites: creating shared texture [img/ingredients/shrimp.png,64x64 +0,rgb8a8]
+sprites: 'ingredient.shrimp' was load in 1 millis
+sprites: creating shared texture [img/ingredients/salmon.png,64x64 +0,rgb8a8]
+sprites: 'ingredient.salmon' was load in 2 millis
+sprites: creating shared texture [img/ingredients/veggymix.png,64x64 +0,rgb8a8]
+sprites: 'ingredient.veggymix' was load in 1 millis
+sprites: creating shared texture [img/ingredients/seaweed.png,64x64 +0,rgb8a8]
+sprites: 'ingredient.seaweed' was load in 1 millis
+sprites: creating shared texture [img/buy-powerup-button.png,64x128 +0,rgb8a8]
+sprites: 'buy-powerup-button' was load in 1 millis
+sprites: creating shared texture [img/powerups/cross-button.png,128x128 +0,rgb8a8]
+sprites: 'powerup.cross.button' was load in 2 millis
+sprites: creating shared texture [img/powerups/magicwand-button.png,128x128 +0,rgb8a8]
+sprites: 'powerup.magicwand.button' was load in 3 millis
+sprites: creating shared texture [img/common/cell-marker.png,64x64 +0,rgb8a8]
+sprites: 'cell-marker' was load in 1 millis
+sprites: creating shared texture [img/common/select-marker.png,64x64 +0,rgb8a8]
+sprites: 'select-marker' was load in 1 millis
+sprites: creating texture object 0 [img/customers/business.png, 256x256 +0, rgb8a8]
+sprites: 'customer.business' was load in 9 millis
+sprites: creating shared texture [img/recipes/onigiri.png,128x128 +0,rgb8a8]
+sprites: 'recipe.onigiri' was load in 4 millis
+sprites: creating shared texture [img/recipes/yosenabe.png,128x128 +0,rgb8a8]
+sprites: 'recipe.yosenabe' was load in 4 millis
+sprites: creating shared texture [img/recipes/koyungohan.png,128x128 +0,rgb8a8]
+sprites: 'recipe.koyungohan' was load in 7 millis
+engine: terminate engine....
+engine: engine terminated

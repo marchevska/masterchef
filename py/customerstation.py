@@ -26,6 +26,9 @@ class CustomerStation(scraft.Dispatcher):
         self.NeededIndicators = []
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX, newY, Crd_Indicator_DummyWidth,
                                      Crd_Indicator_DummyHeight, Layer_Order)
+        self.TableSprite = MakeSimpleSprite(u"table", Layer_Order+1, self.CrdX, self.CrdY)
+        self.RecipeInfoSprite = MakeSimpleSprite(u"recipe-info", Layer_Order+1, self.CrdX + Crd_Indicator_DeltaX, self.CrdY)
+        self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
                 u"release-button", [0, 1, 2], Layer_PopupBtnTxt, newX, newY-50, 40, 30)
         self.ReleaseButton.Show(False)
@@ -46,6 +49,7 @@ class CustomerStation(scraft.Dispatcher):
     def PutOrder(self, type):
         self.HasOrder = True
         self.OrderType = type
+        self.RecipeInfoSprite.visible = True
         self.OrderSprite = MakeSimpleSprite(globalvars.CuisineInfo["Recipes"][type]["src"],
                 Layer_Order, self.CrdX, self.CrdY)
         tmpIng = globalvars.CuisineInfo["Recipes"][type]["requires"].keys()

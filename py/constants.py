@@ -95,10 +95,12 @@ Crd_Indicator_DeltaX = 60
 Crd_Indicator_DeltaY = -40
 Crd_IndicatorText_DeltaX = 30
 Crd_IndicatorSign_DeltaY = 30
-Crd_CustomerDx = -100
-Crd_HeartsDx = -150
-Crd_HeartsDy = -50
-Crd_HeartSpritesDy = 20
+Crd_CustomerDx = 0
+Crd_CustomerDy = -65
+Crd_HeartsDx = -24
+Crd_HeartsDy = 30
+Crd_HeartSpritesDx = 12
+Crd_HeartSpritesDy = 0
 Const_BuyPowerUpButton_Dx = 0
 Const_BuyPowerUpButton_Dy = 50
 

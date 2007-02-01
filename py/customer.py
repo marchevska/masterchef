@@ -26,13 +26,13 @@ class Customer(scraft.Dispatcher):
         self.Type = type
         self.Host = host
         self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo[type]["src"], Layer_Order,
-                        host.CrdX + Crd_CustomerDx, host.CrdY)
+                        host.CrdX + Crd_CustomerDx, host.CrdY + Crd_CustomerDy)
         self.Animator = CustomersAnimator(self.Sprite,
                 globalvars.CustomerAnimations[globalvars.CustomersInfo[type]["animation"]])
         self.HeartSprites = []
         for i in range(Const_MaxHearts):
             self.HeartSprites.append(MakeSimpleSprite(u"heart", Layer_Order,
-                        host.CrdX + Crd_HeartsDx, host.CrdY + Crd_HeartsDy + i*Crd_HeartSpritesDy))
+                        host.CrdX + Crd_HeartsDx + i*Crd_HeartSpritesDx, host.CrdY + Crd_HeartsDy + i*Crd_HeartSpritesDy))
         self._SetHearts(globalvars.CustomersInfo[type]["heartsOnStart"])
         self._SetState(CustomerState_Ordering)
         self.QueNo = oE.executor.Schedule(self)

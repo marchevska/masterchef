@@ -1,12 +1,12 @@
-[Tue Jan 30 13:50:42 2007]
+[Thu Feb 01 14:35:07 2007]
 
 Teggo SpriteCraft 2D Engine, version 3.3.0.8880
 Copyright (c) 2002-2005, Alexey Suda-Chen & Olga Marchevska, Teggo FF
 
 WindowsXP Service Pack 2 [5.1.2600]
 AMD Turion(tm) 64 X2 Mobile Technology TL-56(MMX/MMX2/SSE)
-pagefile free: 1601M of 2168M
-memory   free:  334M of  894M
+pagefile free: 1533M of 2168M
+memory   free:  277M of  894M
 
 engine: initialize engine....
 engine: using Direct3D7 device
@@ -16,8 +16,8 @@ gfxd3d7: Microsoft Direct3D Hardware acceleration through Direct3D HAL
 gfxd3d7: can queue rendering commands after a page flip
 gfxd3d7: number of texture-blending stages supported: 8
 gfxd3d7: maximum texture: 2048 x 2048
-gfxd3d7: local free 177.1M of 177.1M
-gfxd3d7: nonlocal free 196.7M of 196.7M
+gfxd3d7: local free 128.0M of 128.0M
+gfxd3d7: nonlocal free 245.9M of 245.9M
 
 gfxd3d7: *windowed* 640x480x32@60
 gfxd3d7: TEXTURE (+) 16 bit RGB(7c00,03e0,001f)
@@ -42,7 +42,7 @@ sprites: klass '$spritecraft$arial/14$' restored in 0 millis
 sprites: klass '$spritecraft$console$font$' restored in 0 millis
 sprites: klass '$spritecraft$font$' restored in 0 millis
 sprites: was restored in 0 millis
-rscmanager: setting resources path to 'C:/Projects/proto games/master chef/py//'
+rscmanager: setting resources path to 'C:/Projects/proto games/Master Chef/py//'
 sstmanager: [+] 'masterchef.sst'
 sstmanager: sprite cursor
 sstmanager: sprite cell-marker
@@ -53,6 +53,8 @@ sstmanager: sprite storage
 sstmanager: sprite galka
 sstmanager: sprite release-button
 sstmanager: sprite buy-powerup-button
+sstmanager: sprite recipe-info
+sstmanager: sprite table
 sstmanager: sprite button-120x40x4st
 sstmanager: sprite popup-background
 sstmanager: sprite 2nd-popup-background
@@ -98,6 +100,19 @@ sstmanager: font papyrus2-down
 sstmanager: font papyrus2-inert
 sstmanager: font papyrus-18px-numbers
 sstmanager: [-] 'masterchef.sst'
+gfxd3d7: *fullscreen* 800x600x16@60
+gfxd3d7: TEXTURE (+) 16 bit RGB(7c00,03e0,001f)
+gfxd3d7: TEXTURE (+) 16 bit ARGB(8000,7c00,03e0,001f)
+gfxd3d7: TEXTURE (+) 16 bit ARGB(f000,0f00,00f0,000f)
+gfxd3d7: TEXTURE (-) 16 bit RGB(f800,07e0,001f)
+gfxd3d7: TEXTURE (-) 32 bit RGB(00ff0000,0000ff00,000000ff)
+gfxd3d7: TEXTURE (+) 32 bit ARGB(ff000000,00ff0000,0000ff00,000000ff)
+gfxd3d7: TEXTURE (+) 8 bit ALPHA
+sprites: restore sprites ....
+sprites: klass '$spritecraft$arial/14$' restored in 0 millis
+sprites: klass '$spritecraft$console$font$' restored in 0 millis
+sprites: klass '$spritecraft$font$' restored in 0 millis
+sprites: was restored in 0 millis
 sprites: creating texture object 0 [img/gui/menu-background.bmp, 256x256 +0, rgb5]
 sprites: creating texture object 1 [img/gui/menu-background.bmp, 256x32 +0, rgb5]
 sprites: 'menu-background' was load in 2 millis
@@ -113,7 +128,7 @@ sprites: creating texture object 8 [img/gui/main-menu.png, 256x128 +0, rgb5]
 sprites: creating texture object 9 [img/gui/main-menu.png, 256x128 +0, rgb5]
 sprites: creating texture object 10 [img/gui/main-menu.png, 256x128 +0, rgb5]
 sprites: creating texture object 11 [img/gui/main-menu.png, 64x128 +0, rgb5]
-sprites: 'main-menu' was load in 41 millis
+sprites: 'main-menu' was load in 40 millis
 sprites: creating shared texture [img/gui/button-120x40x4st.png,128x256 +0,rgb8a8]
 sprites: 'button-120x40x4st' was load in 2 millis
 sprites: creating shared texture [img/gui/cursor.png,32x32 +0,rgb8a8]

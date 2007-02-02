@@ -47,9 +47,11 @@ Level{
     //layout of the game field
     Layout{
         theme = "japanese" 
-        CustomerStation{ type = "" x = "120" y = "200" occupied = "yes" }
-        CustomerStation{ type = "" x = "120" y = "350" occupied = "no" }
-        CustomerStation{ type = "" x = "120" y = "500" occupied = "no" }
+        CustomerStation{ type = "" x = "90" y = "180" occupied = "yes" }
+        CustomerStation{ type = "" x = "90" y = "340" occupied = "no" }
+        CustomerStation{ type = "" x = "90" y = "500" occupied = "no" }
+        CustomerStation{ type = "" x = "240" y = "260" occupied = "no" }
+        CustomerStation{ type = "" x = "240" y = "420" occupied = "yes" }
         Field{ XSize = "8" YSize = "8" X0 = "400" Y0 = "120" }
         Store { XSize = "4" YSize = "2" X0 = "540" Y0 = "500" }
         //Store { XSize = "2" YSize = "3" X0 = "720" Y0 = "440" }

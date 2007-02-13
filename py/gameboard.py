@@ -154,7 +154,7 @@ class GameBoard(scraft.Dispatcher):
                 [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
             self.BuyPowerUpButtons[tmp["type"]] = PushButton("", self,
                 Cmd_BuyPowerUp + globalvars.GameSettings["powerups"].index(tmp["type"]),
-                PState_Game, u"buy-powerup-button", [0, 1, 2, 3], Layer_InterfaceBtn,
+                PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn,
                 tmp["x"] + Const_BuyPowerUpButton_Dx, tmp["y"] + Const_BuyPowerUpButton_Dy, 40, 30,
                 u"$"*int(globalvars.PowerUpsInfo[tmp["type"]]["price"]),
                 [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])

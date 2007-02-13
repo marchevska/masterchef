@@ -23,6 +23,7 @@ class PushButton(scraft.Dispatcher):
     def __init__(self, name, whose, cmd, when, newKlass, frames, 
                  newLayer, newX, newY, newXSize, newYSize,
                  text = "", klasses = [], textDX = 0, textDY = 0):
+        
         #dummy используется как hit area
         self.Dummy = MakeDummySprite(self, cmd, newX, newY, newXSize, newYSize, newLayer)
         

@@ -20,14 +20,14 @@ from extra import *
 #---------------------------------------------
 
 class CustomerStation(scraft.Dispatcher):
-    def __init__(self, newX, newY):
+    def __init__(self, newX, newY, theme):
         self.HasOrder = False
         self.CrdX, self.CrdY = newX, newY
         self.NeededIndicators = []
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
-                                     Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Order)
-        self.TableSprite = MakeSimpleSprite(u"table", Layer_Order+1, self.CrdX, self.CrdY)
-        self.RecipeInfoSprite = MakeSimpleSprite(u"recipe-info", Layer_Order+1,
+                                     Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Station)
+        self.TableSprite = MakeSimpleSprite(theme["station"], Layer_Station, self.CrdX, self.CrdY)
+        self.RecipeInfoSprite = MakeSimpleSprite(theme["recipeInfo"], Layer_Station,
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
         self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
@@ -52,12 +52,12 @@ class CustomerStation(scraft.Dispatcher):
         self.OrderType = type
         self.RecipeInfoSprite.visible = True
         self.OrderSprite = MakeSimpleSprite(globalvars.CuisineInfo["Recipes"][type]["src"],
-                Layer_Order, self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy)
+                Layer_Recipe, self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy)
         tmpIng = globalvars.CuisineInfo["Recipes"][type]["requires"].keys()
         self.TokensNeeded = map(lambda x: { "item": x, "no": globalvars.CuisineInfo["Recipes"][type]["requires"][x] }, tmpIng)
         for i in range(len(self.TokensNeeded)):
             self.NeededIndicators.append(NeededIndicator(self.CrdX + Crd_Indicator_DeltaX,
-                self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Tokens, 
+                self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Recipe, 
                 globalvars.CuisineInfo["Ingredients"][self.TokensNeeded[i]["item"]]["src"],
                 u"arial18", u"galka", self.TokensNeeded[i]["no"]))
         

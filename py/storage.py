@@ -22,7 +22,7 @@ from random import choice, shuffle
 #--------------------------------------------
 
 class Storage(scraft.Dispatcher):
-    def __init__(self, cols, rows, x, y):
+    def __init__(self, cols, rows, x, y, klass):
         self.Crd_minX, self.Crd_minY = x, y
         self.Cols, self.Rows = cols, rows
         
@@ -36,17 +36,42 @@ class Storage(scraft.Dispatcher):
         self.Receptors = {}
         self.Cells = {}
         
-        for i in range(cols):
-            for j in range(rows):
-                self.Receptors[i,j] = MakeDummySprite(self, Cmd_Receptor,
-                        self._CellCoords((i,j))[0], self._CellCoords((i,j))[1],
-                        Crd_deltaX, Crd_deltaY, Layer_Receptors)
-                self.Receptors[i,j].SetItem(Indexes["Col"], i)
-                self.Receptors[i,j].SetItem(Indexes["Row"], j)
-                self.Background[i,j] = MakeSimpleSprite(u"storage", Layer_Storage, self._CellCoords((i,j))[0], self._CellCoords((i,j))[1])
-                self.Grid[i,j] = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_Tokens,
-                    self._CellCoordsLeft((i,j))[0], self._CellCoordsLeft((i,j))[1])
-                self.Cells[i,j] = Const_EmptyCell
+        for i in range(-1, cols+1):
+            for j in range(-1, rows+1):
+                #выбираем номер кадра из класса
+                if i == -1:
+                    if j == -1:
+                        tmpFrno = 0
+                    elif j == rows:
+                        tmpFrno = 6
+                    else:
+                        tmpFrno = 3
+                elif i == cols:
+                    if j == -1:
+                        tmpFrno = 2
+                    elif j == rows:
+                        tmpFrno = 8
+                    else:
+                        tmpFrno = 5
+                else:
+                    if j == -1:
+                        tmpFrno = 1
+                    elif j == rows:
+                        tmpFrno = 7
+                    else:
+                        tmpFrno = 4
+                self.Background[i,j] = MakeSimpleSprite(klass, Layer_Storage, self._CellCoords((i,j))[0], self._CellCoords((i,j))[1], scraft.HotspotCenter, tmpFrno)
+                
+                #4 - кадр из середины поял (не рамка), то есть его надо заполнить
+                if tmpFrno == 4:
+                    self.Receptors[i,j] = MakeDummySprite(self, Cmd_Receptor,
+                            self._CellCoords((i,j))[0], self._CellCoords((i,j))[1],
+                            Crd_deltaX, Crd_deltaY, Layer_Receptors)
+                    self.Receptors[i,j].SetItem(Indexes["Col"], i)
+                    self.Receptors[i,j].SetItem(Indexes["Row"], j)
+                    self.Grid[i,j] = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_Tokens,
+                        self._CellCoordsLeft((i,j))[0], self._CellCoordsLeft((i,j))[1])
+                    self.Cells[i,j] = Const_EmptyCell
         
     def _ReHighlight(self):
         #пересчитать подсветку токенов
@@ -136,8 +161,8 @@ class Storage(scraft.Dispatcher):
 #--------------------------------------------
 #--------------------------------------------
 class Store(Storage):
-    def __init__(self, cols, rows, x, y):
-        Storage.__init__(self, cols, rows, x, y)
+    def __init__(self, cols, rows, x, y, theme):
+        Storage.__init__(self, cols, rows, x, y, theme["storage"])
         
         self.Capacity = cols*rows
         self.NoTokens = 0
@@ -218,8 +243,8 @@ class Store(Storage):
 #--------------------------------------------
 #--------------------------------------------
 class Field(Storage):
-    def __init__(self, cols, rows, x, y):
-        Storage.__init__(self, cols, rows, x, y)
+    def __init__(self, cols, rows, x, y, theme):
+        Storage.__init__(self, cols, rows, x, y, theme["field"])
         self.SetState(FieldState_None)
         oE.executor.Schedule(self)
         
@@ -483,4 +508,42 @@ class Field(Storage):
         else:
             Storage._OnMouseClick(self, sprite, x, y, button)
             
+            
+        
+#--------------------------------------------
+#--------------------------------------------
+# TrashCan - мусорка
+#--------------------------------------------
+#--------------------------------------------
+class TrashCan(scraft.Dispatcher):
+    def __init__(self, capacity, x, y, theme):
+        self.Capacity = capacity
+        self.Dummy = MakeDummySprite(self, Cmd_TrashCan, x, y, 60, 60, Layer_Storage)
+        self.TrashCanSprite = MakeSimpleSprite(unicode(theme["trashcan"]), Layer_Storage, x, y)
+        self.Indicator = BarIndicator(x-25, y-5, 50, 10,
+                    unicode(theme["trashcanBarFull"]), unicode(theme["trashcanBarEmpty"]), Layer_Storage-1)
+        self.Empty()
+        oE.executor.Schedule(self)
+        
+    def Show(self, flag):
+        self.Dummy.visible = flag
+        self.TrashCanSprite.visible = flag
+        self.Indicator.Show(flag)
+        
+    def Discard(self, no):
+        self.Contains += no
+        if self.Contains >= self.Capacity:
+            self.Active = False
+        self.Indicator.SetValue(min(1.0*self.Contains/self.Capacity, 1))
+        
+    def Empty(self):
+        self.Contains = 0
+        self.Active = True
+        self.Indicator.SetValue(0)
+        
+    def _OnMouseClick(self, sprite, button, x, y):
+        if sprite.cookie == Cmd_TrashCan and self.Active:
+            globalvars.Board.SendCommand(Cmd_TrashCan, self)
+        
+        
         

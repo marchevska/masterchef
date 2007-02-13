@@ -27,19 +27,29 @@ MasterChef{
     
     //source classes for power-ups
     PowerUpKlasses{
-        sprite(powerup.cross.button) { bitmap = "img/powerups/cross-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.gift.button) { bitmap = "img/powerups/gift-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.magicwand.button) { bitmap = "img/powerups/magicwand-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.shuffle.button) { bitmap = "img/powerups/shuffle-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.spoon.button) { bitmap = "img/powerups/spoon-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.supersweet.button) { bitmap = "img/powerups/supersweet-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.sweet.button) { bitmap = "img/powerups/sweet-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.cross) { bitmap = "img/powerups/cross.png" type = "blend" }
-        sprite(powerup.gift) { bitmap = "img/powerups/gift.png" type = "blend" }
-        sprite(powerup.magicwand) { bitmap = "img/powerups/magicwand.png" type = "blend" }
-        sprite(powerup.spoon) { bitmap = "img/powerups/spoon.png" type = "blend" }
-        sprite(powerup.supersweet) { bitmap = "img/powerups/supersweet.png" type = "blend" }
-        sprite(powerup.sweet) { bitmap = "img/powerups/sweet.png" type = "blend" }
+        sprite(powerup.use.button) { bitmap = "img/powerups/use-powerup-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.buy.button) { bitmap = "img/powerups/buy-powerup-button.png" type = "blend" layout = "1x4" }
+        font(powerups) { bitmap = "img/powerups/powerups.png" type = "blend" symbols =12345678-$ }
+        font(powerups.roll) { bitmap = "img/powerups/powerups-roll.png" type = "blend" symbols =12345678-$ }
+        font(powerups.inert) { bitmap = "img/powerups/powerups-inert.png" type = "blend" symbols =12345678-$ }
     }
     
+    //source klasses for restaurant themes
+    ThemeKlasses{
+        sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" }
+        sprite(theme.japanese.counter) { bitmap = "img/episodes/japanese/counter.png" type = "blend" }
+        //sprite(theme.japanese.pointer) { bitmap = "img/episodes/japanese/pointer.png" }
+        sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" }
+        sprite(theme.japanese.recipeinfo) { bitmap = "img/episodes/japanese/recipe-info.png" type = "blend" }
+        sprite(theme.japanese.field) { bitmap = "img/episodes/japanese/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.japanese.storage) { bitmap = "img/episodes/japanese/storage.png" type = "blend" layout = "3x3" }
+        sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" }
+        sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
+        sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
+        sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }
+        
+        sprite(theme.japanese.decoration.bonsai) { bitmap = "img/episodes/japanese/bonsai.png" type = "blend" }
+        sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }
+        sprite(theme.japanese.decoration.screen2) { bitmap = "img/episodes/japanese/screen2.png" type = "blend" }
+    }
 }

@@ -32,6 +32,14 @@ def ReadResourceInfo():
         while tmpKlassesIterator.Next():
             tmp = tmpKlassesIterator.Get()
             oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
+        tmpKlassesIterator = tmpResourceInfo.GetTag(u"PowerUpKlasses").IterateTag(u"font")
+        while tmpKlassesIterator.Next():
+            tmp = tmpKlassesIterator.Get()
+            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
+        tmpKlassesIterator = tmpResourceInfo.GetTag(u"ThemeKlasses").IterateTag(u"sprite")
+        while tmpKlassesIterator.Next():
+            tmp = tmpKlassesIterator.Get()
+            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
         
         #read customer classes
         tmpResourceInfo = oE.ParseDEF(File_Animations).GetTag(u"MasterChef")
@@ -97,6 +105,7 @@ def ReadGameSettings():
         globalvars.CustomersInfo = {}
         globalvars.GameSettings = {}
         globalvars.PowerUpsInfo = {}
+        globalvars.ThemesInfo = {}
         
         tmpGameSettings = oE.ParseDEF(File_GameSettings).GetTag(u"MasterChef")
         tmp = tmpGameSettings.GetTag(u"GameSettings").Attributes()
@@ -129,11 +138,19 @@ def ReadGameSettings():
         while tmpPowerUpsIterator.Next():
             tmp = tmpPowerUpsIterator.Get()
             globalvars.PowerUpsInfo[tmp.GetStrAttr(u"type")] = {
-                "src": tmp.GetStrAttr(u"src"),
-                "buttonSrc": tmp.GetStrAttr(u"buttonSrc"),
+                "symbol": tmp.GetStrAttr(u"symbol"),
                 "price": tmp.GetIntAttr(u"price"),
             }
                 
+        #информация о темах
+        tmpThemesIterator = tmpGameSettings.GetTag(u"Themes").IterateTag(u"Theme")
+        while tmpThemesIterator.Next():
+            tmp = tmpThemesIterator.Get()
+            globalvars.ThemesInfo[tmp.GetStrAttr(u"type")] = {}
+            for tmpKey in ["background", "counter", "customersQuePointer", "station",
+                           "recipeInfo", "field", "storage", "bonuspane",
+                           "trashcan", "trashcanBarEmpty", "trashcanBarFull"]:
+                globalvars.ThemesInfo[tmp.GetStrAttr(u"type")][tmpKey] = tmp.GetStrAttr(unicode(tmpKey))
         
     except:
         oE.Log(u"Cannot read global game settings")
@@ -188,10 +205,25 @@ def ReadLevelSettings(filename):
         tmpLayout = tmpLevelData.GetTag(u"Layout")
         globalvars.Layout["Theme"] = tmpLayout.GetStrAttr(u"theme")
         
-        tmpGameBoard = tmpLayout.GetTag(u"Field")
+        tmpUnitData = tmpLayout.GetTag(u"Field")
         globalvars.Layout["Field"] = {}
         for tmpKey in ["XSize", "YSize", "X0", "Y0"]:
-            globalvars.Layout["Field"][tmpKey] = tmpGameBoard.GetIntAttr(unicode(tmpKey))
+            globalvars.Layout["Field"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
+            
+        tmpUnitData = tmpLayout.GetTag(u"Counter")
+        globalvars.Layout["Counter"] = {}
+        for tmpKey in ["type", "x", "y"]:
+            globalvars.Layout["Counter"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
+            
+        tmpUnitData = tmpLayout.GetTag(u"BonusPane")
+        globalvars.Layout["BonusPane"] = {}
+        for tmpKey in ["type", "x", "y"]:
+            globalvars.Layout["BonusPane"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
+            
+        tmpUnitData = tmpLayout.GetTag(u"TrashCan")
+        globalvars.Layout["TrashCan"] = {}
+        for tmpKey in ["type", "size", "x", "y"]:
+            globalvars.Layout["TrashCan"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
             
         globalvars.Layout["Stores"] = []
         tmpCustomerStations = tmpLayout.IterateTag(u"Store")
@@ -221,8 +253,7 @@ def ReadLevelSettings(filename):
         while tmpDecorations.Next():
             tmpDeco = tmpDecorations.Get()
             globalvars.Layout["Decorations"].append({ "type": tmpDeco.GetStrAttr(u"type"),
-                "x": tmpDeco.GetIntAttr(u"x"), "y": tmpDeco.GetIntAttr(u"y"),
-                "layer": tmpCS.GetIntAttr(u"layer") })
+                "x": tmpDeco.GetIntAttr(u"x"), "y": tmpDeco.GetIntAttr(u"y")})
             
             
     except:

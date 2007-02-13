@@ -8,6 +8,7 @@ Project: Master Chef
 
 global CuisineInfo
 global CustomersInfo
+global ThemesInfo
 global CustomerAnimations
 global PowerUpsInfo
 global GameSettings

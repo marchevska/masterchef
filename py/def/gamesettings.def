@@ -19,6 +19,23 @@ MasterChef {
         tokenScores = "{ 1: 2, 2: 5, 3: 10, 4: 17, 5: 25, 6: 35, 7: 47, 8: 62, 9: 77, 10: 100 }"
     }
     
+    Themes {
+        Theme {
+            type = "Japanese"
+            background = "theme.japanese.background"
+            counter = "theme.japanese.counter"
+            customersQuePointer = "theme.japanese.pointer"
+            station = "theme.japanese.station"
+            recipeInfo = "theme.japanese.recipeinfo"
+            field = "theme.japanese.field"
+            storage = "theme.japanese.storage"
+            bonuspane = "theme.japanese.bonuspane"
+            trashcan = "theme.japanese.trashcan"
+            trashcanBarEmpty = "theme.japanese.trashcan.bar.empty"
+            trashcanBarFull = "theme.japanese.trashcan.bar.full"
+        }
+    }
+    
     Customers {
         Customer {
             type = "Worker"
@@ -169,50 +186,49 @@ MasterChef {
     PowerUps {
         PowerUp {
             type = "Cross"
-            src = "powerup.cross"
-            buttonSrc = "powerup.cross.button"
+            symbol = "1"
+            price = "2"
+        }
+        
+        PowerUp {
+            type = "EmptyTrash"
+            symbol = "8"
             price = "2"
         }
         
         PowerUp {
             type = "Gift"
-            src = "powerup.gift"
-            buttonSrc = "powerup.gift.button"
+            symbol = "7"
             price = "3"
         }
         
         PowerUp {
             type = "Magicwand"
-            src = "powerup.magicwand"
-            buttonSrc = "powerup.magicwand.button"
+            symbol = "5"
             price = "3"
         }
         
         PowerUp {
             type = "Shuffle"
-            src = ""
-            buttonSrc = "powerup.shuffle.button"
+            symbol = "6"
             price = "2"
         }
         
         PowerUp {
             type = "Spoon"
-            src = "powerup.spoon"
-            buttonSrc = "powerup.spoon.button"
+            symbol = "2"
             price = "1"
         }
         
         PowerUp {
             type = "Sweet"
-            src = "powerup.sweet"
-            buttonSrc = "powerup.sweet.button"
+            symbol = "3"
             price = "1"
         }
         
         PowerUp {
             type = "Supersweet"
-            src = "powerup.supersweet"
-            buttonSrc = "powerup.supersweet.button"
+            symbol = "4"
             price = "2"
         }
         

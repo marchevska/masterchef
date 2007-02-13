@@ -168,6 +168,48 @@ class Animator(scraft.Dispatcher):
         return scraft.CommandStateRepeat
 
 #-----------------------------------------
+# Простой индикатор состояния типа bar
+#-----------------------------------------
+
+class BarIndicator:
+    def __init__(self, newX, newY, width, height, topKlass, bgKlass, newLayer, isVertical = False, isReverse = False):
+        self.sprite = MakeSimpleSprite(topKlass, newLayer, newX, newY, scraft.HotspotLeftTop)
+        self.bgSprite = MakeSimpleSprite(bgKlass, newLayer, newX, newY, scraft.HotspotLeftTop)
+        self.sprite.sublayer = 0
+        self.bgSprite.sublayer = 1
+        self.Width, self.Height = width, height
+        self.IsVertical = isVertical
+        self.IsReverse = isReverse #справа налево или сверху вниз
+        self.SetValue(0)
+        
+    def Show(self, flag):
+        self.sprite.visible = flag
+        self.bgSprite.visible = flag
+        
+    def SetValue(self, newValue):
+        if newValue < 0:
+            newValue = 0
+        elif newValue > 1:
+            newValue = 1
+        if self.IsVertical:
+            height0 = int(newValue*self.Height)
+            width0 = self.Width
+        else:
+            width0 = int(newValue*self.Width)
+            height0 = self.Height
+        if self.IsReverse:
+            tmpCoords = [(self.Width-width0, self.Height-height0), (self.Width, self.Height-height0),
+                (self.Width, self.Height), (self.Width, self.Heigh, self.Height)]
+        else:
+            tmpCoords = [(0, 0), (width0, 0), (width0, height0), (0, height0)]
+        
+        self.sprite.style = scraft.StyleShape
+        self.sprite.primitive.cw = True
+        self.sprite.primitive.count = 4
+        for i in range(4):
+            self.sprite.primitive.SetXY(i, tmpCoords[i][0], tmpCoords[i][1])
+
+#-----------------------------------------
 # Числовой индикатор с плавным изменением
 #-----------------------------------------
 

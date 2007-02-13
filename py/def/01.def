@@ -46,7 +46,7 @@ Level{
     //level layout: customer stations, power-up buttons, decorations
     //layout of the game field
     Layout{
-        theme = "japanese" 
+        theme = "Japanese" 
         CustomerStation{ type = "" x = "90" y = "180" occupied = "yes" }
         CustomerStation{ type = "" x = "90" y = "340" occupied = "no" }
         CustomerStation{ type = "" x = "90" y = "500" occupied = "no" }
@@ -57,7 +57,11 @@ Level{
         //Store { XSize = "2" YSize = "3" X0 = "720" Y0 = "440" }
         PowerUp{ type = "Magicwand" x = "360" y = "500" }
         PowerUp{ type = "Cross" x = "440" y = "500" }
-        Decoration { type = "" x = "100" y = "100" layer = "10" }
+        Counter{ type = "" x = "120" y = "100" }
+        BonusPane{ type = "" x = "320" y = "300" }
+        TrashCan{ type = "" size = "100" x = "750" y = "550" }
+        Decoration { type = "theme.japanese.decoration.bonsai" x = "200" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen1" x = "20" y = "500" }
     }
     
 }

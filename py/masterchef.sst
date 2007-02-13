@@ -56,14 +56,6 @@ layout = 1x4
 type   = blend
 }
 
-sprite recipe-info {
-bitmap = img/recipe-info.png
-}
-
-sprite table {
-bitmap = img/table.png
-type = blend
-}
 
 
 

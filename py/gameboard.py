@@ -15,7 +15,7 @@ from constants import *
 from configconst import *
 from guielements import *
 from customerstation import CustomerStation
-from storage import Store, Field
+from storage import Store, Field, TrashCan
 from extra import *
 from customer import *
 import levels
@@ -28,12 +28,13 @@ import traceback
 class GameBoard(scraft.Dispatcher):
     
     def __init__(self):
-        self.BgSprite = MakeSimpleSprite(u"background", Layer_GameBg)
+        self.BgSprite = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_GameBg, 0, 0)
         self.BgReceptor = MakeDummySprite(self, Cmd_BgReceptor,
                         400, 300, 800, 600, Layer_BgReceptor)
         self.Field = None
         self.CStations = []
         self.Stores = []
+        self.Static = []
         self.PickedTool = ""
         self.PickedTokens = ""
         self.PickedTokensNo = 0
@@ -108,31 +109,55 @@ class GameBoard(scraft.Dispatcher):
                 tmpCustomerRecipes[tmpCustomer] = globalvars.LevelInfo["RecipeRates"]
         self.RecipesList = map(lambda x: RandomKeyByRates(tmpCustomerRecipes[x]), self.CustomersList)
         
+        tmpTheme = globalvars.ThemesInfo[globalvars.Layout["Theme"]]
+        self.BgSprite.ChangeKlassTo(unicode(tmpTheme["background"]))
+        
         #размещение стейшенов 
         for tmp in globalvars.Layout["CustomerStations"]:
-            tmpStation = CustomerStation(tmp["x"], tmp["y"])
+            tmpStation = CustomerStation(tmp["x"], tmp["y"], tmpTheme)
             if tmp["occupied"]:
                 self._NextCustomerTo(tmpStation)
             else:
                 tmpStation.SetState(CStationState_Free)
             self.CStations.append(tmpStation)
         
+        #игровое поле
+        tmp = globalvars.Layout["Field"]
+        self.Field = Field(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme)
+            
         #размещение складов
         for tmp in globalvars.Layout["Stores"]:
-            self.Stores.append(Store(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"]))
+            self.Stores.append(Store(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme))
         
+        #мусорка
+        #self.TrashCan = TrashCan(globalvars.Layout["TrashCan"]["size"], globalvars.Layout["TrashCan"]["x"],
+        #                         globalvars.Layout["TrashCan"]["x"], tmpTheme)
+            
+        #прочие объекты
+        self.Static = []
+        self.Static.append(MakeSimpleSprite(tmpTheme["counter"], Layer_Counter, globalvars.Layout["Counter"]["x"], globalvars.Layout["Counter"]["y"]))
+        self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco, globalvars.Layout["BonusPane"]["x"], globalvars.Layout["BonusPane"]["y"]))
+        for tmp in globalvars.Layout["Decorations"]:
+            self.Static.append(MakeSimpleSprite(unicode(tmp["type"]), Layer_Deco, tmp["x"], tmp["y"]))
+        
+        self.TrashCan = TrashCan(globalvars.Layout["TrashCan"]["size"], globalvars.Layout["TrashCan"]["x"],
+                                 globalvars.Layout["TrashCan"]["y"], tmpTheme)
+
         #размещение повер-апов
         self.PowerUpButtons = {}
         self.BuyPowerUpButtons = {}
         for tmp in globalvars.Layout["PowerUps"]:
             self.PowerUpButtons[tmp["type"]] = PushButton("", self,
                 Cmd_UsePowerUp + globalvars.GameSettings["powerups"].index(tmp["type"]),
-                PState_Game, globalvars.PowerUpsInfo[tmp["type"]]["buttonSrc"],
-                [0, 1, 2, 3], Layer_InterfaceBtn, tmp["x"], tmp["y"], 60, 60)
+                PState_Game, u"powerup.use.button", [0, 1, 2, 3], Layer_InterfaceBtn,
+                tmp["x"], tmp["y"], 60, 60, globalvars.PowerUpsInfo[tmp["type"]]["symbol"],
+                [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
             self.BuyPowerUpButtons[tmp["type"]] = PushButton("", self,
                 Cmd_BuyPowerUp + globalvars.GameSettings["powerups"].index(tmp["type"]),
                 PState_Game, u"buy-powerup-button", [0, 1, 2, 3], Layer_InterfaceBtn,
-                tmp["x"] + Const_BuyPowerUpButton_Dx, tmp["y"] + Const_BuyPowerUpButton_Dy, 40, 30)
+                tmp["x"] + Const_BuyPowerUpButton_Dx, tmp["y"] + Const_BuyPowerUpButton_Dy, 40, 30,
+                u"$"*int(globalvars.PowerUpsInfo[tmp["type"]]["price"]),
+                [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
             self.HasPowerUps[tmp["type"]] = 0
         self._UpdatePowerUpButtons()
             
@@ -143,10 +168,8 @@ class GameBoard(scraft.Dispatcher):
             self.CustomersQue.SetState(QueState_Active)
         
         #заполнение поля
-        tmp = globalvars.Layout["Field"]
-        self.Field = Field(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"])
         self.Field.InitialFilling()
-                
+        
         self._SetState(GameState_StartLevel)
         self._SetGameCursorState(GameCursorState_Default)
         
@@ -193,10 +216,20 @@ class GameBoard(scraft.Dispatcher):
                     tmpType = self.PickedTokens
                     tmpNo = self.PickedTokensNo
                     tmpFrom.RemoveTokens()
-                    self._DropTokensTo(tmpFrom)
+                    self.SendCommand(Cmd_DropWhatYouCarry)
                     parameter.AddTokens(tmpType, tmpNo)
                     if tmpFrom == self.Field:
                         self.Field.SetState(FieldState_Collapse)
+            
+        elif cmd == Cmd_TrashCan:
+            if self.GameCursorState == GameCursorState_Tokens:
+                tmpFrom = self.TokensFrom
+                tmpNo = self.PickedTokensNo
+                self.TokensFrom.RemoveTokens()
+                self._DropTokensTo(tmpFrom)
+                parameter.Discard(tmpNo)
+                if tmpFrom == self.Field:
+                    self.Field.SetState(FieldState_Collapse)
             
         elif cmd == Cmd_DropWhatYouCarry:
             if self.GameCursorState == GameCursorState_Tokens:
@@ -310,7 +343,8 @@ class GameBoard(scraft.Dispatcher):
     #--------------------------
     def _PickTool(self, type):
         self.SendCommand(Cmd_DropWhatYouCarry)
-        self.ToolSprite = MakeSprite(globalvars.PowerUpsInfo[type]["src"], Layer_Tools)
+        #self.ToolSprite = MakeSprite(globalvars.PowerUpsInfo[type]["src"], Layer_Tools)
+        self.ToolSprite = MakeSprite(u"powerups", Layer_Tools, {"text": globalvars.PowerUpsInfo[type]["symbol"]})
         self.PickedTool = type
         self._SetGameCursorState(GameCursorState_Tool)
     
@@ -345,11 +379,11 @@ class GameBoard(scraft.Dispatcher):
     def _DropTokensTo(self, where):
         if where != None:
             where.DropTokens()
-            self.PickedTokens = ""
-            self.PickedTokensNo = 0
-            self.TokenSprite.Dispose()
-            self._SetGameCursorState(GameCursorState_Default)
-            self.TokensFrom = None
+        self.PickedTokens = ""
+        self.PickedTokensNo = 0
+        self.TokenSprite.Dispose()
+        self._SetGameCursorState(GameCursorState_Default)
+        self.TokensFrom = None
         
         
     def _UpdateLevelInfo(self):

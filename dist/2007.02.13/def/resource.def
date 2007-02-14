@@ -1,0 +1,55 @@
+MasterChef{
+    //source classes for ingredients
+    IngredientKlasses{
+        sprite(ingredient.shrimp) { bitmap = "img/ingredients/shrimp.png" type = "blend" }
+        sprite(ingredient.shoyu) { bitmap = "img/ingredients/shoyu.png" type = "blend" }
+        sprite(ingredient.sake) { bitmap = "img/ingredients/sake.png" type = "blend" }
+        sprite(ingredient.dashi) { bitmap = "img/ingredients/dashi.png" type = "blend" }
+        sprite(ingredient.tuna) { bitmap = "img/ingredients/tuna.png" type = "blend" }
+        sprite(ingredient.oyster) { bitmap = "img/ingredients/oyster.png" type = "blend" }
+        sprite(ingredient.salmon) { bitmap = "img/ingredients/salmon.png" type = "blend" }
+        sprite(ingredient.noodle) { bitmap = "img/ingredients/noodle.png" type = "blend" }
+        sprite(ingredient.seaweed) { bitmap = "img/ingredients/seaweed.png" type = "blend" }
+        sprite(ingredient.veggymix) { bitmap = "img/ingredients/veggymix.png" type = "blend" }
+        sprite(ingredient.rice) { bitmap = "img/ingredients/rice.png" type = "blend" }
+        sprite(ingredient.egg) { bitmap = "img/ingredients/egg.png" type = "blend" }
+        sprite(ingredient.miso) { bitmap = "img/ingredients/miso.png" type = "blend" }
+        sprite(ingredient.tofu) { bitmap = "img/ingredients/tofu.png" type = "blend" }
+    }
+    
+    //source classes for dishes
+    RecipeKlasses{
+        sprite(recipe.yosenabe) { bitmap = "img/recipes/yosenabe.png" type = "blend" }
+        sprite(recipe.ochazuke) { bitmap = "img/recipes/ochazuke.png" type = "blend" }
+        sprite(recipe.koyungohan) { bitmap = "img/recipes/koyungohan.png" type = "blend" }
+        sprite(recipe.onigiri) { bitmap = "img/recipes/onigiri.png" type = "blend" }
+    }
+    
+    //source classes for power-ups
+    PowerUpKlasses{
+        sprite(powerup.use.button) { bitmap = "img/powerups/use-powerup-button.png" type = "blend" layout = "2x2" }
+        sprite(powerup.buy.button) { bitmap = "img/powerups/buy-powerup-button.png" type = "blend" layout = "1x4" }
+        font(powerups) { bitmap = "img/powerups/powerups.png" type = "blend" symbols =12345678-$ }
+        font(powerups.roll) { bitmap = "img/powerups/powerups-roll.png" type = "blend" symbols =12345678-$ }
+        font(powerups.inert) { bitmap = "img/powerups/powerups-inert.png" type = "blend" symbols =12345678-$ }
+    }
+    
+    //source klasses for restaurant themes
+    ThemeKlasses{
+        sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" }
+        sprite(theme.japanese.counter) { bitmap = "img/episodes/japanese/counter.png" type = "blend" }
+        //sprite(theme.japanese.pointer) { bitmap = "img/episodes/japanese/pointer.png" }
+        sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" }
+        sprite(theme.japanese.recipeinfo) { bitmap = "img/episodes/japanese/recipe-info.png" type = "blend" }
+        sprite(theme.japanese.field) { bitmap = "img/episodes/japanese/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.japanese.storage) { bitmap = "img/episodes/japanese/storage.png" type = "blend" layout = "3x3" }
+        sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" }
+        sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
+        sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
+        sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }
+        
+        sprite(theme.japanese.decoration.bonsai) { bitmap = "img/episodes/japanese/bonsai.png" type = "blend" }
+        sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }
+        sprite(theme.japanese.decoration.screen2) { bitmap = "img/episodes/japanese/screen2.png" type = "blend" }
+    }
+}

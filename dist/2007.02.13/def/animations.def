@@ -1,0 +1,103 @@
+MasterChef {
+    CustomerKlasses {
+        sprite(customer.worker) { bitmap = "img/customers/worker.png" type = "blend" layout = "2x5" }
+        sprite(customer.vegetarian) { bitmap = "img/customers/vegetarian.png" type = "blend" layout = "2x5" }
+        sprite(customer.schoolkid) { bitmap = "img/customers/schoolkid.png" type = "blend" layout = "2x5" }
+        sprite(customer.student) { bitmap = "img/customers/student.png" type = "blend" layout = "2x5" }
+        sprite(customer.oldlady) { bitmap = "img/customers/oldlady.png" type = "blend" layout = "2x5" }
+        sprite(customer.critic) { bitmap = "img/customers/critic.png" type = "blend" layout = "2x5" }
+        sprite(customer.business) { bitmap = "img/customers/business.png" type = "blend" layout = "2x5" }
+        sprite(customer.tourist) { bitmap = "img/customers/tourist.png" type = "blend" layout = "2x5" }
+    }
+    
+    //Customer animations
+    Animation(animation.worker) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+    Animation(animation.vegetarian) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+    Animation(animation.schoolkid) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+    Animation(animation.student) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+    Animation(animation.oldlady) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+    Animation(animation.critic) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+    Animation(animation.business) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+    Animation(animation.tourist) {
+        Sequence { name = "Order" frames = "0, 1" fps = "2" loops = "0" }
+        Sequence { name = "5Hearts" frames = "2," fps = "1" loops = "0" }
+        Sequence { name = "4Hearts" frames = "3," fps = "1" loops = "0" }
+        Sequence { name = "3Hearts" frames = "4," fps = "1" loops = "0" }
+        Sequence { name = "2Hearts" frames = "5," fps = "1" loops = "0" }
+        Sequence { name = "1Hearts" frames = "6," fps = "1" loops = "0" }
+        Sequence { name = "GoAway" frames = "7," fps = "1" loops = "0" }
+        Sequence { name = "TakeOrder" frames = "8, 9" fps = "2" loops = "0" }
+    }
+
+}
+

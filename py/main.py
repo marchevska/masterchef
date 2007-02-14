@@ -35,6 +35,7 @@ config.ReadHiscores()
 config.ReadBestResults()
 playerlist.ReadPlayers()
 
+defs.ReadLevelProgress()
 defs.ReadCuisine()
 defs.ReadResourceInfo()
 
@@ -46,6 +47,16 @@ globalvars.StateStack = []
 globalvars.GUI = Gui()
 globalvars.Board = GameBoard()
     
+# начало кода запуска заданного уровня
+if len(sys.argv) >= 3:
+    if sys.argv[1] == "run" and sys.argv[2] in globalvars.LevelProgress.keys():
+        try:
+            globalvars.CurrentPlayer["Level"] = globalvars.LevelProgress[sys.argv[2]]["no"]
+            globalvars.GUI.JustRun()
+        except:
+            sys.exit()
+# конец кода запуска заданного уровня
+
 while globalvars.StateStack[-1] != PState_EndGame:
     oE.NextEvent()
     if oE.EvtIsESC() or oE.EvtIsQuit() :

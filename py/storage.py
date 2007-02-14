@@ -290,9 +290,9 @@ class Field(Storage):
     def _GenerateMatchMap(self):
         self.MatchMap = {}
         curKind = 0
-        #for (i,j) in self.Cells.keys():
-        for i in range(8):
-            for j in range(8):
+        for (i,j) in self.Cells.keys():
+        #for i in range(8):
+        #    for j in range(8):
                 if not self.MatchMap.has_key((i,j)):
                     self._Compare(i, j, self.Cells[(i,j)], curKind)
                     curKind +=1
@@ -523,7 +523,7 @@ class TrashCan(scraft.Dispatcher):
         self.Indicator = BarIndicator(x-25, y-5, 50, 10,
                     unicode(theme["trashcanBarFull"]), unicode(theme["trashcanBarEmpty"]), Layer_Storage-1)
         self.Empty()
-        oE.executor.Schedule(self)
+        #oE.executor.Schedule(self)
         
     def Show(self, flag):
         self.Dummy.visible = flag

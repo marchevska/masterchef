@@ -11,9 +11,9 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker" rate = "1" }
-        Customer{ type = "Student" rate = "3" }
-        Customer{ type = "Business" rate = "3" }
+        Customer{ type = "Worker" rate = "3" }
+        Customer{ type = "Student" rate = "2" }
+        Customer{ type = "Business" rate = "1" }
     }
     
     //recipe appearance rates
@@ -47,19 +47,21 @@ Level{
     //layout of the game field
     Layout{
         theme = "Japanese" 
-        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
-        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" }
-        PowerUp{ type = "Sweet" x = "450" y = "200" }
-        PowerUp{ type = "Gift" x = "450" y = "250" }
+        CustomerStation{ type = "" x = "70" y = "370" occupied = "yes" }
+        //CustomerStation{ type = "" x = "70" y = "550" occupied = "no" }
+        CustomerStation{ type = "" x = "220" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "220" y = "550" occupied = "no" }
+        Field{ XSize = "8" YSize = "7" X0 = "450" Y0 = "130" }
+        Store { XSize = "6" YSize = "2" X0 = "450" Y0 = "470" }
+        PowerUp{ type = "Sweet" x = "370" y = "200" }
+        PowerUp{ type = "Gift" x = "370" y = "250" }
         Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" x = "480" y = "250" }
+        BonusPane{ type = "" x = "400" y = "250" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
+        Decoration { type = "theme.japanese.decoration.bonsai" x = "100" y = "500" }
+        Decoration { type = "theme.japanese.decoration.screen1" x = "40" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen1" x = "120" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen1" x = "200" y = "200" }
     }
     
 }

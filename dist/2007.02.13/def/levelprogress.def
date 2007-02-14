@@ -1,3 +1,5 @@
-unit{
-  level("def/01.def") { no = "1" check = "yes" }
+MasterChef{
+  level(def/01.def) { no = "0" check = "yes" }
+  level(def/02.def) { no = "1" check = "no" }
+  level(def/03.def) { no = "2" check = "no" }
 }

@@ -11,7 +11,7 @@ import string
 import scraft
 from scraft import engine as oE
 import globalvars
-from configconst import File_Cuisine, File_GameSettings, File_ResourceInfo, File_Animations
+from configconst import File_Cuisine, File_GameSettings, File_ResourceInfo, File_Animations, File_LevelProgress
 
 #--------------------------
 # Чтение данных о ресурсах
@@ -97,6 +97,24 @@ def ReadCuisine():
         sys.exit()
 
 #--------------------------
+# Список уровней
+#--------------------------
+
+def ReadLevelProgress():
+    try:
+        globalvars.LevelProgress = {}
+        tmpLevelsIterator = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef")
+        tmpLevelsIterator = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef").IterateTag(u"level")
+        while tmpLevelsIterator.Next():
+            tmp = tmpLevelsIterator.Get()
+            globalvars.LevelProgress[tmp.GetContent()] = { "no": tmp.GetIntAttr(u"no"), "check": tmp.GetBoolAttr(u"check") }
+        
+    except:
+        oE.Log(u"Cannot read levels list")
+        #sys.exit()
+        
+        
+#--------------------------
 # Чтение глобальных настроек
 #--------------------------
 
@@ -122,6 +140,8 @@ def ReadGameSettings():
                 "heartsOnStart": tmp.GetIntAttr(u"heartsOnStart"),
                 "orderingTimeMin": tmp.GetFltAttr(u"orderingTimeMin"),
                 "orderingTimeMax": tmp.GetFltAttr(u"orderingTimeMax"),
+                "gotGiftTimeMin": tmp.GetFltAttr(u"gotGiftTimeMin"),
+                "gotGiftTimeMax": tmp.GetFltAttr(u"gotGiftTimeMax"),
                 "patientTimeMin": tmp.GetFltAttr(u"patientTimeMin"),
                 "patientTimeMax": tmp.GetFltAttr(u"patientTimeMax"),
                 "thankYouTime": tmp.GetFltAttr(u"thankYouTime"),

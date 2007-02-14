@@ -82,7 +82,13 @@ class GameBoard(scraft.Dispatcher):
     #--------------------------
     def Load(self, no):
         
-        defs.ReadLevelSettings("def/01.def")
+        try:
+            tmpLevelFileName = filter(lambda x: globalvars.LevelProgress[x]["no"] == no, globalvars.LevelProgress.keys())[0]
+        except:
+            print "no such level file"
+            sys.exit()
+            
+        defs.ReadLevelSettings(tmpLevelFileName)
         
         self.LevelNo = 0
         self.LevelScore = 0
@@ -154,7 +160,7 @@ class GameBoard(scraft.Dispatcher):
                 [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
             self.BuyPowerUpButtons[tmp["type"]] = PushButton("", self,
                 Cmd_BuyPowerUp + globalvars.GameSettings["powerups"].index(tmp["type"]),
-                PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn,
+                PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn+1,
                 tmp["x"] + Const_BuyPowerUpButton_Dx, tmp["y"] + Const_BuyPowerUpButton_Dy, 40, 30,
                 u"$"*int(globalvars.PowerUpsInfo[tmp["type"]]["price"]),
                 [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])

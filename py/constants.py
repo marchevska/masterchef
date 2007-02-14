@@ -80,6 +80,7 @@ CustomerState_Ordering = 0
 CustomerState_Wait = 1
 CustomerState_GoAway = 2
 CustomerState_ThankYou = 3
+CustomerState_GotGift = 4
 
 #состояния стейшена
 CStationState_None = -1
@@ -106,7 +107,7 @@ Crd_IndicatorScaleXY = 50
 Crd_IndicatorText_DeltaX = 12
 Crd_IndicatorSign_DeltaY = 20
 Crd_CustomerDx = 0
-Crd_CustomerDy = -65
+Crd_CustomerDy = -3
 Crd_HeartsDx = -24
 Crd_HeartsDy = 25
 Crd_HeartSpritesDx = 12
@@ -114,13 +115,13 @@ Crd_HeartSpritesDy = 0
 Crd_RecipeSpriteDx = 0
 Crd_RecipeSpriteDy = -7
 Crd_RecipeInfoSpriteDx = 55
-Crd_RecipeInfoSpriteDy = -32
+Crd_RecipeInfoSpriteDy = -37
 
 Crd_ReleaseButtonDx = 55
 Crd_ReleaseButtonDy = 15
 
-Const_BuyPowerUpButton_Dx = 0
-Const_BuyPowerUpButton_Dy = 50
+Const_BuyPowerUpButton_Dx = 40
+Const_BuyPowerUpButton_Dy = 0
 
 Const_MinimalGroup = 1
 Const_MaxHearts = 5

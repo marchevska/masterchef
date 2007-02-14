@@ -846,6 +846,13 @@ class Gui(scraft.Dispatcher):
             if len(globalvars.StateStack)>0:
                 self._SetState(globalvars.StateStack[-1])
         
+    # запуск указанного уровня
+    def JustRun(self):
+        playerlist.ResetPlayer()
+        globalvars.CurrentPlayer["Playing"] = False
+        self._SetState(PState_Game)
+        
+        
     def _SetState(self, state):
         if globalvars.StateStack == [] or globalvars.StateStack[-1] != state:
             globalvars.StateStack.append(state)
@@ -859,7 +866,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_Map)
 
             globalvars.Board.Show(True)
-            globalvars.Board.LaunchLevel(0)
+            globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
 
             ##if globalvars.ActiveGameSession == True:
             ##    globalvars.Board.Freeze(False)

@@ -31,6 +31,7 @@ File_Cuisine = u"def/cuisine.def"
 File_GameSettings = u"def/gamesettings.def"
 File_ResourceInfo = u"def/resource.def"
 File_Animations = u"def/animations.def"
+File_LevelProgress = u"def/levelprogress.def"
 
 #сигнатура
 Str_SignatureBegin = "signature{\n  value("

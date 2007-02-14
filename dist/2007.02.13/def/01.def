@@ -11,9 +11,9 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        //Customer{ type = "Worker" rate = "3" }
-        Customer{ type = "Oldlady" rate = "2" }
-        //Customer{ type = "Business" rate = "1" }
+        Customer{ type = "Worker" rate = "1" }
+        Customer{ type = "Student" rate = "3" }
+        Customer{ type = "Business" rate = "3" }
     }
     
     //recipe appearance rates
@@ -47,21 +47,19 @@ Level{
     //layout of the game field
     Layout{
         theme = "Japanese" 
-        CustomerStation{ type = "" x = "90" y = "180" occupied = "yes" }
-        CustomerStation{ type = "" x = "90" y = "340" occupied = "no" }
-        CustomerStation{ type = "" x = "90" y = "500" occupied = "no" }
-        CustomerStation{ type = "" x = "240" y = "260" occupied = "no" }
-        CustomerStation{ type = "" x = "240" y = "420" occupied = "yes" }
-        Field{ XSize = "8" YSize = "8" X0 = "400" Y0 = "120" }
-        Store { XSize = "4" YSize = "2" X0 = "540" Y0 = "500" }
-        //Store { XSize = "2" YSize = "3" X0 = "720" Y0 = "440" }
-        PowerUp{ type = "Magicwand" x = "360" y = "500" }
-        PowerUp{ type = "Cross" x = "440" y = "500" }
-        Counter{ type = "" x = "120" y = "100" }
-        BonusPane{ type = "" x = "320" y = "300" }
-        TrashCan{ type = "" size = "100" x = "750" y = "550" }
-        Decoration { type = "theme.japanese.decoration.bonsai" x = "200" y = "200" }
-        Decoration { type = "theme.japanese.decoration.screen1" x = "20" y = "500" }
+        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
+        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" }
+        PowerUp{ type = "Sweet" x = "450" y = "200" }
+        PowerUp{ type = "Gift" x = "450" y = "250" }
+        Counter{ type = "" x = "330" y = "95" }
+        BonusPane{ type = "" x = "480" y = "250" }
+        TrashCan{ type = "" size = "100" x = "750" y = "530" }
+        Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
     }
     
 }

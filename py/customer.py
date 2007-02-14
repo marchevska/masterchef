@@ -26,7 +26,7 @@ class Customer(scraft.Dispatcher):
         self.Type = type
         self.Host = host
         self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo[type]["src"], Layer_Customer,
-                        host.CrdX + Crd_CustomerDx, host.CrdY + Crd_CustomerDy)
+                        host.CrdX + Crd_CustomerDx, host.CrdY + Crd_CustomerDy, scraft.HotspotCenterBottom)
         self.Animator = CustomersAnimator(self.Sprite,
                 globalvars.CustomerAnimations[globalvars.CustomersInfo[type]["animation"]])
         self.HeartSprites = []
@@ -39,9 +39,11 @@ class Customer(scraft.Dispatcher):
         
     def GiveSweet(self):
         self.AddHearts(1)
+        self._SetState(CustomerState_GotGift)
         
     def GiveGift(self):
         self.AddHearts(3)
+        self._SetState(CustomerState_GotGift)
         
     def AddHearts(self, no):
         self._SetHearts(self.Hearts + no)
@@ -69,6 +71,11 @@ class Customer(scraft.Dispatcher):
             self.NextStateTime = randint(globalvars.CustomersInfo[self.Type]["patientTimeMin"]*1000,
                                          globalvars.CustomersInfo[self.Type]["patientTimeMax"]*1000)
             self._SetHearts(self.Hearts)
+            
+        elif state == CustomerState_GotGift:
+            self.Animator.SetState("GotGift")
+            self.NextStateTime = randint(globalvars.CustomersInfo[self.Type]["gotGiftTimeMin"]*1000,
+                                         globalvars.CustomersInfo[self.Type]["gotGiftTimeMin"]*1000)
             
         elif state == CustomerState_GoAway:
             self.Host.SendCommand(Cmd_FlopOrder)
@@ -119,6 +126,9 @@ class Customer(scraft.Dispatcher):
                     else:
                         self._SetState(CustomerState_GoAway)
                         
+                elif self.State == CustomerState_GotGift:
+                    self._SetState(CustomerState_Wait)
+                    
                 elif self.State == CustomerState_GoAway:
                     self._SetState(CustomerState_None)
                     self.Host.SendCommand(Cmd_Station_DeleteCustomer)

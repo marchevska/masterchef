@@ -47,10 +47,10 @@ Level{
     //layout of the game field
     Layout{
         theme = "Japanese" 
-        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        CustomerStation{ type = "" x = "100" y = "310" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "310" occupied = "no" }
+        CustomerStation{ type = "" x = "100" y = "530" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "530" occupied = "yes" }
         Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
         Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" }
         PowerUp{ type = "Sweet" x = "450" y = "200" }
@@ -58,8 +58,8 @@ Level{
         Counter{ type = "" x = "330" y = "95" }
         BonusPane{ type = "" x = "480" y = "250" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
+        //Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
+        //Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
     }
     
 }

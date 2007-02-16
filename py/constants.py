@@ -38,7 +38,7 @@ Layer_BgReceptor = 102
 Layer_Receptors = 101
 Layer_GameBg = 89
 Layer_CustomersQue = 88   #очередь покупателей
-Layer_Counter = 87        #стойка
+Layer_Counter = 84        #стойка
 Layer_Deco = 86           #декорации
 Layer_Customer = 85       #покупатели
 Layer_Station = 84        #столик и инфо-табличка
@@ -76,11 +76,12 @@ GameCursorState_Tool = 2
 
 #состояния кастомера
 CustomerState_None = -1
-CustomerState_Ordering = 0
-CustomerState_Wait = 1
-CustomerState_GoAway = 2
-CustomerState_ThankYou = 3
-CustomerState_GotGift = 4
+CustomerState_Queue = 0
+CustomerState_Ordering = 1
+CustomerState_Wait = 2
+CustomerState_GoAway = 3
+CustomerState_ThankYou = 4
+CustomerState_GotGift = 5
 
 #состояния стейшена
 CStationState_None = -1
@@ -96,6 +97,11 @@ QueState_Passive = 2
 #------------
 # координаты
 #------------
+
+Crd_Queue_X0 = 100
+Crd_Queue_Y0 = 110
+Crd_QueueCustomerDx = 50
+Crd_QueueCustomerDy = 0
 
 Crd_StationDummyWidth = 100
 Crd_StationDummyHeight = 130
@@ -120,12 +126,15 @@ Crd_RecipeInfoSpriteDy = -37
 Crd_ReleaseButtonDx = 55
 Crd_ReleaseButtonDy = 15
 
+Const_BonusPaneDx = 0
+Const_BonusPaneDy = 60
 Const_BuyPowerUpButton_Dx = 40
 Const_BuyPowerUpButton_Dy = 0
 
 Const_MinimalGroup = 1
 Const_MaxHearts = 5
 Const_EmptyCell = "nothing"
+Const_VisibleCustomers = 7
 
 MatchDeltas = [(0,-1), (-1,0), (0,1), (1,0)]
 Indexes = { "Col": 0, "Row": 1 }

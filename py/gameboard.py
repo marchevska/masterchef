@@ -96,27 +96,12 @@ class GameBoard(scraft.Dispatcher):
         
         self.HasPowerUps = {}
         
-        #список покупателей и их заказов
-        self.RemainingCustomers = globalvars.LevelSettings["nocustomers"]
-        self.CustomersList = map(lambda x: RandomKeyByRates(globalvars.LevelInfo["CustomerRates"]),
-                                range(globalvars.LevelSettings["nocustomers"]))
-        tmpCustomerRecipes = {}
-        for tmpCustomer in globalvars.LevelInfo["CustomerRates"].keys():
-            if globalvars.CustomersInfo[tmpCustomer]["dislikes"] != "nothing":
-                #плохие ингредиенты - те, которые покупатель не любит
-                tmpBadIngredients = map(lambda y: y[0], filter(lambda x: x[1]["type"] == globalvars.CustomersInfo[tmpCustomer]["dislikes"],
-                                           globalvars.CuisineInfo["Ingredients"].iteritems()))
-                #хорошие рецепты - не используют плохих ингредиентов
-                tmpGoodRecipes = filter(lambda x: \
-                    filter(lambda y: y in tmpBadIngredients, globalvars.CuisineInfo["Recipes"][x]["requires"].keys()) == [],
-                    globalvars.LevelInfo["RecipeRates"].keys())
-                tmpCustomerRecipes[tmpCustomer] = dict(map(lambda x: (x, globalvars.LevelInfo["RecipeRates"][x]), tmpGoodRecipes))
-            else:
-                tmpCustomerRecipes[tmpCustomer] = globalvars.LevelInfo["RecipeRates"]
-        self.RecipesList = map(lambda x: RandomKeyByRates(tmpCustomerRecipes[x]), self.CustomersList)
-        
         tmpTheme = globalvars.ThemesInfo[globalvars.Layout["Theme"]]
         self.BgSprite.ChangeKlassTo(unicode(tmpTheme["background"]))
+        
+        #reset customer dispatcher
+        self.RemainingCustomers = globalvars.LevelSettings["nocustomers"]
+        self.CustomersQue = CustomersQue()
         
         #размещение стейшенов 
         for tmp in globalvars.Layout["CustomerStations"]:
@@ -135,14 +120,22 @@ class GameBoard(scraft.Dispatcher):
         for tmp in globalvars.Layout["Stores"]:
             self.Stores.append(Store(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme))
         
-        #мусорка
-        #self.TrashCan = TrashCan(globalvars.Layout["TrashCan"]["size"], globalvars.Layout["TrashCan"]["x"],
-        #                         globalvars.Layout["TrashCan"]["x"], tmpTheme)
-            
         #прочие объекты
         self.Static = []
         self.Static.append(MakeSimpleSprite(tmpTheme["counter"], Layer_Counter, globalvars.Layout["Counter"]["x"], globalvars.Layout["Counter"]["y"]))
-        self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco, globalvars.Layout["BonusPane"]["x"], globalvars.Layout["BonusPane"]["y"]))
+        #составная панель для бонусов
+        self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco,
+                globalvars.Layout["BonusPane"]["x"], globalvars.Layout["BonusPane"]["y"],
+                scraft.HotspotCenter, 0))
+        for i in range(globalvars.Layout["BonusPane"]["size"]):
+            self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco,
+                    globalvars.Layout["BonusPane"]["x"]+(i+1)*Const_BonusPaneDx,
+                    globalvars.Layout["BonusPane"]["y"]+(i+1)*Const_BonusPaneDy,
+                    scraft.HotspotCenter, 1))
+        self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco,
+                globalvars.Layout["BonusPane"]["x"]+(globalvars.Layout["BonusPane"]["size"]+1)*Const_BonusPaneDx,
+                globalvars.Layout["BonusPane"]["y"]+(globalvars.Layout["BonusPane"]["size"]+1)*Const_BonusPaneDy,
+                scraft.HotspotCenter, 2))
         for tmp in globalvars.Layout["Decorations"]:
             self.Static.append(MakeSimpleSprite(unicode(tmp["type"]), Layer_Deco, tmp["x"], tmp["y"]))
         
@@ -167,9 +160,7 @@ class GameBoard(scraft.Dispatcher):
             self.HasPowerUps[tmp["type"]] = 0
         self._UpdatePowerUpButtons()
             
-        #reset customer dispatcher
         tmpFreeStations = filter(lambda x: x.State == CStationState_Free, self.CStations)
-        self.CustomersQue = CustomersQue()
         if tmpFreeStations != []:
             self.CustomersQue.SetState(QueState_Active)
         
@@ -184,8 +175,7 @@ class GameBoard(scraft.Dispatcher):
     #--------------------------
     def _NextCustomerTo(self, station):
         station.SetState(CStationState_Busy)
-        station.AttachCustomer(self.CustomersList.pop(0))
-        #station.PutOrder(self.RecipesList.pop(0))
+        station.AttachCustomer(self.CustomersQue.PopCustomer())
         self.RemainingCustomers -= 1
         
     #--------------------------
@@ -253,9 +243,9 @@ class GameBoard(scraft.Dispatcher):
             if self.RemainingCustomers > 0 and len(tmpFreeStations) > 1:
                 self.CustomersQue.SetState(QueState_Active)
                 
-        elif cmd == Cmd_NewOrder:
-            parameter.PutOrder(self.RecipesList.pop(0))
-            
+        #elif cmd == Cmd_NewOrder:
+        #    parameter.PutOrder(self.RecipesList.pop(0))
+        #    
         elif cmd == Cmd_FreeStation:
             if self.RemainingCustomers > 0:
                 self.CustomersQue.SetState(QueState_Active)

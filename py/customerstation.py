@@ -39,10 +39,11 @@ class CustomerStation(scraft.Dispatcher):
         self.State = state
         
     #--------------
-    # "type" - тип кастомера 
+    # сажаем покупателя за столик
     #--------------
-    def AttachCustomer(self, type):
-        self.Customer = Customer(type, self)
+    def AttachCustomer(self, customer):
+        self.Customer = customer
+        customer.AttachTo(self)
         
     #--------------
     # "type" - название рецепта 
@@ -123,10 +124,10 @@ class CustomerStation(scraft.Dispatcher):
         if cmd == Cmd_ReleaseCustomer:
             self.HasOrder = False
             self.Customer.SendCommand(Cmd_Customer_SayThankYou)
-            #globalvars.Board.SendCommand(Cmd_ReleaseCustomer, self)
             
         elif cmd == Cmd_NewOrder:
-            globalvars.Board.SendCommand(Cmd_NewOrder, self)
+            #globalvars.Board.SendCommand(Cmd_NewOrder, self, parameter)
+            self.PutOrder(parameter)
             
         elif cmd == Cmd_FlopOrder:
             print "flop order!"

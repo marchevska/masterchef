@@ -56,7 +56,7 @@ Level{
         PowerUp{ type = "Sweet" x = "370" y = "200" }
         PowerUp{ type = "Gift" x = "370" y = "250" }
         Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" x = "400" y = "250" }
+        BonusPane{ type = "" size = "4" x = "400" y = "200" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
         Decoration { type = "theme.japanese.decoration.bonsai" x = "100" y = "500" }
         Decoration { type = "theme.japanese.decoration.screen1" x = "40" y = "200" }

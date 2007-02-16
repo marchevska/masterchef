@@ -43,7 +43,7 @@ MasterChef{
         sprite(theme.japanese.recipeinfo) { bitmap = "img/episodes/japanese/recipe-info.png" type = "blend" }
         sprite(theme.japanese.field) { bitmap = "img/episodes/japanese/field.png" type = "blend" layout = "3x3" }
         sprite(theme.japanese.storage) { bitmap = "img/episodes/japanese/storage.png" type = "blend" layout = "3x3" }
-        sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" }
+        sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
         sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }

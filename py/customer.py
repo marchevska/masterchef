@@ -12,7 +12,7 @@ from scraft import engine as oE
 import globalvars
 from constants import *
 from guielements import MakeSimpleSprite
-from extra import Animator
+from extra import Animator, RandomKeyByRates
 from random import randint
 
 #------------
@@ -22,20 +22,31 @@ from random import randint
 # Если настроение совсем портится (0 сердечек), покупатель уходит
 #------------
 class Customer(scraft.Dispatcher):
-    def __init__(self, type, host):
+    def __init__(self, type):
         self.Type = type
-        self.Host = host
         self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo[type]["src"], Layer_Customer,
-                        host.CrdX + Crd_CustomerDx, host.CrdY + Crd_CustomerDy, scraft.HotspotCenterBottom)
+                        Crd_Queue_X0, Crd_Queue_Y0, scraft.HotspotCenterBottom)
         self.Animator = CustomersAnimator(self.Sprite,
                 globalvars.CustomerAnimations[globalvars.CustomersInfo[type]["animation"]])
         self.HeartSprites = []
         for i in range(Const_MaxHearts):
             self.HeartSprites.append(MakeSimpleSprite(u"heart", Layer_Recipe,
-                        host.CrdX + Crd_HeartsDx + i*Crd_HeartSpritesDx, host.CrdY + Crd_HeartsDy + i*Crd_HeartSpritesDy))
-        self._SetHearts(globalvars.CustomersInfo[type]["heartsOnStart"])
-        self._SetState(CustomerState_Ordering)
+                        self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx,
+                        self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy))
+        self._SetState(CustomerState_Queue)
         self.QueNo = oE.executor.Schedule(self)
+        
+    def DrawAt(self, x, y):
+        self.Sprite.x, self.Sprite.y = x, y
+        
+    def AttachTo(self, host):
+        self.Host = host
+        self.Sprite.x, self.Sprite.y = host.CrdX + Crd_CustomerDx, host.CrdY + Crd_CustomerDy
+        for i in range(Const_MaxHearts):
+            self.HeartSprites[i].x = self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx
+            self.HeartSprites[i].y = self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy
+        self._SetHearts(globalvars.CustomersInfo[self.Type]["heartsOnStart"])
+        self._SetState(CustomerState_Ordering)
         
     def GiveSweet(self):
         self.AddHearts(1)
@@ -50,7 +61,9 @@ class Customer(scraft.Dispatcher):
         
     def _SetHearts(self, no):
         no = max(0, min(no, Const_MaxHearts))
-        if no>0:
+        if self.State == CustomerState_Queue:
+            self.Hearts = no
+        elif no>0:
             self.Hearts = no
             for i in range(no):
                 self.HeartSprites[i].visible = True
@@ -62,7 +75,11 @@ class Customer(scraft.Dispatcher):
         
     def _SetState(self, state):
         self.State = state
-        if state == CustomerState_Ordering:
+        if state == CustomerState_Queue:
+            self._SetHearts(0)
+            self.Animator.SetState("Queue")
+            
+        elif state == CustomerState_Ordering:
             self.Animator.SetState("Order")
             self.NextStateTime = randint(globalvars.CustomersInfo[self.Type]["orderingTimeMin"]*1000,
                                          globalvars.CustomersInfo[self.Type]["orderingTimeMax"]*1000)
@@ -113,33 +130,49 @@ class Customer(scraft.Dispatcher):
         
     def _OnExecute(self, que):
         try:
-            self.NextStateTime -= que.delta
-            if self.NextStateTime <= 0:
-                if self.State == CustomerState_Ordering:
-                    self.Host.SendCommand(Cmd_NewOrder)
-                    self._SetState(CustomerState_Wait)
-                    
-                elif self.State == CustomerState_Wait:
-                    if self.Hearts > 1:
-                        self.Hearts -= 1
+            if self.State != CustomerState_Queue:
+                self.NextStateTime -= que.delta
+                if self.NextStateTime <= 0:
+                    if self.State == CustomerState_Ordering:
+                        self.Host.SendCommand(Cmd_NewOrder, self._MakeOrder())
                         self._SetState(CustomerState_Wait)
-                    else:
-                        self._SetState(CustomerState_GoAway)
                         
-                elif self.State == CustomerState_GotGift:
-                    self._SetState(CustomerState_Wait)
-                    
-                elif self.State == CustomerState_GoAway:
-                    self._SetState(CustomerState_None)
-                    self.Host.SendCommand(Cmd_Station_DeleteCustomer)
-                    
-                elif self.State == CustomerState_ThankYou:
-                    self._SetState(CustomerState_None)
-                    self.Host.SendCommand(Cmd_Station_DeleteCustomer)
+                    elif self.State == CustomerState_Wait:
+                        if self.Hearts > 1:
+                            self.Hearts -= 1
+                            self._SetState(CustomerState_Wait)
+                        else:
+                            self._SetState(CustomerState_GoAway)
+                            
+                    elif self.State == CustomerState_GotGift:
+                        self._SetState(CustomerState_Wait)
+                        
+                    elif self.State == CustomerState_GoAway:
+                        self._SetState(CustomerState_None)
+                        self.Host.SendCommand(Cmd_Station_DeleteCustomer)
+                        
+                    elif self.State == CustomerState_ThankYou:
+                        self._SetState(CustomerState_None)
+                        self.Host.SendCommand(Cmd_Station_DeleteCustomer)
                     
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         return scraft.CommandStateRepeat
+        
+    # сделать заказ
+    def _MakeOrder(self):
+        if globalvars.CustomersInfo[self.Type]["dislikes"] != "nothing":
+            #плохие ингредиенты - те, которые покупатель не любит
+            tmpBadIngredients = map(lambda y: y[0], filter(lambda x: x[1]["type"] == globalvars.CustomersInfo[self.Type]["dislikes"],
+                                       globalvars.CuisineInfo["Ingredients"].iteritems()))
+            #хорошие рецепты - не используют плохих ингредиентов
+            tmpGoodRecipes = filter(lambda x: \
+                filter(lambda y: y in tmpBadIngredients, globalvars.CuisineInfo["Recipes"][x]["requires"].keys()) == [],
+                globalvars.LevelInfo["RecipeRates"].keys())
+            tmpGoodRecipeRates = dict(map(lambda x: (x, globalvars.LevelInfo["RecipeRates"][x]), tmpGoodRecipes))
+        else:
+            tmpGoodRecipeRates = dict(globalvars.LevelInfo["RecipeRates"])
+        return RandomKeyByRates(tmpGoodRecipeRates)
         
 
 #-------------------------------
@@ -148,8 +181,28 @@ class Customer(scraft.Dispatcher):
 #-------------------------------
 class CustomersQue(scraft.Dispatcher):
     def __init__(self):
+        #список покупателей и их заказов
+        self.CustomersList = map(lambda x: RandomKeyByRates(globalvars.LevelInfo["CustomerRates"]),
+                                range(globalvars.LevelSettings["nocustomers"]))
+        self.Customers = map(lambda x: Customer(x), self.CustomersList)
+        self._Draw()
         self.SetState(QueState_None)
         oE.executor.Schedule(self)
+        
+    def _Draw(self):
+        for i in range(min(len(self.Customers), Const_VisibleCustomers)):
+            self.Customers[i].DrawAt(Crd_Queue_X0 + i*Crd_QueueCustomerDx, Crd_Queue_Y0 + i*Crd_QueueCustomerDy)
+            self.Customers[i].Show(True)
+        for i in range(Const_VisibleCustomers, len(self.Customers)):
+            self.Customers[i].Show(False)
+        
+    def HasCustomers(self):
+        return (self.RemainingCustomers > 0)
+        
+    def PopCustomer(self):
+        tmp = self.Customers.pop(0)
+        self._Draw()
+        return tmp
         
     def SetState(self, state):
         if state == QueState_Active and self.State != QueState_Active:
@@ -187,7 +240,6 @@ class CustomersAnimator(scraft.Dispatcher):
             self.States.append(state)
             self.CurrentAnimation = self.Animations[state]["frames"]*self.Animations[state]["loops"]
             self.Cycling = False
-        self.Fps = self.Animations[state]["fps"]
         self.NextFrameTime = 0
         self.NextFrame = 0
             
@@ -195,9 +247,9 @@ class CustomersAnimator(scraft.Dispatcher):
         try:
             if self.NextFrameTime <= 0:
                 if self.NextFrame < len(self.CurrentAnimation) or self.Cycling:
-                    self.Sprite.frno = self.CurrentAnimation[self.NextFrame]
+                    self.Sprite.frno = self.CurrentAnimation[self.NextFrame][0]
+                    self.NextFrameTime += self.CurrentAnimation[self.NextFrame][1]
                     self.NextFrame = (self.NextFrame + 1) % len(self.CurrentAnimation)
-                    self.NextFrameTime += int(1000/self.Fps)
                 else:
                     self.SetState(self.States[0])
             self.NextFrameTime -= que.delta

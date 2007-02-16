@@ -60,7 +60,8 @@ def ReadResourceInfo():
                 tmpSQ = tmpSequenceIterator.Get()
                 globalvars.CustomerAnimations[tmpName][tmpSQ.GetStrAttr(u"name")] = \
                     { "frames": eval(tmpSQ.GetStrAttr(u"frames")),
-                        "fps": tmpSQ.GetIntAttr(u"fps"), "loops": tmpSQ.GetIntAttr(u"loops") }
+                        #"fps": tmpSQ.GetIntAttr(u"fps"),
+                        "loops": tmpSQ.GetIntAttr(u"loops") }
                 
     except:
         oE.Log(u"Cannot read resources")
@@ -237,7 +238,7 @@ def ReadLevelSettings(filename):
             
         tmpUnitData = tmpLayout.GetTag(u"BonusPane")
         globalvars.Layout["BonusPane"] = {}
-        for tmpKey in ["type", "x", "y"]:
+        for tmpKey in ["type", "size", "x", "y"]:
             globalvars.Layout["BonusPane"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
             
         tmpUnitData = tmpLayout.GetTag(u"TrashCan")

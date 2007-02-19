@@ -108,7 +108,9 @@ def ReadLevelProgress():
         tmpLevelsIterator = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef").IterateTag(u"level")
         while tmpLevelsIterator.Next():
             tmp = tmpLevelsIterator.Get()
-            globalvars.LevelProgress[tmp.GetContent()] = { "no": tmp.GetIntAttr(u"no"), "check": tmp.GetBoolAttr(u"check") }
+            globalvars.LevelProgress[tmp.GetContent()] = {
+                "name": tmp.GetStrAttr(u"name"), 
+                "no": tmp.GetIntAttr(u"no"), "check": tmp.GetBoolAttr(u"check") }
         
     except:
         oE.Log(u"Cannot read levels list")
@@ -171,7 +173,7 @@ def ReadGameSettings():
             globalvars.ThemesInfo[tmp.GetStrAttr(u"type")] = {}
             for tmpKey in ["background", "counter", "customersQuePointer", "station",
                            "recipeInfo", "field", "storage", "bonuspane",
-                           "trashcan", "trashcanBarEmpty", "trashcanBarFull"]:
+                           "trashcan", "trashcanBarEmpty", "trashcanBarFull", "tablet"]:
                 globalvars.ThemesInfo[tmp.GetStrAttr(u"type")][tmpKey] = tmp.GetStrAttr(unicode(tmpKey))
         
     except:

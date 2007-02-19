@@ -143,6 +143,7 @@ class CustomerStation(scraft.Dispatcher):
             self.PutOrder(parameter)
             
         elif cmd == Cmd_FlopOrder:
+            self._RemoveOrder()
             print "flop order!"
             
         elif cmd == Cmd_Station_DeleteCustomer:

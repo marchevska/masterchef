@@ -47,6 +47,7 @@ MasterChef{
         sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
         sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }
+        sprite(theme.japanese.tablet) { bitmap = "img/episodes/japanese/tablet.png" type = "blend" }
         
         sprite(theme.japanese.decoration.bonsai) { bitmap = "img/episodes/japanese/bonsai.png" type = "blend" }
         sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }

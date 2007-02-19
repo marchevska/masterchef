@@ -98,10 +98,12 @@ QueState_Passive = 2
 # координаты
 #------------
 
-Crd_Queue_X0 = 100
-Crd_Queue_Y0 = 110
-Crd_QueueCustomerDx = 50
+Crd_Queue_X0 = 140
+Crd_Queue_Y0 = 130
+Crd_QueueCustomerDx = 45
 Crd_QueueCustomerDy = 0
+Crd_QueueMarker_X0 = 70
+Crd_QueueMarker_Y0 = 60
 
 Crd_StationDummyWidth = 100
 Crd_StationDummyHeight = 130

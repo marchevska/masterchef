@@ -376,7 +376,7 @@ class Gui(scraft.Dispatcher):
             btn.Show(flag)
         
     def CallInternalMenu(self):
-        globalvars.Board.SaveGame()
+        #globalvars.Board.SaveGame()
         self._SetState(PState_Options)
         
     def CallLevelCompleteDialog(self, flag, level=0, score=0, time=0):
@@ -512,10 +512,10 @@ class Gui(scraft.Dispatcher):
             self.OptionsDialog["Buttons"]["Restart"].Show(True)
             self.OptionsDialog["Buttons"]["EndGame"].Show(True)
             self.OptionsDialog["Buttons"]["Ok"].Show(False)
-            if globalvars.CurrentPlayer["Lives"]>0:
-                self.OptionsDialog["Buttons"]["Restart"].SetState(ButtonState_Up)
-            else:
-                self.OptionsDialog["Buttons"]["Restart"].SetState(ButtonState_Inert)
+            #if globalvars.CurrentPlayer["Lives"]>0:
+            #    self.OptionsDialog["Buttons"]["Restart"].SetState(ButtonState_Up)
+            #else:
+            #    self.OptionsDialog["Buttons"]["Restart"].SetState(ButtonState_Inert)
         else:
             self.OptionsDialog["Buttons"]["Resume"].Show(False)
             self.OptionsDialog["Buttons"]["Restart"].Show(False)

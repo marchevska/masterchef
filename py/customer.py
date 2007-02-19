@@ -11,7 +11,8 @@ import scraft
 from scraft import engine as oE
 import globalvars
 from constants import *
-from guielements import MakeSimpleSprite
+from strings import *
+from guielements import MakeSimpleSprite, MakeTextSprite
 from extra import Animator, RandomKeyByRates
 from random import randint
 
@@ -187,11 +188,13 @@ class Customer(scraft.Dispatcher):
 # Выпускает новых покупателей к столикам
 #-------------------------------
 class CustomersQue(scraft.Dispatcher):
-    def __init__(self):
+    def __init__(self, theme):
         #список покупателей и их заказов
         self.CustomersList = map(lambda x: RandomKeyByRates(globalvars.LevelInfo["CustomerRates"]),
                                 range(globalvars.LevelSettings["nocustomers"]))
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
+        self.TabletSprite = MakeSimpleSprite(theme["tablet"], Layer_InterfaceBg, Crd_QueueMarker_X0, Crd_QueueMarker_Y0)
+        self.TextMarker = MakeTextSprite(u"arial18", Layer_InterfaceTxt, Crd_QueueMarker_X0, Crd_QueueMarker_Y0)
         self._Draw()
         self.SetState(QueState_None)
         oE.executor.Schedule(self)
@@ -202,6 +205,10 @@ class CustomersQue(scraft.Dispatcher):
             self.Customers[i].Show(True)
         for i in range(Const_VisibleCustomers, len(self.Customers)):
             self.Customers[i].Show(False)
+        if len(self.Customers) > 0:
+            self.TextMarker.text = unicode(str(len(self.Customers)))
+        else:
+            self.TextMarker.text = unicode(Str_HUD_RestaurantClosed)
         
     def HasCustomers(self):
         return (self.RemainingCustomers > 0)

@@ -79,3 +79,11 @@ Str_Question_RemovePlayer = "Remove player, are you sure?"
 Str_Question_RestartLevel = "Restart level, are you sure?\nYou will lose a life"
 Str_Question_ClearHiscores = "Clear hiscores list, are you sure?"
 
+Str_HUD_RestaurantClosed = "CLOSED"
+Str_HUD_MenuButton = "MENU"
+Str_HUD_LevelText = "LEVEL"
+Str_HUD_ScoreText = "SCORE"
+Str_HUD_GoalText = "GOAL"
+Str_HUD_ExpertText = "EXPERT"
+Str_HUD_ApprovalText = "APPR"
+

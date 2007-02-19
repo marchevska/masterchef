@@ -14,7 +14,7 @@ FieldMinY = 0
 FieldMaxX = 800
 FieldMaxY = 600
 Crd_deltaX = Crd_deltaY = 40
-Video_Mode = scraft.VMODE_800x600
+Video_Mode = scraft.VMODE_800x600x32
 Window_Title = u"Master Chef"
 
 #имена файлов

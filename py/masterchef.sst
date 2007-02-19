@@ -323,3 +323,10 @@ bitmap = img/fonts/papyrus-18px-numbers.png
 symbols=0123456789+-/
 type = blend
 }
+
+font maiandra14 {
+bitmap=img/fonts/maiandra14.bmp
+symbols=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .
+type=colorkey
+keyrgb=ffeecc
+}

@@ -33,6 +33,7 @@ MasterChef {
             trashcan = "theme.japanese.trashcan"
             trashcanBarEmpty = "theme.japanese.trashcan.bar.empty"
             trashcanBarFull = "theme.japanese.trashcan.bar.full"
+            tablet = "theme.japanese.tablet"
         }
     }
     

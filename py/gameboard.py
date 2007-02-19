@@ -31,6 +31,26 @@ class GameBoard(scraft.Dispatcher):
         self.BgSprite = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_GameBg, 0, 0)
         self.BgReceptor = MakeDummySprite(self, Cmd_BgReceptor,
                         400, 300, 800, 600, Layer_BgReceptor)
+        
+        #create text sprites
+        self.InventoryText = {}
+        self.InventoryText["LevelText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 20, scraft.HotspotCenter, Str_HUD_LevelText)
+        self.InventoryText["ScoreText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 20, scraft.HotspotCenter, Str_HUD_ScoreText)
+        self.InventoryText["GoalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 20, scraft.HotspotCenter, Str_HUD_GoalText)
+        self.InventoryText["ApprovalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 640, 20, scraft.HotspotCenter, Str_HUD_ApprovalText)
+        self.InventoryText["LevelName"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 50)
+        self.InventoryText["Score"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 50)
+        self.InventoryText["Goal"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 50)
+        self.InventoryText["Approval"] = MakeTextSprite(u"powerups", Layer_InterfaceTxt, 640, 50)
+        
+        #create buttons
+        self.GameButtons = {}
+        self.GameButtons["Menu"] = PushButton("Menu",
+                self, Cmd_Menu, PState_Game,
+                u"button-120x40x4st", [0, 1, 2, 3, 4], 
+                Layer_InterfaceBtn, 740, 20, 100, 34,
+                Str_HUD_MenuButton, [u"maiandra14", u"maiandra14", u"maiandra14", u"maiandra14"])
+        
         self.Field = None
         self.CStations = []
         self.Stores = []
@@ -57,7 +77,11 @@ class GameBoard(scraft.Dispatcher):
         #self.SaveGame()
         
     def _StartLevel(self):
-        pass
+        self.Expert = False
+        self.InventoryText["LevelName"].text = unicode(self.LevelName)
+        self.InventoryText["GoalText"].text = unicode(Str_HUD_GoalText)
+        self.InventoryText["Goal"].text = unicode(str(globalvars.LevelSettings["moneygoal"]))
+        self._UpdateLevelInfo()
         
     def Restart(self):
         #globalvars.CurrentPlayer["Lives"] -= 1
@@ -93,6 +117,7 @@ class GameBoard(scraft.Dispatcher):
         self.LevelNo = 0
         self.LevelScore = 0
         self.Approval = 0
+        self.LevelName = globalvars.LevelProgress[tmpLevelFileName]["name"]
         
         self.HasPowerUps = {}
         
@@ -101,7 +126,7 @@ class GameBoard(scraft.Dispatcher):
         
         #reset customer dispatcher
         self.RemainingCustomers = globalvars.LevelSettings["nocustomers"]
-        self.CustomersQue = CustomersQue()
+        self.CustomersQue = CustomersQue(tmpTheme)
         
         #размещение стейшенов 
         for tmp in globalvars.Layout["CustomerStations"]:
@@ -182,6 +207,10 @@ class GameBoard(scraft.Dispatcher):
     # обработка входящих команд
     #--------------------------
     def SendCommand(self, cmd, parameter = None):
+        if cmd == Cmd_Menu:
+            globalvars.GUI.CallInternalMenu() 
+            oE.PlaySound(u"click", Channel_Default)
+            
         if cmd == Cmd_MovementFinished:
             if self.State == GameState_StartLevel:
                 self._SetState(GameState_Play)
@@ -258,6 +287,7 @@ class GameBoard(scraft.Dispatcher):
             self.HasPowerUps[type] += 1
             self.Approval -= globalvars.PowerUpsInfo[type]["price"]
             self._UpdatePowerUpButtons()
+            self._UpdateLevelInfo()
             
         #использование повер-апа
         elif cmd in range(Cmd_UsePowerUp, Cmd_UsePowerUp+len(globalvars.GameSettings["powerups"])):
@@ -277,8 +307,9 @@ class GameBoard(scraft.Dispatcher):
         self.Approval = min(self.Approval+delta*globalvars.GameSettings["approvalperdollar"],
                             globalvars.GameSettings["maxapproval"])
         self._UpdatePowerUpButtons()
-        
-        print "score:", self.LevelScore, "approval:", self.Approval
+        self._UpdateLevelInfo()
+        if self.LevelScore >= globalvars.LevelSettings["moneygoal"] and not self.Expert:
+            self._SwitchToExpert()
     
     #--------------------------
     # задает состояние игры
@@ -322,7 +353,7 @@ class GameBoard(scraft.Dispatcher):
                 #красивое падение блоков в конце уровня, по заданной программе
                 self._SetState(GameState_None)
             
-            self._UpdateLevelInfo()
+            #self._UpdateLevelInfo()
             
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -381,9 +412,14 @@ class GameBoard(scraft.Dispatcher):
         self._SetGameCursorState(GameCursorState_Default)
         self.TokensFrom = None
         
-        
     def _UpdateLevelInfo(self):
-        pass
+        self.InventoryText["Score"].text = unicode(str(self.LevelScore))
+        self.InventoryText["Approval"].text = unicode("$"*int(self.Approval))
+        
+    def _SwitchToExpert(self):
+        self.InventoryText["GoalText"].text = unicode(Str_HUD_ExpertText)
+        self.InventoryText["Goal"].text = unicode(str(globalvars.LevelSettings["expertgoal"]))
+        self.Expert = True
         
     def _UpdatePowerUpButtons(self):
         #update powerup buttons

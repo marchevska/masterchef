@@ -27,7 +27,7 @@ oE.rscpath = unicode(sys.argv[0][0:sys.argv[0].rfind("\\")+1])
 oE.SST = File_SST
 oE.title = Window_Title
 oE.nativeCursor = False
-oE.showFps = True
+oE.showFps = False
 
 config.ReadGameConfig()
 config.ApplyOptions()
@@ -66,10 +66,10 @@ while globalvars.StateStack[-1] != PState_EndGame:
     if oE.EvtIsKeyDown() :
         if oE.EvtKey() == scraft.Key_F3:
             globalvars.Board.Restart()
-    #if oE.EvtIsKeyDown() :
-    #    if oE.EvtKey() == scraft.Key_F4 :
-    #        globalvars.GameConfig["Fullscreen"] = not(globalvars.GameConfig["Fullscreen"])
-    #        config.ApplyOptions()
+    if oE.EvtIsKeyDown() :
+        if oE.EvtKey() == scraft.Key_F4 :
+            globalvars.GameConfig["Fullscreen"] = not(globalvars.GameConfig["Fullscreen"])
+            config.ApplyOptions()
     oE.DisplayEx(30) # 30 FPS
 
 config.SaveGameConfig()

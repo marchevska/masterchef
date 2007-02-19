@@ -50,10 +50,8 @@ layout = 1x3
 type   = blend
 }
 
-sprite buy-powerup-button {
-bitmap = img/buy-powerup-button.png
-layout = 1x4
-type   = blend
+sprite info-pane {
+bitmap = img/hud/info-pane.png
 }
 
 

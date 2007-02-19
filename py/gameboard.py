@@ -33,15 +33,16 @@ class GameBoard(scraft.Dispatcher):
                         400, 300, 800, 600, Layer_BgReceptor)
         
         #create text sprites
-        self.InventoryText = {}
-        self.InventoryText["LevelText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 20, scraft.HotspotCenter, Str_HUD_LevelText)
-        self.InventoryText["ScoreText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 20, scraft.HotspotCenter, Str_HUD_ScoreText)
-        self.InventoryText["GoalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 20, scraft.HotspotCenter, Str_HUD_GoalText)
-        self.InventoryText["ApprovalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 640, 20, scraft.HotspotCenter, Str_HUD_ApprovalText)
-        self.InventoryText["LevelName"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 50)
-        self.InventoryText["Score"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 50)
-        self.InventoryText["Goal"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 50)
-        self.InventoryText["Approval"] = MakeTextSprite(u"powerups", Layer_InterfaceTxt, 640, 50)
+        self.HudElements = {}
+        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 700, 30)
+        self.HudElements["LevelText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 20, scraft.HotspotCenter, Str_HUD_LevelText)
+        self.HudElements["ScoreText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 20, scraft.HotspotCenter, Str_HUD_ScoreText)
+        self.HudElements["GoalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 20, scraft.HotspotCenter, Str_HUD_GoalText)
+        self.HudElements["ApprovalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 640, 20, scraft.HotspotCenter, Str_HUD_ApprovalText)
+        self.HudElements["LevelName"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 50)
+        self.HudElements["Score"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 50)
+        self.HudElements["Goal"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 50)
+        self.HudElements["Approval"] = MakeTextSprite(u"powerups", Layer_InterfaceTxt, 640, 50)
         
         #create buttons
         self.GameButtons = {}
@@ -78,9 +79,9 @@ class GameBoard(scraft.Dispatcher):
         
     def _StartLevel(self):
         self.Expert = False
-        self.InventoryText["LevelName"].text = unicode(self.LevelName)
-        self.InventoryText["GoalText"].text = unicode(Str_HUD_GoalText)
-        self.InventoryText["Goal"].text = unicode(str(globalvars.LevelSettings["moneygoal"]))
+        self.HudElements["LevelName"].text = unicode(self.LevelName)
+        self.HudElements["GoalText"].text = unicode(Str_HUD_GoalText)
+        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings["moneygoal"]))
         self._UpdateLevelInfo()
         
     def Restart(self):
@@ -413,12 +414,12 @@ class GameBoard(scraft.Dispatcher):
         self.TokensFrom = None
         
     def _UpdateLevelInfo(self):
-        self.InventoryText["Score"].text = unicode(str(self.LevelScore))
-        self.InventoryText["Approval"].text = unicode("$"*int(self.Approval))
+        self.HudElements["Score"].text = unicode(str(self.LevelScore))
+        self.HudElements["Approval"].text = unicode("$"*int(self.Approval))
         
     def _SwitchToExpert(self):
-        self.InventoryText["GoalText"].text = unicode(Str_HUD_ExpertText)
-        self.InventoryText["Goal"].text = unicode(str(globalvars.LevelSettings["expertgoal"]))
+        self.HudElements["GoalText"].text = unicode(Str_HUD_ExpertText)
+        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings["expertgoal"]))
         self.Expert = True
         
     def _UpdatePowerUpButtons(self):

@@ -40,6 +40,7 @@ MasterChef {
         Customer {
             type = "Worker"
             src = "customer.worker"
+            hilight = "customer.worker.hilight"
             animation = "animation.worker"
             heartsOnStart = "4"
             orderingTimeMin = "2"
@@ -60,6 +61,7 @@ MasterChef {
         Customer {
             type = "Vegetarian"
             src = "customer.vegetarian"
+            hilight = "customer.vegetarian.hilight"
             animation = "animation.vegetarian"
             heartsOnStart = "4"
             orderingTimeMin = "2"
@@ -80,6 +82,7 @@ MasterChef {
         Customer {
             type = "Schoolkid"
             src = "customer.schoolkid"
+            hilight = "customer.schoolkid.hilight"
             animation = "animation.schoolkid"
             heartsOnStart = "4"
             orderingTimeMin = "2"
@@ -100,6 +103,7 @@ MasterChef {
         Customer {
             type = "Student"
             src = "customer.student"
+            hilight = "customer.student.hilight"
             animation = "animation.student"
             heartsOnStart = "4"
             orderingTimeMin = "2"
@@ -120,6 +124,7 @@ MasterChef {
         Customer {
             type = "Oldlady"
             src = "customer.oldlady"
+            hilight = "customer.oldlady.hilight"
             animation = "animation.oldlady"
             heartsOnStart = "4"
             orderingTimeMin = "2"
@@ -140,6 +145,7 @@ MasterChef {
         Customer {
             type = "Critic"
             src = "customer.critic"
+            hilight = "customer.critic.hilight"
             animation = "animation.critic"
             heartsOnStart = "4"
             orderingTimeMin = "2"
@@ -160,6 +166,7 @@ MasterChef {
         Customer {
             type = "Business"
             src = "customer.business"
+            hilight = "customer.business.hilight"
             animation = "animation.business"
             heartsOnStart = "4"
             orderingTimeMin = "2"
@@ -180,6 +187,7 @@ MasterChef {
         Customer {
             type = "Tourist"
             src = "customer.tourist"
+            hilight = "customer.tourist.hilight"
             animation = "animation.tourist"
             heartsOnStart = "4"
             orderingTimeMin = "2"

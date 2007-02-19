@@ -1,16 +1,25 @@
 MasterChef {
     CustomerKlasses {
         sprite(customer.worker) { bitmap = "img/customers/worker.png" type = "blend" layout = "4x4" }
+        sprite(customer.worker.hilight) { bitmap = "img/customers/worker.hilight.png" type = "blend" layout = "4x4" }
         sprite(customer.vegetarian) { bitmap = "img/customers/vegetarian.png" type = "blend" layout = "4x4" }
+        sprite(customer.vegetarian.hilight) { bitmap = "img/customers/vegetarian.png" type = "blend" layout = "4x4" }
         sprite(customer.schoolkid) { bitmap = "img/customers/schoolkid.png" type = "blend" layout = "4x4" }
+        sprite(customer.schoolkid.hilight) { bitmap = "img/customers/schoolkid.png" type = "blend" layout = "4x4" }
         sprite(customer.student) { bitmap = "img/customers/student.png" type = "blend" layout = "4x4" }
+        sprite(customer.student.hilight) { bitmap = "img/customers/student.hilight.png" type = "blend" layout = "4x4" }
         sprite(customer.oldlady) { bitmap = "img/customers/oldlady.png" type = "blend" layout = "4x4" }
+        sprite(customer.oldlady.hilight) { bitmap = "img/customers/oldlady.png" type = "blend" layout = "4x4" }
         sprite(customer.critic) { bitmap = "img/customers/critic.png" type = "blend" layout = "4x4" }
+        sprite(customer.critic.hilight) { bitmap = "img/customers/critic.png" type = "blend" layout = "4x4" }
         sprite(customer.business) { bitmap = "img/customers/business.png" type = "blend" layout = "4x4" }
+        sprite(customer.business.hilight) { bitmap = "img/customers/business.hilight.png" type = "blend" layout = "4x4" }
         sprite(customer.tourist) { bitmap = "img/customers/tourist.png" type = "blend" layout = "4x4" }
+        sprite(customer.tourist.hilight) { bitmap = "img/customers/tourist.png" type = "blend" layout = "4x4" }
+        sprite(hero) { bitmap = "img/jason/jason.png" type = "blend" layout = "2x1" }
     }
     
-    //Customer animations
+    //People animations
     Animation(animation.worker) {
         Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
         Sequence { name = "5Hearts" frames = "(4, 3000), (5, 500)" loops = "0" }
@@ -115,5 +124,10 @@ MasterChef {
         Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
     }
 
+    Animation(animation.hero) {
+        Sequence { name = "None" frames = "(0, 100000)," loops = "0" }
+        Sequence { name = "GiveOrder" frames = "(0, 500), (1, 500)" loops = "0" }
+    }    
+    
 }
 

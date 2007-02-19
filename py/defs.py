@@ -137,6 +137,7 @@ def ReadGameSettings():
             tmp = tmpCustomersIterator.Get()
             globalvars.CustomersInfo[tmp.GetStrAttr(u"type")] = {
                 "src": tmp.GetStrAttr(u"src"),
+                "hilight": tmp.GetStrAttr(u"hilight"),
                 "animation": tmp.GetStrAttr(u"animation"),
                 "heartsOnStart": tmp.GetIntAttr(u"heartsOnStart"),
                 "orderingTimeMin": tmp.GetFltAttr(u"orderingTimeMin"),

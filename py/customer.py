@@ -116,6 +116,13 @@ class Customer(scraft.Dispatcher):
             for i in range(Const_MaxHearts):
                 self.HeartSprites[i].visible = False
         
+    def Hilight(self, flag):
+        if flag:
+            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo[self.Type]["hilight"])
+        else:
+            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo[self.Type]["src"])
+        self.Sprite.hotspot = scraft.HotspotCenterBottom
+        
     def Kill(self):
         oE.executor.DismissQueue(self.QueNo)
         self.Animator.Kill()
@@ -220,7 +227,24 @@ class CustomersQue(scraft.Dispatcher):
                 globalvars.Board.SendCommand(Cmd_NewCustomer)
         return scraft.CommandStateRepeat
         
-
+        
+#-------------------------------
+# Главгерой
+#-------------------------------
+class Hero:
+    def __init__(self, x, y):
+        self.Sprite = MakeSimpleSprite(u"hero", Layer_Customer, x, y, scraft.HotspotCenterBottom)
+        self.Animator = CustomersAnimator(self.Sprite, globalvars.CustomerAnimations["animation.hero"])
+        self.Animator.SetState("None")
+        
+    def ShowUp(self):
+        self.Show(True)
+        self.Animator.SetState("GiveOrder")
+            
+    def Show(self, flag = True):
+        self.Sprite.visible = flag
+        
+        
 #-------------------------------
 # Анимация покупателя
 #-------------------------------

@@ -9,7 +9,7 @@ Customer station and supporting classes
 import scraft
 from scraft import engine as oE
 import globalvars
-from customer import Customer
+from customer import Customer, Hero
 from constants import *
 from configconst import *
 from guielements import MakeSimpleSprite, MakeDummySprite, PushButton
@@ -33,6 +33,8 @@ class CustomerStation(scraft.Dispatcher):
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
                 u"release-button", [0, 1, 2], Layer_PopupBtnTxt, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
         self.ReleaseButton.Show(False)
+        self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
+        self.Hero.Show(False)
         self.State = CStationState_None
         
     def SetState(self, state):
@@ -66,7 +68,6 @@ class CustomerStation(scraft.Dispatcher):
     # удалить заказ
     #--------------
     def _RemoveOrder(self):
-        self.State = CStationState_Free
         self.HasOrder = False
         self.OrderSprite.Dispose()
         self.RecipeInfoSprite.visible = False
@@ -116,13 +117,25 @@ class CustomerStation(scraft.Dispatcher):
             
         return no*tmpScoreMultiplier
         
+    def _OnMouseOver(self, sprite, flag):
+        if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
+            self._Hilight(flag)    
+        
     def _OnMouseClick(self, sprite, button, x, y):
         if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
             globalvars.Board.SendCommand(Cmd_ClickStation, self)
         
+    def _Hilight(self, flag):
+        self.Customer.Hilight(flag)
+        if flag:
+            self.TableSprite.frno = 1
+        else:
+            self.TableSprite.frno = 0
+        
     def SendCommand(self, cmd, parameter = None):
         if cmd == Cmd_ReleaseCustomer:
-            self.HasOrder = False
+            self._RemoveOrder()
+            self.Hero.ShowUp()
             self.Customer.SendCommand(Cmd_Customer_SayThankYou)
             
         elif cmd == Cmd_NewOrder:
@@ -134,7 +147,8 @@ class CustomerStation(scraft.Dispatcher):
             
         elif cmd == Cmd_Station_DeleteCustomer:
             self.Customer.Kill()
-            self._RemoveOrder()
+            self.Hero.Show(False)
+            self.State = CStationState_Free
             globalvars.Board.SendCommand(Cmd_FreeStation)
         
 #---------------------------------------------

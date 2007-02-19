@@ -129,7 +129,7 @@ Crd_ReleaseButtonDx = 55
 Crd_ReleaseButtonDy = 15
 
 Const_BonusPaneDx = 0
-Const_BonusPaneDy = 60
+Const_BonusPaneDy = 50
 Const_BuyPowerUpButton_Dx = 40
 Const_BuyPowerUpButton_Dy = 0
 

@@ -223,7 +223,7 @@ MasterChef {
         
         PowerUp {
             type = "Gift"
-            symbol = "7"
+            symbol = "6"
             price = "3"
         }
         
@@ -235,7 +235,7 @@ MasterChef {
         
         PowerUp {
             type = "Shuffle"
-            symbol = "6"
+            symbol = "7"
             price = "2"
         }
         

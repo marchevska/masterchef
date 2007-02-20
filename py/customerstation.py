@@ -144,7 +144,6 @@ class CustomerStation(scraft.Dispatcher):
             self.Active = False
             
         elif cmd == Cmd_NewOrder:
-            #globalvars.Board.SendCommand(Cmd_NewOrder, self, parameter)
             self.PutOrder(parameter)
             
         elif cmd == Cmd_FlopOrder:

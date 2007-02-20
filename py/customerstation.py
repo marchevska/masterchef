@@ -22,6 +22,7 @@ from extra import *
 class CustomerStation(scraft.Dispatcher):
     def __init__(self, newX, newY, theme):
         self.HasOrder = False
+        self.Active = False
         self.CrdX, self.CrdY = newX, newY
         self.NeededIndicators = []
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
@@ -46,6 +47,7 @@ class CustomerStation(scraft.Dispatcher):
     def AttachCustomer(self, customer):
         self.Customer = customer
         customer.AttachTo(self)
+        self.Active = True
         
     #--------------
     # "type" - название рецепта 
@@ -118,12 +120,14 @@ class CustomerStation(scraft.Dispatcher):
         return no*tmpScoreMultiplier
         
     def _OnMouseOver(self, sprite, flag):
-        if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
+        #if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
+        if sprite.cookie == Cmd_CustomerStation and self.Active:
             self._Hilight(flag)    
         
     def _OnMouseClick(self, sprite, button, x, y):
-        if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
-            globalvars.Board.SendCommand(Cmd_ClickStation, self)
+        #if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
+        if sprite.cookie == Cmd_CustomerStation and self.Active:
+            globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder})
         
     def _Hilight(self, flag):
         self.Customer.Hilight(flag)
@@ -137,6 +141,7 @@ class CustomerStation(scraft.Dispatcher):
             self._RemoveOrder()
             self.Hero.ShowUp()
             self.Customer.SendCommand(Cmd_Customer_SayThankYou)
+            self.Active = False
             
         elif cmd == Cmd_NewOrder:
             #globalvars.Board.SendCommand(Cmd_NewOrder, self, parameter)
@@ -145,6 +150,7 @@ class CustomerStation(scraft.Dispatcher):
         elif cmd == Cmd_FlopOrder:
             self._RemoveOrder()
             print "flop order!"
+            self.Active = False
             
         elif cmd == Cmd_Station_DeleteCustomer:
             self.Customer.Kill()

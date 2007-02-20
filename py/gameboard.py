@@ -218,21 +218,22 @@ class GameBoard(scraft.Dispatcher):
             
         elif cmd == Cmd_ClickStation:
             if self.GameCursorState == GameCursorState_Tokens:
-                tmpFrom = self.TokensFrom
-                tmpDeltaScore = parameter.AddTokens(self.PickedTokens, self.PickedTokensNo)
-                self.AddScore(tmpDeltaScore)
-                self.TokensFrom.RemoveTokens()
-                self.SendCommand(Cmd_DropWhatYouCarry)
-                if tmpFrom == self.Field:
-                    self.Field.SetState(FieldState_Collapse)
+                if parameter["hasOrder"]:
+                    tmpFrom = self.TokensFrom
+                    tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
+                    self.AddScore(tmpDeltaScore)
+                    self.TokensFrom.RemoveTokens()
+                    self.SendCommand(Cmd_DropWhatYouCarry)
+                    if tmpFrom == self.Field:
+                        self.Field.SetState(FieldState_Collapse)
                     
             elif self.GameCursorState == GameCursorState_Tool:
                 if self.PickedTool == 'Sweet':
                     self.UseTool()
-                    parameter.Customer.GiveSweet()
+                    parameter["station"].Customer.GiveSweet()
                 elif self.PickedTool == 'Gift':
                     self.UseTool()
-                    parameter.Customer.GiveGift()
+                    parameter["station"].Customer.GiveGift()
             #иначе - использовать бонус
                 
         elif cmd == Cmd_ClickStorage:

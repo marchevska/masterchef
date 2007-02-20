@@ -99,7 +99,7 @@ QueState_Passive = 2
 #------------
 
 Crd_Queue_X0 = 140
-Crd_Queue_Y0 = 130
+Crd_Queue_Y0 = 125
 Crd_QueueCustomerDx = 45
 Crd_QueueCustomerDy = 0
 Crd_QueueMarker_X0 = 70
@@ -117,9 +117,9 @@ Crd_IndicatorSign_DeltaY = 20
 Crd_HeroDx = 60
 Crd_HeroDy = -3
 Crd_CustomerDx = 0
-Crd_CustomerDy = -3
+Crd_CustomerDy = 15
 Crd_HeartsDx = -24
-Crd_HeartsDy = 25
+Crd_HeartsDy = 10
 Crd_HeartSpritesDx = 12
 Crd_HeartSpritesDy = 0
 Crd_RecipeSpriteDx = 0

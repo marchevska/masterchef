@@ -58,10 +58,11 @@ Level{
         Counter{ type = "" x = "330" y = "95" }
         BonusPane{ type = "" size = "4" x = "400" y = "200" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
-        Decoration { type = "theme.japanese.decoration.bonsai" x = "100" y = "500" }
+        Decoration { type = "theme.japanese.decoration.bonsai" x = "100" y = "505" }
         Decoration { type = "theme.japanese.decoration.screen1" x = "40" y = "200" }
-        Decoration { type = "theme.japanese.decoration.screen1" x = "120" y = "200" }
-        Decoration { type = "theme.japanese.decoration.screen1" x = "200" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen1" x = "100" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen1" x = "160" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen1" x = "220" y = "200" }
     }
     
 }

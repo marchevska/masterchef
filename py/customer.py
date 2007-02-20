@@ -34,6 +34,7 @@ class Customer(scraft.Dispatcher):
             self.HeartSprites.append(MakeSimpleSprite(u"heart", Layer_Recipe,
                         self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx,
                         self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy))
+        self.HasOrder = False
         self._SetState(CustomerState_Queue)
         self.QueNo = oE.executor.Schedule(self)
         
@@ -153,7 +154,10 @@ class Customer(scraft.Dispatcher):
                             self._SetState(CustomerState_GoAway)
                             
                     elif self.State == CustomerState_GotGift:
-                        self._SetState(CustomerState_Wait)
+                        if self.HasOrder:
+                            self._SetState(CustomerState_Wait)
+                        else:
+                            self._SetState(CustomerState_Ordering)
                         
                     elif self.State == CustomerState_GoAway:
                         self._SetState(CustomerState_None)
@@ -180,6 +184,7 @@ class Customer(scraft.Dispatcher):
             tmpGoodRecipeRates = dict(map(lambda x: (x, globalvars.LevelInfo["RecipeRates"][x]), tmpGoodRecipes))
         else:
             tmpGoodRecipeRates = dict(globalvars.LevelInfo["RecipeRates"])
+        self.HasOrder = True    
         return RandomKeyByRates(tmpGoodRecipeRates)
         
 

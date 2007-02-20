@@ -47,6 +47,8 @@ globalvars.StateStack = []
 globalvars.GUI = Gui()
 globalvars.Board = GameBoard()
     
+globalvars.ActiveGameSession = False
+
 # начало кода запуска заданного уровня
 if len(sys.argv) >= 3:
     if sys.argv[1] == "run" and sys.argv[2] in globalvars.LevelProgress.keys():

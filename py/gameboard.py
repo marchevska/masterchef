@@ -53,6 +53,7 @@ class GameBoard(scraft.Dispatcher):
                 Str_HUD_MenuButton, [u"maiandra14", u"maiandra14", u"maiandra14", u"maiandra14"])
         
         self.Field = None
+        self.CustomersQue = None
         self.CStations = []
         self.Stores = []
         self.Static = []
@@ -66,18 +67,22 @@ class GameBoard(scraft.Dispatcher):
         self.HasPowerUps = {}
         self.TokensFrom = None
         
-        self.Show(False)
+        self.Playing = False
         self.MyRand = oE.NewRandomizer()
         self._SetState(GameState_None)
         self._SetGameCursorState(GameCursorState_Default)
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
+        self.Show(False)
+        self.Freeze(True)
         
     def LaunchLevel(self, no):
+        self.Freeze(False)
         self.Load(no)
         self._StartLevel()
         #self.SaveGame()
         
     def _StartLevel(self):
+        globalvars.ActiveGameSession = True
         self.Expert = False
         self.HudElements["LevelName"].text = unicode(self.LevelName)
         self.HudElements["GoalText"].text = unicode(Str_HUD_GoalText)
@@ -106,6 +111,8 @@ class GameBoard(scraft.Dispatcher):
     # Загрузка уровня
     #--------------------------
     def Load(self, no):
+        
+        self.Playing = True
         
         try:
             tmpLevelFileName = filter(lambda x: globalvars.LevelProgress[x]["no"] == no, globalvars.LevelProgress.keys())[0]
@@ -441,12 +448,27 @@ class GameBoard(scraft.Dispatcher):
         Показать - спрятать
         """    
         self.BgSprite.visible = flag
+        for spr in self.HudElements.values():
+            spr.visible = flag
+        for btn in self.GameButtons.values():
+            btn.Show(flag)
+        if self.Playing:
+            self.CustomersQue.Show(flag)
+            for tmp in self.CStations:
+                tmp.Show(flag)
         
     def Freeze(self, flag):
         """
         Постановка паузы
-        """    
-        pass
+        """
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+        else:
+            oE.executor.GetQueue(self.QueNo).Resume()
+        if self.Playing:
+            self.CustomersQue.Freeze(flag)
+            for tmp in self.CStations:
+                tmp.Freeze(flag)
         
 def _ListIntersection(list1, list2):
     return filter(lambda x: x in list2, list1)

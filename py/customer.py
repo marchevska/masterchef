@@ -118,6 +118,12 @@ class Customer(scraft.Dispatcher):
             for i in range(Const_MaxHearts):
                 self.HeartSprites[i].visible = False
         
+    def Freeze(self, flag):
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+        else:
+            oE.executor.GetQueue(self.QueNo).Resume()
+            
     def Hilight(self, flag):
         if flag:
             self.Sprite.ChangeKlassTo(globalvars.CustomersInfo[self.Type]["hilight"])
@@ -198,11 +204,11 @@ class CustomersQue(scraft.Dispatcher):
         self.CustomersList = map(lambda x: RandomKeyByRates(globalvars.LevelInfo["CustomerRates"]),
                                 range(globalvars.LevelSettings["nocustomers"]))
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
-        self.TabletSprite = MakeSimpleSprite(theme["tablet"], Layer_InterfaceBg, Crd_QueueMarker_X0, Crd_QueueMarker_Y0)
+        self.TabletSprite = MakeSimpleSprite(theme["tablet"], Layer_InterfaceBg, Crd_QueueTablet_X0, Crd_QueueTablet_Y0)
         self.TextMarker = MakeTextSprite(u"arial18", Layer_InterfaceTxt, Crd_QueueMarker_X0, Crd_QueueMarker_Y0)
         self._Draw()
         self.SetState(QueState_None)
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     def _Draw(self):
         for i in range(min(len(self.Customers), Const_VisibleCustomers)):
@@ -239,6 +245,19 @@ class CustomersQue(scraft.Dispatcher):
                 globalvars.Board.SendCommand(Cmd_NewCustomer)
         return scraft.CommandStateRepeat
         
+    def Show(self, flag):
+        for tmp in self.Customers:
+            tmp.Show(flag)
+        self.TabletSprite.visible = flag
+        self.TextMarker.visible = flag
+        
+    def Freeze(self, flag):
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+        else:
+            oE.executor.GetQueue(self.QueNo).Resume()
+        for tmp in self.Customers:
+            tmp.Freeze(flag)
         
 #-------------------------------
 # ֳכאגדונמי

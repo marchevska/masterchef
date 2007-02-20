@@ -136,6 +136,23 @@ class CustomerStation(scraft.Dispatcher):
         else:
             self.TableSprite.frno = 0
         
+    def Show(self, flag):
+        self.Dummy.visible = flag
+        self.TableSprite.visible = flag
+        self.RecipeInfoSprite.visible = flag
+        self.ReleaseButton.Show(flag)
+        self.Hero.Show(False)
+        if self.Active:
+            self.Customer.Show(flag)
+        #else:
+        #    self.Customer.Show(False)
+        for tmp in self.NeededIndicators:
+            tmp.Show(flag)
+        
+    def Freeze(self, flag):
+        if self.Active:
+            self.Customer.Freeze(flag)
+            
     def SendCommand(self, cmd, parameter = None):
         if cmd == Cmd_ReleaseCustomer:
             self._RemoveOrder()
@@ -149,9 +166,9 @@ class CustomerStation(scraft.Dispatcher):
         elif cmd == Cmd_FlopOrder:
             self._RemoveOrder()
             print "flop order!"
-            self.Active = False
             
         elif cmd == Cmd_Station_DeleteCustomer:
+            self.Active = False
             self.Customer.Kill()
             self.Hero.Show(False)
             self.State = CStationState_Free

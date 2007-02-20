@@ -376,7 +376,6 @@ class Gui(scraft.Dispatcher):
             btn.Show(flag)
         
     def CallInternalMenu(self):
-        #globalvars.Board.SaveGame()
         self._SetState(PState_Options)
         
     def CallLevelCompleteDialog(self, flag, level=0, score=0, time=0):
@@ -865,22 +864,24 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_MainMenu)
             self._ReleaseState(PState_Map)
 
-            globalvars.Board.Show(True)
-            globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
+            #globalvars.Board.Show(True)
+            #globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
 
-            ##if globalvars.ActiveGameSession == True:
-            ##    globalvars.Board.Freeze(False)
-            ##elif globalvars.CurrentPlayer["Playing"] == True:
-            ##    globalvars.Board.Show(True)
-            ##    globalvars.Board.LoadGame()
-            ##else:
-            ##    if globalvars.CurrentPlayer["Game"]:
-            ##        globalvars.Board.Show(True)
-            ##        if globalvars.CurrentPlayer["Level"] == 0 and self.LvCompleteSuccess:
-            ##            playerlist.ResetPlayer()
-            ##        globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
-                #else:
-                #    self._SetState(PState_Map)
+            if globalvars.ActiveGameSession == True:
+                globalvars.Board.Freeze(False)
+            #elif globalvars.CurrentPlayer["Playing"] == True:
+            #    globalvars.Board.Show(True)
+            #    globalvars.Board.LoadGame()
+            else:
+                globalvars.Board.Show(True)
+                globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
+                #if globalvars.CurrentPlayer["Game"]:
+                #    globalvars.Board.Show(True)
+                #    if globalvars.CurrentPlayer["Level"] == 0 and self.LvCompleteSuccess:
+                #        playerlist.ResetPlayer()
+                #    globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
+            #    #else:
+            #    #    self._SetState(PState_Map)
         elif state == PState_MainMenu:
             self._ShowDialog(self.MainMenuDialog, True)
             self._ReleaseState(PState_Players)

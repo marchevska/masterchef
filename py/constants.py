@@ -103,9 +103,9 @@ Crd_Queue_Y0 = 125
 Crd_QueueCustomerDx = 45
 Crd_QueueCustomerDy = 0
 Crd_QueueTablet_X0 = 70
-Crd_QueueTablet_Y0 = 75
+Crd_QueueTablet_Y0 = 70
 Crd_QueueMarker_X0 = 70
-Crd_QueueMarker_Y0 = 60
+Crd_QueueMarker_Y0 = 47
 
 Crd_StationDummyWidth = 100
 Crd_StationDummyHeight = 130

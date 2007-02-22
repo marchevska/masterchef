@@ -5171,7 +5171,7 @@ layer_type 1
 	quality_flags 1020
 	origin 0 0
 	parent_bone -1
-	visible true
+	visible false
 	render_only false
 	edit_only false
 	scale_compensation true

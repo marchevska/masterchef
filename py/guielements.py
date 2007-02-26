@@ -250,13 +250,15 @@ def MakeSprite(newKlass, newLayer, param = {}):
     elif param.has_key("xy"):
         tmpSpr.x, tmpSpr.y = param["xy"]
     if param.has_key("text"):
-        tmpSpr.text = param["text"]
+        tmpSpr.text = unicode(param["text"])
     if param.has_key("frno"):
         tmpSpr.frno = param["frno"]
     if param.has_key("hotspot"):
         tmpSpr.hotspot = param["hotspot"]
     if param.has_key("sublayer"):
         tmpSpr.sublayer = param["sublayer"]
+    if param.has_key("cfilt-color"):
+        tmpSpr.cfilt.color = param["cfilt-color"]
     if param.has_key("cookie"):
         tmpSpr.cookie = param["cookie"]
     if param.has_key("dispatcher"):

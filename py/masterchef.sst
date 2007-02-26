@@ -52,6 +52,7 @@ type   = blend
 
 sprite info-pane {
 bitmap = img/hud/info-pane.png
+type = blend
 }
 
 
@@ -284,6 +285,24 @@ sample = sound/timeover.ogg
 #########
 # fonts #
 #########
+
+font domcasual-10 {
+bitmap = img/fonts/domcasual-10.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-. .
+}
+
+font domcasual-11 {
+bitmap = img/fonts/domcasual-11.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-. .
+}
+
+font hobor-17 {
+bitmap = img/fonts/hobor-17.png
+type = blend
+symbols=1234567890
+}
 
 font arial18 {
 bitmap = img/fonts/arial18.bmp

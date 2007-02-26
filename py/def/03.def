@@ -55,8 +55,14 @@ Level{
         Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" }
         PowerUp{ type = "Sweet" x = "450" y = "200" }
         PowerUp{ type = "Gift" x = "450" y = "250" }
+        PowerUp{ type = "EmptyTrash" x = "450" y = "300" }
+        PowerUp{ type = "Magicwand" x = "450" y = "350" }
+        PowerUp{ type = "Cross" x = "450" y = "400" }
+        PowerUp{ type = "Shuffle" x = "450" y = "450" }
+        PowerUp{ type = "Spoon" x = "450" y = "500" }
+        PowerUp{ type = "Supersweet" x = "450" y = "550" }
         Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "2" x = "480" y = "200" }
+        BonusPane{ type = "" size = "2" x = "480" y = "165" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
         //Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
         //Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }

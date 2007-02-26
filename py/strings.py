@@ -85,5 +85,5 @@ Str_HUD_LevelText = "LEVEL"
 Str_HUD_ScoreText = "SCORE"
 Str_HUD_GoalText = "GOAL"
 Str_HUD_ExpertText = "EXPERT"
-Str_HUD_ApprovalText = "APPR"
+Str_HUD_ApprovalText = "BONUS"
 

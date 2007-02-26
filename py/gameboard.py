@@ -34,22 +34,38 @@ class GameBoard(scraft.Dispatcher):
         
         #create text sprites
         self.HudElements = {}
-        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 700, 30)
-        self.HudElements["LevelText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 20, scraft.HotspotCenter, Str_HUD_LevelText)
-        self.HudElements["ScoreText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 20, scraft.HotspotCenter, Str_HUD_ScoreText)
-        self.HudElements["GoalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 20, scraft.HotspotCenter, Str_HUD_GoalText)
-        self.HudElements["ApprovalText"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 640, 20, scraft.HotspotCenter, Str_HUD_ApprovalText)
-        self.HudElements["LevelName"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 460, 50)
-        self.HudElements["Score"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 520, 50)
-        self.HudElements["Goal"] = MakeTextSprite(u"maiandra14", Layer_InterfaceTxt, 580, 50)
-        self.HudElements["Approval"] = MakeTextSprite(u"powerups", Layer_InterfaceTxt, 640, 50)
+        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 675, 40)
+        self.HudElements["LevelText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
+                                    {"x": 585, "y": 31, "hotspot": scraft.HotspotCenter,
+                                     "text": Str_HUD_LevelText, "cfilt-color": 0x604020})
+        self.HudElements["ScoreText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
+                                    {"x": 637, "y": 31, "hotspot": scraft.HotspotCenter,
+                                     "text": Str_HUD_ScoreText, "cfilt-color": 0x604020})
+        self.HudElements["GoalText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
+                                    {"x": 693, "y": 31, "hotspot": scraft.HotspotCenter,
+                                     "text": Str_HUD_GoalText, "cfilt-color": 0x604020})
+        self.HudElements["ApprovalText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
+                                    {"x": 750, "y": 31, "hotspot": scraft.HotspotCenter,
+                                     "text": Str_HUD_ApprovalText, "cfilt-color": 0x604020})
+        self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+                                    {"x": 585, "y": 51, "hotspot": scraft.HotspotCenter,
+                                     "cfilt-color": 0xC04020})
+        self.HudElements["Score"] = MakeSprite(u"hobor-17", Layer_InterfaceTxt,
+                                    {"x": 637, "y": 50, "hotspot": scraft.HotspotCenter,
+                                     "cfilt-color": 0xFF8000})
+        self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+                                    {"x": 693, "y": 51, "hotspot": scraft.HotspotCenter,
+                                     "cfilt-color": 0xC04020})
+        self.HudElements["Approval"] = MakeSprite(u"powerups", Layer_InterfaceTxt,
+                                    {"x": 750, "y": 51, "hotspot": scraft.HotspotCenter,
+                                     "cfilt-color": 0x604020})
         
         #create buttons
         self.GameButtons = {}
         self.GameButtons["Menu"] = PushButton("Menu",
                 self, Cmd_Menu, PState_Game,
                 u"button-120x40x4st", [0, 1, 2, 3, 4], 
-                Layer_InterfaceBtn, 740, 20, 100, 34,
+                Layer_InterfaceBtn, 60, 25, 100, 34,
                 Str_HUD_MenuButton, [u"maiandra14", u"maiandra14", u"maiandra14", u"maiandra14"])
         
         self.Field = None

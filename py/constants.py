@@ -98,13 +98,13 @@ QueState_Passive = 2
 # координаты
 #------------
 
-Crd_Queue_X0 = 140
+Crd_Queue_X0 = 200
 Crd_Queue_Y0 = 125
-Crd_QueueCustomerDx = 45
+Crd_QueueCustomerDx = 42
 Crd_QueueCustomerDy = 0
-Crd_QueueTablet_X0 = 70
+Crd_QueueTablet_X0 = 150
 Crd_QueueTablet_Y0 = 70
-Crd_QueueMarker_X0 = 70
+Crd_QueueMarker_X0 = 150
 Crd_QueueMarker_Y0 = 47
 
 Crd_StationDummyWidth = 100
@@ -117,7 +117,7 @@ Crd_IndicatorScaleXY = 50
 Crd_IndicatorText_DeltaX = 12
 Crd_IndicatorSign_DeltaY = 20
 Crd_HeroDx = 60
-Crd_HeroDy = -3
+Crd_HeroDy = 2
 Crd_CustomerDx = 0
 Crd_CustomerDy = 15
 Crd_HeartsDx = -24

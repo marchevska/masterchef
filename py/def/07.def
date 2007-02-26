@@ -13,7 +13,7 @@ Level{
     CustomerRates{
         Customer{ type = "Worker" rate = "1" }
         Customer{ type = "Student" rate = "3" }
-        Customer{ type = "Schoolkid" rate = "3" }
+        Customer{ type = "Vegetarian" rate = "3" }
     }
     
     //recipe appearance rates

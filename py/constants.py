@@ -76,12 +76,13 @@ GameCursorState_Tool = 2
 
 #состояния кастомера
 CustomerState_None = -1
-CustomerState_Queue = 0
-CustomerState_Ordering = 1
-CustomerState_Wait = 2
-CustomerState_GoAway = 3
-CustomerState_ThankYou = 4
-CustomerState_GotGift = 5
+CustomerState_Queue = 0         #
+CustomerState_Ordering = 1      #
+CustomerState_Wait = 2          #
+CustomerState_GoAway = 3        #
+#CustomerState_ReadyToGo = 4     #
+CustomerState_ThankYou = 5      #
+CustomerState_GotGift = 6       #
 
 #состояния стейшена
 CStationState_None = -1

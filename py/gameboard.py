@@ -241,7 +241,7 @@ class GameBoard(scraft.Dispatcher):
             
         elif cmd == Cmd_ClickStation:
             if self.GameCursorState == GameCursorState_Tokens:
-                if parameter["hasOrder"]:
+                if parameter["hasOrder"] and not parameter["mealReady"]:
                     tmpFrom = self.TokensFrom
                     tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
                     self.AddScore(tmpDeltaScore)

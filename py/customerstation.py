@@ -23,6 +23,7 @@ class CustomerStation(scraft.Dispatcher):
     def __init__(self, newX, newY, theme):
         self.HasOrder = False
         self.Active = False
+        self.MealReady = False
         self.CrdX, self.CrdY = newX, newY
         self.NeededIndicators = []
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
@@ -54,6 +55,7 @@ class CustomerStation(scraft.Dispatcher):
     #--------------
     def PutOrder(self, type):
         self.HasOrder = True
+        self.MealReady = False
         self.OrderType = type
         self.RecipeInfoSprite.visible = True
         self.OrderSprite = MakeSimpleSprite(globalvars.CuisineInfo["Recipes"][type]["src"],
@@ -116,6 +118,8 @@ class CustomerStation(scraft.Dispatcher):
             (tmpRemaining <= globalvars.CuisineInfo["Recipes"][self.OrderType]["readyAt"] and \
             globalvars.CustomersInfo[self.Customer.Type]["takesIncompleteOrder"]):
             self.ReleaseButton.Show(True)
+        if tmpRemaining == 0:
+            self.MealReady = True
             
         return no*tmpScoreMultiplier
         
@@ -127,7 +131,8 @@ class CustomerStation(scraft.Dispatcher):
     def _OnMouseClick(self, sprite, button, x, y):
         #if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
         if sprite.cookie == Cmd_CustomerStation and self.Active:
-            globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder})
+            globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
+                                                            "mealReady": self.MealReady})
         
     def _Hilight(self, flag):
         self.Customer.Hilight(flag)

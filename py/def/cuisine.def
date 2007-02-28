@@ -20,28 +20,33 @@ MasterChef {
         Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" }
         Ingredient { name = "bacon" type = "meat" src = "ingredient.bacon" }
         Ingredient { name = "olives" type = "vegetable" src = "ingredient.olives" }
-        Ingredient { name = "mushroom" type = "vegetable" src = "ingredient.mushroom" }
-        Ingredient { name = "shrimp" type = "fish" src = "ingredient.shrimp" }
-        Ingredient { name = "anchovies" type = "fish" src = "ingredient.anchovies" }
-        Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" }
         Ingredient { name = "flour" type = "pasta" src = "ingredient.flour" }
         Ingredient { name = "orange" type = "fruit" src = "ingredient.orange" }
         Ingredient { name = "artichoke" type = "spice" src = "ingredient.artichoke" }
         
-        Ingredient { name = "shoyu" type = "spice" src = "ingredient.shoyu" }
+        //Japanese unused
         Ingredient { name = "sake" type = "spice" src = "ingredient.sake" }
         Ingredient { name = "dashi" type = "fish" src = "ingredient.dashi" }
-        Ingredient { name = "tuna" type = "fish" src = "ingredient.tuna" }
         Ingredient { name = "oyster" type = "fish" src = "ingredient.oyster" }
-        Ingredient { name = "salmon" type = "fish" src = "ingredient.salmon" }
-        Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" }
-        Ingredient { name = "seaweed" type = "vegetable" src = "ingredient.seaweed" }
-        Ingredient { name = "veggymix" type = "vegetable" src = "ingredient.veggymix" }
-        Ingredient { name = "rice" type = "cereal" src = "ingredient.rice" }
-        Ingredient { name = "egg" type = "egg" src = "ingredient.egg" }
-        Ingredient { name = "miso" type = "soy" src = "ingredient.miso" }
-        Ingredient { name = "tofu" type = "soy" src = "ingredient.tofu" }
         
+        //Japanese
+        Ingredient { name = "rice" type = "cereal" src = "ingredient.rice" }
+        Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" }
+        Ingredient { name = "salmon" type = "fish" src = "ingredient.salmon" }
+        Ingredient { name = "tuna" type = "fish" src = "ingredient.tuna" }
+        Ingredient { name = "anchovies" type = "fish" src = "ingredient.anchovies" }
+        Ingredient { name = "meat" type = "meat" src = "ingredient.meat" }
+        Ingredient { name = "seaweed" type = "vegetable" src = "ingredient.seaweed" }
+        Ingredient { name = "egg" type = "egg" src = "ingredient.egg" }
+        Ingredient { name = "tofu" type = "soy" src = "ingredient.tofu" }
+        Ingredient { name = "soya" type = "soy" src = "ingredient.soya" }
+        Ingredient { name = "mushroom" type = "vegetable" src = "ingredient.mushroom" }
+        Ingredient { name = "shoyu" type = "spice" src = "ingredient.shoyu" }
+        Ingredient { name = "umeboshi" type = "vegetable" src = "ingredient.umeboshi" }
+        Ingredient { name = "pickles" type = "vegetable" src = "ingredient.pickles" }
+        Ingredient { name = "miso" type = "soy" src = "ingredient.miso" }
+        Ingredient { name = "shrimp" type = "fish" src = "ingredient.shrimp" }
+        Ingredient { name = "veggymix" type = "vegetable" src = "ingredient.veggymix" }
         
     }
     
@@ -58,13 +63,101 @@ MasterChef {
         
         //Japanese recipes
         Recipe {
+            name = "Osechi"
+            type = "new year dish"
+            src = "recipe.osechi"
+            requires = "{ 'salmon': 3, 'amchovies': 3, 'seaweed': 3, 'egg': 3, 'shoyu': 3}"
+            readyAt = "12"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Tonjiru"
+            type = "miso soup with meat"
+            src = "recipe.tonjiru"
+            requires = "{ 'noodle': 5, 'meat': 5, 'miso': 5, 'veggymix': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Sukiyaki"
+            type = "meat with tofu, mushrooms and vegetables"
+            src = "recipe.sukiyaki"
+            requires = "{ 'meat': 5, 'tofu': 5, 'mushroom': 5, 'veggymix': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Omuraysu"
+            type = ""
+            src = "recipe.omuraysu"
+            requires = "{ 'meat': 5, 'rice': 5, 'mushroom': 5, 'umeboshi': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Yakitori"
+            type = ""
+            src = "recipe.yakitori"
+            requires = "{ 'meat': 5, 'shoyu': 2 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Tempura"
+            type = ""
+            src = "recipe.tempura"
+            requires = "{ 'noodle': 5, 'fish': 5, 'egg': 5, 'shrimp': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Gedza"
+            type = ""
+            src = "recipe.gedza"
+            requires = "{ 'meat': 5, 'egg': 5, 'shrimp': 5}"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "TofuDengaku"
+            type = ""
+            src = "recipe.tofudengaku"
+            requires = "{ 'tofu': 5, 'miso': 5, 'pickles': 5}"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe {
             name = "Yosenabe"
             type = "hot seafood plate"
             src = "recipe.yosenabe"
-            //requires = "{ 'shrimp': 10, 'salmon': 20, 'tofu': 11, 'veggymix': 15 }"
-            //readyAt = "11"
-            requires = "{ 'shrimp': 3, 'salmon': 10, 'tofu': 4, 'veggymix': 6}"
-            readyAt = "5"
+            requires = "{ 'shrimp': 3, 'anchovies': 5, 'tofu': 4, 'veggymix': 5, 'mushroom': 3}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "ZaruSoba"
+            type = "noodle dish"
+            src = "recipe.zarusoba"
+            requires = "{ 'noodle': 3, 'tofu': 4, 'shoyu': 5, 'pickles': 3}"
+            readyAt = "12"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "OkonomiYaki"
+            type = "pancakes"
+            src = "recipe.okonomiyaki"
+            requires = "{ 'egg': 3, 'miso': 5, 'mushroom': 3}"
+            readyAt = "8"
             price = "100"
         }
         
@@ -72,20 +165,7 @@ MasterChef {
             name = "Ochazuke"
             type = "rice dish"
             src = "recipe.ochazuke"
-            //requires = "{ 'rice': 20, 'dashi': 10, 'salmon': 15, 'seaweed': 5 }"
-            //readyAt = "10"
-            requires = "{ 'rice': 10, 'salmon': 5, 'seaweed': 2 }"
-            readyAt = "4"
-            price = "100"
-        }
-        
-        Recipe {
-            name = "Koyungohan"
-            type = "rice dish"
-            src = "recipe.koyungohan"
-            //requires = "{ 'rice': 12, 'dashi': 8, 'salmon': 8, 'tofu': 10 }"
-            //readyAt = "8"
-            requires = "{ 'rice': 8, 'salmon': 3, 'tofu': 5 }"
+            requires = "{ 'rice': 10, 'anchovies': 5, 'seaweed': 2 }"
             readyAt = "4"
             price = "100"
         }
@@ -94,14 +174,30 @@ MasterChef {
             name = "Onigiri"
             type = "rice dish"
             src = "recipe.onigiri"
-            //requires = "{ 'rice': 15, 'seaweed': 4, 'miso': 6 }"
-            //readyAt = "6"
-            requires = "{ 'rice': 10, 'seaweed': 2 }"
+            requires = "{ 'rice': 5, 'seaweed': 2, 'umeboshi':2 }"
             readyAt = "3"
             price = "100"
         }
         
+        Recipe {
+            name = "NigiriZushi"
+            type = "rice dish"
+            src = "recipe.nigirizushi"
+            requires = "{ 'rice': 5, 'salmon': 2 }"
+            readyAt = "3"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Morikomi"
+            type = "rice dish"
+            src = "recipe.morikomi"
+            requires = "{ 'rice': 5, 'salmon': 5, 'anchovies': 5, 'shrimp': 2, 'veggymix':2 }"
+            readyAt = "15"
+            price = "100"
+        }
+        
     }
-    
+   
     
 }

@@ -18,24 +18,22 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        //Recipe{ type = "Yosenabe" rate = "2" }
-        Recipe{ type = "Ochazuke" rate = "2" }
-        //Recipe{ type = "Koyungohan" rate = "3" }
-        //Recipe{ type = "Onigiri" rate = "2" }
+        Recipe{ type = "Zarusoba" rate = "2" }
+        Recipe{ type = "Tempura" rate = "2" }
+        Recipe{ type = "TofuDengaku" rate = "3" }
     }
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "shrimp" rate = "6" }
-        Ingredient{ type = "salmon" rate = "30" }
-        Ingredient{ type = "tofu" rate = "25" }
-        Ingredient{ type = "veggymix" rate = "12" }
-        Ingredient{ type = "rice" rate = "50" }
-        Ingredient{ type = "dashi" rate = "2" }
-        Ingredient{ type = "seaweed" rate = "12" }
-        Ingredient{ type = "noodle" rate = "2" }
+        Ingredient{ type = "noodle" rate = "10" }
+        Ingredient{ type = "tofu" rate = "10" }
+        Ingredient{ type = "miso" rate = "10" }
+        Ingredient{ type = "shoyu" rate = "10" }
+        Ingredient{ type = "pickles" rate = "10" }
+        Ingredient{ type = "salmon" rate = "10" }
+        Ingredient{ type = "egg" rate = "10" }
+        Ingredient{ type = "shrimp" rate = "10" }
     }
-    
     //level settings
     LevelSettings{
         noCustomers = "10"
@@ -47,8 +45,8 @@ Level{
     //layout of the game field
     Layout{
         theme = "Japanese" 
-        CustomerStation{ type = "" x = "100" y = "310" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "310" occupied = "no" }
+        //CustomerStation{ type = "" x = "100" y = "310" occupied = "no" }
+        //CustomerStation{ type = "" x = "260" y = "310" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "530" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "530" occupied = "yes" }
         Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }

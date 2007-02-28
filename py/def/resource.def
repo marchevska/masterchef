@@ -1,30 +1,45 @@
 MasterChef{
     //source classes for ingredients
     IngredientKlasses{
-        sprite(ingredient.shrimp) { bitmap = "img/ingredients/shrimp.png" type = "blend" }
-        sprite(ingredient.shoyu) { bitmap = "img/ingredients/shoyu.png" type = "blend" }
-        sprite(ingredient.sake) { bitmap = "img/ingredients/sake.png" type = "blend" }
-        sprite(ingredient.dashi) { bitmap = "img/ingredients/dashi.png" type = "blend" }
-        sprite(ingredient.tuna) { bitmap = "img/ingredients/tuna.png" type = "blend" }
-        sprite(ingredient.oyster) { bitmap = "img/ingredients/oyster.png" type = "blend" }
-        sprite(ingredient.salmon) { bitmap = "img/ingredients/salmon.png" type = "blend" }
-        sprite(ingredient.noodle) { bitmap = "img/ingredients/noodle.png" type = "blend" }
-        sprite(ingredient.seaweed) { bitmap = "img/ingredients/seaweed.png" type = "blend" }
-        sprite(ingredient.veggymix) { bitmap = "img/ingredients/veggymix.png" type = "blend" }
+        //Japanese
         sprite(ingredient.rice) { bitmap = "img/ingredients/rice.png" type = "blend" }
+        sprite(ingredient.noodle) { bitmap = "img/ingredients/noodle.png" type = "blend" }
+        sprite(ingredient.salmon) { bitmap = "img/ingredients/salmon.png" type = "blend" }
+        sprite(ingredient.tuna) { bitmap = "img/ingredients/tuna.png" type = "blend" }
+        sprite(ingredient.anchovies) { bitmap = "img/ingredients/anchovies.png" type = "blend" }
+        sprite(ingredient.meat) { bitmap = "img/ingredients/meat.png" type = "blend" }
+        sprite(ingredient.seaweed) { bitmap = "img/ingredients/seaweed.png" type = "blend" }
         sprite(ingredient.egg) { bitmap = "img/ingredients/egg.png" type = "blend" }
-        sprite(ingredient.miso) { bitmap = "img/ingredients/miso.png" type = "blend" }
         sprite(ingredient.tofu) { bitmap = "img/ingredients/tofu.png" type = "blend" }
+        sprite(ingredient.soya) { bitmap = "img/ingredients/soya.png" type = "blend" }
+        sprite(ingredient.mushroom) { bitmap = "img/ingredients/mushroom.png" type = "blend" }
+        sprite(ingredient.shoyu) { bitmap = "img/ingredients/shoyu.png" type = "blend" }
+        sprite(ingredient.umeboshi) { bitmap = "img/ingredients/umeboshi.png" type = "blend" }
+        sprite(ingredient.pickles) { bitmap = "img/ingredients/pickles.png" type = "blend" }
+        sprite(ingredient.miso) { bitmap = "img/ingredients/miso.png" type = "blend" }
+        sprite(ingredient.shrimp) { bitmap = "img/ingredients/shrimp.png" type = "blend" }
+        sprite(ingredient.veggymix) { bitmap = "img/ingredients/veggymix.png" type = "blend" }
     }
-    
+
     //source classes for dishes
     RecipeKlasses{
+        sprite(recipe.osechi) { bitmap = "img/recipes/osechi.png" type = "blend" }
+        sprite(recipe.tonjiru) { bitmap = "img/recipes/tonjiru.png" type = "blend" }
+        sprite(recipe.sukiyaki) { bitmap = "img/recipes/sukiyaki.png" type = "blend" }
+        sprite(recipe.omuraysu) { bitmap = "img/recipes/omuraysu.png" type = "blend" }
+        sprite(recipe.yakitori) { bitmap = "img/recipes/yakitori.png" type = "blend" }
+        sprite(recipe.tempura) { bitmap = "img/recipes/tempura.png" type = "blend" }
+        sprite(recipe.gedza) { bitmap = "img/recipes/gedza.png" type = "blend" }
+        sprite(recipe.tofudengaku) { bitmap = "img/recipes/tofudengaku.png" type = "blend" }
         sprite(recipe.yosenabe) { bitmap = "img/recipes/yosenabe.png" type = "blend" }
+        sprite(recipe.zarusoba) { bitmap = "img/recipes/zarusoba.png" type = "blend" }
+        sprite(recipe.okonomiyaki) { bitmap = "img/recipes/okonomiyaki.png" type = "blend" }
         sprite(recipe.ochazuke) { bitmap = "img/recipes/ochazuke.png" type = "blend" }
-        sprite(recipe.koyungohan) { bitmap = "img/recipes/koyungohan.png" type = "blend" }
         sprite(recipe.onigiri) { bitmap = "img/recipes/onigiri.png" type = "blend" }
+        sprite(recipe.nigirizushi) { bitmap = "img/recipes/nigirizushi.png" type = "blend" }
+        sprite(recipe.morikomi) { bitmap = "img/recipes/morikomi.png" type = "blend" }
     }
-    
+
     //source classes for power-ups
     PowerUpKlasses{
         sprite(powerup.use.button) { bitmap = "img/powerups/use-powerup-button.png" type = "blend" layout = "2x2" }

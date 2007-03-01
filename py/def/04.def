@@ -18,7 +18,7 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Zarusoba" rate = "2" }
+        Recipe{ type = "ZaruSoba" rate = "2" }
         Recipe{ type = "Tempura" rate = "2" }
         Recipe{ type = "TofuDengaku" rate = "3" }
     }

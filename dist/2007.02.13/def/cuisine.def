@@ -111,7 +111,7 @@ MasterChef {
             name = "Tempura"
             type = ""
             src = "recipe.tempura"
-            requires = "{ 'noodle': 5, 'fish': 5, 'egg': 5, 'shrimp': 5}"
+            requires = "{ 'noodle': 5, 'salmon': 5, 'egg': 5, 'shrimp': 5}"
             readyAt = "15"
             price = "100"
         }

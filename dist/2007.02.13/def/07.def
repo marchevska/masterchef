@@ -20,7 +20,7 @@ Level{
     RecipeRates{
         Recipe{ type = "Tonjiru" rate = "2" }
         Recipe{ type = "Ochazuke" rate = "2" }
-        Recipe{ type = "Sukiyaku" rate = "3" }
+        Recipe{ type = "Sukiyaki" rate = "3" }
         Recipe{ type = "Omuraysu" rate = "2" }
     }
     

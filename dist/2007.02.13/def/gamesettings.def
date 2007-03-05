@@ -77,7 +77,7 @@ MasterChef {
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "nothing"
-            dislikes = "Meat"
+            dislikes = "meat"
         }
         
         Customer {

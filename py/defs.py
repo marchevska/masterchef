@@ -244,10 +244,13 @@ def ReadLevelSettings(filename):
         for tmpKey in ["type", "size", "x", "y"]:
             globalvars.Layout["BonusPane"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
             
-        tmpUnitData = tmpLayout.GetTag(u"TrashCan")
+        #tmpUnitData = tmpLayout.GetTag(u"TrashCan")
         globalvars.Layout["TrashCan"] = {}
-        for tmpKey in ["type", "size", "x", "y"]:
-            globalvars.Layout["TrashCan"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
+        tmpTrashCans = tmpLayout.IterateTag(u"TrashCan")
+        while tmpTrashCans.Next():
+            tmpCS = tmpTrashCans.Get()
+            for tmpKey in ["type", "size", "x", "y"]:
+                globalvars.Layout["TrashCan"][tmpKey] = tmpCS.GetIntAttr(unicode(tmpKey))
             
         globalvars.Layout["Stores"] = []
         tmpCustomerStations = tmpLayout.IterateTag(u"Store")

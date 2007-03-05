@@ -188,7 +188,8 @@ class GameBoard(scraft.Dispatcher):
         for tmp in globalvars.Layout["Decorations"]:
             self.Static.append(MakeSimpleSprite(unicode(tmp["type"]), Layer_Deco, tmp["x"], tmp["y"]))
         
-        self.TrashCan = TrashCan(globalvars.Layout["TrashCan"]["size"], globalvars.Layout["TrashCan"]["x"],
+        if globalvars.Layout["TrashCan"] != {}:
+            self.TrashCan = TrashCan(globalvars.Layout["TrashCan"]["size"], globalvars.Layout["TrashCan"]["x"],
                                  globalvars.Layout["TrashCan"]["y"], tmpTheme)
 
         #размещение повер-апов

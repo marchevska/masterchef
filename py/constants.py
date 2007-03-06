@@ -125,8 +125,8 @@ Crd_HeartsDx = -24
 Crd_HeartsDy = 10
 Crd_HeartSpritesDx = 12
 Crd_HeartSpritesDy = 0
-Crd_RecipeSpriteDx = 0
-Crd_RecipeSpriteDy = -7
+Crd_RecipeSpriteDx = -26
+Crd_RecipeSpriteDy = -30
 Crd_RecipeInfoSpriteDx = 55
 Crd_RecipeInfoSpriteDy = -37
 

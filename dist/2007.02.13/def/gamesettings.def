@@ -35,6 +35,86 @@ MasterChef {
             trashcanBarFull = "theme.japanese.trashcan.bar.full"
             tablet = "theme.japanese.tablet"
         }
+        
+        Theme {
+            type = "Mexican"
+            background = "theme.mexican.background"
+            counter = "theme.mexican.counter"
+            customersQuePointer = "theme.mexican.pointer"
+            station = "theme.mexican.station"
+            recipeInfo = "theme.mexican.recipeinfo"
+            field = "theme.mexican.field"
+            storage = "theme.mexican.storage"
+            bonuspane = "theme.mexican.bonuspane"
+            trashcan = "theme.mexican.trashcan"
+            trashcanBarEmpty = "theme.mexican.trashcan.bar.empty"
+            trashcanBarFull = "theme.mexican.trashcan.bar.full"
+            tablet = "theme.mexican.tablet"
+        }
+        
+        Theme {
+            type = "Italian"
+            background = "theme.italian.background"
+            counter = "theme.italian.counter"
+            customersQuePointer = "theme.italian.pointer"
+            station = "theme.italian.station"
+            recipeInfo = "theme.italian.recipeinfo"
+            field = "theme.italian.field"
+            storage = "theme.italian.storage"
+            bonuspane = "theme.italian.bonuspane"
+            trashcan = "theme.italian.trashcan"
+            trashcanBarEmpty = "theme.italian.trashcan.bar.empty"
+            trashcanBarFull = "theme.italian.trashcan.bar.full"
+            tablet = "theme.italian.tablet"
+        }
+        
+        Theme {
+            type = "Russian"
+            background = "theme.russian.background"
+            counter = "theme.russian.counter"
+            customersQuePointer = "theme.russian.pointer"
+            station = "theme.russian.station"
+            recipeInfo = "theme.russian.recipeinfo"
+            field = "theme.russian.field"
+            storage = "theme.russian.storage"
+            bonuspane = "theme.russian.bonuspane"
+            trashcan = "theme.russian.trashcan"
+            trashcanBarEmpty = "theme.russian.trashcan.bar.empty"
+            trashcanBarFull = "theme.russian.trashcan.bar.full"
+            tablet = "theme.russian.tablet"
+        }
+        
+        Theme {
+            type = "American"
+            background = "theme.american.background"
+            counter = "theme.american.counter"
+            customersQuePointer = "theme.american.pointer"
+            station = "theme.american.station"
+            recipeInfo = "theme.american.recipeinfo"
+            field = "theme.american.field"
+            storage = "theme.american.storage"
+            bonuspane = "theme.american.bonuspane"
+            trashcan = "theme.american.trashcan"
+            trashcanBarEmpty = "theme.american.trashcan.bar.empty"
+            trashcanBarFull = "theme.american.trashcan.bar.full"
+            tablet = "theme.american.tablet"
+        }
+        
+        Theme {
+            type = "SweetShop"
+            background = "theme.sweetshop.background"
+            counter = "theme.sweetshop.counter"
+            customersQuePointer = "theme.sweetshop.pointer"
+            station = "theme.sweetshop.station"
+            recipeInfo = "theme.sweetshop.recipeinfo"
+            field = "theme.sweetshop.field"
+            storage = "theme.sweetshop.storage"
+            bonuspane = "theme.sweetshop.bonuspane"
+            trashcan = "theme.sweetshop.trashcan"
+            trashcanBarEmpty = "theme.sweetshop.trashcan.bar.empty"
+            trashcanBarFull = "theme.sweetshop.trashcan.bar.full"
+            tablet = "theme.sweetshop.tablet"
+        }
     }
     
     Customers {

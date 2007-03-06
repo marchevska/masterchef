@@ -182,6 +182,10 @@ class BarIndicator:
         self.IsReverse = isReverse #справа налево или сверху вниз
         self.SetValue(0)
         
+    def SetKlasses(self, newTopKlass, newBgKlass):
+        self.sprite.ChangeKlassTo(newTopKlass)
+        self.bgSprite.ChangeKlassTo(newBgKlass)
+        
     def Show(self, flag):
         self.sprite.visible = flag
         self.bgSprite.visible = flag

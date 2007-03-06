@@ -29,6 +29,9 @@ class CustomerStation(scraft.Dispatcher):
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
                                      Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Station)
         self.TableSprite = MakeSimpleSprite(theme["station"], Layer_Station, self.CrdX, self.CrdY)
+        self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy, 52, 46,
+                    u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe)
+        self.RecipeIndicator.Show(False)
         self.RecipeInfoSprite = MakeSimpleSprite(theme["recipeInfo"], Layer_Station,
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
         self.RecipeInfoSprite.visible = False
@@ -58,10 +61,14 @@ class CustomerStation(scraft.Dispatcher):
         self.MealReady = False
         self.OrderType = type
         self.RecipeInfoSprite.visible = True
-        self.OrderSprite = MakeSimpleSprite(globalvars.CuisineInfo["Recipes"][type]["src"],
-                Layer_Recipe, self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy)
+        self.RecipeIndicator.Show(True)
+        self.RecipeIndicator.SetKlasses(globalvars.CuisineInfo["Recipes"][type]["src"],
+                                        globalvars.CuisineInfo["Recipes"][type]["src"])
+        self.RecipeIndicator.SetValue(0)
         tmpIng = globalvars.CuisineInfo["Recipes"][type]["requires"].keys()
         self.TokensNeeded = map(lambda x: { "item": x, "no": globalvars.CuisineInfo["Recipes"][type]["requires"][x] }, tmpIng)
+        self.TotalRequired = reduce(lambda x, y: x+y["no"], self.TokensNeeded, 0)
+        print self.TotalRequired
         for i in range(len(self.TokensNeeded)):
             self.NeededIndicators.append(NeededIndicator(self.CrdX + Crd_Indicator_DeltaX,
                 self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Recipe, 
@@ -73,7 +80,7 @@ class CustomerStation(scraft.Dispatcher):
     #--------------
     def _RemoveOrder(self):
         self.HasOrder = False
-        self.OrderSprite.Dispose()
+        self.RecipeIndicator.Show(False)
         self.RecipeInfoSprite.visible = False
         for tmp in self.NeededIndicators:
             tmp.Kill()
@@ -120,6 +127,8 @@ class CustomerStation(scraft.Dispatcher):
             self.ReleaseButton.Show(True)
         if tmpRemaining == 0:
             self.MealReady = True
+            
+        self.RecipeIndicator.SetValue(1.0*tmpRemaining/self.TotalRequired)
             
         return no*tmpScoreMultiplier
         

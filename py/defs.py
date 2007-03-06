@@ -89,6 +89,7 @@ def ReadCuisine():
             globalvars.CuisineInfo["Recipes"][tmp.GetStrAttr(u"name")] = {
                 "type": tmp.GetStrAttr(u"type"),
                 "src": tmp.GetStrAttr(u"src"),
+                "emptySrc": tmp.GetStrAttr(u"emptySrc"),
                 "price": tmp.GetIntAttr(u"price"),
                 "readyAt": tmp.GetIntAttr(u"readyAt"),
                 "requires": eval(tmp.GetStrAttr(u"requires"))

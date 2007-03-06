@@ -30,7 +30,7 @@ class CustomerStation(scraft.Dispatcher):
                                      Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Station)
         self.TableSprite = MakeSimpleSprite(theme["station"], Layer_Station, self.CrdX, self.CrdY)
         self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy, 52, 46,
-                    u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe)
+                    u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe, True, True)
         self.RecipeIndicator.Show(False)
         self.RecipeInfoSprite = MakeSimpleSprite(theme["recipeInfo"], Layer_Station,
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
@@ -63,12 +63,11 @@ class CustomerStation(scraft.Dispatcher):
         self.RecipeInfoSprite.visible = True
         self.RecipeIndicator.Show(True)
         self.RecipeIndicator.SetKlasses(globalvars.CuisineInfo["Recipes"][type]["src"],
-                                        globalvars.CuisineInfo["Recipes"][type]["src"])
+                                        globalvars.CuisineInfo["Recipes"][type]["emptySrc"])
         self.RecipeIndicator.SetValue(0)
         tmpIng = globalvars.CuisineInfo["Recipes"][type]["requires"].keys()
         self.TokensNeeded = map(lambda x: { "item": x, "no": globalvars.CuisineInfo["Recipes"][type]["requires"][x] }, tmpIng)
         self.TotalRequired = reduce(lambda x, y: x+y["no"], self.TokensNeeded, 0)
-        print self.TotalRequired
         for i in range(len(self.TokensNeeded)):
             self.NeededIndicators.append(NeededIndicator(self.CrdX + Crd_Indicator_DeltaX,
                 self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Recipe, 
@@ -128,7 +127,7 @@ class CustomerStation(scraft.Dispatcher):
         if tmpRemaining == 0:
             self.MealReady = True
             
-        self.RecipeIndicator.SetValue(1.0*tmpRemaining/self.TotalRequired)
+        self.RecipeIndicator.SetValue(1.0 - 1.0*tmpRemaining/self.TotalRequired)
             
         return no*tmpScoreMultiplier
         

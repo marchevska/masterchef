@@ -189,6 +189,8 @@ class BarIndicator:
     def Show(self, flag):
         self.sprite.visible = flag
         self.bgSprite.visible = flag
+        self.sprite.sublayer = 0
+        self.bgSprite.sublayer = 1
         
     def SetValue(self, newValue):
         if newValue < 0:
@@ -203,7 +205,7 @@ class BarIndicator:
             height0 = self.Height
         if self.IsReverse:
             tmpCoords = [(self.Width-width0, self.Height-height0), (self.Width, self.Height-height0),
-                (self.Width, self.Height), (self.Width, self.Heigh, self.Height)]
+                (self.Width, self.Height), (self.Width-width0, self.Height)]
         else:
             tmpCoords = [(0, 0), (width0, 0), (width0, height0), (0, height0)]
         

@@ -19,6 +19,25 @@ MasterChef{
         sprite(ingredient.miso) { bitmap = "img/ingredients/miso.png" type = "blend" }
         sprite(ingredient.shrimp) { bitmap = "img/ingredients/shrimp.png" type = "blend" }
         sprite(ingredient.veggymix) { bitmap = "img/ingredients/veggymix.png" type = "blend" }
+        
+        //Japanese - cions
+        sprite(ingredient.rice.icon) { bitmap = "img/ingredients/rice.icon.png" type = "blend" }
+        sprite(ingredient.noodle.icon) { bitmap = "img/ingredients/noodle.icon.png" type = "blend" }
+        sprite(ingredient.salmon.icon) { bitmap = "img/ingredients/salmon.icon.png" type = "blend" }
+        sprite(ingredient.tuna.icon) { bitmap = "img/ingredients/tuna.icon.png" type = "blend" }
+        sprite(ingredient.anchovies.icon) { bitmap = "img/ingredients/anchovies.icon.png" type = "blend" }
+        sprite(ingredient.meat.icon) { bitmap = "img/ingredients/meat.icon.png" type = "blend" }
+        sprite(ingredient.seaweed.icon) { bitmap = "img/ingredients/seaweed.icon.png" type = "blend" }
+        sprite(ingredient.egg.icon) { bitmap = "img/ingredients/egg.icon.png" type = "blend" }
+        sprite(ingredient.tofu.icon) { bitmap = "img/ingredients/tofu.icon.png" type = "blend" }
+        sprite(ingredient.soya.icon) { bitmap = "img/ingredients/soya.icon.png" type = "blend" }
+        sprite(ingredient.mushroom.icon) { bitmap = "img/ingredients/mushroom.icon.png" type = "blend" }
+        sprite(ingredient.shoyu.icon) { bitmap = "img/ingredients/shoyu.icon.png" type = "blend" }
+        sprite(ingredient.umeboshi.icon) { bitmap = "img/ingredients/umeboshi.icon.png" type = "blend" }
+        sprite(ingredient.pickles.icon) { bitmap = "img/ingredients/pickles.icon.png" type = "blend" }
+        sprite(ingredient.miso.icon) { bitmap = "img/ingredients/miso.icon.png" type = "blend" }
+        sprite(ingredient.shrimp.icon) { bitmap = "img/ingredients/shrimp.icon.png" type = "blend" }
+        sprite(ingredient.veggymix.icon) { bitmap = "img/ingredients/veggymix.icon.png" type = "blend" }
     }
 
     //source classes for dishes

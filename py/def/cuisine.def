@@ -14,39 +14,39 @@ MasterChef {
     }
     
     Ingredients {
-        Ingredient { name = "tomato" type = "vegetable" src = "ingredient.tomato" }
-        Ingredient { name = "cheese" type = "dairy" src = "ingredient.cheese" }
-        Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" }
-        Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" }
-        Ingredient { name = "bacon" type = "meat" src = "ingredient.bacon" }
-        Ingredient { name = "olives" type = "vegetable" src = "ingredient.olives" }
-        Ingredient { name = "flour" type = "pasta" src = "ingredient.flour" }
-        Ingredient { name = "orange" type = "fruit" src = "ingredient.orange" }
-        Ingredient { name = "artichoke" type = "spice" src = "ingredient.artichoke" }
+        //Ingredient { name = "tomato" type = "vegetable" src = "ingredient.tomato" iconSrc = "ingredient.tomato.icon" }
+        //Ingredient { name = "cheese" type = "dairy" src = "ingredient.cheese" iconSrc = "ingredient.cheese.icon"}
+        //Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" iconSrc = "ingredient.milk.icon"}
+        //Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
+        //Ingredient { name = "bacon" type = "meat" src = "ingredient.bacon" iconSrc = "ingredient.bacon.icon"}
+        //Ingredient { name = "olives" type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
+        //Ingredient { name = "flour" type = "pasta" src = "ingredient.flour" iconSrc = "ingredient.flour.icon"}
+        //Ingredient { name = "orange" type = "fruit" src = "ingredient.orange" iconSrc = "ingredient.orange.icon"}
+        //Ingredient { name = "artichoke" type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
         
         //Japanese unused
-        Ingredient { name = "sake" type = "spice" src = "ingredient.sake" }
-        Ingredient { name = "dashi" type = "fish" src = "ingredient.dashi" }
-        Ingredient { name = "oyster" type = "fish" src = "ingredient.oyster" }
+        //Ingredient { name = "sake" type = "spice" src = "ingredient.sake" iconSrc = "ingredient.sake.icon"}
+        //Ingredient { name = "dashi" type = "fish" src = "ingredient.dashi" iconSrc = "ingredient.dashi.icon"}
+        //Ingredient { name = "oyster" type = "fish" src = "ingredient.oyster" iconSrc = "ingredient.oyster.icon"}
         
         //Japanese
-        Ingredient { name = "rice" type = "cereal" src = "ingredient.rice" }
-        Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" }
-        Ingredient { name = "salmon" type = "fish" src = "ingredient.salmon" }
-        Ingredient { name = "tuna" type = "fish" src = "ingredient.tuna" }
-        Ingredient { name = "anchovies" type = "fish" src = "ingredient.anchovies" }
-        Ingredient { name = "meat" type = "meat" src = "ingredient.meat" }
-        Ingredient { name = "seaweed" type = "vegetable" src = "ingredient.seaweed" }
-        Ingredient { name = "egg" type = "egg" src = "ingredient.egg" }
-        Ingredient { name = "tofu" type = "soy" src = "ingredient.tofu" }
-        Ingredient { name = "soya" type = "soy" src = "ingredient.soya" }
-        Ingredient { name = "mushroom" type = "vegetable" src = "ingredient.mushroom" }
-        Ingredient { name = "shoyu" type = "spice" src = "ingredient.shoyu" }
-        Ingredient { name = "umeboshi" type = "vegetable" src = "ingredient.umeboshi" }
-        Ingredient { name = "pickles" type = "vegetable" src = "ingredient.pickles" }
-        Ingredient { name = "miso" type = "soy" src = "ingredient.miso" }
-        Ingredient { name = "shrimp" type = "fish" src = "ingredient.shrimp" }
-        Ingredient { name = "veggymix" type = "vegetable" src = "ingredient.veggymix" }
+        Ingredient { name = "rice" type = "cereal" src = "ingredient.rice" iconSrc = "ingredient.rice.icon"}
+        Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" iconSrc = "ingredient.noodle.icon"}
+        Ingredient { name = "salmon" type = "fish" src = "ingredient.salmon" iconSrc = "ingredient.salmon.icon"}
+        Ingredient { name = "tuna" type = "fish" src = "ingredient.tuna" iconSrc = "ingredient.tuna.icon"}
+        Ingredient { name = "anchovies" type = "fish" src = "ingredient.anchovies" iconSrc = "ingredient.anchovies.icon"}
+        Ingredient { name = "meat" type = "meat" src = "ingredient.meat" iconSrc = "ingredient.meat.icon"}
+        Ingredient { name = "seaweed" type = "vegetable" src = "ingredient.seaweed" iconSrc = "ingredient.seaweed.icon"}
+        Ingredient { name = "egg" type = "egg" src = "ingredient.egg" iconSrc = "ingredient.egg.icon"}
+        Ingredient { name = "tofu" type = "soy" src = "ingredient.tofu" iconSrc = "ingredient.tofu.icon"}
+        Ingredient { name = "soya" type = "soy" src = "ingredient.soya" iconSrc = "ingredient.soya.icon"}
+        Ingredient { name = "mushroom" type = "vegetable" src = "ingredient.mushroom" iconSrc = "ingredient.mushroom.icon"}
+        Ingredient { name = "shoyu" type = "spice" src = "ingredient.shoyu" iconSrc = "ingredient.shoyu.icon"}
+        Ingredient { name = "umeboshi" type = "vegetable" src = "ingredient.umeboshi" iconSrc = "ingredient.umeboshi.icon"}
+        Ingredient { name = "pickles" type = "vegetable" src = "ingredient.pickles" iconSrc = "ingredient.pickles.icon"}
+        Ingredient { name = "miso" type = "soy" src = "ingredient.miso" iconSrc = "ingredient.miso.icon"}
+        Ingredient { name = "shrimp" type = "fish" src = "ingredient.shrimp" iconSrc = "ingredient.shrimp.icon"}
+        Ingredient { name = "veggymix" type = "vegetable" src = "ingredient.veggymix" iconSrc = "ingredient.veggymix.icon"}
         
     }
     

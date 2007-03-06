@@ -65,7 +65,7 @@ class CustomerStation(scraft.Dispatcher):
         for i in range(len(self.TokensNeeded)):
             self.NeededIndicators.append(NeededIndicator(self.CrdX + Crd_Indicator_DeltaX,
                 self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Recipe, 
-                globalvars.CuisineInfo["Ingredients"][self.TokensNeeded[i]["item"]]["src"],
+                globalvars.CuisineInfo["Ingredients"][self.TokensNeeded[i]["item"]]["iconSrc"],
                 u"arial18", u"galka", self.TokensNeeded[i]["no"]))
         
     #--------------
@@ -189,7 +189,7 @@ class NeededIndicator:
         self.TokenSprite = MakeSimpleSprite(tokenKlass, newLayer, newX, newY)
         self.ValueTextSprite = MakeTextSprite(textKlass, newLayer, newX + Crd_IndicatorText_DeltaX, newY, scraft.HotspotLeftCenter)
         self.Checkersprite = MakeSimpleSprite(checkerKlass, newLayer, newX + Crd_IndicatorText_DeltaX, newY)
-        self.TokenSprite.xScale, self.TokenSprite.yScale = Crd_IndicatorScaleXY, Crd_IndicatorScaleXY
+        #self.TokenSprite.xScale, self.TokenSprite.yScale = Crd_IndicatorScaleXY, Crd_IndicatorScaleXY
         self.ValueTextSprite.xScale, self.ValueTextSprite.yScale = Crd_IndicatorScaleXY, Crd_IndicatorScaleXY
         self.Checkersprite.xScale, self.Checkersprite.yScale = Crd_IndicatorScaleXY, Crd_IndicatorScaleXY
         self.SetValue(newValue)

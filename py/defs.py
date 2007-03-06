@@ -80,7 +80,8 @@ def ReadCuisine():
         while tmpIngredientsIterator.Next():
             tmp = tmpIngredientsIterator.Get()
             globalvars.CuisineInfo["Ingredients"][tmp.GetStrAttr(u"name")] = {
-                "type": tmp.GetStrAttr(u"type"), "src": tmp.GetStrAttr(u"src") }
+                "type": tmp.GetStrAttr(u"type"),
+                "src": tmp.GetStrAttr(u"src"), "iconSrc": tmp.GetStrAttr(u"iconSrc") }
             
         tmpRecipesIterator = tmpCuisineData.GetTag(u"Recipes").IterateTag(u"Recipe")
         while tmpRecipesIterator.Next():

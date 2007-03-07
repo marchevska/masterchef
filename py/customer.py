@@ -299,6 +299,7 @@ class CustomersAnimator(scraft.Dispatcher):
             self.Cycling = False
         self.NextFrameTime = 0
         self.NextFrame = 0
+        self.Sprite.frno = self.CurrentAnimation[self.NextFrame][0]
             
     def _OnExecute(self, que):
         try:

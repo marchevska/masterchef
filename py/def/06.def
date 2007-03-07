@@ -19,7 +19,8 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "OkonomiYaki" rate = "2" }
-        Recipe{ type = "Yakitori" rate = "2" }
+        Recipe{ type = "Yakitori" rate = "5" }
+        //Recipe{ type = "OkonomiYaki" rate = "2" }
     }
     
     //ingredient appearance rates

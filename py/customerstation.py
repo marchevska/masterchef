@@ -94,6 +94,8 @@ class CustomerStation(scraft.Dispatcher):
         #tmp - номер нужного ингредиента, для обновления индикаторов
         tmp = filter(lambda x: self.TokensNeeded[x]["item"] == food, range(len(self.TokensNeeded)))
         
+        tmpScoreMultiplier = 1
+        
         #добавление ингредиентов
         if tmp != []:
             tmpOld = self.TokensNeeded[tmp[0]]["no"]
@@ -125,9 +127,7 @@ class CustomerStation(scraft.Dispatcher):
         
         #проверить - является ли ингредиент любимым для покуаптеля
         if globalvars.CustomersInfo[self.Customer.Type]["likes"] == food:
-            tmpScoreMultiplier = 2
-        else:
-            tmpScoreMultiplier = 1
+            tmpScoreMultiplier *= 2
             
         return no*tmpScoreMultiplier
         

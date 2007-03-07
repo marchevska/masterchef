@@ -94,19 +94,6 @@ class CustomerStation(scraft.Dispatcher):
         #tmp - номер нужного ингредиента, для обновления индикаторов
         tmp = filter(lambda x: self.TokensNeeded[x]["item"] == food, range(len(self.TokensNeeded)))
         
-        #проверить - является ли ингредиент нелюбимым для покуаптеля
-        if globalvars.CustomersInfo[self.Customer.Type]["dislikes"] == food:
-            self.Customer.AddHearts(-1)
-        #если ингредиент не требуется и покуаптель требует четкого соблюдения рецепта
-        elif tmp == [] and not globalvars.CustomersInfo[self.Customer.Type]["allowsExcessIngredients"]:
-            self.Customer.AddHearts(-1)
-        
-        #проверить - является ли ингредиент любимым для покуаптеля
-        if globalvars.CustomersInfo[self.Customer.Type]["likes"] == food:
-            tmpScoreMultiplier = 2
-        else:
-            tmpScoreMultiplier = 1
-            
         #добавление ингредиентов
         if tmp != []:
             tmpOld = self.TokensNeeded[tmp[0]]["no"]
@@ -128,6 +115,19 @@ class CustomerStation(scraft.Dispatcher):
             self.MealReady = True
             
         self.RecipeIndicator.SetValue(1.0 - 1.0*tmpRemaining/self.TotalRequired)
+            
+        #проверить - является ли ингредиент нелюбимым для покуаптеля
+        if globalvars.CustomersInfo[self.Customer.Type]["dislikes"] == food:
+            self.Customer.AddHearts(-1)
+        #если ингредиент не требуется и покупатель требует четкого соблюдения рецепта
+        elif tmp == [] and not globalvars.CustomersInfo[self.Customer.Type]["allowsExcessIngredients"]:
+            self.Customer.AddHearts(-1)
+        
+        #проверить - является ли ингредиент любимым для покуаптеля
+        if globalvars.CustomersInfo[self.Customer.Type]["likes"] == food:
+            tmpScoreMultiplier = 2
+        else:
+            tmpScoreMultiplier = 1
             
         return no*tmpScoreMultiplier
         
@@ -153,8 +153,11 @@ class CustomerStation(scraft.Dispatcher):
         self.Dummy.visible = flag
         self.TableSprite.visible = flag
         self.RecipeInfoSprite.visible = flag
-        self.ReleaseButton.Show(flag)
         self.Hero.Show(False)
+        self.ReleaseButton.Show(False)
+        if flag and self.HasOrder and self.Active:
+            print "*-*"
+            self.AddTokens("", 0)
         if self.Active:
             self.Customer.Show(flag)
         #else:
@@ -178,6 +181,7 @@ class CustomerStation(scraft.Dispatcher):
             
         elif cmd == Cmd_FlopOrder:
             self._RemoveOrder()
+            self.Active = False
             print "flop order!"
             
         elif cmd == Cmd_Station_DeleteCustomer:

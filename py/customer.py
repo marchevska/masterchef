@@ -73,6 +73,8 @@ class Customer(scraft.Dispatcher):
                 self.HeartSprites[i].visible = False
             self.Animator.SetState(str(self.Hearts)+"Hearts")
         else:
+            for i in range(Const_MaxHearts):
+                self.HeartSprites[i].visible = False
             self._SetState(CustomerState_GoAway)
         
     def _SetState(self, state):

@@ -35,10 +35,10 @@ MasterChef {
 
     Animation(animation.vegetarian) {
         Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 3000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 3000), (9, 500)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 2000), (3, 500)" loops = "0" }
+        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 1000)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 1000)" loops = "0" }
+        Sequence { name = "3Hearts" frames = "(12, 500), (13, 500)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 1000), (3, 1000)" loops = "0" }
         Sequence { name = "1Hearts" frames = "(6, 500), (7, 500)" loops = "0" }
         Sequence { name = "GoAway" frames = "(11, 1000)," loops = "0" }
         Sequence { name = "TakeOrder" frames = "(10, 1000)," loops = "0" }
@@ -87,10 +87,10 @@ MasterChef {
 
     Animation(animation.critic) {
         Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 3000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 3000), (9, 500)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 2000), (3, 500)" loops = "0" }
+        Sequence { name = "5Hearts" frames = "(4, 2000), (5, 1000)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 500)" loops = "0" }
+        Sequence { name = "3Hearts" frames = "(12, 1000), (13, 1000)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 500), (3, 1000)" loops = "0" }
         Sequence { name = "1Hearts" frames = "(6, 500), (7, 500)" loops = "0" }
         Sequence { name = "GoAway" frames = "(11, 1000)," loops = "0" }
         Sequence { name = "TakeOrder" frames = "(10, 1000)," loops = "0" }

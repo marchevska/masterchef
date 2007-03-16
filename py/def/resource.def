@@ -150,6 +150,7 @@ MasterChef{
     
     //source klasses for restaurant themes
     ThemeKlasses{
+        //Japanese
         sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" truecolor = "yes" }
         sprite(theme.japanese.counter) { bitmap = "img/episodes/japanese/counter.png" type = "blend" }
         sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" layout = "2x1" }
@@ -166,6 +167,7 @@ MasterChef{
         sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }
         sprite(theme.japanese.decoration.screen2) { bitmap = "img/episodes/japanese/screen2.png" type = "blend" }
         
+        //Mexican
         sprite(theme.mexican.background) { bitmap = "img/episodes/mexican/background.png" truecolor = "yes" }
         sprite(theme.mexican.counter) { bitmap = "img/episodes/mexican/counter.png" type = "blend" }
         sprite(theme.mexican.station) { bitmap = "img/episodes/mexican/station.png" type = "blend" layout = "2x1" }
@@ -178,6 +180,12 @@ MasterChef{
         sprite(theme.mexican.trashcan.bar.full) { bitmap = "img/episodes/mexican/trashcan-bar-full.png" type = "blend" }
         sprite(theme.mexican.tablet) { bitmap = "img/episodes/mexican/tablet.png" type = "blend" }
         
+        sprite(theme.mexican.decoration.carpet-palm) { bitmap = "img/episodes/mexican/carpet-palm.png" type = "blend" }
+        sprite(theme.mexican.decoration.carpet-sombrero) { bitmap = "img/episodes/mexican/carpet-sombrero.png" type = "blend" }
+        sprite(theme.mexican.decoration.carpet-sun) { bitmap = "img/episodes/mexican/carpet-sun.png" type = "blend" }
+        sprite(theme.mexican.decoration.tree) { bitmap = "img/episodes/mexican/tree.png" type = "blend" }
+        
+        //Italian
         sprite(theme.italian.background) { bitmap = "img/episodes/italian/background.png" truecolor = "yes" }
         sprite(theme.italian.counter) { bitmap = "img/episodes/italian/counter.png" type = "blend" }
         sprite(theme.italian.station) { bitmap = "img/episodes/italian/station.png" type = "blend" layout = "2x1" }
@@ -190,6 +198,7 @@ MasterChef{
         sprite(theme.italian.trashcan.bar.full) { bitmap = "img/episodes/italian/trashcan-bar-full.png" type = "blend" }
         sprite(theme.italian.tablet) { bitmap = "img/episodes/italian/tablet.png" type = "blend" }
         
+        //Russian
         sprite(theme.russian.background) { bitmap = "img/episodes/russian/background.png" truecolor = "yes" }
         sprite(theme.russian.counter) { bitmap = "img/episodes/russian/counter.png" type = "blend" }
         sprite(theme.russian.station) { bitmap = "img/episodes/russian/station.png" type = "blend" layout = "2x1" }
@@ -202,6 +211,7 @@ MasterChef{
         sprite(theme.russian.trashcan.bar.full) { bitmap = "img/episodes/russian/trashcan-bar-full.png" type = "blend" }
         sprite(theme.russian.tablet) { bitmap = "img/episodes/russian/tablet.png" type = "blend" }
         
+        //American
         sprite(theme.american.background) { bitmap = "img/episodes/american/background.png" truecolor = "yes" }
         sprite(theme.american.counter) { bitmap = "img/episodes/american/counter.png" type = "blend" }
         sprite(theme.american.station) { bitmap = "img/episodes/american/station.png" type = "blend" layout = "2x1" }
@@ -214,6 +224,7 @@ MasterChef{
         sprite(theme.american.trashcan.bar.full) { bitmap = "img/episodes/american/trashcan-bar-full.png" type = "blend" }
         sprite(theme.american.tablet) { bitmap = "img/episodes/american/tablet.png" type = "blend" }
         
+        //Sweetshop
         sprite(theme.sweetshop.background) { bitmap = "img/episodes/sweetshop/background.png" truecolor = "yes" }
         sprite(theme.sweetshop.counter) { bitmap = "img/episodes/sweetshop/counter.png" type = "blend" }
         sprite(theme.sweetshop.station) { bitmap = "img/episodes/sweetshop/station.png" type = "blend" layout = "2x1" }

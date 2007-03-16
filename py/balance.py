@@ -243,8 +243,10 @@ defs.ReadCuisine()
 defs.ReadResourceInfo()
 
 AllRecipes = globalvars.CuisineInfo["Recipes"].keys()
+AllRecipes.sort()
 AllSettings = ["Japanese", "Mexican", "Rusian", "SweetShop", "American"]
 AllIngredients = globalvars.CuisineInfo["Ingredients"].keys()
+AllIngredients.sort()
 CurrentRecipes = []
 
 root = Tk()

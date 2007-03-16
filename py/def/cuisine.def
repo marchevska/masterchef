@@ -61,12 +61,12 @@ MasterChef {
     Recipes {
         //Mexican recipes
         Recipe {
-            name = "AssortedEmpanadas"
+            name = "Assorted Empanadas"
             setting = "Mexican"
             type = ""
             src = "recipe.assorted-empanadas"
             emptySrc = "recipe.assorted-empanadas.empty"
-            requires = "{ 'tortilla': 10, 'pork': 15 }"
+            requires = "{ 'tortilla': 10, 'pork': 10 }"
             readyAt = "5"
             price = "100"
         }
@@ -77,7 +77,7 @@ MasterChef {
             type = ""
             src = "recipe.bean-soup"
             emptySrc = "recipe.bean-soup.empty"
-            requires = "{ 'bean': 10, 'onion': 15 }"
+            requires = "{ 'bean': 10, 'onion': 10 }"
             readyAt = "5"
             price = "100"
         }
@@ -88,7 +88,7 @@ MasterChef {
             type = ""
             src = "recipe.burrito"
             emptySrc = "recipe.burrito.empty"
-            requires = "{ 'tortilla': 10, 'tomato': 15, 'pork': 5, 'bean': 5 }"
+            requires = "{ 'tortilla': 5, 'tomato': 5, 'pork': 5, 'bean': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -99,7 +99,7 @@ MasterChef {
             type = ""
             src = "recipe.caldo-de-pollo"
             emptySrc = "recipe.caldo-de-pollo.empty"
-            requires = "{ 'meat': 10, 'bean': 15, 'onion': 5 }"
+            requires = "{ 'meat': 5, 'bean': 10, 'onion': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -110,7 +110,7 @@ MasterChef {
             type = ""
             src = "recipe.ceviche"
             emptySrc = "recipe.ceviche.empty"
-            requires = "{ 'salmon': 10, 'shrimp': 15, 'lime': 5 }"
+            requires = "{ 'salmon': 10, 'shrimp': 5, 'lime': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -121,7 +121,7 @@ MasterChef {
             type = ""
             src = "recipe.chicken-chilaquiles"
             emptySrc = "recipe.chicken-chilaquiles.empty"
-            requires = "{ 'tortilla-chips': 10, 'meat': 15, 'avocado': 5, 'cheese': 5 }"
+            requires = "{ 'tortilla-chips': 5, 'meat': 5, 'avocado': 5, 'cheese': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -132,7 +132,7 @@ MasterChef {
             type = ""
             src = "recipe.chili-con-carne"
             emptySrc = "recipe.chili-con-carne.empty"
-            requires = "{ 'chili-pepper': 10, 'tomato': 10, 'pork': 5, 'bean': 5 }"
+            requires = "{ 'chili-pepper': 5, 'tomato': 5, 'pork': 5, 'bean': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -143,8 +143,8 @@ MasterChef {
             type = ""
             src = "recipe.chimichanga"
             emptySrc = "recipe.chimichanga.empty"
-            requires = "{ 'tortilla': 10, 'tomato': 10, 'cheese': 5, 'onion': 5, 'rice':5 }"
-            readyAt = "5"
+            requires = "{ 'tortilla': 10, 'tomato': 5, 'cheese': 5, 'onion': 5, 'rice':5 }"
+            readyAt = "7"
             price = "100"
         }
         
@@ -154,7 +154,7 @@ MasterChef {
             type = ""
             src = "recipe.fajitas"
             emptySrc = "recipe.fajitas.empty"
-            requires = "{ 'tortilla': 10, 'chili-pepper': 10, 'meat': 5, 'avocado': 5, 'sour-cream': 5 }"
+            requires = "{ 'tortilla': 10, 'chili-pepper': 5, 'meat': 5, 'avocado': 5, 'sour-cream': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -165,7 +165,7 @@ MasterChef {
             type = ""
             src = "recipe.football-fan-nachos"
             emptySrc = "recipe.football-fan-nachos.empty"
-            requires = "{ 'tortilla-chips': 10, 'chili-pepper': 10, 'pork': 5, 'cheese': 5, 'sour-cream': 5 }"
+            requires = "{ 'tortilla-chips': 5, 'chili-pepper': 5, 'pork': 5, 'cheese': 5, 'sour-cream': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -176,7 +176,7 @@ MasterChef {
             type = ""
             src = "recipe.grilled-shrimps"
             emptySrc = "recipe.grilled-shrimps.empty"
-            requires = "{ 'chili-pepper': 10, 'shrimp': 5, 'avocado': 5 }"
+            requires = "{ 'chili-pepper': 5, 'shrimp': 5, 'avocado': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -187,7 +187,7 @@ MasterChef {
             type = ""
             src = "recipe.quesadilla"
             emptySrc = "recipe.quesadilla.empty"
-            requires = "{ 'tortilla': 10, 'cheese': 5, 'avocado': 5, 'sour-cream': 5 }"
+            requires = "{ 'tortilla': 5, 'cheese': 5, 'avocado': 5, 'sour-cream': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -198,7 +198,7 @@ MasterChef {
             type = ""
             src = "recipe.stuffed-tacos"
             emptySrc = "recipe.stuffed-tacos.empty"
-            requires = "{ 'tomato': 5, 'salmon': 10, 'avocado': 10 }"
+            requires = "{ 'tomato': 5, 'salmon': 5, 'avocado': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -209,7 +209,7 @@ MasterChef {
             type = ""
             src = "recipe.tex-mex-tuna"
             emptySrc = "recipe.tex-mex-tuna.empty"
-            requires = "{ 'salmon': 10, 'tomato': 15, 'rice': 10 }"
+            requires = "{ 'salmon': 10, 'tomato': 5, 'rice': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -220,7 +220,7 @@ MasterChef {
             type = ""
             src = "recipe.tortilla-soup"
             emptySrc = "recipe.tortilla-soup.empty"
-            requires = "{ 'tortilla-chips': 10, 'meat': 15, 'onion': 5 }"
+            requires = "{ 'tortilla-chips': 10, 'meat': 5, 'onion': 5 }"
             readyAt = "5"
             price = "100"
         }

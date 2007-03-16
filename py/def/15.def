@@ -1,0 +1,64 @@
+Level{
+    //overwrite global game settings
+    GameSettings{
+        newCustomerTimeMin = "1"
+        newCustomerTimeMax = "3"
+    }
+    
+    //overwrite basic customer settings
+    Customers{
+    }
+    
+    //customer appearance rates
+    CustomerRates{
+        Customer{ type = "Worker" rate = "1" }
+        Customer{ type = "Student" rate = "3" }
+        Customer{ type = "Business" rate = "3" }
+    }
+    
+    //recipe appearance rates
+    RecipeRates{
+        Recipe{ type = "Chicken Chilaquiles" rate = "2" }
+        Recipe{ type = "Football Fan Nachos" rate = "2" }
+        Recipe{ type = "Tortilla Soup" rate = "3" }
+    }
+    
+    //ingredient appearance rates
+    IngredientRates{
+        Ingredient{ type = "cheese" rate = "30" }
+        Ingredient{ type = "pork" rate = "30" }
+        Ingredient{ type = "tortilla-chips" rate = "30" }
+        Ingredient{ type = "avocado" rate = "10" }
+        Ingredient{ type = "sour-cream" rate = "10" }
+        Ingredient{ type = "meat" rate = "30" }
+        Ingredient{ type = "onion" rate = "30" }
+        Ingredient{ type = "chili-pepper" rate = "10" }
+    }
+    
+    //level settings
+    LevelSettings{
+        noCustomers = "10"
+        moneyGoal = "100"
+        expertGoal = "200"
+    }
+    
+    //level layout: customer stations, power-up buttons, decorations
+    //layout of the game field
+    Layout{
+        theme = "Mexican" 
+        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        Field{ XSize = "8" YSize = "8" X0 = "450" Y0 = "130" }
+        //Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" }
+        PowerUp{ type = "Sweet" x = "450" y = "200" }
+        PowerUp{ type = "Gift" x = "450" y = "250" }
+        Counter{ type = "" x = "330" y = "95" }
+        BonusPane{ type = "" size = "1" x = "480" y = "250" }
+        TrashCan{ type = "" size = "100" x = "750" y = "530" }
+        Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
+    }
+    
+}

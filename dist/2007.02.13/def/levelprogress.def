@@ -6,4 +6,11 @@ MasterChef{
   level(def/05.def) { name = "1-5" no = "4" check = "no" }
   level(def/06.def) { name = "1-6" no = "5" check = "no" }
   level(def/07.def) { name = "1-7" no = "6" check = "no" }
+  level(def/11.def) { name = "2-1" no = "7" check = "yes" }
+  level(def/12.def) { name = "2-2" no = "8" check = "no" }
+  level(def/13.def) { name = "2-3" no = "9" check = "no" }
+  level(def/14.def) { name = "2-4" no = "10" check = "no" }
+  level(def/15.def) { name = "2-5" no = "11" check = "no" }
+  level(def/16.def) { name = "2-6" no = "12" check = "no" }
+  level(def/17.def) { name = "2-7" no = "13" check = "no" }
 }

@@ -14,21 +14,6 @@ MasterChef {
     }
     
     Ingredients {
-        //Ingredient { name = "tomato" type = "vegetable" src = "ingredient.tomato" iconSrc = "ingredient.tomato.icon" }
-        //Ingredient { name = "cheese" type = "dairy" src = "ingredient.cheese" iconSrc = "ingredient.cheese.icon"}
-        //Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" iconSrc = "ingredient.milk.icon"}
-        //Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
-        //Ingredient { name = "bacon" type = "meat" src = "ingredient.bacon" iconSrc = "ingredient.bacon.icon"}
-        //Ingredient { name = "olives" type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
-        //Ingredient { name = "flour" type = "pasta" src = "ingredient.flour" iconSrc = "ingredient.flour.icon"}
-        //Ingredient { name = "orange" type = "fruit" src = "ingredient.orange" iconSrc = "ingredient.orange.icon"}
-        //Ingredient { name = "artichoke" type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
-        
-        //Japanese unused
-        //Ingredient { name = "sake" type = "spice" src = "ingredient.sake" iconSrc = "ingredient.sake.icon"}
-        //Ingredient { name = "dashi" type = "fish" src = "ingredient.dashi" iconSrc = "ingredient.dashi.icon"}
-        //Ingredient { name = "oyster" type = "fish" src = "ingredient.oyster" iconSrc = "ingredient.oyster.icon"}
-        
         //Japanese
         Ingredient { name = "rice" type = "cereal" src = "ingredient.rice" iconSrc = "ingredient.rice.icon"}
         Ingredient { name = "noodle" type = "pasta" src = "ingredient.noodle" iconSrc = "ingredient.noodle.icon"}
@@ -48,33 +33,213 @@ MasterChef {
         Ingredient { name = "shrimp" type = "fish" src = "ingredient.shrimp" iconSrc = "ingredient.shrimp.icon"}
         Ingredient { name = "veggymix" type = "vegetable" src = "ingredient.veggymix" iconSrc = "ingredient.veggymix.icon"}
         
+        //Japanese unused
+        //Ingredient { name = "sake" type = "spice" src = "ingredient.sake" iconSrc = "ingredient.sake.icon"}
+        //Ingredient { name = "dashi" type = "fish" src = "ingredient.dashi" iconSrc = "ingredient.dashi.icon"}
+        //Ingredient { name = "oyster" type = "fish" src = "ingredient.oyster" iconSrc = "ingredient.oyster.icon"}
+        
+        //Mexican
+        Ingredient { name = "tomato" type = "vegetable" src = "ingredient.tomato" iconSrc = "ingredient.tomato.icon" }
+        Ingredient { name = "chili-pepper" type = "vegetable" src = "ingredient.chili-pepper" iconSrc = "ingredient.chili-pepper.icon" }
+        Ingredient { name = "onion" type = "vegetable" src = "ingredient.onion" iconSrc = "ingredient.onion.icon" }
+        Ingredient { name = "avocado" type = "vegetable" src = "ingredient.avocado" iconSrc = "ingredient.avocado.icon" }
+        Ingredient { name = "cheese" type = "dairy" src = "ingredient.cheese" iconSrc = "ingredient.cheese.icon"}
+        Ingredient { name = "sour-cream" type = "dairy" src = "ingredient.sour-cream" iconSrc = "ingredient.sour-cream.icon"}
+        Ingredient { name = "bean" type = "soy" src = "ingredient.bean" iconSrc = "ingredient.bean.icon"}
+        Ingredient { name = "lime" type = "fruit" src = "ingredient.lime" iconSrc = "ingredient.lime.icon"}
+        Ingredient { name = "pork" type = "meat" src = "ingredient.pork" iconSrc = "ingredient.pork.icon"}
+        Ingredient { name = "tortilla" type = "pasta" src = "ingredient.tortilla" iconSrc = "ingredient.tortilla.icon"}
+        Ingredient { name = "tortilla-chips" type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
+        
+        //Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" iconSrc = "ingredient.milk.icon"}
+        //Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
+        //Ingredient { name = "olives" type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
+        //Ingredient { name = "artichoke" type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
+        
     }
     
     Recipes {
-        //Italian recipes
-        //Recipe {
-        //    name = "Margherita"
-        //    type = "pizza, common"
-        //    src = "recipe.margherita"
-        //    emptySrc = "recipe.margherita.empty"
-        //    requires = "{ 'tomato': 10, 'cheese': 15 }"
-        //    readyAt = "5"
-        //    price = "100"
-        //}
+        //Mexican recipes
+        Recipe {
+            name = "AssortedEmpanadas"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.assorted-empanadas"
+            emptySrc = "recipe.assorted-empanadas.empty"
+            requires = "{ 'tortilla': 10, 'pork': 15 }"
+            readyAt = "5"
+            price = "100"
+        }
         
-        //Japanese recipes
+        Recipe {
+            name = "BeanSoup"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.bean-soup"
+            emptySrc = "recipe.bean-soup.empty"
+            requires = "{ 'bean': 10, 'onion': 15 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Burrito"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.burrito"
+            emptySrc = "recipe.burrito.empty"
+            requires = "{ 'tortilla': 10, 'tomato': 15, 'pork': 5, 'bean': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Caldo de Pollo"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.caldo-de-pollo"
+            emptySrc = "recipe.caldo-de-pollo.empty"
+            requires = "{ 'meat': 10, 'bean': 15, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Ceviche"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.ceviche"
+            emptySrc = "recipe.ceviche.empty"
+            requires = "{ 'salmon': 10, 'shrimp': 15, 'lime': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Chicken Chilaquiles"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.chicken-chilaquiles"
+            emptySrc = "recipe.chicken-chilaquiles.empty"
+            requires = "{ 'tortilla-chips': 10, 'meat': 15, 'avocado': 5, 'cheese': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Chili con Carne"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.chili-con-carne"
+            emptySrc = "recipe.chili-con-carne.empty"
+            requires = "{ 'chili-pepper': 10, 'tomato': 10, 'pork': 5, 'bean': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Chimichanga"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.chimichanga"
+            emptySrc = "recipe.chimichanga.empty"
+            requires = "{ 'tortilla': 10, 'tomato': 10, 'cheese': 5, 'onion': 5, 'rice':5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Fajitas"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.fajitas"
+            emptySrc = "recipe.fajitas.empty"
+            requires = "{ 'tortilla': 10, 'chili-pepper': 10, 'meat': 5, 'avocado': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Football Fan Nachos"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.football-fan-nachos"
+            emptySrc = "recipe.football-fan-nachos.empty"
+            requires = "{ 'tortilla-chips': 10, 'chili-pepper': 10, 'pork': 5, 'cheese': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Grilled Shrimps"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.grilled-shrimps"
+            emptySrc = "recipe.grilled-shrimps.empty"
+            requires = "{ 'chili-pepper': 10, 'shrimp': 5, 'avocado': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Quesadilla"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.quesadilla"
+            emptySrc = "recipe.quesadilla.empty"
+            requires = "{ 'tortilla': 10, 'cheese': 5, 'avocado': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Stuffed Tacos"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.stuffed-tacos"
+            emptySrc = "recipe.stuffed-tacos.empty"
+            requires = "{ 'tomato': 5, 'salmon': 10, 'avocado': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Tex-Mex Tuna"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.tex-mex-tuna"
+            emptySrc = "recipe.tex-mex-tuna.empty"
+            requires = "{ 'salmon': 10, 'tomato': 15, 'rice': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Tortilla Soup"
+            setting = "Mexican"
+            type = ""
+            src = "recipe.tortilla-soup"
+            emptySrc = "recipe.tortilla-soup.empty"
+            requires = "{ 'tortilla-chips': 10, 'meat': 15, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+         //Japanese recipes
         Recipe {
             name = "Osechi"
+            setting = "Japanese"
             type = "new year dish"
             src = "recipe.osechi"
             emptySrc = "recipe.osechi.empty"
-            requires = "{ 'salmon': 3, 'amchovies': 3, 'seaweed': 3, 'egg': 3, 'shoyu': 3}"
+            requires = "{ 'salmon': 3, 'anchovies': 3, 'seaweed': 3, 'egg': 3, 'shoyu': 3}"
             readyAt = "12"
             price = "100"
         }
         
         Recipe {
             name = "Tonjiru"
+            setting = "Japanese"
             type = "miso soup with meat"
             src = "recipe.tonjiru"
             emptySrc = "recipe.tonjiru.empty"
@@ -85,6 +250,7 @@ MasterChef {
         
         Recipe {
             name = "Sukiyaki"
+            setting = "Japanese"
             type = "meat with tofu, mushrooms and vegetables"
             src = "recipe.sukiyaki"
             emptySrc = "recipe.sukiyaki.empty"
@@ -95,6 +261,7 @@ MasterChef {
         
         Recipe {
             name = "Omuraysu"
+            setting = "Japanese"
             type = ""
             src = "recipe.omuraysu"
             emptySrc = "recipe.omuraysu.empty"
@@ -105,6 +272,7 @@ MasterChef {
         
         Recipe {
             name = "Yakitori"
+            setting = "Japanese"
             type = ""
             src = "recipe.yakitori"
             emptySrc = "recipe.yakitori.empty"
@@ -115,6 +283,7 @@ MasterChef {
         
         Recipe {
             name = "Tempura"
+            setting = "Japanese"
             type = ""
             src = "recipe.tempura"
             emptySrc = "recipe.tempura.empty"
@@ -125,6 +294,7 @@ MasterChef {
         
         Recipe {
             name = "Gedza"
+            setting = "Japanese"
             type = ""
             src = "recipe.gedza"
             emptySrc = "recipe.gedza.empty"
@@ -135,6 +305,7 @@ MasterChef {
         
         Recipe {
             name = "TofuDengaku"
+            setting = "Japanese"
             type = ""
             src = "recipe.tofudengaku"
             emptySrc = "recipe.tofudengaku.empty"
@@ -145,6 +316,7 @@ MasterChef {
         
         Recipe {
             name = "Yosenabe"
+            setting = "Japanese"
             type = "hot seafood plate"
             src = "recipe.yosenabe"
             emptySrc = "recipe.yosenabe.empty"
@@ -155,6 +327,7 @@ MasterChef {
         
         Recipe {
             name = "ZaruSoba"
+            setting = "Japanese"
             type = "noodle dish"
             src = "recipe.zarusoba"
             emptySrc = "recipe.zarusoba.empty"
@@ -165,6 +338,7 @@ MasterChef {
         
         Recipe {
             name = "OkonomiYaki"
+            setting = "Japanese"
             type = "pancakes"
             src = "recipe.okonomiyaki"
             emptySrc = "recipe.okonomiyaki.empty"
@@ -175,6 +349,7 @@ MasterChef {
         
         Recipe {
             name = "Ochazuke"
+            setting = "Japanese"
             type = "rice dish"
             src = "recipe.ochazuke"
             emptySrc = "recipe.ochazuke.empty"
@@ -185,6 +360,7 @@ MasterChef {
         
         Recipe {
             name = "Onigiri"
+            setting = "Japanese"
             type = "rice dish"
             src = "recipe.onigiri"
             emptySrc = "recipe.onigiri.empty"
@@ -195,6 +371,7 @@ MasterChef {
         
         Recipe {
             name = "NigiriZushi"
+            setting = "Japanese"
             type = "rice dish"
             src = "recipe.nigirizushi"
             emptySrc = "recipe.nigirizushi.empty"
@@ -205,6 +382,7 @@ MasterChef {
         
         Recipe {
             name = "Morikomi"
+            setting = "Japanese"
             type = "rice dish"
             src = "recipe.morikomi"
             emptySrc = "recipe.morikomi.empty"

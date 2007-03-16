@@ -9,9 +9,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
+  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
-  <string id="filename">C:\projects\proto games\_sample\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -20,7 +20,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="userEnvironment"></string>
+  <string id="filename">C:\projects\proto games\_sample\py\main.py</string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -34,9 +34,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
+  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
-  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -45,7 +45,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="userEnvironment"></string>
+  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -63,9 +63,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
-  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
+  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -74,7 +74,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
+  <string id="userEnvironment"></string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -94,9 +94,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
+  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
-  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -105,7 +105,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="userEnvironment"></string>
+  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -119,9 +119,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
-  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
+  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -130,7 +130,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
+  <string id="userEnvironment"></string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -153,21 +153,21 @@
 <folder id="7FE6FEC7-990C-487E-933A-4AC71709250E" name="levels">
 <file url="def/01.def" id="1E70BAEA-1672-4418-991B-54CE0348A800" name="01.def">
 </file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/py/def/02.def" id="138141DA-CEBC-40E4-9EC5-0586A895D69B" name="02.def">
+<file url="def/02.def" id="138141DA-CEBC-40E4-9EC5-0586A895D69B" name="02.def">
 </file>
 <file url="def/template.def" id="9A74A314-4F35-4B70-9511-3BE0EB245CBF" name="template.def">
 </file>
 <file url="def/levelprogress.def" id="85496FB9-8417-4ED3-8A26-E6E1B9C93AEF" name="levelprogress.def">
 </file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/py/def/03.def" id="8FE4A27E-1255-4CD6-B5A1-4C8A3C11F6B8" name="03.def">
+<file url="def/03.def" id="8FE4A27E-1255-4CD6-B5A1-4C8A3C11F6B8" name="03.def">
 </file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/py/def/07.def" id="FEFD3A3D-BB02-45FA-80C1-7A526BCC5355" name="07.def">
+<file url="def/07.def" id="FEFD3A3D-BB02-45FA-80C1-7A526BCC5355" name="07.def">
 </file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/py/def/04.def" id="FBB08A01-2120-4A06-B7BB-DAA4100C2865" name="04.def">
+<file url="def/04.def" id="FBB08A01-2120-4A06-B7BB-DAA4100C2865" name="04.def">
 </file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/py/def/05.def" id="552A73AC-C6C4-4027-9CB6-88053F13BFE1" name="05.def">
+<file url="def/05.def" id="552A73AC-C6C4-4027-9CB6-88053F13BFE1" name="05.def">
 </file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/py/def/06.def" id="A31890BF-78A0-4E26-BAFA-E78CCC00FBCD" name="06.def">
+<file url="def/06.def" id="A31890BF-78A0-4E26-BAFA-E78CCC00FBCD" name="06.def">
 </file>
 </folder>
 <folder id="0E45B8FA-3CBC-4004-A173-6DA2E65B3014" name="variables and constants">
@@ -186,4 +186,35 @@
 </file>
 <file url="masterchef.sst" id="0225BA6A-8CCF-43CF-8595-7673E7A3294A" name="masterchef.sst">
 </file>
+<folder id="939B0228-158A-49F9-B7ED-BDA00431B247" name="level balancing">
+<preference-set id="">
+</preference-set>
+<file url="balance.py" id="A246A540-E856-4B46-9D7B-96BC31AAC4BF" name="balance.py">
+<preference-set id="">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="postparams"></string>
+  <string id="getparams"></string>
+  <boolean id="use-console">0</boolean>
+  <string id="filename">C:\Projects\proto games\Master Chef\py\balance.py</string>
+  <string id="executable-params"></string>
+  <boolean id="show-dialog">1</boolean>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="mpostparams"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <string id="userEnvironment"></string>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
+</file>
+<file url="groupcalculator.py" id="64E644FD-D492-44AF-B842-E2995D02B3DC" name="groupcalculator.py">
+</file>
+</folder>
 </project>

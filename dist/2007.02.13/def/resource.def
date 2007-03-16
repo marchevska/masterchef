@@ -38,6 +38,33 @@ MasterChef{
         sprite(ingredient.miso.icon) { bitmap = "img/ingredients/miso.icon.png" type = "blend" }
         sprite(ingredient.shrimp.icon) { bitmap = "img/ingredients/shrimp.icon.png" type = "blend" }
         sprite(ingredient.veggymix.icon) { bitmap = "img/ingredients/veggymix.icon.png" type = "blend" }
+        
+        //Mexican
+        sprite(ingredient.tomato) { bitmap = "img/ingredients/tomato.png" type = "blend" }
+        sprite(ingredient.chili-pepper) { bitmap = "img/ingredients/chili-pepper.png" type = "blend" }
+        sprite(ingredient.onion) { bitmap = "img/ingredients/onion.png" type = "blend" }
+        sprite(ingredient.avocado) { bitmap = "img/ingredients/avocado.png" type = "blend" }
+        sprite(ingredient.cheese) { bitmap = "img/ingredients/cheese.png" type = "blend" }
+        sprite(ingredient.sour-cream) { bitmap = "img/ingredients/sour-cream.png" type = "blend" }
+        sprite(ingredient.bean) { bitmap = "img/ingredients/bean.png" type = "blend" }
+        sprite(ingredient.lime) { bitmap = "img/ingredients/lime.png" type = "blend" }
+        sprite(ingredient.pork) { bitmap = "img/ingredients/pork.png" type = "blend" }
+        sprite(ingredient.tortilla) { bitmap = "img/ingredients/tortilla.png" type = "blend" }
+        sprite(ingredient.tortilla-chips) { bitmap = "img/ingredients/tortilla-chips.png" type = "blend" }
+        
+        //Mexican - icons
+        sprite(ingredient.tomato.icon) { bitmap = "img/ingredients/tomato.icon.png" type = "blend" }
+        sprite(ingredient.chili-pepper.icon) { bitmap = "img/ingredients/chili-pepper.icon.png" type = "blend" }
+        sprite(ingredient.onion.icon) { bitmap = "img/ingredients/onion.icon.png" type = "blend" }
+        sprite(ingredient.avocado.icon) { bitmap = "img/ingredients/avocado.icon.png" type = "blend" }
+        sprite(ingredient.cheese.icon) { bitmap = "img/ingredients/cheese.icon.png" type = "blend" }
+        sprite(ingredient.sour-cream.icon) { bitmap = "img/ingredients/sour-cream.icon.png" type = "blend" }
+        sprite(ingredient.bean.icon) { bitmap = "img/ingredients/bean.icon.png" type = "blend" }
+        sprite(ingredient.lime.icon) { bitmap = "img/ingredients/lime.icon.png" type = "blend" }
+        sprite(ingredient.pork.icon) { bitmap = "img/ingredients/pork.icon.png" type = "blend" }
+        sprite(ingredient.tortilla.icon) { bitmap = "img/ingredients/tortilla.icon.png" type = "blend" }
+        sprite(ingredient.tortilla-chips.icon) { bitmap = "img/ingredients/tortilla-chips.icon.png" type = "blend" }
+        
     }
 
     //source classes for dishes
@@ -75,6 +102,41 @@ MasterChef{
         sprite(recipe.onigiri.empty) { bitmap = "img/recipes/onigiri.empty.png" type = "blend" }
         sprite(recipe.nigirizushi.empty) { bitmap = "img/recipes/nigirizushi.empty.png" type = "blend" }
         sprite(recipe.morikomi.empty) { bitmap = "img/recipes/morikomi.empty.png" type = "blend" }
+        
+        //Mexican
+        sprite(recipe.assorted-empanadas) { bitmap = "img/recipes/mexican/assorted-empanadas.png" type = "blend" }
+        sprite(recipe.bean-soup) { bitmap = "img/recipes/mexican/bean-soup.png" type = "blend" }
+        sprite(recipe.burrito) { bitmap = "img/recipes/mexican/burrito.png" type = "blend" }
+        sprite(recipe.caldo-de-pollo) { bitmap = "img/recipes/mexican/caldo-de-pollo.png" type = "blend" }
+        sprite(recipe.ceviche) { bitmap = "img/recipes/mexican/ceviche.png" type = "blend" }
+        sprite(recipe.chicken-chilaquiles) { bitmap = "img/recipes/mexican/chicken-chilaquiles.png" type = "blend" }
+        sprite(recipe.chili-con-carne) { bitmap = "img/recipes/mexican/chili-con-carne.png" type = "blend" }
+        sprite(recipe.chimichanga) { bitmap = "img/recipes/mexican/chimichanga.png" type = "blend" }
+        sprite(recipe.fajitas) { bitmap = "img/recipes/mexican/fajitas.png" type = "blend" }
+        sprite(recipe.football-fan-nachos) { bitmap = "img/recipes/mexican/football-fan-nachos.png" type = "blend" }
+        sprite(recipe.grilled-shrimps) { bitmap = "img/recipes/mexican/grilled-shrimps.png" type = "blend" }
+        sprite(recipe.quesadilla) { bitmap = "img/recipes/mexican/quesadilla.png" type = "blend" }
+        sprite(recipe.stuffed-tacos) { bitmap = "img/recipes/mexican/stuffed-tacos.png" type = "blend" }
+        sprite(recipe.tex-mex-tuna) { bitmap = "img/recipes/mexican/tex-mex-tuna.png" type = "blend" }
+        sprite(recipe.tortilla-soup) { bitmap = "img/recipes/mexican/tortilla-soup.png" type = "blend" }
+        
+        //Mexican - empty
+        sprite(recipe.assorted-empanadas.empty) { bitmap = "img/recipes/mexican/assorted-empanadas.empty.png" type = "blend" }
+        sprite(recipe.bean-soup.empty) { bitmap = "img/recipes/mexican/bean-soup.empty.png" type = "blend" }
+        sprite(recipe.burrito.empty) { bitmap = "img/recipes/mexican/burrito.empty.png" type = "blend" }
+        sprite(recipe.caldo-de-pollo.empty) { bitmap = "img/recipes/mexican/caldo-de-pollo.empty.png" type = "blend" }
+        sprite(recipe.ceviche.empty) { bitmap = "img/recipes/mexican/ceviche.empty.png" type = "blend" }
+        sprite(recipe.chicken-chilaquiles.empty) { bitmap = "img/recipes/mexican/chicken-chilaquiles.empty.png" type = "blend" }
+        sprite(recipe.chili-con-carne.empty) { bitmap = "img/recipes/mexican/chili-con-carne.empty.png" type = "blend" }
+        sprite(recipe.chimichanga.empty) { bitmap = "img/recipes/mexican/chimichanga.empty.png" type = "blend" }
+        sprite(recipe.fajitas.empty) { bitmap = "img/recipes/mexican/fajitas.empty.png" type = "blend" }
+        sprite(recipe.football-fan-nachos.empty) { bitmap = "img/recipes/mexican/football-fan-nachos.empty.png" type = "blend" }
+        sprite(recipe.grilled-shrimps.empty) { bitmap = "img/recipes/mexican/grilled-shrimps.empty.png" type = "blend" }
+        sprite(recipe.quesadilla.empty) { bitmap = "img/recipes/mexican/quesadilla.empty.png" type = "blend" }
+        sprite(recipe.stuffed-tacos.empty) { bitmap = "img/recipes/mexican/stuffed-tacos.empty.png" type = "blend" }
+        sprite(recipe.tex-mex-tuna.empty) { bitmap = "img/recipes/mexican/tex-mex-tuna.empty.png" type = "blend" }
+        sprite(recipe.tortilla-soup.empty) { bitmap = "img/recipes/mexican/tortilla-soup.empty.png" type = "blend" }
+        
     }
 
     //source classes for power-ups

@@ -87,6 +87,7 @@ def ReadCuisine():
         while tmpRecipesIterator.Next():
             tmp = tmpRecipesIterator.Get()
             globalvars.CuisineInfo["Recipes"][tmp.GetStrAttr(u"name")] = {
+                "setting": tmp.GetStrAttr(u"setting"),
                 "type": tmp.GetStrAttr(u"type"),
                 "src": tmp.GetStrAttr(u"src"),
                 "emptySrc": tmp.GetStrAttr(u"emptySrc"),
@@ -290,5 +291,22 @@ def ReadLevelSettings(filename):
         sys.exit()
         
 
+#------------------------
+# Чтение размеров групп - для балансировки
+#------------------------
 
+def ReadGroups(filename):
+    try:
+        tmpDataIterator = oE.ParseDEF(unicode(filename)).GetTag(u"MasterChef").IterateTag(u"group")
+        tmpGroups = {}
+        while tmpDataIterator.Next():
+            tmp = tmpDataIterator.Get()
+            tmpGroups[tmp.GetFltAttr(u"rate")] = 0.25*tmp.GetFltAttr(u"max")+0.65*tmp.GetFltAttr(u"size")+0.1*tmp.GetFltAttr(u"min")
+        return tmpGroups
+    except:
+        return {}
+    
+    
+    
+    
 

@@ -70,38 +70,38 @@ MasterChef{
     //source classes for dishes
     RecipeKlasses{
         //Japanese
-        sprite(recipe.osechi) { bitmap = "img/recipes/osechi.png" type = "blend" }
-        sprite(recipe.tonjiru) { bitmap = "img/recipes/tonjiru.png" type = "blend" }
-        sprite(recipe.sukiyaki) { bitmap = "img/recipes/sukiyaki.png" type = "blend" }
-        sprite(recipe.omuraysu) { bitmap = "img/recipes/omuraysu.png" type = "blend" }
-        sprite(recipe.yakitori) { bitmap = "img/recipes/yakitori.png" type = "blend" }
-        sprite(recipe.tempura) { bitmap = "img/recipes/tempura.png" type = "blend" }
-        sprite(recipe.gedza) { bitmap = "img/recipes/gedza.png" type = "blend" }
-        sprite(recipe.tofudengaku) { bitmap = "img/recipes/tofudengaku.png" type = "blend" }
-        sprite(recipe.yosenabe) { bitmap = "img/recipes/yosenabe.png" type = "blend" }
-        sprite(recipe.zarusoba) { bitmap = "img/recipes/zarusoba.png" type = "blend" }
-        sprite(recipe.okonomiyaki) { bitmap = "img/recipes/okonomiyaki.png" type = "blend" }
-        sprite(recipe.ochazuke) { bitmap = "img/recipes/ochazuke.png" type = "blend" }
-        sprite(recipe.onigiri) { bitmap = "img/recipes/onigiri.png" type = "blend" }
-        sprite(recipe.nigirizushi) { bitmap = "img/recipes/nigirizushi.png" type = "blend" }
-        sprite(recipe.morikomi) { bitmap = "img/recipes/morikomi.png" type = "blend" }
+        sprite(recipe.osechi) { bitmap = "img/recipes/japanese/osechi.png" type = "blend" }
+        sprite(recipe.tonjiru) { bitmap = "img/recipes/japanese/tonjiru.png" type = "blend" }
+        sprite(recipe.sukiyaki) { bitmap = "img/recipes/japanese/sukiyaki.png" type = "blend" }
+        sprite(recipe.omuraysu) { bitmap = "img/recipes/japanese/omuraysu.png" type = "blend" }
+        sprite(recipe.yakitori) { bitmap = "img/recipes/japanese/yakitori.png" type = "blend" }
+        sprite(recipe.tempura) { bitmap = "img/recipes/japanese/tempura.png" type = "blend" }
+        sprite(recipe.gedza) { bitmap = "img/recipes/japanese/gedza.png" type = "blend" }
+        sprite(recipe.tofudengaku) { bitmap = "img/recipes/japanese/tofudengaku.png" type = "blend" }
+        sprite(recipe.yosenabe) { bitmap = "img/recipes/japanese/yosenabe.png" type = "blend" }
+        sprite(recipe.zarusoba) { bitmap = "img/recipes/japanese/zarusoba.png" type = "blend" }
+        sprite(recipe.okonomiyaki) { bitmap = "img/recipes/japanese/okonomiyaki.png" type = "blend" }
+        sprite(recipe.ochazuke) { bitmap = "img/recipes/japanese/ochazuke.png" type = "blend" }
+        sprite(recipe.onigiri) { bitmap = "img/recipes/japanese/onigiri.png" type = "blend" }
+        sprite(recipe.nigirizushi) { bitmap = "img/recipes/japanese/nigirizushi.png" type = "blend" }
+        sprite(recipe.morikomi) { bitmap = "img/recipes/japanese/morikomi.png" type = "blend" }
         
         //Japanese - empty
-        sprite(recipe.osechi.empty) { bitmap = "img/recipes/osechi.empty.png" type = "blend" }
-        sprite(recipe.tonjiru.empty) { bitmap = "img/recipes/tonjiru.empty.png" type = "blend" }
-        sprite(recipe.sukiyaki.empty) { bitmap = "img/recipes/sukiyaki.empty.png" type = "blend" }
-        sprite(recipe.omuraysu.empty) { bitmap = "img/recipes/omuraysu.empty.png" type = "blend" }
-        sprite(recipe.yakitori.empty) { bitmap = "img/recipes/yakitori.empty.png" type = "blend" }
-        sprite(recipe.tempura.empty) { bitmap = "img/recipes/tempura.empty.png" type = "blend" }
-        sprite(recipe.gedza.empty) { bitmap = "img/recipes/gedza.empty.png" type = "blend" }
-        sprite(recipe.tofudengaku.empty) { bitmap = "img/recipes/tofudengaku.empty.png" type = "blend" }
-        sprite(recipe.yosenabe.empty) { bitmap = "img/recipes/yosenabe.empty.png" type = "blend" }
-        sprite(recipe.zarusoba.empty) { bitmap = "img/recipes/zarusoba.empty.png" type = "blend" }
-        sprite(recipe.okonomiyaki.empty) { bitmap = "img/recipes/okonomiyaki.empty.png" type = "blend" }
-        sprite(recipe.ochazuke.empty) { bitmap = "img/recipes/ochazuke.empty.png" type = "blend" }
-        sprite(recipe.onigiri.empty) { bitmap = "img/recipes/onigiri.empty.png" type = "blend" }
-        sprite(recipe.nigirizushi.empty) { bitmap = "img/recipes/nigirizushi.empty.png" type = "blend" }
-        sprite(recipe.morikomi.empty) { bitmap = "img/recipes/morikomi.empty.png" type = "blend" }
+        sprite(recipe.osechi.empty) { bitmap = "img/recipes/japanese/osechi.empty.png" type = "blend" }
+        sprite(recipe.tonjiru.empty) { bitmap = "img/recipes/japanese/tonjiru.empty.png" type = "blend" }
+        sprite(recipe.sukiyaki.empty) { bitmap = "img/recipes/japanese/sukiyaki.empty.png" type = "blend" }
+        sprite(recipe.omuraysu.empty) { bitmap = "img/recipes/japanese/omuraysu.empty.png" type = "blend" }
+        sprite(recipe.yakitori.empty) { bitmap = "img/recipes/japanese/yakitori.empty.png" type = "blend" }
+        sprite(recipe.tempura.empty) { bitmap = "img/recipes/japanese/tempura.empty.png" type = "blend" }
+        sprite(recipe.gedza.empty) { bitmap = "img/recipes/japanese/gedza.empty.png" type = "blend" }
+        sprite(recipe.tofudengaku.empty) { bitmap = "img/recipes/japanese/tofudengaku.empty.png" type = "blend" }
+        sprite(recipe.yosenabe.empty) { bitmap = "img/recipes/japanese/yosenabe.empty.png" type = "blend" }
+        sprite(recipe.zarusoba.empty) { bitmap = "img/recipes/japanese/zarusoba.empty.png" type = "blend" }
+        sprite(recipe.okonomiyaki.empty) { bitmap = "img/recipes/japanese/okonomiyaki.empty.png" type = "blend" }
+        sprite(recipe.ochazuke.empty) { bitmap = "img/recipes/japanese/ochazuke.empty.png" type = "blend" }
+        sprite(recipe.onigiri.empty) { bitmap = "img/recipes/japanese/onigiri.empty.png" type = "blend" }
+        sprite(recipe.nigirizushi.empty) { bitmap = "img/recipes/japanese/nigirizushi.empty.png" type = "blend" }
+        sprite(recipe.morikomi.empty) { bitmap = "img/recipes/japanese/morikomi.empty.png" type = "blend" }
         
         //Mexican
         sprite(recipe.assorted-empanadas) { bitmap = "img/recipes/mexican/assorted-empanadas.png" type = "blend" }

@@ -75,7 +75,7 @@ MasterChef{
         sprite(ingredient.milk) { bitmap = "img/ingredients/milk.png" type = "blend" }
         sprite(ingredient.nuts) { bitmap = "img/ingredients/nuts.png" type = "blend" }
         sprite(ingredient.pumpkin) { bitmap = "img/ingredients/pumpkin.png" type = "blend" }
-        sprite(ingredient.raspberry) { bitmap = "img/ingredients/raspberry.png" type = "blend" }
+        sprite(ingredient.strawberry) { bitmap = "img/ingredients/strawberry.png" type = "blend" }
         sprite(ingredient.sugar) { bitmap = "img/ingredients/sugar.png" type = "blend" }
         
         //SweetShop - icons
@@ -88,7 +88,7 @@ MasterChef{
         sprite(ingredient.milk.icon) { bitmap = "img/ingredients/milk.icon.png" type = "blend" }
         sprite(ingredient.nuts.icon) { bitmap = "img/ingredients/nuts.icon.png" type = "blend" }
         sprite(ingredient.pumpkin.icon) { bitmap = "img/ingredients/pumpkin.icon.png" type = "blend" }
-        sprite(ingredient.raspberry.icon) { bitmap = "img/ingredients/raspberry.icon.png" type = "blend" }
+        sprite(ingredient.strawberry.icon) { bitmap = "img/ingredients/strawberry.icon.png" type = "blend" }
         sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
     }
       
@@ -161,6 +161,40 @@ MasterChef{
         sprite(recipe.stuffed-tacos.empty) { bitmap = "img/recipes/mexican/stuffed-tacos.empty.png" type = "blend" }
         sprite(recipe.tex-mex-tuna.empty) { bitmap = "img/recipes/mexican/tex-mex-tuna.empty.png" type = "blend" }
         sprite(recipe.tortilla-soup.empty) { bitmap = "img/recipes/mexican/tortilla-soup.empty.png" type = "blend" }
+        
+        //SweetShop
+        sprite(recipe.angel-cake) { bitmap = "img/recipes/sweetshop/angel-cake.png" type = "blend" }
+        sprite(recipe.baked-alaska) { bitmap = "img/recipes/sweetshop/baked-alaska.png" type = "blend" }
+        sprite(recipe.banana-split) { bitmap = "img/recipes/sweetshop/banana-split.png" type = "blend" }
+        sprite(recipe.berry-tart) { bitmap = "img/recipes/sweetshop/berry-tart.png" type = "blend" }
+        sprite(recipe.berry-triffle) { bitmap = "img/recipes/sweetshop/berry-triffle.png" type = "blend" }
+        sprite(recipe.choc-banana-milkshake) { bitmap = "img/recipes/sweetshop/choc-banana-milkshake.png" type = "blend" }
+        sprite(recipe.chocolate-fondue) { bitmap = "img/recipes/sweetshop/chocolate-fondue.png" type = "blend" }
+        sprite(recipe.fried-dough) { bitmap = "img/recipes/sweetshop/fried-dough.png" type = "blend" }
+        sprite(recipe.fried-ice-cream) { bitmap = "img/recipes/sweetshop/fried-ice-cream.png" type = "blend" }
+        sprite(recipe.muffins) { bitmap = "img/recipes/sweetshop/muffins.png" type = "blend" }
+        sprite(recipe.pancakes) { bitmap = "img/recipes/sweetshop/pancakes.png" type = "blend" }
+        sprite(recipe.pumpkin-cheesecake) { bitmap = "img/recipes/sweetshop/pumpkin-cheesecake.png" type = "blend" }
+        sprite(recipe.pumpkin-cookies) { bitmap = "img/recipes/sweetshop/pumpkin-cookies.png" type = "blend" }
+        sprite(recipe.strawberry-shake) { bitmap = "img/recipes/sweetshop/strawberry-shake.png" type = "blend" }
+        sprite(recipe.truffles) { bitmap = "img/recipes/sweetshop/truffles.png" type = "blend" }
+        
+        //SweetShop - empty
+        sprite(recipe.angel-cake.empty) { bitmap = "img/recipes/sweetshop/angel-cake.empty.png" type = "blend" }
+        sprite(recipe.baked-alaska.empty) { bitmap = "img/recipes/sweetshop/baked-alaska.empty.png" type = "blend" }
+        sprite(recipe.banana-split.empty) { bitmap = "img/recipes/sweetshop/banana-split.empty.png" type = "blend" }
+        sprite(recipe.berry-tart.empty) { bitmap = "img/recipes/sweetshop/berry-tart.empty.png" type = "blend" }
+        sprite(recipe.berry-triffle.empty) { bitmap = "img/recipes/sweetshop/berry-triffle.empty.png" type = "blend" }
+        sprite(recipe.choc-banana-milkshake.empty) { bitmap = "img/recipes/sweetshop/choc-banana-milkshake.empty.png" type = "blend" }
+        sprite(recipe.chocolate-fondue.empty) { bitmap = "img/recipes/sweetshop/chocolate-fondue.empty.png" type = "blend" }
+        sprite(recipe.fried-dough.empty) { bitmap = "img/recipes/sweetshop/fried-dough.empty.png" type = "blend" }
+        sprite(recipe.fried-ice-cream.empty) { bitmap = "img/recipes/sweetshop/fried-ice-cream.empty.png" type = "blend" }
+        sprite(recipe.muffins.empty) { bitmap = "img/recipes/sweetshop/muffins.empty.png" type = "blend" }
+        sprite(recipe.pancakes.empty) { bitmap = "img/recipes/sweetshop/pancakes.empty.png" type = "blend" }
+        sprite(recipe.pumpkin-cheesecake.empty) { bitmap = "img/recipes/sweetshop/pumpkin-cheesecake.empty.png" type = "blend" }
+        sprite(recipe.pumpkin-cookies.empty) { bitmap = "img/recipes/sweetshop/pumpkin-cookies.empty.png" type = "blend" }
+        sprite(recipe.strawberry-shake.empty) { bitmap = "img/recipes/sweetshop/strawberry-shake.empty.png" type = "blend" }
+        sprite(recipe.truffles.empty) { bitmap = "img/recipes/sweetshop/truffles.empty.png" type = "blend" }
         
     }
 

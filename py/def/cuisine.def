@@ -61,7 +61,7 @@ MasterChef {
         Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" iconSrc = "ingredient.milk.icon"}
         Ingredient { name = "nuts" type = "fruit" src = "ingredient.nuts" iconSrc = "ingredient.milk.nuts"}
         Ingredient { name = "pumpkin" type = "vegetable" src = "ingredient.pumpkin" iconSrc = "ingredient.milk.pumpkin"}
-        Ingredient { name = "raspberry" type = "fruit" src = "ingredient.raspberry" iconSrc = "ingredient.milk.raspberry"}
+        Ingredient { name = "strawberry" type = "fruit" src = "ingredient.strawberry" iconSrc = "ingredient.milk.strawberry"}
         Ingredient { name = "sugar" type = "sweet" src = "ingredient.sugar" iconSrc = "ingredient.milk.sugar"}
         
         
@@ -72,6 +72,172 @@ MasterChef {
     }
     
     Recipes {
+        //SweetShop recipes
+        Recipe {
+            name = "Angel Cake"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.angel-cake"
+            emptySrc = "recipe.angel-cake.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'strawberry': 5, 'sugar': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Baked Alaska"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.baked-alaska"
+            emptySrc = "recipe.baked-alaska.empty"
+            requires = "{ 'flour': 5, 'ice-cream': 5, 'nuts': 5, 'sugar': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Banana Split"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.banana-split"
+            emptySrc = "recipe.banana-split.empty"
+            requires = "{ 'ice-cream'': 5, 'chocolate': 5, 'strawberry': 5, 'banana': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Berry Tart"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.berry-tart"
+            emptySrc = "recipe.berry-tart.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'berries': 5, 'sugar': 5, 'apple': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Berry Triffle"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.berry-triffle"
+            emptySrc = "recipe.berry-triffle.empty"
+            requires = "{ 'berries': 10, 'sour-cream': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Choc Banana Milkshake"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.choc-banana-milkshake"
+            emptySrc = "recipe.choc-banana-milkshake.empty"
+            requires = "{ 'chocolate': 5, 'banana': 5, 'ice-cream': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Chocolate Fondue"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.chocolate-fondue"
+            emptySrc = "recipe.chocolate-fondue.empty"
+            requires = "{ 'chocolate': 5, 'straberry': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Fried Dough"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.fried-dough"
+            emptySrc = "recipe.fried-dough.empty"
+            requires = "{ 'flour': 10, 'egg': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Fried Ice-Cream"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.fried-ice-cream"
+            emptySrc = "recipe.fried-ice-cream.empty"
+            requires = "{ 'chocolate': 5, 'nuts': 5, 'ice-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Muffins"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.muffins"
+            emptySrc = "recipe.muffins.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'berries': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Pancakes"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.pancakes"
+            emptySrc = "recipe.pancakes.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Pumpkin Cheesecake"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.pumpkin-cheesecakes"
+            emptySrc = "recipe.pumpkin-cheesecake.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'sour-cream': 5, 'pumpkin': 5, 'sugar': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Pumpkin Cookies"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.pumpkin-cookies"
+            emptySrc = "recipe.pumpkin-cookies.empty"
+            requires = "{ 'flour': 5, 'apple': 5, 'pumpkin': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Strawberry Shake"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.strawberry-shake"
+            emptySrc = "recipe.strawberry-shake.empty"
+            requires = "{ 'strawberry': 10, 'milk': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe {
+            name = "Truffles"
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.truffles"
+            emptySrc = "recipe.truffles.empty"
+            requires = "{ 'choclate': 5, 'sour-cream': 5, 'nuts': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
         //Mexican recipes
         Recipe {
             name = "Assorted Empanadas"

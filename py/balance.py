@@ -134,16 +134,19 @@ class Application(Frame):
             self.Frame0.Elements["ingred"+str(i)] = {}
             j = 0
             for ing in tmpIngRequired.keys():
-                im = Image.open("img/ingredients/"+ing+".icon.png")
-                im = im.resize((ICON_HEIGHT-2,ICON_HEIGHT-3))
-                if im.mode == "1":
-                    self.Frame0.Elements["ingred"+str(i)][j, "img"] = ImageTk.BitmapImage(im)
-                else:
-                    self.Frame0.Elements["ingred"+str(i)][j, "img"] = ImageTk.PhotoImage(im)
-                self.Frame0.Elements["ingred"+str(i)][j] = Label(self.Frame0.Elements["recipe"+str(i)],
-                                            image = self.Frame0.Elements["ingred"+str(i)][j, "img"])
-                self.Frame0.Elements["ingred"+str(i)][j].grid(row=0, column=j, sticky = NW)
-                j+=1
+                try:
+                    im = Image.open("img/ingredients/"+ing+".icon.png")
+                    im = im.resize((ICON_HEIGHT-2,ICON_HEIGHT-3))
+                    if im.mode == "1":
+                        self.Frame0.Elements["ingred"+str(i)][j, "img"] = ImageTk.BitmapImage(im)
+                    else:
+                        self.Frame0.Elements["ingred"+str(i)][j, "img"] = ImageTk.PhotoImage(im)
+                    self.Frame0.Elements["ingred"+str(i)][j] = Label(self.Frame0.Elements["recipe"+str(i)],
+                                                image = self.Frame0.Elements["ingred"+str(i)][j, "img"])
+                    self.Frame0.Elements["ingred"+str(i)][j].grid(row=0, column=j, sticky = NW)
+                    j+=1
+                except:
+                    pass
         for i in range(len(CurrentRecipes), MAX_RECIPES_IN_SETTING):
             self.Frame0.Elements["ingred"+str(i)] = {}
             
@@ -156,11 +159,14 @@ class Application(Frame):
     #calculate desired ingredients
     def calcIng(self):
         #clear existing images
-        for i in range(MAX_RECIPES):
-            if self.Frame2.Elements.has_key((2, i+1, "ing")):
-                for j in range(MAX_ING_IN_RECIPE):
-                    if self.Frame2.Elements[2, i+1, "ing"].has_key(j):
-                        self.Frame2.Elements[2, i+1, "ing"][j].grid_forget()
+        try:
+            for i in range(MAX_RECIPES):
+                if self.Frame2.Elements.has_key((2, i+1, "ing")):
+                    for j in range(MAX_ING_IN_RECIPE):
+                        if self.Frame2.Elements[2, i+1, "ing"].has_key(j):
+                            self.Frame2.Elements[2, i+1, "ing"][j].grid_forget()
+        except:
+            pass
         tmpAllRcp = []
         for i in range(MAX_RECIPES):
             if Recipes[i].get()!=ZEROSTRING:
@@ -174,15 +180,18 @@ class Application(Frame):
             for ing in tmpIngRequired.keys():
                 tmpIngIdeal[ing] += tmpIngRequired[ing]*RecipeRates[i].get()
                 #draw ingredient image!
-                im = Image.open("img/ingredients/"+ing+".icon.png")
-                if im.mode == "1":
-                    self.Frame2.Elements[2, i+1, "ing"][j, "img"] = ImageTk.BitmapImage(im)
-                else:
-                    self.Frame2.Elements[2, i+1, "ing"][j, "img"] = ImageTk.PhotoImage(im)
-                self.Frame2.Elements[2, i+1, "ing"][j] = Label(self.Frame2.Elements[2, i+1],
-                                            image = self.Frame2.Elements[2, i+1, "ing"][j, "img"])
-                self.Frame2.Elements[2, i+1, "ing"][j].grid(row=0, column=j)
-                j+=1
+                try:
+                    im = Image.open("img/ingredients/"+ing+".icon.png")
+                    if im.mode == "1":
+                        self.Frame2.Elements[2, i+1, "ing"][j, "img"] = ImageTk.BitmapImage(im)
+                    else:
+                        self.Frame2.Elements[2, i+1, "ing"][j, "img"] = ImageTk.PhotoImage(im)
+                    self.Frame2.Elements[2, i+1, "ing"][j] = Label(self.Frame2.Elements[2, i+1],
+                                                image = self.Frame2.Elements[2, i+1, "ing"][j, "img"])
+                    self.Frame2.Elements[2, i+1, "ing"][j].grid(row=0, column=j)
+                    j+=1
+                except:
+                    pass
                 
         tmpIngNonZero = filter(lambda x: tmpIngIdeal[x]!=0, tmpIngIdeal.keys())
         for i in range(len(tmpIngNonZero)):

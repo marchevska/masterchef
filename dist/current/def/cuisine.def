@@ -101,7 +101,7 @@ MasterChef {
             type = ""
             src = "recipe.banana-split"
             emptySrc = "recipe.banana-split.empty"
-            requires = "{ 'ice-cream'': 5, 'chocolate': 5, 'strawberry': 5, 'banana': 5 }"
+            requires = "{ 'ice-cream': 5, 'chocolate': 5, 'strawberry': 5, 'banana': 5 }"
             readyAt = "5"
             price = "100"
         }
@@ -233,7 +233,7 @@ MasterChef {
             type = ""
             src = "recipe.truffles"
             emptySrc = "recipe.truffles.empty"
-            requires = "{ 'choclate': 5, 'sour-cream': 5, 'nuts': 5 }"
+            requires = "{ 'chocolate': 5, 'sour-cream': 5, 'nuts': 5 }"
             readyAt = "5"
             price = "100"
         }

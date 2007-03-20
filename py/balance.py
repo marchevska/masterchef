@@ -14,11 +14,13 @@ MAX_ING_IN_RECIPE = 6
 MIN_DIFF = 1.0
 ZEROSTRING = ""
 ZEROVALUE = 0
+NONZEROVALUE = 1
 ICON_HEIGHT = 15
 
 class Application(Frame):
     def createWidgets(self):
         #recipes list
+        
         self.Frame0 = Frame(self, borderwidth = 1, relief = GROOVE)
         self.Frame0.grid(row=0, column=0, rowspan = 3, sticky = NW, ipadx = 0, ipady = 0, padx = 1, pady = 1)
         self.Frame0.Elements = {}
@@ -203,40 +205,43 @@ class Application(Frame):
 
     
     def calcDiff(self):
-        filename = "balance/"+str(FieldSize[0].get())+"x"+str(FieldSize[1].get())+".def"
-        tmpGroups = defs.ReadGroups(filename)
-        tmpKnownRates = tmpGroups.keys()
-        tmpAllUserRates = map(lambda x: x.get(), IngredUser)
-        tmpSumRates = reduce(lambda a,b: a+b, tmpAllUserRates, 0)
-        #calculate group sizes
-        if tmpSumRates>0 and tmpKnownRates!=[]:
-            for i in range(MAX_INGREDIENTS):
-                tmpRate = 1.0*tmpAllUserRates[i]/tmpSumRates
-                tmp1 = filter(lambda x: x<=tmpRate, tmpKnownRates)
-                tmp1.sort()
-                tmpLessRate = tmp1[-1]
-                tmp2 = filter(lambda x: x>=tmpRate, tmpKnownRates)
-                tmp2.sort()
-                tmpHigherRate = tmp2[0]
-                if tmpHigherRate > tmpLessRate:
-                    tmpGroupSize = tmpGroups[tmpLessRate] + \
-                        (tmpRate-tmpLessRate)*(tmpGroups[tmpHigherRate]-tmpGroups[tmpLessRate])/(tmpHigherRate-tmpLessRate)
-                else:
-                    tmpGroupSize = tmpGroups[tmpLessRate]
-                tmpGroupSize = int(tmpGroupSize*1000)*0.001
-                IngredGroup[i].set(tmpGroupSize)
-            #calculate recipe difficulties
-            tmpAllIngredients = map(lambda x: x.get(), Ingredients)
-            for i in range(MAX_RECIPES):
-                tmpDiff = 0
-                tmpRcp = Recipes[i].get()
-                if tmpRcp != ZEROSTRING:
-                    tmpIngRequired = globalvars.CuisineInfo["Recipes"][tmpRcp]["requires"]
-                    for ing in tmpIngRequired.keys():
-                        ind = tmpAllIngredients.index(ing)
-                        tmpDiff += max(1.0*tmpIngRequired[ing]/IngredGroup[ind].get(), MIN_DIFF)
-                    tmpDiff = int(1000*tmpDiff)*0.001
-                    RecipeDiffs[i].set(tmpDiff)
+        try:
+            filename = "balance/"+str(FieldSize[0].get())+"x"+str(FieldSize[1].get())+".def"
+            tmpGroups = defs.ReadGroups(filename)
+            tmpKnownRates = tmpGroups.keys()
+            tmpAllUserRates = map(lambda x: x.get(), IngredUser)
+            tmpSumRates = reduce(lambda a,b: a+b, tmpAllUserRates, 0)
+            #calculate group sizes
+            if tmpSumRates>0 and tmpKnownRates!=[]:
+                for i in range(MAX_INGREDIENTS):
+                    tmpRate = 1.0*tmpAllUserRates[i]/tmpSumRates
+                    tmp1 = filter(lambda x: x<=tmpRate, tmpKnownRates)
+                    tmp1.sort()
+                    tmpLessRate = tmp1[-1]
+                    tmp2 = filter(lambda x: x>=tmpRate, tmpKnownRates)
+                    tmp2.sort()
+                    tmpHigherRate = tmp2[0]
+                    if tmpHigherRate > tmpLessRate:
+                        tmpGroupSize = tmpGroups[tmpLessRate] + \
+                            (tmpRate-tmpLessRate)*(tmpGroups[tmpHigherRate]-tmpGroups[tmpLessRate])/(tmpHigherRate-tmpLessRate)
+                    else:
+                        tmpGroupSize = tmpGroups[tmpLessRate]
+                    tmpGroupSize = int(tmpGroupSize*1000)*0.001
+                    IngredGroup[i].set(tmpGroupSize)
+                #calculate recipe difficulties
+                tmpAllIngredients = map(lambda x: x.get(), Ingredients)
+                for i in range(MAX_RECIPES):
+                    tmpDiff = 0
+                    tmpRcp = Recipes[i].get()
+                    if tmpRcp != ZEROSTRING:
+                        tmpIngRequired = globalvars.CuisineInfo["Recipes"][tmpRcp]["requires"]
+                        for ing in tmpIngRequired.keys():
+                            ind = tmpAllIngredients.index(ing)
+                            tmpDiff += max(1.0*tmpIngRequired[ing]/IngredGroup[ind].get(), MIN_DIFF)
+                        tmpDiff = int(1000*tmpDiff)*0.001
+                        RecipeDiffs[i].set(tmpDiff)
+        except:
+            pass
         
     #copy recipes from listbox to a list
     def selectRcp(self):
@@ -244,8 +249,11 @@ class Application(Frame):
         tmpInd = list(self.Frame0.Elements["listbox"].curselection())
         for i in range(len(tmpInd)):
             Recipes[i].set(CurrentRecipes[eval(tmpInd[i])])
+            if not RecipeRates[i].get():
+                RecipeRates[i].set(NONZEROVALUE)    
         for i in range(len(tmpInd), MAX_RECIPES):
             Recipes[i].set(ZEROSTRING)
+            RecipeRates[i].set(ZEROVALUE)    
         
 
 defs.ReadCuisine()
@@ -260,29 +268,14 @@ CurrentRecipes = []
 
 root = Tk()
 
-Recipes = []
-for i in range(MAX_RECIPES):
-    Recipes.append(StringVar())
-RecipeRates = []
-for i in range(MAX_RECIPES):
-    RecipeRates.append(IntVar())
-RecipeDiffs = []
-for i in range(MAX_RECIPES):
-    RecipeDiffs.append(DoubleVar())
-
-Ingredients = []
-for i in range(MAX_INGREDIENTS):
-    Ingredients.append(StringVar())
-IngredIdeal = []
-for i in range(MAX_INGREDIENTS):
-    IngredIdeal.append(IntVar())
-IngredUser = []
-for i in range(MAX_INGREDIENTS):
-    IngredUser.append(IntVar())
-IngredGroup = []
-for i in range(MAX_INGREDIENTS):
-    IngredGroup.append(DoubleVar())
-FieldSize = [IntVar(), IntVar()]
+Recipes = map(lambda x: StringVar(), xrange(MAX_RECIPES))
+RecipeRates = map(lambda x: IntVar(), xrange(MAX_RECIPES))
+RecipeDiffs = map(lambda x: DoubleVar(), xrange(MAX_RECIPES))
+Ingredients = map(lambda x: StringVar(), xrange(MAX_INGREDIENTS))
+IngredIdeal = map(lambda x: IntVar(), xrange(MAX_INGREDIENTS))
+IngredUser = map(lambda x: IntVar(), xrange(MAX_INGREDIENTS))
+IngredGroup = map(lambda x: DoubleVar(), xrange(MAX_INGREDIENTS))
+FieldSize = map(lambda x: IntVar(), xrange(2))
 
 CurrentSetting = StringVar()
 CurrentSetting.set(AllSettings[0])

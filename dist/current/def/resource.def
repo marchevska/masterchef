@@ -296,5 +296,11 @@ MasterChef{
         sprite(theme.sweetshop.trashcan.bar.full) { bitmap = "img/episodes/sweetshop/trashcan-bar-full.png" type = "blend" }
         sprite(theme.sweetshop.tablet) { bitmap = "img/episodes/sweetshop/tablet.png" type = "blend" }
         
+        sprite(theme.sweetshop.decoration.candy-machine) { bitmap = "img/episodes/sweetshop/candy-machine.png" type = "blend" }
+        sprite(theme.sweetshop.decoration.flower) { bitmap = "img/episodes/sweetshop/flower.png" type = "blend" }
+        sprite(theme.sweetshop.decoration.screen1) { bitmap = "img/episodes/sweetshop/screen1.png" type = "blend" }
+        sprite(theme.sweetshop.decoration.screen2) { bitmap = "img/episodes/sweetshop/screen2.png" type = "blend" }
+        sprite(theme.sweetshop.decoration.screen3) { bitmap = "img/episodes/sweetshop/screen3.png" type = "blend" }
+        
     }
 }

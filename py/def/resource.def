@@ -65,8 +65,33 @@ MasterChef{
         sprite(ingredient.tortilla.icon) { bitmap = "img/ingredients/tortilla.icon.png" type = "blend" }
         sprite(ingredient.tortilla-chips.icon) { bitmap = "img/ingredients/tortilla-chips.icon.png" type = "blend" }
         
+        //SweetShop
+        sprite(ingredient.apple) { bitmap = "img/ingredients/apple.png" type = "blend" }
+        sprite(ingredient.banana) { bitmap = "img/ingredients/banana.png" type = "blend" }
+        sprite(ingredient.berries) { bitmap = "img/ingredients/berries.png" type = "blend" }
+        sprite(ingredient.chocolate) { bitmap = "img/ingredients/chocolate.png" type = "blend" }
+        sprite(ingredient.flour) { bitmap = "img/ingredients/flour.png" type = "blend" }
+        sprite(ingredient.ice-cream) { bitmap = "img/ingredients/ice-cream.png" type = "blend" }
+        sprite(ingredient.milk) { bitmap = "img/ingredients/milk.png" type = "blend" }
+        sprite(ingredient.nuts) { bitmap = "img/ingredients/nuts.png" type = "blend" }
+        sprite(ingredient.pumpkin) { bitmap = "img/ingredients/pumpkin.png" type = "blend" }
+        sprite(ingredient.raspberry) { bitmap = "img/ingredients/raspberry.png" type = "blend" }
+        sprite(ingredient.sugar) { bitmap = "img/ingredients/sugar.png" type = "blend" }
+        
+        //SweetShop - icons
+        sprite(ingredient.apple.icon) { bitmap = "img/ingredients/apple.icon.png" type = "blend" }
+        sprite(ingredient.banana.icon) { bitmap = "img/ingredients/banana.icon.png" type = "blend" }
+        sprite(ingredient.berries.icon) { bitmap = "img/ingredients/berries.icon.png" type = "blend" }
+        sprite(ingredient.chocolate.icon) { bitmap = "img/ingredients/chocolate.icon.png" type = "blend" }
+        sprite(ingredient.flour.icon) { bitmap = "img/ingredients/flour.icon.png" type = "blend" }
+        sprite(ingredient.ice-cream.icon) { bitmap = "img/ingredients/ice-cream.icon.png" type = "blend" }
+        sprite(ingredient.milk.icon) { bitmap = "img/ingredients/milk.icon.png" type = "blend" }
+        sprite(ingredient.nuts.icon) { bitmap = "img/ingredients/nuts.icon.png" type = "blend" }
+        sprite(ingredient.pumpkin.icon) { bitmap = "img/ingredients/pumpkin.icon.png" type = "blend" }
+        sprite(ingredient.raspberry.icon) { bitmap = "img/ingredients/raspberry.icon.png" type = "blend" }
+        sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
     }
-
+      
     //source classes for dishes
     RecipeKlasses{
         //Japanese

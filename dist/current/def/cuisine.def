@@ -51,7 +51,20 @@ MasterChef {
         Ingredient { name = "tortilla" type = "pasta" src = "ingredient.tortilla" iconSrc = "ingredient.tortilla.icon"}
         Ingredient { name = "tortilla-chips" type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
         
-        //Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" iconSrc = "ingredient.milk.icon"}
+        //SweetShop
+        Ingredient { name = "apple" type = "fruit" src = "ingredient.apple" iconSrc = "ingredient.apple.icon"}
+        Ingredient { name = "banana" type = "fruit" src = "ingredient.banana" iconSrc = "ingredient.banana.icon"}
+        Ingredient { name = "berries" type = "fruit" src = "ingredient.berries" iconSrc = "ingredient.berries.icon"}
+        Ingredient { name = "chocolate" type = "sweet" src = "ingredient.chocolate" iconSrc = "ingredient.chocolate.icon"}
+        Ingredient { name = "flour" type = "pasta" src = "ingredient.flour" iconSrc = "ingredient.flour.icon"}
+        Ingredient { name = "ice-cream" type = "dairy" src = "ingredient.ice-cream" iconSrc = "ingredient.milk.ice-cream"}
+        Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" iconSrc = "ingredient.milk.icon"}
+        Ingredient { name = "nuts" type = "fruit" src = "ingredient.nuts" iconSrc = "ingredient.milk.nuts"}
+        Ingredient { name = "pumpkin" type = "vegetable" src = "ingredient.pumpkin" iconSrc = "ingredient.milk.pumpkin"}
+        Ingredient { name = "raspberry" type = "fruit" src = "ingredient.raspberry" iconSrc = "ingredient.milk.raspberry"}
+        Ingredient { name = "sugar" type = "sweet" src = "ingredient.sugar" iconSrc = "ingredient.milk.sugar"}
+        
+        
         //Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
         //Ingredient { name = "olives" type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
         //Ingredient { name = "artichoke" type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}

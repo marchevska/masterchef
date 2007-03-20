@@ -13,4 +13,5 @@ MasterChef{
   level(def/15.def) { name = "2-5" no = "11" check = "no" }
   level(def/16.def) { name = "2-6" no = "12" check = "no" }
   level(def/17.def) { name = "2-7" no = "13" check = "no" }
+  level(def/21.def) { name = "3-1" no = "14" check = "yes" }
 }

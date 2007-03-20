@@ -14,4 +14,10 @@ MasterChef{
   level(def/16.def) { name = "2-6" no = "12" check = "no" }
   level(def/17.def) { name = "2-7" no = "13" check = "no" }
   level(def/21.def) { name = "3-1" no = "14" check = "yes" }
+  level(def/22.def) { name = "3-2" no = "15" check = "no" }
+  level(def/23.def) { name = "3-3" no = "16" check = "no" }
+  level(def/24.def) { name = "3-4" no = "17" check = "no" }
+  level(def/25.def) { name = "3-5" no = "18" check = "no" }
+  level(def/26.def) { name = "3-6" no = "19" check = "no" }
+  level(def/27.def) { name = "3-7" no = "20" check = "no" }
 }

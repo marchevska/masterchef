@@ -189,6 +189,18 @@
 </file>
 <file url="def/21.def" id="DF1FE14B-197B-40C2-827D-5E6E1AAC9013" name="21.def">
 </file>
+<file url="def/27.def" id="C8D5CB94-9292-401A-A0A1-3F2883E27A4B" name="27.def">
+</file>
+<file url="def/22.def" id="81050E4F-A4C9-4F09-B861-0F5E26D01F67" name="22.def">
+</file>
+<file url="def/23.def" id="D1D9AF30-3588-4229-A70D-34E6075A6440" name="23.def">
+</file>
+<file url="def/24.def" id="B2EF7990-4F57-48D1-8289-56CA38B4252E" name="24.def">
+</file>
+<file url="def/25.def" id="4AE86542-E7EC-462C-A478-9190C876B7E0" name="25.def">
+</file>
+<file url="def/26.def" id="D039618C-1D1D-4C0C-AE35-BBA205A03CA1" name="26.def">
+</file>
 </folder>
 <folder id="0E45B8FA-3CBC-4004-A173-6DA2E65B3014" name="variables and constants">
 <file url="configconst.py" id="15697EE9-546E-4BA7-A17B-C96BF0C9CD73" name="configconst.py">
@@ -235,6 +247,16 @@
 </preference-set>
 </file>
 <file url="groupcalculator.py" id="64E644FD-D492-44AF-B842-E2995D02B3DC" name="groupcalculator.py">
+</file>
+</folder>
+<folder id="295435A9-6CB0-4694-B25B-F1601D2FE622" name="data">
+<file url="data/scores.def" id="2743C19B-1E7D-447C-96A0-3A62FDF251C0" name="scores.def">
+</file>
+<file url="data/game.def" id="722F4D62-EC1A-4C21-9EA7-C18C7C593B5B" name="game.def">
+</file>
+<file url="data/olka.tpl" id="F85A298E-11CD-4071-8D1A-BE2AAFDED0F3" name="olka.tpl">
+</file>
+<file url="data/players.def" id="93408A95-ACF7-4EF2-A471-776C4E447492" name="players.def">
 </file>
 </folder>
 </project>

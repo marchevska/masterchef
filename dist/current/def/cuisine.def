@@ -57,12 +57,12 @@ MasterChef {
         Ingredient { name = "berries" type = "fruit" src = "ingredient.berries" iconSrc = "ingredient.berries.icon"}
         Ingredient { name = "chocolate" type = "sweet" src = "ingredient.chocolate" iconSrc = "ingredient.chocolate.icon"}
         Ingredient { name = "flour" type = "pasta" src = "ingredient.flour" iconSrc = "ingredient.flour.icon"}
-        Ingredient { name = "ice-cream" type = "dairy" src = "ingredient.ice-cream" iconSrc = "ingredient.milk.ice-cream"}
+        Ingredient { name = "ice-cream" type = "dairy" src = "ingredient.ice-cream" iconSrc = "ingredient.ice-cream.icon"}
         Ingredient { name = "milk" type = "dairy" src = "ingredient.milk" iconSrc = "ingredient.milk.icon"}
-        Ingredient { name = "nuts" type = "fruit" src = "ingredient.nuts" iconSrc = "ingredient.milk.nuts"}
-        Ingredient { name = "pumpkin" type = "vegetable" src = "ingredient.pumpkin" iconSrc = "ingredient.milk.pumpkin"}
-        Ingredient { name = "strawberry" type = "fruit" src = "ingredient.strawberry" iconSrc = "ingredient.milk.strawberry"}
-        Ingredient { name = "sugar" type = "sweet" src = "ingredient.sugar" iconSrc = "ingredient.milk.sugar"}
+        Ingredient { name = "nuts" type = "fruit" src = "ingredient.nuts" iconSrc = "ingredient.nuts.icon"}
+        Ingredient { name = "pumpkin" type = "vegetable" src = "ingredient.pumpkin" iconSrc = "ingredient.pumpkin.icon"}
+        Ingredient { name = "strawberry" type = "fruit" src = "ingredient.strawberry" iconSrc = "ingredient.strawberry.icon"}
+        Ingredient { name = "sugar" type = "sweet" src = "ingredient.sugar" iconSrc = "ingredient.sugar.icon"}
         
         
         //Ingredient { name = "pineapple" type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
@@ -145,7 +145,7 @@ MasterChef {
             type = ""
             src = "recipe.chocolate-fondue"
             emptySrc = "recipe.chocolate-fondue.empty"
-            requires = "{ 'chocolate': 5, 'straberry': 5, 'sour-cream': 5 }"
+            requires = "{ 'chocolate': 5, 'strawberry': 5, 'sour-cream': 5 }"
             readyAt = "5"
             price = "100"
         }

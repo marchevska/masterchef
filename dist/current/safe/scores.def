@@ -1,4 +1,4 @@
-unit{
+MasterChef{
   score() { Name = 'Someone' Score = 1952 }
   score() { Name = 'Someone' Score = 1952 }
   score() { Name = 'aaa' Score = 195 }

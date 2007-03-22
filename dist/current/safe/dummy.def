@@ -1,0 +1,70 @@
+MasterChef{
+    PlayerName = ''
+    
+    Levels{
+        level(def/00.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/01.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/02.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/03.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/04.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/05.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/06.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/07.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/08.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/09.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/10.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/11.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/12.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/13.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/14.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/15.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/16.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/17.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/18.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/19.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/20.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/21.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/22.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/23.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/24.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/25.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/26.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/27.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/28.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/29.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/30.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/31.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/32.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/33.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/34.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/35.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/36.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/37.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/38.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/39.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/40.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/41.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/42.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/43.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/44.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/45.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/46.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/47.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/48.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/49.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/50.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+    }
+    
+    Episodes{
+        Episode(SweetShop){ seenintro = "no" seenoutro = "no" }
+        Episode(Mexican){ seenintro = "no" seenoutro = "no" }
+        Episode(Japanese){ seenintro = "no" seenoutro = "no" }
+        Episode(Russian){ seenintro = "no" seenoutro = "no" }
+        Episode(American){ seenintro = "no" seenoutro = "no" }
+    }
+    
+    Hints{
+        hint{ name = "" seen = "no" }
+    }
+    
+}

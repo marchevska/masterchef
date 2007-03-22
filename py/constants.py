@@ -34,8 +34,8 @@ Cmd_BgReceptor = 99
 Cmd_Receptor = 100
 
 #слои
-Layer_BgReceptor = 102
-Layer_Receptors = 101
+Layer_BgReceptor = 101
+Layer_Receptors = 100
 Layer_GameBg = 89
 Layer_CustomersQue = 88   #очередь покупателей
 Layer_Counter = 84        #стойка

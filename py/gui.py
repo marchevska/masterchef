@@ -895,10 +895,12 @@ class Gui(scraft.Dispatcher):
         if state == PState_Game:
             self._ReleaseState(PState_MainMenu)
             self._ReleaseState(PState_MapCareer)
-
+            self._ReleaseState(PState_PubLogo)
+            self._ReleaseState(PState_DevLogo)
+            
             #globalvars.Board.Show(True)
             #globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
-
+            
             if globalvars.ActiveGameSession == True:
                 globalvars.Board.Freeze(False)
             #elif globalvars.CurrentPlayer["Playing"] == True:

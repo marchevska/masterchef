@@ -17,7 +17,6 @@ from strings import *
 import defs
 import playerlist
 import config
-import levels
 import globalvars
 import traceback
 

@@ -18,7 +18,6 @@ from customerstation import CustomerStation
 from storage import Store, Field, TrashCan
 from extra import *
 from customer import *
-import levels
 import config
 import defs
 import playerlist

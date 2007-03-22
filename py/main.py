@@ -13,7 +13,6 @@ from configconst import *
 from gui import Gui
 from gameboard import GameBoard
 from extra import *
-import levels
 import config
 import playerlist
 import globalvars
@@ -51,7 +50,7 @@ globalvars.ActiveGameSession = False
 
 # начало кода запуска заданного уровня
 if len(sys.argv) >= 3:
-    if sys.argv[1] == "run" and sys.argv[2] in globalvars.LevelProgress.keys():
+    if sys.argv[1] == "run":# and sys.argv[2] in globalvars.LevelProgress.keys():
         try:
             globalvars.CurrentPlayer["Level"] = sys.argv[2]
             globalvars.GUI.JustRun()

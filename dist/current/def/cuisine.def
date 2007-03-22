@@ -198,7 +198,7 @@ MasterChef {
             name = "Pumpkin Cheesecake"
             setting = "SweetShop"
             type = ""
-            src = "recipe.pumpkin-cheesecakes"
+            src = "recipe.pumpkin-cheesecake"
             emptySrc = "recipe.pumpkin-cheesecake.empty"
             requires = "{ 'flour': 5, 'egg': 5, 'sour-cream': 5, 'pumpkin': 5, 'sugar': 5 }"
             readyAt = "5"

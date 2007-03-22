@@ -15,8 +15,12 @@ Cmd_IGM_Restart = 212
 Cmd_IGM_Options = 213
 Cmd_IGM_EndGame = 214
 
+Cmd_DevLogoClose = 306
+Cmd_PubLogoClose = 307
+
 Cmd_Background = 0
-Cmd_Menu_PlayGame = 300
+Cmd_Menu_PlayCareer = 300
+Cmd_Menu_PlayEndless = 308
 Cmd_Menu_Players = 301
 Cmd_Menu_Options = 302
 Cmd_Menu_Rules = 303
@@ -73,6 +77,8 @@ Cmd_MapLevel = 500
 #состояния всей игры
 PState_None = -2
 PState_EndGame = -1
+PState_DevLogo = 20
+PState_PubLogo = 21
 PState_MainMenu = 0
 PState_Game = 1
 PState_InGameMenu = 2
@@ -87,7 +93,12 @@ PState_GameOver = 10
 PState_Continue = 11
 PState_YesNo = 12
 PState_YesNoCancel = 13
-PState_Map = 15
+PState_MapCareer = 15
+PState_MapEndless = 16
+
+#длительность показа логотипов
+Time_DevLogoShow = 5000
+Time_PubLogoShow = 5000
 
 #состояния курсора
 CursorState_None = -1

@@ -61,8 +61,8 @@ if len(sys.argv) >= 3:
 
 while globalvars.StateStack[-1] != PState_EndGame:
     oE.NextEvent()
-    if oE.EvtIsESC() or oE.EvtIsQuit() :
-        break
+    #if oE.EvtIsESC() or oE.EvtIsQuit() :
+    #    break
         #if globalvars.StateStack[-1] == PState_Edit:    
         #    globalvars.StateStack[-1] = PState_EndGame
     if oE.EvtIsKeyDown() :

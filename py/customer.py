@@ -203,8 +203,16 @@ class Customer(scraft.Dispatcher):
 class CustomersQue(scraft.Dispatcher):
     def __init__(self, theme):
         #список покупателей и их заказов
-        self.CustomersList = map(lambda x: RandomKeyByRates(globalvars.LevelInfo["CustomerRates"]),
-                                range(globalvars.LevelSettings["nocustomers"]))
+        #обеспечиваем, чтобы не было более двух одинаовых покупателей подряд!
+        self.CustomersList = []
+        for i in range(globalvars.LevelSettings["nocustomers"]):
+            tmpRates = dict(globalvars.LevelInfo["CustomerRates"])
+            if i>=2:
+                if self.CustomersList[i-2] == self.CustomersList[i-1]:
+                    if len(tmpRates) > 1:
+                        tmpRates.pop(self.CustomersList[i-1])
+            self.CustomersList.append(RandomKeyByRates(tmpRates))
+            
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
         self.TabletSprite = MakeSimpleSprite(theme["tablet"], Layer_InterfaceBg, Crd_QueueTablet_X0, Crd_QueueTablet_Y0)
         self.TextMarker = MakeTextSprite(u"arial18", Layer_InterfaceTxt, Crd_QueueMarker_X0, Crd_QueueMarker_Y0)

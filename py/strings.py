@@ -7,8 +7,9 @@ Project: Master Chef
 """
 
 Str_Menu_Welcome = u"Welcome, "
-Str_Menu_PlayGame = "START GAME"
-Str_Menu_Players = "Players"
+Str_Menu_PlayCareer = "PLAY CAREER"
+Str_Menu_PlayEndless = "PLAY ENDLESS"
+Str_Menu_Players = "Click here to change player"
 Str_Menu_Options = "Options"
 Str_Menu_Rules = "Help"
 Str_Menu_Hiscores = "Hiscores"

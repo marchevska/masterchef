@@ -106,18 +106,10 @@ def ReadCuisine():
 
 def ReadLevelProgress():
     try:
-        globalvars.LevelProgress = {}
-        tmpLevelsIterator = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef")
-        tmpLevelsIterator = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef").IterateTag(u"level")
-        while tmpLevelsIterator.Next():
-            tmp = tmpLevelsIterator.Get()
-            globalvars.LevelProgress[tmp.GetContent()] = {
-                "name": tmp.GetStrAttr(u"name"), 
-                "no": tmp.GetIntAttr(u"no"), "check": tmp.GetBoolAttr(u"check") }
-        
+        globalvars.LevelProgress = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read levels list")
-        #sys.exit()
+        sys.exit()
         
         
 #--------------------------
@@ -306,6 +298,30 @@ def ReadGroups(filename):
     except:
         return {}
     
+#-----------------------------------
+# Возвращает подноду данной ноды с заданным тегом и заданным контентом
+#-----------------------------------
+
+def GetTagWithContent(node, tag, content):
+    try:
+        if node.GetCountTag(tag)>0:
+            tmpIterator = node.IterateTag(tag)
+            while tmpIterator.Next():
+                if tmpIterator.Get().GetContent() == content:
+                    return tmpIterator.Get()
+        else:
+            tmpAllNodes = node.Iterate()
+            while tmpAllNodes.Next():
+                tmpNode = tmpAllNodes.Get()
+                if tmpNode.GetCountTag(tag)>0:
+                    tmpIterator = tmpNode.IterateTag(tag)
+                    while tmpIterator.Next():
+                        if tmpIterator.Get().GetContent() == content:
+                            return tmpIterator.Get()
+        return scraft.XData()
+    except:
+        return scraft.XData()
+
     
     
     

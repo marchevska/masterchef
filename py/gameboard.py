@@ -91,9 +91,9 @@ class GameBoard(scraft.Dispatcher):
         self.Show(False)
         self.Freeze(True)
         
-    def LaunchLevel(self, no):
+    def LaunchLevel(self, name):
         self.Freeze(False)
-        self.Load(no)
+        self.Load(name)
         self._StartLevel()
         #self.SaveGame()
         
@@ -107,7 +107,7 @@ class GameBoard(scraft.Dispatcher):
         
     def Restart(self):
         #globalvars.CurrentPlayer["Lives"] -= 1
-        self.LaunchLevel(self.LevelNo)
+        self.LaunchLevel(self.LevelName)
         
     def _EndLevel(self, flag):
         """ Завершение уровня
@@ -126,22 +126,14 @@ class GameBoard(scraft.Dispatcher):
     #--------------------------
     # Загрузка уровня
     #--------------------------
-    def Load(self, no):
+    def Load(self, name):
         
         self.Playing = True
+        defs.ReadLevelSettings(name)
         
-        try:
-            tmpLevelFileName = filter(lambda x: globalvars.LevelProgress[x]["no"] == no, globalvars.LevelProgress.keys())[0]
-        except:
-            print "no such level file"
-            sys.exit()
-            
-        defs.ReadLevelSettings(tmpLevelFileName)
-        
-        self.LevelNo = 0
         self.LevelScore = 0
         self.Approval = 0
-        self.LevelName = globalvars.LevelProgress[tmpLevelFileName]["name"]
+        self.LevelName = defs.GetTagWithContent(globalvars.LevelProgress, u"level", name).GetStrAttr(u"name")
         
         self.HasPowerUps = {}
         

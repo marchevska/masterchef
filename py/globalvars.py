@@ -22,9 +22,10 @@ global StateStack
 global ActiveGameSession
 global LastCookie
 
-global PlayerList
-global PlList
-global CurrentPlayer
+global PlayerList        #список имен файлов, где хранятся профили игроков
+global PlList            #список игроков для формирования диалога Players
+global CurrentPlayer     #данные игрока: имя и информация по текущей игре
+global CurrentPlayerXML  #полный профиль игрока
 global HiscoresList
 global BestResults
 

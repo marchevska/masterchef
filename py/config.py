@@ -6,7 +6,7 @@ Project: Master Chef
 Опции, рекорды, лучшие результаты
 """
 
-import sys
+import sys, traceback
 import string
 import scraft
 from scraft import engine as oE
@@ -22,28 +22,38 @@ import os.path
 #------------------------------------------
 
 def ReadGameConfig():
-    globalvars.GameConfig = {}
-    if FileValid(File_GameConfig):
-        tmpNode = oE.ParseDEF(File_GameConfig).GetTag(u"unit")
-    else:
-        tmpNode = oE.ParseDEF(File_GameConfigSafe).GetTag(u"unit")
-    globalvars.GameConfig["Player"] = tmpNode.GetStrAttr(u"Player")
-    globalvars.GameConfig["Fullscreen"] = tmpNode.GetBoolAttr(u"Fullscreen")
-    globalvars.GameConfig["Mute"] = tmpNode.GetBoolAttr(u"Mute")
-    globalvars.GameConfig["Hints"] = tmpNode.GetBoolAttr(u"Hints")
-    globalvars.GameConfig["Sound"] = tmpNode.GetIntAttr(u"Sound")
-    globalvars.GameConfig["Music"] = tmpNode.GetIntAttr(u"Music")
+    try:
+        globalvars.GameConfig = {}
+        if FileValid(File_GameConfig):
+            tmpNode = oE.ParseDEF(File_GameConfig).GetTag(u"MasterChef")
+        else:
+            tmpNode = oE.ParseDEF(File_GameConfigSafe).GetTag(u"MasterChef")
+        globalvars.GameConfig["Player"] = tmpNode.GetStrAttr(u"Player")
+        globalvars.GameConfig["Fullscreen"] = tmpNode.GetBoolAttr(u"Fullscreen")
+        globalvars.GameConfig["Mute"] = tmpNode.GetBoolAttr(u"Mute")
+        globalvars.GameConfig["Hints"] = tmpNode.GetBoolAttr(u"Hints")
+        globalvars.GameConfig["Sound"] = tmpNode.GetIntAttr(u"Sound")
+        globalvars.GameConfig["Music"] = tmpNode.GetIntAttr(u"Music")
+    except:
+        oE.Log(u"Cannot read game configuration files")
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        sys.exit()
 
 def SaveGameConfig():
-    tmpSaveStr = ""
-    tmpSaveStr += "unit{\n"
-    tmpSaveStr += "  Player = '" + globalvars.GameConfig["Player"] + "'\n"
-    tmpSaveStr += "  Mute = " + str(globalvars.GameConfig["Mute"]) + "\n"
-    tmpSaveStr += "  Hints = " + str(globalvars.GameConfig["Hints"]) + "\n"
-    tmpSaveStr += "  Fullscreen = " + str(globalvars.GameConfig["Fullscreen"]) + "\n"
-    tmpSaveStr += "  Sound = " + str(globalvars.GameConfig["Sound"]) + "\n"
-    tmpSaveStr += "  Music = " + str(globalvars.GameConfig["Music"]) + "\n}\n"
-    SignAndSave(File_GameConfig, tmpSaveStr)
+    try:
+        tmpSaveStr = ""
+        tmpSaveStr += "MasterChef{\n"
+        tmpSaveStr += "  Player = '" + globalvars.GameConfig["Player"] + "'\n"
+        tmpSaveStr += "  Mute = " + str(globalvars.GameConfig["Mute"]) + "\n"
+        tmpSaveStr += "  Hints = " + str(globalvars.GameConfig["Hints"]) + "\n"
+        tmpSaveStr += "  Fullscreen = " + str(globalvars.GameConfig["Fullscreen"]) + "\n"
+        tmpSaveStr += "  Sound = " + str(globalvars.GameConfig["Sound"]) + "\n"
+        tmpSaveStr += "  Music = " + str(globalvars.GameConfig["Music"]) + "\n}\n"
+        SignAndSave(File_GameConfig, tmpSaveStr)
+    except:
+        oE.Log(u"Cannot write game configuration files")
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        sys.exit()
     
 def ApplyOptions():
     oE.fullscreen = globalvars.GameConfig["Fullscreen"]
@@ -65,7 +75,7 @@ def ReadHiscores():
     globalvars.HiscoresList = []
     if FileValid(File_Hiscores):
         Data_Hiscores = oE.ParseDEF(File_Hiscores)
-        HiscoresIterator = Data_Hiscores.GetTag(u"unit").IterateTag(u"score")
+        HiscoresIterator = Data_Hiscores.GetTag(u"MasterChef").IterateTag(u"score")
         HiscoresIterator.Reset()
         while HiscoresIterator.Next():
             tmpScore = HiscoresIterator.Get()
@@ -77,7 +87,7 @@ def ReadHiscores():
 def SaveHiscores():
     """ Saves hiscores list """
     tmpSaveStr = ""
-    tmpSaveStr += "unit{\n"
+    tmpSaveStr += "MasterChef{\n"
     for tmp in globalvars.HiscoresList:
         tmpSaveStr += ("  score() { Name = '" + tmp["Name"] + \
                     "' Score = " + str(tmp["Score"]) + " }\n")
@@ -116,7 +126,7 @@ def AddScore():
 def ReadBestResults():
     globalvars.BestResults = {}
     if FileValid(File_BestResults):
-        BestResults_Iterator = oE.ParseDEF(File_BestResults).GetTag(u"unit").IterateTag(u"level")
+        BestResults_Iterator = oE.ParseDEF(File_BestResults).GetTag(u"MasterChef").IterateTag(u"level")
         BestResults_Iterator.Reset()
         while BestResults_Iterator.Next():
             tmpResult = BestResults_Iterator.Get()
@@ -128,7 +138,7 @@ def ReadBestResults():
 
 def SaveBestResults():
     tmpSaveStr = ""
-    tmpSaveStr += "unit{\n"
+    tmpSaveStr += "MasterChef{\n"
     for key in globalvars.BestResults.keys():
         tmp = globalvars.BestResults[key]
         tmpSaveStr += ("  level(" + str(key) + ") { BestTime = " + str(tmp["BestTime"]) + \
@@ -159,26 +169,28 @@ def UpdateBestResults(level, name, score, time):
 def FileValid(filename):
     try:
         f = file(filename, "rt")
-        tmpStr = f.read()
-        f.close()
-        tmpPos = string.rfind(tmpStr, Str_SignatureBegin)
-        tmpPos2 = string.rfind(tmpStr, Str_SignatureEnd)
-        tmpStrData = tmpStr[0:tmpPos]
-        tmpSign = tmpStr[tmpPos+len(Str_SignatureBegin):tmpPos2]
-        tmpRealSign = Hexy(md5.new(tmpStrData).digest())
-        if tmpSign == tmpRealSign:
-            return True
-        else:
-            return False
+        return True
+        #tmpStr = f.read()
+        #f.close()
+        #tmpPos = string.rfind(tmpStr, Str_SignatureBegin)
+        #tmpPos2 = string.rfind(tmpStr, Str_SignatureEnd)
+        #tmpStrData = tmpStr[0:tmpPos]
+        #tmpSign = tmpStr[tmpPos+len(Str_SignatureBegin):tmpPos2]
+        #tmpRealSign = Hexy(md5.new(tmpStrData).digest())
+        #if tmpSign == tmpRealSign:
+        #    return True
+        #else:
+        #    return False
     except:
         return False
 
 def SignAndSave(filename, str):
-    tmpDir = os.path.dirname(filename)
-    if not os.access(tmpDir, os.W_OK):
-        os.mkdir(tmpDir)
-    tmpHashStr = Hexy(md5.new(str).digest())
-    tmpSaveData = str + Str_SignatureBegin + tmpHashStr + Str_SignatureEnd
+    tmpSaveData = str
+    #tmpDir = os.path.dirname(filename)
+    #if not os.access(tmpDir, os.W_OK):
+    #    os.mkdir(tmpDir)
+    #tmpHashStr = Hexy(md5.new(str).digest())
+    #tmpSaveData = str + Str_SignatureBegin + tmpHashStr + Str_SignatureEnd
     f = file(filename, "w")
     f.write(tmpSaveData)
     f.close()

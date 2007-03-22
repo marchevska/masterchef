@@ -53,7 +53,7 @@ globalvars.ActiveGameSession = False
 if len(sys.argv) >= 3:
     if sys.argv[1] == "run" and sys.argv[2] in globalvars.LevelProgress.keys():
         try:
-            globalvars.CurrentPlayer["Level"] = globalvars.LevelProgress[sys.argv[2]]["no"]
+            globalvars.CurrentPlayer["Level"] = sys.argv[2]
             globalvars.GUI.JustRun()
         except:
             sys.exit()

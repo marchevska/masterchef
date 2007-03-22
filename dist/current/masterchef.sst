@@ -62,6 +62,12 @@ type = blend
 # gui elements #
 ################
 
+sprite button-4st {
+bitmap = img/gui/button-4st.png
+type   = blend
+layout = 1x4
+}
+
 sprite button-120x40x4st {
 bitmap = img/gui/button-120x40x4st.png
 type   = blend
@@ -78,6 +84,18 @@ bitmap = img/gui/2nd-popup-background.png
 type = blend
 }
 
+
+#########
+# logos #
+#########
+
+sprite developer-logo {
+bitmap  = img/logos/developer-logo.png
+}
+
+sprite publisher-logo {
+bitmap  = img/logos/publisher-logo.png
+}
 
 ########################
 # main screen elements #

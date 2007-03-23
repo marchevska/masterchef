@@ -146,3 +146,4 @@ Const_VisibleCustomers = 7
 MatchDeltas = [(0,-1), (-1,0), (0,1), (1,0)]
 Indexes = { "Col": 0, "Row": 1 }
 
+

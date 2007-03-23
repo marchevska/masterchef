@@ -52,10 +52,13 @@ globalvars.ActiveGameSession = False
 if len(sys.argv) >= 3:
     if sys.argv[1] == "run":# and sys.argv[2] in globalvars.LevelProgress.keys():
         try:
+            globalvars.RunMode = RunMode_Test
             globalvars.CurrentPlayer["Level"] = sys.argv[2]
             globalvars.GUI.JustRun()
         except:
             sys.exit()
+    else:
+        globalvars.RunMode = RunMode_Play
 # конец кода запуска заданного уровня
 
 while globalvars.StateStack[-1] != PState_EndGame:

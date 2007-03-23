@@ -821,7 +821,10 @@ class Gui(scraft.Dispatcher):
             elif globalvars.StateStack[-1] == PState_MainMenu:    
                 self._SetState(PState_EndGame)
             elif globalvars.StateStack[-1] == PState_Game:
-                self.CallInternalMenu()
+                if globalvars.RunMode == RunMode_Test:
+                    self._SetState(PState_EndGame)
+                else:
+                    self.CallInternalMenu()
             elif globalvars.StateStack[-1] == PState_Help:
                 self.SendCommand(Cmd_HelpClose)
             elif globalvars.StateStack[-1] == PState_Options:
@@ -844,12 +847,16 @@ class Gui(scraft.Dispatcher):
                 self.SendCommand(Cmd_GameOverMainMenu)
         
         if oE.EvtIsQuit():
-            if globalvars.StateStack[-1] in (PState_MainMenu, PState_Help, PState_Options,
-                    PState_InGameMenu, PState_Hiscores, PState_Players,
-                    PState_MapCareer, PState_YesNo, PState_EnterName, PState_NextLevel, PState_GameOver):    
+            if globalvars.StateStack[-1] == PState_Game:
+                if globalvars.RunMode == RunMode_Test:
+                    self._SetState(PState_EndGame)
+                else:
+                    self._SetState(PState_Options)
+            #if globalvars.StateStack[-1] in (PState_MainMenu, PState_Help, PState_Options,
+            #        PState_InGameMenu, PState_Hiscores, PState_Players,
+            #        PState_MapCareer, PState_YesNo, PState_EnterName, PState_NextLevel, PState_GameOver):
+            else:
                 self._SetState(PState_EndGame)
-            elif globalvars.StateStack[-1] == PState_Game:
-                self._SetState(PState_Options)
             
         return scraft.CommandStateRepeat
         

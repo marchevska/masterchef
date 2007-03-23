@@ -199,6 +199,16 @@
 </file>
 <file url="def/26.def" id="D039618C-1D1D-4C0C-AE35-BBA205A03CA1" name="26.def">
 </file>
+<folder id="6768E2E5-75EF-42C0-ABAE-A9BC930F77C2" name="sweetshop">
+</folder>
+<folder id="332F7C7C-E0E9-4245-884F-68DE8D0550C2" name="mexican">
+</folder>
+<folder id="40FB0E61-DDB6-4919-92D6-4E499613AE34" name="japanese">
+</folder>
+<folder id="ED004CDA-4D22-40DD-92F5-44B0F71699A1" name="russian">
+</folder>
+<folder id="791B43BA-FD56-413C-A727-03D63BDE6070" name="american">
+</folder>
 </folder>
 <folder id="0E45B8FA-3CBC-4004-A173-6DA2E65B3014" name="variables and constants">
 <file url="configconst.py" id="15697EE9-546E-4BA7-A17B-C96BF0C9CD73" name="configconst.py">

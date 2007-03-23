@@ -21,6 +21,7 @@ global GameConfig
 global StateStack
 global ActiveGameSession
 global LastCookie
+global RunMode
 
 global PlayerList        #список имен файлов, где хранятся профили игроков
 global PlList            #список игроков для формирования диалога Players

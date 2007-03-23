@@ -40,3 +40,7 @@ Str_SignatureEnd = ")\n}\n"
 # стартовые параметры игрока
 NewGame_Score = 0
 NewLevel_Score = 0
+
+RunMode_Test = 0
+RunMode_Play = 1
+

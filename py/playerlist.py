@@ -30,8 +30,8 @@ def ReadPlayers():
                 tmpPl = PlayersIterator.Get()
                 globalvars.PlayerList[tmpPl.GetContent()] = tmpPl.GetStrAttr(u"file")
                 globalvars.PlList.append(tmpPl.GetContent())
-        if unicode(globalvars.GameConfig["Player"]) != u'None':
-            ReadPlayer(globalvars.GameConfig["Player"])
+        #if unicode(globalvars.GameConfig["Player"]) != u'None':
+        ReadPlayer(globalvars.GameConfig["Player"])
     except:
         oE.Log(u"Cannot read players list")
         oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -41,9 +41,12 @@ def ReadPlayer(name):
     """ Reads player parameters """
     try:
         globalvars.CurrentPlayer = {"Name": name, "Level": ""}
-        filename = globalvars.PlayerList[name]
-        if config.FileValid(filename):
-            globalvars.CurrentPlayerXML = oE.ParseDEF(filename).GetTag(u"MasterChef")
+        if name != 'None':
+            filename = globalvars.PlayerList[name]
+            if config.FileValid(filename):
+                globalvars.CurrentPlayerXML = oE.ParseDEF(filename).GetTag(u"MasterChef")
+            else:
+                globalvars.CurrentPlayerXML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
         else:
             globalvars.CurrentPlayerXML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
     except:

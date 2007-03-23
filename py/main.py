@@ -28,6 +28,7 @@ oE.title = Window_Title
 oE.nativeCursor = False
 oE.showFps = False
 
+globalvars.RunMode = RunMode_Play
 config.ReadGameConfig()
 config.ApplyOptions()
 config.ReadHiscores()

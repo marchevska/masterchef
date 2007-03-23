@@ -283,6 +283,8 @@ MasterChef{
         sprite(theme.american.trashcan.bar.full) { bitmap = "img/episodes/american/trashcan-bar-full.png" type = "blend" }
         sprite(theme.american.tablet) { bitmap = "img/episodes/american/tablet.png" type = "blend" }
         
+        sprite(theme.american.decoration.bonsai) { bitmap = "img/episodes/american/bonsai.png" type = "blend" }
+        
         //Sweetshop
         sprite(theme.sweetshop.background) { bitmap = "img/episodes/sweetshop/background.png" truecolor = "yes" }
         sprite(theme.sweetshop.counter) { bitmap = "img/episodes/sweetshop/counter.png" type = "blend" }

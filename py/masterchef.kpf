@@ -151,63 +151,121 @@
 <folder id="7FE6FEC7-990C-487E-933A-4AC71709250E" name="levels">
 <preference-set id="">
 </preference-set>
-<file url="def/01.def" id="1E70BAEA-1672-4418-991B-54CE0348A800" name="01.def">
-</file>
-<file url="def/02.def" id="138141DA-CEBC-40E4-9EC5-0586A895D69B" name="02.def">
-</file>
 <file url="def/template.def" id="9A74A314-4F35-4B70-9511-3BE0EB245CBF" name="template.def">
 </file>
 <file url="def/levelprogress.def" id="85496FB9-8417-4ED3-8A26-E6E1B9C93AEF" name="levelprogress.def">
 </file>
-<file url="def/03.def" id="8FE4A27E-1255-4CD6-B5A1-4C8A3C11F6B8" name="03.def">
-</file>
-<file url="def/07.def" id="FEFD3A3D-BB02-45FA-80C1-7A526BCC5355" name="07.def">
-</file>
-<file url="def/04.def" id="FBB08A01-2120-4A06-B7BB-DAA4100C2865" name="04.def">
-</file>
-<file url="def/05.def" id="552A73AC-C6C4-4027-9CB6-88053F13BFE1" name="05.def">
-</file>
-<file url="def/06.def" id="A31890BF-78A0-4E26-BAFA-E78CCC00FBCD" name="06.def">
-</file>
-<file url="def/17.def" id="3C0029D5-D44A-44AA-9765-E5A648C6BC2E" name="17.def">
-</file>
-<file url="def/11.def" id="82FD99B4-0B33-41E2-AC30-1663B8930BD0" name="11.def">
-<preference-set id="">
-</preference-set>
-</file>
-<file url="def/12.def" id="F5146111-203B-440C-8865-98A237E8D918" name="12.def">
-</file>
-<file url="def/13.def" id="CEB10B6C-2F22-44B2-9C42-8219AD8832D9" name="13.def">
-</file>
-<file url="def/14.def" id="24C30B33-0F9F-4FE1-9E38-090F83C9A885" name="14.def">
-</file>
-<file url="def/15.def" id="A6F05241-8188-4E57-A652-85254D20FE30" name="15.def">
-</file>
-<file url="def/16.def" id="4AEAE91E-E09F-493A-876B-B92ACE2A0424" name="16.def">
-</file>
-<file url="def/21.def" id="DF1FE14B-197B-40C2-827D-5E6E1AAC9013" name="21.def">
-</file>
-<file url="def/27.def" id="C8D5CB94-9292-401A-A0A1-3F2883E27A4B" name="27.def">
-</file>
-<file url="def/22.def" id="81050E4F-A4C9-4F09-B861-0F5E26D01F67" name="22.def">
-</file>
-<file url="def/23.def" id="D1D9AF30-3588-4229-A70D-34E6075A6440" name="23.def">
-</file>
-<file url="def/24.def" id="B2EF7990-4F57-48D1-8289-56CA38B4252E" name="24.def">
-</file>
-<file url="def/25.def" id="4AE86542-E7EC-462C-A478-9190C876B7E0" name="25.def">
-</file>
-<file url="def/26.def" id="D039618C-1D1D-4C0C-AE35-BBA205A03CA1" name="26.def">
-</file>
 <folder id="6768E2E5-75EF-42C0-ABAE-A9BC930F77C2" name="sweetshop">
+<file url="def/10.def" id="4253A8A2-ECB7-4DC5-9600-4EABA93B3572" name="10.def">
+</file>
+<file url="def/00.def" id="4C99920F-39AC-4D78-822F-770242CA80E0" name="00.def">
+</file>
+<file url="def/01.def" id="0733CB6D-FF72-48FF-9BDD-04F82733784A" name="01.def">
+</file>
+<file url="def/02.def" id="67BBBDB5-7B9D-458C-B4BD-88017A7E6FF3" name="02.def">
+</file>
+<file url="def/03.def" id="56F45CD6-8D6A-47B3-A615-4E779F216A11" name="03.def">
+</file>
+<file url="def/04.def" id="363F3548-BEF5-47AA-9F4B-B40201321265" name="04.def">
+</file>
+<file url="def/05.def" id="61C7537B-F219-4D97-9C24-527FA71C132A" name="05.def">
+</file>
+<file url="def/06.def" id="B39B64A0-563F-43E4-9DAF-CD4A3EFDF85A" name="06.def">
+</file>
+<file url="def/07.def" id="DF0E0E0D-4C70-4C25-9901-01E711BB2FE4" name="07.def">
+</file>
+<file url="def/08.def" id="D217DF44-4E47-4CCC-A836-EFE0F20D982C" name="08.def">
+</file>
+<file url="def/09.def" id="93BBF1C0-6A2F-4EC0-9202-60922F0565DD" name="09.def">
+</file>
 </folder>
 <folder id="332F7C7C-E0E9-4245-884F-68DE8D0550C2" name="mexican">
+<file url="def/20.def" id="49D5AA1E-0BC2-400B-B247-0A307A569AE4" name="20.def">
+</file>
+<file url="def/11.def" id="A929EDC4-E97A-432B-99BE-26C80FB8FA9B" name="11.def">
+</file>
+<file url="def/12.def" id="8A6D9ED2-B783-4EE4-BC67-059CE6D3E9AC" name="12.def">
+</file>
+<file url="def/13.def" id="0B2962C7-854D-40B7-91EC-3F67D7E6A62F" name="13.def">
+</file>
+<file url="def/14.def" id="E26666EC-6012-4790-A25F-0545EE05AB32" name="14.def">
+</file>
+<file url="def/15.def" id="B3B48D8B-1ADD-4C82-981B-17EEF17A97C3" name="15.def">
+</file>
+<file url="def/16.def" id="9281ECC8-95F7-4174-B107-A424C831881E" name="16.def">
+</file>
+<file url="def/17.def" id="3A10E649-33FC-4268-9D4D-ADCEE2509C39" name="17.def">
+</file>
+<file url="def/18.def" id="D2E2961C-E4E6-44C6-8FBD-D428184313A1" name="18.def">
+</file>
+<file url="def/19.def" id="4DDF42BE-F670-4D24-8426-FD8AA529640A" name="19.def">
+</file>
 </folder>
 <folder id="40FB0E61-DDB6-4919-92D6-4E499613AE34" name="japanese">
+<file url="def/30.def" id="08971895-CE1D-4108-8DB0-5C01AC9ADA11" name="30.def">
+</file>
+<file url="def/21.def" id="C3ADCF00-82AA-4608-B1E1-9759DB8C7CA3" name="21.def">
+</file>
+<file url="def/22.def" id="A1129831-62D7-49BF-BE71-919086303DFF" name="22.def">
+</file>
+<file url="def/23.def" id="B836179C-D8D0-49C3-8822-ECCC148E9996" name="23.def">
+</file>
+<file url="def/24.def" id="C08DCF3D-48A5-4710-98D7-88684A6B2918" name="24.def">
+</file>
+<file url="def/25.def" id="799D6950-C679-433F-A508-08BDC1A4924A" name="25.def">
+</file>
+<file url="def/26.def" id="9EDFF8F3-D5C8-4DD0-B3E6-69AF098D5CBB" name="26.def">
+</file>
+<file url="def/27.def" id="744E4108-B616-4E09-87D9-2219CE33307C" name="27.def">
+</file>
+<file url="def/28.def" id="76C224AC-70FE-4CF8-9D32-012B2CC980E1" name="28.def">
+</file>
+<file url="def/29.def" id="209CB427-722A-4171-861B-A3ABD5A6591A" name="29.def">
+</file>
 </folder>
 <folder id="ED004CDA-4D22-40DD-92F5-44B0F71699A1" name="russian">
+<file url="def/40.def" id="2BC01D32-6615-471F-8BFC-5FD4F4460B94" name="40.def">
+</file>
+<file url="def/31.def" id="7CB79AF4-B75C-451A-9B6E-BCCAC9EF2361" name="31.def">
+</file>
+<file url="def/32.def" id="14DDB47B-9E2D-4B23-BDA5-9AFE0A76D7F7" name="32.def">
+</file>
+<file url="def/33.def" id="4C12FA5A-8514-4469-8030-04CC50BAB82B" name="33.def">
+</file>
+<file url="def/34.def" id="F08214C6-537F-4520-966E-9DEB8C0DBB2C" name="34.def">
+</file>
+<file url="def/35.def" id="1B8C8EF3-6C44-4230-8C67-C951B86091F1" name="35.def">
+</file>
+<file url="def/36.def" id="EEB1591F-C2B6-438D-A1D0-40210FF3470E" name="36.def">
+</file>
+<file url="def/37.def" id="5E92BC95-14D3-42F4-A79F-88DA311FBF71" name="37.def">
+</file>
+<file url="def/38.def" id="EE926A13-4188-4505-B04E-7BAB97FBB68D" name="38.def">
+</file>
+<file url="def/39.def" id="EADC8889-BB07-47D0-9E91-2A7F9B3C91EC" name="39.def">
+</file>
 </folder>
 <folder id="791B43BA-FD56-413C-A727-03D63BDE6070" name="american">
+<file url="def/50.def" id="A2E5D5F1-F2F1-4A77-818E-1E26D9298461" name="50.def">
+</file>
+<file url="def/41.def" id="AE004DEF-1AF7-4256-A8A2-FE44329303CF" name="41.def">
+</file>
+<file url="def/42.def" id="DD1E60F1-0DD3-4C76-8CE2-F22DAE78922E" name="42.def">
+</file>
+<file url="def/43.def" id="2D4D1B63-3F95-4CAB-9CAF-E89D446C7354" name="43.def">
+</file>
+<file url="def/44.def" id="2133970F-2606-4614-B6B2-22C1052D9046" name="44.def">
+</file>
+<file url="def/45.def" id="9C07A57F-C1F5-4F48-80E2-625E2FAC2191" name="45.def">
+</file>
+<file url="def/46.def" id="8F627D8B-315A-4BF1-B1B1-2B41B845C41C" name="46.def">
+</file>
+<file url="def/47.def" id="7D79F13D-9304-4188-80AE-42E532DC74BC" name="47.def">
+</file>
+<file url="def/48.def" id="EF3A2E18-5D82-41CF-B078-5A4477352E3B" name="48.def">
+</file>
+<file url="def/49.def" id="A955344A-16A7-4EC7-AC86-8FF0F2F8DA38" name="49.def">
+</file>
 </folder>
 </folder>
 <folder id="0E45B8FA-3CBC-4004-A173-6DA2E65B3014" name="variables and constants">

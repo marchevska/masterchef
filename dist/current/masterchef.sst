@@ -193,6 +193,18 @@ bitmap = img/gui/map-dots.png
 layout = 3x2
 }
 
+sprite level-pointers {
+bitmap = img/gui/level-pointers.png
+type = blend
+layout = 5x1
+}
+
+sprite level-pointers-expert {
+bitmap = img/gui/level-pointers-expert.png
+type = blend
+layout = 5x1
+}
+
 
 #########
 # other #

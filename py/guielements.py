@@ -48,6 +48,10 @@ class PushButton(scraft.Dispatcher):
         self.Whose = whose
         self.SetState(ButtonState_Up)
         
+    def SetButtonKlass(self, newKlass):
+        self.ButtonSprite.ChangeKlassTo(newKlass)
+        self.ButtonSprite.hotspot = scraft.HotspotCenter
+        
     def Show(self, flag):
         self.Dummy.visible = flag
         self.ButtonSprite.visible = flag

@@ -386,7 +386,7 @@ class Gui(scraft.Dispatcher):
                 tmpLevelNo = int(tmpLevelFileName[4:6])
                 self.MapCareerDialog["Buttons"]["Level_"+str(tmpLevelNo)] = PushButton("MapLevel"+str(i),
                     self, Cmd_MapLevel + tmpLevelNo, PState_MapCareer,
-                    u"map-dots", [0, 0, 0, 3, 2], Layer_BtnText,
+                    u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
                     tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
                 self.TotalCareerLevels += 1
         
@@ -552,6 +552,10 @@ class Gui(scraft.Dispatcher):
         for i in range(self.TotalCareerLevels):
             tmpLevelFileName = "def/"+LevelStringName(i)+".def"
             tmpPlayerResult = defs.GetTagWithContent(globalvars.CurrentPlayerXML.GetTag(u"Levels"), u"level", tmpLevelFileName)
+            if tmpPlayerResult.GetBoolAttr(u"expert"):
+                self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetButtonKlass(u"level-pointers-expert")
+            else:
+                self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetButtonKlass(u"level-pointers")
             if tmpPlayerResult.GetBoolAttr(u"unlocked"):
                 self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetState(ButtonState_Up)
             else:

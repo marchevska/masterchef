@@ -372,23 +372,16 @@ class Gui(scraft.Dispatcher):
                 u"button-4st", [0, 1, 2], 
                 Layer_BtnText, 440, 520, 120, 40,
                 Str_MapMainMenu, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
-        tmpEpisodeIterator = globalvars.LevelProgress.IterateTag(u"Episode")
-        i = 0
-        while tmpEpisodeIterator.Next():
-            i += 1
-            tmpEpisodeName = tmpEpisodeIterator.Get().GetContent()
-            self.MapCareerDialog["Text"][tmpEpisodeName] = MakeTextSprite(u"papyrus2",
-                Layer_PopupBtnTxt, 50, 100*i, scraft.HotspotLeftCenter, tmpEpisodeName)
-            tmpLevelIterator = tmpEpisodeIterator.Get().IterateTag(u"level")
-            while tmpLevelIterator.Next():
-                tmp = tmpLevelIterator.Get()
-                tmpLevelFileName = tmp.GetContent()
-                tmpLevelNo = int(tmpLevelFileName[4:6])
-                self.MapCareerDialog["Buttons"]["Level_"+str(tmpLevelNo)] = PushButton("MapLevel"+str(i),
-                    self, Cmd_MapLevel + tmpLevelNo, PState_MapCareer,
-                    u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
-                    tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
-                self.TotalCareerLevels += 1
+        tmpLevelIterator = globalvars.LevelProgress.IterateTag(u"level")
+        while tmpLevelIterator.Next():
+            tmp = tmpLevelIterator.Get()
+            tmpLevelFileName = tmp.GetContent()
+            tmpLevelNo = int(tmpLevelFileName[4:6])
+            self.MapCareerDialog["Buttons"]["Level_"+str(tmpLevelNo)] = PushButton("MapLevel"+str(i),
+                self, Cmd_MapLevel + tmpLevelNo, PState_MapCareer,
+                u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
+                tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
+        self.TotalCareerLevels = globalvars.LevelProgress.GetCountTag(u"level")
         
         self._SetState(PState_DevLogo)    
         oE.executor.Schedule(self)

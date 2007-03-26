@@ -283,7 +283,9 @@ MasterChef{
         sprite(theme.american.trashcan.bar.full) { bitmap = "img/episodes/american/trashcan-bar-full.png" type = "blend" }
         sprite(theme.american.tablet) { bitmap = "img/episodes/american/tablet.png" type = "blend" }
         
-        sprite(theme.american.decoration.bonsai) { bitmap = "img/episodes/american/bonsai.png" type = "blend" }
+        sprite(theme.american.decoration.barrel) { bitmap = "img/episodes/american/barrel.png" type = "blend" }
+        sprite(theme.american.decoration.stand) { bitmap = "img/episodes/american/stand.png" type = "blend" }
+        sprite(theme.american.decoration.nopal) { bitmap = "img/episodes/american/nopal.png" type = "blend" }
         
         //Sweetshop
         sprite(theme.sweetshop.background) { bitmap = "img/episodes/sweetshop/background.png" truecolor = "yes" }

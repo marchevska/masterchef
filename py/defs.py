@@ -309,15 +309,15 @@ def GetTagWithContent(node, tag, content):
             while tmpIterator.Next():
                 if tmpIterator.Get().GetContent() == content:
                     return tmpIterator.Get()
-        else:
-            tmpAllNodes = node.Iterate()
-            while tmpAllNodes.Next():
-                tmpNode = tmpAllNodes.Get()
-                if tmpNode.GetCountTag(tag)>0:
-                    tmpIterator = tmpNode.IterateTag(tag)
-                    while tmpIterator.Next():
-                        if tmpIterator.Get().GetContent() == content:
-                            return tmpIterator.Get()
+        #else:
+        #    tmpAllNodes = node.Iterate()
+        #    while tmpAllNodes.Next():
+        #        tmpNode = tmpAllNodes.Get()
+        #        if tmpNode.GetCountTag(tag)>0:
+        #            tmpIterator = tmpNode.IterateTag(tag)
+        #            while tmpIterator.Next():
+        #                if tmpIterator.Get().GetContent() == content:
+        #                    return tmpIterator.Get()
         return scraft.XData()
     except:
         return scraft.XData()

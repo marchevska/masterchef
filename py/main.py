@@ -12,9 +12,9 @@ from scraft import engine as oE
 from configconst import *
 from gui import Gui
 from gameboard import GameBoard
+from playerlist import Player, PlayerList
 from extra import *
 import config
-import playerlist
 import globalvars
 import defs
 
@@ -33,7 +33,9 @@ config.ReadGameConfig()
 config.ApplyOptions()
 config.ReadHiscores()
 config.ReadBestResults()
-playerlist.ReadPlayers()
+#playerlist.ReadPlayers()
+globalvars.PlayerList = PlayerList()
+globalvars.PlayerList.Read()
 
 defs.ReadLevelProgress()
 defs.ReadCuisine()
@@ -77,6 +79,8 @@ while globalvars.StateStack[-1] != PState_EndGame:
             config.ApplyOptions()
     oE.DisplayEx(30) # 30 FPS
 
-config.SaveGameConfig()
-config.SaveHiscores()
-playerlist.SavePlayers()
+if globalvars.RunMode == RunMode_Play:
+    config.SaveGameConfig()
+    config.SaveHiscores()
+    globalvars.PlayerList.Save()
+    globalvars.CurrentPlayer.Save()

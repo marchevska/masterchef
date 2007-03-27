@@ -23,10 +23,8 @@ global ActiveGameSession
 global LastCookie
 global RunMode
 
-global PlayerList        #список имен файлов, где хранятся профили игроков
-global PlList            #список игроков для формирования диалога Players
-global CurrentPlayer     #данные игрока: имя и информация по текущей игре
-global CurrentPlayerXML  #полный профиль игрока
+global PlayerList        #список игроков
+global CurrentPlayer     #профиль игрока + информация о текущей игре
 global HiscoresList
 global BestResults
 

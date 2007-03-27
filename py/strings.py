@@ -20,6 +20,7 @@ Str_HelpNext = "Page up"
 Str_HelpClose = "Close window"
 
 Str_Players_Title = "PLAY AS..."
+Str_Players_Create = "Create new player"
 Str_PlayersRemove = "Remove player"
 Str_PlayersOk = "Ok"
 Str_PlayersCancel = "Cancel"
@@ -68,6 +69,7 @@ Str_HiscoresClose = "Close"
 
 Str_MapStart = "Start game"
 Str_MapMainMenu = "Main menu"
+Str_ComicsNext = "NEXT"
 
 Str_Yes = "YES"
 Str_No = "NO"

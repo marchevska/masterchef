@@ -307,4 +307,14 @@ MasterChef{
         sprite(theme.sweetshop.decoration.screen3) { bitmap = "img/episodes/sweetshop/screen3.png" type = "blend" }
         
     }
+    
+    Comics{
+        sprite(comics.masterchef.intro) { bitmap = "img/comics/masterchef.intro.png" }
+        sprite(comics.sweetshop.intro) { bitmap = "img/comics/sweetshop.intro.png" }
+        sprite(comics.mexican.intro) { bitmap = "img/comics/mexican.intro.png" }
+        sprite(comics.japanese.intro) { bitmap = "img/comics/japanese.intro.png" }
+        sprite(comics.russian.intro) { bitmap = "img/comics/russian.intro.png" }
+        sprite(comics.american.intro) { bitmap = "img/comics/american.intro.png" }
+        sprite(comics.masterchef.outro) { bitmap = "img/comics/masterchef.outro.png" }
+    }
 }

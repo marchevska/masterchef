@@ -40,6 +40,10 @@ def ReadResourceInfo():
         while tmpKlassesIterator.Next():
             tmp = tmpKlassesIterator.Get()
             oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
+        tmpKlassesIterator = tmpResourceInfo.GetTag(u"Comics").IterateTag(u"sprite")
+        while tmpKlassesIterator.Next():
+            tmp = tmpKlassesIterator.Get()
+            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
         
         #read customer classes
         tmpResourceInfo = oE.ParseDEF(File_Animations).GetTag(u"MasterChef")

@@ -186,11 +186,12 @@ def FileValid(filename):
 
 def SignAndSave(filename, str):
     tmpSaveData = str
-    #tmpDir = os.path.dirname(filename)
-    #if not os.access(tmpDir, os.W_OK):
-    #    os.mkdir(tmpDir)
+    tmpDir = os.path.dirname(filename)
+    if not os.access(tmpDir, os.W_OK):
+        os.mkdir(tmpDir)
     #tmpHashStr = Hexy(md5.new(str).digest())
     #tmpSaveData = str + Str_SignatureBegin + tmpHashStr + Str_SignatureEnd
+    tmpSaveData = str
     f = file(filename, "w")
     f.write(tmpSaveData)
     f.close()

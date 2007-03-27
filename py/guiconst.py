@@ -70,6 +70,7 @@ Cmd_GameOverMainMenu = 417
 Cmd_EpiCompleteNext = 418
 Cmd_EpiCompleteMainMenu = 419
 
+Cmd_ComicsNext = 422
 Cmd_MapStart = 420
 Cmd_MapMainMenu = 421
 Cmd_MapLevel = 500
@@ -93,8 +94,9 @@ PState_GameOver = 10
 PState_Continue = 11
 PState_YesNo = 12
 PState_YesNoCancel = 13
-PState_MapCareer = 15
-PState_MapEndless = 16
+PState_Comics = 15
+PState_MapCareer = 16
+PState_MapEndless = 17
 
 #длительность показа логотипов
 Time_DevLogoShow = 5000

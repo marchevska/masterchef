@@ -1,10 +1,10 @@
 MasterChef{
     //Episode - SweetShop
     comic(MaserChef.intro) {
-        image = "img/comics/masterchef.intro.png"
+        image = "comics.masterchef.intro"
     }
     comic(SweetShop.intro) {
-        image = "img/comics/masterchef.intro.png"
+        image = "comics.sweetshop.intro"
     }
     level(def/00.def) { name = "TUT" no = "0" x = "100" y = "100" }
     level(def/01.def) { name = "1-1" no = "1" x = "150" y = "100" }
@@ -20,7 +20,7 @@ MasterChef{
     
     //Episode - Mexican
     comic(Mexican.intro) {
-        image = "img/comics/masterchef.intro.png"
+        image = "comics.mexican.intro"
     }
     level(def/11.def) { name = "2-1" no = "11" x = "150" y = "200" }
     level(def/12.def) { name = "2-2" no = "12" x = "200" y = "200" }
@@ -35,7 +35,7 @@ MasterChef{
     
     //Episode - Japanese
     comic(Japanese.intro) {
-        image = "img/comics/masterchef.intro.png"
+        image = "comics.japanese.intro"
     }
     level(def/21.def) { name = "3-1" no = "0" x = "150" y = "300" }
     level(def/22.def) { name = "3-2" no = "0" x = "200" y = "300" }
@@ -50,7 +50,7 @@ MasterChef{
     
     //Episode - Russian
     comic(Russian.intro) {
-        image = "img/comics/masterchef.intro.png"
+        image = "comics.russian.intro"
     }
     level(def/31.def) { name = "4-1" no = "0" x = "150" y = "400" }
     level(def/32.def) { name = "4-2" no = "0" x = "200" y = "400" }
@@ -65,7 +65,7 @@ MasterChef{
     
     //Episode - American
     comic(American.intro) {
-        image = "img/comics/masterchef.intro.png"
+        image = "comics.american.intr"
     }
     level(def/41.def) { name = "5-1" no = "0" x = "150" y = "500" }
     level(def/42.def) { name = "5-2" no = "0" x = "200" y = "500" }
@@ -79,6 +79,6 @@ MasterChef{
     level(def/50.def) { name = "5-10" no = "0" x = "600" y = "500" }
     
     comic(MaserChef.outro) {
-        image = "img/comics/masterchef.intro.png"
+        image = "comics.masterchef.outro"
     }
 }

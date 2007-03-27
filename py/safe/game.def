@@ -1,5 +1,5 @@
 MasterChef{
-  Player = 'None'
+  Player = ''
   Hints = True
   Mute = False
   Fullscreen = False

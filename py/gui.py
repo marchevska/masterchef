@@ -358,6 +358,19 @@ class Gui(scraft.Dispatcher):
                 Layer_PopupBtnTxt, 520, 220 + 30* i, scraft.HotspotRightCenter)
         
         #-------
+        # экран с комиксом
+        #-------
+        self.ComicScreen = {"Static": {}, "Text": {}, "Buttons": {}}
+        self.ComicScreen["Buttons"]["Back"] = PushButton("",
+                self, Cmd_ComicsNext, PState_Comics, u"$spritecraft$dummy$", [0, 0, 0], 
+                Layer_Background, 400, 300, 800, 600)
+        self.ComicScreen["Buttons"]["Next"] = PushButton("ComicsNext",
+                self, Cmd_ComicsNext, PState_Comics,
+                u"button-4st", [0, 1, 2, 3], 
+                Layer_BtnText, 400, 540, 120, 40,
+                Str_ComicsNext, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down", u"papyrus2-inert"])
+        
+        #-------
         # карта карьерного режима
         #-------
         self.MapCareerDialog = {"Static": {}, "Text": {}, "Buttons": {}}
@@ -461,22 +474,24 @@ class Gui(scraft.Dispatcher):
     def _DrawPlayersList(self):
         if globalvars.GameConfig["Player"] != "None":
             tmpName = globalvars.GameConfig["Player"]
-            if globalvars.PlList.count(tmpName) > 0:
-                tmpInd = globalvars.PlList.index(tmpName)
-                self.FirstPlayer = min(tmpInd, len(globalvars.PlList) - self.TotalPlayersOnScreen)
+            tmpList = globalvars.PlayerList.GetPlayerList()
+            if tmpList.count(tmpName) > 0:
+                tmpInd = tmpList.index(tmpName)
+                self.FirstPlayer = min(tmpInd, len(tmpList) - self.TotalPlayersOnScreen)
                 self.FirstPlayer = max(self.FirstPlayer, 0)
                 self.SelectedPlayer = tmpInd
         self._UpdatePlayersList()
                 
     def _UpdatePlayersList(self):
-        tmpCount = min(self.TotalPlayersOnScreen, len(globalvars.PlList))
+        tmpList = globalvars.PlayerList.GetPlayerList()
+        tmpCount = min(self.TotalPlayersOnScreen, len(tmpList))
         for i in range(tmpCount):
             if self.FirstPlayer + i == self.SelectedPlayer:
                 self.PlayersDialog["Buttons"]["Player_"+str(i)].SetState(ButtonState_Selected)
             else:
                 self.PlayersDialog["Buttons"]["Player_"+str(i)].SetState(ButtonState_Up)
             self.PlayersDialog["Buttons"]["Player_"+str(i)].Show(True)
-            self.PlayersDialog["Buttons"]["Player_"+str(i)].SetText(globalvars.PlList[self.FirstPlayer+i])
+            self.PlayersDialog["Buttons"]["Player_"+str(i)].SetText(tmpList[self.FirstPlayer+i])
         if tmpCount < self.TotalPlayersOnScreen:
             for i in range(tmpCount, self.TotalPlayersOnScreen):
                 self.PlayersDialog["Buttons"]["Player_"+str(i)].Show(False)
@@ -484,7 +499,7 @@ class Gui(scraft.Dispatcher):
             self.PlayersDialog["Buttons"]["Up"].Show(True)
         else:
             self.PlayersDialog["Buttons"]["Up"].Show(False)
-        if self.FirstPlayer + self.TotalPlayersOnScreen < len(globalvars.PlList):
+        if self.FirstPlayer + self.TotalPlayersOnScreen < len(tmpList):
             self.PlayersDialog["Buttons"]["Down"].Show(True)
         else:
             self.PlayersDialog["Buttons"]["Down"].Show(False)
@@ -544,7 +559,8 @@ class Gui(scraft.Dispatcher):
     def _UpdateMapWindow(self):
         for i in range(self.TotalCareerLevels):
             tmpLevelFileName = "def/"+LevelStringName(i)+".def"
-            tmpPlayerResult = defs.GetTagWithContent(globalvars.CurrentPlayerXML.GetTag(u"Levels"), u"level", tmpLevelFileName)
+            tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(tmpLevelFileName)
+            #defs.GetTagWithContent(globalvars.CurrentPlayerXML.GetTag(u"Levels"), u"level", tmpLevelFileName)
             if tmpPlayerResult.GetBoolAttr(u"expert"):
                 self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetButtonKlass(u"level-pointers-expert")
             else:
@@ -558,6 +574,10 @@ class Gui(scraft.Dispatcher):
             self.MapCareerDialog["Buttons"]["Level_"+str(self.SelectedLevel)].SetState(ButtonState_Selected)
         else:
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
+        
+    def _UpdateComics(self):
+        tmp = globalvars.CurrentPlayer.GetLevel()
+        self.ComicScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr(u"image"))
         
     def _CloseOptionsDialog(self, flag):
         if flag:
@@ -585,10 +605,10 @@ class Gui(scraft.Dispatcher):
             #main menu
             elif globalvars.StateStack[-1] == PState_MainMenu:
                 if cmd == Cmd_Menu_PlayCareer:
-                    #if globalvars.CurrentPlayer["Game"]:
-                    #    self._AskYnc(Str_Question_Continue,
-                    #        Str_Answer_Continue_Continue, Str_Answer_Continue_NewGame, Str_Cancel)
-                    #else:
+                    if not globalvars.CurrentPlayer.LastUnlockedLevel():
+                        globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag())
+                        self._SetState(PState_Comics)
+                    else:
                         self._SetState(PState_MapCareer)
                 elif cmd == Cmd_Menu_Players:
                     self._SetState(PState_Players)
@@ -601,13 +621,19 @@ class Gui(scraft.Dispatcher):
                 elif cmd == Cmd_Menu_Quit:
                     self._SetState(PState_EndGame)
                     
+            #comics
+            elif globalvars.StateStack[-1] == PState_Comics:
+                if cmd == Cmd_ComicsNext:
+                    #посмотреть, что там дальше по списку - комикс или уровень
+                    self._SetState(PState_MapCareer)
+                
             #map window
             elif globalvars.StateStack[-1] == PState_MapCareer:
                 if cmd == Cmd_MapStart:
                     self._ReleaseState(PState_MapCareer)
                     globalvars.CurrentPlayer["Level"] = "def/"+LevelStringName(self.SelectedLevel)+".def"
-                    playerlist.ResetPlayer()
-                    globalvars.CurrentPlayer["Playing"] = False
+                    #playerlist.ResetPlayer()
+                    #globalvars.CurrentPlayer["Playing"] = False
                     self._SetState(PState_Game)
                 elif cmd == Cmd_MapMainMenu:
                     self._ReleaseState(PState_MapCareer)
@@ -630,10 +656,7 @@ class Gui(scraft.Dispatcher):
                     self._Ask(Str_Question_RemovePlayer)
                 elif cmd == Cmd_PlayersOk:
                     if self.SelectedPlayer != -1:
-                        tmpName = globalvars.PlList[self.SelectedPlayer]
-                        globalvars.GameConfig["Player"] = tmpName
-                        config.SaveGameConfig()
-                        playerlist.ReadPlayer(tmpName)
+                        globalvars.PlayerList.SelectPlayer(self.SelectedPlayer)
                     self._ReleaseState(PState_Players)
                 elif cmd == Cmd_PlayersCancel:
                     self.SelectedPlayer = -1
@@ -690,12 +713,12 @@ class Gui(scraft.Dispatcher):
                     elif tmpName == 'None':
                         self.EnterNameDialog["Text"]["NameErrors"].text = Str_EnterName_Error_Bad
                         return
-                    elif globalvars.PlList.count(tmpName) > 0:
+                    elif globalvars.PlayerList.GetPlayerList().count(tmpName) > 0:
                         self.EnterNameDialog["Text"]["NameErrors"].text = Str_EnterName_Error_Exist
                         return
                     else:
-                        playerlist.NewPlayer(tmpName)
-                        self.SelectedPlayer = len(globalvars.PlList) - 1 
+                        globalvars.PlayerList.CreatePlayer(tmpName)
+                        self.SelectedPlayer = len(globalvars.PlayerList.GetPlayerList()) - 1 
                         self._DrawPlayersList()
                 elif cmd == Cmd_EnterNameCancel:
                     pass
@@ -709,7 +732,7 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_Yes:
                     #remove player
                     if globalvars.StateStack[-1] == PState_Players:
-                        playerlist.DelPlayer(globalvars.PlList[self.SelectedPlayer])
+                        globalvars.PlayerList.DelPlayer(globalvars.PlayerList.GetPlayerList()[self.SelectedPlayer])
                         self.SelectedPlayer = -1
                         self._DrawPlayersList()
                     #clear hiscores
@@ -845,9 +868,6 @@ class Gui(scraft.Dispatcher):
                     self._SetState(PState_EndGame)
                 else:
                     self._SetState(PState_Options)
-            #if globalvars.StateStack[-1] in (PState_MainMenu, PState_Help, PState_Options,
-            #        PState_InGameMenu, PState_Hiscores, PState_Players,
-            #        PState_MapCareer, PState_YesNo, PState_EnterName, PState_NextLevel, PState_GameOver):
             else:
                 self._SetState(PState_EndGame)
             
@@ -862,6 +882,8 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.MainMenuDialog, False)
         elif state == PState_MapCareer:
             self._ShowDialog(self.MapCareerDialog, False)
+        elif state == PState_Comics:
+            self._ShowDialog(self.ComicScreen, False)
         elif state == PState_NextLevel:
             self._ShowDialog(self.LevelCompleteDialog, False)
         elif state == PState_EpiComplete:
@@ -944,6 +966,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_EpiComplete)
             self._ReleaseState(PState_GameOver)
             self._ReleaseState(PState_MapCareer)
+            self._ReleaseState(PState_Comics)
             self.NextStateTime = Time_DevLogoShow
             
         elif state == PState_PubLogo:
@@ -965,18 +988,19 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_EpiComplete)
             self._ReleaseState(PState_GameOver)
             self._ReleaseState(PState_MapCareer)
-            if globalvars.GameConfig["Player"] == 'None' or \
-                globalvars.PlList.count(globalvars.GameConfig["Player"]) == 0:
+            #if globalvars.GameConfig["Player"] == 'None' or \
+            #    globalvars.PlList.count(globalvars.GameConfig["Player"]) == 0:
+            if globalvars.GameConfig["Player"] == "":
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = False
                 self.MainMenuDialog["Buttons"]["Players"].Show(False)
                 #self.MainMenuDialog["Text"]["WelcomeMessage"].text = u"" #u"Welcome, guest"
-                if len(globalvars.PlList) <= 1:
+                if len(globalvars.PlayerList.GetPlayerList()) <= 1:
                     self._SetState(PState_EnterName)
                 else:
                     self._SetState(PState_Players)
             else:
-                self.MainMenuDialog["Text"]["WelcomeMessage"].visible = True
                 self.MainMenuDialog["Buttons"]["Players"].Show(True)
+                self.MainMenuDialog["Text"]["WelcomeMessage"].visible = True
                 self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome + globalvars.GameConfig["Player"]
             
         elif state == PState_MapCareer:
@@ -984,6 +1008,12 @@ class Gui(scraft.Dispatcher):
             self.SelectedLevel = -1
             self._ShowDialog(self.MapCareerDialog, True)
             self._UpdateMapWindow()
+            
+        elif state == PState_Comics:
+            self._ShowDialog(self.ComicScreen, True)
+            self._ReleaseState(PState_MapCareer)
+            self._ReleaseState(PState_MainMenu)
+            self._UpdateComics()
             
         elif state == PState_NextLevel:
             globalvars.Board.Freeze(True)

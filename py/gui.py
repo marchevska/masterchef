@@ -29,7 +29,7 @@ class Gui(scraft.Dispatcher):
         self.TotalHelpPages = 3
         self.FirstPlayer = 0
         self.SelectedPlayer = -1
-        self.SelectedLevel = -1
+        self.SelectedLevel = ""                 #название выбранного уровня (имя файла)
         self.TotalPlayersOnScreen = 6
         self.TotalCareerLevels = 0
         self.SavedOptions = []
@@ -388,13 +388,13 @@ class Gui(scraft.Dispatcher):
         tmpLevelIterator = globalvars.LevelProgress.IterateTag(u"level")
         while tmpLevelIterator.Next():
             tmp = tmpLevelIterator.Get()
-            tmpLevelFileName = tmp.GetContent()
-            tmpLevelNo = int(tmpLevelFileName[4:6])
-            self.MapCareerDialog["Buttons"]["Level_"+str(tmpLevelNo)] = PushButton("MapLevel"+str(i),
-                self, Cmd_MapLevel + tmpLevelNo, PState_MapCareer,
+            #tmpLevelFileName = tmp.GetContent()
+            #tmpLevelNo = int(tmpLevelFileName[4:6])
+            # кнопки уровней - именуются именами файлов, нумеруются номерами уровней из levelprogress
+            self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
+                self, Cmd_MapLevel + tmp.GetIntAttr(u"no"), PState_MapCareer,
                 u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
                 tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
-        self.TotalCareerLevels = globalvars.LevelProgress.GetCountTag(u"level")
         
         self._SetState(PState_DevLogo)    
         oE.executor.Schedule(self)
@@ -441,7 +441,7 @@ class Gui(scraft.Dispatcher):
         return tmpStr
         
     def _UpdateEpisodeCompleteDialog(self):
-        self.EpisodeCompleteDialog["MessageText"].text = levels.Episodes[levels.Levels[globalvars.CurrentPlayer["Level"]]["Episode"]]["CompleteText"]
+        pass
         
     def CallGameOverDialog(self, flag):
         self._SetState(PState_GameOver)
@@ -557,21 +557,24 @@ class Gui(scraft.Dispatcher):
     # подсвечивает открытые и закрытые уровни
     #----------------------------
     def _UpdateMapWindow(self):
-        for i in range(self.TotalCareerLevels):
-            tmpLevelFileName = "def/"+LevelStringName(i)+".def"
-            tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(tmpLevelFileName)
-            #defs.GetTagWithContent(globalvars.CurrentPlayerXML.GetTag(u"Levels"), u"level", tmpLevelFileName)
+        #список кнопок на карте, обозначающих уровни, он же список файлов уровней - так проще получить этот список
+        tmpLevelKeys = self.MapCareerDialog["Buttons"].keys()
+        tmpLevelKeys.remove("Start")
+        tmpLevelKeys.remove("MainMenu")
+        for level in tmpLevelKeys:
+            #читаем запись из профиля игрока
+            tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(level)
             if tmpPlayerResult.GetBoolAttr(u"expert"):
-                self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetButtonKlass(u"level-pointers-expert")
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass(u"level-pointers-expert")
             else:
-                self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetButtonKlass(u"level-pointers")
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass(u"level-pointers")
             if tmpPlayerResult.GetBoolAttr(u"unlocked"):
-                self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetState(ButtonState_Up)
+                self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Up)
             else:
-                self.MapCareerDialog["Buttons"]["Level_"+str(i)].SetState(ButtonState_Inert)
-        if self.SelectedLevel >= 0:
+                self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Inert)
+        if self.SelectedLevel != "":
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Up)
-            self.MapCareerDialog["Buttons"]["Level_"+str(self.SelectedLevel)].SetState(ButtonState_Selected)
+            self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
         else:
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
         
@@ -590,6 +593,34 @@ class Gui(scraft.Dispatcher):
         config.ApplyOptions()
         self._ReleaseState(PState_Options)
         
+    #переход к следующему комиксу или уровню
+    #функция вызывается при вызове карты и при закрытии комикса
+    def NextCareerStage(self):
+        try:
+            #проходим по списку уровней и находим последний разлоченный
+            tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr(u"unlocked"),
+                                     globalvars.LevelProgress.Tags())
+            tmpLastUnlocked = tmpAllUnlocked[-1]
+            tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == u"level", tmpAllUnlocked))
+            
+            #если последний разлоченный - комикс, то показать комикс
+            if tmpLastUnlocked.GetName() == u"comic":    
+                globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
+                self._SetState(PState_Comics)
+            #иначе: смотрим количество разлоченных уровней
+            #если больше 1, то показываем карту
+            elif tmpNoUnlockedLevels > 1:
+                self._SetState(PState_MapCareer)
+            #иначе запускаем первый уровень
+            else:
+                globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
+                self._SetState(PState_Game)
+        except:
+            oE.Log(unicode("Next stage fatal error"))
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            sys.exit()
+        
+        
     def SendCommand(self, cmd):
         try:
             #developer logo
@@ -605,11 +636,7 @@ class Gui(scraft.Dispatcher):
             #main menu
             elif globalvars.StateStack[-1] == PState_MainMenu:
                 if cmd == Cmd_Menu_PlayCareer:
-                    if not globalvars.CurrentPlayer.LastUnlockedLevel():
-                        globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag())
-                        self._SetState(PState_Comics)
-                    else:
-                        self._SetState(PState_MapCareer)
+                    self.NextCareerStage()
                 elif cmd == Cmd_Menu_Players:
                     self._SetState(PState_Players)
                 elif cmd == Cmd_Menu_Options:
@@ -624,21 +651,22 @@ class Gui(scraft.Dispatcher):
             #comics
             elif globalvars.StateStack[-1] == PState_Comics:
                 if cmd == Cmd_ComicsNext:
-                    #посмотреть, что там дальше по списку - комикс или уровень
-                    self._SetState(PState_MapCareer)
+                    self.NextCareerStage()
                 
             #map window
             elif globalvars.StateStack[-1] == PState_MapCareer:
                 if cmd == Cmd_MapStart:
+                    #self.NextCareerStage()
                     self._ReleaseState(PState_MapCareer)
-                    globalvars.CurrentPlayer["Level"] = "def/"+LevelStringName(self.SelectedLevel)+".def"
-                    #playerlist.ResetPlayer()
-                    #globalvars.CurrentPlayer["Playing"] = False
+                    globalvars.CurrentPlayer.SetLevel(defs.GetTagWithContent(globalvars.LevelProgress,
+                        u"level", self.SelectedLevel))
                     self._SetState(PState_Game)
                 elif cmd == Cmd_MapMainMenu:
                     self._ReleaseState(PState_MapCareer)
                 else:
-                    self.SelectedLevel = cmd-Cmd_MapLevel
+                    self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress,
+                                            u"level", u"no", str(cmd-Cmd_MapLevel)).GetContent()
+#                    cmd-Cmd_MapLevel
                     self._UpdateMapWindow()
                 
             #rules dialog
@@ -762,7 +790,7 @@ class Gui(scraft.Dispatcher):
             elif globalvars.StateStack[-1] == PState_NextLevel:
                 self._ReleaseState(PState_NextLevel)
                 if cmd == Cmd_LvCompleteNextLevel:
-                    tmpLevel = globalvars.CurrentPlayer["Level"]
+                    tmpLevel = globalvars.CurrentPlayer.GetLevel()
                     if levels.Levels[tmpLevel]["NoInEpisode"] == 0 and self.LvCompleteSuccess:
                         self._SetState(PState_EpiComplete)
                     else:
@@ -932,25 +960,25 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_MapCareer)
             self._ReleaseState(PState_PubLogo)
             self._ReleaseState(PState_DevLogo)
+            self._ReleaseState(PState_Comics)
+            globalvars.Board.Show(True)
+            globalvars.Board.LaunchLevel()
             
-            #globalvars.Board.Show(True)
-            #globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
-            
-            if globalvars.ActiveGameSession == True:
-                globalvars.Board.Freeze(False)
-            #elif globalvars.CurrentPlayer["Playing"] == True:
+            #if globalvars.ActiveGameSession == True:
+            #    globalvars.Board.Freeze(False)
+            ##elif globalvars.CurrentPlayer["Playing"] == True:
+            ##    globalvars.Board.Show(True)
+            ##    globalvars.Board.LoadGame()
+            #else:
             #    globalvars.Board.Show(True)
-            #    globalvars.Board.LoadGame()
-            else:
-                globalvars.Board.Show(True)
-                globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
-                #if globalvars.CurrentPlayer["Game"]:
-                #    globalvars.Board.Show(True)
-                #    if globalvars.CurrentPlayer["Level"] == 0 and self.LvCompleteSuccess:
-                #        playerlist.ResetPlayer()
-                #    globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
-            #    #else:
-            #    #    self._SetState(PState_MapCareer)
+            #    globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
+            #    #if globalvars.CurrentPlayer["Game"]:
+            #    #    globalvars.Board.Show(True)
+            #    #    if globalvars.CurrentPlayer["Level"] == 0 and self.LvCompleteSuccess:
+            #    #        playerlist.ResetPlayer()
+            #    #    globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
+            ##    #else:
+            ##    #    self._SetState(PState_MapCareer)
         elif state == PState_DevLogo:
             self._ShowDialog(self.DevLogo, True)
             self._ReleaseState(PState_PubLogo)
@@ -1005,7 +1033,11 @@ class Gui(scraft.Dispatcher):
             
         elif state == PState_MapCareer:
             self._ReleaseState(PState_MainMenu)
-            self.SelectedLevel = -1
+            tmpLastLevel = globalvars.CurrentPlayer.LastUnlockedLevel()
+            if tmpLastLevel:
+                self.SelectedLevel = tmpLastLevel.GetContent()
+            else:
+                self.SelectedLevel = ""
             self._ShowDialog(self.MapCareerDialog, True)
             self._UpdateMapWindow()
             

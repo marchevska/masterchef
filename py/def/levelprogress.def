@@ -37,46 +37,46 @@ MasterChef{
     comic(Japanese.intro) {
         image = "comics.japanese.intro"
     }
-    level(def/21.def) { name = "3-1" no = "0" x = "150" y = "300" }
-    level(def/22.def) { name = "3-2" no = "0" x = "200" y = "300" }
-    level(def/23.def) { name = "3-3" no = "0" x = "250" y = "300" }
-    level(def/24.def) { name = "3-4" no = "0" x = "300" y = "300" }
-    level(def/25.def) { name = "3-5" no = "0" x = "350" y = "300" }
-    level(def/26.def) { name = "3-6" no = "0" x = "400" y = "300" }
-    level(def/27.def) { name = "3-7" no = "0" x = "450" y = "300" }
-    level(def/28.def) { name = "3-8" no = "0" x = "500" y = "300" }
-    level(def/29.def) { name = "3-9" no = "0" x = "550" y = "300" }
-    level(def/30.def) { name = "3-10" no = "0" x = "600" y = "300" }
+    level(def/21.def) { name = "3-1" no = "21" x = "150" y = "300" }
+    level(def/22.def) { name = "3-2" no = "22" x = "200" y = "300" }
+    level(def/23.def) { name = "3-3" no = "23" x = "250" y = "300" }
+    level(def/24.def) { name = "3-4" no = "24" x = "300" y = "300" }
+    level(def/25.def) { name = "3-5" no = "25" x = "350" y = "300" }
+    level(def/26.def) { name = "3-6" no = "26" x = "400" y = "300" }
+    level(def/27.def) { name = "3-7" no = "27" x = "450" y = "300" }
+    level(def/28.def) { name = "3-8" no = "28" x = "500" y = "300" }
+    level(def/29.def) { name = "3-9" no = "29" x = "550" y = "300" }
+    level(def/30.def) { name = "3-10" no = "30" x = "600" y = "300" }
     
     //Episode - Russian
     comic(Russian.intro) {
         image = "comics.russian.intro"
     }
-    level(def/31.def) { name = "4-1" no = "0" x = "150" y = "400" }
-    level(def/32.def) { name = "4-2" no = "0" x = "200" y = "400" }
-    level(def/33.def) { name = "4-3" no = "0" x = "250" y = "400" }
-    level(def/34.def) { name = "4-4" no = "0" x = "300" y = "400" }
-    level(def/35.def) { name = "4-5" no = "0" x = "350" y = "400" }
-    level(def/36.def) { name = "4-6" no = "0" x = "400" y = "400" }
-    level(def/37.def) { name = "4-7" no = "0" x = "450" y = "400" }
-    level(def/38.def) { name = "4-8" no = "0" x = "500" y = "400" }
-    level(def/39.def) { name = "4-9" no = "0" x = "550" y = "400" }
-    level(def/40.def) { name = "4-10" no = "0" x = "600" y = "400" }
+    level(def/31.def) { name = "4-1" no = "31" x = "150" y = "400" }
+    level(def/32.def) { name = "4-2" no = "32" x = "200" y = "400" }
+    level(def/33.def) { name = "4-3" no = "33" x = "250" y = "400" }
+    level(def/34.def) { name = "4-4" no = "34" x = "300" y = "400" }
+    level(def/35.def) { name = "4-5" no = "35" x = "350" y = "400" }
+    level(def/36.def) { name = "4-6" no = "36" x = "400" y = "400" }
+    level(def/37.def) { name = "4-7" no = "37" x = "450" y = "400" }
+    level(def/38.def) { name = "4-8" no = "38" x = "500" y = "400" }
+    level(def/39.def) { name = "4-9" no = "39" x = "550" y = "400" }
+    level(def/40.def) { name = "4-10" no = "40" x = "600" y = "400" }
     
     //Episode - American
     comic(American.intro) {
         image = "comics.american.intr"
     }
-    level(def/41.def) { name = "5-1" no = "0" x = "150" y = "500" }
-    level(def/42.def) { name = "5-2" no = "0" x = "200" y = "500" }
-    level(def/43.def) { name = "5-3" no = "0" x = "250" y = "500" }
-    level(def/44.def) { name = "5-4" no = "0" x = "300" y = "500" }
-    level(def/45.def) { name = "5-5" no = "0" x = "350" y = "500" }
-    level(def/46.def) { name = "5-6" no = "0" x = "400" y = "500" }
-    level(def/47.def) { name = "5-7" no = "0" x = "450" y = "500" }
-    level(def/48.def) { name = "5-8" no = "0" x = "500" y = "500" }
-    level(def/49.def) { name = "5-9" no = "0" x = "550" y = "500" }
-    level(def/50.def) { name = "5-10" no = "0" x = "600" y = "500" }
+    level(def/41.def) { name = "5-1" no = "41" x = "150" y = "500" }
+    level(def/42.def) { name = "5-2" no = "42" x = "200" y = "500" }
+    level(def/43.def) { name = "5-3" no = "43" x = "250" y = "500" }
+    level(def/44.def) { name = "5-4" no = "44" x = "300" y = "500" }
+    level(def/45.def) { name = "5-5" no = "45" x = "350" y = "500" }
+    level(def/46.def) { name = "5-6" no = "46" x = "400" y = "500" }
+    level(def/47.def) { name = "5-7" no = "47" x = "450" y = "500" }
+    level(def/48.def) { name = "5-8" no = "48" x = "500" y = "500" }
+    level(def/49.def) { name = "5-9" no = "49" x = "550" y = "500" }
+    level(def/50.def) { name = "5-10" no = "50" x = "600" y = "500" }
     
     comic(MaserChef.outro) {
         image = "comics.masterchef.outro"

@@ -90,9 +90,9 @@ class GameBoard(scraft.Dispatcher):
         self.Show(False)
         self.Freeze(True)
         
-    def LaunchLevel(self, name):
+    def LaunchLevel(self):
         self.Freeze(False)
-        self.Load(name)
+        self.Load()
         self._StartLevel()
         #self.SaveGame()
         
@@ -125,14 +125,14 @@ class GameBoard(scraft.Dispatcher):
     #--------------------------
     # Загрузка уровня
     #--------------------------
-    def Load(self, name):
+    def Load(self):
         
         self.Playing = True
-        defs.ReadLevelSettings(name)
+        defs.ReadLevelSettings(globalvars.CurrentPlayer.GetLevel().GetContent())
         
         self.LevelScore = 0
         self.Approval = 0
-        self.LevelName = defs.GetTagWithContent(globalvars.LevelProgress, u"level", name).GetStrAttr(u"name")
+        self.LevelName = globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
         
         self.HasPowerUps = {}
         

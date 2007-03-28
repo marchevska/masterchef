@@ -24,6 +24,7 @@ File_GameConfigSafe = u"safe/game.def"
 File_Hiscores = u"data/scores.def"
 File_BestResults = u"data/best.def"
 File_PlayersConfig = u"data/players.def"
+File_PlayersConfigSafe = u"safe/players.def"
 File_DummyProfile = u"safe/dummy.def"
 File_SST = u"masterchef.sst"
 

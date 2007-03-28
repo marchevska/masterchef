@@ -115,6 +115,14 @@ def ReadLevelProgress():
         oE.Log(u"Cannot read levels list")
         sys.exit()
         
+def GetLevelByNumber(no):
+    tmpName = ""
+    try:
+        tmpLevelIterator = globalvars.LevelProgress.IterateTag(u"level")
+        for i in range(no):
+            tmpLevelIterator.Next()
+    except:
+        pass
         
 #--------------------------
 # Чтение глобальных настроек
@@ -308,24 +316,29 @@ def ReadGroups(filename):
 
 def GetTagWithContent(node, tag, content):
     try:
-        if node.GetCountTag(tag)>0:
-            tmpIterator = node.IterateTag(tag)
-            while tmpIterator.Next():
-                if tmpIterator.Get().GetContent() == content:
-                    return tmpIterator.Get()
-        #else:
-        #    tmpAllNodes = node.Iterate()
-        #    while tmpAllNodes.Next():
-        #        tmpNode = tmpAllNodes.Get()
-        #        if tmpNode.GetCountTag(tag)>0:
-        #            tmpIterator = tmpNode.IterateTag(tag)
-        #            while tmpIterator.Next():
-        #                if tmpIterator.Get().GetContent() == content:
-        #                    return tmpIterator.Get()
-        return scraft.XData()
+        tmpIterator = node.IterateTag(tag)
+        while tmpIterator.Next():
+            if tmpIterator.Get().GetContent() == content:
+                return tmpIterator.Get()
+        return None
     except:
-        return scraft.XData()
+        return None
+        
+#-----------------------------------
+# Возвращает подноду данной ноды с заданным значением заданного атрибута
+#-----------------------------------
 
+def GetTagWithAttribute(node, tag, attr, value):
+    try:
+        tmpIterator = node.IterateTag(tag)
+        while tmpIterator.Next():
+            if tmpIterator.Get().HasAttr(unicode(attr)):
+                if tmpIterator.Get().GetStrAttr(unicode(attr)) == value:
+                    return tmpIterator.Get()
+        return None
+    except:
+        return None
+        
     
     
     

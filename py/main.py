@@ -33,7 +33,7 @@ config.ReadGameConfig()
 config.ApplyOptions()
 config.ReadHiscores()
 config.ReadBestResults()
-#playerlist.ReadPlayers()
+
 globalvars.PlayerList = PlayerList()
 globalvars.PlayerList.Read()
 

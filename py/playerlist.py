@@ -179,7 +179,6 @@ class PlayerList:
     def CreatePlayer(self, name):
         try:
             filename = u"data/"+name+".def"
-            #self.Players[name] = filename
             tmp = scraft.Xdata("player(%s) { file = '%s' }" % (name, filename)).GetTag()
             tmp.SetContent(unicode(name))
             self.XML.InsertCopyOf(tmp)
@@ -208,9 +207,9 @@ class PlayerList:
             sys.exit()
         
     #выбор игрока по номеру из списка
-    def SelectPlayer(self, no):
+    def SelectPlayer(self, name):
         try:
-            name = self.GetPlayerList()[no]
+            #name = self.GetPlayerList()[no]
             globalvars.GameConfig["Player"] = name
             config.SaveGameConfig()
             globalvars.CurrentPlayer.Read(name)

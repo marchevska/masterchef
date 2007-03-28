@@ -28,7 +28,7 @@ class Gui(scraft.Dispatcher):
         self.CurrentHelpPage = 0
         self.TotalHelpPages = 3
         self.FirstPlayer = 0
-        self.SelectedPlayer = -1
+        self.SelectedPlayer = ""                #имя выбранного игрока
         self.SelectedLevel = ""                 #название выбранного уровня (имя файла)
         self.TotalPlayersOnScreen = 6
         self.TotalCareerLevels = 0
@@ -472,21 +472,22 @@ class Gui(scraft.Dispatcher):
         self.CurrentHelpPage = no
         
     def _DrawPlayersList(self):
-        if globalvars.GameConfig["Player"] != "None":
+        if globalvars.GameConfig["Player"] != "":
             tmpName = globalvars.GameConfig["Player"]
             tmpList = globalvars.PlayerList.GetPlayerList()
             if tmpList.count(tmpName) > 0:
                 tmpInd = tmpList.index(tmpName)
                 self.FirstPlayer = min(tmpInd, len(tmpList) - self.TotalPlayersOnScreen)
                 self.FirstPlayer = max(self.FirstPlayer, 0)
-                self.SelectedPlayer = tmpInd
+                if self.SelectedPlayer == "":
+                    self.SelectedPlayer = tmpName
         self._UpdatePlayersList()
                 
     def _UpdatePlayersList(self):
         tmpList = globalvars.PlayerList.GetPlayerList()
         tmpCount = min(self.TotalPlayersOnScreen, len(tmpList))
         for i in range(tmpCount):
-            if self.FirstPlayer + i == self.SelectedPlayer:
+            if self.FirstPlayer + i == tmpList.index(self.SelectedPlayer):
                 self.PlayersDialog["Buttons"]["Player_"+str(i)].SetState(ButtonState_Selected)
             else:
                 self.PlayersDialog["Buttons"]["Player_"+str(i)].SetState(ButtonState_Up)
@@ -503,7 +504,7 @@ class Gui(scraft.Dispatcher):
             self.PlayersDialog["Buttons"]["Down"].Show(True)
         else:
             self.PlayersDialog["Buttons"]["Down"].Show(False)
-        if self.SelectedPlayer >= 0:
+        if self.SelectedPlayer != "":
             self.PlayersDialog["Buttons"]["Remove"].SetState(ButtonState_Up)
             self.PlayersDialog["Buttons"]["Ok"].SetState(ButtonState_Up)
             self.PlayersDialog["Buttons"]["Cancel"].SetState(ButtonState_Up)
@@ -666,7 +667,6 @@ class Gui(scraft.Dispatcher):
                 else:
                     self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress,
                                             u"level", u"no", str(cmd-Cmd_MapLevel)).GetContent()
-#                    cmd-Cmd_MapLevel
                     self._UpdateMapWindow()
                 
             #rules dialog
@@ -683,11 +683,11 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_PlayersRemove:
                     self._Ask(Str_Question_RemovePlayer)
                 elif cmd == Cmd_PlayersOk:
-                    if self.SelectedPlayer != -1:
+                    if self.SelectedPlayer != "":
                         globalvars.PlayerList.SelectPlayer(self.SelectedPlayer)
                     self._ReleaseState(PState_Players)
                 elif cmd == Cmd_PlayersCancel:
-                    self.SelectedPlayer = -1
+                    self.SelectedPlayer = ""
                     self._ReleaseState(PState_Players)
                 elif cmd == Cmd_PlayersUp:
                     self.FirstPlayer -= 1
@@ -700,7 +700,7 @@ class Gui(scraft.Dispatcher):
                     if cmd == Cmd_PlayersSelect and self.FirstPlayer == 0:
                         self._SetState(PState_EnterName)
                     else:
-                        self.SelectedPlayer = self.FirstPlayer + cmd - Cmd_PlayersSelect
+                        self.SelectedPlayer = globalvars.PlayerList.GetPlayerList()[self.FirstPlayer + cmd - Cmd_PlayersSelect]
                         self._UpdatePlayersList()
             
             #options dialog
@@ -746,7 +746,7 @@ class Gui(scraft.Dispatcher):
                         return
                     else:
                         globalvars.PlayerList.CreatePlayer(tmpName)
-                        self.SelectedPlayer = len(globalvars.PlayerList.GetPlayerList()) - 1 
+                        self.SelectedPlayer = tmpName
                         self._DrawPlayersList()
                 elif cmd == Cmd_EnterNameCancel:
                     pass
@@ -760,8 +760,8 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_Yes:
                     #remove player
                     if globalvars.StateStack[-1] == PState_Players:
-                        globalvars.PlayerList.DelPlayer(globalvars.PlayerList.GetPlayerList()[self.SelectedPlayer])
-                        self.SelectedPlayer = -1
+                        globalvars.PlayerList.DelPlayer(self.SelectedPlayer)
+                        self.SelectedPlayer = ""
                         self._DrawPlayersList()
                     #clear hiscores
                     elif globalvars.StateStack[-1] == PState_Hiscores:

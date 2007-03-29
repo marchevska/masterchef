@@ -72,6 +72,21 @@ class Storage(scraft.Dispatcher):
                     self.Grid[i,j] = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_Tokens,
                         self._CellCoordsLeft((i,j))[0], self._CellCoordsLeft((i,j))[1])
                     self.Cells[i,j] = Const_EmptyCell
+                
+    def Clear(self):
+        for tmp in self.HighlightSprites+self.SelectedSprites:
+            tmp.Dispose()
+        for spr in self.Background.values() + self.Grid.values() + \
+            self.Receptors.values():
+            spr.Dispose()
+        self.HighlightedCells = []
+        self.HighlightSprites = []
+        self.SelectedCells = []
+        self.SelectedSprites = []
+        self.Background = {}
+        self.Grid = {}
+        self.Receptors = {}
+        self.Cells = {}
         
     def _ReHighlight(self):
         #пересчитать подсветку токенов
@@ -545,5 +560,8 @@ class TrashCan(scraft.Dispatcher):
         if sprite.cookie == Cmd_TrashCan and self.Active:
             globalvars.Board.SendCommand(Cmd_TrashCan, self)
         
-        
+    def Kill(self):
+        self.Dummy.Dispose()
+        self.TrashCanSprite.Dispose()
+        self.Indicator.Kill()
         

@@ -94,6 +94,7 @@ class GameBoard(scraft.Dispatcher):
         self.Freeze(False)
         self.Load()
         self._StartLevel()
+        globalvars.ActiveGameSession = True
         #self.SaveGame()
         
     def _StartLevel(self):
@@ -105,8 +106,8 @@ class GameBoard(scraft.Dispatcher):
         self._UpdateLevelInfo()
         
     def Restart(self):
-        #globalvars.CurrentPlayer["Lives"] -= 1
-        self.LaunchLevel(self.LevelName)
+        self.Clear()
+        self.LaunchLevel()
         
     def _EndLevel(self, flag):
         """ Завершение уровня
@@ -242,6 +243,7 @@ class GameBoard(scraft.Dispatcher):
                     if tmpFrom == self.Field:
                         self.Field.SetState(FieldState_Collapse)
                     
+            #иначе - использовать бонус
             elif self.GameCursorState == GameCursorState_Tool:
                 if self.PickedTool == 'Sweet':
                     self.UseTool()
@@ -249,7 +251,6 @@ class GameBoard(scraft.Dispatcher):
                 elif self.PickedTool == 'Gift':
                     self.UseTool()
                     parameter["station"].Customer.GiveGift()
-            #иначе - использовать бонус
                 
         elif cmd == Cmd_ClickStorage:
             if self.GameCursorState == GameCursorState_Tokens:
@@ -346,7 +347,10 @@ class GameBoard(scraft.Dispatcher):
                 
         #конец уровня; задать способ удаления блоков с поля
         elif state == GameState_EndLevel:
-            pass
+            if globalvars.RunMode == RunMode_Play:
+                globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings["expertgoal"],
+                        "hiscore": self.LevelScore, "played": True})
+            globalvars.GUI.CallLevelCompleteDialog(True)
         
         
     #--------------------------
@@ -365,6 +369,11 @@ class GameBoard(scraft.Dispatcher):
                 elif self.GameCursorState == GameCursorState_Tool:
                     self.ToolSprite.x = oE.mouseX
                     self.ToolSprite.y = oE.mouseY
+                #проверка на конец уровня
+                if self.RemainingCustomers == 0:
+                    tmpBusyStations = filter(lambda x: x.State == CStationState_Busy, self.CStations)
+                    if tmpBusyStations == []:
+                        self._SetState(GameState_EndLevel)
                 
             elif self.State == GameState_EndLevel:
                 #красивое падение блоков в конце уровня, по заданной программе
@@ -451,6 +460,33 @@ class GameBoard(scraft.Dispatcher):
                 else:
                     self.BuyPowerUpButtons[tmp].SetState(ButtonState_Inert)
         
+    #--------------------------
+    # очистка игрового поля
+    #--------------------------
+    def Clear(self):
+        self.Playing = False
+        if self.GameCursorState == GameCursorState_Tokens:
+            self.TokenSprite.Dsipose()
+        elif self.GameCursorState == GameCursorState_Tool:
+            self.ToolSprite.Dispose()
+        for tmp in self.CStations + self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():
+            tmp.Kill()
+        self.Field.Clear()
+        for tmp in self.Stores:
+            tmp.Clear()
+        for spr in self.Static:
+            spr.Dispose()
+        self.TrashCan.Kill()
+        self.CustomersQue.Kill()
+            
+        self.CStations = []
+        self.PowerUpButtons = {}
+        self.BuyPowerUpButtons = {}
+        self.Static = []
+        self.Stores = []
+        self.Field = None
+        del self.TrashCan
+             
     def Show(self, flag):
         """
         Показать - спрятать

@@ -61,6 +61,7 @@ Cmd_YncCancel = 404
 Cmd_ContinueYes = 412
 Cmd_ContinueNo = 413
 
+Cmd_LvGoalsPlay = 405
 Cmd_LvCompleteNextLevel = 414
 Cmd_LvCompleteMainMenu = 415
 
@@ -88,6 +89,7 @@ PState_Help = 4
 PState_Hiscores = 5
 PState_Players = 6
 PState_EnterName = 7
+PState_StartLevel = 18
 PState_NextLevel = 8
 PState_EpiComplete = 9
 PState_GameOver = 10

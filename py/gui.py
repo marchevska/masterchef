@@ -173,6 +173,24 @@ class Gui(scraft.Dispatcher):
         self.EnterNameDialog["Text"]["NameErrors"].xScale, self.EnterNameDialog["Text"]["NameErrors"].yScale = 50,50
         
         #------------------
+        # старт уровня
+        #------------------
+        self.LevelGoalsDialog = {"Static": {}, "Text": {}, "Buttons": {}}
+        self.LevelGoalsDialog["Static"]["Back"] = MakeSimpleSprite(u"popup-background", Layer_PopupBg)
+        self.LevelGoalsDialog["Text"]["Title"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 400, 165,
+                                                                scraft.HotspotCenter, Str_LvGoals_Title)
+        self.LevelGoalsDialog["Text"]["Text0"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 400, 220)
+        self.LevelGoalsDialog["Text"]["Text1"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 300, 270)
+        self.LevelGoalsDialog["Text"]["Text2"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 500, 270)
+        self.LevelGoalsDialog["Text"]["Text3"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 300, 350)
+        self.LevelGoalsDialog["Text"]["Text4"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 500, 350)
+        self.LevelGoalsDialog["Buttons"]["Play"] = PushButton("PlayLevel",
+                self, Cmd_LvGoalsPlay, PState_StartLevel,
+                u"button-4st", [0, 1, 2], 
+                Layer_PopupBtnTxt, 320, 500, 120, 40,
+                Str_LvGoalsPlay, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
+        
+        #------------------
         # уровень завершен
         #------------------
         self.LevelCompleteDialog = {"Static": {}, "Text": {}, "Buttons": {}}
@@ -416,12 +434,12 @@ class Gui(scraft.Dispatcher):
             #    levels.Levels[level]["Name"])
             self.LevelCompleteDialog["Text"]["Text1"].text = unicode(Str_LvComplete_YourScoreIs + str(score))
             self.LevelCompleteDialog["Text"]["Text2"].text = unicode(Str_LvComplete_YourTimeIs + self._StrMinSec(time))
-            self.LevelCompleteDialog["Text"]["Text3"].text = unicode(Str_LvComplete_BestScore + \
-                str(globalvars.BestResults[level]["BestScore"]) + \
-                Str_LvComplete_AchievedBy + globalvars.BestResults[level]["PlayerScore"])
-            self.LevelCompleteDialog["Text"]["Text4"].text = unicode(Str_LvComplete_BestTime + \
-                self._StrMinSec(globalvars.BestResults[level]["BestTime"]) + \
-                Str_LvComplete_AchievedBy + globalvars.BestResults[level]["PlayerTime"])
+            #self.LevelCompleteDialog["Text"]["Text3"].text = unicode(Str_LvComplete_BestScore + \
+            #    str(globalvars.BestResults[level]["BestScore"]) + \
+            #    Str_LvComplete_AchievedBy + globalvars.BestResults[level]["PlayerScore"])
+            #self.LevelCompleteDialog["Text"]["Text4"].text = unicode(Str_LvComplete_BestTime + \
+            #    self._StrMinSec(globalvars.BestResults[level]["BestTime"]) + \
+            #    Str_LvComplete_AchievedBy + globalvars.BestResults[level]["PlayerTime"])
             self.LevelCompleteDialog["Buttons"]["NextLevel"].SetText(Str_LvCompleteNextLevel)
         else:
             self.LevelCompleteDialog["Text"]["Text0"].text = unicode(Str_LvComplete_TooLate)
@@ -475,19 +493,21 @@ class Gui(scraft.Dispatcher):
         if globalvars.GameConfig["Player"] != "":
             tmpName = globalvars.GameConfig["Player"]
             tmpList = globalvars.PlayerList.GetPlayerList()
-            if tmpList.count(tmpName) > 0:
-                tmpInd = tmpList.index(tmpName)
-                self.FirstPlayer = min(tmpInd, len(tmpList) - self.TotalPlayersOnScreen)
-                self.FirstPlayer = max(self.FirstPlayer, 0)
-                if self.SelectedPlayer == "":
-                    self.SelectedPlayer = tmpName
+            if self.SelectedPlayer == "":
+                self.SelectedPlayer = tmpName
+            if tmpList.count(self.SelectedPlayer) > 0:
+                tmpInd = tmpList.index(self.SelectedPlayer)
+                if tmpInd < self.TotalPlayersOnScreen:
+                    self.FirstPlayer = 0
+                else:
+                    self.FirstPlayer = tmpInd - self.TotalPlayersOnScreen+1
         self._UpdatePlayersList()
                 
     def _UpdatePlayersList(self):
         tmpList = globalvars.PlayerList.GetPlayerList()
         tmpCount = min(self.TotalPlayersOnScreen, len(tmpList))
         for i in range(tmpCount):
-            if self.FirstPlayer + i == tmpList.index(self.SelectedPlayer):
+            if tmpList[self.FirstPlayer + i] == self.SelectedPlayer:
                 self.PlayersDialog["Buttons"]["Player_"+str(i)].SetState(ButtonState_Selected)
             else:
                 self.PlayersDialog["Buttons"]["Player_"+str(i)].SetState(ButtonState_Up)
@@ -583,6 +603,12 @@ class Gui(scraft.Dispatcher):
         tmp = globalvars.CurrentPlayer.GetLevel()
         self.ComicScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr(u"image"))
         
+    def _UpdateLevelGoals(self):
+        self.LevelGoalsDialog["Text"]["Title"].text = Str_LvGoals_Title + \
+            globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
+        self.LevelGoalsDialog["Text"]["Text1"].text = "Level goal: "+str(globalvars.LevelSettings["moneygoal"])
+        self.LevelGoalsDialog["Text"]["Text2"].text = "Expert goal: "+str(globalvars.LevelSettings["expertgoal"])
+        
     def _CloseOptionsDialog(self, flag):
         if flag:
             globalvars.GameConfig["Fullscreen"] = self.OptionsDialog["Static"]["Galka_Fullscreen"].visible
@@ -594,8 +620,10 @@ class Gui(scraft.Dispatcher):
         config.ApplyOptions()
         self._ReleaseState(PState_Options)
         
+    #-------------------------------------------
     #переход к следующему комиксу или уровню
     #функция вызывается при вызове карты и при закрытии комикса
+    #-------------------------------------------
     def NextCareerStage(self):
         try:
             #проходим по списку уровней и находим последний разлоченный
@@ -615,13 +643,17 @@ class Gui(scraft.Dispatcher):
             #иначе запускаем первый уровень
             else:
                 globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
-                self._SetState(PState_Game)
+                self._SetState(PState_StartLevel)
+                #self._SetState(PState_Game)
         except:
             oE.Log(unicode("Next stage fatal error"))
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             sys.exit()
         
         
+    #-------------------------------------------
+    # обработка команд от кнопок
+    #-------------------------------------------
     def SendCommand(self, cmd):
         try:
             #developer logo
@@ -661,7 +693,8 @@ class Gui(scraft.Dispatcher):
                     self._ReleaseState(PState_MapCareer)
                     globalvars.CurrentPlayer.SetLevel(defs.GetTagWithContent(globalvars.LevelProgress,
                         u"level", self.SelectedLevel))
-                    self._SetState(PState_Game)
+                    self._SetState(PState_StartLevel)
+                    #self._SetState(PState_Game)
                 elif cmd == Cmd_MapMainMenu:
                     self._ReleaseState(PState_MapCareer)
                 else:
@@ -776,7 +809,8 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_YncYes:
                     #continue game
                     if globalvars.StateStack[-1] == PState_MainMenu:
-                        self._SetState(PState_Game)
+                        self._SetState(PState_StartLevel)
+                        #self._SetState(PState_Game)
                 elif cmd == Cmd_YncNo:
                     #start new game
                     if globalvars.StateStack[-1] == PState_MainMenu:
@@ -786,23 +820,27 @@ class Gui(scraft.Dispatcher):
                 elif cmd == Cmd_YncCancel:
                     pass
                     
+            #level goals dialog
+            elif globalvars.StateStack[-1] == PState_StartLevel:
+                self._ReleaseState(PState_StartLevel)
+                if cmd == Cmd_LvGoalsPlay:
+                    globalvars.Board.Freeze(False)
+            
             #level complete dialog
             elif globalvars.StateStack[-1] == PState_NextLevel:
                 self._ReleaseState(PState_NextLevel)
+                self._ReleaseState(PState_Game)
                 if cmd == Cmd_LvCompleteNextLevel:
-                    tmpLevel = globalvars.CurrentPlayer.GetLevel()
-                    if levels.Levels[tmpLevel]["NoInEpisode"] == 0 and self.LvCompleteSuccess:
-                        self._SetState(PState_EpiComplete)
-                    else:
-                        self._SetState(PState_Game)
+                    self.NextCareerStage()
                 elif cmd == Cmd_LvCompleteMainMenu:
-                    self._ReleaseState(PState_Game)
+                    pass
                 
             #episode complete dialog
             elif globalvars.StateStack[-1] == PState_EpiComplete:
                 self._ReleaseState(PState_EpiComplete)
                 if cmd == Cmd_EpiCompleteNext:
-                    self._SetState(PState_Game)
+                    self.NextStage()
+                    #self._SetState(PState_Game)
                 elif cmd == Cmd_EpiCompleteMainMenu:
                     self._ReleaseState(PState_Game)
             
@@ -912,6 +950,8 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.MapCareerDialog, False)
         elif state == PState_Comics:
             self._ShowDialog(self.ComicScreen, False)
+        elif state == PState_StartLevel:
+            self._ShowDialog(self.LevelGoalsDialog, False)
         elif state == PState_NextLevel:
             self._ShowDialog(self.LevelCompleteDialog, False)
         elif state == PState_EpiComplete:
@@ -934,6 +974,7 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.YesNoCancelDialog, False)
         elif state == PState_Game:
             globalvars.Board.Show(False)
+            globalvars.Board.Clear()
             #globalvars.ActiveGameSession
         if globalvars.StateStack != [] and globalvars.StateStack[-1] == state:
             globalvars.StateStack.pop()
@@ -944,7 +985,8 @@ class Gui(scraft.Dispatcher):
     def JustRun(self):
         playerlist.ResetPlayer()
         globalvars.CurrentPlayer["Playing"] = False
-        self._SetState(PState_Game)
+        self._SetState(PState_StartLevel)
+        #self._SetState(PState_Game)
         
         
     def _SetState(self, state):
@@ -955,7 +997,10 @@ class Gui(scraft.Dispatcher):
             globalvars.Musician.SetState(MusicState_Game)
         else:
             globalvars.Musician.SetState(MusicState_Menu)
-        if state == PState_Game:
+            
+        if state == PState_StartLevel:
+            globalvars.StateStack[-1] = PState_Game
+            globalvars.StateStack.append(PState_StartLevel)
             self._ReleaseState(PState_MainMenu)
             self._ReleaseState(PState_MapCareer)
             self._ReleaseState(PState_PubLogo)
@@ -963,22 +1008,13 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_Comics)
             globalvars.Board.Show(True)
             globalvars.Board.LaunchLevel()
+            globalvars.Board.Freeze(True)
+            self._ShowDialog(self.LevelGoalsDialog, True)
+            self._UpdateLevelGoals()
             
-            #if globalvars.ActiveGameSession == True:
-            #    globalvars.Board.Freeze(False)
-            ##elif globalvars.CurrentPlayer["Playing"] == True:
-            ##    globalvars.Board.Show(True)
-            ##    globalvars.Board.LoadGame()
-            #else:
-            #    globalvars.Board.Show(True)
-            #    globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
-            #    #if globalvars.CurrentPlayer["Game"]:
-            #    #    globalvars.Board.Show(True)
-            #    #    if globalvars.CurrentPlayer["Level"] == 0 and self.LvCompleteSuccess:
-            #    #        playerlist.ResetPlayer()
-            #    #    globalvars.Board.LaunchLevel(globalvars.CurrentPlayer["Level"])
-            ##    #else:
-            ##    #    self._SetState(PState_MapCareer)
+        elif state == PState_Game:
+            globalvars.Board.Freeze(False)
+           
         elif state == PState_DevLogo:
             self._ShowDialog(self.DevLogo, True)
             self._ReleaseState(PState_PubLogo)
@@ -990,6 +1026,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_Hiscores)
             self._ReleaseState(PState_YesNo)
             self._ReleaseState(PState_YesNoCancel)
+            self._ReleaseState(PState_StartLevel)
             self._ReleaseState(PState_NextLevel)
             self._ReleaseState(PState_EpiComplete)
             self._ReleaseState(PState_GameOver)
@@ -1016,12 +1053,9 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_EpiComplete)
             self._ReleaseState(PState_GameOver)
             self._ReleaseState(PState_MapCareer)
-            #if globalvars.GameConfig["Player"] == 'None' or \
-            #    globalvars.PlList.count(globalvars.GameConfig["Player"]) == 0:
             if globalvars.GameConfig["Player"] == "":
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = False
                 self.MainMenuDialog["Buttons"]["Players"].Show(False)
-                #self.MainMenuDialog["Text"]["WelcomeMessage"].text = u"" #u"Welcome, guest"
                 if len(globalvars.PlayerList.GetPlayerList()) <= 1:
                     self._SetState(PState_EnterName)
                 else:
@@ -1091,11 +1125,3 @@ class Gui(scraft.Dispatcher):
         elif state == PState_EndGame:
             pass
         
-        
-def LevelStringName(no):
-    if no >= 10:
-        return str(no)
-    else:
-        return "0"+str(no)
-
-

@@ -99,7 +99,12 @@ class PushButton(scraft.Dispatcher):
     #            oE.PlaySound(u"click", Channel_Default)
     #            self.Whose.SendCommand(sprite.cookie)
         
-
+    def Kill(self):
+        self.Dummy.Dispose()
+        self.ButtonSprite.Dispose()
+        if self.HasText:
+            self.TextSprite.Dispose()
+    
 #--------------------------------
 # Регулятор-слайдер
 # Состоит из dummy-4-hit-area,

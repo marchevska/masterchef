@@ -214,6 +214,10 @@ class BarIndicator:
         self.sprite.primitive.count = 4
         for i in range(4):
             self.sprite.primitive.SetXY(i, tmpCoords[i][0], tmpCoords[i][1])
+            
+    def Kill(self):
+        self.sprite.Dispose()
+        self.bgSprite.Dispose()
 
 #-----------------------------------------
 # Числовой индикатор с плавным изменением

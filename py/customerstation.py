@@ -156,7 +156,6 @@ class CustomerStation(scraft.Dispatcher):
         self.Hero.Show(False)
         self.ReleaseButton.Show(False)
         if flag and self.HasOrder and self.Active:
-            print "*-*"
             self.AddTokens("", 0)
         if self.Active:
             self.Customer.Show(flag)
@@ -190,6 +189,14 @@ class CustomerStation(scraft.Dispatcher):
             self.Hero.Show(False)
             self.State = CStationState_Free
             globalvars.Board.SendCommand(Cmd_FreeStation)
+        
+    def Kill(self):
+        self.Dummy.Dispose()
+        self.TableSprite.Dispose()
+        self.RecipeIndicator.Kill()
+        self.RecipeInfoSprite.Dispose()
+        self.ReleaseButton.Kill()
+        
         
 #---------------------------------------------
 # »ндикатор количества требуемых ингредиентов

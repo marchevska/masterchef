@@ -89,7 +89,7 @@ class Player:
     #------------------------------------
     def SetLevel(self, level):
         try:
-            self.Level = level.Clone()
+            self.Level = level#.Clone()
             if level.GetName() == u"comic":
                 #если комикс: отметить в профиле игрока комикс как увиденный
                 tmpNode = defs.GetTagWithContent(self.XML, u"comic", level.GetContent())
@@ -123,7 +123,31 @@ class Player:
     def SetLevelParams(self, level, params):
         pass
         
-        
+    #------------------------------------
+    # записать результаты текущего уровня + в профиль тоже
+    #------------------------------------
+    def RecordLevelResults(self, params):
+        try:
+            tmpLevelNode = self.XML.GetSubtag(self.Level.GetContent())
+            if params.has_key("expert"):
+                if params["expert"]:
+                    tmpLevelNode.SetBoolAttr("expert", True)
+            if params.has_key("played"):
+                tmpLevelNode.SetBoolAttr("played", True)
+            if params.has_key("hiscore"):
+                if params["hiscore"] > tmpLevelNode.GetIntAttr("hiscore"):
+                    tmpLevelNode.SetIntAttr("hiscore", params["hiscore"])
+                #проверить, достигнута ли цель уровня; если да - разлочить следующий
+                if params["hiscore"] >= globalvars.LevelSettings["moneygoal"]:
+                    tmpNextLevelNode = self.XML.GetSubtag(self.Level.Next().GetContent())
+                    if tmpNextLevelNode:
+                        tmpNextLevelNode.SetBoolAttr("unlocked", True)
+            self.Save()
+        except:
+            oE.Log(unicode("Cannot update player profile"))
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            sys.exit()
+            
 class PlayerList:
     def __init__(self):
         try:
@@ -137,14 +161,9 @@ class PlayerList:
     #считывает и парсит список игроков (в начале игры)
     def Read(self):
         try:
-            #if config.FileValid(File_PlayersConfig):
-            #    PlayersIterator = oE.ParseDEF(File_PlayersConfig).GetTag(u"MasterChef").IterateTag(u"player")
-                #while PlayersIterator.Next():
-                #    tmpPl = PlayersIterator.Get()
-                #    self.Players[tmpPl.GetContent()] = tmpPl.GetStrAttr(u"file")
             self.Filename = File_PlayersConfig
-            if config.FileValid(File_PlayersConfig):
-                self.XML = oE.ParseDEF(File_PlayersConfig).GetTag(u"MasterChef")
+            if config.FileValid(self.Filename):
+                self.XML = oE.ParseDEF(self.Filename).GetTag(u"MasterChef")
             globalvars.CurrentPlayer = Player()
             globalvars.CurrentPlayer.Read(globalvars.GameConfig["Player"])
         except:
@@ -191,11 +210,12 @@ class PlayerList:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             sys.exit()
         
+    # удаление игрока по имени
     def DelPlayer(self, name):
         try:
-            if os.path.exists(self.Players[name]):
-                os.remove(self.Players[name])
-            del self.Players[name]
+            if os.path.exists(self.FilenameFor(name)):
+                os.remove(self.FilenameFor(name))
+            self.XML.GetSubtag(name).Erase()
             self.Save()
             if globalvars.GameConfig["Player"] == name:
                 globalvars.GameConfig["Player"] = ""

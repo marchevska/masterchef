@@ -32,6 +32,9 @@ Str_EnterName_Error_Empty = u"Cannot use empty name"
 Str_EnterName_Error_Bad = u"Bad name"
 Str_EnterName_Error_Exist = u"This name already exists"
 
+Str_LvGoalsPlay = u"PLAY"
+Str_LvGoals_Title = "Level "
+
 Str_LvComplete_Title = "LEVEL RESULTS"
 Str_LvCompleteNextLevel = "Next level"
 Str_LvCompleteTryAgain = "Try again"

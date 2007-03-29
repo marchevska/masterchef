@@ -466,7 +466,7 @@ class GameBoard(scraft.Dispatcher):
     def Clear(self):
         self.Playing = False
         if self.GameCursorState == GameCursorState_Tokens:
-            self.TokenSprite.Dsipose()
+            self.TokenSprite.Dispose()
         elif self.GameCursorState == GameCursorState_Tool:
             self.ToolSprite.Dispose()
         for tmp in self.CStations + self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():

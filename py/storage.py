@@ -105,7 +105,7 @@ class Storage(scraft.Dispatcher):
         elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
             if sprite.cookie == Cmd_Receptor:
                 tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                if self.Cells[tmpPos] != Const_EmptyCell:
+                if self.Cells[tmpPos] != Const_EmptyCell and len(self.HighlightedCells)>0:
                     #pick tokens    
                         globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
                         self.PickTokens()
@@ -306,8 +306,6 @@ class Field(Storage):
         self.MatchMap = {}
         curKind = 0
         for (i,j) in self.Cells.keys():
-        #for i in range(8):
-        #    for j in range(8):
                 if not self.MatchMap.has_key((i,j)):
                     self._Compare(i, j, self.Cells[(i,j)], curKind)
                     curKind +=1
@@ -435,7 +433,12 @@ class Field(Storage):
         #основной цикл - ожидание ввода игрока
         elif state == FieldState_Input:
             self._GenerateMatchMap()
-            #кроме того, найти и подсветить группу под курсором
+            sprite = oE.FindSpriteAtMouse(Layer_Receptors, Layer_Receptors)
+            if sprite:
+                if sprite.cookie == Cmd_Receptor:
+                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    if self.Cells[tmpPos] != Const_EmptyCell:
+                        self._HighlightCells(tmpPos, flag)
             
         #схлопывание столбцов поля после удаления блоков
         elif state == FieldState_Collapse:
@@ -506,22 +509,22 @@ class Field(Storage):
     # если тулзы не используются, то использовать родительскую функцию
     #--------------------------
     def _OnMouseClick(self, sprite, x, y, button):
-        if self.State == FieldState_Input and button == 1 and \
-            globalvars.Board.GameCursorState == GameCursorState_Tool:
-            #ложка или крест - удалить подсвеченные токены
-            if globalvars.Board.PickedTool in ('Cross', 'Spoon'):
-                globalvars.Board.UseTool()
-                for tmpCell in self.HighlightedCells:
-                    self._RemoveTokenFrom(tmpCell)
-                self.SetState(FieldState_Collapse)
-            #волшебная палочка - превращение токенов
-            elif globalvars.Board.PickedTool == 'Magicwand':
-                globalvars.Board.UseTool()
-                tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                self.ConvertedCells = list(self.HighlightedCells)
-                self.SetState(FieldState_MagicWandConverting, tmpPos)
-        else:
-            Storage._OnMouseClick(self, sprite, x, y, button)
+        if self.State == FieldState_Input:
+            if button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool:
+                #ложка или крест - удалить подсвеченные токены
+                if globalvars.Board.PickedTool in ('Cross', 'Spoon'):
+                    globalvars.Board.UseTool()
+                    for tmpCell in self.HighlightedCells:
+                        self._RemoveTokenFrom(tmpCell)
+                    self.SetState(FieldState_Collapse)
+                #волшебная палочка - превращение токенов
+                elif globalvars.Board.PickedTool == 'Magicwand':
+                    globalvars.Board.UseTool()
+                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    self.ConvertedCells = list(self.HighlightedCells)
+                    self.SetState(FieldState_MagicWandConverting, tmpPos)
+            else:
+                Storage._OnMouseClick(self, sprite, x, y, button)
             
             
         

@@ -1,7 +1,7 @@
 MasterChef{
     PlayerName = ''
     
-    Levels{
+    //Levels{
         level(def/00.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
         level(def/01.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
         level(def/02.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
@@ -53,18 +53,20 @@ MasterChef{
         level(def/48.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
         level(def/49.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
         level(def/50.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
-    }
+    //}
     
-    Episodes{
-        Episode(SweetShop){ seenintro = "no" seenoutro = "no" }
-        Episode(Mexican){ seenintro = "no" seenoutro = "no" }
-        Episode(Japanese){ seenintro = "no" seenoutro = "no" }
-        Episode(Russian){ seenintro = "no" seenoutro = "no" }
-        Episode(American){ seenintro = "no" seenoutro = "no" }
-    }
+    //Comics{
+        comic(MaserChef.intro) { seen = "no" unlocked = "yes" }
+        comic(SweetShop.intro) { seen = "no" unlocked = "no" }
+        comic(Mexican.intro) { seen = "no" unlocked = "no" }
+        comic(Japanese.intro) { seen = "no" unlocked = "no" }
+        comic(Russian.intro) { seen = "no" unlocked = "no" }
+        comic(American.intro) { seen = "no" unlocked = "no" }
+        comic(MaserChef.outro) { seen = "no" unlocked = "no" }
+    //}
     
-    Hints{
+    //Hints{
         hint{ name = "" seen = "no" }
-    }
+    //}
     
 }

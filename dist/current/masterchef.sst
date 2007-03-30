@@ -222,13 +222,13 @@ bitmap = img/gui/episode1-complete.png
 #menu track
 sound menu {
 sample = sound/menu.ogg
-type = static
+type = streamed
 }
 
 #game track 1
 sound track1 {
 sample = sound/track1.ogg
-type = static
+type = streamed
 }
 
 #button click

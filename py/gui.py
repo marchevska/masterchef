@@ -975,7 +975,6 @@ class Gui(scraft.Dispatcher):
         elif state == PState_Game:
             globalvars.Board.Show(False)
             globalvars.Board.Clear()
-            #globalvars.ActiveGameSession
         if globalvars.StateStack != [] and globalvars.StateStack[-1] == state:
             globalvars.StateStack.pop()
             if len(globalvars.StateStack)>0:

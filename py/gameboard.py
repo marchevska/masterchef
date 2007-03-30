@@ -76,6 +76,7 @@ class GameBoard(scraft.Dispatcher):
         self.PickedTokens = ""
         self.PickedTokensNo = 0
         self.TokenSprite = None
+        self.TokensNoSprite = None
         self.ToolSprite = None
         self.PowerUpButtons = {}
         self.BuyPowerUpButtons = {}
@@ -94,11 +95,9 @@ class GameBoard(scraft.Dispatcher):
         self.Freeze(False)
         self.Load()
         self._StartLevel()
-        globalvars.ActiveGameSession = True
         #self.SaveGame()
         
     def _StartLevel(self):
-        globalvars.ActiveGameSession = True
         self.Expert = False
         self.HudElements["LevelName"].text = unicode(self.LevelName)
         self.HudElements["GoalText"].text = unicode(Str_HUD_GoalText)
@@ -425,6 +424,9 @@ class GameBoard(scraft.Dispatcher):
         self.PickedTokens = type
         self.PickedTokensNo = no
         self.TokenSprite = MakeSprite(globalvars.CuisineInfo["Ingredients"][type]["src"], Layer_Tools)
+        self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
+                                        { "parent": self.TokenSprite, "x": 20, "y": 30, "text": str(no),
+                                          "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
         self._SetGameCursorState(GameCursorState_Tokens)
         self.TokensFrom = where
         # добавить текст с числом токенов на курсоре
@@ -435,6 +437,7 @@ class GameBoard(scraft.Dispatcher):
         self.PickedTokens = ""
         self.PickedTokensNo = 0
         self.TokenSprite.Dispose()
+        self.TokensNoSprite.Dispose()
         self._SetGameCursorState(GameCursorState_Default)
         self.TokensFrom = None
         
@@ -467,6 +470,7 @@ class GameBoard(scraft.Dispatcher):
         self.Playing = False
         if self.GameCursorState == GameCursorState_Tokens:
             self.TokenSprite.Dispose()
+            self.TokensNoSprite.Dispose()
         elif self.GameCursorState == GameCursorState_Tool:
             self.ToolSprite.Dispose()
         for tmp in self.CStations + self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():

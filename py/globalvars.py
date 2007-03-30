@@ -19,7 +19,6 @@ global Layout
 
 global GameConfig
 global StateStack
-global ActiveGameSession
 global LastCookie
 global RunMode
 

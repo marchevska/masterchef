@@ -58,8 +58,6 @@ globalvars.StateStack = []
 globalvars.GUI = Gui()
 globalvars.Board = GameBoard()
     
-globalvars.ActiveGameSession = False
-
 # начало кода запуска заданного уровня
 if globalvars.RunMode == RunMode_Test:
     try:

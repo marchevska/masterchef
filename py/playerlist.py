@@ -64,7 +64,7 @@ class Player:
     #------------------------------------
     def Save(self):
         try:
-            if self.Filename != "":
+            if globalvars.RunMode == RunMode_Play and self.Filename != "":
                 tmpDir = os.path.dirname(self.Filename)
                 if not os.access(tmpDir, os.W_OK):
                     os.mkdir(tmpDir)
@@ -129,20 +129,23 @@ class Player:
     def RecordLevelResults(self, params):
         try:
             tmpLevelNode = self.XML.GetSubtag(self.Level.GetContent())
-            if params.has_key("expert"):
-                if params["expert"]:
-                    tmpLevelNode.SetBoolAttr("expert", True)
-            if params.has_key("played"):
-                tmpLevelNode.SetBoolAttr("played", True)
-            if params.has_key("hiscore"):
-                if params["hiscore"] > tmpLevelNode.GetIntAttr("hiscore"):
-                    tmpLevelNode.SetIntAttr("hiscore", params["hiscore"])
-                #проверить, достигнута ли цель уровня; если да - разлочить следующий
-                if params["hiscore"] >= globalvars.LevelSettings["moneygoal"]:
-                    tmpNextLevelNode = self.XML.GetSubtag(self.Level.Next().GetContent())
-                    if tmpNextLevelNode:
-                        tmpNextLevelNode.SetBoolAttr("unlocked", True)
-            self.Save()
+            if globalvars.RunMode == RunMode_Play:
+                if params.has_key("expert"):
+                    if params["expert"]:
+                        tmpLevelNode.SetBoolAttr("expert", True)
+                if params.has_key("played"):
+                    tmpLevelNode.SetBoolAttr("played", True)
+                if params.has_key("hiscore"):
+                    if params["hiscore"] > tmpLevelNode.GetIntAttr("hiscore"):
+                        tmpLevelNode.SetIntAttr("hiscore", params["hiscore"])
+                    #проверить, достигнута ли цель уровня; если да - разлочить следующий
+                    if params["hiscore"] >= globalvars.LevelSettings["moneygoal"]:
+                        tmpNextLevelNode = self.XML.GetSubtag(self.Level.Next().GetContent())
+                        if tmpNextLevelNode:
+                            tmpNextLevelNode.SetBoolAttr("unlocked", True)
+                self.Save()
+            else:
+                tmpLevelNode.SetBoolAttr("unlocked", True)
         except:
             oE.Log(unicode("Cannot update player profile"))
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))

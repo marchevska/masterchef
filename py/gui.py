@@ -983,8 +983,6 @@ class Gui(scraft.Dispatcher):
         
     # запуск указанного уровня
     def JustRun(self):
-        playerlist.ResetPlayer()
-        globalvars.CurrentPlayer["Playing"] = False
         self._SetState(PState_StartLevel)
         #self._SetState(PState_Game)
         

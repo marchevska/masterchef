@@ -24,7 +24,7 @@ import os.path
 def ReadGameConfig():
     try:
         globalvars.GameConfig = {}
-        if FileValid(File_GameConfig):
+        if FileValid(File_GameConfig) and globalvars.RunMode == RunMode_Play:
             tmpNode = oE.ParseDEF(File_GameConfig).GetTag(u"MasterChef")
         else:
             tmpNode = oE.ParseDEF(File_GameConfigSafe).GetTag(u"MasterChef")

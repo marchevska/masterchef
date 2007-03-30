@@ -347,8 +347,8 @@ class GameBoard(scraft.Dispatcher):
                 
         #конец уровня; задать способ удаления блоков с поля
         elif state == GameState_EndLevel:
-            if globalvars.RunMode == RunMode_Play:
-                globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings["expertgoal"],
+            #if globalvars.RunMode == RunMode_Play:
+            globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings["expertgoal"],
                         "hiscore": self.LevelScore, "played": True})
             globalvars.GUI.CallLevelCompleteDialog(True)
         

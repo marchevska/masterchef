@@ -28,7 +28,20 @@ oE.title = Window_Title
 oE.nativeCursor = False
 oE.showFps = False
 
-globalvars.RunMode = RunMode_Play
+defs.ReadLevelProgress()
+defs.ReadCuisine()
+defs.ReadResourceInfo()
+
+# определяем режим запска - тест или реальная игра
+if len(sys.argv) >= 3:
+    if sys.argv[1] == "run" and globalvars.LevelProgress.GetSubtag(sys.argv[2]) != None:
+        globalvars.RunMode = RunMode_Test
+    else:
+        globalvars.RunMode = RunMode_Play
+else:
+    globalvars.RunMode = RunMode_Play
+# конец кода определения типа запуска
+
 config.ReadGameConfig()
 config.ApplyOptions()
 config.ReadHiscores()
@@ -36,10 +49,6 @@ config.ReadBestResults()
 
 globalvars.PlayerList = PlayerList()
 globalvars.PlayerList.Read()
-
-defs.ReadLevelProgress()
-defs.ReadCuisine()
-defs.ReadResourceInfo()
 
 globalvars.Cursor = Cursor()
 globalvars.Timer = Timer()
@@ -52,16 +61,12 @@ globalvars.Board = GameBoard()
 globalvars.ActiveGameSession = False
 
 # начало кода запуска заданного уровня
-if len(sys.argv) >= 3:
-    if sys.argv[1] == "run":# and sys.argv[2] in globalvars.LevelProgress.keys():
-        try:
-            globalvars.RunMode = RunMode_Test
-            globalvars.CurrentPlayer["Level"] = sys.argv[2]
-            globalvars.GUI.JustRun()
-        except:
-            sys.exit()
-    else:
-        globalvars.RunMode = RunMode_Play
+if globalvars.RunMode == RunMode_Test:
+    try:
+        globalvars.CurrentPlayer.Level = globalvars.LevelProgress.GetSubtag(sys.argv[2])
+        globalvars.GUI.JustRun()
+    except:
+        sys.exit()
 # конец кода запуска заданного уровня
 
 while globalvars.StateStack[-1] != PState_EndGame:

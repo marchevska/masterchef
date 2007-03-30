@@ -460,6 +460,7 @@ class Field(Storage):
             for cell in self.FallingBlocks.keys():
                 self.Grid[cell].y = self._CellCoords(cell)[1] - \
                     int(self.FallingBlocks[cell]*self.FallingTime/1000)
+            self._GenerateMatchMap()
                 
         #перемешивание токенов на поле
         elif state == FieldState_Shuffle:
@@ -498,7 +499,7 @@ class Field(Storage):
     # при движении курсора над полем подсвечивает группы клеток
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
-        if self.State == FieldState_Input:
+        #if self.State == FieldState_Input:
             if sprite.cookie == Cmd_Receptor:
                 tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                 if self.Cells[tmpPos] != Const_EmptyCell:
@@ -509,7 +510,7 @@ class Field(Storage):
     # если тулзы не используются, то использовать родительскую функцию
     #--------------------------
     def _OnMouseClick(self, sprite, x, y, button):
-        if self.State == FieldState_Input:
+        #if self.State == FieldState_Input:
             if button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool:
                 #ложка или крест - удалить подсвеченные токены
                 if globalvars.Board.PickedTool in ('Cross', 'Spoon'):

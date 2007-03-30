@@ -23,17 +23,10 @@ import os.path
 
 def ReadGameConfig():
     try:
-        globalvars.GameConfig = {}
         if FileValid(File_GameConfig) and globalvars.RunMode == RunMode_Play:
-            tmpNode = oE.ParseDEF(File_GameConfig).GetTag(u"MasterChef")
+            globalvars.GameConfig = oE.ParseDEF(File_GameConfig).GetTag(u"MasterChef")
         else:
-            tmpNode = oE.ParseDEF(File_GameConfigSafe).GetTag(u"MasterChef")
-        globalvars.GameConfig["Player"] = tmpNode.GetStrAttr(u"Player")
-        globalvars.GameConfig["Fullscreen"] = tmpNode.GetBoolAttr(u"Fullscreen")
-        globalvars.GameConfig["Mute"] = tmpNode.GetBoolAttr(u"Mute")
-        globalvars.GameConfig["Hints"] = tmpNode.GetBoolAttr(u"Hints")
-        globalvars.GameConfig["Sound"] = tmpNode.GetIntAttr(u"Sound")
-        globalvars.GameConfig["Music"] = tmpNode.GetIntAttr(u"Music")
+            globalvars.GameConfig = oE.ParseDEF(File_GameConfigSafe).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read game configuration files")
         oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -41,30 +34,26 @@ def ReadGameConfig():
 
 def SaveGameConfig():
     try:
-        tmpSaveStr = ""
-        tmpSaveStr += "MasterChef{\n"
-        tmpSaveStr += "  Player = '" + globalvars.GameConfig["Player"] + "'\n"
-        tmpSaveStr += "  Mute = " + str(globalvars.GameConfig["Mute"]) + "\n"
-        tmpSaveStr += "  Hints = " + str(globalvars.GameConfig["Hints"]) + "\n"
-        tmpSaveStr += "  Fullscreen = " + str(globalvars.GameConfig["Fullscreen"]) + "\n"
-        tmpSaveStr += "  Sound = " + str(globalvars.GameConfig["Sound"]) + "\n"
-        tmpSaveStr += "  Music = " + str(globalvars.GameConfig["Music"]) + "\n}\n"
-        SignAndSave(File_GameConfig, tmpSaveStr)
+        if globalvars.RunMode == RunMode_Play:
+            tmpDir = os.path.dirname(File_GameConfig)
+            if not os.access(tmpDir, os.W_OK):
+                os.mkdir(tmpDir)
+            globalvars.GameConfig.GetRoot().StoreTo(File_GameConfig)
     except:
         oE.Log(u"Cannot write game configuration files")
         oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         sys.exit()
     
 def ApplyOptions():
-    oE.fullscreen = globalvars.GameConfig["Fullscreen"]
+    oE.fullscreen = globalvars.GameConfig.GetBoolAttr("Fullscreen")
     oE.PlaceWindowAt(scraft.PositionCenter)
-    if globalvars.GameConfig["Mute"]:
+    if globalvars.GameConfig.GetBoolAttr("Mute"):
         oE.volume = 0
     else:
         oE.volume = 100
-    oE.SetChannelVolume(Channel_Music, globalvars.GameConfig["Music"])    
-    oE.SetChannelVolume(Channel_Time, globalvars.GameConfig["Sound"])    
-    oE.SetChannelVolume(Channel_Default, globalvars.GameConfig["Sound"])    
+    oE.SetChannelVolume(Channel_Music, globalvars.GameConfig.GetIntAttr("Music"))    
+    oE.SetChannelVolume(Channel_Time, globalvars.GameConfig.GetIntAttr("Sound"))    
+    oE.SetChannelVolume(Channel_Default, globalvars.GameConfig.GetIntAttr("Sound"))    
 
 #--------------------------------
 # Функции для работы с hiscrores

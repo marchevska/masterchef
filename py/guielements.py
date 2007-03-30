@@ -202,7 +202,7 @@ class Slider(scraft.Dispatcher):
                 tmpValue = int((self.SliderSprite.y - self.YRange[0])*100/(self.YRange[1] - self.YRange[0]))
             else:
                 tmpValue = int((self.SliderSprite.x - self.XRange[0])*100/(self.XRange[1] - self.XRange[0]))
-            self.Whom[self.Param] = tmpValue
+            self.Whom.SetIntAttr(self.Param, tmpValue)
             config.ApplyOptions()
         return scraft.CommandStateRepeat
 

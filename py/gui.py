@@ -403,12 +403,7 @@ class Gui(scraft.Dispatcher):
                 u"button-4st", [0, 1, 2], 
                 Layer_BtnText, 440, 520, 120, 40,
                 Str_MapMainMenu, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
-        tmpLevelIterator = globalvars.LevelProgress.IterateTag(u"level")
-        while tmpLevelIterator.Next():
-            tmp = tmpLevelIterator.Get()
-            #tmpLevelFileName = tmp.GetContent()
-            #tmpLevelNo = int(tmpLevelFileName[4:6])
-            # кнопки уровней - именуются именами файлов, нумеруются номерами уровней из levelprogress
+        for tmp in globalvars.LevelProgress.Tags("level"):
             self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
                 self, Cmd_MapLevel + tmp.GetIntAttr(u"no"), PState_MapCareer,
                 u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
@@ -490,8 +485,8 @@ class Gui(scraft.Dispatcher):
         self.CurrentHelpPage = no
         
     def _DrawPlayersList(self):
-        if globalvars.GameConfig["Player"] != "":
-            tmpName = globalvars.GameConfig["Player"]
+        if globalvars.GameConfig.GetStrAttr("Player") != "":
+            tmpName = globalvars.GameConfig.GetStrAttr("Player")
             tmpList = globalvars.PlayerList.GetPlayerList()
             if self.SelectedPlayer == "":
                 self.SelectedPlayer = tmpName
@@ -555,24 +550,6 @@ class Gui(scraft.Dispatcher):
         else:
             self.HiscoresDialog["Buttons"]["Reset"].SetState(ButtonState_Up)
         
-    def _UpdateOptionsDialog(self):
-        tmpCfg = globalvars.GameConfig
-        self.OptionsDialog["Static"]["Galka_Fullscreen"].visible = tmpCfg["Fullscreen"]
-        self.OptionsDialog["Static"]["Galka_Mute"].visible = tmpCfg["Mute"]
-        self.OptionsDialog["Static"]["Galka_Hints"].visible = tmpCfg["Hints"]
-        self.OptionsDialog["Buttons"]["Slider_Sound"].SetValue(tmpCfg["Sound"])
-        self.OptionsDialog["Buttons"]["Slider_Music"].SetValue(tmpCfg["Music"])
-        if globalvars.StateStack[-2] == PState_Game:
-            self.OptionsDialog["Buttons"]["Resume"].Show(True)
-            self.OptionsDialog["Buttons"]["Restart"].Show(True)
-            self.OptionsDialog["Buttons"]["EndGame"].Show(True)
-            self.OptionsDialog["Buttons"]["Ok"].Show(False)
-        else:
-            self.OptionsDialog["Buttons"]["Resume"].Show(False)
-            self.OptionsDialog["Buttons"]["Restart"].Show(False)
-            self.OptionsDialog["Buttons"]["EndGame"].Show(False)
-            self.OptionsDialog["Buttons"]["Ok"].Show(True)
-        
     #----------------------------
     # перерисовывает окно карты
     # подсвечивает открытые и закрытые уровни
@@ -599,30 +576,59 @@ class Gui(scraft.Dispatcher):
         else:
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
         
+    #-------------------------------------------
+    # показать текущий кадр комикса
+    #-------------------------------------------
     def _UpdateComics(self):
         tmp = globalvars.CurrentPlayer.GetLevel()
         self.ComicScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr(u"image"))
         
+    #-------------------------------------------
+    # обновить данные в диалоге "цели уровня", при старте уровня
+    #-------------------------------------------
     def _UpdateLevelGoals(self):
         self.LevelGoalsDialog["Text"]["Title"].text = Str_LvGoals_Title + \
             globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
         self.LevelGoalsDialog["Text"]["Text1"].text = "Level goal: "+str(globalvars.LevelSettings["moneygoal"])
         self.LevelGoalsDialog["Text"]["Text2"].text = "Expert goal: "+str(globalvars.LevelSettings["expertgoal"])
         
+    #-------------------------------------------
+    # показать диалог с опциями - обновить данные по текущим опциям
+    #-------------------------------------------
+    def _UpdateOptionsDialog(self):
+        self.OptionsDialog["Static"]["Galka_Fullscreen"].visible = globalvars.GameConfig.GetBoolAttr("Fullscreen")
+        self.OptionsDialog["Static"]["Galka_Mute"].visible = globalvars.GameConfig.GetBoolAttr("Mute")
+        self.OptionsDialog["Static"]["Galka_Hints"].visible = globalvars.GameConfig.GetBoolAttr("Hints")
+        self.OptionsDialog["Buttons"]["Slider_Sound"].SetValue(globalvars.GameConfig.GetIntAttr("Sound"))
+        self.OptionsDialog["Buttons"]["Slider_Music"].SetValue(globalvars.GameConfig.GetIntAttr("Music"))
+        if globalvars.StateStack[-2] == PState_Game:
+            self.OptionsDialog["Buttons"]["Resume"].Show(True)
+            self.OptionsDialog["Buttons"]["Restart"].Show(True)
+            self.OptionsDialog["Buttons"]["EndGame"].Show(True)
+            self.OptionsDialog["Buttons"]["Ok"].Show(False)
+        else:
+            self.OptionsDialog["Buttons"]["Resume"].Show(False)
+            self.OptionsDialog["Buttons"]["Restart"].Show(False)
+            self.OptionsDialog["Buttons"]["EndGame"].Show(False)
+            self.OptionsDialog["Buttons"]["Ok"].Show(True)
+        
+    #-------------------------------------------
+    # закрыть диалог с опциями или внутри-игровое меню - применить измененные опции
+    #-------------------------------------------
     def _CloseOptionsDialog(self, flag):
         if flag:
-            globalvars.GameConfig["Fullscreen"] = self.OptionsDialog["Static"]["Galka_Fullscreen"].visible
-            globalvars.GameConfig["Mute"] = self.OptionsDialog["Static"]["Galka_Mute"].visible
-            globalvars.GameConfig["Hints"] = self.OptionsDialog["Static"]["Galka_Hints"].visible
+            globalvars.GameConfig.SetBoolAttr("Fullscreen", self.OptionsDialog["Static"]["Galka_Fullscreen"].visible)
+            globalvars.GameConfig.SetBoolAttr("Mute", self.OptionsDialog["Static"]["Galka_Mute"].visible)
+            globalvars.GameConfig.SetBoolAttr("Hints", self.OptionsDialog["Static"]["Galka_Hints"].visible)
         else:
-            globalvars.GameConfig["Sound"] = self.SavedOptions["Sound"]
-            globalvars.GameConfig["Music"] = self.SavedOptions["Music"]
+            globalvars.GameConfig.SetIntAttr("Sound", self.SavedOptions["Sound"])
+            globalvars.GameConfig.SetIntAttr("Music", self.SavedOptions["Music"])
         config.ApplyOptions()
         self._ReleaseState(PState_Options)
         
     #-------------------------------------------
-    #переход к следующему комиксу или уровню
-    #функция вызывается при вызове карты и при закрытии комикса
+    # переход к следующему комиксу или уровню
+    # функция вызывается при вызове карты и при закрытии комикса
     #-------------------------------------------
     def NextCareerStage(self):
         try:
@@ -857,7 +863,7 @@ class Gui(scraft.Dispatcher):
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         
     def _OnExecute(self, que) :
-        #показываем логотипы разработчика и паблишера
+        #показываем логотипы разработчика и паблишера - ждем заданное время
         if globalvars.StateStack[-1] == PState_DevLogo:
             self.NextStateTime -= que.delta
             if self.NextStateTime <= 0:
@@ -1050,7 +1056,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_EpiComplete)
             self._ReleaseState(PState_GameOver)
             self._ReleaseState(PState_MapCareer)
-            if globalvars.GameConfig["Player"] == "":
+            if globalvars.GameConfig.GetStrAttr("Player") == "":
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = False
                 self.MainMenuDialog["Buttons"]["Players"].Show(False)
                 if len(globalvars.PlayerList.GetPlayerList()) <= 1:
@@ -1060,7 +1066,7 @@ class Gui(scraft.Dispatcher):
             else:
                 self.MainMenuDialog["Buttons"]["Players"].Show(True)
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = True
-                self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome + globalvars.GameConfig["Player"]
+                self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome + globalvars.GameConfig.GetStrAttr("Player")
             
         elif state == PState_MapCareer:
             self._ReleaseState(PState_MainMenu)
@@ -1109,7 +1115,7 @@ class Gui(scraft.Dispatcher):
             
         elif state == PState_Options:
             globalvars.Board.Freeze(True)
-            self.SavedOptions = dict(globalvars.GameConfig)
+            self.SavedOptions = globalvars.GameConfig.Clone()
             self._ShowDialog(self.OptionsDialog, True)
             self._UpdateOptionsDialog()
             

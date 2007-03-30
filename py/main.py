@@ -78,7 +78,7 @@ while globalvars.StateStack[-1] != PState_EndGame:
             globalvars.Board.Restart()
     if oE.EvtIsKeyDown() :
         if oE.EvtKey() == scraft.Key_F4 :
-            globalvars.GameConfig["Fullscreen"] = not(globalvars.GameConfig["Fullscreen"])
+            globalvars.GameConfig.SetBoolAttr("Fullscreen", not(globalvars.GameConfig.GetBoolAttr("Fullscreen")))
             config.ApplyOptions()
     oE.DisplayEx(30) # 30 FPS
 

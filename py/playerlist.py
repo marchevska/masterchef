@@ -168,7 +168,7 @@ class PlayerList:
             if config.FileValid(self.Filename):
                 self.XML = oE.ParseDEF(self.Filename).GetTag(u"MasterChef")
             globalvars.CurrentPlayer = Player()
-            globalvars.CurrentPlayer.Read(globalvars.GameConfig["Player"])
+            globalvars.CurrentPlayer.Read(globalvars.GameConfig.GetStrAttr("Player"))
         except:
             try:
                 self.XML = oE.ParseDEF(File_PlayersConfigSafe).GetTag(u"MasterChef")
@@ -220,8 +220,8 @@ class PlayerList:
                 os.remove(self.FilenameFor(name))
             self.XML.GetSubtag(name).Erase()
             self.Save()
-            if globalvars.GameConfig["Player"] == name:
-                globalvars.GameConfig["Player"] = ""
+            if globalvars.GameConfig.GetStrAttr("Player") == name:
+                globalvars.GameConfig.SetStrAttr("Player", "")
                 config.SaveGameConfig()
                 globalvars.CurrentPlayer = Player()
         except:
@@ -233,7 +233,7 @@ class PlayerList:
     def SelectPlayer(self, name):
         try:
             #name = self.GetPlayerList()[no]
-            globalvars.GameConfig["Player"] = name
+            globalvars.GameConfig.SetStrAttr("Player", name)
             config.SaveGameConfig()
             globalvars.CurrentPlayer.Read(name)
         except:

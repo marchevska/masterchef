@@ -23,7 +23,7 @@ class Cursor(scraft.Dispatcher):
     def __init__(self):
         self.sprite = MakeSimpleSprite(u"cursor", Layer_Cursor)
         self.CursorState = CursorState_Default
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     def SetState(self, state):
         if state == CursorState_Default:
@@ -56,7 +56,7 @@ class Timer(scraft.Dispatcher):
         self.millis = 0
         self.StartTime = oE.millis
         self.Paused = False
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     def Reset(self):
         self.millis = 0
@@ -131,7 +131,7 @@ class Animator(scraft.Dispatcher):
         self.Sprite = sprite
         self.States = states
         self.Animations = animations
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     def SetState(self, state):
         self.State = state
@@ -228,7 +228,7 @@ class NumIndicator(scraft.Dispatcher):
         self.Speed = speed
         self.sprite = MakeTextSprite(newKlass, newLayer, newX, newY, newHotspot)
         self.SetValueStrict(value)
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     def _OnExecute(self, que):
         if self.Value != self.ValueShown:
@@ -268,7 +268,7 @@ class CircularIndicator(scraft.Dispatcher):
         self.bgSprite.sublayer = newSublayer+1
         self.SetValueStrict(value)
         self.Freeze(True)
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     def _OnExecute(self, que):
         if not self.Frozen:

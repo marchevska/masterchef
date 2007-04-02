@@ -393,7 +393,8 @@ class Gui(scraft.Dispatcher):
                 tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
         
         self._SetState(PState_DevLogo)    
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
+        
         
     def _ShowDialog(self, dialog, flag):
         for spr in dialog["Static"].values() + dialog["Text"].values():
@@ -952,7 +953,8 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.YesNoCancelDialog, False)
         elif state == PState_Game:
             globalvars.Board.Show(False)
-            globalvars.Board.Clear()
+            if globalvars.StateStack != [] and globalvars.StateStack[-1] == PState_Game:
+                globalvars.Board.Clear()
         if globalvars.StateStack != [] and globalvars.StateStack[-1] == state:
             globalvars.StateStack.pop()
             if len(globalvars.StateStack)>0:

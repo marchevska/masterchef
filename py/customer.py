@@ -270,6 +270,9 @@ class CustomersQue(scraft.Dispatcher):
             tmp.Freeze(flag)
         
     def Kill(self):
+        for tmp in self.Customers:
+            tmp.Kill()
+            del tmp
         self.TabletSprite.Dispose()
         self.TextMarker.Dispose()
     

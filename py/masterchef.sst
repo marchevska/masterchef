@@ -15,6 +15,18 @@ bitmap = img/common/cell-marker.png
 type   = blend
 }
 
+sprite cell-highlight {
+bitmap = img/common/cell-highlight.png
+type   = blend
+layout = 5x8
+}
+
+sprite cell-select {
+bitmap = img/common/cell-select.png
+type   = blend
+layout = 5x8
+}
+
 sprite select-marker {
 bitmap = img/common/select-marker.png
 type   = blend

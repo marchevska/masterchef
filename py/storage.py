@@ -27,9 +27,15 @@ class Storage(scraft.Dispatcher):
         self.Cols, self.Rows = cols, rows
         
         self.HighlightedCells = []
-        self.HighlightSprites = []
+        self.Highlight = oE.NewTileMap_(cols+1, rows+1, Crd_deltaX, Layer_Markers+1)
+        self.Highlight.AddTilesFrom("cell-highlight")
+        self.Highlight.x = x - Crd_deltaX/2
+        self.Highlight.y = y - Crd_deltaY/2
         self.SelectedCells = []
-        self.SelectedSprites = []
+        self.Selection = oE.NewTileMap_(cols+1, rows+1, Crd_deltaX, Layer_Markers)
+        self.Selection.AddTilesFrom("cell-select")
+        self.Selection.x = x - Crd_deltaX/2
+        self.Selection.y = y - Crd_deltaY/2
         
         self.Background = {}
         self.Grid = {}
@@ -74,15 +80,13 @@ class Storage(scraft.Dispatcher):
                     self.Cells[i,j] = Const_EmptyCell
                 
     def Clear(self):
-        for tmp in self.HighlightSprites+self.SelectedSprites:
-            tmp.Dispose()
+        self.Highlight.Clear()
+        self.Selection.Clear()
         for spr in self.Background.values() + self.Grid.values() + \
             self.Receptors.values():
             spr.Dispose()
         self.HighlightedCells = []
-        self.HighlightSprites = []
         self.SelectedCells = []
-        self.SelectedSprites = []
         self.Background = {}
         self.Grid = {}
         self.Receptors = {}
@@ -121,33 +125,37 @@ class Storage(scraft.Dispatcher):
     #--------------------------
     def _HighlightCells(self, pos, flag):
         if flag:
-            self.HighlightSprites = []
-            for tmpCell in self.HighlightedCells:
-                self.HighlightSprites.append(MakeSimpleSprite(u"cell-marker",
-                    Layer_Markers+1, self._CellCoords(tmpCell)[0], self._CellCoords(tmpCell)[1]))
+            for i in range(self.Cols+1):
+                for j in range(self.Rows+1):
+                    #провер€ем 4 соседние €чейки
+                    tmp = ((i-1,j-1) in self.HighlightedCells)*8 + ((i,j-1) in self.HighlightedCells)*4 + \
+                        ((i-1,j) in self.HighlightedCells)*2 + ((i,j) in self.HighlightedCells)*1
+                    tmpFrames = { 0: 0, 1: 1, 2: 3, 3: 2, 4: 15, 5:10, 6: 32, 7:6,
+                                 8: 19, 9: 31, 10: 14, 11: 8, 12: 22, 13: 16, 14: 18, 15: 12 }
+                    self.Highlight.SetTile(i,j,tmpFrames[tmp])
         else:
-            for spr in self.HighlightSprites:
-                spr.Dispose()
+            self.Highlight.Clear()
             self.HighlightedCells = []
-            self.HighlightSprites = []
         
     #--------------------------
     # —обирает группу токенов на курсор
     #--------------------------
     def PickTokens(self):
         self.SelectedCells = list(self.HighlightedCells)
-        self.SelectedSprites = []
-        for tmpCell in self.SelectedCells:
-            self.SelectedSprites.append(MakeSimpleSprite(u"select-marker",
-                Layer_Markers, self._CellCoords(tmpCell)[0], self._CellCoords(tmpCell)[1]))
+        for i in range(self.Cols+1):
+            for j in range(self.Rows+1):
+                #провер€ем 4 соседние €чейки
+                tmp = ((i-1,j-1) in self.SelectedCells)*8 + ((i,j-1) in self.SelectedCells)*4 + \
+                    ((i-1,j) in self.SelectedCells)*2 + ((i,j) in self.SelectedCells)*1
+                tmpFrames = { 0: 0, 1: 1, 2: 3, 3: 2, 4: 15, 5:10, 6: 32, 7:6,
+                             8: 19, 9: 31, 10: 14, 11: 8, 12: 22, 13: 16, 14: 18, 15: 12 }
+                self.Selection.SetTile(i,j,tmpFrames[tmp])
         
     #--------------------------
     # —брасывает группу токенов с курсора - при удалении или сбросе
     #--------------------------
     def DropTokens(self):
-        for spr in self.SelectedSprites:
-            spr.Dispose()
-        self.SelectedSprites = []
+        self.Selection.Clear()
         self.SelectedCells = []
         
     #--------------------------
@@ -260,8 +268,9 @@ class Store(Storage):
 class Field(Storage):
     def __init__(self, cols, rows, x, y, theme):
         Storage.__init__(self, cols, rows, x, y, theme["field"])
+        self.MatchMap = {}
         self.SetState(FieldState_None)
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     #--------------------------
     # Ќачальное заполнение пол€

@@ -145,7 +145,7 @@ class Slider(scraft.Dispatcher):
         self.Param = paramName
         self.SetState(ButtonState_Up)
         self.Dragging = False
-        oE.executor.Schedule(self)
+        self.QueNo = oE.executor.Schedule(self)
         
     def Show(self, flag):
         self.Dummy.visible = flag

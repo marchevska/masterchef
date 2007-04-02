@@ -191,6 +191,9 @@ class CustomerStation(scraft.Dispatcher):
             globalvars.Board.SendCommand(Cmd_FreeStation)
         
     def Kill(self):
+        if self.Active:
+            self.Customer.Kill()
+            del self.Customer
         self.Dummy.Dispose()
         self.TableSprite.Dispose()
         self.RecipeIndicator.Kill()

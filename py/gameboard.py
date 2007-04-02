@@ -467,6 +467,7 @@ class GameBoard(scraft.Dispatcher):
     # очистка игрового поля
     #--------------------------
     def Clear(self):
+        oE.executor.GetQueue(self.QueNo).Suspend()
         self.Playing = False
         if self.GameCursorState == GameCursorState_Tokens:
             self.TokenSprite.Dispose()
@@ -488,7 +489,9 @@ class GameBoard(scraft.Dispatcher):
         self.BuyPowerUpButtons = {}
         self.Static = []
         self.Stores = []
-        self.Field = None
+        for tmp in self.CStations + self.Stores:
+            del tmp
+        del self.Field 
         del self.TrashCan
              
     def Show(self, flag):

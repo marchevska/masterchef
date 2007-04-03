@@ -121,6 +121,7 @@ class Customer(scraft.Dispatcher):
                 self.HeartSprites[i].visible = False
         
     def Freeze(self, flag):
+        self.Animator.Freeze(flag)
         if flag:
             oE.executor.GetQueue(self.QueNo).Suspend()
         else:
@@ -334,3 +335,9 @@ class CustomersAnimator(scraft.Dispatcher):
     def Kill(self):
         oE.executor.DismissQueue(self.QueNo)
         
+    def Freeze(self, flag):
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+        else:
+            oE.executor.GetQueue(self.QueNo).Resume()
+            

@@ -50,45 +50,40 @@ class Gui(scraft.Dispatcher):
         # главное меню
         #--------------
         self.MainMenuDialog = { "Static": {}, "Text": {}, "Buttons": {} }
-        self.MainMenuDialog["Static"]["Back"] = MakeSimpleSprite(u"main-menu", Layer_Background)
-        self.MainMenuDialog["Static"]["Back"].dispatcher = self
-        self.MainMenuDialog["Static"]["Back"].cookie = Cmd_Background
+        self.MainMenuDialog["Static"]["Back"] = MakeSimpleSprite(u"mainmenu-background", Layer_Background)
+        #self.MainMenuDialog["Static"]["Back"].dispatcher = self
+        #self.MainMenuDialog["Static"]["Back"].cookie = Cmd_Background
         self.MainMenuDialog["Buttons"]["PlayCareer"] = PushButton("PlayCareer",
                 self, Cmd_Menu_PlayCareer, PState_MainMenu,
-                u"button-4st", [0, 1, 2], 
-                Layer_BtnText, 600, 300, 120, 40,
-                Str_Menu_PlayCareer, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
+                "mainmenu-career-button", [0, 1, 2], 
+                Layer_BtnText, 350, 220, 130, 170)
         self.MainMenuDialog["Buttons"]["PlayEndless"] = PushButton("PlayEndless",
                 self, Cmd_Menu_PlayEndless, PState_MainMenu,
-                u"button-4st", [0, 1, 2], 
-                Layer_BtnText, 600, 350, 120, 40,
-                Str_Menu_PlayEndless, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
+                "mainmenu-endless-button", [0, 1, 2], 
+                Layer_BtnText, 483, 213, 135, 170)
         self.MainMenuDialog["Buttons"]["Options"] = PushButton("Options",
                 self, Cmd_Menu_Options, PState_MainMenu,
-                u"button-4st", [0, 1, 2], 
-                Layer_BtnText, 600, 400, 120, 40,
-                Str_Menu_Options, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
+                "mainmenu-options-button", [0, 1, 2], 
+                Layer_BtnText, 455, 375, 150, 50)
         self.MainMenuDialog["Buttons"]["Rules"] = PushButton("Help",
                 self, Cmd_Menu_Rules, PState_MainMenu,
-                u"button-4st", [0, 1, 2], 
-                Layer_BtnText, 600, 450, 120, 40,
-                Str_Menu_Rules, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
-        #self.MainMenuDialog["Buttons"]["Highscores"] = PushButton("Hiscores",
-        #        self, Cmd_Menu_Hiscores, PState_MainMenu,
-        #        u"button-4st", [0, 1, 2], 
-        #        Layer_BtnText, 600, 380, 120, 40,
-        #        Str_Menu_Hiscores, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
+                "mainmenu-help-button", [0, 1, 2], 
+                Layer_BtnText, 455, 440, 180, 50)
+        self.MainMenuDialog["Buttons"]["Cookbook"] = PushButton("Cookbook",
+                self, Cmd_Menu_Cookbook, PState_MainMenu,
+                "mainmenu-cookbook-button", [0, 1, 2], 
+                Layer_BtnText, 455, 510, 210, 50)
         self.MainMenuDialog["Buttons"]["Quit"] = PushButton("Quit",
                 self, Cmd_Menu_Quit, PState_MainMenu,
-                u"button-4st", [0, 1, 2], 
-                Layer_BtnText, 600, 500, 120, 40,
-                Str_Menu_Quit, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
+                "mainmenu-exit-button", [0, 1, 2], 
+                Layer_BtnText, 740, 557, 100, 50)
         self.MainMenuDialog["Buttons"]["Players"] = PushButton("Players",
                 self, Cmd_Menu_Players, PState_MainMenu,
-                u"$spritecraft$dummy$", [0, 0, 0], 
-                Layer_BtnText, 200, 500, 240, 40,
+                "mainmenu-players-button", [0, 1, 2, 3], 
+                Layer_BtnText, 103, 183, 180, 40,
                 Str_Menu_Players, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
-        self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeTextSprite(u"papyrus2", Layer_BtnText, 200, 450)
+        self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeSprite("papyrus2", Layer_BtnText,
+                { "x": 10, "y": 125, "cfilt-color": 0xFF8000 } )
         
         #---------
         # справка

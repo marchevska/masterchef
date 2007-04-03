@@ -113,18 +113,51 @@ bitmap  = img/logos/publisher-logo.png
 # main screen elements #
 ########################
 
-sprite menu-background {
-bitmap  = img/gui/menu-background.bmp
+sprite mainmenu-background { 
+bitmap = img/gui/mainmenu-background.png
+truecolor = "yes"
 }
 
-sprite main-menu { 
-bitmap = img/gui/main-menu.png
+sprite mainmenu-career-button { 
+bitmap = img/gui/mainmenu-career-button.png
+truecolor = "yes"
+layout = 1x4
+}
+
+sprite mainmenu-endless-button { 
+bitmap = img/gui/mainmenu-endless-button.png
+truecolor = "yes"
+layout = 1x4
+}
+
+sprite mainmenu-options-button { 
+bitmap = img/gui/mainmenu-options-button.png
+layout = 1x4
+}
+
+sprite mainmenu-help-button { 
+bitmap = img/gui/mainmenu-help-button.png
+layout = 1x4
+}
+
+sprite mainmenu-cookbook-button { 
+bitmap = img/gui/mainmenu-cookbook-button.png
+layout = 1x4
+}
+
+sprite mainmenu-exit-button { 
+bitmap = img/gui/mainmenu-exit-button.png
+layout = 1x4
+}
+
+sprite mainmenu-players-button { 
+bitmap = img/gui/mainmenu-players-button.png
+layout = 1x4
 }
 
 sprite gray {
 bitmap = img/gui/gray.png
 type   = blend
-layout = 1x1
 }
 
 ########################

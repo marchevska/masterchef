@@ -24,7 +24,8 @@ Cmd_Menu_PlayEndless = 308
 Cmd_Menu_Players = 301
 Cmd_Menu_Options = 302
 Cmd_Menu_Rules = 303
-Cmd_Menu_Hiscores = 304
+Cmd_Menu_Cookbook = 304
+Cmd_Menu_Hiscores = 306
 Cmd_Menu_Quit = 305
 
 Cmd_HelpNext = 310

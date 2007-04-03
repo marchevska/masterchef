@@ -1,8 +1,6 @@
 Level{
     //overwrite global game settings
     GameSettings{
-        newCustomerTimeMin = "1"
-        newCustomerTimeMax = "3"
     }
     
     //overwrite basic customer settings
@@ -33,6 +31,7 @@ Level{
     
     //level settings
     LevelSettings{
+        title = "'American 1'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"

@@ -33,7 +33,6 @@ class Gui(scraft.Dispatcher):
         self.TotalPlayersOnScreen = 6
         self.TotalCareerLevels = 0
         self.SavedOptions = []
-        self.LvCompleteSuccess = True
            
         #--------------
         # логотипы разработчика и издателя
@@ -89,7 +88,7 @@ class Gui(scraft.Dispatcher):
                 u"$spritecraft$dummy$", [0, 0, 0], 
                 Layer_BtnText, 200, 500, 240, 40,
                 Str_Menu_Players, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
-        self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt2, 200, 450)
+        self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeTextSprite(u"papyrus2", Layer_BtnText, 200, 450)
         
         #---------
         # справка
@@ -198,15 +197,21 @@ class Gui(scraft.Dispatcher):
         self.LevelCompleteDialog["Text"]["Title"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 400, 165,
                                                                    scraft.HotspotCenter, Str_LvComplete_Title)
         self.LevelCompleteDialog["Text"]["Text0"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 400, 220)
-        self.LevelCompleteDialog["Text"]["Text1"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 300, 270)
-        self.LevelCompleteDialog["Text"]["Text2"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 500, 270)
-        self.LevelCompleteDialog["Text"]["Text3"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 300, 350)
-        self.LevelCompleteDialog["Text"]["Text4"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 500, 350)
+        self.LevelCompleteDialog["Text"]["Text1"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 400, 270)
+        self.LevelCompleteDialog["Text"]["Text2"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 400, 320)
+        self.LevelCompleteDialog["Text"]["Text3"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 300, 370)
+        self.LevelCompleteDialog["Text"]["Text4"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 500, 370)
+        self.LevelCompleteDialog["Text"]["Text5"] = MakeTextSprite(u"papyrus2", Layer_PopupBtnTxt, 400, 420)
         self.LevelCompleteDialog["Buttons"]["NextLevel"] = PushButton("LvCompleteNextLevel",
                 self, Cmd_LvCompleteNextLevel, PState_NextLevel,
                 u"button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 320, 500, 120, 40,
                 Str_LvCompleteNextLevel, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
+        self.LevelCompleteDialog["Buttons"]["Restart"] = PushButton("LvCompleteRestart",
+                self, Cmd_LvCompleteRestart, PState_NextLevel,
+                u"button-4st", [0, 1, 2], 
+                Layer_PopupBtnTxt, 320, 500, 120, 40,
+                Str_LvCompleteRestart, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
         self.LevelCompleteDialog["Buttons"]["No"] = PushButton("LvCompleteMainMenu",
                 self, Cmd_LvCompleteMainMenu, PState_NextLevel,
                 u"button-4st", [0, 1, 2], 
@@ -376,15 +381,17 @@ class Gui(scraft.Dispatcher):
         #-------
         self.MapCareerDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.MapCareerDialog["Static"]["Back"] = MakeSimpleSprite(u"map-background", Layer_Background)
+        self.MapCareerDialog["Text"]["BestResult"] = MakeSprite("arial18", Layer_BtnText,
+                                                { "x": 400, "y": 550, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Buttons"]["Start"] = PushButton("MapStart",
                 self, Cmd_MapStart, PState_MapCareer,
                 u"button-4st", [0, 1, 2, 3], 
-                Layer_BtnText, 300, 520, 120, 40,
+                Layer_BtnText, 700, 550, 120, 40,
                 Str_MapStart, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down", u"papyrus2-inert"])
         self.MapCareerDialog["Buttons"]["MainMenu"] = PushButton("MapMainMenu",
                 self, Cmd_MapMainMenu, PState_MapCareer,
                 u"button-4st", [0, 1, 2], 
-                Layer_BtnText, 440, 520, 120, 40,
+                Layer_BtnText, 100, 550, 120, 40,
                 Str_MapMainMenu, [u"papyrus2", u"papyrus2-roll", u"papyrus2-down"])
         for tmp in globalvars.LevelProgress.Tags("level"):
             self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
@@ -405,37 +412,22 @@ class Gui(scraft.Dispatcher):
     def CallInternalMenu(self):
         self._SetState(PState_Options)
         
-    def CallLevelCompleteDialog(self, flag, level=0, score=0, time=0):
+    def CallLevelCompleteDialog(self, flag, params = {}):
         self._SetState(PState_NextLevel)
-        self.LvCompleteSuccess = flag
+        self.LevelCompleteDialog["Text"]["Text0"].text = Str_LvComplete_Served + str(params["served"])
+        self.LevelCompleteDialog["Text"]["Text1"].text = Str_LvComplete_Lost + str(params["lost"])
+        self.LevelCompleteDialog["Text"]["Text2"].text = Str_LvComplete_Score + str(params["score"])
+        tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
+        self.LevelCompleteDialog["Text"]["Text3"].text = Str_LvComplete_BestScore + str(tmpBest.GetIntAttr("hiscore"))
+        self.LevelCompleteDialog["Text"]["Text4"].text = Str_LvComplete_AchievedBy + str(tmpBest.GetStrAttr("player"))
+        self.LevelCompleteDialog["Text"]["Text5"].text = (params["expert"])*Str_LvComplete_Expert + \
+            (params["score"]==tmpBest.GetIntAttr("hiscore"))*Str_LvComplete_Hiscore
         if flag:
-            #self.LevelCompleteDialog["Text"]["Text0"].text = unicode(Str_LvComplete_Passed + \
-            #    levels.Levels[level]["Name"])
-            self.LevelCompleteDialog["Text"]["Text1"].text = unicode(Str_LvComplete_YourScoreIs + str(score))
-            self.LevelCompleteDialog["Text"]["Text2"].text = unicode(Str_LvComplete_YourTimeIs + self._StrMinSec(time))
-            #self.LevelCompleteDialog["Text"]["Text3"].text = unicode(Str_LvComplete_BestScore + \
-            #    str(globalvars.BestResults[level]["BestScore"]) + \
-            #    Str_LvComplete_AchievedBy + globalvars.BestResults[level]["PlayerScore"])
-            #self.LevelCompleteDialog["Text"]["Text4"].text = unicode(Str_LvComplete_BestTime + \
-            #    self._StrMinSec(globalvars.BestResults[level]["BestTime"]) + \
-            #    Str_LvComplete_AchievedBy + globalvars.BestResults[level]["PlayerTime"])
-            self.LevelCompleteDialog["Buttons"]["NextLevel"].SetText(Str_LvCompleteNextLevel)
+            self.LevelCompleteDialog["Buttons"]["NextLevel"].Show(True)
+            self.LevelCompleteDialog["Buttons"]["Restart"].Show(False)
         else:
-            self.LevelCompleteDialog["Text"]["Text0"].text = unicode(Str_LvComplete_TooLate)
-            self.LevelCompleteDialog["Text"]["Text1"].text = u""
-            self.LevelCompleteDialog["Text"]["Text2"].text = u""
-            self.LevelCompleteDialog["Text"]["Text3"].text = u""
-            self.LevelCompleteDialog["Text"]["Text4"].text = u""
-            self.LevelCompleteDialog["Buttons"]["NextLevel"].SetText(Str_LvCompleteTryAgain)
-        
-    def _StrMinSec(self, millis):
-        tmpSec = int(millis/1000)%60
-        tmpMin = int(millis/60000)
-        if tmpSec != 0:
-            tmpStr = str(tmpMin) + "." + str(tmpSec)
-        else:
-            tmpStr = str(tmpMin) + ".00"
-        return tmpStr
+            self.LevelCompleteDialog["Buttons"]["NextLevel"].Show(False)
+            self.LevelCompleteDialog["Buttons"]["Restart"].Show(True)
         
     def CallGameOverDialog(self, flag):
         self._SetState(PState_GameOver)
@@ -554,8 +546,16 @@ class Gui(scraft.Dispatcher):
         if self.SelectedLevel != "":
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Up)
             self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
+            tmpBest = globalvars.BestResults.GetSubtag(self.SelectedLevel)
+            if tmpBest.GetIntAttr("hiscore") != 0 and tmpBest.GetStrAttr("player") != "":
+                self.MapCareerDialog["Text"]["BestResult"].text = Str_MapHiscore + str(tmpBest.GetIntAttr("hiscore")) + \
+                    Str_MapAchievedBy + tmpBest.GetStrAttr("player")
+            else:
+                self.MapCareerDialog["Text"]["BestResult"].text = Str_MapHiscore + str(tmpBest.GetIntAttr("hiscore"))
         else:
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
+            self.MapCareerDialog["Text"]["BestResult"].text = ""
+        
         
     #-------------------------------------------
     # показать текущий кадр комикса
@@ -568,8 +568,7 @@ class Gui(scraft.Dispatcher):
     # обновить данные в диалоге "цели уровня", при старте уровня
     #-------------------------------------------
     def _UpdateLevelGoals(self):
-        self.LevelGoalsDialog["Text"]["Title"].text = Str_LvGoals_Title + \
-            globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
+        self.LevelGoalsDialog["Text"]["Title"].text = globalvars.LevelSettings["title"]
         self.LevelGoalsDialog["Text"]["Text1"].text = "Level goal: "+str(globalvars.LevelSettings["moneygoal"])
         self.LevelGoalsDialog["Text"]["Text2"].text = "Expert goal: "+str(globalvars.LevelSettings["expertgoal"])
         
@@ -793,7 +792,9 @@ class Gui(scraft.Dispatcher):
                     #restart game
                     elif globalvars.StateStack[-1] == PState_Options:
                         self._ReleaseState(PState_Options)
-                        globalvars.Board.Restart()
+                        globalvars.Board.Clear()
+                        self._SetState(PState_StartLevel)
+                        #globalvars.Board.Restart()
                     
             elif globalvars.StateStack[-1] == PState_YesNoCancel:
                 self._ReleaseState(PState_YesNoCancel)
@@ -822,6 +823,8 @@ class Gui(scraft.Dispatcher):
                 self._ReleaseState(PState_Game)
                 if cmd == Cmd_LvCompleteNextLevel:
                     self.NextCareerStage()
+                elif cmd == Cmd_LvCompleteRestart:
+                    self._SetState(PState_StartLevel)
                 elif cmd == Cmd_LvCompleteMainMenu:
                     pass
                 
@@ -914,7 +917,7 @@ class Gui(scraft.Dispatcher):
                 if globalvars.RunMode == RunMode_Test:
                     self._SetState(PState_EndGame)
                 else:
-                    self._SetState(PState_Options)
+                    self.CallInternalMenu()
             else:
                 self._SetState(PState_EndGame)
             

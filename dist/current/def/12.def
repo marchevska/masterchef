@@ -38,6 +38,7 @@ Level{
     
     //level settings
     LevelSettings{
+        title = "'Mexican 2'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"

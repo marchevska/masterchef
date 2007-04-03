@@ -36,6 +36,7 @@ Level{
     }
     //level settings
     LevelSettings{
+        title = "'Japanese 4'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"

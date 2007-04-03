@@ -36,6 +36,7 @@ Level{
     
     //level settings
     LevelSettings{
+        title = "'Tutorial'"
         noCustomers = "3"
         moneyGoal = "100"
         expertGoal = "200"

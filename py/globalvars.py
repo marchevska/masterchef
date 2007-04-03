@@ -25,7 +25,7 @@ global RunMode
 global PlayerList        #список игроков
 global CurrentPlayer     #профиль игрока + информация о текущей игре
 global HiscoresList
-global BestResults
+global BestResults       #лучшие результаты по уровням
 
 global Musician
 global Cursor

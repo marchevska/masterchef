@@ -113,42 +113,37 @@ def AddScore():
 #--------------------------------------
 
 def ReadBestResults():
-    globalvars.BestResults = {}
-    if FileValid(File_BestResults):
-        BestResults_Iterator = oE.ParseDEF(File_BestResults).GetTag(u"MasterChef").IterateTag(u"level")
-        BestResults_Iterator.Reset()
-        while BestResults_Iterator.Next():
-            tmpResult = BestResults_Iterator.Get()
-            globalvars.BestResults[eval(tmpResult.GetContent())] = {
-                "BestTime": tmpResult.GetIntAttr(u"BestTime"), 
-                "PlayerTime": tmpResult.GetStrAttr(u"PlayerTime"), 
-                "BestScore": tmpResult.GetIntAttr(u"BestScore"), 
-                "PlayerScore": tmpResult.GetStrAttr(u"PlayerScore") }
+    try:
+        if FileValid(File_BestResults) and globalvars.RunMode == RunMode_Play:
+            globalvars.BestResults = oE.ParseDEF(File_BestResults).GetTag(u"MasterChef")
+        else:
+            globalvars.BestResults = oE.ParseDEF(File_BestResultsSafe).GetTag(u"MasterChef")
+    except:
+        oE.Log(u"Cannot read best results record")
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        sys.exit()
 
 def SaveBestResults():
-    tmpSaveStr = ""
-    tmpSaveStr += "MasterChef{\n"
-    for key in globalvars.BestResults.keys():
-        tmp = globalvars.BestResults[key]
-        tmpSaveStr += ("  level(" + str(key) + ") { BestTime = " + str(tmp["BestTime"]) + \
-                " PlayerTime = '" + tmp["PlayerTime"] + "'" + \
-                " BestScore = " + str(tmp["BestScore"]) + \
-                " PlayerScore = '" + tmp["PlayerScore"] + "' }\n")
-    tmpSaveStr += "}\n"
-    SignAndSave(File_BestResults, tmpSaveStr)
+    try:
+        if globalvars.RunMode == RunMode_Play:
+            tmpDir = os.path.dirname(File_BestResults)
+            if not os.access(tmpDir, os.W_OK):
+                os.mkdir(tmpDir)
+            globalvars.BestResults.GetRoot().StoreTo(File_BestResults)
+    except:
+        oE.Log(u"Cannot write best results record")
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        sys.exit()
 
-def UpdateBestResults(level, name, score, time):
-    if globalvars.BestResults.has_key(level):
-        if globalvars.BestResults[level]["BestTime"] >= time:
-            globalvars.BestResults[level]["BestTime"] = time 
-            globalvars.BestResults[level]["PlayerTime"] = name
-        if globalvars.BestResults[level]["BestScore"] <= score:
-            globalvars.BestResults[level]["BestScore"] = score 
-            globalvars.BestResults[level]["PlayerScore"] = name
-    else:
-        globalvars.BestResults[level] = { "BestTime": time, "PlayerTime": name,
-                                        "BestScore": score, "PlayerScore": name }
-    SaveBestResults()
+def UpdateBestResults(level, name, score):
+    try:
+        tmp = globalvars.BestResults.GetSubtag(level)
+        tmp.SetIntAttr("hiscore", score)
+        tmp.SetStrAttr("player", name)
+        SaveBestResults()
+    except:
+        oE.Log(u"Error updating best results list")
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
 
 #---------------------------
 # Проверка валидности файла

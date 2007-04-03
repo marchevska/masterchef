@@ -30,6 +30,7 @@ level{
     
     //level settings
     LevelSettings{
+        title = "'Level template'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"

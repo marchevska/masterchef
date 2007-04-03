@@ -18,6 +18,8 @@ Cmd_ClickStation = 10
 Cmd_NewOrder = 11
 Cmd_FlopOrder = 12
 Cmd_NewCustomer = 13
+Cmd_CustomerServed = 16
+Cmd_CustomerLost = 17
 Cmd_ReleaseCustomer = 14
 Cmd_FreeStation = 15
 

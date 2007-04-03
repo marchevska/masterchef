@@ -248,6 +248,7 @@ class CustomersQue(scraft.Dispatcher):
         self.State = state
         
     def _OnExecute(self, que):
+        #создать нового покупателя и разместить его у столика
         if self.State == QueState_Active:
             self.NextCustomerTime -= que.delta
             if self.NextCustomerTime <= 0:

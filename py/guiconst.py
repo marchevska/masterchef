@@ -63,6 +63,7 @@ Cmd_ContinueNo = 413
 
 Cmd_LvGoalsPlay = 405
 Cmd_LvCompleteNextLevel = 414
+Cmd_LvCompleteRestart = 419
 Cmd_LvCompleteMainMenu = 415
 
 Cmd_GameOverHiscores = 416

@@ -35,6 +35,7 @@ Level{
     
     //level settings
     LevelSettings{
+        title = "'SweetShop 6'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"

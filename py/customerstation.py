@@ -169,19 +169,21 @@ class CustomerStation(scraft.Dispatcher):
             self.Customer.Freeze(flag)
             
     def SendCommand(self, cmd, parameter = None):
-        if cmd == Cmd_ReleaseCustomer:
+        if cmd == Cmd_NewOrder:
+            self.PutOrder(parameter)
+            
+        elif cmd == Cmd_ReleaseCustomer:
             self._RemoveOrder()
             self.Hero.ShowUp()
             self.Customer.SendCommand(Cmd_Customer_SayThankYou)
             self.Active = False
-            
-        elif cmd == Cmd_NewOrder:
-            self.PutOrder(parameter)
+            globalvars.Board.SendCommand(Cmd_CustomerServed)
             
         elif cmd == Cmd_FlopOrder:
             self._RemoveOrder()
             self.Active = False
             print "flop order!"
+            globalvars.Board.SendCommand(Cmd_CustomerLost)
             
         elif cmd == Cmd_Station_DeleteCustomer:
             self.Active = False
@@ -199,6 +201,8 @@ class CustomerStation(scraft.Dispatcher):
         self.RecipeIndicator.Kill()
         self.RecipeInfoSprite.Dispose()
         self.ReleaseButton.Kill()
+        for tmp in self.NeededIndicators:
+            tmp.Kill()
         
         
 #---------------------------------------------

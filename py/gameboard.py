@@ -132,6 +132,8 @@ class GameBoard(scraft.Dispatcher):
         
         self.LevelScore = 0
         self.Approval = 0
+        self.CustomersServed = 0
+        self.CustomersLost = 0
         self.LevelName = globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
         
         self.HasPowerUps = {}
@@ -289,9 +291,12 @@ class GameBoard(scraft.Dispatcher):
             if self.RemainingCustomers > 0 and len(tmpFreeStations) > 1:
                 self.CustomersQue.SetState(QueState_Active)
                 
-        #elif cmd == Cmd_NewOrder:
-        #    parameter.PutOrder(self.RecipesList.pop(0))
-        #    
+        elif cmd == Cmd_CustomerServed:
+            self.CustomersServed += 1
+            
+        elif cmd == Cmd_CustomerLost:
+            self.CustomersLost += 1
+                
         elif cmd == Cmd_FreeStation:
             if self.RemainingCustomers > 0:
                 self.CustomersQue.SetState(QueState_Active)
@@ -347,9 +352,15 @@ class GameBoard(scraft.Dispatcher):
         #конец уровня; задать способ удаления блоков с поля
         elif state == GameState_EndLevel:
             #if globalvars.RunMode == RunMode_Play:
+            tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
+            if self.LevelScore >= tmpBest.GetIntAttr("hiscore"):
+                config.UpdateBestResults(globalvars.CurrentPlayer.GetLevel().GetContent(),
+                    globalvars.GameConfig.GetStrAttr("Player"), self.LevelScore)
             globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings["expertgoal"],
                         "hiscore": self.LevelScore, "played": True})
-            globalvars.GUI.CallLevelCompleteDialog(True)
+            globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings["moneygoal"]),
+                    { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
+                     "expert": self.LevelScore >= globalvars.LevelSettings["expertgoal"] } )
         
         
     #--------------------------
@@ -513,11 +524,15 @@ class GameBoard(scraft.Dispatcher):
         Постановка паузы
         """
         if flag:
+            self.SendCommand(Cmd_DropWhatYouCarry)
             oE.executor.GetQueue(self.QueNo).Suspend()
         else:
             oE.executor.GetQueue(self.QueNo).Resume()
         if self.Playing:
             self.CustomersQue.Freeze(flag)
+            self.Field.Freeze(flag)
+            for tmp in self.Stores:
+                tmp.Freeze(flag)
             for tmp in self.CStations:
                 tmp.Freeze(flag)
         

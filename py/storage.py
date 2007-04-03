@@ -92,6 +92,13 @@ class Storage(scraft.Dispatcher):
         self.Receptors = {}
         self.Cells = {}
         
+    def Freeze(self, flag):
+        if flag:
+            self.Highlight.Clear()
+            self.Selection.Clear()
+            self.HighlightedCells = []
+            self.SelectedCells = []
+        
     def _ReHighlight(self):
         #пересчитать подсветку токенов
         tmpPos = self._CellByCoords((oE.mouseX, oE.mouseY))
@@ -104,21 +111,22 @@ class Storage(scraft.Dispatcher):
             self._HighlightCells(tmpPos, False)
         
     def _OnMouseClick(self, sprite, x, y, button):
-        if button == 2:
-            globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-        elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
-            if sprite.cookie == Cmd_Receptor:
-                tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                if self.Cells[tmpPos] != Const_EmptyCell and len(self.HighlightedCells)>0:
-                    #pick tokens    
-                        globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-                        self.PickTokens()
-                        globalvars.Board.SendCommand(Cmd_PickFromStorage,
-                            {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
-                else:
-                    if globalvars.Board.GameCursorState == GameCursorState_Tokens:
-                        #put tokens from mouse
-                        globalvars.Board.SendCommand(Cmd_ClickStorage, self)        
+        if globalvars.StateStack[-1] == PState_Game:
+            if button == 2:
+                globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+            elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                if sprite.cookie == Cmd_Receptor:
+                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    if self.Cells[tmpPos] != Const_EmptyCell and len(self.HighlightedCells)>0:
+                        #pick tokens    
+                            globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+                            self.PickTokens()
+                            globalvars.Board.SendCommand(Cmd_PickFromStorage,
+                                {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
+                    else:
+                        if globalvars.Board.GameCursorState == GameCursorState_Tokens:
+                            #put tokens from mouse
+                            globalvars.Board.SendCommand(Cmd_ClickStorage, self)        
     
     #--------------------------
     # ѕодсвечивает группу клеток одного типа под курсором
@@ -253,11 +261,12 @@ class Store(Storage):
     # при движении курсора над полем подсвечивает группы клеток
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
-        if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
-            if sprite.cookie == Cmd_Receptor:
-                tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                if self.Cells[tmpPos] != Const_EmptyCell:
-                    self._HighlightCells(tmpPos, flag)
+        if globalvars.StateStack[-1] == PState_Game:
+            if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                if sprite.cookie == Cmd_Receptor:
+                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    if self.Cells[tmpPos] != Const_EmptyCell:
+                        self._HighlightCells(tmpPos, flag)
         
         
 #--------------------------------------------
@@ -508,9 +517,12 @@ class Field(Storage):
     # при движении курсора над полем подсвечивает группы клеток
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
+        if globalvars.StateStack[-1] == PState_Game:
+        #if not oE.executor.GetQueue(self.QueNo).IsSuspended():
         #if self.State == FieldState_Input:
             if sprite.cookie == Cmd_Receptor:
                 tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                oE.Log("mouseover %d %d" % tmpPos)
                 if self.Cells[tmpPos] != Const_EmptyCell:
                     self._HighlightCells(tmpPos, flag)
         
@@ -519,6 +531,8 @@ class Field(Storage):
     # если тулзы не используютс€, то использовать родительскую функцию
     #--------------------------
     def _OnMouseClick(self, sprite, x, y, button):
+        if globalvars.StateStack[-1] == PState_Game:
+        #if not oE.executor.GetQueue(self.QueNo).IsSuspended():
         #if self.State == FieldState_Input:
             if button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool:
                 #ложка или крест - удалить подсвеченные токены
@@ -535,6 +549,13 @@ class Field(Storage):
                     self.SetState(FieldState_MagicWandConverting, tmpPos)
             else:
                 Storage._OnMouseClick(self, sprite, x, y, button)
+            
+    def Freeze(self, flag):
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+            Storage.Freeze(self, flag)
+        else:
+            oE.executor.GetQueue(self.QueNo).Resume()
             
             
         

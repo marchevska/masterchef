@@ -18,14 +18,16 @@ Video_Mode = scraft.VMODE_800x600x32
 Window_Title = u"Master Chef"
 
 #имена файлов
-File_GameSave = u"data/game.sav"
 File_GameConfig = u"data/game.def"
-File_GameConfigSafe = u"safe/game.def"
 File_Hiscores = u"data/scores.def"
 File_BestResults = u"data/best.def"
 File_PlayersConfig = u"data/players.def"
+
 File_PlayersConfigSafe = u"safe/players.def"
 File_DummyProfile = u"safe/dummy.def"
+File_GameConfigSafe = u"safe/game.def"
+File_BestResultsSafe = u"safe/best.def"
+
 File_SST = u"masterchef.sst"
 
 File_Cuisine = u"def/cuisine.def"

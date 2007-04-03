@@ -115,18 +115,18 @@ bitmap  = img/logos/publisher-logo.png
 
 sprite mainmenu-background { 
 bitmap = img/gui/mainmenu-background.png
-truecolor = "yes"
+truecolor = yes
 }
 
 sprite mainmenu-career-button { 
 bitmap = img/gui/mainmenu-career-button.png
-truecolor = "yes"
+truecolor = yes
 layout = 1x4
 }
 
 sprite mainmenu-endless-button { 
 bitmap = img/gui/mainmenu-endless-button.png
-truecolor = "yes"
+truecolor = yes
 layout = 1x4
 }
 

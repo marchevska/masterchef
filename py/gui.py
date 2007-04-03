@@ -596,8 +596,8 @@ class Gui(scraft.Dispatcher):
             globalvars.GameConfig.SetBoolAttr("Mute", self.OptionsDialog["Static"]["Galka_Mute"].visible)
             globalvars.GameConfig.SetBoolAttr("Hints", self.OptionsDialog["Static"]["Galka_Hints"].visible)
         else:
-            globalvars.GameConfig.SetIntAttr("Sound", self.SavedOptions["Sound"])
-            globalvars.GameConfig.SetIntAttr("Music", self.SavedOptions["Music"])
+            globalvars.GameConfig.SetIntAttr("Sound", self.SavedOptions.GetIntAttr("Sound"))
+            globalvars.GameConfig.SetIntAttr("Music", self.SavedOptions.GetIntAttr("Music"))
         config.ApplyOptions()
         self._ReleaseState(PState_Options)
         
@@ -787,7 +787,9 @@ class Gui(scraft.Dispatcher):
                     #restart game
                     elif globalvars.StateStack[-1] == PState_Options:
                         self._ReleaseState(PState_Options)
-                        globalvars.Board.Clear()
+                        #globalvars.Board.Clear()
+                        self._ReleaseState(PState_Game)
+                        #globalvars.Board.Clear()
                         self._SetState(PState_StartLevel)
                         #globalvars.Board.Restart()
                     

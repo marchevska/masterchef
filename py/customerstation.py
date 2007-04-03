@@ -132,14 +132,14 @@ class CustomerStation(scraft.Dispatcher):
         return no*tmpScoreMultiplier
         
     def _OnMouseOver(self, sprite, flag):
-        #if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
-        if sprite.cookie == Cmd_CustomerStation and self.Active:
-            self._Hilight(flag)    
+        if globalvars.StateStack[-1] == PState_Game:
+            if sprite.cookie == Cmd_CustomerStation and self.Active:
+                self._Hilight(flag)    
         
     def _OnMouseClick(self, sprite, button, x, y):
-        #if sprite.cookie == Cmd_CustomerStation and self.HasOrder:
-        if sprite.cookie == Cmd_CustomerStation and self.Active:
-            globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
+        if globalvars.StateStack[-1] == PState_Game:
+            if sprite.cookie == Cmd_CustomerStation and self.Active:
+                globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
                                                             "mealReady": self.MealReady})
         
     def _Hilight(self, flag):

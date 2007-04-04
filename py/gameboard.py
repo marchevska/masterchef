@@ -68,6 +68,7 @@ class GameBoard(scraft.Dispatcher):
                 Str_HUD_MenuButton, [u"maiandra14", u"maiandra14", u"maiandra14", u"maiandra14"])
         
         self.Field = None
+        self.TrashCan = None
         self.CustomersQue = None
         self.CStations = []
         self.Stores = []
@@ -485,39 +486,49 @@ class GameBoard(scraft.Dispatcher):
             self.TokensNoSprite.Dispose()
         elif self.GameCursorState == GameCursorState_Tool:
             self.ToolSprite.Dispose()
-        for tmp in self.CStations + self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():
+        
+        for tmp in self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():
             tmp.Kill()
-        self.Field.Clear()
-        for tmp in self.Stores:
-            tmp.Clear()
-        for spr in self.Static:
-            spr.Dispose()
-        self.TrashCan.Kill()
-        self.CustomersQue.Kill()
-            
-        self.CStations = []
         self.PowerUpButtons = {}
         self.BuyPowerUpButtons = {}
-        self.Static = []
-        self.Stores = []
-        for tmp in self.CStations + self.Stores:
+            
+        for tmp in self.CStations: 
+            tmp.Kill()
+        self.CStations = []
+        
+        for tmp in self.Stores+[self.Field]:
+            tmp.Clear()
             del tmp
-        del self.Field 
-        del self.TrashCan
+        self.Stores = []
+            
+        for spr in self.Static:
+            spr.Dispose()
+        self.Static = []
+        
+        self.TrashCan.Kill()
+        self.TrashCan = None
+        self.CustomersQue.Kill()
+        self.CustomersQue = None
+            
+        #for tmp in self.CStations + self.Stores:
+        #    del tmp
+        #del self.Field 
+        #del self.TrashCan
              
     def Show(self, flag):
         """
         Показать - спрятать
         """    
         self.BgSprite.visible = flag
+        self.BgReceptor.visible = flag
         for spr in self.HudElements.values():
             spr.visible = flag
-        for btn in self.GameButtons.values():
+        for btn in self.GameButtons.values() + self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():
             btn.Show(flag)
-        if self.Playing:
-            self.CustomersQue.Show(flag)
-            for tmp in self.CStations:
-                tmp.Show(flag)
+        #if self.Playing:
+        #    self.CustomersQue.Show(flag)
+        #    for tmp in self.CStations:
+        #        tmp.Show(flag)
         
     def Freeze(self, flag):
         """
@@ -530,8 +541,8 @@ class GameBoard(scraft.Dispatcher):
             oE.executor.GetQueue(self.QueNo).Resume()
         if self.Playing:
             self.CustomersQue.Freeze(flag)
-            self.Field.Freeze(flag)
-            for tmp in self.Stores:
+            #self.Field.Freeze(flag)
+            for tmp in self.Stores+[self.Field]:
                 tmp.Freeze(flag)
             for tmp in self.CStations:
                 tmp.Freeze(flag)

@@ -522,7 +522,6 @@ class Field(Storage):
         #if self.State == FieldState_Input:
             if sprite.cookie == Cmd_Receptor:
                 tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                oE.Log("mouseover %d %d" % tmpPos)
                 if self.Cells[tmpPos] != Const_EmptyCell:
                     self._HighlightCells(tmpPos, flag)
         
@@ -557,7 +556,9 @@ class Field(Storage):
         else:
             oE.executor.GetQueue(self.QueNo).Resume()
             
-            
+    def Clear(self):
+        oE.executor.DismissQueue(self.QueNo)
+        Storage.Clear(self)
         
 #--------------------------------------------
 #--------------------------------------------

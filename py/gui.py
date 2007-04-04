@@ -833,7 +833,7 @@ class Gui(scraft.Dispatcher):
                     self._SetState(PState_Hiscores)
                 elif cmd == Cmd_GameOverMainMenu:
                     self._SetState(PState_MainMenu)
-                self._ReleaseState(PState_Game)
+                #self._ReleaseState(PState_Game)
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         

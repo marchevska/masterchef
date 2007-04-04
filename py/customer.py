@@ -272,6 +272,7 @@ class CustomersQue(scraft.Dispatcher):
             tmp.Freeze(flag)
         
     def Kill(self):
+        oE.executor.DismissQueue(self.QueNo)
         for tmp in self.Customers:
             tmp.Kill()
             del tmp

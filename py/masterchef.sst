@@ -160,34 +160,36 @@ type   = blend
 ########################
 
 sprite help-page1 {
-bitmap = img/gui/help-page1.bmp
+bitmap = img/gui/help-page1.png
 }
 
-sprite help-page2 {
-bitmap = img/gui/help-page2.bmp
-}
+#sprite help-page2 {
+#bitmap = img/gui/help-page2.bmp
+#}
 
-sprite help-page3 {
-bitmap = img/gui/help-page3.bmp
-}
+#sprite help-page3 {
+#bitmap = img/gui/help-page3.bmp
+#}
 
 ###########################
 # players screen elements #
 ###########################
 
 sprite players-select-button {
-bitmap = img/gui/players-select-button.bmp
+bitmap = img/gui/players-select-button.png
 layout = 1x5
 }
 
 sprite players-arrow-up {
-bitmap = img/gui/players-arrow-up.bmp
+bitmap = img/gui/players-arrow-up.png
 layout = 4x1
+type = blend
 }
 
 sprite players-arrow-down {
-bitmap = img/gui/players-arrow-down.bmp
+bitmap = img/gui/players-arrow-down.png
 layout = 4x1
+type = blend
 }
 
 sprite textcursor {
@@ -359,13 +361,37 @@ sample = sound/timeover.ogg
 font domcasual-10 {
 bitmap = img/fonts/domcasual-10.png
 type = blend
-symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-. .
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
+}
+
+font domcasual-10-up {
+bitmap = img/fonts/domcasual-10-up.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
+}
+
+font domcasual-10-roll {
+bitmap = img/fonts/domcasual-10-roll.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
+}
+
+font domcasual-10-down {
+bitmap = img/fonts/domcasual-10-down.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
+}
+
+font domcasual-10-inert {
+bitmap = img/fonts/domcasual-10-inert.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
 }
 
 font domcasual-11 {
 bitmap = img/fonts/domcasual-11.png
 type = blend
-symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-. .
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
 }
 
 font hobor-17 {

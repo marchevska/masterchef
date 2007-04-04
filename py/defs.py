@@ -115,15 +115,6 @@ def ReadLevelProgress():
         oE.Log(u"Cannot read levels list")
         sys.exit()
         
-def GetLevelByNumber(no):
-    tmpName = ""
-    try:
-        tmpLevelIterator = globalvars.LevelProgress.IterateTag(u"level")
-        for i in range(no):
-            tmpLevelIterator.Next()
-    except:
-        pass
-        
 #--------------------------
 # Чтение глобальных настроек
 #--------------------------
@@ -310,20 +301,6 @@ def ReadGroups(filename):
     except:
         return {}
     
-#-----------------------------------
-# Возвращает подноду данной ноды с заданным тегом и заданным контентом
-#-----------------------------------
-
-def GetTagWithContent(node, tag, content):
-    try:
-        tmpIterator = node.IterateTag(tag)
-        while tmpIterator.Next():
-            if tmpIterator.Get().GetContent() == content:
-                return tmpIterator.Get()
-        return None
-    except:
-        return None
-        
 #-----------------------------------
 # Возвращает подноду данной ноды с заданным значением заданного атрибута
 #-----------------------------------

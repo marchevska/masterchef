@@ -90,18 +90,17 @@ class Player:
     def SetLevel(self, level):
         try:
             self.Level = level#.Clone()
+            tmpNode = self.XML.GetSubtag(level.GetContent())
             if level.GetName() == u"comic":
                 #если комикс: отметить в профиле игрока комикс как увиденный
-                tmpNode = defs.GetTagWithContent(self.XML, u"comic", level.GetContent())
                 tmpNode.SetBoolAttr(u"seen", True)
                 #если текущий - комикс, то отметить следующий уровень или комикс как разлоченный
                 if level.Next():
-                    tmpNextLevel = defs.GetTagWithContent(self.XML, level.Next().GetName(), level.Next().GetContent())
+                    tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
                     if tmpNextLevel.HasAttr(u"unlocked"):
                         tmpNextLevel.SetBoolAttr(u"unlocked", True)
             elif level.GetName() == u"level":
                 #если уровень: отметить в профиле игрока уровень как начатый
-                tmpNode = defs.GetTagWithContent(self.XML, u"level", level.GetContent())
                 tmpNode.SetBoolAttr(u"played", True)
             self.Save()
         except:

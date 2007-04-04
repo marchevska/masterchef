@@ -36,7 +36,7 @@ class CustomerStation(scraft.Dispatcher):
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
         self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
-                u"release-button", [0, 1, 2], Layer_PopupBtnTxt, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
+                u"release-button", [0, 1, 2], Layer_Recipe-1, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
         self.ReleaseButton.Show(False)
         self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
         self.Hero.Show(False)

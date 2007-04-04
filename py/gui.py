@@ -677,8 +677,7 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_MapStart:
                     #self.NextCareerStage()
                     self._ReleaseState(PState_MapCareer)
-                    globalvars.CurrentPlayer.SetLevel(defs.GetTagWithContent(globalvars.LevelProgress,
-                        u"level", self.SelectedLevel))
+                    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetSubtag(self.SelectedLevel))
                     self._SetState(PState_StartLevel)
                 elif cmd == Cmd_MapMainMenu:
                     self._ReleaseState(PState_MapCareer)

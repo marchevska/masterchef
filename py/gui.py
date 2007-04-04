@@ -55,12 +55,12 @@ class Gui(scraft.Dispatcher):
         #self.MainMenuDialog["Static"]["Back"].cookie = Cmd_Background
         self.MainMenuDialog["Buttons"]["PlayCareer"] = PushButton("PlayCareer",
                 self, Cmd_Menu_PlayCareer, PState_MainMenu,
-                "mainmenu-career-button", [0, 1, 2], 
-                Layer_BtnText, 350, 220, 130, 170)
+                "mainmenu-career-endless-button", [0, 2, 4, 6], 
+                Layer_BtnText, 365, 215, 130, 170)
         self.MainMenuDialog["Buttons"]["PlayEndless"] = PushButton("PlayEndless",
                 self, Cmd_Menu_PlayEndless, PState_MainMenu,
-                "mainmenu-endless-button", [0, 1, 2], 
-                Layer_BtnText, 483, 213, 135, 170)
+                "mainmenu-career-endless-button", [1, 3, 5, 7], 
+                Layer_BtnText, 495, 215, 130, 170)
         self.MainMenuDialog["Buttons"]["Options"] = PushButton("Options",
                 self, Cmd_Menu_Options, PState_MainMenu,
                 "mainmenu-options-button", [0, 1, 2], 

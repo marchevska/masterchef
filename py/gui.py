@@ -332,7 +332,7 @@ class Gui(scraft.Dispatcher):
         self.OptionsDialog["Buttons"]["EndGame"] = PushButton("OptionsEndGame",
                 self, Cmd_IGM_EndGame, PState_Options,
                 u"button-4st", [0, 1, 2], 
-                Layer_PopupBtnTxt, 540, 470, 120, 40,
+                Layer_PopupBtnTxt, 560, 470, 120, 40,
                 Str_OptionsEndGame, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
         
         #---------

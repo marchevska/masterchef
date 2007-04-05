@@ -377,16 +377,16 @@ class Gui(scraft.Dispatcher):
         self.MapCareerDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.MapCareerDialog["Static"]["Back"] = MakeSimpleSprite(u"map-background", Layer_Background)
         self.MapCareerDialog["Text"]["BestResult"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                                                { "x": 400, "y": 550, "hotspot": scraft.HotspotCenter } )
+                                                { "x": 400, "y": 540, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Buttons"]["Start"] = PushButton("MapStart",
                 self, Cmd_MapStart, PState_MapCareer,
                 u"button-4st", [0, 1, 2, 3], 
-                Layer_BtnText, 700, 570, 120, 40,
+                Layer_BtnText, 400, 570, 120, 40,
                 Str_MapStart, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.MapCareerDialog["Buttons"]["MainMenu"] = PushButton("MapMainMenu",
                 self, Cmd_MapMainMenu, PState_MapCareer,
                 u"button-4st", [0, 1, 2], 
-                Layer_BtnText, 100, 570, 120, 40,
+                Layer_BtnText, 70, 18, 120, 40,
                 Str_MapMainMenu, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
         for tmp in globalvars.LevelProgress.Tags("level"):
             self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",

@@ -10,11 +10,6 @@ type   = blend
 hotspot = 4,0
 }
 
-sprite cell-marker {
-bitmap = img/common/cell-marker.png
-type   = blend
-}
-
 sprite cell-highlight {
 bitmap = img/common/cell-highlight.png
 type   = blend
@@ -27,11 +22,6 @@ type   = blend
 layout = 5x8
 }
 
-sprite select-marker {
-bitmap = img/common/select-marker.png
-type   = blend
-}
-
 
 sprite heart {
 bitmap = img/heart.png
@@ -42,14 +32,6 @@ type   = blend
 ############
 # game hud #
 ############
-
-sprite background {
-bitmap = img/background.png
-}
-
-sprite storage {
-bitmap = img/storage.png
-}
 
 sprite galka {
 bitmap = img/galka.png
@@ -69,19 +51,12 @@ type = blend
 
 
 
-
 ################
 # gui elements #
 ################
 
 sprite button-4st {
 bitmap = img/gui/button-4st.png
-type   = blend
-layout = 1x4
-}
-
-sprite button-120x40x4st {
-bitmap = img/gui/button-120x40x4st.png
 type   = blend
 layout = 1x4
 }
@@ -150,11 +125,6 @@ bitmap = img/gui/mainmenu-players-button.png
 layout = 1x4
 }
 
-sprite gray {
-bitmap = img/gui/gray.png
-type   = blend
-}
-
 ########################
 # help screen elements #
 ########################
@@ -162,14 +132,6 @@ type   = blend
 sprite help-page1 {
 bitmap = img/gui/help-page1.png
 }
-
-#sprite help-page2 {
-#bitmap = img/gui/help-page2.bmp
-#}
-
-#sprite help-page3 {
-#bitmap = img/gui/help-page3.bmp
-#}
 
 ###########################
 # players screen elements #
@@ -228,11 +190,6 @@ layout = 3x1
 
 sprite map-background { 
 bitmap = img/gui/map-background.png
-}
-
-sprite map-dots {
-bitmap = img/gui/map-dots.png
-layout = 3x2
 }
 
 sprite level-pointers {
@@ -400,46 +357,3 @@ type = blend
 symbols=1234567890
 }
 
-font arial18 {
-bitmap = img/fonts/arial18.bmp
-symbols=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 -.
-type = colorkey
-keyrgb = ffeecc
-}
-
-font papyrus2 {
-bitmap = img/fonts/papyrus2.png
-symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
-type = blend
-}
-
-font papyrus2-roll {
-bitmap = img/fonts/papyrus2-roll.png
-symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
-type = blend
-}
-
-font papyrus2-down {
-bitmap = img/fonts/papyrus2-down.png
-symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
-type = blend
-}
-
-font papyrus2-inert {
-bitmap = img/fonts/papyrus2-inert.png
-symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-/.,? .
-type = blend
-}
-
-font papyrus-18px-numbers {
-bitmap = img/fonts/papyrus-18px-numbers.png
-symbols=0123456789+-/
-type = blend
-}
-
-font maiandra14 {
-bitmap=img/fonts/maiandra14.bmp
-symbols=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .
-type=colorkey
-keyrgb=ffeecc
-}

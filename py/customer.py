@@ -12,7 +12,7 @@ from scraft import engine as oE
 import globalvars
 from constants import *
 from strings import *
-from guielements import MakeSimpleSprite, MakeTextSprite
+from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
 from extra import Animator, RandomKeyByRates
 from random import randint
 
@@ -216,7 +216,9 @@ class CustomersQue(scraft.Dispatcher):
             
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
         self.TabletSprite = MakeSimpleSprite(theme["tablet"], Layer_InterfaceBg, Crd_QueueTablet_X0, Crd_QueueTablet_Y0)
-        self.TextMarker = MakeTextSprite(u"arial18", Layer_InterfaceTxt, Crd_QueueMarker_X0, Crd_QueueMarker_Y0)
+        self.TextMarker = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+                { "x": Crd_QueueMarker_X0, "y": Crd_QueueMarker_Y0, "cfilt-color": 0x600000,
+                 "hotspot": scraft.HotspotCenter })
         self._Draw()
         self.SetState(QueState_None)
         self.QueNo = oE.executor.Schedule(self)

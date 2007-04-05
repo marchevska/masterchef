@@ -171,6 +171,7 @@ layout = 3x1
 
 sprite slider-background {
 bitmap = img/gui/slider-background.png
+type = blend
 }
 
 sprite options-galka {

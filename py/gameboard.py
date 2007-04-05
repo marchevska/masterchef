@@ -63,9 +63,9 @@ class GameBoard(scraft.Dispatcher):
         self.GameButtons = {}
         self.GameButtons["Menu"] = PushButton("Menu",
                 self, Cmd_Menu, PState_Game,
-                u"button-120x40x4st", [0, 1, 2, 3, 4], 
+                u"button-4st", [0, 1, 2, 3, 4], 
                 Layer_InterfaceBtn, 60, 25, 100, 34,
-                Str_HUD_MenuButton, [u"maiandra14", u"maiandra14", u"maiandra14", u"maiandra14"])
+                Str_HUD_MenuButton, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         
         self.Field = None
         self.TrashCan = None

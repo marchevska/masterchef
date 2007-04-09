@@ -58,8 +58,8 @@ Level{
         BonusPane{ type = "" size = "1" x = "480" y = "175" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
         Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
-        Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
-        Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }
+        //Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
+        Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "300" y = "200" }
     }
     
 }

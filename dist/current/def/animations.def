@@ -21,15 +21,15 @@ MasterChef {
     
     //People animations
     Animation(animation.worker) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 3000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 3000), (9, 500)" loops = "0" }
+        Sequence { name = "Order" frames = "(0, 500), (1, 500)" loops = "0" }
+        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 700), (9, 500)" loops = "0" }
         Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 2000), (3, 500)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
         Sequence { name = "1Hearts" frames = "(6, 500), (7, 500)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 1000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 1000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1000)," loops = "0" }
+        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
+        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
+        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
         Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
     }
 
@@ -60,15 +60,15 @@ MasterChef {
     }
 
     Animation(animation.student) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence { name = "Order" frames = "(0, 500), (1, 500)" loops = "0" }
         Sequence { name = "5Hearts" frames = "(4, 1000), (5, 1000)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 3000), (9, 500)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 500)" loops = "0" }
         Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000)" loops = "0" }
         Sequence { name = "2Hearts" frames = "(2, 1000), (3, 1000)" loops = "0" }
         Sequence { name = "1Hearts" frames = "(6, 500), (7, 500)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 1000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 1000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1000)," loops = "0" }
+        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
+        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
+        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
         Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
     }
 

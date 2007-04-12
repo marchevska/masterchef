@@ -22,6 +22,9 @@ Cmd_CustomerServed = 16
 Cmd_CustomerLost = 17
 Cmd_ReleaseCustomer = 14
 Cmd_FreeStation = 15
+Cmd_PickToken = 9
+Cmd_PickFromConveyor = 18
+Cmd_ReturnToConveyor = 19
 
 Cmd_Station_DeleteCustomer = 20
 Cmd_Customer_SayThankYou = 21

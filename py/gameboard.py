@@ -16,6 +16,7 @@ from configconst import *
 from guielements import *
 from customerstation import CustomerStation
 from storage import Store, Field, TrashCan
+from conveyor import Conveyor
 from extra import *
 from customer import *
 import config
@@ -155,13 +156,15 @@ class GameBoard(scraft.Dispatcher):
                 tmpStation.SetState(CStationState_Free)
             self.CStations.append(tmpStation)
         
-        #игровое поле
-        tmp = globalvars.Layout["Field"]
-        self.Field = Field(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme)
-            
-        #размещение складов
-        for tmp in globalvars.Layout["Stores"]:
-            self.Stores.append(Store(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme))
+        ##игровое поле
+        #tmp = globalvars.Layout["Field"]
+        #self.Field = Field(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme)
+        #    
+        ##размещение складов
+        #for tmp in globalvars.Layout["Stores"]:
+        #    self.Stores.append(Store(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme))
+        
+        self.Conveyors = [Conveyor(400, 100, 30, 60), Conveyor(500, 100, 10, 60)]
         
         #прочие объекты
         self.Static = []
@@ -209,7 +212,7 @@ class GameBoard(scraft.Dispatcher):
             self.CustomersQue.SetState(QueState_Active)
         
         #заполнение поля
-        self.Field.InitialFilling()
+        #self.Field.InitialFilling()
         
         self._SetState(GameState_StartLevel)
         self._SetGameCursorState(GameCursorState_Default)
@@ -240,7 +243,7 @@ class GameBoard(scraft.Dispatcher):
                     tmpFrom = self.TokensFrom
                     tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
                     self.AddScore(tmpDeltaScore)
-                    self.TokensFrom.RemoveTokens()
+                    #self.TokensFrom.RemoveTokens()
                     self.SendCommand(Cmd_DropWhatYouCarry)
                     if tmpFrom == self.Field:
                         self.Field.SetState(FieldState_Collapse)
@@ -285,6 +288,15 @@ class GameBoard(scraft.Dispatcher):
             
         elif cmd == Cmd_PickFromStorage:
             self._PickTokensFrom(parameter["where"], parameter["type"], parameter["no"])
+            
+        elif cmd == Cmd_PickFromConveyor:
+            if self.GameCursorState == GameCursorState_Tokens:
+                if self.TokensFrom != None:
+                    #self.TokensFrom.SendCommand(Cmd_ReturnToConveyor,
+                    #                { "type": self.PickedTokens, "position": parameter["position"] })
+                    parameter["where"].SendCommand(Cmd_ReturnToConveyor,
+                                    { "type": self.PickedTokens, "position": parameter["position"] })
+            self._PickFromConveyor(parameter["where"], parameter["type"])
             
         elif cmd == Cmd_NewCustomer:
             tmpFreeStations = filter(lambda x: x.State == CStationState_Free, self.CStations)
@@ -344,7 +356,9 @@ class GameBoard(scraft.Dispatcher):
             
         #начало уровня; задать способ появления блоков на поле
         elif state == GameState_StartLevel:
-            self.Field.SetState(FieldState_StartLevel)
+            #self.Field.SetState(FieldState_StartLevel)
+            self._SetState(GameState_Play)
+            pass
             
         #основной цикл - игра
         elif state == GameState_Play:
@@ -432,6 +446,17 @@ class GameBoard(scraft.Dispatcher):
         if tool not in ('Supersweet', 'Shuffle'):
             self._DropTool()
         
+    def _PickFromConveyor(self, where, type):
+        self.PickedTokens = type
+        self.PickedTokensNo = 1
+        self.TokenSprite = MakeSprite(globalvars.CuisineInfo["Ingredients"][type]["src"], Layer_Tools)
+        self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
+                                        { "parent": self.TokenSprite, "x": 20, "y": 30, "text": "",
+                                          "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
+        self._SetGameCursorState(GameCursorState_Tokens)
+        self.TokensFrom = where
+        
+        
     def _PickTokensFrom(self, where, type, no):
         self.PickedTokens = type
         self.PickedTokensNo = no
@@ -441,11 +466,10 @@ class GameBoard(scraft.Dispatcher):
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
         self._SetGameCursorState(GameCursorState_Tokens)
         self.TokensFrom = where
-        # добавить текст с числом токенов на курсоре
         
     def _DropTokensTo(self, where):
-        if where != None:
-            where.DropTokens()
+        #if where != None:
+            #where.DropTokens()
         self.PickedTokens = ""
         self.PickedTokensNo = 0
         self.TokenSprite.Dispose()
@@ -541,11 +565,10 @@ class GameBoard(scraft.Dispatcher):
             oE.executor.GetQueue(self.QueNo).Resume()
         if self.Playing:
             self.CustomersQue.Freeze(flag)
-            #self.Field.Freeze(flag)
-            for tmp in self.Stores+[self.Field]:
-                tmp.Freeze(flag)
-            for tmp in self.CStations:
-                tmp.Freeze(flag)
+            #for tmp in self.Stores+[self.Field]:
+            #    tmp.Freeze(flag)
+            #for tmp in self.CStations:
+            #    tmp.Freeze(flag)
         
 def _ListIntersection(list1, list2):
     return filter(lambda x: x in list2, list1)

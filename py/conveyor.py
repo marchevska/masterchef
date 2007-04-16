@@ -62,7 +62,8 @@ class Conveyor(scraft.Dispatcher):
         
         
     def _PutNewToken(self):
-        self.Tokens.append(Token(self, RandomKeyByRates(globalvars.LevelInfo["IngredientRates"])))
+        self.Tokens.append(Token(self, RandomKeyByRates(dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+                       globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))))))
         if len(self.TokensCrd) == 0:
             self.TokensCrd.append(0)
         else:
@@ -102,6 +103,24 @@ class Conveyor(scraft.Dispatcher):
         self.TokensCrd.pop(idx)
         token.Kill()
         
+    def DropTokens(self):
+        pass
+        
+    def RemoveTokens(self):
+        pass
+        
+    def Freeze(self, flag):
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+        else:
+            oE.executor.GetQueue(self.QueNo).Resume()
+            
+    def Clear(self):
+        oE.executor.DismissQueue(self.QueNo)
+        for tmp in self.Tokens:
+            tmp.Kill()
+        self.Tokens = []
+        self.TokenCrd = []
 
 #---------------------
 # класс токена

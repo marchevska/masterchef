@@ -139,7 +139,7 @@ class Player:
                     if params["hiscore"] > tmpLevelNode.GetIntAttr("hiscore"):
                         tmpLevelNode.SetIntAttr("hiscore", params["hiscore"])
                     #проверить, достигнута ли цель уровня; если да - разлочить следующий
-                    if params["hiscore"] >= globalvars.LevelSettings["moneygoal"]:
+                    if params["hiscore"] >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneyGoal"):
                         tmpNextLevelNode = self.XML.GetSubtag(self.Level.Next().GetContent())
                         if tmpNextLevelNode:
                             tmpNextLevelNode.SetBoolAttr("unlocked", True)

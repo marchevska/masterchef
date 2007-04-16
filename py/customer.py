@@ -182,6 +182,8 @@ class Customer(scraft.Dispatcher):
         
     # сделать заказ
     def _MakeOrder(self):
+        tmpLevelRecipeRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+            globalvars.LevelSettings.GetTag("RecipeRates").Tags("Recipe")))
         if globalvars.CustomersInfo[self.Type]["dislikes"] != "nothing":
             #плохие ингредиенты - те, которые покупатель не любит
             tmpBadIngredients = map(lambda y: y[0], filter(lambda x: x[1]["type"] == globalvars.CustomersInfo[self.Type]["dislikes"],
@@ -189,10 +191,10 @@ class Customer(scraft.Dispatcher):
             #хорошие рецепты - не используют плохих ингредиентов
             tmpGoodRecipes = filter(lambda x: \
                 filter(lambda y: y in tmpBadIngredients, globalvars.CuisineInfo["Recipes"][x]["requires"].keys()) == [],
-                globalvars.LevelInfo["RecipeRates"].keys())
-            tmpGoodRecipeRates = dict(map(lambda x: (x, globalvars.LevelInfo["RecipeRates"][x]), tmpGoodRecipes))
+                tmpLevelRecipeRates.keys())
+            tmpGoodRecipeRates = dict(map(lambda x: (x, tmpLevelRecipeRates[x]), tmpGoodRecipes))
         else:
-            tmpGoodRecipeRates = dict(globalvars.LevelInfo["RecipeRates"])
+            tmpGoodRecipeRates = tmpLevelRecipeRates
         self.HasOrder = True    
         return RandomKeyByRates(tmpGoodRecipeRates)
         
@@ -206,8 +208,9 @@ class CustomersQue(scraft.Dispatcher):
         #список покупателей и их заказов
         #обеспечиваем, чтобы не было более двух одинаовых покупателей подряд!
         self.CustomersList = []
-        for i in range(globalvars.LevelSettings["nocustomers"]):
-            tmpRates = dict(globalvars.LevelInfo["CustomerRates"])
+        for i in range(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers")):
+            tmpRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+                       globalvars.LevelSettings.GetTag("CustomerRates").Tags("Customer")))
             if i>=2:
                 if self.CustomersList[i-2] == self.CustomersList[i-1]:
                     if len(tmpRates) > 1:

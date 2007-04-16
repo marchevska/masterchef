@@ -13,8 +13,7 @@ global LevelProgress
 global CustomerAnimations
 global PowerUpsInfo
 global GameSettings
-global LevelSettings
-global LevelInfo
+global LevelSettings    #файл уровня, XML
 global Layout
 
 global GameConfig

@@ -50,7 +50,7 @@ Level{
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
         Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
-        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" }
+        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
         PowerUp{ type = "Sweet" x = "450" y = "200" }
         PowerUp{ type = "Gift" x = "450" y = "250" }
         Counter{ type = "" x = "330" y = "95" }

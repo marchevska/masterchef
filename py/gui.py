@@ -563,9 +563,9 @@ class Gui(scraft.Dispatcher):
     # обновить данные в диалоге "цели уровня", при старте уровня
     #-------------------------------------------
     def _UpdateLevelGoals(self):
-        self.LevelGoalsDialog["Text"]["Title"].text = globalvars.LevelSettings["title"]
-        self.LevelGoalsDialog["Text"]["Text1"].text = "Level goal: "+str(globalvars.LevelSettings["moneygoal"])
-        self.LevelGoalsDialog["Text"]["Text2"].text = "Expert goal: "+str(globalvars.LevelSettings["expertgoal"])
+        self.LevelGoalsDialog["Text"]["Title"].text = globalvars.LevelSettings.GetTag(u"LevelSettings").GetStrAttr("title")
+        self.LevelGoalsDialog["Text"]["Text1"].text = "Level goal: "+str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneyGoal"))
+        self.LevelGoalsDialog["Text"]["Text2"].text = "Expert goal: "+str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertGoal"))
         
     #-------------------------------------------
     # показать диалог с опциями - обновить данные по текущим опциям

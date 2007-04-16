@@ -126,20 +126,20 @@ class Storage(scraft.Dispatcher):
                     else:
                         if globalvars.Board.GameCursorState == GameCursorState_Tokens:
                             #put tokens from mouse
-                            globalvars.Board.SendCommand(Cmd_ClickStorage, self)        
+                            globalvars.Board.SendCommand(Cmd_ClickStorage, {"where": self, "pos": tmpPos})        
     
     #--------------------------
     # ѕодсвечивает группу клеток одного типа под курсором
     #--------------------------
     def _HighlightCells(self, pos, flag):
         if flag:
+            tmpFrames = { 0: 0, 1: 1, 2: 3, 3: 2, 4: 15, 5:10, 6: 32, 7:6,
+                8: 19, 9: 31, 10: 14, 11: 8, 12: 22, 13: 16, 14: 18, 15: 12 }
             for i in range(self.Cols+1):
                 for j in range(self.Rows+1):
                     #провер€ем 4 соседние €чейки
                     tmp = ((i-1,j-1) in self.HighlightedCells)*8 + ((i,j-1) in self.HighlightedCells)*4 + \
                         ((i-1,j) in self.HighlightedCells)*2 + ((i,j) in self.HighlightedCells)*1
-                    tmpFrames = { 0: 0, 1: 1, 2: 3, 3: 2, 4: 15, 5:10, 6: 32, 7:6,
-                                 8: 19, 9: 31, 10: 14, 11: 8, 12: 22, 13: 16, 14: 18, 15: 12 }
                     self.Highlight.SetTile(i,j,tmpFrames[tmp])
         else:
             self.Highlight.Clear()
@@ -150,13 +150,13 @@ class Storage(scraft.Dispatcher):
     #--------------------------
     def PickTokens(self):
         self.SelectedCells = list(self.HighlightedCells)
+        tmpFrames = { 0: 0, 1: 1, 2: 3, 3: 2, 4: 15, 5:10, 6: 32, 7:6,
+            8: 19, 9: 31, 10: 14, 11: 8, 12: 22, 13: 16, 14: 18, 15: 12 }
         for i in range(self.Cols+1):
             for j in range(self.Rows+1):
                 #провер€ем 4 соседние €чейки
                 tmp = ((i-1,j-1) in self.SelectedCells)*8 + ((i,j-1) in self.SelectedCells)*4 + \
                     ((i-1,j) in self.SelectedCells)*2 + ((i,j) in self.SelectedCells)*1
-                tmpFrames = { 0: 0, 1: 1, 2: 3, 3: 2, 4: 15, 5:10, 6: 32, 7:6,
-                             8: 19, 9: 31, 10: 14, 11: 8, 12: 22, 13: 16, 14: 18, 15: 12 }
                 self.Selection.SetTile(i,j,tmpFrames[tmp])
         
     #--------------------------
@@ -189,6 +189,7 @@ class Storage(scraft.Dispatcher):
 #--------------------------------------------
 #--------------------------------------------
 # Store - временное хранилище токенов
+# “окены сортируютс€ группами одинаковых
 #--------------------------------------------
 #--------------------------------------------
 class Store(Storage):
@@ -197,7 +198,8 @@ class Store(Storage):
         
         self.Capacity = cols*rows
         self.NoTokens = 0
-        self.TokensHeld = map(lambda x: { "item": x, "no": 0 }, globalvars.LevelInfo["IngredientRates"].keys())
+        self.TokensHeld = map(lambda x: { "item": x, "no": 0 },
+            map(lambda x: x.GetStrAttr("type"), globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient")))
 
     #--------------
     # проверка наличи€ no свободных клеток
@@ -211,7 +213,7 @@ class Store(Storage):
     #--------------
     # добавить "no" токенов типа "type" - без проверки
     #--------------
-    def AddTokens(self, type, no):
+    def AddTokens(self, type, no, pos):
         try:
             filter(lambda x: x["item"] == type, self.TokensHeld)[0]["no"] += no
             self.NoTokens += no
@@ -271,6 +273,76 @@ class Store(Storage):
         
 #--------------------------------------------
 #--------------------------------------------
+# SingularStore - временное хранилище токенов
+# “окены можно класть и брать только по одному!
+#--------------------------------------------
+#--------------------------------------------
+class SingularStore(Storage):
+    def __init__(self, cols, rows, x, y, theme):
+        Storage.__init__(self, cols, rows, x, y, theme["storage"])
+        
+        self.Capacity = cols*rows
+        self.NoTokens = 0
+        
+    #--------------
+    # проверка наличи€ no свободных клеток
+    #--------------
+    def HasFreeSlots(self, no):
+        if self.Capacity - self.NoTokens >= no:
+            return True
+        else:
+            return False
+        
+    #--------------
+    # добавить "no" токенов типа "type" - без проверки
+    #--------------
+    def AddTokens(self, type, no, pos):
+        try:
+            self.Cells[pos] = type
+            self.Grid[pos].ChangeKlassTo(globalvars.CuisineInfo["Ingredients"][type]["src"])
+            self.NoTokens += no
+        except:
+            pass
+        self.Draw()
+        
+    #--------------
+    # отрисовка
+    #--------------
+    def Draw(self):
+        self._ReHighlight()            
+        
+    #--------------------------
+    # ”даление выделенных токенов с пол€
+    #--------------------------
+    def RemoveTokens(self):
+        self.NoTokens -= 1
+        self._RemoveTokenFrom(self.SelectedCells[0])
+        self.Draw()
+        
+    #--------------------------
+    # ѕодсвечивает группу клеток одного типа под курсором
+    #--------------------------
+    def _HighlightCells(self, pos, flag):
+        if flag:
+            self.HighlightedCells = [pos]
+            Storage._HighlightCells(self, pos, True)
+        else:
+            Storage._HighlightCells(self, (0,0), False)
+        
+    #--------------------------
+    # при движении курсора над полем подсвечивает группы клеток
+    #--------------------------
+    def _OnMouseOver(self, sprite, flag):
+        if globalvars.StateStack[-1] == PState_Game:
+            if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                if sprite.cookie == Cmd_Receptor:
+                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    if self.Cells[tmpPos] != Const_EmptyCell:
+                        self._HighlightCells(tmpPos, flag)
+        
+        
+#--------------------------------------------
+#--------------------------------------------
 # Field - игровое поле
 #--------------------------------------------
 #--------------------------------------------
@@ -293,7 +365,8 @@ class Field(Storage):
     # ѕоместить произвольный токен в заданную клетку
     #--------------------------
     def _PutRandomToken(self, cell):
-        tmp = RandomKeyByRates(globalvars.LevelInfo["IngredientRates"])
+        tmp = RandomKeyByRates(dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+                       globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))))
         self.Cells[cell] = tmp
         self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo["Ingredients"][tmp]["src"])
         

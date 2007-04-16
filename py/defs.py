@@ -7,7 +7,7 @@ Project: Master Chef
 """
 
 import sys
-import string
+import string, traceback
 import scraft
 from scraft import engine as oE
 import globalvars
@@ -184,105 +184,33 @@ def ReadGameSettings():
 
 def ReadLevelSettings(filename):
     try:
-        globalvars.LevelSettings = {}
-        globalvars.LevelInfo = { "CustomerRates": {}, "IngredientRates": {}, "RecipeRates": {} }
+        globalvars.LevelSettings = oE.ParseDEF(unicode(filename)).GetTag(u"Level")
         globalvars.Layout = {}
         ReadGameSettings()
         
-        tmpLevelData = oE.ParseDEF(unicode(filename)).GetTag(u"Level")
-        
-        #override global game settings
-        if tmpLevelData.GetCountTag(u"GameSettings") == 1:
-            tmp = tmpLevelData.GetTag(u"GameSettings").Attributes()
-            while tmp.Next():
-                globalvars.GameSettings[tmp.Name()] = eval(tmp.Value())
+        ##override global game settings
+        #if globalvars.LevelSettings.GetCountTag(u"GameSettings") == 1:
+        #    tmp = globalvars.LevelSettings.GetTag(u"GameSettings").Attributes()
+        #    while tmp.Next():
+        #        globalvars.GameSettings[tmp.Name()] = eval(tmp.Value())
                 
-        #override customer settings
-        if tmpLevelData.GetCountTag(u"Customers") == 1:
-            tmpCustomersIterator = tmpLevelData.GetTag(u"Customers").IterateTag(u"Customer")
-            while tmpCustomersIterator.Next():
-                tmpCustomer = tmpCustomersIterator.Get()
-                tmpType = tmpCustomer.GetStrAttr(u"type")
-                tmp = tmpCustomer.Attributes()
-                while tmp.Next():
-                    if tmp.Name() in [u"likes", u"dislikes"]:
-                        globalvars.CustomersInfo[tmpType][tmp.Name()] = tmp.Value()
-                    elif tmp.Name() not in [u"type", u"src"]:
-                        globalvars.CustomersInfo[tmpType][tmp.Name()] = eval(tmp.Value())
+        ##override customer settings
+        #if tmpLevelData.GetCountTag(u"Customers") == 1:
+        #    tmpCustomersIterator = tmpLevelData.GetTag(u"Customers").IterateTag(u"Customer")
+        #    while tmpCustomersIterator.Next():
+        #        tmpCustomer = tmpCustomersIterator.Get()
+        #        tmpType = tmpCustomer.GetStrAttr(u"type")
+        #        tmp = tmpCustomer.Attributes()
+        #        while tmp.Next():
+        #            if tmp.Name() in [u"likes", u"dislikes"]:
+        #                globalvars.CustomersInfo[tmpType][tmp.Name()] = tmp.Value()
+        #            elif tmp.Name() not in [u"type", u"src"]:
+        #                globalvars.CustomersInfo[tmpType][tmp.Name()] = eval(tmp.Value())
                 
-        #read level settings
-        tmp = tmpLevelData.GetTag(u"LevelSettings").Attributes()
-        while tmp.Next():
-            globalvars.LevelSettings[tmp.Name()] = eval(tmp.Value())
-            
-        #read cutomer, recipe and ingredient rates
-        for tmpKey in ["Recipe", "Customer", "Ingredient"]:
-            tmpRatesKey = tmpKey+"Rates"
-            tmpIterator = tmpLevelData.GetTag(unicode(tmpRatesKey)).IterateTag(unicode(tmpKey))
-            while tmpIterator.Next():
-                tmp = tmpIterator.Get()
-                globalvars.LevelInfo[tmpRatesKey][tmp.GetStrAttr(u"type")] = tmp.GetIntAttr(u"rate")
-            
-        #read level layout
-        tmpLayout = tmpLevelData.GetTag(u"Layout")
-        globalvars.Layout["Theme"] = tmpLayout.GetStrAttr(u"theme")
-        
-        tmpUnitData = tmpLayout.GetTag(u"Field")
-        globalvars.Layout["Field"] = {}
-        for tmpKey in ["XSize", "YSize", "X0", "Y0"]:
-            globalvars.Layout["Field"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
-            
-        tmpUnitData = tmpLayout.GetTag(u"Counter")
-        globalvars.Layout["Counter"] = {}
-        for tmpKey in ["type", "x", "y"]:
-            globalvars.Layout["Counter"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
-            
-        tmpUnitData = tmpLayout.GetTag(u"BonusPane")
-        globalvars.Layout["BonusPane"] = {}
-        for tmpKey in ["type", "size", "x", "y"]:
-            globalvars.Layout["BonusPane"][tmpKey] = tmpUnitData.GetIntAttr(unicode(tmpKey))
-            
-        #tmpUnitData = tmpLayout.GetTag(u"TrashCan")
-        globalvars.Layout["TrashCan"] = {}
-        tmpTrashCans = tmpLayout.IterateTag(u"TrashCan")
-        while tmpTrashCans.Next():
-            tmpCS = tmpTrashCans.Get()
-            for tmpKey in ["type", "size", "x", "y"]:
-                globalvars.Layout["TrashCan"][tmpKey] = tmpCS.GetIntAttr(unicode(tmpKey))
-            
-        globalvars.Layout["Stores"] = []
-        tmpCustomerStations = tmpLayout.IterateTag(u"Store")
-        while tmpCustomerStations.Next():
-            tmpCS = tmpCustomerStations.Get()
-            globalvars.Layout["Stores"].append({
-                "XSize": tmpCS.GetIntAttr(u"XSize"), "YSize": tmpCS.GetIntAttr(u"YSize"),
-                "X0": tmpCS.GetIntAttr(u"X0"), "Y0": tmpCS.GetIntAttr(u"Y0") })
-            
-        globalvars.Layout["CustomerStations"] = []
-        tmpCustomerStations = tmpLayout.IterateTag(u"CustomerStation")
-        while tmpCustomerStations.Next():
-            tmpCS = tmpCustomerStations.Get()
-            globalvars.Layout["CustomerStations"].append({ "type": tmpCS.GetStrAttr(u"type"),
-                "x": tmpCS.GetIntAttr(u"x"), "y": tmpCS.GetIntAttr(u"y"),
-                "occupied": tmpCS.GetBoolAttr(u"occupied") })
-            
-        globalvars.Layout["PowerUps"] = []
-        tmpPowerUps = tmpLayout.IterateTag(u"PowerUp")
-        while tmpPowerUps.Next():
-            tmpPU = tmpPowerUps.Get()
-            globalvars.Layout["PowerUps"].append({ "type": tmpPU.GetStrAttr(u"type"),
-                "x": tmpPU.GetIntAttr(u"x"), "y": tmpPU.GetIntAttr(u"y")})
-            
-        globalvars.Layout["Decorations"] = []
-        tmpDecorations = tmpLayout.IterateTag(u"Decoration")
-        while tmpDecorations.Next():
-            tmpDeco = tmpDecorations.Get()
-            globalvars.Layout["Decorations"].append({ "type": tmpDeco.GetStrAttr(u"type"),
-                "x": tmpDeco.GetIntAttr(u"x"), "y": tmpDeco.GetIntAttr(u"y")})
-            
             
     except:
         oE.Log(u"Cannot read level info from: "+filename)
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         sys.exit()
         
 

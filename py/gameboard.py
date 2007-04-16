@@ -15,7 +15,7 @@ from constants import *
 from configconst import *
 from guielements import *
 from customerstation import CustomerStation
-from storage import Store, Field, TrashCan
+from storage import Store, SingularStore, Field, TrashCan
 from conveyor import Conveyor
 from extra import *
 from customer import *
@@ -68,11 +68,12 @@ class GameBoard(scraft.Dispatcher):
                 Layer_InterfaceBtn, 60, 25, 100, 34,
                 Str_HUD_MenuButton, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         
-        self.Field = None
-        self.TrashCan = None
         self.CustomersQue = None
+        self.Fields = []
+        self.TrashCans = []
         self.CStations = []
         self.Stores = []
+        self.Conveyors = []
         self.Static = []
         self.PickedTool = ""
         self.PickedTokens = ""
@@ -95,7 +96,10 @@ class GameBoard(scraft.Dispatcher):
         
     def LaunchLevel(self):
         self.Freeze(False)
-        self.Load()
+        try:
+            self.Load()
+        except:
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         self._StartLevel()
         #self.SaveGame()
         
@@ -103,7 +107,7 @@ class GameBoard(scraft.Dispatcher):
         self.Expert = False
         self.HudElements["LevelName"].text = unicode(self.LevelName)
         self.HudElements["GoalText"].text = unicode(Str_HUD_GoalText)
-        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings["moneygoal"]))
+        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")))
         self._UpdateLevelInfo()
         
     def Restart(self):
@@ -140,71 +144,86 @@ class GameBoard(scraft.Dispatcher):
         
         self.HasPowerUps = {}
         
-        tmpTheme = globalvars.ThemesInfo[globalvars.Layout["Theme"]]
+        tmpTheme = globalvars.ThemesInfo[globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme")]
         self.BgSprite.ChangeKlassTo(unicode(tmpTheme["background"]))
         
         #reset customer dispatcher
-        self.RemainingCustomers = globalvars.LevelSettings["nocustomers"]
+        self.RemainingCustomers = globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers")
         self.CustomersQue = CustomersQue(tmpTheme)
         
         #размещение стейшенов 
-        for tmp in globalvars.Layout["CustomerStations"]:
-            tmpStation = CustomerStation(tmp["x"], tmp["y"], tmpTheme)
-            if tmp["occupied"]:
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("CustomerStation"):
+            tmpStation = CustomerStation(tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), tmpTheme)
+            if tmp.GetBoolAttr("occupied"):
                 self._NextCustomerTo(tmpStation)
             else:
                 tmpStation.SetState(CStationState_Free)
             self.CStations.append(tmpStation)
         
-        ##игровое поле
-        #tmp = globalvars.Layout["Field"]
-        #self.Field = Field(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme)
-        #    
-        ##размещение складов
-        #for tmp in globalvars.Layout["Stores"]:
-        #    self.Stores.append(Store(tmp["XSize"], tmp["YSize"], tmp["X0"], tmp["Y0"], tmpTheme))
+        #игровое поле, размещение складов
+        self.Fields = []
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Field"):
+            self.Fields.append(Field(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
+                        tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
+        self.Stores = []
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Store"):
+            if tmp.GetBoolAttr("Multi"):
+                self.Stores.append(Store(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
+                        tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
+            else:
+                self.Stores.append(SingularStore(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
+                        tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
+                
         
-        self.Conveyors = [Conveyor(400, 100, 30, 60), Conveyor(500, 100, 10, 60)]
+        self.Conveyors = []
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Conveyor"):
+            self.Conveyors.append(Conveyor(tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"),
+                        tmp.GetIntAttr("Speed"), tmp.GetIntAttr("Delta")))#, tmpTheme))
         
         #прочие объекты
         self.Static = []
-        self.Static.append(MakeSimpleSprite(tmpTheme["counter"], Layer_Counter, globalvars.Layout["Counter"]["x"], globalvars.Layout["Counter"]["y"]))
+        if globalvars.LevelSettings.GetTag("Layout").GetCountTag("Counter")>0:
+            self.Static.append(MakeSimpleSprite(tmpTheme["counter"], Layer_Counter,
+                globalvars.LevelSettings.GetTag("Layout").GetTag("Counter").GetIntAttr("x"),
+                globalvars.LevelSettings.GetTag("Layout").GetTag("Counter").GetIntAttr("y")))
         #составная панель для бонусов
-        self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco,
-                globalvars.Layout["BonusPane"]["x"], globalvars.Layout["BonusPane"]["y"],
-                scraft.HotspotCenter, 0))
-        for i in range(globalvars.Layout["BonusPane"]["size"]):
+        if globalvars.LevelSettings.GetTag("Layout").GetCountTag("BonusPane")>0:
+            tmpX0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("x")
+            tmpY0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("y")
+            tmpSize = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("size")
+            self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco, tmpX0, tmpY0, scraft.HotspotCenter, 0))
+            for i in range(tmpSize):
+                self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco,
+                        tmpX0+(i+1)*Const_BonusPaneDx, tmpY0+(i+1)*Const_BonusPaneDy,
+                        scraft.HotspotCenter, 1))
             self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco,
-                    globalvars.Layout["BonusPane"]["x"]+(i+1)*Const_BonusPaneDx,
-                    globalvars.Layout["BonusPane"]["y"]+(i+1)*Const_BonusPaneDy,
-                    scraft.HotspotCenter, 1))
-        self.Static.append(MakeSimpleSprite(tmpTheme["bonuspane"], Layer_Deco,
-                globalvars.Layout["BonusPane"]["x"]+(globalvars.Layout["BonusPane"]["size"]+1)*Const_BonusPaneDx,
-                globalvars.Layout["BonusPane"]["y"]+(globalvars.Layout["BonusPane"]["size"]+1)*Const_BonusPaneDy,
-                scraft.HotspotCenter, 2))
-        for tmp in globalvars.Layout["Decorations"]:
-            self.Static.append(MakeSimpleSprite(unicode(tmp["type"]), Layer_Deco, tmp["x"], tmp["y"]))
+                    tmpX0 + (tmpSize+1)*Const_BonusPaneDx, tmpY0 + (tmpSize+1)*Const_BonusPaneDy,
+                    scraft.HotspotCenter, 2))
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Decoration"):
+            self.Static.append(MakeSimpleSprite(tmp.GetStrAttr("type"), Layer_Deco, tmp.GetIntAttr("x"), tmp.GetIntAttr("y")))
         
-        if globalvars.Layout["TrashCan"] != {}:
-            self.TrashCan = TrashCan(globalvars.Layout["TrashCan"]["size"], globalvars.Layout["TrashCan"]["x"],
-                                 globalvars.Layout["TrashCan"]["y"], tmpTheme)
-
+        self.TrashCans = []
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("TrashCan"):
+            self.TrashCans.append(TrashCan(globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("size"),
+                                globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("x"),
+                                globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("y"), tmpTheme))
+            
         #размещение повер-апов
         self.PowerUpButtons = {}
         self.BuyPowerUpButtons = {}
-        for tmp in globalvars.Layout["PowerUps"]:
-            self.PowerUpButtons[tmp["type"]] = PushButton("", self,
-                Cmd_UsePowerUp + globalvars.GameSettings["powerups"].index(tmp["type"]),
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("PowerUp"):
+            self.PowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
+                Cmd_UsePowerUp + globalvars.GameSettings["powerups"].index(tmp.GetStrAttr("type")),
                 PState_Game, u"powerup.use.button", [0, 1, 2, 3], Layer_InterfaceBtn,
-                tmp["x"], tmp["y"], 60, 60, globalvars.PowerUpsInfo[tmp["type"]]["symbol"],
+                tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 60, 60, globalvars.PowerUpsInfo[tmp.GetStrAttr("type")]["symbol"],
                 [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
-            self.BuyPowerUpButtons[tmp["type"]] = PushButton("", self,
-                Cmd_BuyPowerUp + globalvars.GameSettings["powerups"].index(tmp["type"]),
+            self.BuyPowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
+                Cmd_BuyPowerUp + globalvars.GameSettings["powerups"].index(tmp.GetStrAttr("type")),
                 PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn+1,
-                tmp["x"] + Const_BuyPowerUpButton_Dx, tmp["y"] + Const_BuyPowerUpButton_Dy, 40, 30,
-                u"$"*int(globalvars.PowerUpsInfo[tmp["type"]]["price"]),
+                tmp.GetIntAttr("x") + Const_BuyPowerUpButton_Dx, tmp.GetIntAttr("y") + Const_BuyPowerUpButton_Dy, 40, 30,
+                u"$"*int(globalvars.PowerUpsInfo[tmp.GetStrAttr("type")]["price"]),
                 [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
-            self.HasPowerUps[tmp["type"]] = 0
+            self.HasPowerUps[tmp.GetStrAttr("type")] = 0
         self._UpdatePowerUpButtons()
             
         tmpFreeStations = filter(lambda x: x.State == CStationState_Free, self.CStations)
@@ -212,7 +231,8 @@ class GameBoard(scraft.Dispatcher):
             self.CustomersQue.SetState(QueState_Active)
         
         #заполнение поля
-        #self.Field.InitialFilling()
+        for tmp in self.Fields:
+            tmp.InitialFilling()
         
         self._SetState(GameState_StartLevel)
         self._SetGameCursorState(GameCursorState_Default)
@@ -243,10 +263,10 @@ class GameBoard(scraft.Dispatcher):
                     tmpFrom = self.TokensFrom
                     tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
                     self.AddScore(tmpDeltaScore)
-                    #self.TokensFrom.RemoveTokens()
+                    self.TokensFrom.RemoveTokens()
                     self.SendCommand(Cmd_DropWhatYouCarry)
-                    if tmpFrom == self.Field:
-                        self.Field.SetState(FieldState_Collapse)
+                    if tmpFrom in self.Fields:
+                        tmpFrom.SetState(FieldState_Collapse)
                     
             #иначе - использовать бонус
             elif self.GameCursorState == GameCursorState_Tool:
@@ -259,15 +279,15 @@ class GameBoard(scraft.Dispatcher):
                 
         elif cmd == Cmd_ClickStorage:
             if self.GameCursorState == GameCursorState_Tokens:
-                if parameter.HasFreeSlots(self.PickedTokensNo):# and self.TokensFrom == self:
+                if parameter["where"].HasFreeSlots(self.PickedTokensNo):# and self.TokensFrom == self:
                     tmpFrom = self.TokensFrom
                     tmpType = self.PickedTokens
                     tmpNo = self.PickedTokensNo
                     tmpFrom.RemoveTokens()
                     self.SendCommand(Cmd_DropWhatYouCarry)
-                    parameter.AddTokens(tmpType, tmpNo)
-                    if tmpFrom == self.Field:
-                        self.Field.SetState(FieldState_Collapse)
+                    parameter["where"].AddTokens(tmpType, tmpNo, parameter["pos"])
+                    if tmpFrom in self.Fields:
+                        tmpFrom.SetState(FieldState_Collapse)
             
         elif cmd == Cmd_TrashCan:
             if self.GameCursorState == GameCursorState_Tokens:
@@ -276,8 +296,8 @@ class GameBoard(scraft.Dispatcher):
                 self.TokensFrom.RemoveTokens()
                 self._DropTokensTo(tmpFrom)
                 parameter.Discard(tmpNo)
-                if tmpFrom == self.Field:
-                    self.Field.SetState(FieldState_Collapse)
+                if tmpFrom in self.Fields:
+                    tmpFrom.SetState(FieldState_Collapse)
             
         elif cmd == Cmd_DropWhatYouCarry:
             if self.GameCursorState == GameCursorState_Tokens:
@@ -333,7 +353,8 @@ class GameBoard(scraft.Dispatcher):
                     tmp.Customer.GiveSweet()
             elif type == 'Shuffle':
                 self.UseTool('Shuffle')
-                self.Field.SetState(FieldState_Shuffle)
+                for tmp in self.Fields:
+                    tmp.SetState(FieldState_Shuffle)
             elif type in ('Cross', 'Gift', 'Spoon', 'Sweet', 'Magicwand'):
                 self._PickTool(type)
         
@@ -343,7 +364,7 @@ class GameBoard(scraft.Dispatcher):
                             globalvars.GameSettings["maxapproval"])
         self._UpdatePowerUpButtons()
         self._UpdateLevelInfo()
-        if self.LevelScore >= globalvars.LevelSettings["moneygoal"] and not self.Expert:
+        if self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal") and not self.Expert:
             self._SwitchToExpert()
     
     #--------------------------
@@ -356,7 +377,8 @@ class GameBoard(scraft.Dispatcher):
             
         #начало уровня; задать способ появления блоков на поле
         elif state == GameState_StartLevel:
-            #self.Field.SetState(FieldState_StartLevel)
+            for tmp in self.Fields:
+               tmp.SetState(FieldState_StartLevel)
             self._SetState(GameState_Play)
             pass
             
@@ -371,11 +393,11 @@ class GameBoard(scraft.Dispatcher):
             if self.LevelScore >= tmpBest.GetIntAttr("hiscore"):
                 config.UpdateBestResults(globalvars.CurrentPlayer.GetLevel().GetContent(),
                     globalvars.GameConfig.GetStrAttr("Player"), self.LevelScore)
-            globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings["expertgoal"],
+            globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal"),
                         "hiscore": self.LevelScore, "played": True})
-            globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings["moneygoal"]),
+            globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
                     { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
-                     "expert": self.LevelScore >= globalvars.LevelSettings["expertgoal"] } )
+                     "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
         
         
     #--------------------------
@@ -468,8 +490,8 @@ class GameBoard(scraft.Dispatcher):
         self.TokensFrom = where
         
     def _DropTokensTo(self, where):
-        #if where != None:
-            #where.DropTokens()
+        if where != None:
+            where.DropTokens()
         self.PickedTokens = ""
         self.PickedTokensNo = 0
         self.TokenSprite.Dispose()
@@ -483,7 +505,7 @@ class GameBoard(scraft.Dispatcher):
         
     def _SwitchToExpert(self):
         self.HudElements["GoalText"].text = unicode(Str_HUD_ExpertText)
-        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings["expertgoal"]))
+        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal")))
         self.Expert = True
         
     def _UpdatePowerUpButtons(self):
@@ -516,28 +538,27 @@ class GameBoard(scraft.Dispatcher):
         self.PowerUpButtons = {}
         self.BuyPowerUpButtons = {}
             
-        for tmp in self.CStations: 
+        for tmp in self.CStations + self.TrashCans: 
             tmp.Kill()
         self.CStations = []
+        self.TrashCans = []
         
-        for tmp in self.Stores+[self.Field]:
+        for tmp in self.Stores+self.Fields+self.Conveyors:
             tmp.Clear()
             del tmp
         self.Stores = []
+        self.Fields = []
+        self.Conveyors = []
             
         for spr in self.Static:
             spr.Dispose()
         self.Static = []
         
-        self.TrashCan.Kill()
-        self.TrashCan = None
         self.CustomersQue.Kill()
         self.CustomersQue = None
             
         #for tmp in self.CStations + self.Stores:
         #    del tmp
-        #del self.Field 
-        #del self.TrashCan
              
     def Show(self, flag):
         """
@@ -565,8 +586,8 @@ class GameBoard(scraft.Dispatcher):
             oE.executor.GetQueue(self.QueNo).Resume()
         if self.Playing:
             self.CustomersQue.Freeze(flag)
-            #for tmp in self.Stores+[self.Field]:
-            #    tmp.Freeze(flag)
+            for tmp in self.Stores+self.Fields+self.Conveyors:
+                tmp.Freeze(flag)
             #for tmp in self.CStations:
             #    tmp.Freeze(flag)
         

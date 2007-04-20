@@ -2,8 +2,8 @@ MasterChef {
     CustomerKlasses {
         sprite(customer.worker) { bitmap = "img/customers/worker.png" type = "blend" layout = "4x4" }
         sprite(customer.worker.hilight) { bitmap = "img/customers/worker.hilight.png" type = "blend" layout = "4x4" }
-        sprite(customer.vegetarian) { bitmap = "img/customers/vegetarian.png" type = "blend" layout = "4x4" }
-        sprite(customer.vegetarian.hilight) { bitmap = "img/customers/vegetarian.hilight.png" type = "blend" layout = "4x4" }
+        sprite(customer.vegetarian) { bitmap = "img/customers/vegetarian.png" type = "blend" layout = "4x5" }
+        sprite(customer.vegetarian.hilight) { bitmap = "img/customers/vegetarian.hilight.png" type = "blend" layout = "4x5" }
         sprite(customer.schoolkid) { bitmap = "img/customers/schoolkid.png" type = "blend" layout = "4x4" }
         sprite(customer.schoolkid.hilight) { bitmap = "img/customers/schoolkid.hilight.png" type = "blend" layout = "4x4" }
         sprite(customer.student) { bitmap = "img/customers/student.png" type = "blend" layout = "4x4" }
@@ -34,15 +34,15 @@ MasterChef {
     }
 
     Animation(animation.vegetarian) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence { name = "Order" frames = "(0, 700), (1, 700)" loops = "0" }
         Sequence { name = "5Hearts" frames = "(4, 1000), (5, 1000)" loops = "0" }
         Sequence { name = "4Hearts" frames = "(8, 1000), (9, 1000)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 500), (13, 500)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 1000), (3, 1000)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 500), (7, 500)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 1000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 1000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1000)," loops = "0" }
+        Sequence { name = "3Hearts" frames = "(12, 700), (13, 2000)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 500), (3, 1300), (16, 2000)" loops = "0" }
+        Sequence { name = "1Hearts" frames = "(6, 300), (7, 600)" loops = "0" }
+        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
+        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
+        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
         Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
     }
 

@@ -37,8 +37,8 @@ MasterChef {
         Sequence { name = "Order" frames = "(0, 700), (1, 700)" loops = "0" }
         Sequence { name = "5Hearts" frames = "(4, 1000), (5, 1000)" loops = "0" }
         Sequence { name = "4Hearts" frames = "(8, 1000), (9, 1000)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 700), (13, 2000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 500), (3, 1300), (16, 2000)" loops = "0" }
+        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 500)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 300), (3, 1300), (16, 2000)" loops = "0" }
         Sequence { name = "1Hearts" frames = "(6, 300), (7, 600)" loops = "0" }
         Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
         Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }

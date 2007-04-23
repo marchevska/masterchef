@@ -114,7 +114,7 @@ MasterChef {
     Animation(animation.tourist) {
         Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
         Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 300)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
         Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
         Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
         Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }

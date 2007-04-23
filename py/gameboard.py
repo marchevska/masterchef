@@ -588,8 +588,8 @@ class GameBoard(scraft.Dispatcher):
             self.CustomersQue.Freeze(flag)
             for tmp in self.Stores+self.Fields+self.Conveyors:
                 tmp.Freeze(flag)
-            #for tmp in self.CStations:
-            #    tmp.Freeze(flag)
+            for tmp in self.CStations:
+                tmp.Freeze(flag)
         
 def _ListIntersection(list1, list2):
     return filter(lambda x: x in list2, list1)

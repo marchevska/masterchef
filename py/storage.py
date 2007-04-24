@@ -765,3 +765,4 @@ class TrashCan(scraft.Dispatcher):
         self.TrashCanSprite.Dispose()
         self.Indicator.Kill()
         
+        

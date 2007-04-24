@@ -15,7 +15,7 @@ from constants import *
 from configconst import *
 from guielements import *
 from customerstation import CustomerStation
-from storage import Store, SingularStore, Field, TrashCan
+from storage import Store, SingularStore, Field, TrashCan, Collapsoid
 from conveyor import Conveyor
 from extra import *
 from customer import *
@@ -164,6 +164,10 @@ class GameBoard(scraft.Dispatcher):
         self.Fields = []
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Field"):
             self.Fields.append(Field(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
+                        tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
+        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Collapsoid"):
+            self.Fields.append(Collapsoid(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
+                        tmp.GetIntAttr("InitialRows"),
                         tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
         self.Stores = []
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Store"):

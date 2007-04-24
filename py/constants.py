@@ -74,6 +74,11 @@ FieldState_Shuffle = 4
 FieldState_MagicWandConverting = 5
 FieldState_EndLevel = 10
 
+#состояния выбрасывальщика токенов в коллапсоиде
+DropperState_None = 0
+DropperState_Drop = 1
+DropperState_Move = 2
+
 #состояния игрового курсора
 GameCursorState_Default = 0
 GameCursorState_Tokens = 1

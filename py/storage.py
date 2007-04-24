@@ -263,12 +263,16 @@ class Store(Storage):
     # при движении курсора над полем подсвечивает группы клеток
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
-        if globalvars.StateStack[-1] == PState_Game:
-            if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
-                if sprite.cookie == Cmd_Receptor:
-                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                    if self.Cells[tmpPos] != Const_EmptyCell:
-                        self._HighlightCells(tmpPos, flag)
+        try:
+            if globalvars.StateStack[-1] == PState_Game:
+                if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                    if sprite.cookie == Cmd_Receptor:
+                        tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                        if self.Cells[tmpPos] != Const_EmptyCell:
+                            self._HighlightCells(tmpPos, flag)
+        except:
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            
         
         
 #--------------------------------------------
@@ -333,12 +337,15 @@ class SingularStore(Storage):
     # при движении курсора над полем подсвечивает группы клеток
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
-        if globalvars.StateStack[-1] == PState_Game:
-            if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
-                if sprite.cookie == Cmd_Receptor:
-                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                    if self.Cells[tmpPos] != Const_EmptyCell:
-                        self._HighlightCells(tmpPos, flag)
+        try:
+            if globalvars.StateStack[-1] == PState_Game:
+                if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                    if sprite.cookie == Cmd_Receptor:
+                        tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                        if self.Cells[tmpPos] != Const_EmptyCell:
+                            self._HighlightCells(tmpPos, flag)
+        except:
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         
         
 #--------------------------------------------
@@ -349,6 +356,7 @@ class SingularStore(Storage):
 class Field(Storage):
     def __init__(self, cols, rows, x, y, theme):
         Storage.__init__(self, cols, rows, x, y, theme["field"])
+        self.Collapsing = False
         self.MatchMap = {}
         self.SetState(FieldState_None)
         self.QueNo = oE.executor.Schedule(self)
@@ -396,15 +404,19 @@ class Field(Storage):
     def _GenerateMatchMap(self):
         self.MatchMap = {}
         curKind = 0
-        for (i,j) in self.Cells.keys():
+        tmpAllKeys = filter(lambda x: x[1]<self.Rows, self.Cells.keys())
+        for (i,j) in tmpAllKeys:
                 if not self.MatchMap.has_key((i,j)):
                     self._Compare(i, j, self.Cells[(i,j)], curKind)
                     curKind +=1
         tmpChains = map(lambda x: filter(lambda y: self.MatchMap[y] == x, self.MatchMap.keys()),
                         range(curKind))
-        for (i,j) in self.Cells.keys():
+        for (i,j) in tmpAllKeys:
             if len(tmpChains[self.MatchMap[i,j]]) < Const_MinimalGroup:
                 self.MatchMap[i,j] = -1
+        #заглушка дл€ коллапсоида
+        for i in range(self.Cols):
+            self.MatchMap[i, self.Rows] = -1
                 
     #--------------------------
     # –екурсивно окрашивает группу клеток одного цвета на игровом поле
@@ -543,11 +555,12 @@ class Field(Storage):
                         if tmpEmptyUnder > 0:
                             self._SwapCells((i,j), (i,j+tmpEmptyUnder))
                             self.FallingBlocks[i,j+tmpEmptyUnder] = tmpBasicSpeed*tmpEmptyUnder
-                tmpEmptyTotal = len(filter(lambda y: self.Cells[i,y] == Const_EmptyCell, range(self.Rows)))
-                if tmpEmptyTotal > 0:
-                    for j in range(tmpEmptyTotal):
-                        self._PutRandomToken((i,j))
-                        self.FallingBlocks[i,j] = tmpBasicSpeed*tmpEmptyTotal
+                if not self.Collapsing:
+                    tmpEmptyTotal = len(filter(lambda y: self.Cells[i,y] == Const_EmptyCell, range(self.Rows)))
+                    if tmpEmptyTotal > 0:
+                        for j in range(tmpEmptyTotal):
+                            self._PutRandomToken((i,j))
+                            self.FallingBlocks[i,j] = tmpBasicSpeed*tmpEmptyTotal
             for cell in self.FallingBlocks.keys():
                 self.Grid[cell].y = self._CellCoords(cell)[1] - \
                     int(self.FallingBlocks[cell]*self.FallingTime/1000)
@@ -590,13 +603,17 @@ class Field(Storage):
     # при движении курсора над полем подсвечивает группы клеток
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
-        if globalvars.StateStack[-1] == PState_Game:
-        #if not oE.executor.GetQueue(self.QueNo).IsSuspended():
-        #if self.State == FieldState_Input:
-            if sprite.cookie == Cmd_Receptor:
-                tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                if self.Cells[tmpPos] != Const_EmptyCell:
-                    self._HighlightCells(tmpPos, flag)
+        try:
+            if globalvars.StateStack[-1] == PState_Game:
+            #if not oE.executor.GetQueue(self.QueNo).IsSuspended():
+            #if self.State == FieldState_Input:
+                if sprite.cookie == Cmd_Receptor:
+                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    if self.Cells[tmpPos] != Const_EmptyCell:
+                        self._HighlightCells(tmpPos, flag)
+        except:
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+                    
         
     #--------------------------
     # проверка использовани€ тулзов;
@@ -633,6 +650,81 @@ class Field(Storage):
         oE.executor.DismissQueue(self.QueNo)
         Storage.Clear(self)
         
+#--------------------------------------------
+#--------------------------------------------
+# Collapsoid - поле типа игры Collapse
+# ¬ нижний р€д выбрасываютс€ новые токены 
+#--------------------------------------------
+#--------------------------------------------
+class Collapsoid(Field):
+    def __init__(self, cols, rows, initialrows, x, y, theme):
+        Field.__init__(self, cols, rows+1, x, y, theme)
+        self.Collapsing = True
+        self.StartRow = 0
+        self.Rows -= 1
+        self.InitialRows = initialrows
+        self.SetDropperState(DropperState_None)
+        
+    #--------------------------
+    # Ќачальное заполнение пол€
+    #--------------------------
+    def InitialFilling(self):
+        for i in range(self.Cols):
+            for j in range(self.Rows - self.InitialRows, self.Rows):
+                self._PutRandomToken((i,j))
+        
+    def SetState(self, state, parameter = None):
+        if state == FieldState_StartLevel:
+            self.SetDropperState(DropperState_Drop)
+        elif state == FieldState_EndLevel:
+            self.SetDropperState(DropperState_None)
+        Field.SetState(self, state, parameter)
+        
+    def SetDropperState(self, state):
+        self.DropperState = state
+        if state == DropperState_None:
+            pass
+            
+        elif state == DropperState_Drop:
+            self.Dropped = 0
+            self.NextDropTime = 200
+            
+        elif state == DropperState_Move:
+            self.MovingTime = 1000
+            self.DestCrd = -40
+            self.Speed = -40
+        
+    def _OnExecute(self, que):
+        try:
+            if self.DropperState == DropperState_Drop:
+                self.NextDropTime -= que.delta
+                if self.NextDropTime < 0:
+                    if self.Dropped < self.Cols:
+                        self.Dropped += 1
+                        self._PutRandomToken((self.Dropped-1, self.Rows))
+                        self.NextDropTime += 200
+                    else:
+                        self.SetDropperState(DropperState_Move)
+                
+            elif self.DropperState == DropperState_Move:
+                self.MovingTime = max(0, self.MovingTime - que.delta)
+                tmpCrd = self.DestCrd - 1.0*self.MovingTime*self.Speed/1000
+                oE.SetLayerY(Layer_Tokens, tmpCrd)
+                oE.SetLayerY(Layer_Receptors, tmpCrd)
+                if self.MovingTime <= 0:
+                    oE.SetLayerY(Layer_Tokens, 0)
+                    oE.SetLayerY(Layer_Receptors, 0)
+                    for i in range(self.Cols):
+                        for j in range(self.Rows):
+                            self._SwapCells((i,j), (i,j+1))
+                    self._GenerateMatchMap()
+                    self.SetDropperState(DropperState_Drop)
+        except:
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        
+        Field._OnExecute(self, que)
+        return scraft.CommandStateRepeat
+
 #--------------------------------------------
 #--------------------------------------------
 # TrashCan - мусорка

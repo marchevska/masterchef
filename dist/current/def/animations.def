@@ -27,151 +27,151 @@ MasterChef {
     
     //People animations
     Animation(animation.worker) {
-        Sequence { name = "Order" frames = "(0, 500), (1, 500)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 700), (9, 500)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 500), (1, 500)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 700), (9, 500)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.vegetarian) {
-        Sequence { name = "Order" frames = "(0, 700), (1, 700)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 1000)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 1000)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 500)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 300), (3, 1300), (16, 2000)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 600)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 700), (1, 700)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 1000)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 1000)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 2000), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 300), (3, 1300), (16, 2000)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 600)" loops = "0" }
+        Sequence(GoAway) {  frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.schoolkid) {
-        Sequence { name = "Order" frames = "(0, 500), (1, 500)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 200)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 700), (9, 700)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 1000), (13, 1000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 1000), (3, 2000)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 500)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 500), (1, 500)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 200)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 700), (9, 700)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1000), (13, 1000)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 1000), (3, 2000)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 500)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.student) {
-        Sequence { name = "Order" frames = "(0, 500), (1, 500)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 1000)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 500)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 1000), (3, 1000)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 500), (1, 500)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 1000)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 500)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 1000), (3, 1000)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.oldlady) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 2000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 700), (9, 700)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(16, 2000), (12, 500), (13, 500), (12, 500), (13, 500), (12, 500), (13, 500)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 2000), (3, 500)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 1000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 1000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1000)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 2000), (5, 500)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 700), (9, 700)" loops = "0" }
+        Sequence(3Hearts) { frames = "(16, 2000), (12, 500), (13, 500), (12, 500), (13, 500), (12, 500), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 2000), (3, 500)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 1000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 1000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1000)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.critic) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 2000), (5, 1000)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 500)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 1000), (13, 1000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 500), (3, 1000)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 500), (7, 500)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 1000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 1000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1000)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 2000), (5, 1000)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 500)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1000), (13, 1000)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 500), (3, 1000)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 500), (7, 500)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 1000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 1000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1000)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.business) {
-        Sequence { name = "Order" frames = "(0, 500), (1, 500)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 1000)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 1000), (13, 3000)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 500), (3,500)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 500), (1, 500)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 1000)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1000), (13, 3000)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 500), (3,500)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.tourist.hawaiian) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 700)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.tourist.mexican) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 700)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.tourist.japanese) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 300)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.tourist.russian) {
-        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
-        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
-        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
-        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
-        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
-        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1000), (9, 700)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
+        Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.hero) {
-        Sequence { name = "None" frames = "(0, 100000)," loops = "0" }
-        Sequence { name = "GiveOrder" frames = "(0, 500), (1, 500)" loops = "0" }
+        Sequence(None) { frames = "(0, 100000)," loops = "0" }
+        Sequence(GiveOrder) { frames = "(0, 500), (1, 500)" loops = "0" }
     }    
     
 }

@@ -194,7 +194,7 @@ class Storage(scraft.Dispatcher):
 #--------------------------------------------
 class Store(Storage):
     def __init__(self, cols, rows, x, y, theme):
-        Storage.__init__(self, cols, rows, x, y, theme["storage"])
+        Storage.__init__(self, cols, rows, x, y, theme.GetStrAttr("storage"))
         
         self.Capacity = cols*rows
         self.NoTokens = 0
@@ -283,7 +283,7 @@ class Store(Storage):
 #--------------------------------------------
 class SingularStore(Storage):
     def __init__(self, cols, rows, x, y, theme):
-        Storage.__init__(self, cols, rows, x, y, theme["storage"])
+        Storage.__init__(self, cols, rows, x, y, theme.GetStrAttr("storage"))
         
         self.Capacity = cols*rows
         self.NoTokens = 0
@@ -355,7 +355,7 @@ class SingularStore(Storage):
 #--------------------------------------------
 class Field(Storage):
     def __init__(self, cols, rows, x, y, theme):
-        Storage.__init__(self, cols, rows, x, y, theme["field"])
+        Storage.__init__(self, cols, rows, x, y, theme.GetStrAttr("field"))
         self.Collapsing = False
         self.MatchMap = {}
         self.SetState(FieldState_None)
@@ -735,9 +735,9 @@ class TrashCan(scraft.Dispatcher):
     def __init__(self, capacity, x, y, theme):
         self.Capacity = capacity
         self.Dummy = MakeDummySprite(self, Cmd_TrashCan, x, y, 60, 60, Layer_Storage)
-        self.TrashCanSprite = MakeSimpleSprite(unicode(theme["trashcan"]), Layer_Storage, x, y)
+        self.TrashCanSprite = MakeSimpleSprite(unicode(theme.GetStrAttr("trashcan")), Layer_Storage, x, y)
         self.Indicator = BarIndicator(x-25, y-5, 50, 10,
-                    unicode(theme["trashcanBarFull"]), unicode(theme["trashcanBarEmpty"]), Layer_Storage-1)
+                    theme.GetStrAttr("trashcanBarFull"), theme.GetStrAttr("trashcanBarEmpty"), Layer_Storage-1)
         self.Empty()
         #oE.executor.Schedule(self)
         

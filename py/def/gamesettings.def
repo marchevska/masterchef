@@ -20,8 +20,8 @@ MasterChef {
     }
     
     Themes {
-        Theme {
-            type = "Japanese"
+        Theme(Japanese)
+        {
             background = "theme.japanese.background"
             counter = "theme.japanese.counter"
             customersQuePointer = "theme.japanese.pointer"
@@ -36,8 +36,8 @@ MasterChef {
             tablet = "theme.japanese.tablet"
         }
         
-        Theme {
-            type = "Mexican"
+        Theme(Mexican)
+        {
             background = "theme.mexican.background"
             counter = "theme.mexican.counter"
             customersQuePointer = "theme.mexican.pointer"
@@ -52,8 +52,8 @@ MasterChef {
             tablet = "theme.mexican.tablet"
         }
         
-        Theme {
-            type = "Italian"
+        Theme(Italian)
+        {
             background = "theme.italian.background"
             counter = "theme.italian.counter"
             customersQuePointer = "theme.italian.pointer"
@@ -68,8 +68,8 @@ MasterChef {
             tablet = "theme.italian.tablet"
         }
         
-        Theme {
-            type = "Russian"
+        Theme(Russian)
+        {
             background = "theme.russian.background"
             counter = "theme.russian.counter"
             customersQuePointer = "theme.russian.pointer"
@@ -84,8 +84,8 @@ MasterChef {
             tablet = "theme.russian.tablet"
         }
         
-        Theme {
-            type = "American"
+        Theme()
+        {
             background = "theme.american.background"
             counter = "theme.american.counter"
             customersQuePointer = "theme.american.pointer"
@@ -100,8 +100,8 @@ MasterChef {
             tablet = "theme.american.tablet"
         }
         
-        Theme {
-            type = "SweetShop"
+        Theme(SweetShop)
+        {
             background = "theme.sweetshop.background"
             counter = "theme.sweetshop.counter"
             customersQuePointer = "theme.sweetshop.pointer"
@@ -352,50 +352,50 @@ MasterChef {
     }
 
     PowerUps {
-        PowerUp {
-            type = "Cross"
+        PowerUp(Cross)
+        {
             symbol = "1"
             price = "2"
         }
         
-        PowerUp {
-            type = "EmptyTrash"
+        PowerUp(EmptyTrash)
+        {
             symbol = "8"
             price = "2"
         }
         
-        PowerUp {
-            type = "Gift"
+        PowerUp(Gift)
+        {
             symbol = "6"
             price = "3"
         }
         
-        PowerUp {
-            type = "Magicwand"
+        PowerUp(Magicwand)
+        {
             symbol = "5"
             price = "3"
         }
         
-        PowerUp {
-            type = "Shuffle"
+        PowerUp(Shuffle)
+        {
             symbol = "7"
             price = "2"
         }
         
-        PowerUp {
-            type = "Spoon"
+        PowerUp(Spoon)
+        {
             symbol = "2"
             price = "1"
         }
         
-        PowerUp {
-            type = "Sweet"
+        PowerUp(Sweet)
+        {
             symbol = "3"
             price = "1"
         }
         
-        PowerUp {
-            type = "Supersweet"
+        PowerUp(Supersweet)
+        {
             symbol = "4"
             price = "2"
         }
@@ -403,11 +403,11 @@ MasterChef {
     }
     
     GameTips {
-        Tip { textId = "" firstLevel="" lastLevel="" }
+        Tip(id) { textId = "" firstLevel="" lastLevel="" }
     }
     
     TutorialEvents {
-        Event { name = "" textId = "" firstLevel="" lastLevel="" }
+        Event(id) { name = "" textId = "" firstLevel="" lastLevel="" }
     }
     
 }

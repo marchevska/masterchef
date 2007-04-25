@@ -28,11 +28,11 @@ class CustomerStation(scraft.Dispatcher):
         self.NeededIndicators = []
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
                                      Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Station)
-        self.TableSprite = MakeSimpleSprite(theme["station"], Layer_Station, self.CrdX, self.CrdY)
+        self.TableSprite = MakeSimpleSprite(theme.GetStrAttr("station"), Layer_Station, self.CrdX, self.CrdY)
         self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy, 52, 46,
                     u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe, True, True)
         self.RecipeIndicator.Show(False)
-        self.RecipeInfoSprite = MakeSimpleSprite(theme["recipeInfo"], Layer_Station,
+        self.RecipeInfoSprite = MakeSimpleSprite(theme.GetStrAttr("recipeInfo"), Layer_Station,
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
         self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,

@@ -19,53 +19,17 @@ from configconst import File_Cuisine, File_GameSettings, File_ResourceInfo, File
 
 def ReadResourceInfo():
     try:
-        tmpResourceInfo = oE.ParseDEF(File_ResourceInfo).GetTag(u"MasterChef")
-        tmpKlassesIterator = tmpResourceInfo.GetTag(u"IngredientKlasses").IterateTag(u"sprite")
-        while tmpKlassesIterator.Next():
-            tmp = tmpKlassesIterator.Get()
-            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
-        tmpKlassesIterator = tmpResourceInfo.GetTag(u"RecipeKlasses").IterateTag(u"sprite")
-        while tmpKlassesIterator.Next():
-            tmp = tmpKlassesIterator.Get()
-            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
-        tmpKlassesIterator = tmpResourceInfo.GetTag(u"PowerUpKlasses").IterateTag(u"sprite")
-        while tmpKlassesIterator.Next():
-            tmp = tmpKlassesIterator.Get()
-            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
-        tmpKlassesIterator = tmpResourceInfo.GetTag(u"PowerUpKlasses").IterateTag(u"font")
-        while tmpKlassesIterator.Next():
-            tmp = tmpKlassesIterator.Get()
-            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
-        tmpKlassesIterator = tmpResourceInfo.GetTag(u"ThemeKlasses").IterateTag(u"sprite")
-        while tmpKlassesIterator.Next():
-            tmp = tmpKlassesIterator.Get()
-            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
-        tmpKlassesIterator = tmpResourceInfo.GetTag(u"Comics").IterateTag(u"sprite")
-        while tmpKlassesIterator.Next():
-            tmp = tmpKlassesIterator.Get()
-            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
+        #define sprite classes
+        for tmpTags in oE.ParseDEF(File_ResourceInfo).GetTag(u"MasterChef").Tags():
+            for sprTag in tmpTags:
+                oE.SstDefKlass(sprTag.GetContent(), sprTag)
         
-        #read customer classes
-        tmpResourceInfo = oE.ParseDEF(File_Animations).GetTag(u"MasterChef")
-        tmpKlassesIterator = tmpResourceInfo.GetTag(u"CustomerKlasses").IterateTag(u"sprite")
-        while tmpKlassesIterator.Next():
-            tmp = tmpKlassesIterator.Get()
-            oE.SstDefKlass(unicode(tmp.GetContent()), tmp)
+        #define customer classes
+        for sprTag in oE.ParseDEF(File_Animations).GetTag(u"MasterChef").GetTag(u"CustomerKlasses").Tags():
+            oE.SstDefKlass(sprTag.GetContent(), sprTag)
         
         #read customer animations
-        globalvars.CustomerAnimations = {}
-        tmpAnimationsIterator = tmpResourceInfo.IterateTag(u"Animation")
-        while tmpAnimationsIterator.Next():
-            tmp = tmpAnimationsIterator.Get()
-            tmpName = tmp.GetContent()
-            globalvars.CustomerAnimations[tmpName] = {}
-            tmpSequenceIterator = tmp.IterateTag(u"Sequence")
-            while tmpSequenceIterator.Next():
-                tmpSQ = tmpSequenceIterator.Get()
-                globalvars.CustomerAnimations[tmpName][tmpSQ.GetStrAttr(u"name")] = \
-                    { "frames": eval(tmpSQ.GetStrAttr(u"frames")),
-                        #"fps": tmpSQ.GetIntAttr(u"fps"),
-                        "loops": tmpSQ.GetIntAttr(u"loops") }
+        globalvars.CustomerAnimations = oE.ParseDEF(File_Animations).GetTag(u"MasterChef")#.Tags("Animation")
                 
     except:
         oE.Log(u"Cannot read resources")
@@ -78,6 +42,7 @@ def ReadResourceInfo():
 
 def ReadCuisine():
     try:
+        globalvars.CuisineInfo = oE.ParseDEF(File_Cuisine).GetTag(u"MasterChef")
         globalvars.CuisineInfo = { "Ingredients": {}, "Recipes": {} }
         tmpCuisineData = oE.ParseDEF(File_Cuisine).GetTag(u"MasterChef")
         tmpIngredientsIterator = tmpCuisineData.GetTag(u"Ingredients").IterateTag(u"Ingredient")
@@ -121,32 +86,10 @@ def ReadLevelProgress():
 
 def ReadGameSettings():
     try:
-        globalvars.PowerUpsInfo = {}
-        globalvars.ThemesInfo = {}
-        
         globalvars.GameSettings = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("GameSettings")
         globalvars.CustomersInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Customers")
-        
-        tmpGameSettings = oE.ParseDEF(File_GameSettings).GetTag(u"MasterChef")
-            
-        #информация о повер-апах
-        tmpPowerUpsIterator = tmpGameSettings.GetTag(u"PowerUps").IterateTag(u"PowerUp")
-        while tmpPowerUpsIterator.Next():
-            tmp = tmpPowerUpsIterator.Get()
-            globalvars.PowerUpsInfo[tmp.GetStrAttr(u"type")] = {
-                "symbol": tmp.GetStrAttr(u"symbol"),
-                "price": tmp.GetIntAttr(u"price"),
-            }
-                
-        #информация о темах
-        tmpThemesIterator = tmpGameSettings.GetTag(u"Themes").IterateTag(u"Theme")
-        while tmpThemesIterator.Next():
-            tmp = tmpThemesIterator.Get()
-            globalvars.ThemesInfo[tmp.GetStrAttr(u"type")] = {}
-            for tmpKey in ["background", "counter", "customersQuePointer", "station",
-                           "recipeInfo", "field", "storage", "bonuspane",
-                           "trashcan", "trashcanBarEmpty", "trashcanBarFull", "tablet"]:
-                globalvars.ThemesInfo[tmp.GetStrAttr(u"type")][tmpKey] = tmp.GetStrAttr(unicode(tmpKey))
+        globalvars.ThemesInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Themes")
+        globalvars.PowerUpsInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("PowerUps")
         
     except:
         oE.Log(u"Cannot read global game settings")
@@ -175,8 +118,8 @@ def ReadLevelSettings(filename):
                     globalvars.GameSettings.SetFltAttr(tmpFltAttr, tmp.GetFltAttr(tmpFltAttr))
                 
         #override customer settings
-        if tmpLevelData.GetCountTag(u"Customers") == 1:
-            for tmp in tmpLevelData.GetCountTag(u"Customers").Tags():
+        if globalvars.LevelSettings.GetCountTag(u"Customers") == 1:
+            for tmp in globalvars.LevelSettings.GetTag(u"Customers").Tags():
                 tmpCustomer = globalvars.CustomersInfo.GetSubtag(tmp.GetContent())
                 for tmpIntAttr in ("heartsOnStart", "orderingTimeMin", "orderingTimeMax",
                                    "gotGiftTimeMin", "gotGiftTimeMax", "patientTimeMin", "patientTimeMax",

@@ -28,7 +28,7 @@ class Customer(scraft.Dispatcher):
         self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("src"), Layer_Customer,
                         Crd_Queue_X0, Crd_Queue_Y0, scraft.HotspotCenterBottom)
         self.Animator = CustomersAnimator(self.Sprite,
-                globalvars.CustomerAnimations[globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("animation")])
+                globalvars.CustomerAnimations.GetSubtag(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("animation"), "Animation"))
         self.HeartSprites = []
         for i in range(Const_MaxHearts):
             self.HeartSprites.append(MakeSimpleSprite(u"heart", Layer_Recipe,
@@ -218,7 +218,7 @@ class CustomersQue(scraft.Dispatcher):
             self.CustomersList.append(RandomKeyByRates(tmpRates))
             
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
-        self.TabletSprite = MakeSimpleSprite(theme["tablet"], Layer_InterfaceBg, Crd_QueueTablet_X0, Crd_QueueTablet_Y0)
+        self.TabletSprite = MakeSimpleSprite(theme.GetStrAttr("tablet"), Layer_InterfaceBg, Crd_QueueTablet_X0, Crd_QueueTablet_Y0)
         self.TextMarker = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                 { "x": Crd_QueueMarker_X0, "y": Crd_QueueMarker_Y0, "cfilt-color": 0x600000,
                  "hotspot": scraft.HotspotCenter })
@@ -290,7 +290,7 @@ class CustomersQue(scraft.Dispatcher):
 class Hero:
     def __init__(self, x, y):
         self.Sprite = MakeSimpleSprite(u"hero", Layer_Customer, x, y, scraft.HotspotCenterBottom)
-        self.Animator = CustomersAnimator(self.Sprite, globalvars.CustomerAnimations["animation.hero"])
+        self.Animator = CustomersAnimator(self.Sprite, globalvars.CustomerAnimations.GetSubtag("animation.hero"))
         self.Animator.SetState("None")
         
     def ShowUp(self):
@@ -312,13 +312,13 @@ class CustomersAnimator(scraft.Dispatcher):
         self.QueNo = oE.executor.Schedule(self)
         
     def SetState(self, state):
-        if self.Animations[state]["loops"] == 0:
+        if self.Animations.GetSubtag(state).GetIntAttr("loops") == 0:
             self.States = [state]
-            self.CurrentAnimation = self.Animations[state]["frames"]
+            self.CurrentAnimation = eval(self.Animations.GetSubtag(state).GetStrAttr("frames"))
             self.Cycling = True
         else:
             self.States.append(state)
-            self.CurrentAnimation = self.Animations[state]["frames"]*self.Animations[state]["loops"]
+            self.CurrentAnimation = eval(self.Animations.GetSubtag(state).GetStrAttr("frames"))*self.Animations.GetSubtag(state).GetIntAttr("loops")
             self.Cycling = False
         self.NextFrameTime = 0
         self.NextFrame = 0

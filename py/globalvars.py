@@ -12,8 +12,8 @@ global ThemesInfo
 global LevelProgress
 global CustomerAnimations
 global PowerUpsInfo
-global GameSettings
-global LevelSettings    #файл уровня, XML
+global GameSettings     #сюда парсятся общие насптройки игры, это XML-дерево
+global LevelSettings    #сюда парсится файл уровня, это XML-дерево
 global Layout
 
 global GameConfig

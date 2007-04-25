@@ -121,39 +121,13 @@ def ReadLevelProgress():
 
 def ReadGameSettings():
     try:
-        globalvars.CustomersInfo = {}
-        globalvars.GameSettings = {}
         globalvars.PowerUpsInfo = {}
         globalvars.ThemesInfo = {}
         
+        globalvars.GameSettings = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("GameSettings")
+        globalvars.CustomersInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Customers")
+        
         tmpGameSettings = oE.ParseDEF(File_GameSettings).GetTag(u"MasterChef")
-        tmp = tmpGameSettings.GetTag(u"GameSettings").Attributes()
-        while tmp.Next():
-            globalvars.GameSettings[tmp.Name()] = eval(tmp.Value())
-            
-        #информация о покупателях
-        tmpCustomersIterator = tmpGameSettings.GetTag(u"Customers").IterateTag(u"Customer")
-        while tmpCustomersIterator.Next():
-            tmp = tmpCustomersIterator.Get()
-            globalvars.CustomersInfo[tmp.GetStrAttr(u"type")] = {
-                "src": tmp.GetStrAttr(u"src"),
-                "hilight": tmp.GetStrAttr(u"hilight"),
-                "animation": tmp.GetStrAttr(u"animation"),
-                "heartsOnStart": tmp.GetIntAttr(u"heartsOnStart"),
-                "orderingTimeMin": tmp.GetFltAttr(u"orderingTimeMin"),
-                "orderingTimeMax": tmp.GetFltAttr(u"orderingTimeMax"),
-                "gotGiftTimeMin": tmp.GetFltAttr(u"gotGiftTimeMin"),
-                "gotGiftTimeMax": tmp.GetFltAttr(u"gotGiftTimeMax"),
-                "patientTimeMin": tmp.GetFltAttr(u"patientTimeMin"),
-                "patientTimeMax": tmp.GetFltAttr(u"patientTimeMax"),
-                "thankYouTime": tmp.GetFltAttr(u"thankYouTime"),
-                "goAwayTime": tmp.GetFltAttr(u"goAwayTime"),
-                "tips": eval(tmp.GetStrAttr(u"tips")),
-                "takesIncompleteOrder": tmp.GetBoolAttr(u"takesIncompleteOrder"),
-                "allowsExcessIngredients": tmp.GetBoolAttr(u"allowsExcessIngredients"),
-                "likes": tmp.GetStrAttr(u"likes"),
-                "dislikes": tmp.GetStrAttr(u"dislikes"),
-            }
             
         #информация о повер-апах
         tmpPowerUpsIterator = tmpGameSettings.GetTag(u"PowerUps").IterateTag(u"PowerUp")
@@ -188,25 +162,33 @@ def ReadLevelSettings(filename):
         globalvars.Layout = {}
         ReadGameSettings()
         
-        ##override global game settings
-        #if globalvars.LevelSettings.GetCountTag(u"GameSettings") == 1:
-        #    tmp = globalvars.LevelSettings.GetTag(u"GameSettings").Attributes()
-        #    while tmp.Next():
-        #        globalvars.GameSettings[tmp.Name()] = eval(tmp.Value())
+        #override global game settings
+        if globalvars.LevelSettings.GetCountTag(u"GameSettings") == 1:
+            tmp = globalvars.LevelSettings.GetTag(u"GameSettings")
+            for tmpIntAttr in ("newCustomerTimeMin", "newCustomerTimeMax",
+                               "tokensGroupMin", "tokensGroupMax"):
+                if tmp.HasAttr(tmpIntAttr):
+                    globalvars.GameSettings.SetIntAttr(tmpIntAttr, tmp.GetIntAttr(tmpIntAttr))
+            for tmpFltAttr in ("tokensFallingTime", "shuffleTime", "magicWandConvertingTime",
+                               "approvalPerDollar", "maxApproval"):
+                if tmp.HasAttr(tmpFltAttr):
+                    globalvars.GameSettings.SetFltAttr(tmpFltAttr, tmp.GetFltAttr(tmpFltAttr))
                 
-        ##override customer settings
-        #if tmpLevelData.GetCountTag(u"Customers") == 1:
-        #    tmpCustomersIterator = tmpLevelData.GetTag(u"Customers").IterateTag(u"Customer")
-        #    while tmpCustomersIterator.Next():
-        #        tmpCustomer = tmpCustomersIterator.Get()
-        #        tmpType = tmpCustomer.GetStrAttr(u"type")
-        #        tmp = tmpCustomer.Attributes()
-        #        while tmp.Next():
-        #            if tmp.Name() in [u"likes", u"dislikes"]:
-        #                globalvars.CustomersInfo[tmpType][tmp.Name()] = tmp.Value()
-        #            elif tmp.Name() not in [u"type", u"src"]:
-        #                globalvars.CustomersInfo[tmpType][tmp.Name()] = eval(tmp.Value())
-                
+        #override customer settings
+        if tmpLevelData.GetCountTag(u"Customers") == 1:
+            for tmp in tmpLevelData.GetCountTag(u"Customers").Tags():
+                tmpCustomer = globalvars.CustomersInfo.GetSubtag(tmp.GetContent())
+                for tmpIntAttr in ("heartsOnStart", "orderingTimeMin", "orderingTimeMax",
+                                   "gotGiftTimeMin", "gotGiftTimeMax", "patientTimeMin", "patientTimeMax",
+                                   "thankYouTime", "goAwayTime"):
+                    if tmp.HasAttr(tmpIntAttr):
+                        tmpCustomer.SetIntAttr(tmpIntAttr, tmp.GetIntAttr(tmpIntAttr))
+                for tmpStrAttr in ("likes", "dislikes", "tips"):
+                    if tmp.HasAttr(tmpStrAttr):
+                        tmpCustomer.SetStrAttr(tmpStrAttr, tmp.GetStrAttr(tmpStrAttr))
+                for tmpBoolAttr in ("takesIncompleteOrder", "allowsExcessIngredients"):
+                    if tmp.HasAttr(tmpBoolAttr):
+                        tmpCustomer.SetBoolAttr(tmpBoolAttr, tmp.GetBoolAttr(tmpBoolAttr))
             
     except:
         oE.Log(u"Cannot read level info from: "+filename)

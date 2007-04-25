@@ -412,7 +412,7 @@ class Field(Storage):
         tmpChains = map(lambda x: filter(lambda y: self.MatchMap[y] == x, self.MatchMap.keys()),
                         range(curKind))
         for (i,j) in tmpAllKeys:
-            if len(tmpChains[self.MatchMap[i,j]]) < Const_MinimalGroup:
+            if len(tmpChains[self.MatchMap[i,j]]) < globalvars.GameSettings.GetIntAttr("tokensGroupMin"):
                 self.MatchMap[i,j] = -1
         #заглушка для коллапсоида
         for i in range(self.Cols):
@@ -461,7 +461,8 @@ class Field(Storage):
                     
                 #волшебная палочка - подсветить круг
                 elif globalvars.Board.PickedTool == 'Magicwand':
-                    self.HighlightedCells = filter(lambda x: (x[0]-pos[0])*(x[0]-pos[0])+(x[1]-pos[1])*(x[1]-pos[1]) <= globalvars.GameSettings["magicwandradiussquared"], self.Cells.keys())
+                    self.HighlightedCells = filter(lambda x: (x[0]-pos[0])*(x[0]-pos[0])+(x[1]-pos[1])*(x[1]-pos[1]) <= \
+                        globalvars.GameSettings.GetIntAttr("magicWandRadiusSquared"), self.Cells.keys())
                     
             Storage._HighlightCells(self, pos, True)
         else:
@@ -546,8 +547,8 @@ class Field(Storage):
         #схлопывание столбцов поля после удаления блоков
         elif state == FieldState_Collapse:
             self.FallingBlocks = {}
-            self.FallingTime = int(globalvars.GameSettings["tokensfallingtime"]*1000)    
-            tmpBasicSpeed = int(1.0*Crd_deltaY/globalvars.GameSettings["tokensfallingtime"])
+            self.FallingTime = int(globalvars.GameSettings.GetFltAttr("tokensFallingTime")*1000)    
+            tmpBasicSpeed = int(1.0*Crd_deltaY/globalvars.GameSettings.GetFltAttr("tokensFallingTime"))
             for i in range(self.Cols):
                 for j in range(self.Rows-1, -1, -1):
                     if self.Cells[i,j] != Const_EmptyCell:
@@ -569,11 +570,11 @@ class Field(Storage):
         #перемешивание токенов на поле
         elif state == FieldState_Shuffle:
             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-            self.ShuffleTime = int(globalvars.GameSettings["shuffletime"]*1000)
+            self.ShuffleTime = int(globalvars.GameSettings.GetFltAttr("shuffleTime")*1000)
             
             self.ShufflingBlocks = {}
-            tmpBasicSpeedX = int(1.0*Crd_deltaX/globalvars.GameSettings["shuffletime"])
-            tmpBasicSpeedY = int(1.0*Crd_deltaY/globalvars.GameSettings["shuffletime"])
+            tmpBasicSpeedX = int(1.0*Crd_deltaX/globalvars.GameSettings.GetFltAttr("shuffleTime"))
+            tmpBasicSpeedY = int(1.0*Crd_deltaY/globalvars.GameSettings.GetFltAttr("shuffleTime"))
             tmpOldKeys = self.Cells.keys()
             tmpNewKeys = list(tmpOldKeys)
             shuffle(tmpNewKeys)
@@ -587,7 +588,7 @@ class Field(Storage):
             
         #превращение волшебной палочкой
         elif state == FieldState_MagicWandConverting:
-            self.ConvertionTime = globalvars.GameSettings["magicwandconvertingtime"]
+            self.ConvertionTime = globalvars.GameSettings.GetFltAttr("magicWandConvertingTime")
             
             #программа для превращения!
             

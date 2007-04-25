@@ -25,10 +25,10 @@ from random import randint
 class Customer(scraft.Dispatcher):
     def __init__(self, type):
         self.Type = type
-        self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo[type]["src"], Layer_Customer,
+        self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("src"), Layer_Customer,
                         Crd_Queue_X0, Crd_Queue_Y0, scraft.HotspotCenterBottom)
         self.Animator = CustomersAnimator(self.Sprite,
-                globalvars.CustomerAnimations[globalvars.CustomersInfo[type]["animation"]])
+                globalvars.CustomerAnimations[globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("animation")])
         self.HeartSprites = []
         for i in range(Const_MaxHearts):
             self.HeartSprites.append(MakeSimpleSprite(u"heart", Layer_Recipe,
@@ -47,7 +47,7 @@ class Customer(scraft.Dispatcher):
         for i in range(Const_MaxHearts):
             self.HeartSprites[i].x = self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx
             self.HeartSprites[i].y = self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy
-        self._SetHearts(globalvars.CustomersInfo[self.Type]["heartsOnStart"])
+        self._SetHearts(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("heartsOnStart"))
         self._SetState(CustomerState_Ordering)
         
     def GiveSweet(self):
@@ -85,28 +85,28 @@ class Customer(scraft.Dispatcher):
             
         elif state == CustomerState_Ordering:
             self.Animator.SetState("Order")
-            self.NextStateTime = randint(globalvars.CustomersInfo[self.Type]["orderingTimeMin"]*1000,
-                                         globalvars.CustomersInfo[self.Type]["orderingTimeMax"]*1000)
+            self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMin")*1000,
+                                         globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMax")*1000)
             
         elif state == CustomerState_Wait:
-            self.NextStateTime = randint(globalvars.CustomersInfo[self.Type]["patientTimeMin"]*1000,
-                                         globalvars.CustomersInfo[self.Type]["patientTimeMax"]*1000)
+            self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,
+                                         globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMax")*1000)
             self._SetHearts(self.Hearts)
             
         elif state == CustomerState_GotGift:
             self.Animator.SetState("GotGift")
-            self.NextStateTime = randint(globalvars.CustomersInfo[self.Type]["gotGiftTimeMin"]*1000,
-                                         globalvars.CustomersInfo[self.Type]["gotGiftTimeMin"]*1000)
+            self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("gotGiftTimeMin")*1000,
+                                         globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("gotGiftTimeMax")*1000)
             
         elif state == CustomerState_GoAway:
             self.Host.SendCommand(Cmd_FlopOrder)
             self.Animator.SetState("GoAway")
-            self.NextStateTime = int(globalvars.CustomersInfo[self.Type]["goAwayTime"]*1000)
+            self.NextStateTime = int(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("goAwayTime")*1000)
             
         elif state == CustomerState_ThankYou:
             #self.Host.SendCommand(Cmd_TakeOrder)
             self.Animator.SetState("TakeOrder")
-            self.NextStateTime = int(globalvars.CustomersInfo[self.Type]["thankYouTime"]*1000)
+            self.NextStateTime = int(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("thankYouTime")*1000)
             
         
     def Show(self, flag = True):
@@ -129,9 +129,9 @@ class Customer(scraft.Dispatcher):
             
     def Hilight(self, flag):
         if flag:
-            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo[self.Type]["hilight"])
+            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("hilight"))
         else:
-            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo[self.Type]["src"])
+            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("src"))
         self.Sprite.hotspot = scraft.HotspotCenterBottom
         
     def Kill(self):
@@ -184,9 +184,9 @@ class Customer(scraft.Dispatcher):
     def _MakeOrder(self):
         tmpLevelRecipeRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
             globalvars.LevelSettings.GetTag("RecipeRates").Tags("Recipe")))
-        if globalvars.CustomersInfo[self.Type]["dislikes"] != "nothing":
+        if globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes") != "nothing":
             #плохие ингредиенты - те, которые покупатель не любит
-            tmpBadIngredients = map(lambda y: y[0], filter(lambda x: x[1]["type"] == globalvars.CustomersInfo[self.Type]["dislikes"],
+            tmpBadIngredients = map(lambda y: y[0], filter(lambda x: x[1]["type"] == globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes"),
                                        globalvars.CuisineInfo["Ingredients"].iteritems()))
             #хорошие рецепты - не используют плохих ингредиентов
             tmpGoodRecipes = filter(lambda x: \
@@ -247,8 +247,8 @@ class CustomersQue(scraft.Dispatcher):
         
     def SetState(self, state):
         if state == QueState_Active and self.State != QueState_Active:
-            self.NextCustomerTime = randint(globalvars.GameSettings["newcustomertimemin"]*1000,
-                                        globalvars.GameSettings["newcustomertimemax"]*1000)
+            self.NextCustomerTime = randint(globalvars.GameSettings.GetIntAttr("newCustomerTimeMin")*1000,
+                                        globalvars.GameSettings.GetIntAttr("newCustomerTimeMax")*1000)
         else:
             self.NextCustomerTime = 0
         self.State = state

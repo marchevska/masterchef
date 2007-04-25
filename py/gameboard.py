@@ -217,12 +217,12 @@ class GameBoard(scraft.Dispatcher):
         self.BuyPowerUpButtons = {}
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("PowerUp"):
             self.PowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
-                Cmd_UsePowerUp + globalvars.GameSettings["powerups"].index(tmp.GetStrAttr("type")),
+                Cmd_UsePowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
                 PState_Game, u"powerup.use.button", [0, 1, 2, 3], Layer_InterfaceBtn,
                 tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 60, 60, globalvars.PowerUpsInfo[tmp.GetStrAttr("type")]["symbol"],
                 [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
             self.BuyPowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
-                Cmd_BuyPowerUp + globalvars.GameSettings["powerups"].index(tmp.GetStrAttr("type")),
+                Cmd_BuyPowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
                 PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn+1,
                 tmp.GetIntAttr("x") + Const_BuyPowerUpButton_Dx, tmp.GetIntAttr("y") + Const_BuyPowerUpButton_Dy, 40, 30,
                 u"$"*int(globalvars.PowerUpsInfo[tmp.GetStrAttr("type")]["price"]),
@@ -341,16 +341,16 @@ class GameBoard(scraft.Dispatcher):
                 print "last customer"
                 
         #покупка повер-апа
-        elif cmd in range(Cmd_BuyPowerUp, Cmd_BuyPowerUp+len(globalvars.GameSettings["powerups"])):
-            type = globalvars.GameSettings["powerups"][cmd - Cmd_BuyPowerUp]
+        elif cmd in range(Cmd_BuyPowerUp, Cmd_BuyPowerUp+len(eval(globalvars.GameSettings.GetStrAttr("powerups")))):
+            type = eval(globalvars.GameSettings.GetStrAttr("powerups"))[cmd - Cmd_BuyPowerUp]
             self.HasPowerUps[type] += 1
             self.Approval -= globalvars.PowerUpsInfo[type]["price"]
             self._UpdatePowerUpButtons()
             self._UpdateLevelInfo()
             
         #использование повер-апа
-        elif cmd in range(Cmd_UsePowerUp, Cmd_UsePowerUp+len(globalvars.GameSettings["powerups"])):
-            type = globalvars.GameSettings["powerups"][cmd - Cmd_UsePowerUp]
+        elif cmd in range(Cmd_UsePowerUp, Cmd_UsePowerUp+len(eval(globalvars.GameSettings.GetStrAttr("powerups")))):
+            type = eval(globalvars.GameSettings.GetStrAttr("powerups"))[cmd - Cmd_UsePowerUp]
             if type == 'Supersweet':
                 self.UseTool('Supersweet')
                 for tmp in self.CStations:
@@ -364,8 +364,8 @@ class GameBoard(scraft.Dispatcher):
         
     def AddScore(self, delta):
         self.LevelScore += delta
-        self.Approval = min(self.Approval+delta*globalvars.GameSettings["approvalperdollar"],
-                            globalvars.GameSettings["maxapproval"])
+        self.Approval = min(self.Approval+delta*globalvars.GameSettings.GetFltAttr("approvalPerDollar"),
+                            globalvars.GameSettings.GetFltAttr("maxApproval"))
         self._UpdatePowerUpButtons()
         self._UpdateLevelInfo()
         if self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal") and not self.Expert:

@@ -111,7 +111,7 @@ class CustomerStation(scraft.Dispatcher):
         tmpRemaining = reduce(lambda a,b: a+b["no"], self.TokensNeeded, 0)
         if tmpRemaining == 0 or \
             (tmpRemaining <= globalvars.CuisineInfo["Recipes"][self.OrderType]["readyAt"] and \
-            globalvars.CustomersInfo[self.Customer.Type]["takesIncompleteOrder"]):
+            globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("takesIncompleteOrder")):
             self.ReleaseButton.Show(True)
         if tmpRemaining == 0:
             self.MealReady = True
@@ -119,14 +119,14 @@ class CustomerStation(scraft.Dispatcher):
         self.RecipeIndicator.SetValue(1.0 - 1.0*tmpRemaining/self.TotalRequired)
             
         #проверить - является ли ингредиент нелюбимым для покуаптеля
-        if globalvars.CustomersInfo[self.Customer.Type]["dislikes"] == food:
+        if globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetStrAttr("dislikes") == food:
             self.Customer.AddHearts(-1)
         #если ингредиент не требуется и покупатель требует четкого соблюдения рецепта
-        elif tmp == [] and not globalvars.CustomersInfo[self.Customer.Type]["allowsExcessIngredients"]:
+        elif tmp == [] and not globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("allowsExcessIngredients"):
             self.Customer.AddHearts(-1)
         
         #проверить - является ли ингредиент любимым для покуаптеля
-        if globalvars.CustomersInfo[self.Customer.Type]["likes"] == food:
+        if globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetStrAttr("likes") == food:
             tmpScoreMultiplier *= 2
             
         return no*tmpScoreMultiplier

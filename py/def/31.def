@@ -11,7 +11,7 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker" rate = "1" }
+        Customer{ type = "Tourist Russian" rate = "1" }
         Customer{ type = "Student" rate = "3" }
         Customer{ type = "Business" rate = "3" }
     }

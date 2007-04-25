@@ -14,8 +14,14 @@ MasterChef {
         sprite(customer.critic.hilight) { bitmap = "img/customers/critic.hilight.png" type = "blend" layout = "4x4" }
         sprite(customer.business) { bitmap = "img/customers/business.png" type = "blend" layout = "4x4" }
         sprite(customer.business.hilight) { bitmap = "img/customers/business.hilight.png" type = "blend" layout = "4x4" }
-        sprite(customer.tourist) { bitmap = "img/customers/tourist.png" type = "blend" layout = "4x5" }
-        sprite(customer.tourist.hilight) { bitmap = "img/customers/tourist.hilight.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.hawaiian) { bitmap = "img/customers/tourist.hawaiian.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.hawaiian.hilight) { bitmap = "img/customers/tourist.hawaiian.hilight.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.mexican) { bitmap = "img/customers/tourist.mexican.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.mexican.hilight) { bitmap = "img/customers/tourist.mexican.hilight.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.japanese) { bitmap = "img/customers/tourist.japanese.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.japanese.hilight) { bitmap = "img/customers/tourist.japanese.hilight.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.russian) { bitmap = "img/customers/tourist.russian.png" type = "blend" layout = "4x5" }
+        sprite(customer.tourist.russian.hilight) { bitmap = "img/customers/tourist.russian.hilight.png" type = "blend" layout = "4x5" }
         sprite(hero) { bitmap = "img/jason/jason.png" type = "blend" layout = "2x1" }
     }
     
@@ -111,7 +117,46 @@ MasterChef {
         Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
     }
 
-    Animation(animation.tourist) {
+    Animation(animation.tourist.hawaiian) {
+        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
+        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
+        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
+        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
+        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+    }
+
+    Animation(animation.tourist.mexican) {
+        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
+        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
+        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
+        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
+        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+    }
+
+    Animation(animation.tourist.japanese) {
+        Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
+        Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
+        Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }
+        Sequence { name = "3Hearts" frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
+        Sequence { name = "2Hearts" frames = "(2, 700), (3, 700)" loops = "0" }
+        Sequence { name = "1Hearts" frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence { name = "GoAway" frames = "(11, 2000)," loops = "0" }
+        Sequence { name = "TakeOrder" frames = "(10, 2000)," loops = "0" }
+        Sequence { name = "GotGift" frames = "(14, 1500)," loops = "0" }
+        Sequence { name = "Queue" frames = "(15, 100000)," loops = "0" }
+    }
+
+    Animation(animation.tourist.russian) {
         Sequence { name = "Order" frames = "(0, 1000), (1, 1000)" loops = "0" }
         Sequence { name = "5Hearts" frames = "(4, 1000), (5, 500)" loops = "0" }
         Sequence { name = "4Hearts" frames = "(8, 1000), (9, 700)" loops = "0" }

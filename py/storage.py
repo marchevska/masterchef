@@ -231,7 +231,7 @@ class Store(Storage):
                 tmp = j*self.Cols+i - (self.Capacity - self.NoTokens)  
                 if tmp >= 0:
                     self.Cells[i,j] = tmpTokens[tmp]
-                    self.Grid[i,j].ChangeKlassTo(globalvars.CuisineInfo["Ingredients"][self.Cells[i,j]]["src"])
+                    self.Grid[i,j].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[i,j]).GetStrAttr("src"))
                 else:
                     self._RemoveTokenFrom((i,j))
         self._ReHighlight()            
@@ -303,7 +303,7 @@ class SingularStore(Storage):
     def AddTokens(self, type, no, pos):
         try:
             self.Cells[pos] = type
-            self.Grid[pos].ChangeKlassTo(globalvars.CuisineInfo["Ingredients"][type]["src"])
+            self.Grid[pos].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"))
             self.NoTokens += no
         except:
             pass
@@ -376,7 +376,7 @@ class Field(Storage):
         tmp = RandomKeyByRates(dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
                        globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))))
         self.Cells[cell] = tmp
-        self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo["Ingredients"][tmp]["src"])
+        self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(tmp).GetStrAttr("src"))
         
     #--------------------------
     # Удаление токенов с поля
@@ -581,7 +581,7 @@ class Field(Storage):
             tmpValues = self.Cells.values()
             self.Cells = dict(zip(tmpNewKeys, tmpValues))
             for i in range(len(tmpOldKeys)):
-                self.Grid[tmpNewKeys[i]].ChangeKlassTo(globalvars.CuisineInfo["Ingredients"][self.Cells[tmpNewKeys[i]]]["src"])
+                self.Grid[tmpNewKeys[i]].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[tmpNewKeys[i]]).GetStrAttr("src"))
                 self.Grid[tmpNewKeys[i]].x, self.Grid[tmpNewKeys[i]].y = self._CellCoordsLeft(tmpOldKeys[i])
                 self.ShufflingBlocks[tmpNewKeys[i]] = ((tmpNewKeys[i][0]-tmpOldKeys[i][0])*tmpBasicSpeedX,
                     (tmpNewKeys[i][1]-tmpOldKeys[i][1])*tmpBasicSpeedY)
@@ -594,7 +594,7 @@ class Field(Storage):
             
             for cell in self.ConvertedCells:
                 self.Cells[cell] = self.Cells[parameter]
-                self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo["Ingredients"][self.Cells[cell]]["src"])
+                self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"))
                 
         #конец уровня; задать способ удаления блоков с поля
         elif state == FieldState_EndLevel:

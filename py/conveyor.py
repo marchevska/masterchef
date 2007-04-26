@@ -129,7 +129,7 @@ class Conveyor(scraft.Dispatcher):
 class Token(scraft.Dispatcher):
     def __init__(self, whose, type):
         self.type = type
-        self.sprite = MakeSprite(globalvars.CuisineInfo["Ingredients"][type]["src"], Layer_Tokens,
+        self.sprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tokens,
                                  { "hotspot": scraft.HotspotCenter, "dispatcher": self })
         self.whose = whose
         

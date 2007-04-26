@@ -43,27 +43,27 @@ def ReadResourceInfo():
 def ReadCuisine():
     try:
         globalvars.CuisineInfo = oE.ParseDEF(File_Cuisine).GetTag(u"MasterChef")
-        globalvars.CuisineInfo = { "Ingredients": {}, "Recipes": {} }
-        tmpCuisineData = oE.ParseDEF(File_Cuisine).GetTag(u"MasterChef")
-        tmpIngredientsIterator = tmpCuisineData.GetTag(u"Ingredients").IterateTag(u"Ingredient")
-        while tmpIngredientsIterator.Next():
-            tmp = tmpIngredientsIterator.Get()
-            globalvars.CuisineInfo["Ingredients"][tmp.GetStrAttr(u"name")] = {
-                "type": tmp.GetStrAttr(u"type"),
-                "src": tmp.GetStrAttr(u"src"), "iconSrc": tmp.GetStrAttr(u"iconSrc") }
-            
-        tmpRecipesIterator = tmpCuisineData.GetTag(u"Recipes").IterateTag(u"Recipe")
-        while tmpRecipesIterator.Next():
-            tmp = tmpRecipesIterator.Get()
-            globalvars.CuisineInfo["Recipes"][tmp.GetStrAttr(u"name")] = {
-                "setting": tmp.GetStrAttr(u"setting"),
-                "type": tmp.GetStrAttr(u"type"),
-                "src": tmp.GetStrAttr(u"src"),
-                "emptySrc": tmp.GetStrAttr(u"emptySrc"),
-                "price": tmp.GetIntAttr(u"price"),
-                "readyAt": tmp.GetIntAttr(u"readyAt"),
-                "requires": eval(tmp.GetStrAttr(u"requires"))
-            }
+        #globalvars.CuisineInfo = { "Ingredients": {}, "Recipes": {} }
+        #tmpCuisineData = oE.ParseDEF(File_Cuisine).GetTag(u"MasterChef")
+        #tmpIngredientsIterator = tmpCuisineData.GetTag(u"Ingredients").IterateTag(u"Ingredient")
+        #while tmpIngredientsIterator.Next():
+        #    tmp = tmpIngredientsIterator.Get()
+        #    globalvars.CuisineInfo["Ingredients"][tmp.GetStrAttr(u"name")] = {
+        #        "type": tmp.GetStrAttr(u"type"),
+        #        "src": tmp.GetStrAttr(u"src"), "iconSrc": tmp.GetStrAttr(u"iconSrc") }
+        #    
+        #tmpRecipesIterator = tmpCuisineData.GetTag(u"Recipes").IterateTag(u"Recipe")
+        #while tmpRecipesIterator.Next():
+        #    tmp = tmpRecipesIterator.Get()
+        #    globalvars.CuisineInfo["Recipes"][tmp.GetStrAttr(u"name")] = {
+        #        "setting": tmp.GetStrAttr(u"setting"),
+        #        "type": tmp.GetStrAttr(u"type"),
+        #        "src": tmp.GetStrAttr(u"src"),
+        #        "emptySrc": tmp.GetStrAttr(u"emptySrc"),
+        #        "price": tmp.GetIntAttr(u"price"),
+        #        "readyAt": tmp.GetIntAttr(u"readyAt"),
+        #        "requires": eval(tmp.GetStrAttr(u"requires"))
+        #    }
         
     except:
         oE.Log(u"Cannot read cuisine info")

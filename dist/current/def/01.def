@@ -3,6 +3,7 @@ Level{
     GameSettings{
         newCustomerTimeMin = "1"
         newCustomerTimeMax = "3"
+        tokensGroupMin = "3"
     }
     
     //overwrite basic customer settings

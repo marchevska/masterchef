@@ -62,16 +62,16 @@ class CustomerStation(scraft.Dispatcher):
         self.OrderType = type
         self.RecipeInfoSprite.visible = True
         self.RecipeIndicator.Show(True)
-        self.RecipeIndicator.SetKlasses(globalvars.CuisineInfo["Recipes"][type]["src"],
-                                        globalvars.CuisineInfo["Recipes"][type]["emptySrc"])
+        self.RecipeIndicator.SetKlasses(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("src"),
+                                        globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("emptySrc"))
         self.RecipeIndicator.SetValue(0)
-        tmpIng = globalvars.CuisineInfo["Recipes"][type]["requires"].keys()
-        self.TokensNeeded = map(lambda x: { "item": x, "no": globalvars.CuisineInfo["Recipes"][type]["requires"][x] }, tmpIng)
+        tmpReq = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("requires"))
+        self.TokensNeeded = map(lambda x: { "item": x, "no": tmpReq[x] }, tmpReq.keys())
         self.TotalRequired = reduce(lambda x, y: x+y["no"], self.TokensNeeded, 0)
         for i in range(len(self.TokensNeeded)):
             self.NeededIndicators.append(NeededIndicator(self.CrdX + Crd_Indicator_DeltaX,
                 self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Recipe, 
-                globalvars.CuisineInfo["Ingredients"][self.TokensNeeded[i]["item"]]["iconSrc"],
+                globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.TokensNeeded[i]["item"]).GetStrAttr("iconSrc"),
                 u"domcasual-10-up", u"galka", self.TokensNeeded[i]["no"]))
         
     #--------------
@@ -110,7 +110,7 @@ class CustomerStation(scraft.Dispatcher):
         #проверить, готов ли рецепт !!!!
         tmpRemaining = reduce(lambda a,b: a+b["no"], self.TokensNeeded, 0)
         if tmpRemaining == 0 or \
-            (tmpRemaining <= globalvars.CuisineInfo["Recipes"][self.OrderType]["readyAt"] and \
+            (tmpRemaining <= globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(self.OrderType).GetIntAttr("readyAt") and \
             globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("takesIncompleteOrder")):
             self.ReleaseButton.Show(True)
         if tmpRemaining == 0:

@@ -474,7 +474,7 @@ class GameBoard(scraft.Dispatcher):
     def _PickFromConveyor(self, where, type):
         self.PickedTokens = type
         self.PickedTokensNo = 1
-        self.TokenSprite = MakeSprite(globalvars.CuisineInfo["Ingredients"][type]["src"], Layer_Tools)
+        self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": 20, "y": 30, "text": "",
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
@@ -485,7 +485,7 @@ class GameBoard(scraft.Dispatcher):
     def _PickTokensFrom(self, where, type, no):
         self.PickedTokens = type
         self.PickedTokensNo = no
-        self.TokenSprite = MakeSprite(globalvars.CuisineInfo["Ingredients"][type]["src"], Layer_Tools)
+        self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": 20, "y": 30, "text": str(no),
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })

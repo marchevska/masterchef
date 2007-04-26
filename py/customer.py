@@ -186,11 +186,12 @@ class Customer(scraft.Dispatcher):
             globalvars.LevelSettings.GetTag("RecipeRates").Tags("Recipe")))
         if globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes") != "nothing":
             #плохие ингредиенты - те, которые покупатель не любит
-            tmpBadIngredients = map(lambda y: y[0], filter(lambda x: x[1]["type"] == globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes"),
-                                       globalvars.CuisineInfo["Ingredients"].iteritems()))
+            tmpBadIngredients = map(lambda y: y.GetContent(), filter(lambda x: x.GetStrAttr("type") == globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes"),
+                                       globalvars.CuisineInfo.GetTag("Ingredients").Tags()))
             #хорошие рецепты - не используют плохих ингредиентов
             tmpGoodRecipes = filter(lambda x: \
-                filter(lambda y: y in tmpBadIngredients, globalvars.CuisineInfo["Recipes"][x]["requires"].keys()) == [],
+                filter(lambda y: y in tmpBadIngredients,
+                       eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(x).GetStrAttr("requires")).keys()) == [],
                 tmpLevelRecipeRates.keys())
             tmpGoodRecipeRates = dict(map(lambda x: (x, tmpLevelRecipeRates[x]), tmpGoodRecipes))
         else:

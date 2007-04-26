@@ -65,10 +65,7 @@ class Player:
     def Save(self):
         try:
             if globalvars.RunMode == RunMode_Play and self.Filename != "":
-                tmpDir = os.path.dirname(self.Filename)
-                if not os.access(tmpDir, os.W_OK):
-                    os.mkdir(tmpDir)
-                self.XML.GetRoot().StoreTo(self.Filename)
+                config.SaveToFile(self.XML.GetRoot(), self.Filename)
         except:
             oE.Log(unicode("Cannot save player info for "+self.Name))
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -181,10 +178,7 @@ class PlayerList:
     def Save(self):
         try:
             if self.Filename != "":
-                tmpDir = os.path.dirname(self.Filename)
-                if not os.access(tmpDir, os.W_OK):
-                    os.mkdir(tmpDir)
-                self.XML.GetRoot().StoreTo(self.Filename)
+                config.SaveToFile(self.XML.GetRoot(), self.Filename)
         except:
             oE.Log(u"Cannot save players list")
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))

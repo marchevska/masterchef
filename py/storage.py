@@ -412,9 +412,10 @@ class Field(Storage):
         tmpChains = map(lambda x: filter(lambda y: self.MatchMap[y] == x, self.MatchMap.keys()),
                         range(curKind))
         for (i,j) in tmpAllKeys:
-            if len(tmpChains[self.MatchMap[i,j]]) < globalvars.GameSettings.GetIntAttr("tokensGroupMin"):
+            if not self.MatchMap.has_key((i,j)) or self.Cells[i,j] == Const_EmptyCell \
+                or len(tmpChains[self.MatchMap[i,j]]) < globalvars.GameSettings.GetIntAttr("tokensGroupMin"):
                 self.MatchMap[i,j] = -1
-        #заглушка для коллапсоида
+        #заглушка для коллапсоида - предотвращает клики по пустым клеткам и нижнему ряду
         for i in range(self.Cols):
             self.MatchMap[i, self.Rows] = -1
                 
@@ -447,7 +448,7 @@ class Field(Storage):
     def _HighlightCells(self, pos, flag):
         if flag:
             if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
-                if self.MatchMap[pos] != -1:
+                if self.MatchMap.has_key(pos) and self.MatchMap[pos] != -1:
                     self.HighlightedCells = filter(lambda x: self.MatchMap[x] == self.MatchMap[pos], self.MatchMap.keys())
                     
             elif globalvars.Board.GameCursorState == GameCursorState_Tool:
@@ -658,12 +659,13 @@ class Field(Storage):
 #--------------------------------------------
 #--------------------------------------------
 class Collapsoid(Field):
-    def __init__(self, cols, rows, initialrows, x, y, theme):
+    def __init__(self, cols, rows, initialrows, dropin, shiftspeed, x, y, theme):
         Field.__init__(self, cols, rows+1, x, y, theme)
         self.Collapsing = True
-        self.StartRow = 0
         self.Rows -= 1
         self.InitialRows = initialrows
+        self.DropIn = dropin
+        self.ShiftSpeed = shiftspeed
         self.SetDropperState(DropperState_None)
         
     #--------------------------
@@ -688,12 +690,12 @@ class Collapsoid(Field):
             
         elif state == DropperState_Drop:
             self.Dropped = 0
-            self.NextDropTime = 200
+            self.NextDropTime = self.DropIn
             
         elif state == DropperState_Move:
-            self.MovingTime = 1000
-            self.DestCrd = -40
-            self.Speed = -40
+            self.DestCrd = -Crd_deltaY
+            self.Speed = -self.ShiftSpeed
+            self.MovingTime = int(1.0*1000*self.DestCrd/self.Speed)
         
     def _OnExecute(self, que):
         try:
@@ -703,9 +705,13 @@ class Collapsoid(Field):
                     if self.Dropped < self.Cols:
                         self.Dropped += 1
                         self._PutRandomToken((self.Dropped-1, self.Rows))
-                        self.NextDropTime += 200
+                        self.NextDropTime += self.DropIn
                     else:
-                        self.SetDropperState(DropperState_Move)
+                        #проверка на переполнение
+                        if filter(lambda i: self.Cells[i,0] != Const_EmptyCell, range(self.Cols)) != []:
+                            globalvars.Board.SendCommand(Cmd_CollapsoidFull, self)
+                        else:
+                            self.SetDropperState(DropperState_Move)
                 
             elif self.DropperState == DropperState_Move:
                 self.MovingTime = max(0, self.MovingTime - que.delta)
@@ -726,6 +732,17 @@ class Collapsoid(Field):
         Field._OnExecute(self, que)
         return scraft.CommandStateRepeat
 
+    # передавать только клики по непустым клеткам или правые клики
+    def _OnMouseClick(self, sprite, x, y, button):
+        if globalvars.StateStack[-1] == PState_Game:
+            if (button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool) or button == 2:
+                Field._OnMouseClick(self, sprite, x, y, button)
+            elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                if sprite.cookie == Cmd_Receptor:
+                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    if self.MatchMap[tmpPos] != -1:
+                        Field._OnMouseClick(self, sprite, x, y, button)
+                            
 #--------------------------------------------
 #--------------------------------------------
 # TrashCan - мусорка

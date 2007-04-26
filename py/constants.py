@@ -11,18 +11,19 @@ Project: Master Chef
 #---------
 Cmd_Menu = 1
 Cmd_MovementFinished = 2
-Cmd_DropWhatYouCarry = 7
-Cmd_PickFromStorage = 8
-Cmd_ClickStorage = 9
-Cmd_ClickStation = 10
-Cmd_NewOrder = 11
-Cmd_FlopOrder = 12
-Cmd_NewCustomer = 13
-Cmd_CustomerServed = 16
-Cmd_CustomerLost = 17
-Cmd_ReleaseCustomer = 14
-Cmd_FreeStation = 15
-Cmd_PickToken = 9
+Cmd_DropWhatYouCarry = 3
+Cmd_PickFromStorage = 4
+Cmd_ClickStorage = 5
+Cmd_ClickStation = 6
+Cmd_NewOrder = 7
+Cmd_FlopOrder = 8
+Cmd_NewCustomer = 9
+Cmd_CustomerServed = 10
+Cmd_CustomerLost = 11
+Cmd_ReleaseCustomer = 12
+Cmd_FreeStation = 13
+Cmd_PickToken = 14
+Cmd_CollapsoidFull = 15
 Cmd_PickFromConveyor = 18
 Cmd_ReturnToConveyor = 19
 

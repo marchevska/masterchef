@@ -3,7 +3,7 @@ Level{
     GameSettings{
         newCustomerTimeMin = "1"
         newCustomerTimeMax = "3"
-        tokensGroupMin = "3"
+        tokensGroupMin = "1"
     }
     
     //overwrite basic customer settings
@@ -48,9 +48,7 @@ Level{
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "8" YSize = "12" InitialRows = "6" X0 = "450" Y0 = "50" }
-        //Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
-        //Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
+        Collapsoid{ XSize = "8" YSize = "12" InitialRows = "6" DropIn = "400" ShiftSpeed = "20" X0 = "450" Y0 = "50" }
         PowerUp{ type = "Sweet" x = "370" y = "200" }
         PowerUp{ type = "Gift" x = "370" y = "250" }
         Counter{ type = "" x = "330" y = "95" }

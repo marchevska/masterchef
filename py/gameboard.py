@@ -167,7 +167,7 @@ class GameBoard(scraft.Dispatcher):
                         tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Collapsoid"):
             self.Fields.append(Collapsoid(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
-                        tmp.GetIntAttr("InitialRows"),
+                        tmp.GetIntAttr("InitialRows"), tmp.GetIntAttr("DropIn"), tmp.GetIntAttr("ShiftSpeed"),
                         tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
         self.Stores = []
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Store"):
@@ -260,6 +260,10 @@ class GameBoard(scraft.Dispatcher):
         if cmd == Cmd_MovementFinished:
             if self.State == GameState_StartLevel:
                 self._SetState(GameState_Play)
+            
+        #переполнение коллапсоида - конец уровня!
+        elif cmd == Cmd_CollapsoidFull:
+            self._SetState(GameState_EndLevel)
             
         elif cmd == Cmd_ClickStation:
             if self.GameCursorState == GameCursorState_Tokens:
@@ -392,6 +396,8 @@ class GameBoard(scraft.Dispatcher):
                 
         #конец уровня; задать способ удаления блоков с поля
         elif state == GameState_EndLevel:
+            for tmp in self.Fields:
+                tmp.SetState(FieldState_EndLevel)
             #if globalvars.RunMode == RunMode_Play:
             tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
             if self.LevelScore >= tmpBest.GetIntAttr("hiscore"):
@@ -559,9 +565,6 @@ class GameBoard(scraft.Dispatcher):
         
         self.CustomersQue.Kill()
         self.CustomersQue = None
-            
-        #for tmp in self.CStations + self.Stores:
-        #    del tmp
              
     def Show(self, flag):
         """

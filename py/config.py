@@ -15,7 +15,7 @@ from guiconst import *
 import globalvars
 import playerlist
 import md5
-import os.path
+import os, os.path
 
 #------------------------------------------
 # Функции для работы с файлом конфигурации 
@@ -35,10 +35,7 @@ def ReadGameConfig():
 def SaveGameConfig():
     try:
         if globalvars.RunMode == RunMode_Play:
-            tmpDir = os.path.dirname(File_GameConfig)
-            if not os.access(tmpDir, os.W_OK):
-                os.mkdir(tmpDir)
-            globalvars.GameConfig.GetRoot().StoreTo(File_GameConfig)
+            SaveToFile(globalvars.GameConfig.GetRoot(), File_GameConfig)
     except:
         oE.Log(u"Cannot write game configuration files")
         oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -75,13 +72,14 @@ def ReadHiscores():
 
 def SaveHiscores():
     """ Saves hiscores list """
-    tmpSaveStr = ""
-    tmpSaveStr += "MasterChef{\n"
-    for tmp in globalvars.HiscoresList:
-        tmpSaveStr += ("  score() { Name = '" + tmp["Name"] + \
-                    "' Score = " + str(tmp["Score"]) + " }\n")
-    tmpSaveStr += "}\n"
-    SignAndSave(File_Hiscores, tmpSaveStr)
+    #tmpSaveStr = ""
+    #tmpSaveStr += "MasterChef{\n"
+    #for tmp in globalvars.HiscoresList:
+    #    tmpSaveStr += ("  score() { Name = '" + tmp["Name"] + \
+    #                "' Score = " + str(tmp["Score"]) + " }\n")
+    #tmpSaveStr += "}\n"
+    #SignAndSave(File_Hiscores, tmpSaveStr)
+    pass
 
 def UpdateHiscores():
     globalvars.HiscoresList.sort(lambda x,y: cmp(y["Score"], x["Score"]))
@@ -126,10 +124,7 @@ def ReadBestResults():
 def SaveBestResults():
     try:
         if globalvars.RunMode == RunMode_Play:
-            tmpDir = os.path.dirname(File_BestResults)
-            if not os.access(tmpDir, os.W_OK):
-                os.mkdir(tmpDir)
-            globalvars.BestResults.GetRoot().StoreTo(File_BestResults)
+            SaveToFile(globalvars.BestResults.GetRoot(), File_BestResults)
     except:
         oE.Log(u"Cannot write best results record")
         oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -184,4 +179,19 @@ def Hexy(str):
     hexy = ""
     for sym in str:
         hexy += hex(ord(sym))
-    return hexy    
+    return hexy
+
+def SaveToFile(node, filename):
+    try:
+        tmpDir = os.path.dirname(filename)
+        if not os.access(tmpDir, os.W_OK):
+            os.mkdir(tmpDir)
+        tmpFilename = filename+"$_$"
+        node.StoreTo(tmpFilename)
+        if os.access(filename, os.W_OK):
+            os.remove(filename)
+        os.rename(tmpFilename, filename)
+    except:
+        oE.Log("Error saving to file: %s"%filename)
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        

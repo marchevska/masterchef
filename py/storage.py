@@ -417,6 +417,10 @@ class Field(Storage):
     #--------------------------
     def _GenerateMatchMap(self):
         self.MatchMap = {}
+        #заглушка для коллапсоида - предотвращает клики по нижнему ряду
+        for i in range(self.Cols):
+            self.MatchMap[i, self.Rows] = -1
+            
         curKind = 0
         tmpAllKeys = filter(lambda x: x[1]<self.Rows, self.Cells.keys())
         for (i,j) in tmpAllKeys:
@@ -429,9 +433,6 @@ class Field(Storage):
             if not self.MatchMap.has_key((i,j)) or self.Cells[i,j] == Const_EmptyCell \
                 or len(tmpChains[self.MatchMap[i,j]]) < globalvars.GameSettings.GetIntAttr("tokensGroupMin"):
                 self.MatchMap[i,j] = -1
-        #заглушка для коллапсоида - предотвращает клики по пустым клеткам и нижнему ряду
-        for i in range(self.Cols):
-            self.MatchMap[i, self.Rows] = -1
                 
     #--------------------------
     # Рекурсивно окрашивает группу клеток одного цвета на игровом поле

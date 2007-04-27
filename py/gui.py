@@ -421,6 +421,7 @@ class Gui(scraft.Dispatcher):
             self.LevelCompleteDialog["Buttons"]["NextLevel"].Show(True)
             self.LevelCompleteDialog["Buttons"]["Restart"].Show(False)
         else:
+            #failed
             self.LevelCompleteDialog["Buttons"]["NextLevel"].Show(False)
             self.LevelCompleteDialog["Buttons"]["Restart"].Show(True)
         

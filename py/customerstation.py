@@ -37,7 +37,10 @@ class CustomerStation(scraft.Dispatcher):
         self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
                 u"release-button", [0, 1, 2], Layer_Recipe-1, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
+        self.MoneyButton = PushButton("", self, Cmd_TakeMoney, PState_Game,
+                u"money-button", [0, 1, 2], Layer_Recipe-1, newX, newY, 40, 30)
         self.ReleaseButton.Show(False)
+        self.MoneyButton.Show(False)
         self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
         self.Hero.Show(False)
         self.State = CStationState_None
@@ -111,8 +114,13 @@ class CustomerStation(scraft.Dispatcher):
         tmpRemaining = reduce(lambda a,b: a+b["no"], self.TokensNeeded, 0)
         if tmpRemaining == 0 or \
             (tmpRemaining <= globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(self.OrderType).GetIntAttr("readyAt") and \
-            globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("takesIncompleteOrder")):
-            self.ReleaseButton.Show(True)
+            globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("takesIncompleteOrder")) and \
+            not globalvars.GameSettings.GetBoolAttr("exactRecipes"):
+            if globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
+                self.SendCommand(Cmd_ReleaseCustomer)
+                #self.MoneyButton.Show(True)
+            else:
+                self.ReleaseButton.Show(True)
         if tmpRemaining == 0:
             self.MealReady = True
             
@@ -189,6 +197,11 @@ class CustomerStation(scraft.Dispatcher):
             self.Active = False
             self.Customer.Kill()
             self.Hero.Show(False)
+            if globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
+                self.MoneyButton.Show(True)
+            
+        elif cmd == Cmd_FreeStation or cmd == Cmd_TakeMoney:
+            self.MoneyButton.Show(False)
             self.State = CStationState_Free
             globalvars.Board.SendCommand(Cmd_FreeStation)
         

@@ -50,12 +50,15 @@ Level{
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Field{ XSize = "8" YSize = "8" X0 = "450" Y0 = "130" }
-        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
-        PowerUp{ type = "Sweet" x = "370" y = "200" }
-        PowerUp{ type = "Gift" x = "370" y = "250" }
-        Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "1" x = "400" y = "175" }
+        Conveyor{ X0 = "400" Y0 = "150" Speed = "20"  Delta = "50" }
+        Conveyor{ X0 = "500" Y0 = "150" Speed = "30"  Delta = "60" }
+        Conveyor{ X0 = "600" Y0 = "150" Speed = "40"  Delta = "50" }
+        //Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
+        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "no" }
+        //PowerUp{ type = "Sweet" x = "450" y = "200" }
+        //PowerUp{ type = "Gift" x = "450" y = "250" }
+        //Counter{ type = "" x = "330" y = "95" }
+        //BonusPane{ type = "" size = "1" x = "480" y = "175" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
         Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
         //Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }

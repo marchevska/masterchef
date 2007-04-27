@@ -398,16 +398,21 @@ class GameBoard(scraft.Dispatcher):
         elif state == GameState_EndLevel:
             for tmp in self.Fields:
                 tmp.SetState(FieldState_EndLevel)
-            #if globalvars.RunMode == RunMode_Play:
-            tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
-            if self.LevelScore >= tmpBest.GetIntAttr("hiscore"):
-                config.UpdateBestResults(globalvars.CurrentPlayer.GetLevel().GetContent(),
-                    globalvars.GameConfig.GetStrAttr("Player"), self.LevelScore)
-            globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal"),
-                        "hiscore": self.LevelScore, "played": True})
-            globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
-                    { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
-                     "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
+            if parameter == False:
+                globalvars.GUI.CallLevelCompleteDialog(False,
+                        { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
+                         "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
+            else:
+                #if globalvars.RunMode == RunMode_Play:
+                tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
+                if self.LevelScore >= tmpBest.GetIntAttr("hiscore"):
+                    config.UpdateBestResults(globalvars.CurrentPlayer.GetLevel().GetContent(),
+                        globalvars.GameConfig.GetStrAttr("Player"), self.LevelScore)
+                globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal"),
+                            "hiscore": self.LevelScore, "played": True})
+                globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
+                        { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
+                         "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
         
         
     #--------------------------

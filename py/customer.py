@@ -171,10 +171,13 @@ class Customer(scraft.Dispatcher):
                     elif self.State == CustomerState_GoAway:
                         self._SetState(CustomerState_None)
                         self.Host.SendCommand(Cmd_Station_DeleteCustomer)
+                        self.Host.SendCommand(Cmd_FreeStation)
                         
                     elif self.State == CustomerState_ThankYou:
                         self._SetState(CustomerState_None)
                         self.Host.SendCommand(Cmd_Station_DeleteCustomer)
+                        if not globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
+                            self.Host.SendCommand(Cmd_FreeStation)
                     
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))

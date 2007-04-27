@@ -44,6 +44,12 @@ layout = 1x3
 type   = blend
 }
 
+sprite money-button {
+bitmap = img/money-button.png
+layout = 1x3
+type   = blend
+}
+
 sprite info-pane {
 bitmap = img/hud/info-pane.png
 type = blend

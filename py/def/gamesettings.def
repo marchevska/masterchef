@@ -13,6 +13,7 @@ MasterChef {
         maxApproval = "5.0"
         customerLossPrice = "100"
         
+        autoReleaseCustomer = "yes"
         powerups = "['Cross', 'Gift', 'Shuffle', 'Spoon', 'Sweet', 'Supersweet', 'Magicwand', 'EmptyTrash']"
         tokensGroupMin = "1"
         tokensGroupMax = "10"

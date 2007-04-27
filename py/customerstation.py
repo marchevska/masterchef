@@ -32,7 +32,7 @@ class CustomerStation(scraft.Dispatcher):
         self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy, 52, 46,
                     u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe, True, True)
         self.RecipeIndicator.Show(False)
-        self.RecipeInfoSprite = MakeSimpleSprite(theme.GetStrAttr("recipeInfo"), Layer_Station,
+        self.RecipeInfoSprite = MakeSimpleSprite(theme.GetStrAttr("recipeInfo"), Layer_RecipeInfo,
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
         self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
@@ -70,7 +70,7 @@ class CustomerStation(scraft.Dispatcher):
         self.TotalRequired = reduce(lambda x, y: x+y["no"], self.TokensNeeded, 0)
         for i in range(len(self.TokensNeeded)):
             self.NeededIndicators.append(NeededIndicator(self.CrdX + Crd_Indicator_DeltaX,
-                self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Recipe, 
+                self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Indicators, 
                 globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.TokensNeeded[i]["item"]).GetStrAttr("iconSrc"),
                 u"domcasual-10-up", u"galka", self.TokensNeeded[i]["no"]))
         

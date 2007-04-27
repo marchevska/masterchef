@@ -12,7 +12,7 @@ import globalvars
 from customer import Customer
 from constants import *
 from configconst import *
-from guielements import MakeSimpleSprite, MakeDummySprite, PushButton
+from guielements import MakeSimpleSprite, MakeDummySprite, MakeSprite, PushButton
 from extra import *
 import traceback, string
 from random import choice, shuffle
@@ -26,13 +26,14 @@ class Storage(scraft.Dispatcher):
         self.Crd_minX, self.Crd_minY = x, y
         self.Cols, self.Rows = cols, rows
         
+        self.Base = MakeSprite("$spritecraft$dummy$", Layer_Receptors, {"x": x, "y": y })
         self.HighlightedCells = []
-        self.Highlight = oE.NewTileMap_(cols+1, rows+1, Crd_deltaX, Layer_Markers+1)
+        self.Highlight = oE.NewTileMap_(cols+1, rows+1, Crd_deltaX, Layer_HighlightMarkers)
         self.Highlight.AddTilesFrom("cell-highlight")
         self.Highlight.x = x - Crd_deltaX/2
         self.Highlight.y = y - Crd_deltaY/2
         self.SelectedCells = []
-        self.Selection = oE.NewTileMap_(cols+1, rows+1, Crd_deltaX, Layer_Markers)
+        self.Selection = oE.NewTileMap_(cols+1, rows+1, Crd_deltaX, Layer_SelectMarkers)
         self.Selection.AddTilesFrom("cell-select")
         self.Selection.x = x - Crd_deltaX/2
         self.Selection.y = y - Crd_deltaY/2
@@ -66,7 +67,7 @@ class Storage(scraft.Dispatcher):
                         tmpFrno = 7
                     else:
                         tmpFrno = 4
-                self.Background[i,j] = MakeSimpleSprite(klass, Layer_Storage, self._CellCoords((i,j))[0], self._CellCoords((i,j))[1], scraft.HotspotCenter, tmpFrno)
+                self.Background[i,j] = MakeSimpleSprite(klass, Layer_StorageFrame, self._AbsCellCoords((i,j))[0], self._AbsCellCoords((i,j))[1], scraft.HotspotCenter, tmpFrno)
                 
                 #4 - кадр из середины поял (не рамка), то есть его надо заполнить
                 if tmpFrno == 4:
@@ -75,8 +76,10 @@ class Storage(scraft.Dispatcher):
                             Crd_deltaX, Crd_deltaY, Layer_Receptors)
                     self.Receptors[i,j].SetItem(Indexes["Col"], i)
                     self.Receptors[i,j].SetItem(Indexes["Row"], j)
+                    self.Receptors[i,j].parent = self.Base
                     self.Grid[i,j] = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_Tokens,
                         self._CellCoordsLeft((i,j))[0], self._CellCoordsLeft((i,j))[1])
+                    self.Grid[i,j].parent = self.Base
                     self.Cells[i,j] = Const_EmptyCell
                 
     def Clear(self):
@@ -150,6 +153,9 @@ class Storage(scraft.Dispatcher):
     #--------------------------
     def PickTokens(self):
         self.SelectedCells = list(self.HighlightedCells)
+        self._DrawSelection()
+        
+    def _DrawSelection(self):
         tmpFrames = { 0: 0, 1: 1, 2: 3, 3: 2, 4: 15, 5:10, 6: 32, 7:6,
             8: 19, 9: 31, 10: 14, 11: 8, 12: 22, 13: 16, 14: 18, 15: 12 }
         for i in range(self.Cols+1):
@@ -173,17 +179,25 @@ class Storage(scraft.Dispatcher):
         self.Cells[cell] = Const_EmptyCell
         self.Grid[cell].ChangeKlassTo(u"$spritecraft$dummy$")
         
-    def _CellCoords(self, cell):
+    def _AbsCellCoords(self, cell):
         return (self.Crd_minX + cell[0]*Crd_deltaX + Crd_deltaX/2, 
                 self.Crd_minY + cell[1]*Crd_deltaY + Crd_deltaY/2)
         
+    def _CellCoords(self, cell):
+        return (cell[0]*Crd_deltaX + Crd_deltaX/2, 
+                cell[1]*Crd_deltaY + Crd_deltaY/2)
+        
     def _CellCoordsLeft(self, cell):
-        return (self.Crd_minX + cell[0]*Crd_deltaX, 
-                self.Crd_minY + cell[1]*Crd_deltaY)
+        #return (self.Crd_minX + cell[0]*Crd_deltaX, 
+        #        self.Crd_minY + cell[1]*Crd_deltaY)
+        return (cell[0]*Crd_deltaX, 
+                cell[1]*Crd_deltaY)
         
     def _CellByCoords(self, crd):
-        return (int((crd[0] - self.Crd_minX)/Crd_deltaX),
-                int((crd[1] - self.Crd_minY)/Crd_deltaY))
+        #return (int((crd[0] - self.Crd_minX)/Crd_deltaX),
+        #        int((crd[1] - self.Crd_minY)/Crd_deltaY))
+        return (int((crd[0])/Crd_deltaX),
+                int((crd[1])/Crd_deltaY))
         
         
 #--------------------------------------------
@@ -676,6 +690,9 @@ class Collapsoid(Field):
             for j in range(self.Rows - self.InitialRows, self.Rows):
                 self._PutRandomToken((i,j))
         
+    #--------------------------
+    # Управляет общим состоянием поля
+    #--------------------------
     def SetState(self, state, parameter = None):
         if state == FieldState_StartLevel:
             self.SetDropperState(DropperState_Drop)
@@ -683,6 +700,9 @@ class Collapsoid(Field):
             self.SetDropperState(DropperState_None)
         Field.SetState(self, state, parameter)
         
+    #--------------------------
+    # Управляет состянием дроппера (выбросом элементов)
+    #--------------------------
     def SetDropperState(self, state):
         self.DropperState = state
         if state == DropperState_None:
@@ -697,6 +717,9 @@ class Collapsoid(Field):
             self.Speed = -self.ShiftSpeed
             self.MovingTime = int(1.0*1000*self.DestCrd/self.Speed)
         
+    #--------------------------
+    # Основной цикл: сдвиг поля и выброс новых токенов
+    #--------------------------
     def _OnExecute(self, que):
         try:
             if self.DropperState == DropperState_Drop:
@@ -716,23 +739,59 @@ class Collapsoid(Field):
             elif self.DropperState == DropperState_Move:
                 self.MovingTime = max(0, self.MovingTime - que.delta)
                 tmpCrd = self.DestCrd - 1.0*self.MovingTime*self.Speed/1000
-                oE.SetLayerY(Layer_Tokens, tmpCrd)
-                oE.SetLayerY(Layer_Receptors, tmpCrd)
+                self.Base.y = self.Crd_minY + tmpCrd
+                self.Highlight.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd
+                self.Selection.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd
+                #oE.SetLayerY(Layer_Tokens, tmpCrd)
+                #oE.SetLayerY(Layer_Receptors, tmpCrd)
                 if self.MovingTime <= 0:
-                    oE.SetLayerY(Layer_Tokens, 0)
-                    oE.SetLayerY(Layer_Receptors, 0)
-                    for i in range(self.Cols):
-                        for j in range(self.Rows):
-                            self._SwapCells((i,j), (i,j+1))
-                    self._GenerateMatchMap()
-                    self.SetDropperState(DropperState_Drop)
+                    self._FinishMotion()
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         
         Field._OnExecute(self, que)
         return scraft.CommandStateRepeat
-
+            
+    #--------------------------
+    # Быстрый сдвиг поля
+    #--------------------------
+    def _FastShift(self):
+        if self.DropperState == DropperState_Drop:
+            #завершить выброс новых токенов
+            while self.Dropped < self.Cols:
+                self.Dropped += 1
+                self._PutRandomToken((self.Dropped-1, self.Rows))
+        if filter(lambda i: self.Cells[i,0] != Const_EmptyCell, range(self.Cols)) != []:
+            globalvars.Board.SendCommand(Cmd_CollapsoidFull, self)
+        else:
+            self.SetDropperState(DropperState_Move)
+            self.Base.y = self.Crd_minY + self.DestCrd
+            self.Highlight.y = self.Crd_minY - Crd_deltaY/2 + self.DestCrd
+            self.Selection.y = self.Crd_minY - Crd_deltaY/2 + self.DestCrd
+            #oE.SetLayerY(Layer_Tokens, self.DestCrd)
+            #oE.SetLayerY(Layer_Receptors, self.DestCrd)
+            self._FinishMotion()
+        
+    #--------------------------
+    # Завершение сдвига поля
+    #--------------------------
+    def _FinishMotion(self):
+        self.Base.y = self.Crd_minY
+        self.Highlight.y = self.Crd_minY - Crd_deltaY/2
+        self.Selection.y = self.Crd_minY - Crd_deltaY/2
+        self.SelectedCells = map(lambda x: (x[0], x[1]-1), self.SelectedCells)
+        self._DrawSelection()
+        #oE.SetLayerY(Layer_Tokens, 0)
+        #oE.SetLayerY(Layer_Receptors, 0)
+        for i in range(self.Cols):
+            for j in range(self.Rows):
+                self._SwapCells((i,j), (i,j+1))
+        self._GenerateMatchMap()
+        self.SetDropperState(DropperState_Drop)
+        
+    #--------------------------
     # передавать только клики по непустым клеткам или правые клики
+    #--------------------------
     def _OnMouseClick(self, sprite, x, y, button):
         if globalvars.StateStack[-1] == PState_Game:
             if (button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool) or button == 2:
@@ -742,6 +801,8 @@ class Collapsoid(Field):
                     tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                     if self.MatchMap[tmpPos] != -1:
                         Field._OnMouseClick(self, sprite, x, y, button)
+                    else:
+                        self._FastShift()
                             
 #--------------------------------------------
 #--------------------------------------------

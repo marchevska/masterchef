@@ -675,13 +675,23 @@ class Field(Storage):
 #--------------------------------------------
 class Collapsoid(Field):
     def __init__(self, cols, rows, initialrows, dropin, shiftspeed, x, y, theme):
-        Field.__init__(self, cols, rows+1, x, y, theme)
-        self.Collapsing = True
+        Storage.__init__(self, cols, rows+1, x, y, theme.GetStrAttr("collapsoid"))
         self.Rows -= 1
+        #кнопка дл€ быстрого сколлинга на строку
+        self.ScrollButton = PushButton("FastShift", self, Cmd_CollapsoidFashShift, PState_Game,
+                                       "$spritecraft$dummy$", [0, 0, 0], Layer_CollapsoidScrollButton,
+                                       self._AbsCellCoords((1.0*(cols-1)/2, rows))[0], self._AbsCellCoords((1.0*(cols-1)/2, rows))[1],
+                                       Crd_deltaX*cols, Crd_deltaY + 10,
+                                       "L"+(cols-2)*"M"+"R", [theme.GetStrAttr("collapsoidDropper"),
+                                       theme.GetStrAttr("collapsoidDropperRoll"), theme.GetStrAttr("collapsoidDropperDown")])
+        self.MatchMap = {}
+        self.Collapsing = True
         self.InitialRows = initialrows
         self.DropIn = dropin
         self.ShiftSpeed = shiftspeed
+        self.SetState(FieldState_None)
         self.SetDropperState(DropperState_None)
+        self.QueNo = oE.executor.Schedule(self)
         
     #--------------------------
     # Ќачальное заполнение пол€
@@ -803,8 +813,18 @@ class Collapsoid(Field):
                     if self.MatchMap[tmpPos] != -1:
                         Field._OnMouseClick(self, sprite, x, y, button)
                     else:
-                        self._FastShift()
+                        #self._FastShift()
+                        pass
                             
+                            
+    def SendCommand(self, cmd, parameter=None):
+        if cmd == Cmd_CollapsoidFashShift:
+            self._FastShift()
+        
+    def Clear(self):
+        self.ScrollButton.Kill()
+        Field.Clear()
+        
 #--------------------------------------------
 #--------------------------------------------
 # TrashCan - мусорка

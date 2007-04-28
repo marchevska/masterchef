@@ -215,6 +215,10 @@ MasterChef{
         sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" layout = "2x1" }
         sprite(theme.japanese.recipeinfo) { bitmap = "img/episodes/japanese/recipe-info.png" type = "blend" }
         sprite(theme.japanese.field) { bitmap = "img/episodes/japanese/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.japanese.collapsoid) { bitmap = "img/episodes/japanese/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.japanese.collapsoid.dropper) { bitmap = "img/episodes/japanese/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.japanese.collapsoid.dropper.roll) { bitmap = "img/episodes/japanese/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.japanese.collapsoid.dropper.down) { bitmap = "img/episodes/japanese/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
         sprite(theme.japanese.storage) { bitmap = "img/episodes/japanese/storage.png" type = "blend" layout = "3x3" }
         sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
@@ -232,6 +236,10 @@ MasterChef{
         sprite(theme.mexican.station) { bitmap = "img/episodes/mexican/station.png" type = "blend" layout = "2x1" }
         sprite(theme.mexican.recipeinfo) { bitmap = "img/episodes/mexican/recipe-info.png" type = "blend" }
         sprite(theme.mexican.field) { bitmap = "img/episodes/mexican/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.mexican.collapsoid) { bitmap = "img/episodes/mexican/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.mexican.collapsoid.dropper) { bitmap = "img/episodes/mexican/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.mexican.collapsoid.dropper.roll) { bitmap = "img/episodes/mexican/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.mexican.collapsoid.dropper.down) { bitmap = "img/episodes/mexican/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
         sprite(theme.mexican.storage) { bitmap = "img/episodes/mexican/storage.png" type = "blend" layout = "3x3" }
         sprite(theme.mexican.bonuspane) { bitmap = "img/episodes/mexican/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.mexican.trashcan) { bitmap = "img/episodes/mexican/trashcan.png" type = "blend" }
@@ -250,6 +258,10 @@ MasterChef{
         sprite(theme.italian.station) { bitmap = "img/episodes/italian/station.png" type = "blend" layout = "2x1" }
         sprite(theme.italian.recipeinfo) { bitmap = "img/episodes/italian/recipe-info.png" type = "blend" }
         sprite(theme.italian.field) { bitmap = "img/episodes/italian/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.italian.collapsoid) { bitmap = "img/episodes/italian/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.italian.collapsoid.dropper) { bitmap = "img/episodes/italian/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.italian.collapsoid.dropper.roll) { bitmap = "img/episodes/italian/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.italian.collapsoid.dropper.down) { bitmap = "img/episodes/italian/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
         sprite(theme.italian.storage) { bitmap = "img/episodes/italian/storage.png" type = "blend" layout = "3x3" }
         sprite(theme.italian.bonuspane) { bitmap = "img/episodes/italian/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.italian.trashcan) { bitmap = "img/episodes/italian/trashcan.png" type = "blend" }
@@ -263,6 +275,10 @@ MasterChef{
         sprite(theme.russian.station) { bitmap = "img/episodes/russian/station.png" type = "blend" layout = "2x1" }
         sprite(theme.russian.recipeinfo) { bitmap = "img/episodes/russian/recipe-info.png" type = "blend" }
         sprite(theme.russian.field) { bitmap = "img/episodes/russian/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.russian.collapsoid) { bitmap = "img/episodes/russian/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.russian.collapsoid.dropper) { bitmap = "img/episodes/russian/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.russian.collapsoid.dropper.roll) { bitmap = "img/episodes/russian/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.russian.collapsoid.dropper.down) { bitmap = "img/episodes/russian/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
         sprite(theme.russian.storage) { bitmap = "img/episodes/russian/storage.png" type = "blend" layout = "3x3" }
         sprite(theme.russian.bonuspane) { bitmap = "img/episodes/russian/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.russian.trashcan) { bitmap = "img/episodes/russian/trashcan.png" type = "blend" }
@@ -276,6 +292,10 @@ MasterChef{
         sprite(theme.american.station) { bitmap = "img/episodes/american/station.png" type = "blend" layout = "2x1" }
         sprite(theme.american.recipeinfo) { bitmap = "img/episodes/american/recipe-info.png" type = "blend" }
         sprite(theme.american.field) { bitmap = "img/episodes/american/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.american.collapsoid) { bitmap = "img/episodes/american/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.american.collapsoid.dropper) { bitmap = "img/american/american/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.american.collapsoid.dropper.roll) { bitmap = "img/episodes/american/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.american.collapsoid.dropper.down) { bitmap = "img/episodes/american/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
         sprite(theme.american.storage) { bitmap = "img/episodes/american/storage.png" type = "blend" layout = "3x3" }
         sprite(theme.american.bonuspane) { bitmap = "img/episodes/american/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.american.trashcan) { bitmap = "img/episodes/american/trashcan.png" type = "blend" }
@@ -293,6 +313,10 @@ MasterChef{
         sprite(theme.sweetshop.station) { bitmap = "img/episodes/sweetshop/station.png" type = "blend" layout = "2x1" }
         sprite(theme.sweetshop.recipeinfo) { bitmap = "img/episodes/sweetshop/recipe-info.png" type = "blend" }
         sprite(theme.sweetshop.field) { bitmap = "img/episodes/sweetshop/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.sweetshop.collapsoid) { bitmap = "img/episodes/sweetshop/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.sweetshop.collapsoid.dropper) { bitmap = "img/episodes/sweetshop/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.sweetshop.collapsoid.dropper.roll) { bitmap = "img/episodes/sweetshop/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.sweetshop.collapsoid.dropper.down) { bitmap = "img/episodes/sweetshop/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
         sprite(theme.sweetshop.storage) { bitmap = "img/episodes/sweetshop/storage.png" type = "blend" layout = "3x3" }
         sprite(theme.sweetshop.bonuspane) { bitmap = "img/episodes/sweetshop/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.sweetshop.trashcan) { bitmap = "img/episodes/sweetshop/trashcan.png" type = "blend" }

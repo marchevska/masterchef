@@ -28,9 +28,9 @@ Cmd_CollapsoidFull = 16
 Cmd_CustomerGoesAway = 17
 Cmd_PickFromConveyor = 18
 Cmd_ReturnToConveyor = 19
-
-Cmd_Station_DeleteCustomer = 20
-Cmd_Customer_SayThankYou = 21
+Cmd_CollapsoidFashShift = 20
+Cmd_Station_DeleteCustomer = 21
+Cmd_Customer_SayThankYou = 22
 
 Cmd_UsePowerUp = 70
 Cmd_BuyPowerUp = 80
@@ -57,6 +57,7 @@ Layer_Storage = 70
 Layer_StorageFrame = 70
 Layer_StorageBg = 69
 Layer_Tokens = 65
+Layer_CollapsoidScrollButton = 64
 Layer_HighlightMarkers = 63
 Layer_SelectMarkers = 62
 Layer_Tools = 51

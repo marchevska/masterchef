@@ -171,7 +171,7 @@ MasterChef {
         Sequence(5Hearts) { frames = "(4, 1500), (5, 1500)" loops = "0" }
         Sequence(4Hearts) { frames = "(8, 1000), (9, 1000)" loops = "0" }
         Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 1000), (3, 100), (17, 200), (3, 100)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 1000), (3, 200)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 400), (7, 200)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }

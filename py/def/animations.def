@@ -22,7 +22,7 @@ MasterChef {
         sprite(customer.tourist.japanese.hilight) { bitmap = "img/customers/tourist.japanese.hilight.png" type = "blend" layout = "4x5" }
         sprite(customer.tourist.russian) { bitmap = "img/customers/tourist.russian.png" type = "blend" layout = "4x5" }
         sprite(customer.tourist.russian.hilight) { bitmap = "img/customers/tourist.russian.hilight.png" type = "blend" layout = "4x5" }
-        sprite(hero) { bitmap = "img/jason/jason.png" type = "blend" layout = "3x1" }
+        sprite(hero) { bitmap = "img/jason/jason.png" type = "blend" layout = "2x1" }
     }
     
     //People animations
@@ -34,7 +34,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -47,7 +48,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 300), (3, 1300), (16, 2000)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 600)" loops = "0" }
         Sequence(GoAway) {  frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -60,7 +62,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 1000), (3, 2000)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 500)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -73,7 +76,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 1000), (3, 1000)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -86,7 +90,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 2000), (3, 500)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 1000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1000)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -99,7 +104,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 500), (3, 1000)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 500), (7, 500)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 1000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1000)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -112,7 +118,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 500), (3,500)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -125,7 +132,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -138,7 +146,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -151,7 +160,8 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
@@ -164,14 +174,15 @@ MasterChef {
         Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
         Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
-        Sequence(TakeOrder) { frames = "(14, 1000), (10, 3000)," loops = "0" }
+        Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
+        Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
         Sequence(GotGift) { frames = "(14, 1500)," loops = "0" }
         Sequence(Queue) { frames = "(15, 100000)," loops = "0" }
     }
 
     Animation(animation.hero) {
         Sequence(None) { frames = "(0, 100000)," loops = "0" }
-        Sequence(GiveOrder) { frames = "(2, 1000), (0, 500), (1, 500)" loops = "0" }
+        Sequence(GiveOrder) { frames = "(0, 500), (1, 500)" loops = "0" }
     }    
     
 }

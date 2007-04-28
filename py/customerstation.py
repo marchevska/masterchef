@@ -196,11 +196,13 @@ class CustomerStation(scraft.Dispatcher):
             self.PutOrder(parameter)
             
         elif cmd == Cmd_ReleaseCustomer:
-            self._RemoveOrder()
-            self.Hero.ShowUp()
             self.Customer.SendCommand(Cmd_Customer_SayThankYou)
             self.Active = False
             globalvars.Board.SendCommand(Cmd_CustomerServed)
+            
+        elif cmd == Cmd_CustomerGoesAway:
+            self._RemoveOrder()
+            self.Hero.ShowUp()
             
         elif cmd == Cmd_FlopOrder:
             self._RemoveOrder()

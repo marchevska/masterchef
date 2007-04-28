@@ -25,6 +25,7 @@ Cmd_TakeMoney = 13
 Cmd_FreeStation = 14
 Cmd_PickToken = 15
 Cmd_CollapsoidFull = 16
+Cmd_CustomerGoesAway = 17
 Cmd_PickFromConveyor = 18
 Cmd_ReturnToConveyor = 19
 
@@ -94,7 +95,7 @@ CustomerState_Queue = 0         #
 CustomerState_Ordering = 1      #
 CustomerState_Wait = 2          #
 CustomerState_GoAway = 3        #
-#CustomerState_ReadyToGo = 4     #
+CustomerState_MealReady = 4     #
 CustomerState_ThankYou = 5      #
 CustomerState_GotGift = 6       #
 

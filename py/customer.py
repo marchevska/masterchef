@@ -103,6 +103,10 @@ class Customer(scraft.Dispatcher):
             self.Animator.SetState("GoAway")
             self.NextStateTime = int(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("goAwayTime")*1000)
             
+        elif state == CustomerState_MealReady:
+            self.Animator.SetState("MealReady")
+            self.NextStateTime = int(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("mealReadyTime")*1000)
+            
         elif state == CustomerState_ThankYou:
             #self.Host.SendCommand(Cmd_TakeOrder)
             self.Animator.SetState("TakeOrder")
@@ -144,7 +148,7 @@ class Customer(scraft.Dispatcher):
         
     def SendCommand(self, cmd, parameter = None):
         if cmd == Cmd_Customer_SayThankYou:
-            self._SetState(CustomerState_ThankYou)
+            self._SetState(CustomerState_MealReady)
         
     def _OnExecute(self, que):
         try:
@@ -172,6 +176,10 @@ class Customer(scraft.Dispatcher):
                         self._SetState(CustomerState_None)
                         self.Host.SendCommand(Cmd_Station_DeleteCustomer)
                         self.Host.SendCommand(Cmd_FreeStation)
+                        
+                    elif self.State == CustomerState_MealReady:
+                        self._SetState(CustomerState_ThankYou)
+                        self.Host.SendCommand(Cmd_CustomerGoesAway)
                         
                     elif self.State == CustomerState_ThankYou:
                         self._SetState(CustomerState_None)

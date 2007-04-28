@@ -53,6 +53,7 @@ Layer_Indicators = 81     #состав рецепта
 Layer_Customer = 80       #покупатели
 Layer_Station = 79        #столик и инфо-табличка
 Layer_Recipe = 76         #рецепт
+Layer_Storage = 70
 Layer_StorageFrame = 70
 Layer_StorageBg = 69
 Layer_Tokens = 65

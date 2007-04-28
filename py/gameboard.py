@@ -268,13 +268,14 @@ class GameBoard(scraft.Dispatcher):
         elif cmd == Cmd_ClickStation:
             if self.GameCursorState == GameCursorState_Tokens:
                 if parameter["hasOrder"] and not parameter["mealReady"]:
-                    tmpFrom = self.TokensFrom
-                    tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
-                    self.AddScore(tmpDeltaScore)
-                    self.TokensFrom.RemoveTokens()
-                    self.SendCommand(Cmd_DropWhatYouCarry)
-                    if tmpFrom in self.Fields:
-                        tmpFrom.SetState(FieldState_Collapse)
+                    if parameter["station"].CanAddTokens(self.PickedTokens, self.PickedTokensNo):
+                        tmpFrom = self.TokensFrom
+                        tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
+                        self.AddScore(tmpDeltaScore)
+                        self.TokensFrom.RemoveTokens()
+                        self.SendCommand(Cmd_DropWhatYouCarry)
+                        if tmpFrom in self.Fields:
+                            tmpFrom.SetState(FieldState_Collapse)
                     
             #иначе - использовать бонус
             elif self.GameCursorState == GameCursorState_Tool:

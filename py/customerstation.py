@@ -91,6 +91,21 @@ class CustomerStation(scraft.Dispatcher):
         self.ReleaseButton.Show(False)
     
     #--------------
+    # проверка - можно ли к данному заказу добавить этот тип ингредиентов
+    #--------------
+    def CanAddTokens(self, food, no):
+        if globalvars.GameSettings.GetBoolAttr("allowExtraIngredients"):
+            return True
+        else:
+            tmp = filter(lambda x: self.TokensNeeded[x]["item"] == food, range(len(self.TokensNeeded)))
+            if tmp == []:
+                return False
+            elif self.TokensNeeded[tmp[0]]["no"] <= 0:
+                return False
+            else:
+                return True
+        
+    #--------------
     # добавить "no" токенов типа "food" + проверки
     #--------------
     def AddTokens(self, food, no):
@@ -214,6 +229,7 @@ class CustomerStation(scraft.Dispatcher):
         self.RecipeIndicator.Kill()
         self.RecipeInfoSprite.Dispose()
         self.ReleaseButton.Kill()
+        self.MoneyButton.Kill()
         for tmp in self.NeededIndicators:
             tmp.Kill()
         

@@ -823,7 +823,7 @@ class Collapsoid(Field):
         
     def Clear(self):
         self.ScrollButton.Kill()
-        Field.Clear()
+        Field.Clear(self)
         
 #--------------------------------------------
 #--------------------------------------------

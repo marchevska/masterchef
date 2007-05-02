@@ -56,15 +56,16 @@ Layer_Recipe = 76         #рецепт
 Layer_Storage = 70
 Layer_StorageFrame = 70
 Layer_StorageBg = 69
-Layer_Tokens = 65
-Layer_CollapsoidScrollButton = 64
-Layer_HighlightMarkers = 63
-Layer_SelectMarkers = 62
+Layer_Tokens = 55
+Layer_CollapsoidScrollButton = 54
+Layer_HighlightMarkers = 53
+Layer_SelectMarkers = 52
 Layer_Tools = 51
 Layer_InterfaceBg = 80
 Layer_InterfaceBtn = 79
 Layer_InterfaceTxt = 78
 Layer_InterfaceTools = 75
+Layer_Popups = 60
 
 #состояния игры
 GameState_None = 0

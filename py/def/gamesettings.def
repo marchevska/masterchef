@@ -1,5 +1,7 @@
 MasterChef {
     GameSettings {
+        debugMode = "yes"
+        
         newCustomerTimeMin = "1"
         newCustomerTimeMax = "3"
         

@@ -22,6 +22,7 @@ import traceback
 
 class Gui(scraft.Dispatcher):
     def __init__(self):
+        globalvars.Frozen = False
         globalvars.LastCookie = Cmd_None
         self.LastCookie = Cmd_None
         self.NextStateTime = 0
@@ -848,6 +849,14 @@ class Gui(scraft.Dispatcher):
             if self.NextStateTime <= 0:
                 self.SendCommand(Cmd_PubLogoClose)
             
+        #пауза в игре
+        if globalvars.GameSettings.GetBoolAttr("debugMode"):
+            if globalvars.StateStack[-1] == PState_Game:
+                if oE.EvtIsKeyDown():
+                    if oE.EvtKey() == scraft.Key_F5:
+                        globalvars.Frozen = not globalvars.Frozen
+                        globalvars.Board.Freeze(globalvars.Frozen)
+        
         #обрабатываем ввод имени игрока с клавиатуры
         if globalvars.StateStack[-1] == PState_EnterName:
             if oE.EvtIsKeyDown():

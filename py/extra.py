@@ -12,6 +12,7 @@ from scraft import engine as oE
 import math
 from random import randint
 from guiconst import *
+from configconst import *
 from guielements import MakeSimpleSprite, MakeTextSprite
 import globalvars
 
@@ -417,12 +418,12 @@ class Popup(scraft.Dispatcher):
     def __init__(self, sprite, motionfunc, transpfunc):
         self.sprite = sprite
             
-        if motionfunc == MotionFuncs["Bubble"]:
+        if motionfunc == "Bubble":
             self.MotionFunc = BubbleMotion
         else:            
             self.MotionFunc = DefaultMotion
         
-        if transpfunc == TranspFuncs["FadeOut"]:
+        if transpfunc == "FadeOut":
             self.TranspFunc = FadeAwayTransp
         else:            
             self.TranspFunc = DefaultTransp

@@ -272,6 +272,7 @@ class GameBoard(scraft.Dispatcher):
                         tmpFrom = self.TokensFrom
                         tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
                         self.AddScore(tmpDeltaScore)
+                        self._PopupText(str(tmpDeltaScore), "hobor-17", parameter["station"].CrdX, parameter["station"].CrdY)
                         self.TokensFrom.RemoveTokens()
                         self.SendCommand(Cmd_DropWhatYouCarry)
                         if tmpFrom in self.Fields:
@@ -513,6 +514,10 @@ class GameBoard(scraft.Dispatcher):
         self.TokensNoSprite.Dispose()
         self._SetGameCursorState(GameCursorState_Default)
         self.TokensFrom = None
+        
+    def _PopupText(self, text, font, x, y):
+        spr = MakeTextSprite(font, Layer_Popups, x, y, scraft.HotspotCenter, text)
+        tmp = Popup(spr, "Bubble", "FadeOut")
         
     def _UpdateLevelInfo(self):
         self.HudElements["Score"].text = unicode(str(self.LevelScore))

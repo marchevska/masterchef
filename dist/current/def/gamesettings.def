@@ -134,7 +134,7 @@ MasterChef {
             station = "theme.sweetshop.station"
             recipeInfo = "theme.sweetshop.recipeinfo"
             field = "theme.sweetshop.field"
-            collapsoid = "theme.japanese.collapsoid"
+            collapsoid = "theme.sweetshop.collapsoid"
             collapsoidDropper = "theme.sweetshop.collapsoid.dropper"
             collapsoidDropperRoll = "theme.japanese.collapsoid.dropper.roll"
             collapsoidDropperDown = "theme.japanese.collapsoid.dropper.down"

@@ -34,30 +34,30 @@ class GameBoard(scraft.Dispatcher):
         
         #create text sprites
         self.HudElements = {}
-        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 675, 40)
+        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 275, 40)
         self.HudElements["LevelText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
-                                    {"x": 585, "y": 31, "hotspot": scraft.HotspotCenter,
+                                    {"x": 185, "y": 31, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_LevelText, "cfilt-color": 0x604020})
         self.HudElements["ScoreText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
-                                    {"x": 637, "y": 31, "hotspot": scraft.HotspotCenter,
+                                    {"x": 237, "y": 31, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_ScoreText, "cfilt-color": 0x604020})
         self.HudElements["GoalText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
-                                    {"x": 693, "y": 31, "hotspot": scraft.HotspotCenter,
+                                    {"x": 293, "y": 31, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_GoalText, "cfilt-color": 0x604020})
         self.HudElements["ApprovalText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
-                                    {"x": 750, "y": 31, "hotspot": scraft.HotspotCenter,
+                                    {"x": 350, "y": 31, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_ApprovalText, "cfilt-color": 0x604020})
         self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"x": 585, "y": 51, "hotspot": scraft.HotspotCenter,
+                                    {"x": 185, "y": 51, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
         self.HudElements["Score"] = MakeSprite(u"hobor-17", Layer_InterfaceTxt,
-                                    {"x": 637, "y": 50, "hotspot": scraft.HotspotCenter,
+                                    {"x": 237, "y": 50, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xFF8000})
         self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"x": 693, "y": 51, "hotspot": scraft.HotspotCenter,
+                                    {"x": 293, "y": 51, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
         self.HudElements["Approval"] = MakeSprite(u"powerups", Layer_InterfaceTxt,
-                                    {"x": 750, "y": 51, "hotspot": scraft.HotspotCenter,
+                                    {"x": 350, "y": 51, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0x604020})
         
         #create buttons
@@ -192,19 +192,19 @@ class GameBoard(scraft.Dispatcher):
             self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("counter"), Layer_Counter,
                 globalvars.LevelSettings.GetTag("Layout").GetTag("Counter").GetIntAttr("x"),
                 globalvars.LevelSettings.GetTag("Layout").GetTag("Counter").GetIntAttr("y")))
-        #составная панель для бонусов
-        if globalvars.LevelSettings.GetTag("Layout").GetCountTag("BonusPane")>0:
-            tmpX0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("x")
-            tmpY0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("y")
-            tmpSize = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("size")
-            self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco, tmpX0, tmpY0, scraft.HotspotCenter, 0))
-            for i in range(tmpSize):
-                self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco,
-                        tmpX0+(i+1)*Const_BonusPaneDx, tmpY0+(i+1)*Const_BonusPaneDy,
-                        scraft.HotspotCenter, 1))
-            self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco,
-                    tmpX0 + (tmpSize+1)*Const_BonusPaneDx, tmpY0 + (tmpSize+1)*Const_BonusPaneDy,
-                    scraft.HotspotCenter, 2))
+        ##составная панель для бонусов
+        #if globalvars.LevelSettings.GetTag("Layout").GetCountTag("BonusPane")>0:
+        #    tmpX0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("x")
+        #    tmpY0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("y")
+        #    tmpSize = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("size")
+        #    self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco, tmpX0, tmpY0, scraft.HotspotCenter, 0))
+        #    for i in range(tmpSize):
+        #        self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco,
+        #                tmpX0+(i+1)*Const_BonusPaneDx, tmpY0+(i+1)*Const_BonusPaneDy,
+        #                scraft.HotspotCenter, 1))
+        #    self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco,
+        #            tmpX0 + (tmpSize+1)*Const_BonusPaneDx, tmpY0 + (tmpSize+1)*Const_BonusPaneDy,
+        #            scraft.HotspotCenter, 2))
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Decoration"):
             self.Static.append(MakeSimpleSprite(tmp.GetStrAttr("type"), Layer_Deco, tmp.GetIntAttr("x"), tmp.GetIntAttr("y")))
         
@@ -214,23 +214,23 @@ class GameBoard(scraft.Dispatcher):
                                 globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("x"),
                                 globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("y"), tmpTheme))
             
-        #размещение повер-апов
-        self.PowerUpButtons = {}
-        self.BuyPowerUpButtons = {}
-        for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("PowerUp"):
-            self.PowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
-                Cmd_UsePowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
-                PState_Game, u"powerup.use.button", [0, 1, 2, 3], Layer_InterfaceBtn,
-                tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 60, 60, globalvars.PowerUpsInfo.GetSubtag(tmp.GetStrAttr("type")).GetStrAttr("symbol"),
-                [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
-            self.BuyPowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
-                Cmd_BuyPowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
-                PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn+1,
-                tmp.GetIntAttr("x") + Const_BuyPowerUpButton_Dx, tmp.GetIntAttr("y") + Const_BuyPowerUpButton_Dy, 40, 30,
-                u"$"*int(globalvars.PowerUpsInfo.GetSubtag(tmp.GetStrAttr("type")).GetIntAttr("price")),
-                [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
-            self.HasPowerUps[tmp.GetStrAttr("type")] = 0
-        self._UpdatePowerUpButtons()
+        ##размещение повер-апов
+        #self.PowerUpButtons = {}
+        #self.BuyPowerUpButtons = {}
+        #for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("PowerUp"):
+        #    self.PowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
+        #        Cmd_UsePowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
+        #        PState_Game, u"powerup.use.button", [0, 1, 2, 3], Layer_InterfaceBtn,
+        #        tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 60, 60, globalvars.PowerUpsInfo.GetSubtag(tmp.GetStrAttr("type")).GetStrAttr("symbol"),
+        #        [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
+        #    self.BuyPowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
+        #        Cmd_BuyPowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
+        #        PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn+1,
+        #        tmp.GetIntAttr("x") + Const_BuyPowerUpButton_Dx, tmp.GetIntAttr("y") + Const_BuyPowerUpButton_Dy, 40, 30,
+        #        u"$"*int(globalvars.PowerUpsInfo.GetSubtag(tmp.GetStrAttr("type")).GetIntAttr("price")),
+        #        [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
+        #    self.HasPowerUps[tmp.GetStrAttr("type")] = 0
+        #self._UpdatePowerUpButtons()
             
         tmpFreeStations = filter(lambda x: x.State == CStationState_Free, self.CStations)
         if tmpFreeStations != []:

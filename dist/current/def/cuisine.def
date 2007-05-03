@@ -69,6 +69,8 @@ MasterChef {
         //Ingredient(olives) { type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
         //Ingredient(artichoke) { type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
         
+        Ingredient(bonus.shuffle) { type = "bonus" src = "bonus.shuffle" }
+        Ingredient(bonus.spoon) { type = "bonus" src = "bonus.spoon" }
     }
     
     Recipes {

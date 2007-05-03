@@ -15,7 +15,7 @@ from configconst import *
 from guielements import MakeSimpleSprite, MakeDummySprite, MakeSprite, PushButton
 from extra import *
 import traceback, string
-from random import choice, shuffle
+from random import choice, shuffle, random
 import time
 
 #--------------------------------------------
@@ -122,11 +122,11 @@ class Storage(scraft.Dispatcher):
                 if sprite.cookie == Cmd_Receptor:
                     tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                     if self.Cells[tmpPos] != Const_EmptyCell and len(self.HighlightedCells)>0:
-                        #pick tokens    
-                            globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-                            self.PickTokens()
-                            globalvars.Board.SendCommand(Cmd_PickFromStorage,
-                                {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
+                        globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+                        #токены - подобрать на мышь
+                        self.PickTokens()
+                        globalvars.Board.SendCommand(Cmd_PickFromStorage,
+                            {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
                     else:
                         if globalvars.Board.GameCursorState == GameCursorState_Tokens:
                             #put tokens from mouse
@@ -176,9 +176,27 @@ class Storage(scraft.Dispatcher):
     #--------------------------
     # Удаление токена из заданной клетки
     #--------------------------
-    def _RemoveTokenFrom(self, cell):
+    def _RemoveTokenFrom(self, cell, explode = True):
         self.Cells[cell] = Const_EmptyCell
         self.Grid[cell].ChangeKlassTo(u"$spritecraft$dummy$")
+        if explode:
+            p = oE.NewParticles("p"+str(cell), "heart", 0)
+            p.dispatcher = self
+            p.SetEmissionQuantity(5)
+            p.SetEmissionPeriod(33)
+            p.count = 20
+            p.SetEmitterCf(scraft.EmCfIncAngle, 1, 3)
+            p.SetEmitterCf(scraft.EmCfInitDirect, -3.14, 3.14)
+            p.SetEmitterCf(scraft.EmCfInitSpeed, 30, 40)
+            p.SetEmitterCf(scraft.EmCfIncTrans, 150, 150)
+            p.lifeTime = 500
+            p.cycled = False
+            p.x = self._AbsCellCoords(cell)[0]
+            p.y = self._AbsCellCoords(cell)[1]
+            p.StartEmission()
+            
+    def _OnLifetimeOut(self, p) :
+        p.Dispose()
         
     def _AbsCellCoords(self, cell):
         return (self.Crd_minX + cell[0]*Crd_deltaX + Crd_deltaX/2, 
@@ -423,6 +441,13 @@ class Field(Storage):
             self.MatchMap[i, self.Rows] = -1
             
         curKind = 0
+        #найти и выделить все бонусы - пометить как отдельные бонусы
+        tmpBonusCells = filter(lambda x: self.Cells[x] in eval(globalvars.GameSettings.GetStrAttr("bonuses")), self.Cells.keys())
+        for cell in tmpBonusCells:
+            self.MatchMap[cell] = curKind
+            curKind +=1
+        
+        #все остальное - разметить групами
         tmpAllKeys = filter(lambda x: x[1]<self.Rows, self.Cells.keys())
         for (i,j) in tmpAllKeys:
                 if not self.MatchMap.has_key((i,j)):
@@ -430,6 +455,8 @@ class Field(Storage):
                     curKind +=1
         tmpChains = map(lambda x: filter(lambda y: self.MatchMap[y] == x, self.MatchMap.keys()),
                         range(curKind))
+        
+        #слишком маленькие группы или пустые клетки - не в счет
         for (i,j) in tmpAllKeys:
             if not self.MatchMap.has_key((i,j)) or self.Cells[i,j] == Const_EmptyCell \
                 or len(tmpChains[self.MatchMap[i,j]]) < globalvars.GameSettings.GetIntAttr("tokensGroupMin"):
@@ -586,18 +613,19 @@ class Field(Storage):
                 
         #перемешивание токенов на поле
         elif state == FieldState_Shuffle:
+            for j in range(parameter[1],0,-1):
+                self._SwapCells((parameter[0], j), (parameter[0], j-1))
             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
             self.ShuffleTime = int(globalvars.GameSettings.GetFltAttr("shuffleTime")*1000)
-            
             self.ShufflingBlocks = {}
             tmpBasicSpeedX = int(1.0*Crd_deltaX/globalvars.GameSettings.GetFltAttr("shuffleTime"))
             tmpBasicSpeedY = int(1.0*Crd_deltaY/globalvars.GameSettings.GetFltAttr("shuffleTime"))
-            tmpOldKeys = self.Cells.keys()
+            tmpOldKeys = filter(lambda x: self.Cells[x]!=Const_EmptyCell and x[1]<self.Rows, self.Cells.keys())
             tmpNewKeys = list(tmpOldKeys)
             shuffle(tmpNewKeys)
-            tmpValues = self.Cells.values()
-            self.Cells = dict(zip(tmpNewKeys, tmpValues))
+            tmpValues = map(lambda x: self.Cells[x], tmpOldKeys)
             for i in range(len(tmpOldKeys)):
+                self.Cells[tmpNewKeys[i]] = tmpValues[i]
                 self.Grid[tmpNewKeys[i]].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[tmpNewKeys[i]]).GetStrAttr("src"))
                 self.Grid[tmpNewKeys[i]].x, self.Grid[tmpNewKeys[i]].y = self._CellCoordsLeft(tmpOldKeys[i])
                 self.ShufflingBlocks[tmpNewKeys[i]] = ((tmpNewKeys[i][0]-tmpOldKeys[i][0])*tmpBasicSpeedX,
@@ -641,21 +669,39 @@ class Field(Storage):
         if globalvars.StateStack[-1] == PState_Game:
         #if not oE.executor.GetQueue(self.QueNo).IsSuspended():
         #if self.State == FieldState_Input:
-            if button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool:
-                #ложка или крест - удалить подсвеченные токены
-                if globalvars.Board.PickedTool in ('Cross', 'Spoon'):
-                    globalvars.Board.UseTool()
-                    for tmpCell in self.HighlightedCells:
-                        self._RemoveTokenFrom(tmpCell)
-                    self.SetState(FieldState_Collapse)
-                #волшебная палочка - превращение токенов
-                elif globalvars.Board.PickedTool == 'Magicwand':
-                    globalvars.Board.UseTool()
+            try:
+                if sprite.cookie == Cmd_Receptor:
                     tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                    self.ConvertedCells = list(self.HighlightedCells)
-                    self.SetState(FieldState_MagicWandConverting, tmpPos)
-            else:
-                Storage._OnMouseClick(self, sprite, x, y, button)
+                else:
+                    tmpPos = None
+                if button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool:
+                    #ложка или крест - удалить подсвеченные токены
+                    if globalvars.Board.PickedTool in ('Cross', 'Spoon'):
+                        globalvars.Board.UseTool()
+                        for tmpCell in self.HighlightedCells:
+                            self._RemoveTokenFrom(tmpCell)
+                        self.SetState(FieldState_Collapse)
+                    #волшебная палочка - превращение токенов
+                    elif globalvars.Board.PickedTool == 'Magicwand':
+                        globalvars.Board.UseTool()
+                        self.ConvertedCells = list(self.HighlightedCells)
+                        self.SetState(FieldState_MagicWandConverting, tmpPos)
+                
+                #если это бонус? подобрать или использовать
+                elif button == 1 and globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens) \
+                    and tmpPos in self.Cells.keys() and self.Cells[tmpPos] in eval(globalvars.GameSettings.GetStrAttr("bonuses")):
+                        if self.Cells[tmpPos] == 'bonus.shuffle':
+                            self._RemoveTokenFrom(tmpPos, False)
+                            #self.SetState(FieldState_Collapse)
+                            self.SetState(FieldState_Shuffle, tmpPos)
+                        elif self.Cells[tmpPos] == 'bonus.spoon':
+                            pass
+                            
+            
+                else:
+                    Storage._OnMouseClick(self, sprite, x, y, button)
+            except:
+                oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             
     def Freeze(self, flag):
         if flag:
@@ -795,7 +841,11 @@ class Collapsoid(Field):
                 self.Dropped += 1
                 self._PutRandomToken((self.Dropped-1, self.Rows))
         if filter(lambda i: self.Cells[i,0] != Const_EmptyCell, range(self.Cols)) != []:
-            globalvars.Board.SendCommand(Cmd_CollapsoidFull, self)
+            if self.DropperState != DropperState_Move:
+                globalvars.Board.SendCommand(Cmd_CollapsoidFull, self)
+            #уже происходит движение и поле переполнено - ничего не делать
+            else:
+                return
         else:
             if self.DropperState != DropperState_Move:
                 self.SetDropperState(DropperState_Move)

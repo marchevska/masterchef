@@ -33,6 +33,8 @@ Level{
         Ingredient{ type = "ice-cream" rate = "10" }
         Ingredient{ type = "milk" rate = "30" }
         Ingredient{ type = "strawberry" rate = "40" }
+        Ingredient{ type = "bonus.spoon" rate = "5" }
+        Ingredient{ type = "bonus.shuffle" rate = "5" }
     }
     
     //level settings
@@ -57,8 +59,8 @@ Level{
         Counter{ type = "" x = "330" y = "95" }
         BonusPane{ type = "" size = "1" x = "400" y = "175" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }
-        Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
-        Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
+        //Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
+        //Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
         //Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }
     }
     

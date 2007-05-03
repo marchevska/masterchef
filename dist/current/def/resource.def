@@ -90,6 +90,12 @@ MasterChef{
         sprite(ingredient.pumpkin.icon) { bitmap = "img/ingredients/pumpkin.icon.png" type = "blend" }
         sprite(ingredient.strawberry.icon) { bitmap = "img/ingredients/strawberry.icon.png" type = "blend" }
         sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
+        
+        //Bonus
+        sprite(bonus.shuffle) { bitmap = "img/ingredients/bonus.shuffle.png" type = "blend" }
+        sprite(bonus.spoon) { bitmap = "img/ingredients/bonus.spoon.png" type = "blend" }
+        
+        
     }
       
     //source classes for dishes

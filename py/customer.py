@@ -304,7 +304,7 @@ class CustomersQue(scraft.Dispatcher):
 #-------------------------------
 class Hero:
     def __init__(self, x, y):
-        self.Sprite = MakeSimpleSprite(u"hero", Layer_Customer, x, y, scraft.HotspotCenterBottom)
+        self.Sprite = MakeSimpleSprite(u"hero", Layer_Hero, x, y, scraft.HotspotCenterBottom)
         self.Animator = CustomersAnimator(self.Sprite, globalvars.CustomerAnimations.GetSubtag("animation.hero"))
         self.Animator.SetState("None")
         

@@ -800,6 +800,7 @@ class Collapsoid(Field):
             if self.DropperState != DropperState_Move:
                 self.SetDropperState(DropperState_Move)
             self._FinishMotion()
+            
         
     #--------------------------
     # Завершение сдвига поля

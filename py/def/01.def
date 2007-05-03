@@ -50,13 +50,13 @@ Level{
         CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "8" YSize = "12" InitialRows = "6" DropIn = "600" ShiftSpeed = "20" X0 = "450" Y0 = "50" }
+        //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        Collapsoid{ XSize = "8" YSize = "12" InitialRows = "6" DropIn = "600" ShiftSpeed = "40" X0 = "450" Y0 = "50" }
         PowerUp{ type = "Sweet" x = "370" y = "200" }
         PowerUp{ type = "Gift" x = "370" y = "250" }
         Counter{ type = "" x = "330" y = "95" }
         BonusPane{ type = "" size = "1" x = "400" y = "175" }
-        //TrashCan{ type = "" size = "100" x = "750" y = "530" }
+        TrashCan{ type = "" size = "100" x = "350" y = "530" }
         Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
         Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
         //Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }

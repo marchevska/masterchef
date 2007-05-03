@@ -16,6 +16,7 @@ from guielements import MakeSimpleSprite, MakeDummySprite, MakeSprite, PushButto
 from extra import *
 import traceback, string
 from random import choice, shuffle
+import time
 
 #--------------------------------------------
 # Storage - базовый класс контейнера токенов
@@ -724,9 +725,21 @@ class Collapsoid(Field):
             self.NextDropTime = self.DropIn
             
         elif state == DropperState_Move:
-            self.DestCrd = -Crd_deltaY
+            #начало движения: сдвиг базы вниз и
+            #подъем всех токенов на 1 строку вверх
+            self.Base.y = self.Crd_minY + Crd_deltaY
+            self.Highlight.y = self.Crd_minY + Crd_deltaY/2
+            self.Selection.y = self.Crd_minY + Crd_deltaY/2
+            self.SelectedCells = map(lambda x: (x[0], x[1]-1), self.SelectedCells)
+            self._DrawSelection()
+            for i in range(self.Cols):
+                for j in range(self.Rows):
+                    self._SwapCells((i,j), (i,j+1))
+            self._GenerateMatchMap()
+            
+            self.DestCrd = 0
             self.Speed = -self.ShiftSpeed
-            self.MovingTime = int(1.0*1000*self.DestCrd/self.Speed)
+            self.MovingTime = int(1.0*1000*Crd_deltaY/self.ShiftSpeed)
         
     #--------------------------
     # Основной цикл: сдвиг поля и выброс новых токенов
@@ -753,8 +766,6 @@ class Collapsoid(Field):
                 self.Base.y = self.Crd_minY + tmpCrd
                 self.Highlight.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd
                 self.Selection.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd
-                #oE.SetLayerY(Layer_Tokens, tmpCrd)
-                #oE.SetLayerY(Layer_Receptors, tmpCrd)
                 if self.MovingTime <= 0:
                     self._FinishMotion()
         except:
@@ -776,11 +787,6 @@ class Collapsoid(Field):
             globalvars.Board.SendCommand(Cmd_CollapsoidFull, self)
         else:
             self.SetDropperState(DropperState_Move)
-            self.Base.y = self.Crd_minY + self.DestCrd
-            self.Highlight.y = self.Crd_minY - Crd_deltaY/2 + self.DestCrd
-            self.Selection.y = self.Crd_minY - Crd_deltaY/2 + self.DestCrd
-            #oE.SetLayerY(Layer_Tokens, self.DestCrd)
-            #oE.SetLayerY(Layer_Receptors, self.DestCrd)
             self._FinishMotion()
         
     #--------------------------
@@ -790,14 +796,6 @@ class Collapsoid(Field):
         self.Base.y = self.Crd_minY
         self.Highlight.y = self.Crd_minY - Crd_deltaY/2
         self.Selection.y = self.Crd_minY - Crd_deltaY/2
-        self.SelectedCells = map(lambda x: (x[0], x[1]-1), self.SelectedCells)
-        self._DrawSelection()
-        #oE.SetLayerY(Layer_Tokens, 0)
-        #oE.SetLayerY(Layer_Receptors, 0)
-        for i in range(self.Cols):
-            for j in range(self.Rows):
-                self._SwapCells((i,j), (i,j+1))
-        self._GenerateMatchMap()
         self.SetDropperState(DropperState_Drop)
         
     #--------------------------

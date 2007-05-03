@@ -724,22 +724,28 @@ class Collapsoid(Field):
             self.Dropped = 0
             self.NextDropTime = self.DropIn
             
+        elif state == DropperState_Burn:
+            for cell in self.BurningTokens:
+                self._RemoveTokenFrom(cell)
+            self.BurningTime = int(1000*globalvars.GameSettings.GetFltAttr("burnCollapsoidTime"))
+            
         elif state == DropperState_Move:
             #начало движени€: сдвиг базы вниз и
             #подъем всех токенов на 1 строку вверх
-            self.Base.y = self.Crd_minY + Crd_deltaY
-            self.Highlight.y = self.Crd_minY + Crd_deltaY/2
-            self.Selection.y = self.Crd_minY + Crd_deltaY/2
-            self.SelectedCells = map(lambda x: (x[0], x[1]-1), self.SelectedCells)
-            self._DrawSelection()
-            for i in range(self.Cols):
-                for j in range(self.Rows):
-                    self._SwapCells((i,j), (i,j+1))
-            self._GenerateMatchMap()
-            
-            self.DestCrd = 0
-            self.Speed = -self.ShiftSpeed
-            self.MovingTime = int(1.0*1000*Crd_deltaY/self.ShiftSpeed)
+            if filter(lambda i: self.Cells[i,self.Rows] != Const_EmptyCell, range(self.Cols)) != []:
+                self.Base.y = self.Crd_minY + Crd_deltaY
+                self.Highlight.y = self.Crd_minY + Crd_deltaY/2
+                self.Selection.y = self.Crd_minY + Crd_deltaY/2
+                self.SelectedCells = map(lambda x: (x[0], x[1]-1), self.SelectedCells)
+                self._DrawSelection()
+                for i in range(self.Cols):
+                    for j in range(self.Rows):
+                        self._SwapCells((i,j), (i,j+1))
+                self._GenerateMatchMap()
+                
+                self.DestCrd = 0
+                self.Speed = -self.ShiftSpeed
+                self.MovingTime = int(1.0*1000*Crd_deltaY/self.ShiftSpeed)
         
     #--------------------------
     # ќсновной цикл: сдвиг пол€ и выброс новых токенов
@@ -759,6 +765,11 @@ class Collapsoid(Field):
                             globalvars.Board.SendCommand(Cmd_CollapsoidFull, self)
                         else:
                             self.SetDropperState(DropperState_Move)
+                
+            elif self.DropperState == DropperState_Burn:
+                self.BurningTime -= que.delta
+                if self.BurningTime <= 0:
+                    self.SetDropperState(DropperState_Move)
                 
             elif self.DropperState == DropperState_Move:
                 self.MovingTime = max(0, self.MovingTime - que.delta)
@@ -786,7 +797,8 @@ class Collapsoid(Field):
         if filter(lambda i: self.Cells[i,0] != Const_EmptyCell, range(self.Cols)) != []:
             globalvars.Board.SendCommand(Cmd_CollapsoidFull, self)
         else:
-            self.SetDropperState(DropperState_Move)
+            if self.DropperState != DropperState_Move:
+                self.SetDropperState(DropperState_Move)
             self._FinishMotion()
         
     #--------------------------
@@ -797,6 +809,14 @@ class Collapsoid(Field):
         self.Highlight.y = self.Crd_minY - Crd_deltaY/2
         self.Selection.y = self.Crd_minY - Crd_deltaY/2
         self.SetDropperState(DropperState_Drop)
+        
+    #--------------------------
+    # —жигание верхних токенов
+    #--------------------------
+    def GetBurnCrd(self):
+        self.BurningTokens = filter(lambda x: self.Cells[x]!=Const_EmptyCell and \
+            x[1]<globalvars.GameSettings.GetIntAttr("burnCollapsoidRows"), self.Cells.keys())
+        return map(lambda x: self._AbsCellCoords(x), self.BurningTokens)
         
     #--------------------------
     # передавать только клики по непустым клеткам или правые клики
@@ -817,7 +837,11 @@ class Collapsoid(Field):
                             
     def SendCommand(self, cmd, parameter=None):
         if cmd == Cmd_CollapsoidFashShift:
-            self._FastShift()
+            if self.DropperState != DropperState_Burn:
+                self._FastShift()
+            
+        elif cmd == Cmd_CollapsoidBurn:
+            self.SetDropperState(DropperState_Burn)
         
     def Clear(self):
         self.ScrollButton.Kill()

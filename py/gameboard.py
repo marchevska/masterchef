@@ -85,6 +85,7 @@ class GameBoard(scraft.Dispatcher):
         self.BuyPowerUpButtons = {}
         self.HasPowerUps = {}
         self.TokensFrom = None
+        self.NoErrors = 0
         
         self.Playing = False
         self.MyRand = oE.NewRandomizer()
@@ -140,6 +141,7 @@ class GameBoard(scraft.Dispatcher):
         self.Approval = 0
         self.CustomersServed = 0
         self.CustomersLost = 0
+        self.NoErrors = 0
         self.LevelName = globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
         
         self.HasPowerUps = {}
@@ -261,9 +263,15 @@ class GameBoard(scraft.Dispatcher):
             if self.State == GameState_StartLevel:
                 self._SetState(GameState_Play)
             
-        #переполнение коллапсоида - конец уровня!
+        #переполнение коллапсоида - штраф и сжигание лишнего
         elif cmd == Cmd_CollapsoidFull:
-            self._SetState(GameState_EndLevel)
+            #self._SetState(GameState_EndLevel)
+            tmp = parameter.GetBurnCrd()
+            parameter.SendCommand(Cmd_CollapsoidBurn)
+            self.NoErrors = min(self.NoErrors+1, globalvars.GameSettings.GetIntAttr("maxColapsoidErrors"))
+            self.AddScore(-self.NoErrors*len(tmp))
+            for (x, y) in tmp:
+                self._PopupText(str(-self.NoErrors), "hobor-17", x, y)
             
         elif cmd == Cmd_ClickStation:
             if self.GameCursorState == GameCursorState_Tokens:
@@ -517,6 +525,7 @@ class GameBoard(scraft.Dispatcher):
         
     def _PopupText(self, text, font, x, y):
         spr = MakeTextSprite(font, Layer_Popups, x, y, scraft.HotspotCenter, text)
+        spr.cfilt.color = 0xFF8000
         tmp = Popup(spr, "Bubble", "FadeOut")
         
     def _UpdateLevelInfo(self):

@@ -29,8 +29,9 @@ Cmd_CustomerGoesAway = 17
 Cmd_PickFromConveyor = 18
 Cmd_ReturnToConveyor = 19
 Cmd_CollapsoidFashShift = 20
-Cmd_Station_DeleteCustomer = 21
-Cmd_Customer_SayThankYou = 22
+Cmd_CollapsoidBurn = 21
+Cmd_Station_DeleteCustomer = 22
+Cmd_Customer_SayThankYou = 23
 
 Cmd_UsePowerUp = 70
 Cmd_BuyPowerUp = 80
@@ -84,8 +85,9 @@ FieldState_EndLevel = 10
 
 #состояния выбрасывальщика токенов в коллапсоиде
 DropperState_None = 0
-DropperState_Drop = 1
-DropperState_Move = 2
+DropperState_Drop = 1   #выброс токенов
+DropperState_Burn = 2   #задержка сдвига для сжигания верхних рядов
+DropperState_Move = 3   #сдвиг поля
 
 #состояния игрового курсора
 GameCursorState_Default = 0

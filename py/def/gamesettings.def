@@ -22,7 +22,7 @@ MasterChef {
         powerups = "['Cross', 'Gift', 'Shuffle', 'Spoon', 'Sweet', 'Supersweet', 'Magicwand', 'EmptyTrash']"
         
         bombRadiusSquared = "5"
-        scrollBackTime = "1.0"
+        scrollBackTime = "0.5"
         scrollBackRows = "3"
         
         tokensGroupMin = "1"

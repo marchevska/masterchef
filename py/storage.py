@@ -373,6 +373,7 @@ class Field(Storage):
         Storage.__init__(self, cols, rows, x, y, theme.GetStrAttr("field"))
         self.Collapsing = False
         self.MatchMap = {}
+        self.FallingBlocks = {}
         self.SetState(FieldState_None)
         self.QueNo = oE.executor.Schedule(self)
         
@@ -696,6 +697,8 @@ class Field(Storage):
                 elif button == 1 and globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens) \
                     and tmpPos in self.Cells.keys() and self.Cells[tmpPos] in map(lambda z: z.GetContent(),
                     filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags())):
+                        globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+                        
                         #шафл - перемешать поле
                         if self.Cells[tmpPos] == 'bonus.shuffle':
                             self._RemoveTokenFrom(tmpPos, False, True)
@@ -769,6 +772,7 @@ class Collapsoid(Field):
                                        "L"+(cols-2)*"M"+"R", [theme.GetStrAttr("collapsoidDropper"),
                                        theme.GetStrAttr("collapsoidDropperRoll"), theme.GetStrAttr("collapsoidDropperDown")])
         self.MatchMap = {}
+        self.FallingBlocks = {}
         self.Collapsing = True
         self.InitialRows = initialrows
         self.DropIn = dropin
@@ -838,9 +842,13 @@ class Collapsoid(Field):
             self.Selection.y = self.Crd_minY - Crd_deltaY/2 - noRows*Crd_deltaY
             self.SelectedCells = filter(lambda y: y[0]<self.Rows, map(lambda x: (x[0], x[1]+noRows), self.SelectedCells))
             self._DrawSelection()
+            
+            #удалить и сдвинуть
             for tmpCell in filter(lambda (i,j): j >= self.Rows-noRows, self.Cells.keys()):
                 if self.Cells[tmpCell] != Const_EmptyCell:
                     self._RemoveTokenFrom(tmpCell, True)
+                    if self.FallingBlocks.has_key(tmpCell):
+                        self.FallingBlocks.pop(tmpCell)
             for i in range(self.Cols):
                 for j in range(self.Rows-1-noRows, -1, -1):
                     self._SwapCells((i,j), (i,j+noRows))

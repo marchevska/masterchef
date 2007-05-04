@@ -176,27 +176,9 @@ class Storage(scraft.Dispatcher):
     #--------------------------
     # ”даление токена из заданной клетки
     #--------------------------
-    def _RemoveTokenFrom(self, cell, explode = True):
+    def _RemoveTokenFrom(self, cell):
         self.Cells[cell] = Const_EmptyCell
         self.Grid[cell].ChangeKlassTo(u"$spritecraft$dummy$")
-        if explode:
-            p = oE.NewParticles("p"+str(cell), "heart", 0)
-            p.dispatcher = self
-            p.SetEmissionQuantity(5)
-            p.SetEmissionPeriod(33)
-            p.count = 20
-            p.SetEmitterCf(scraft.EmCfIncAngle, 1, 3)
-            p.SetEmitterCf(scraft.EmCfInitDirect, -3.14, 3.14)
-            p.SetEmitterCf(scraft.EmCfInitSpeed, 30, 40)
-            p.SetEmitterCf(scraft.EmCfIncTrans, 150, 150)
-            p.lifeTime = 500
-            p.cycled = False
-            p.x = self._AbsCellCoords(cell)[0]
-            p.y = self._AbsCellCoords(cell)[1]
-            p.StartEmission()
-            
-    def _OnLifetimeOut(self, p) :
-        p.Dispose()
         
     def _AbsCellCoords(self, cell):
         return (self.Crd_minX + cell[0]*Crd_deltaX + Crd_deltaX/2, 
@@ -418,6 +400,30 @@ class Field(Storage):
         for tmpCell in self.SelectedCells:
             self._RemoveTokenFrom(tmpCell)
         
+    def _RemoveTokenFrom(self, cell, explode = True, removeUpper = False):
+        if explode:
+            p = oE.NewParticles("p"+str(cell), "heart", 0)
+            p.dispatcher = self
+            p.SetEmissionQuantity(5)
+            p.SetEmissionPeriod(33)
+            p.count = 20
+            p.SetEmitterCf(scraft.EmCfIncAngle, 1, 3)
+            p.SetEmitterCf(scraft.EmCfInitDirect, -3.14, 3.14)
+            p.SetEmitterCf(scraft.EmCfInitSpeed, 30, 40)
+            p.SetEmitterCf(scraft.EmCfIncTrans, 150, 150)
+            p.lifeTime = 200
+            p.cycled = False
+            p.x = self._AbsCellCoords(cell)[0]
+            p.y = self._AbsCellCoords(cell)[1]
+            p.StartEmission()
+        Storage._RemoveTokenFrom(self, cell)
+        if removeUpper:
+            for j in range(cell[1],0,-1):
+                self._SwapCells((cell[0], j), (cell[0], j-1))
+        
+    def _OnLifetimeOut(self, p) :
+        p.Dispose()
+        
     #--------------------------
     # ѕерестановка содержимого двух €чеек
     #--------------------------
@@ -442,8 +448,9 @@ class Field(Storage):
             
         curKind = 0
         #найти и выделить все бонусы - пометить как отдельные бонусы
-        tmpBonusCells = filter(lambda x: self.Cells[x] in eval(globalvars.GameSettings.GetStrAttr("bonuses")), self.Cells.keys())
-        for cell in tmpBonusCells:
+        for cell in filter(lambda x: x in map(lambda z: z.GetContent(),
+                filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags())),
+                self.Cells.keys()):
             self.MatchMap[cell] = curKind
             curKind +=1
         
@@ -613,8 +620,6 @@ class Field(Storage):
                 
         #перемешивание токенов на поле
         elif state == FieldState_Shuffle:
-            for j in range(parameter[1],0,-1):
-                self._SwapCells((parameter[0], j), (parameter[0], j-1))
             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
             self.ShuffleTime = int(globalvars.GameSettings.GetFltAttr("shuffleTime")*1000)
             self.ShufflingBlocks = {}
@@ -689,15 +694,47 @@ class Field(Storage):
                 
                 #если это бонус? подобрать или использовать
                 elif button == 1 and globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens) \
-                    and tmpPos in self.Cells.keys() and self.Cells[tmpPos] in eval(globalvars.GameSettings.GetStrAttr("bonuses")):
+                    and tmpPos in self.Cells.keys() and self.Cells[tmpPos] in map(lambda z: z.GetContent(),
+                    filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags())):
+                        #шафл - перемешать поле
                         if self.Cells[tmpPos] == 'bonus.shuffle':
-                            self._RemoveTokenFrom(tmpPos, False)
-                            #self.SetState(FieldState_Collapse)
+                            self._RemoveTokenFrom(tmpPos, False, True)
                             self.SetState(FieldState_Shuffle, tmpPos)
+                        
+                        #бомба - взрыв
+                        elif self.Cells[tmpPos] == 'bonus.bomb':
+                            for tmpCell in filter(lambda x: (x[0]-tmpPos[0])**2+(x[1]-tmpPos[1])**2 <= globalvars.GameSettings.GetIntAttr("bombRadiusSquared"),
+                                    self.Cells.keys()):
+                                self._RemoveTokenFrom(tmpCell, True)
+                            self.SetState(FieldState_Collapse)
+                        
+                        #удаление строки
+                        elif self.Cells[tmpPos] == 'bonus.removerow':
+                            for tmpCell in filter(lambda x: x[1] == tmpPos[1], self.Cells.keys()):
+                                self._RemoveTokenFrom(tmpCell, True)
+                            self.SetState(FieldState_Collapse)
+                        
+                        #обратна€ прокрутка
+                        elif self.Cells[tmpPos] == 'bonus.scrollback' and self.Collapsing:
+                            self._HighlightCells((0,0), False)
+                            self._RemoveTokenFrom(tmpPos, False, True)
+                            self.SetDropperState(DropperState_ScrollBack)
+                        
+                        elif self.Cells[tmpPos] == 'bonus.gift':
+                            pass
+                        
+                        elif self.Cells[tmpPos] == 'bonus.hearts':
+                            pass
+                        
+                        elif self.Cells[tmpPos] == 'bonus.magicwand':
+                            pass
+                        
+                        elif self.Cells[tmpPos] == 'bonus.sweet':
+                            pass
+                        
                         elif self.Cells[tmpPos] == 'bonus.spoon':
                             pass
                             
-            
                 else:
                     Storage._OnMouseClick(self, sprite, x, y, button)
             except:
@@ -792,6 +829,27 @@ class Collapsoid(Field):
                 self.DestCrd = 0
                 self.Speed = -self.ShiftSpeed
                 self.MovingTime = int(1.0*1000*Crd_deltaY/self.ShiftSpeed)
+            
+        elif state == DropperState_ScrollBack:
+            #обратный сдвиг: сжигаем лишние токены, делаем быстрый сдвиг
+            noRows = globalvars.GameSettings.GetIntAttr("scrollBackRows")
+            self.Base.y = self.Crd_minY - noRows*Crd_deltaY
+            self.Highlight.y = self.Crd_minY - Crd_deltaY/2 - noRows*Crd_deltaY
+            self.Selection.y = self.Crd_minY - Crd_deltaY/2 - noRows*Crd_deltaY
+            self.SelectedCells = filter(lambda y: y[0]<self.Rows, map(lambda x: (x[0], x[1]+noRows), self.SelectedCells))
+            self._DrawSelection()
+            for tmpCell in filter(lambda (i,j): j >= self.Rows-noRows, self.Cells.keys()):
+                if self.Cells[tmpCell] != Const_EmptyCell:
+                    self._RemoveTokenFrom(tmpCell, True)
+            for i in range(self.Cols):
+                for j in range(self.Rows-1-noRows, -1, -1):
+                    self._SwapCells((i,j), (i,j+noRows))
+            self._GenerateMatchMap()
+            
+            self.DestCrd = 0
+            self.MovingTime = int(1.0*1000*globalvars.GameSettings.GetFltAttr("scrollBackTime"))
+            self.Speed = int(noRows*Crd_deltaY/globalvars.GameSettings.GetFltAttr("scrollBackTime"))
+            
         
     #--------------------------
     # ќсновной цикл: сдвиг пол€ и выброс новых токенов
@@ -825,6 +883,16 @@ class Collapsoid(Field):
                 self.Selection.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd
                 if self.MovingTime <= 0:
                     self._FinishMotion()
+                    
+            elif self.DropperState == DropperState_ScrollBack:
+                self.MovingTime = max(0, self.MovingTime - que.delta)
+                tmpCrd = self.DestCrd - 1.0*self.MovingTime*self.Speed/1000
+                self.Base.y = self.Crd_minY + tmpCrd
+                self.Highlight.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd
+                self.Selection.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd
+                if self.MovingTime <= 0:
+                    self._FinishMotion()
+                    
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         
@@ -888,7 +956,7 @@ class Collapsoid(Field):
                             
     def SendCommand(self, cmd, parameter=None):
         if cmd == Cmd_CollapsoidFashShift:
-            if self.DropperState != DropperState_Burn:
+            if self.DropperState in (DropperState_Drop, DropperState_Move):
                 self._FastShift()
             
         elif cmd == Cmd_CollapsoidBurn:

@@ -92,9 +92,15 @@ MasterChef{
         sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
         
         //Bonus
+        sprite(bonus.bomb) { bitmap = "img/ingredients/bonus.bomb.png" type = "blend" }
+        sprite(bonus.gift) { bitmap = "img/ingredients/bonus.gift.png" type = "blend" }
+        sprite(bonus.hearts) { bitmap = "img/ingredients/bonus.hearts.png" type = "blend" }
+        sprite(bonus.magicwand) { bitmap = "img/ingredients/bonus.magicwand.png" type = "blend" }
+        sprite(bonus.removerow) { bitmap = "img/ingredients/bonus.removerow.png" type = "blend" }
+        sprite(bonus.scrollback) { bitmap = "img/ingredients/bonus.scrollback.png" type = "blend" }
         sprite(bonus.shuffle) { bitmap = "img/ingredients/bonus.shuffle.png" type = "blend" }
         sprite(bonus.spoon) { bitmap = "img/ingredients/bonus.spoon.png" type = "blend" }
-        
+        sprite(bonus.sweet) { bitmap = "img/ingredients/bonus.sweet.png" type = "blend" }
         
     }
       

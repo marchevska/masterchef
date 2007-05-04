@@ -89,6 +89,7 @@ DropperState_None = 0
 DropperState_Drop = 1   #выброс токенов
 DropperState_Burn = 2   #задержка сдвига для сжигания верхних рядов
 DropperState_Move = 3   #сдвиг поля
+DropperState_ScrollBack = 4   #обратный скроллинг
 
 #состояния игрового курсора
 GameCursorState_Default = 0

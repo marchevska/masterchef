@@ -69,8 +69,16 @@ MasterChef {
         //Ingredient(olives) { type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
         //Ingredient(artichoke) { type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
         
+        //Bonus tokens on the field
+        Ingredient(bonus.bomb) { type = "bonus" src = "bonus.bomb" }
+        Ingredient(bonus.gift) { type = "bonus" src = "bonus.gift" }
+        Ingredient(bonus.hearts) { type = "bonus" src = "bonus.hearts" }
+        Ingredient(bonus.magicwand) { type = "bonus" src = "bonus.magicwand" }
+        Ingredient(bonus.removerow) { type = "bonus" src = "bonus.removerow" }
+        Ingredient(bonus.scrollback) { type = "bonus" src = "bonus.scrollback" }
         Ingredient(bonus.shuffle) { type = "bonus" src = "bonus.shuffle" }
         Ingredient(bonus.spoon) { type = "bonus" src = "bonus.spoon" }
+        Ingredient(bonus.sweet) { type = "bonus" src = "bonus.sweet" }
     }
     
     Recipes {

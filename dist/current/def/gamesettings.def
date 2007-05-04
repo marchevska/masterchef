@@ -20,9 +20,10 @@ MasterChef {
         exactRecipes = "no"
         
         powerups = "['Cross', 'Gift', 'Shuffle', 'Spoon', 'Sweet', 'Supersweet', 'Magicwand', 'EmptyTrash']"
-        bonuses = "['bonus.shuffle', 'bonus.spoon']"
-        bonusesOneClick = "['bonus.shuffle', 'bonus.spoon']"
-        bonusesToPick = "[]"
+        
+        bombRadiusSquared = "5"
+        scrollBackTime = "1.0"
+        scrollBackRows = "3"
         
         tokensGroupMin = "1"
         tokensGroupMax = "10"

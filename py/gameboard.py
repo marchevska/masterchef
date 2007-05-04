@@ -265,9 +265,9 @@ class GameBoard(scraft.Dispatcher):
             
         #переполнение коллапсоида - штраф и сжигание лишнего
         elif cmd == Cmd_CollapsoidFull:
-            #self._SetState(GameState_EndLevel)
             tmp = parameter.GetBurnCrd()
             parameter.SendCommand(Cmd_CollapsoidBurn)
+            #максимальный штраф задан (=10 или около того)
             self.NoErrors = min(self.NoErrors+1, globalvars.GameSettings.GetIntAttr("maxColapsoidErrors"))
             self.AddScore(-self.NoErrors*len(tmp))
             for (x, y) in tmp:
@@ -351,8 +351,6 @@ class GameBoard(scraft.Dispatcher):
         elif cmd == Cmd_FreeStation:
             if self.RemainingCustomers > 0:
                 self.CustomersQue.SetState(QueState_Active)
-            else:
-                print "last customer"
                 
         #покупка повер-апа
         elif cmd in range(Cmd_BuyPowerUp, Cmd_BuyPowerUp+len(eval(globalvars.GameSettings.GetStrAttr("powerups")))):

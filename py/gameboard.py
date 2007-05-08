@@ -44,9 +44,6 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["GoalText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
                                     {"x": 293, "y": 31, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_GoalText, "cfilt-color": 0x604020})
-        self.HudElements["ApprovalText"] = MakeSprite(u"domcasual-10", Layer_InterfaceTxt,
-                                    {"x": 350, "y": 31, "hotspot": scraft.HotspotCenter,
-                                     "text": Str_HUD_ApprovalText, "cfilt-color": 0x604020})
         self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                                     {"x": 185, "y": 51, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
@@ -56,9 +53,6 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                                     {"x": 293, "y": 51, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
-        self.HudElements["Approval"] = MakeSprite(u"powerups", Layer_InterfaceTxt,
-                                    {"x": 350, "y": 51, "hotspot": scraft.HotspotCenter,
-                                     "cfilt-color": 0x604020})
         
         #create buttons
         self.GameButtons = {}
@@ -135,7 +129,6 @@ class GameBoard(scraft.Dispatcher):
         defs.ReadLevelSettings(globalvars.CurrentPlayer.GetLevel().GetContent())
         
         self.LevelScore = 0
-        self.Approval = 0
         self.CustomersServed = 0
         self.CustomersLost = 0
         self.NoErrors = 0
@@ -331,8 +324,6 @@ class GameBoard(scraft.Dispatcher):
             
     def AddScore(self, delta):
         self.LevelScore += delta
-        self.Approval = min(self.Approval+delta*globalvars.GameSettings.GetFltAttr("approvalPerDollar"),
-                            globalvars.GameSettings.GetFltAttr("maxApproval"))
         self._UpdateLevelInfo()
         if self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal") and not self.Expert:
             self._SwitchToExpert()
@@ -475,7 +466,6 @@ class GameBoard(scraft.Dispatcher):
         
     def _UpdateLevelInfo(self):
         self.HudElements["Score"].text = unicode(str(self.LevelScore))
-        self.HudElements["Approval"].text = unicode("$"*int(self.Approval))
         
     def _SwitchToExpert(self):
         self.HudElements["GoalText"].text = unicode(Str_HUD_ExpertText)

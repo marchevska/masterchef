@@ -107,7 +107,7 @@ class Storage(scraft.Dispatcher):
         #пересчитать подсветку токенов
         tmpPos = self._CellByCoords((oE.mouseX, oE.mouseY))
         if tmpPos in self.Cells.keys():
-            if self.Cells[tmpPos] != Const_EmptyCell:
+            if self.Cells[tmpPos] != Const_EmptyCell and tmpPos[1]<self.Rows:
                 self._HighlightCells(tmpPos, True)
             else:
                 self._HighlightCells(tmpPos, False)
@@ -193,8 +193,8 @@ class Storage(scraft.Dispatcher):
                 cell[1]*Crd_deltaY)
         
     def _CellByCoords(self, crd):
-        return (int((crd[0])/Crd_deltaX),
-                int((crd[1])/Crd_deltaY))
+        return (int((crd[0]-self.Base.x)/Crd_deltaX),
+                int((crd[1]-self.Base.y)/Crd_deltaY))
         
         
 #--------------------------------------------
@@ -522,7 +522,7 @@ class Field(Storage):
                         globalvars.GameSettings.GetIntAttr("magicWandRadiusSquared") \
                         and self.Cells[x] != Const_EmptyCell and x[1]<self.Rows, self.Cells.keys())
                     else:
-                        self.HightlightedCells = []
+                        self.HighlightedCells = []
                     
             Storage._HighlightCells(self, pos, True)
         else:
@@ -597,12 +597,7 @@ class Field(Storage):
         #основной цикл - ожидание ввода игрока
         elif state == FieldState_Input:
             self._GenerateMatchMap()
-            sprite = oE.FindSpriteAtMouse(Layer_Receptors, Layer_Receptors)
-            if sprite:
-                if sprite.cookie == Cmd_Receptor:
-                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                    if self.Cells[tmpPos] != Const_EmptyCell:
-                        self._HighlightCells(tmpPos, flag)
+            self._ReHighlight()
             
         #схлопывание столбцов поля после удаления блоков
         elif state == FieldState_Collapse:

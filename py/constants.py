@@ -33,6 +33,8 @@ Cmd_CollapsoidBurn = 21
 Cmd_Station_DeleteCustomer = 22
 Cmd_Customer_SayThankYou = 23
 
+Cmd_PickPowerUp = 60
+Cmd_UtilizePowerUp = 61
 Cmd_UsePowerUp = 70
 Cmd_BuyPowerUp = 80
 

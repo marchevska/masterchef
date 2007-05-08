@@ -449,12 +449,12 @@ class Field(Storage):
             
         curKind = 0
         #найти и выделить все бонусы - пометить как отдельные бонусы
-        for cell in filter(lambda x: x in map(lambda z: z.GetContent(),
+        for cell in filter(lambda x: self.Cells[x] in map(lambda z: z.GetContent(),
                 filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags())),
                 self.Cells.keys()):
             self.MatchMap[cell] = curKind
             curKind +=1
-        
+            
         #все остальное - разметить групами
         tmpAllKeys = filter(lambda x: x[1]<self.Rows, self.Cells.keys())
         for (i,j) in tmpAllKeys:
@@ -500,21 +500,32 @@ class Field(Storage):
         if flag:
             if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
                 if self.MatchMap.has_key(pos) and self.MatchMap[pos] != -1:
-                    self.HighlightedCells = filter(lambda x: self.MatchMap[x] == self.MatchMap[pos], self.MatchMap.keys())
+                    #удаление ряда - посветить горизонталь
+                    if self.Cells[pos] == 'bonus.removerow':
+                        self.HighlightedCells = filter(lambda x: x[1] == pos[1], self.Cells.keys())
+                    #бомба - подсветить круг
+                    elif self.Cells[pos] == 'bonus.bomb':
+                        self.HighlightedCells = filter(lambda x: (x[0]-pos[0])*(x[0]-pos[0])+(x[1]-pos[1])*(x[1]-pos[1]) <= \
+                            globalvars.GameSettings.GetIntAttr("bombRadiusSquared") \
+                            and self.Cells[x] != Const_EmptyCell and x[1]<self.Rows, self.Cells.keys())
+                    #иначе - обычный токен - подсветить группу
+                    else:
+                        self.HighlightedCells = filter(lambda x: self.MatchMap[x] == self.MatchMap[pos], self.MatchMap.keys())
                     
             elif globalvars.Board.GameCursorState == GameCursorState_Tool:
                 #ложка - подсветить все клетки поля того же типа
-                if globalvars.Board.PickedTool == 'Spoon':
+                if globalvars.Board.PickedTool == 'bonus.spoon':
                     self.HighlightedCells = filter(lambda x: self.Cells[x] == self.Cells[pos], self.Cells.keys())
                     
-                #крест (нож+вилка) - посветить вертикаль и горизонталь
-                elif globalvars.Board.PickedTool == 'Cross':
-                    self.HighlightedCells = filter(lambda x: x[0] == pos[0] or x[1] == pos[1], self.Cells.keys())
-                    
                 #волшебная палочка - подсветить круг
-                elif globalvars.Board.PickedTool == 'Magicwand':
+                elif globalvars.Board.PickedTool == 'bonus.magicwand':
                     self.HighlightedCells = filter(lambda x: (x[0]-pos[0])*(x[0]-pos[0])+(x[1]-pos[1])*(x[1]-pos[1]) <= \
-                        globalvars.GameSettings.GetIntAttr("magicWandRadiusSquared"), self.Cells.keys())
+                        globalvars.GameSettings.GetIntAttr("magicWandRadiusSquared") \
+                        and self.Cells[x] != Const_EmptyCell and x[1]<self.Rows, self.Cells.keys())
+                    
+                ##крест (нож+вилка) - посветить вертикаль и горизонталь
+                #elif globalvars.Board.PickedTool == 'Cross':
+                #    self.HighlightedCells = filter(lambda x: x[0] == pos[0] or x[1] == pos[1], self.Cells.keys())
                     
             Storage._HighlightCells(self, pos, True)
         else:
@@ -682,14 +693,17 @@ class Field(Storage):
                     tmpPos = None
                 if button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool:
                     #ложка или крест - удалить подсвеченные токены
-                    if globalvars.Board.PickedTool in ('Cross', 'Spoon'):
-                        globalvars.Board.UseTool()
+                    if globalvars.Board.PickedTool == 'bonus.spoon':
+                        self._RemoveTokenFrom(self.SelectedCells[0], False, True)
+                        globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
                         for tmpCell in self.HighlightedCells:
                             self._RemoveTokenFrom(tmpCell)
+                        self._HighlightCells((0,0), False)
                         self.SetState(FieldState_Collapse)
                     #волшебная палочка - превращение токенов
-                    elif globalvars.Board.PickedTool == 'Magicwand':
-                        globalvars.Board.UseTool()
+                    elif globalvars.Board.PickedTool == 'bonus.magicwand':
+                        self._RemoveTokenFrom(self.SelectedCells[0], False, True)
+                        globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
                         self.ConvertedCells = list(self.HighlightedCells)
                         self.SetState(FieldState_MagicWandConverting, tmpPos)
                 
@@ -706,15 +720,16 @@ class Field(Storage):
                         
                         #бомба - взрыв
                         elif self.Cells[tmpPos] == 'bonus.bomb':
-                            for tmpCell in filter(lambda x: (x[0]-tmpPos[0])**2+(x[1]-tmpPos[1])**2 <= globalvars.GameSettings.GetIntAttr("bombRadiusSquared"),
-                                    self.Cells.keys()):
+                            for tmpCell in self.HighlightedCells:
                                 self._RemoveTokenFrom(tmpCell, True)
+                            self._HighlightCells((0,0), False)
                             self.SetState(FieldState_Collapse)
                         
                         #удаление строки
                         elif self.Cells[tmpPos] == 'bonus.removerow':
-                            for tmpCell in filter(lambda x: x[1] == tmpPos[1], self.Cells.keys()):
+                            for tmpCell in self.HighlightedCells:
                                 self._RemoveTokenFrom(tmpCell, True)
+                            self._HighlightCells((0,0), False)
                             self.SetState(FieldState_Collapse)
                         
                         #обратная прокрутка
@@ -723,21 +738,16 @@ class Field(Storage):
                             self._RemoveTokenFrom(tmpPos, False, True)
                             self.SetDropperState(DropperState_ScrollBack)
                         
-                        elif self.Cells[tmpPos] == 'bonus.gift':
-                            pass
-                        
+                        #сердечки - подарок всем покупателям
                         elif self.Cells[tmpPos] == 'bonus.hearts':
-                            pass
-                        
-                        elif self.Cells[tmpPos] == 'bonus.magicwand':
-                            pass
-                        
-                        elif self.Cells[tmpPos] == 'bonus.sweet':
-                            pass
-                        
-                        elif self.Cells[tmpPos] == 'bonus.spoon':
-                            pass
+                            self._RemoveTokenFrom(tmpPos, False, True)
+                            globalvars.Board.SendCommand(Cmd_UtilizePowerUp, 'bonus.hearts')
                             
+                        #все остальное - подобрать бонус на мышку
+                        elif self.Cells[tmpPos] in ('bonus.gift', 'bonus.magicwand', 'bonus.sweet', 'bonus.spoon'):
+                            self.PickTokens()
+                            globalvars.Board.SendCommand(Cmd_PickPowerUp, { "type":self.Cells[tmpPos], "where": self })
+                        
                 else:
                     Storage._OnMouseClick(self, sprite, x, y, button)
             except:

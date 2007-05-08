@@ -81,9 +81,6 @@ class GameBoard(scraft.Dispatcher):
         self.TokenSprite = None
         self.TokensNoSprite = None
         self.ToolSprite = None
-        #self.PowerUpButtons = {}
-        #self.BuyPowerUpButtons = {}
-        #self.HasPowerUps = {}
         self.TokensFrom = None
         self.NoErrors = 0
         
@@ -144,8 +141,6 @@ class GameBoard(scraft.Dispatcher):
         self.NoErrors = 0
         self.LevelName = globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
         
-        #self.HasPowerUps = {}
-        
         tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
         self.BgSprite.ChangeKlassTo(tmpTheme.GetStrAttr("background"))
         
@@ -192,19 +187,6 @@ class GameBoard(scraft.Dispatcher):
             self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("counter"), Layer_Counter,
                 globalvars.LevelSettings.GetTag("Layout").GetTag("Counter").GetIntAttr("x"),
                 globalvars.LevelSettings.GetTag("Layout").GetTag("Counter").GetIntAttr("y")))
-        ##составная панель для бонусов
-        #if globalvars.LevelSettings.GetTag("Layout").GetCountTag("BonusPane")>0:
-        #    tmpX0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("x")
-        #    tmpY0 = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("y")
-        #    tmpSize = globalvars.LevelSettings.GetTag("Layout").GetTag("BonusPane").GetIntAttr("size")
-        #    self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco, tmpX0, tmpY0, scraft.HotspotCenter, 0))
-        #    for i in range(tmpSize):
-        #        self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco,
-        #                tmpX0+(i+1)*Const_BonusPaneDx, tmpY0+(i+1)*Const_BonusPaneDy,
-        #                scraft.HotspotCenter, 1))
-        #    self.Static.append(MakeSimpleSprite(tmpTheme.GetStrAttr("bonuspane"), Layer_Deco,
-        #            tmpX0 + (tmpSize+1)*Const_BonusPaneDx, tmpY0 + (tmpSize+1)*Const_BonusPaneDy,
-        #            scraft.HotspotCenter, 2))
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Decoration"):
             self.Static.append(MakeSimpleSprite(tmp.GetStrAttr("type"), Layer_Deco, tmp.GetIntAttr("x"), tmp.GetIntAttr("y")))
         
@@ -213,24 +195,6 @@ class GameBoard(scraft.Dispatcher):
             self.TrashCans.append(TrashCan(globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("size"),
                                 globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("x"),
                                 globalvars.LevelSettings.GetTag("Layout").GetTag("TrashCan").GetIntAttr("y"), tmpTheme))
-            
-        ##размещение повер-апов
-        #self.PowerUpButtons = {}
-        #self.BuyPowerUpButtons = {}
-        #for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("PowerUp"):
-        #    self.PowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
-        #        Cmd_UsePowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
-        #        PState_Game, u"powerup.use.button", [0, 1, 2, 3], Layer_InterfaceBtn,
-        #        tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 60, 60, globalvars.PowerUpsInfo.GetSubtag(tmp.GetStrAttr("type")).GetStrAttr("symbol"),
-        #        [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
-        #    self.BuyPowerUpButtons[tmp.GetStrAttr("type")] = PushButton("", self,
-        #        Cmd_BuyPowerUp + eval(globalvars.GameSettings.GetStrAttr("powerups")).index(tmp.GetStrAttr("type")),
-        #        PState_Game, u"powerup.buy.button", [0, 1, 2, 3], Layer_InterfaceBtn+1,
-        #        tmp.GetIntAttr("x") + Const_BuyPowerUpButton_Dx, tmp.GetIntAttr("y") + Const_BuyPowerUpButton_Dy, 40, 30,
-        #        u"$"*int(globalvars.PowerUpsInfo.GetSubtag(tmp.GetStrAttr("type")).GetIntAttr("price")),
-        #        [u"powerups", u"powerups.roll", u"powerups.roll", u"powerups.inert"])
-        #    self.HasPowerUps[tmp.GetStrAttr("type")] = 0
-        #self._UpdatePowerUpButtons()
             
         tmpFreeStations = filter(lambda x: x.State == CStationState_Free, self.CStations)
         if tmpFreeStations != []:
@@ -288,12 +252,6 @@ class GameBoard(scraft.Dispatcher):
                     
             #иначе - использовать бонус
             elif self.GameCursorState == GameCursorState_Tool:
-                #if self.PickedTool == 'Sweet':
-                #    self.UseTool()
-                #    parameter["station"].Customer.GiveSweet()
-                #elif self.PickedTool == 'Gift':
-                #    self.UseTool()
-                #    parameter["station"].Customer.GiveGift()
                 if self.PickedTool in ('bonus.sweet', 'bonus.gift'):
                     if self.PickedTool == 'bonus.sweet':
                         parameter["station"].Customer.GiveSweet()
@@ -371,33 +329,10 @@ class GameBoard(scraft.Dispatcher):
                 for tmp in self.CStations:
                     tmp.Customer.GiveSweet()
             
-        ##покупка повер-апа
-        #elif cmd in range(Cmd_BuyPowerUp, Cmd_BuyPowerUp+len(eval(globalvars.GameSettings.GetStrAttr("powerups")))):
-        #    type = eval(globalvars.GameSettings.GetStrAttr("powerups"))[cmd - Cmd_BuyPowerUp]
-        #    self.HasPowerUps[type] += 1
-        #    self.Approval -= globalvars.PowerUpsInfo.GetSubtag(type).GetIntAttr("price")
-        #    self._UpdatePowerUpButtons()
-        #    self._UpdateLevelInfo()
-        #    
-        ##использование повер-апа
-        #elif cmd in range(Cmd_UsePowerUp, Cmd_UsePowerUp+len(eval(globalvars.GameSettings.GetStrAttr("powerups")))):
-        #    type = eval(globalvars.GameSettings.GetStrAttr("powerups"))[cmd - Cmd_UsePowerUp]
-        #    if type == 'Supersweet':
-        #        self.UseTool('Supersweet')
-        #        for tmp in self.CStations:
-        #            tmp.Customer.GiveSweet()
-        #    elif type == 'Shuffle':
-        #        self.UseTool('Shuffle')
-        #        for tmp in self.Fields:
-        #            tmp.SetState(FieldState_Shuffle)
-        #    elif type in ('Cross', 'Gift', 'Spoon', 'Sweet', 'Magicwand'):
-        #        self._PickTool(type)
-        
     def AddScore(self, delta):
         self.LevelScore += delta
         self.Approval = min(self.Approval+delta*globalvars.GameSettings.GetFltAttr("approvalPerDollar"),
                             globalvars.GameSettings.GetFltAttr("maxApproval"))
-        #self._UpdatePowerUpButtons()
         self._UpdateLevelInfo()
         if self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal") and not self.Expert:
             self._SwitchToExpert()
@@ -483,12 +418,6 @@ class GameBoard(scraft.Dispatcher):
     #--------------------------
     # Подбирает иконку бонуса
     #--------------------------
-    #def _PickTool(self, type):
-    #    self.SendCommand(Cmd_DropWhatYouCarry)
-    #    self.ToolSprite = MakeSprite(u"powerups", Layer_Tools, {"text": globalvars.PowerUpsInfo.GetSubtag(type).GetStrAttr("symbol")})
-    #    self.PickedTool = type
-    #    self._SetGameCursorState(GameCursorState_Tool)
-    
     def _PickPowerUp(self, type, where):
         self.SendCommand(Cmd_DropWhatYouCarry)
         self.ToolSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
@@ -499,12 +428,6 @@ class GameBoard(scraft.Dispatcher):
     #--------------------------
     # Сбрасывает иконку бонуса (тулза)
     #--------------------------
-    def _DropTool(self):
-        self.ToolSprite.Dispose()
-        self.ToolSprite = None
-        self.PickedTool = ""
-        self._SetGameCursorState(GameCursorState_Default)
-        
     def _DropPowerUp(self, where):
         if where != None:
             where.DropTokens()
@@ -513,17 +436,6 @@ class GameBoard(scraft.Dispatcher):
         self.PickedTool = ""
         self._SetGameCursorState(GameCursorState_Default)
         self.TokensFrom = None
-        
-    ##--------------------------
-    ## Использование (расход) бонуса
-    ##--------------------------
-    #def UseTool(self, tool = ""):
-    #    if tool == "":
-    #        tool = self.PickedTool
-    #    self.HasPowerUps[tool] -= 1
-    #    self._UpdatePowerUpButtons()
-    #    if tool not in ('Supersweet', 'Shuffle'):
-    #        self._DropTool()
         
     def _PickFromConveyor(self, where, type):
         self.PickedTokens = type
@@ -570,19 +482,6 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal")))
         self.Expert = True
         
-    #def _UpdatePowerUpButtons(self):
-    #    #update powerup buttons
-    #    for tmp in self.HasPowerUps.keys():
-    #        if self.HasPowerUps[tmp] > 0:
-    #            self.PowerUpButtons[tmp].SetState(ButtonState_Up)
-    #            self.BuyPowerUpButtons[tmp].SetState(ButtonState_Inert)
-    #        else:
-    #            self.PowerUpButtons[tmp].SetState(ButtonState_Inert)
-    #            if self.Approval >= globalvars.PowerUpsInfo.GetSubtag(tmp).GetIntAttr("price"):
-    #                self.BuyPowerUpButtons[tmp].SetState(ButtonState_Up)
-    #            else:
-    #                self.BuyPowerUpButtons[tmp].SetState(ButtonState_Inert)
-        
     #--------------------------
     # очистка игрового поля
     #--------------------------
@@ -594,12 +493,6 @@ class GameBoard(scraft.Dispatcher):
             self.TokensNoSprite.Dispose()
         elif self.GameCursorState == GameCursorState_Tool:
             self.ToolSprite.Dispose()
-        
-        #for tmp in self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():
-        #    tmp.Kill()
-        #self.PowerUpButtons = {}
-        #self.BuyPowerUpButtons = {}
-            
         for tmp in self.CStations + self.TrashCans: 
             tmp.Kill()
         self.CStations = []
@@ -627,8 +520,6 @@ class GameBoard(scraft.Dispatcher):
         self.BgReceptor.visible = flag
         for spr in self.HudElements.values():
             spr.visible = flag
-        #for btn in self.GameButtons.values() + self.PowerUpButtons.values() + self.BuyPowerUpButtons.values():
-        #    btn.Show(flag)
         #if self.Playing:
         #    self.CustomersQue.Show(flag)
         #    for tmp in self.CStations:

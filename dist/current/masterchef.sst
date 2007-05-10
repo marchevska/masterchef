@@ -22,6 +22,17 @@ type   = blend
 layout = 5x8
 }
 
+sprite cell-action {
+bitmap = img/common/cell-action.png
+type   = blend
+layout = 5x8
+}
+
+sprite cell-use {
+bitmap = img/common/cell-use.png
+type   = blend
+layout = 5x8
+}
 
 sprite heart {
 bitmap = img/heart.png

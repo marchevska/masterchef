@@ -7,8 +7,10 @@ MasterChef {
         
         tokensFallingTime = "0.2"
         shuffleTime = "0.35"
+        
         magicWandConvertingTime = "0.5"
         magicWandRadiusSquared = "2"
+        allowBonusConvertion = "no"
         
         heartsPerCompletedIngredient = "1"
         approvalPerDollar = "0.2"

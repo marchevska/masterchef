@@ -533,9 +533,13 @@ class Field(Storage):
                         self.Action = Const_HighlightAct
                     #волшебная палочка - подсветить круг - и проверить, что мы не размножаем бонусы!
                     elif globalvars.Board.PickedTool == 'bonus.magicwand':
+                        if globalvars.GameSettings.GetBoolAttr("allowBonusConvertion"):
+                            tmpNonConvertable = [Const_EmptyCell]
+                        else:
+                            tmpNonConvertable = tmpAllBonuses + [Const_EmptyCell]
                         self.HighlightedCells = filter(lambda x: (x[0]-pos[0])*(x[0]-pos[0])+(x[1]-pos[1])*(x[1]-pos[1]) <= \
                             globalvars.GameSettings.GetIntAttr("magicWandRadiusSquared") \
-                            and not self.Cells[x] in (tmpAllBonuses, Const_EmptyCell) \
+                            and not self.Cells[x] in tmpNonConvertable \
                             and x[1]<self.Rows, self.Cells.keys())
                         self.Action = Const_HighlightAct
                 #если на курсоре бонус, который не действует на токены,

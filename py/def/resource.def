@@ -353,4 +353,12 @@ MasterChef{
         sprite(comics.american.intro) { bitmap = "img/comics/american.intro.png" }
         sprite(comics.masterchef.outro) { bitmap = "img/comics/masterchef.outro.png" }
     }
+    
+    Episodes{
+        sprite(episode.american) { bitmap = "img/gui/episode.american.png" type = "blend" layout = "2x1" }
+        sprite(episode.mexican) { bitmap = "img/gui/episode.mexican.png" type = "blend" layout = "2x1" }
+        sprite(episode.russian) { bitmap = "img/gui/episode.russian.png" type = "blend" layout = "2x1" }
+        sprite(episode.japanese) { bitmap = "img/gui/episode.japanese.png" type = "blend" layout = "2x1" }
+        sprite(episode.sweetshop) { bitmap = "img/gui/episode.sweetshop.png" type = "blend" layout = "2x1" }
+    }
 }

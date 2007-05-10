@@ -1,6 +1,14 @@
 MasterChef{
     PlayerName = ''
     
+    //Episodes{
+        episode(American) { unlocked = "no" }
+        episode(Mexican) { unlocked = "no" }
+        episode(Russian) { unlocked = "no" }
+        episode(Japanese) { unlocked = "no" }
+        episode(SweetShop) { unlocked = "no" }
+    //}
+    
     //Levels{
         level(def/00.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
         level(def/01.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }

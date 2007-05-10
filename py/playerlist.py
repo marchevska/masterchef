@@ -96,6 +96,9 @@ class Player:
                     tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
                     if tmpNextLevel.HasAttr(u"unlocked"):
                         tmpNextLevel.SetBoolAttr(u"unlocked", True)
+                #разлочить эпизод, если необходимо
+                if level.HasAttr("unlock"):
+                    self.XML.GetSubtag(level.GetStrAttr("unlock")).SetBoolAttr(u"unlocked", True)
             elif level.GetName() == u"level":
                 #если уровень: отметить в профиле игрока уровень как начатый
                 tmpNode.SetBoolAttr(u"played", True)

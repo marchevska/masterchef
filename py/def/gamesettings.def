@@ -117,7 +117,7 @@ MasterChef {
             tablet = "theme.russian.tablet"
         }
         
-        Theme()
+        Theme(American)
         {
             background = "theme.american.background"
             counter = "theme.american.counter"

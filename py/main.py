@@ -31,10 +31,11 @@ oE.showFps = False
 defs.ReadLevelProgress()
 defs.ReadCuisine()
 defs.ReadResourceInfo()
+defs.ReadGameSettings()
 
 # определяем режим запска - тест или реальная игра
 if len(sys.argv) >= 3:
-    if sys.argv[1] == "run" and globalvars.LevelProgress.GetSubtag(sys.argv[2]) != None:
+    if sys.argv[1] == "run" and globalvars.LevelProgress.GetTag("Levels").GetSubtag(sys.argv[2]) != None:
         globalvars.RunMode = RunMode_Test
     else:
         globalvars.RunMode = RunMode_Play
@@ -61,7 +62,7 @@ globalvars.Board = GameBoard()
 # начало кода запуска заданного уровня
 if globalvars.RunMode == RunMode_Test:
     try:
-        globalvars.CurrentPlayer.Level = globalvars.LevelProgress.GetSubtag(sys.argv[2])
+        globalvars.CurrentPlayer.Level = globalvars.LevelProgress.GetTag("Levels").GetSubtag(sys.argv[2])
         globalvars.GUI.JustRun()
     except:
         sys.exit()

@@ -510,6 +510,8 @@ class GameBoard(scraft.Dispatcher):
         self.BgReceptor.visible = flag
         for spr in self.HudElements.values():
             spr.visible = flag
+        for btn in self.GameButtons.values():
+            btn.Show(flag)
         #if self.Playing:
         #    self.CustomersQue.Show(flag)
         #    for tmp in self.CStations:

@@ -14,6 +14,7 @@ from configconst import *
 from guiconst import *
 from guielements import *
 from strings import *
+from customer import *
 import defs
 import playerlist
 import config
@@ -375,21 +376,31 @@ class Gui(scraft.Dispatcher):
         #-------
         # карта карьерного режима
         #-------
-        self.MapCareerDialog = {"Static": {}, "Text": {}, "Buttons": {}}
+        self.MapCareerDialog = {"Static": {}, "Text": {}, "Buttons": {}, "Animations": {}}
         self.MapCareerDialog["Static"]["Back"] = MakeSimpleSprite(u"map-background", Layer_Background)
+        self.MapCareerDialog["Static"]["Jane"] = MakeSprite("map.jane", Layer_Background-1, { "x": 300, "y": 140 } )
+        self.MapCareerDialog["Static"]["JaneEyes"] = MakeSprite("map.jane.eyes", Layer_Background-2, { "x": 400, "y": 270 } )
+        self.MapCareerDialog["Animations"]["JaneEyes"] = CustomersAnimator(self.MapCareerDialog["Static"]["JaneEyes"],
+                                                globalvars.CustomerAnimations.GetSubtag("animation.janeeyes"))
+        self.MapCareerDialog["Animations"]["JaneEyes"].SetState("None")
+        self.MapCareerDialog["Animations"]["JaneEyes"].Freeze(True)
+        self.MapCareerDialog["Static"]["Tablet"] = MakeSprite("map.tablet", Layer_Background-1, { "x": 30, "y": 385 } )
         self.MapCareerDialog["Text"]["BestResult"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                                                { "x": 400, "y": 540, "hotspot": scraft.HotspotCenter } )
+                                                { "x": 170, "y": 500, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Buttons"]["Start"] = PushButton("MapStart",
                 self, Cmd_MapStart, PState_MapCareer,
-                u"button-4st", [0, 1, 2, 3], 
-                Layer_BtnText, 400, 570, 120, 40,
+                u"map.play.button", [0, 1, 2, 3], 
+                Layer_BtnText, 170, 540, 130, 50,
                 Str_MapStart, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.MapCareerDialog["Buttons"]["MainMenu"] = PushButton("MapMainMenu",
                 self, Cmd_MapMainMenu, PState_MapCareer,
                 u"button-4st", [0, 1, 2], 
                 Layer_BtnText, 70, 18, 120, 40,
                 Str_MapMainMenu, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
-        for tmp in globalvars.LevelProgress.Tags("level"):
+        for tmp in globalvars.LevelProgress.GetTag("Episodes").Tags("episode"):
+            self.MapCareerDialog["Static"][tmp.GetContent()] = MakeSprite(tmp.GetStrAttr("image"), Layer_Static,
+                { "x": tmp.GetIntAttr("x"), "y": tmp.GetIntAttr("y"), "hotspot": scraft.HotspotCenter })
+        for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("level"):
             self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
                 self, Cmd_MapLevel + tmp.GetIntAttr(u"no"), PState_MapCareer,
                 u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
@@ -552,7 +563,14 @@ class Gui(scraft.Dispatcher):
         else:
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
             self.MapCareerDialog["Text"]["BestResult"].text = ""
-        
+        #отрисовать картинки эпизодов - разлочены они или нет
+        for tmp in globalvars.LevelProgress.GetTag("Episodes").Tags("episode"):
+            if globalvars.CurrentPlayer.GetLevelParams(tmp.GetContent()).GetBoolAttr("unlocked"):
+                self.MapCareerDialog["Static"][tmp.GetContent()].frno = 0
+            else:
+                self.MapCareerDialog["Static"][tmp.GetContent()].frno = 1
+        self.MapCareerDialog["Animations"]["JaneEyes"].SetState("Smile")
+        self.MapCareerDialog["Animations"]["JaneEyes"].Freeze(False)
         
     #-------------------------------------------
     # показать текущий кадр комикса
@@ -612,7 +630,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_Comics)
             #проходим по списку уровней и находим последний разлоченный
             tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr(u"unlocked"),
-                                     globalvars.LevelProgress.Tags())
+                                     globalvars.LevelProgress.GetTag("Levels").Tags())
             tmpLastUnlocked = tmpAllUnlocked[-1]
             tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == u"level", tmpAllUnlocked))
             
@@ -679,12 +697,12 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_MapStart:
                     #self.NextCareerStage()
                     self._ReleaseState(PState_MapCareer)
-                    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetSubtag(self.SelectedLevel))
+                    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel))
                     self._SetState(PState_StartLevel)
                 elif cmd == Cmd_MapMainMenu:
                     self._ReleaseState(PState_MapCareer)
                 else:
-                    self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress,
+                    self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress.GetTag("Levels"),
                                             u"level", u"no", str(cmd-Cmd_MapLevel)).GetContent()
                     self._UpdateMapWindow()
                 
@@ -838,94 +856,98 @@ class Gui(scraft.Dispatcher):
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         
-    def _OnExecute(self, que) :
-        #показываем логотипы разработчика и паблишера - ждем заданное время
-        if globalvars.StateStack[-1] == PState_DevLogo:
-            self.NextStateTime -= que.delta
-            if self.NextStateTime <= 0:
-                self.SendCommand(Cmd_DevLogoClose)
-        if globalvars.StateStack[-1] == PState_PubLogo:
-            self.NextStateTime -= que.delta
-            if self.NextStateTime <= 0:
-                self.SendCommand(Cmd_PubLogoClose)
-            
-        #пауза в игре
-        if globalvars.GameSettings.GetBoolAttr("debugMode"):
-            if globalvars.StateStack[-1] == PState_Game:
-                if oE.EvtIsKeyDown():
-                    if oE.EvtKey() == scraft.Key_F5:
-                        globalvars.Frozen = not globalvars.Frozen
-                        globalvars.Board.Freeze(globalvars.Frozen)
-        
-        #обрабатываем ввод имени игрока с клавиатуры
-        if globalvars.StateStack[-1] == PState_EnterName:
-            if oE.EvtIsKeyDown():
-                self.EnterNameDialog["Text"]["NameErrors"].text = u""
-                tmpName = self.EnterNameDialog["Text"]["Name"].text
-                if scraft.Key_A <= oE.EvtKey() <= scraft.Key_Z:
-                    tmpLetter = Const_AllChars[oE.EvtKey() - scraft.Key_A]
-                    if oE.IsKeyPressed(scraft.Key_SHIFT) or oE.IsKeyPressed(scraft.Key_RSHIFT):
-                        pass
-                    else:
-                        tmpLetter = string.lower(tmpLetter)
-                    tmpName += tmpLetter
-                elif scraft.Key_0 <= oE.EvtKey() <= scraft.Key_9:
-                    tmpName += str(oE.EvtKey() - scraft.Key_0)
-                elif oE.EvtKey() == scraft.Key_SPACE:
-                    tmpName += " "
-                elif oE.EvtKey() == scraft.Key_BACKSPACE:
-                    tmpName = tmpName[0:len(tmpName)-1]
-                elif oE.EvtKey() == scraft.Key_ESC:
-                    self.SendCommand(Cmd_EnterNameCancel)
-                elif oE.EvtKey() == scraft.Key_ENTER:
-                    self.SendCommand(Cmd_EnterNameOk)
-                if len(tmpName) > Max_NameLen:
-                    tmpName = tmpName[0:len(tmpName)-1]
-                self.EnterNameDialog["Text"]["Name"].text = unicode(tmpName)
-                self.EnterNameDialog["Static"]["TextCursor"].x = self.EnterNameDialog["Text"]["Name"].x + \
-                    self.EnterNameDialog["Text"]["Name"].width/2
-            
-        if oE.EvtIsESC():
+    def _OnExecute(self, que):
+        try:
+            #показываем логотипы разработчика и паблишера - ждем заданное время
             if globalvars.StateStack[-1] == PState_DevLogo:
-                self.SendCommand(Cmd_DevLogoClose)
-            elif globalvars.StateStack[-1] == PState_PubLogo:
-                self.SendCommand(Cmd_PubLogoClose)
-            elif globalvars.StateStack[-1] == PState_MainMenu:    
-                self._SetState(PState_EndGame)
-            elif globalvars.StateStack[-1] == PState_Game:
-                if globalvars.RunMode == RunMode_Test:
+                self.NextStateTime -= que.delta
+                if self.NextStateTime <= 0:
+                    self.SendCommand(Cmd_DevLogoClose)
+            if globalvars.StateStack[-1] == PState_PubLogo:
+                self.NextStateTime -= que.delta
+                if self.NextStateTime <= 0:
+                    self.SendCommand(Cmd_PubLogoClose)
+                
+            #пауза в игре
+            if globalvars.GameSettings.GetBoolAttr("debugMode"):
+                if globalvars.StateStack[-1] == PState_Game:
+                    if oE.EvtIsKeyDown():
+                        if oE.EvtKey() == scraft.Key_F5:
+                            globalvars.Frozen = not globalvars.Frozen
+                            globalvars.Board.Freeze(globalvars.Frozen)
+            
+            #обрабатываем ввод имени игрока с клавиатуры
+            if globalvars.StateStack[-1] == PState_EnterName:
+                if oE.EvtIsKeyDown():
+                    self.EnterNameDialog["Text"]["NameErrors"].text = u""
+                    tmpName = self.EnterNameDialog["Text"]["Name"].text
+                    if scraft.Key_A <= oE.EvtKey() <= scraft.Key_Z:
+                        tmpLetter = Const_AllChars[oE.EvtKey() - scraft.Key_A]
+                        if oE.IsKeyPressed(scraft.Key_SHIFT) or oE.IsKeyPressed(scraft.Key_RSHIFT):
+                            pass
+                        else:
+                            tmpLetter = string.lower(tmpLetter)
+                        tmpName += tmpLetter
+                    elif scraft.Key_0 <= oE.EvtKey() <= scraft.Key_9:
+                        tmpName += str(oE.EvtKey() - scraft.Key_0)
+                    elif oE.EvtKey() == scraft.Key_SPACE:
+                        tmpName += " "
+                    elif oE.EvtKey() == scraft.Key_BACKSPACE:
+                        tmpName = tmpName[0:len(tmpName)-1]
+                    elif oE.EvtKey() == scraft.Key_ESC:
+                        self.SendCommand(Cmd_EnterNameCancel)
+                    elif oE.EvtKey() == scraft.Key_ENTER:
+                        self.SendCommand(Cmd_EnterNameOk)
+                    if len(tmpName) > Max_NameLen:
+                        tmpName = tmpName[0:len(tmpName)-1]
+                    self.EnterNameDialog["Text"]["Name"].text = unicode(tmpName)
+                    self.EnterNameDialog["Static"]["TextCursor"].x = self.EnterNameDialog["Text"]["Name"].x + \
+                        self.EnterNameDialog["Text"]["Name"].width/2
+                
+            if oE.EvtIsESC():
+                if globalvars.StateStack[-1] == PState_DevLogo:
+                    self.SendCommand(Cmd_DevLogoClose)
+                elif globalvars.StateStack[-1] == PState_PubLogo:
+                    self.SendCommand(Cmd_PubLogoClose)
+                elif globalvars.StateStack[-1] == PState_MainMenu:    
                     self._SetState(PState_EndGame)
+                elif globalvars.StateStack[-1] == PState_Game:
+                    if globalvars.RunMode == RunMode_Test:
+                        self._SetState(PState_EndGame)
+                    else:
+                        self.CallInternalMenu()
+                elif globalvars.StateStack[-1] == PState_Help:
+                    self.SendCommand(Cmd_HelpClose)
+                elif globalvars.StateStack[-1] == PState_Options:
+                    self._CloseOptionsDialog(False)
+                elif globalvars.StateStack[-1] == PState_YesNo:
+                    self.SendCommand(Cmd_No)
+                elif globalvars.StateStack[-1] == PState_YesNoCancel:
+                    self.SendCommand(Cmd_YncCancel)
+                elif globalvars.StateStack[-1] == PState_Hiscores:
+                    self.SendCommand(Cmd_HiscoresClose)
+                elif globalvars.StateStack[-1] == PState_Players:
+                    self.SendCommand(Cmd_PlayersCancel)
+                elif globalvars.StateStack[-1] == PState_MapCareer:
+                    self.SendCommand(Cmd_MapMainMenu)
+                elif globalvars.StateStack[-1] == PState_EnterName:
+                    self.SendCommand(Cmd_EnterNameCancel)
+                elif globalvars.StateStack[-1] == PState_NextLevel:
+                    self.SendCommand(Cmd_LvCompleteMainMenu)
+                elif globalvars.StateStack[-1] == PState_GameOver:
+                    self.SendCommand(Cmd_GameOverMainMenu)
+            
+            if oE.EvtIsQuit():
+                if globalvars.StateStack[-1] == PState_Game:
+                    if globalvars.RunMode == RunMode_Test:
+                        self._SetState(PState_EndGame)
+                    else:
+                        self.CallInternalMenu()
                 else:
-                    self.CallInternalMenu()
-            elif globalvars.StateStack[-1] == PState_Help:
-                self.SendCommand(Cmd_HelpClose)
-            elif globalvars.StateStack[-1] == PState_Options:
-                self._CloseOptionsDialog(False)
-            elif globalvars.StateStack[-1] == PState_YesNo:
-                self.SendCommand(Cmd_No)
-            elif globalvars.StateStack[-1] == PState_YesNoCancel:
-                self.SendCommand(Cmd_YncCancel)
-            elif globalvars.StateStack[-1] == PState_Hiscores:
-                self.SendCommand(Cmd_HiscoresClose)
-            elif globalvars.StateStack[-1] == PState_Players:
-                self.SendCommand(Cmd_PlayersCancel)
-            elif globalvars.StateStack[-1] == PState_MapCareer:
-                self.SendCommand(Cmd_MapMainMenu)
-            elif globalvars.StateStack[-1] == PState_EnterName:
-                self.SendCommand(Cmd_EnterNameCancel)
-            elif globalvars.StateStack[-1] == PState_NextLevel:
-                self.SendCommand(Cmd_LvCompleteMainMenu)
-            elif globalvars.StateStack[-1] == PState_GameOver:
-                self.SendCommand(Cmd_GameOverMainMenu)
-        
-        if oE.EvtIsQuit():
-            if globalvars.StateStack[-1] == PState_Game:
-                if globalvars.RunMode == RunMode_Test:
                     self._SetState(PState_EndGame)
-                else:
-                    self.CallInternalMenu()
-            else:
-                self._SetState(PState_EndGame)
+        except:
+            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            
             
         return scraft.CommandStateRepeat
         
@@ -938,6 +960,8 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.MainMenuDialog, False)
         elif state == PState_MapCareer:
             self._ShowDialog(self.MapCareerDialog, False)
+            self.MapCareerDialog["Animations"]["JaneEyes"].SetState("None")
+            self.MapCareerDialog["Animations"]["JaneEyes"].Freeze(True)
         elif state == PState_Comics:
             self._ShowDialog(self.ComicScreen, False)
         elif state == PState_StartLevel:

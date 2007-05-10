@@ -157,8 +157,8 @@ class GameBoard(scraft.Dispatcher):
                         tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Collapsoid"):
             self.Fields.append(Collapsoid(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
-                        tmp.GetIntAttr("InitialRows"), tmp.GetIntAttr("DropIn"), tmp.GetIntAttr("ShiftSpeed"),
-                        tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
+                        tmp.GetIntAttr("InitialRows"), tmp.GetIntAttr("Delay"), tmp.GetIntAttr("DropIn"),
+                        tmp.GetIntAttr("ShiftSpeed"), tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
         self.Stores = []
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Store"):
             if tmp.GetBoolAttr("Multi"):
@@ -323,7 +323,7 @@ class GameBoard(scraft.Dispatcher):
                     tmp.Customer.GiveSweet()
             
     def AddScore(self, delta):
-        self.LevelScore += delta
+        self.LevelScore = max(self.LevelScore + delta, 0)
         self._UpdateLevelInfo()
         if self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal") and not self.Expert:
             self._SwitchToExpert()

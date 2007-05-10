@@ -86,6 +86,11 @@ FieldState_Shuffle = 4
 FieldState_MagicWandConverting = 5
 FieldState_EndLevel = 10
 
+Const_HighlightNone = -1
+Const_HighlightPick = 0
+Const_HighlightAct = 40
+Const_HighlightUse = 80
+
 #состояния выбрасывальщика токенов в коллапсоиде
 DropperState_None = 0
 DropperState_Drop = 1   #выброс токенов

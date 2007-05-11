@@ -11,36 +11,29 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker" rate = "1" }
-        Customer{ type = "Tourist Japanese" rate = "3" }
+        Customer{ type = "Tourist Russian" rate = "1" }
+        Customer{ type = "Student" rate = "3" }
         Customer{ type = "Business" rate = "3" }
     }
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Tonjiru" rate = "2" }
-        Recipe{ type = "Ochazuke" rate = "2" }
-        Recipe{ type = "Sukiyaki" rate = "3" }
-        Recipe{ type = "Omuraysu" rate = "2" }
+        Recipe{ type = "Banana Split" rate = "2" }
+        Recipe{ type = "Strawberry Shake" rate = "3" }
     }
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "noodle" rate = "10" }
-        Ingredient{ type = "meat" rate = "10" }
-        Ingredient{ type = "miso" rate = "10" }
-        Ingredient{ type = "veggymix" rate = "10" }
-        Ingredient{ type = "tofu" rate = "10" }
-        Ingredient{ type = "mushroom" rate = "10" }
-        Ingredient{ type = "rice" rate = "10" }
-        Ingredient{ type = "umeboshi" rate = "10" }
-        Ingredient{ type = "anchovies" rate = "10" }
-        Ingredient{ type = "seaweed" rate = "10" }
+        Ingredient{ type = "banana" rate = "10" }
+        Ingredient{ type = "chocolate" rate = "10" }
+        Ingredient{ type = "ice-cream" rate = "10" }
+        Ingredient{ type = "milk" rate = "30" }
+        Ingredient{ type = "strawberry" rate = "40" }
     }
     
     //level settings
     LevelSettings{
-        title = "'Japanese 1'"
+        title = "'Russian 1'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"
@@ -49,20 +42,21 @@ Level{
     //level layout: customer stations, power-up buttons, decorations
     //layout of the game field
     Layout{
-        theme = "Japanese" 
+        theme = "Russian" 
         CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Field{ XSize = "8" YSize = "8" X0 = "450" Y0 = "130" }
+        Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
         Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
-        //PowerUp{ type = "Sweet" x = "450" y = "200" }
-        //PowerUp{ type = "Gift" x = "450" y = "250" }
+        PowerUp{ type = "Sweet" x = "450" y = "200" }
+        PowerUp{ type = "Gift" x = "450" y = "250" }
         Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "1" x = "480" y = "250" }
+        BonusPane{ type = "" size = "1" x = "480" y = "175" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
+        Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
+        Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
+        Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }
     }
     
 }

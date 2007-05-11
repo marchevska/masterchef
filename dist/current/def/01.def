@@ -1,12 +1,6 @@
 Level{
     //overwrite global game settings
     GameSettings{
-        newCustomerTimeMin = "1"
-        newCustomerTimeMax = "3"
-        tokensGroupMin = "1"
-        autoReleaseCustomer = "yes"
-        allowExtraIngredients = "no"
-        exactRecipes = "yes"
     }
     
     //overwrite basic customer settings
@@ -28,22 +22,16 @@ Level{
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "banana" rate = "20" }
-        Ingredient{ type = "chocolate" rate = "20" }
-        Ingredient{ type = "ice-cream" rate = "20" }
+        Ingredient{ type = "banana" rate = "10" }
+        Ingredient{ type = "chocolate" rate = "10" }
+        Ingredient{ type = "ice-cream" rate = "10" }
         Ingredient{ type = "milk" rate = "30" }
         Ingredient{ type = "strawberry" rate = "40" }
-        Ingredient{ type = "bonus.spoon" rate = "5" }
-        Ingredient{ type = "bonus.gift" rate = "5" }
-        Ingredient{ type = "bonus.sweet" rate = "5" }
-        Ingredient{ type = "bonus.magicwand" rate = "5" }
-        Ingredient{ type = "bonus.bomb" rate = "5" }
-        Ingredient{ type = "bonus.removerow" rate = "5" }
     }
     
     //level settings
     LevelSettings{
-        title = "'SweetShop 1'"
+        title = "'American 1'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"
@@ -52,20 +40,20 @@ Level{
     //level layout: customer stations, power-up buttons, decorations
     //layout of the game field
     Layout{
-        theme = "SweetShop" 
+        theme = "American" 
         CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
-        //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "8" YSize = "12" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "450" Y0 = "50" }
-        PowerUp{ type = "Sweet" x = "370" y = "200" }
-        PowerUp{ type = "Gift" x = "370" y = "250" }
+        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
+        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
+        PowerUp{ type = "Sweet" x = "450" y = "200" }
+        PowerUp{ type = "Gift" x = "450" y = "250" }
         Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "1" x = "400" y = "175" }
-        TrashCan{ type = "" size = "100" x = "350" y = "530" }
-        //Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
-        //Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
-        //Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }
+        BonusPane{ type = "" size = "1" x = "480" y = "175" }
+        TrashCan{ type = "" size = "100" x = "750" y = "530" }
+        Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
+        Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
     }
     
 }

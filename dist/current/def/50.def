@@ -12,7 +12,7 @@ Level{
     //customer appearance rates
     CustomerRates{
         Customer{ type = "Worker" rate = "1" }
-        Customer{ type = "Student" rate = "3" }
+        Customer{ type = "Tourist Hawaiian" rate = "3" }
         Customer{ type = "Business" rate = "3" }
     }
     
@@ -33,7 +33,7 @@ Level{
     
     //level settings
     LevelSettings{
-        title = "'American 10'"
+        title = "'SweetShop 10'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"
@@ -42,9 +42,11 @@ Level{
     //level layout: customer stations, power-up buttons, decorations
     //layout of the game field
     Layout{
-        theme = "American" 
-        CustomerStation{ type = "" x = "100" y = "300" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "300" occupied = "no" }
+        theme = "SweetShop" 
+        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
         Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
         Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
         PowerUp{ type = "Sweet" x = "450" y = "200" }
@@ -52,9 +54,9 @@ Level{
         Counter{ type = "" x = "330" y = "95" }
         BonusPane{ type = "" size = "1" x = "480" y = "175" }
         TrashCan{ type = "" size = "100" x = "750" y = "530" }
-        Decoration { type = "theme.american.decoration.nopal" x = "70" y = "460" }
-        Decoration { type = "theme.american.decoration.barrel" x = "200" y = "460" }
-        Decoration { type = "theme.american.decoration.nopal" x = "330" y = "460" }
+        Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
+        Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
+        Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }
     }
     
 }

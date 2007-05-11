@@ -13,6 +13,7 @@ hotspot = 4,0
 sprite cell-highlight {
 bitmap = img/common/cell-highlight.png
 type   = blend
+truecolor=yes
 layout = 5x8
 }
 

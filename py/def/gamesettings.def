@@ -17,9 +17,9 @@ MasterChef {
         maxApproval = "5.0"
         customerLossPrice = "100"
         
-        autoReleaseCustomer = "no"
-        allowExtraIngredients = "yes"
-        exactRecipes = "no"
+        autoReleaseCustomer = "yes"
+        allowExtraIngredients = "no"
+        exactRecipes = "yes"
         
         powerups = "['Cross', 'Gift', 'Shuffle', 'Spoon', 'Sweet', 'Supersweet', 'Magicwand', 'EmptyTrash']"
         

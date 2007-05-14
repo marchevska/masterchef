@@ -322,7 +322,8 @@ class GameBoard(scraft.Dispatcher):
         elif cmd == Cmd_UtilizePowerUp:
             if parameter == 'bonus.hearts':
                 for tmp in self.CStations:
-                    tmp.Customer.GiveSweet()
+                    if tmp.Active:
+                        tmp.Customer.GiveSweet()
             
     def AddScore(self, delta):
         self.LevelScore = max(self.LevelScore + delta, 0)

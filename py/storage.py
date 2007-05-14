@@ -742,6 +742,7 @@ class Field(Storage):
                     
                     #сердечки - подарок всем покупателям
                     elif self.Cells[tmpPos] == 'bonus.hearts':
+                        self._HighlightCells((0,0), False)
                         self._RemoveTokenFrom(tmpPos, False, True)
                         globalvars.Board.SendCommand(Cmd_UtilizePowerUp, 'bonus.hearts')
                             

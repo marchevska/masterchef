@@ -37,6 +37,15 @@ Level{
         Ingredient{ type = "ice-cream" rate = "10" }
         Ingredient{ type = "milk" rate = "30" }
         Ingredient{ type = "strawberry" rate = "40" }
+        Ingredient{ type = "bonus.spoon" rate = "5" }
+        Ingredient{ type = "bonus.gift" rate = "5" }
+        Ingredient{ type = "bonus.sweet" rate = "5" }
+        Ingredient{ type = "bonus.magicwand" rate = "5" }
+        Ingredient{ type = "bonus.bomb" rate = "5" }
+        Ingredient{ type = "bonus.removerow" rate = "5" }
+        Ingredient{ type = "bonus.scrollback" rate = "5" }
+        Ingredient{ type = "bonus.hearts" rate = "5" }
+        Ingredient{ type = "bonus.shuffle" rate = "5" }
     }
     
     //level settings

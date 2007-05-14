@@ -38,6 +38,15 @@ Level{
         Ingredient{ type = "tomato" rate = "10" }
         Ingredient{ type = "chili-pepper" rate = "10" }
         Ingredient{ type = "tortilla" rate = "30" }
+        Ingredient{ type = "bonus.spoon" rate = "5" }
+        Ingredient{ type = "bonus.gift" rate = "5" }
+        Ingredient{ type = "bonus.sweet" rate = "5" }
+        Ingredient{ type = "bonus.magicwand" rate = "5" }
+        Ingredient{ type = "bonus.bomb" rate = "5" }
+        Ingredient{ type = "bonus.removerow" rate = "5" }
+        Ingredient{ type = "bonus.scrollback" rate = "5" }
+        Ingredient{ type = "bonus.hearts" rate = "5" }
+        Ingredient{ type = "bonus.shuffle" rate = "5" }
     }
     
     //level settings

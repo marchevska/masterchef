@@ -124,7 +124,8 @@ class Storage(scraft.Dispatcher):
             #elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
             else:
                 if sprite.cookie == Cmd_Receptor:
-                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                     if self.Cells[tmpPos] != Const_EmptyCell and len(self.HighlightedCells)>0:
                         globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
                         #токены - подобрать на мышь
@@ -282,7 +283,8 @@ class Store(Storage):
             if globalvars.StateStack[-1] == PState_Game:
                 if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
                     if sprite.cookie == Cmd_Receptor:
-                        tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                        #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                        tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                         if self.Cells[tmpPos] != Const_EmptyCell:
                             self._HighlightCells(tmpPos, flag)
         except:
@@ -356,7 +358,8 @@ class SingularStore(Storage):
             if globalvars.StateStack[-1] == PState_Game:
                 if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
                     if sprite.cookie == Cmd_Receptor:
-                        tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                        #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                        tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                         if self.Cells[tmpPos] != Const_EmptyCell:
                             self._HighlightCells(tmpPos, flag)
         except:
@@ -672,7 +675,7 @@ class Field(Storage):
             #программа для превращения!
             
             for cell in self.ConvertedCells:
-                self.Cells[cell] = self.Cells[parameter]
+                self.Cells[cell] = parameter
                 self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"))
                 
         #конец уровня; задать способ удаления блоков с поля
@@ -687,7 +690,8 @@ class Field(Storage):
             if globalvars.StateStack[-1] == PState_Game:
             #if self.State == FieldState_Input:
                 if sprite.cookie == Cmd_Receptor:
-                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
+                    #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                     if self.Cells[tmpPos] != Const_EmptyCell:
                         self._HighlightCells(tmpPos, flag)
         except:
@@ -702,7 +706,8 @@ class Field(Storage):
         if globalvars.StateStack[-1] == PState_Game:
         #if self.State == FieldState_Input:
             try:
-                tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                tmpPos = self._CellByCoords((x, y))
                 tmpAllBonuses = map(lambda z: z.GetContent(),
                     filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags()))
                 
@@ -756,8 +761,8 @@ class Field(Storage):
                     elif globalvars.Board.PickedTool == 'bonus.magicwand':
                         if len(self.HighlightedCells) >0:
                             self.ConvertedCells = list(self.HighlightedCells)
+                            self.SetState(FieldState_MagicWandConverting, self.Cells[tmpPos])
                             self._RemoveTokenFrom(self.SelectedCells[0], False, True)
-                            self.SetState(FieldState_MagicWandConverting, tmpPos)
                             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
                             
                 elif button == 1 and self.Action == Const_HighlightPick and self.Cells[tmpPos] in tmpAllBonuses:
@@ -854,10 +859,21 @@ class Collapsoid(Field):
                 self.SelectedCells = map(lambda x: (x[0], x[1]-1), self.SelectedCells)
                 self._DrawSelection()
                 for i in range(self.Cols):
+                    self.Receptors[i,0].Dispose()
+                for i in range(self.Cols):
                     for j in range(self.Rows):
                         self._SwapCells((i,j), (i,j+1))
+                        self.Receptors[i,j] = self.Receptors[i,j+1]
+                        self.Receptors[i,j].y = self._CellCoords((i,j))[1]
+                for i in range(self.Cols):
+                    self.Receptors[i, self.Rows] =  MakeDummySprite(self, Cmd_Receptor,
+                            self._CellCoords((i,self.Rows))[0], self._CellCoords((i,self.Rows))[1],
+                            Crd_deltaX, Crd_deltaY, Layer_Receptors)
+                    self.Receptors[i,self.Rows].SetItem(Indexes["Col"], i)
+                    self.Receptors[i,self.Rows].SetItem(Indexes["Row"], self.Rows)
+                    self.Receptors[i,self.Rows].parent = self.Base
                 self._GenerateMatchMap()
-                
+                self._ReHighlight()
                 self.DestCrd = 0
                 self.Speed = -self.ShiftSpeed
                 self.MovingTime = int(1.0*1000*Crd_deltaY/self.ShiftSpeed)
@@ -881,6 +897,7 @@ class Collapsoid(Field):
                 for j in range(self.Rows-1-noRows, -1, -1):
                     self._SwapCells((i,j), (i,j+noRows))
             self._GenerateMatchMap()
+            self._ReHighlight()
             
             self.DestCrd = 0
             self.MovingTime = int(1.0*1000*globalvars.GameSettings.GetFltAttr("scrollBackTime"))
@@ -982,7 +999,8 @@ class Collapsoid(Field):
                 Field._OnMouseClick(self, sprite, x, y, button)
             elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
                 if sprite.cookie == Cmd_Receptor:
-                    tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
+                    tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
+                    #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                     if self.MatchMap[tmpPos] != -1:
                         Field._OnMouseClick(self, sprite, x, y, button)
                     else:

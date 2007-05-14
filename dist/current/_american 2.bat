@@ -1,1 +1,1 @@
-main.exe run def/42.def
+main.exe run def/02.def

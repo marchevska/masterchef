@@ -156,7 +156,7 @@ Crd_HeartSpritesDx = 12
 Crd_HeartSpritesDy = 0
 Crd_RecipeSpriteDx = -26
 Crd_RecipeSpriteDy = -30
-Crd_RecipeInfoSpriteDx = 58
+Crd_RecipeInfoSpriteDx = 70
 Crd_RecipeInfoSpriteDy = -37
 
 Crd_ReleaseButtonDx = 55

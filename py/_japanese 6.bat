@@ -1,1 +1,1 @@
-main.py run def/26.def
+main.py run def/36.def

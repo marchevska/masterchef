@@ -1,1 +1,1 @@
-main.py run def/10.def
+main.py run def/50.def

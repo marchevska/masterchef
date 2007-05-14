@@ -1,1 +1,1 @@
-main.exe run def/50.def
+main.exe run def/10.def

@@ -11,9 +11,17 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker" rate = "1" }
-        Customer{ type = "Student" rate = "3" }
-        Customer{ type = "Business" rate = "3" }
+        Customer{ type = "Worker"           rate = "1" }
+        Customer{ type = "Vegetarian"       rate = "1" }
+        Customer{ type = "Schoolkid"        rate = "1" }
+        Customer{ type = "Student"          rate = "1" }
+        Customer{ type = "Oldlady"          rate = "1" }
+        Customer{ type = "Critic"           rate = "1" }
+        Customer{ type = "Business"         rate = "1" }
+        Customer{ type = "Tourist Hawaiian" rate = "1" }
+        Customer{ type = "Tourist Mexican"  rate = "1" }
+        Customer{ type = "Tourist Japanese" rate = "1" }
+        Customer{ type = "Tourist Russian"  rate = "1" }
     }
     
     //recipe appearance rates

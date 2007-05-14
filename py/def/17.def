@@ -12,7 +12,7 @@ Level{
     //customer appearance rates
     CustomerRates{
         Customer{ type = "Worker"           rate = "1" }
-        Customer{ type = "Vegetarian"       rate = "1" }
+        Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "1" }
         Customer{ type = "Student"          rate = "1" }
         Customer{ type = "Oldlady"          rate = "1" }
@@ -55,16 +55,13 @@ Level{
         CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Field{ XSize = "6" YSize = "6" X0 = "450" Y0 = "130" }
-        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
-        PowerUp{ type = "Sweet" x = "450" y = "200" }
-        PowerUp{ type = "Gift" x = "450" y = "250" }
-        Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "1" x = "480" y = "250" }
-        TrashCan{ type = "" size = "100" x = "750" y = "530" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
-        Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
+        //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Counter{ type = "" x = "230" y = "145" }
+        CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
+        TrashCan{ type = "" size = "100" x = "350" y = "530" }
+        Decoration { type = "theme.mexican.decoration.carpet-sun" x = "100" y = "200" }
+        Decoration { type = "theme.mexican.decoration.carpet-palm" x = "300" y = "200" }
     }
     
 }

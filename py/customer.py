@@ -26,7 +26,7 @@ class Customer(scraft.Dispatcher):
     def __init__(self, type):
         self.Type = type
         self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("src"), Layer_Customer,
-                        Crd_Queue_X0, Crd_Queue_Y0, scraft.HotspotCenterBottom)
+                        0, 0, scraft.HotspotCenterBottom)
         self.Animator = CustomersAnimator(self.Sprite,
                 globalvars.CustomerAnimations.GetSubtag(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("animation"), "Animation"))
         self.HeartSprites = []
@@ -216,7 +216,8 @@ class Customer(scraft.Dispatcher):
 # Выпускает новых покупателей к столикам
 #-------------------------------
 class CustomersQue(scraft.Dispatcher):
-    def __init__(self, theme):
+    def __init__(self, theme, x, y, tabletX, tabletY):
+        self.X0, self.Y0 = x, y
         #список покупателей и их заказов
         #обеспечиваем, чтобы не было более двух одинаовых покупателей подряд!
         self.CustomersList = []
@@ -230,9 +231,9 @@ class CustomersQue(scraft.Dispatcher):
             self.CustomersList.append(RandomKeyByRates(tmpRates))
             
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
-        self.TabletSprite = MakeSimpleSprite(theme.GetStrAttr("tablet"), Layer_InterfaceBg, Crd_QueueTablet_X0, Crd_QueueTablet_Y0)
+        self.TabletSprite = MakeSimpleSprite(theme.GetStrAttr("tablet"), Layer_InterfaceBg, tabletX, tabletY)
         self.TextMarker = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                { "x": Crd_QueueMarker_X0, "y": Crd_QueueMarker_Y0, "cfilt-color": 0x600000,
+                { "x": tabletX + Crd_QueueMarker_TabletDx, "y": tabletY + Crd_QueueMarker_TabletDy, "cfilt-color": 0x600000,
                  "hotspot": scraft.HotspotCenter })
         self._Draw()
         self.SetState(QueState_None)
@@ -240,7 +241,7 @@ class CustomersQue(scraft.Dispatcher):
         
     def _Draw(self):
         for i in range(min(len(self.Customers), Const_VisibleCustomers)):
-            self.Customers[i].DrawAt(Crd_Queue_X0 + i*Crd_QueueCustomerDx, Crd_Queue_Y0 + i*Crd_QueueCustomerDy)
+            self.Customers[i].DrawAt(self.X0 + i*Crd_QueueCustomerDx, self.Y0 + i*Crd_QueueCustomerDy)
             self.Customers[i].Show(True)
         for i in range(Const_VisibleCustomers, len(self.Customers)):
             self.Customers[i].Show(False)

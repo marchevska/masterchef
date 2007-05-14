@@ -305,7 +305,7 @@ MasterChef{
         sprite(theme.american.recipeinfo) { bitmap = "img/episodes/american/recipe-info.png" type = "blend" }
         sprite(theme.american.field) { bitmap = "img/episodes/american/field.png" type = "blend" layout = "3x3" }
         sprite(theme.american.collapsoid) { bitmap = "img/episodes/american/collapsoid.png" type = "blend" layout = "3x3" }
-        font(theme.american.collapsoid.dropper) { bitmap = "img/american/american/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.american.collapsoid.dropper) { bitmap = "img/episodes/american/collapsoid.dropper.png" type = "blend" symbols="LMR" }
         font(theme.american.collapsoid.dropper.roll) { bitmap = "img/episodes/american/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
         font(theme.american.collapsoid.dropper.down) { bitmap = "img/episodes/american/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
         sprite(theme.american.storage) { bitmap = "img/episodes/american/storage.png" type = "blend" layout = "3x3" }

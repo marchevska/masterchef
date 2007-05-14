@@ -130,13 +130,15 @@ QueState_Passive = 2
 
 Crd_Queue_X0 = 200
 Crd_Queue_Y0 = 125
-Crd_QueueCustomerDx = 42
-Crd_QueueCustomerDy = 0
 Crd_QueueTablet_X0 = 150
 Crd_QueueTablet_Y0 = 70
 Crd_QueueMarker_X0 = 150
 Crd_QueueMarker_Y0 = 47
 
+Crd_QueueMarker_TabletDx = 0
+Crd_QueueMarker_TabletDy = -23
+Crd_QueueCustomerDx = 42
+Crd_QueueCustomerDy = 0
 Crd_StationDummyWidth = 100
 Crd_StationDummyHeight = 130
 Crd_StationDummyDx = 30

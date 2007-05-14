@@ -15,9 +15,17 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker" rate = "1" }
-        Customer{ type = "Student" rate = "3" }
-        Customer{ type = "Business" rate = "3" }
+        Customer{ type = "Worker"           rate = "4" }
+        Customer{ type = "Vegetarian"       rate = "1" }
+        Customer{ type = "Schoolkid"        rate = "1" }
+        Customer{ type = "Student"          rate = "6" }
+        Customer{ type = "Oldlady"          rate = "1" }
+        Customer{ type = "Critic"           rate = "1" }
+        Customer{ type = "Business"         rate = "5" }
+        Customer{ type = "Tourist Hawaiian" rate = "9" }
+        Customer{ type = "Tourist Mexican"  rate = "2" }
+        Customer{ type = "Tourist Japanese" rate = "3" }
+        Customer{ type = "Tourist Russian"  rate = "2" }
     }
     
     //recipe appearance rates
@@ -33,12 +41,12 @@ Level{
         Ingredient{ type = "ice-cream" rate = "20" }
         Ingredient{ type = "milk" rate = "30" }
         Ingredient{ type = "strawberry" rate = "40" }
-        Ingredient{ type = "bonus.spoon" rate = "5" }
-        Ingredient{ type = "bonus.gift" rate = "5" }
-        Ingredient{ type = "bonus.sweet" rate = "5" }
-        Ingredient{ type = "bonus.magicwand" rate = "5" }
-        Ingredient{ type = "bonus.bomb" rate = "5" }
-        Ingredient{ type = "bonus.removerow" rate = "5" }
+        //Ingredient{ type = "bonus.spoon" rate = "5" }
+        //Ingredient{ type = "bonus.gift" rate = "5" }
+        //Ingredient{ type = "bonus.sweet" rate = "5" }
+        Ingredient{ type = "bonus.magicwand" rate = "25" }
+        Ingredient{ type = "bonus.bomb" rate = "15" }
+        Ingredient{ type = "bonus.removerow" rate = "15" }
     }
     
     //level settings
@@ -57,11 +65,9 @@ Level{
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "8" YSize = "12" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "450" Y0 = "50" }
-        PowerUp{ type = "Sweet" x = "370" y = "200" }
-        PowerUp{ type = "Gift" x = "370" y = "250" }
-        Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "1" x = "400" y = "175" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Counter{ type = "" x = "230" y = "145" }
+        CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }
         //Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
         //Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }

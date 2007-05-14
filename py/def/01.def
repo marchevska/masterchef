@@ -53,13 +53,10 @@ Level{
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
-        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
-        PowerUp{ type = "Sweet" x = "450" y = "200" }
-        PowerUp{ type = "Gift" x = "450" y = "250" }
-        Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "1" x = "480" y = "175" }
-        TrashCan{ type = "" size = "100" x = "750" y = "530" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Counter{ type = "" x = "230" y = "145" }
+        CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
+        TrashCan{ type = "" size = "100" x = "350" y = "530" }
         Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
         Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
     }

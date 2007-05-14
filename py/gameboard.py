@@ -139,7 +139,9 @@ class GameBoard(scraft.Dispatcher):
         
         #reset customer dispatcher
         self.RemainingCustomers = globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers")
-        self.CustomersQue = CustomersQue(tmpTheme)
+        tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("CustomersQue")
+        self.CustomersQue = CustomersQue(tmpTheme, tmp.GetIntAttr("X"), tmp.GetIntAttr("Y"),
+                                         tmp.GetIntAttr("TabletX"), tmp.GetIntAttr("TabletY"))
         
         #размещение стейшенов 
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("CustomerStation"):

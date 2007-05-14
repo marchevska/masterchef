@@ -11,9 +11,17 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker" rate = "1" }
-        Customer{ type = "Student" rate = "3" }
-        Customer{ type = "Tourist Japanese" rate = "3" }
+        Customer{ type = "Worker"           rate = "2" }
+        Customer{ type = "Vegetarian"       rate = "0" }
+        Customer{ type = "Schoolkid"        rate = "0" }
+        Customer{ type = "Student"          rate = "3" }
+        Customer{ type = "Oldlady"          rate = "0" }
+        Customer{ type = "Critic"           rate = "0" }
+        Customer{ type = "Business"         rate = "0" }
+        Customer{ type = "Tourist Hawaiian" rate = "0" }
+        Customer{ type = "Tourist Mexican"  rate = "0" }
+        Customer{ type = "Tourist Japanese" rate = "5" }
+        Customer{ type = "Tourist Russian"  rate = "0" }
     }
     
     //recipe appearance rates
@@ -44,26 +52,17 @@ Level{
     //level layout: customer stations, power-up buttons, decorations
     //layout of the game field
     Layout{
-        theme = "Mexican" 
-        CustomerStation{ type = "" x = "100" y = "310" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "310" occupied = "no" }
-        CustomerStation{ type = "" x = "100" y = "530" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "530" occupied = "yes" }
-        Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
-        Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "yes" }
-        PowerUp{ type = "Sweet" x = "450" y = "200" }
-        PowerUp{ type = "Gift" x = "450" y = "250" }
-        PowerUp{ type = "EmptyTrash" x = "450" y = "300" }
-        PowerUp{ type = "Magicwand" x = "450" y = "350" }
-        PowerUp{ type = "Cross" x = "450" y = "400" }
-        PowerUp{ type = "Shuffle" x = "450" y = "450" }
-        PowerUp{ type = "Spoon" x = "450" y = "500" }
-        PowerUp{ type = "Supersweet" x = "450" y = "550" }
-        Counter{ type = "" x = "330" y = "95" }
-        BonusPane{ type = "" size = "2" x = "480" y = "165" }
-        TrashCan{ type = "" size = "100" x = "750" y = "530" }
-        //Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
-        //Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
+        theme = "Japanese" 
+        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
+        //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Counter{ type = "" x = "230" y = "145" }
+        CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
+        TrashCan{ type = "" size = "100" x = "350" y = "530" }
+        Decoration { type = "theme.japanese.decoration.screen2" x = "50" y = "200" }
+        Decoration { type = "theme.japanese.decoration.screen2" x = "300" y = "200" }
     }
     
 }

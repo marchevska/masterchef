@@ -91,6 +91,12 @@ MasterChef{
         sprite(ingredient.strawberry.icon) { bitmap = "img/ingredients/strawberry.icon.png" type = "blend" }
         sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
         
+        //American
+        sprite(ingredient.pineapple) { bitmap = "img/ingredients/pineapple.png" type = "blend" }
+        
+        //American - icons
+        sprite(ingredient.pineapple.icon) { bitmap = "img/ingredients/pineapple.icon.png" type = "blend" }
+        
         //Bonus
         sprite(bonus.bomb) { bitmap = "img/ingredients/bonus.bomb.png" type = "blend" }
         sprite(bonus.gift) { bitmap = "img/ingredients/bonus.gift.png" type = "blend" }
@@ -139,6 +145,36 @@ MasterChef{
         sprite(recipe.onigiri.empty) { bitmap = "img/recipes/japanese/onigiri.empty.png" type = "blend" }
         sprite(recipe.nigirizushi.empty) { bitmap = "img/recipes/japanese/nigirizushi.empty.png" type = "blend" }
         sprite(recipe.morikomi.empty) { bitmap = "img/recipes/japanese/morikomi.empty.png" type = "blend" }
+        
+        //American
+        sprite(recipe.barbequed-fish) { bitmap = "img/recipes/american/barbequed-fish.png" type = "blend" }
+        sprite(recipe.barbequed-meat) { bitmap = "img/recipes/american/barbequed-meat.png" type = "blend" }
+        sprite(recipe.bean-soup) { bitmap = "img/recipes/american/bean-soup.png" type = "blend" }
+        sprite(recipe.chicken-pasta-salad) { bitmap = "img/recipes/american/chicken-pasta-salad.png" type = "blend" }
+        sprite(recipe.chicken-stuffed-chili) { bitmap = "img/recipes/american/chicken-stuffed-chili.png" type = "blend" }
+        sprite(recipe.chicken-pineapple) { bitmap = "img/recipes/american/chicken-pineapple.png" type = "blend" }
+        sprite(recipe.chili-con-carne) { bitmap = "img/recipes/american/chili-con-carne.png" type = "blend" }
+        sprite(recipe.fish-with-squash) { bitmap = "img/recipes/american/fish-with-squash.png" type = "blend" }
+        sprite(recipe.pasta-with-veggies) { bitmap = "img/recipes/american/pasta-with-veggies.png" type = "blend" }
+        sprite(recipe.pumpkin-soup) { bitmap = "img/recipes/american/pumpkin-soup.png" type = "blend" }
+        sprite(recipe.salmon-chowder) { bitmap = "img/recipes/american/salmon-chowder.png" type = "blend" }
+        sprite(recipe.sw-chowder) { bitmap = "img/recipes/american/sw-chowder.png" type = "blend" }
+        sprite(recipe.sweet-sour-fish) { bitmap = "img/recipes/american/sweet-sour-fish.png" type = "blend" }
+        
+        //American - empty
+        sprite(recipe.barbequed-fish.empty) { bitmap = "img/recipes/american/barbequed-fish.empty.png" type = "blend" }
+        sprite(recipe.barbequed-meat.empty) { bitmap = "img/recipes/american/barbequed-meat.empty.png" type = "blend" }
+        sprite(recipe.bean-soup.empty) { bitmap = "img/recipes/american/bean-soup.empty.png" type = "blend" }
+        sprite(recipe.chicken-pasta-salad.empty) { bitmap = "img/recipes/american/chicken-pasta-salad.empty.png" type = "blend" }
+        sprite(recipe.chicken-stuffed-chili.empty) { bitmap = "img/recipes/american/chicken-stuffed-chili.empty.png" type = "blend" }
+        sprite(recipe.chicken-pineapple.empty) { bitmap = "img/recipes/american/chicken-pineapple.empty.png" type = "blend" }
+        sprite(recipe.chili-con-carne.empty) { bitmap = "img/recipes/american/chili-con-carne.empty.png" type = "blend" }
+        sprite(recipe.fish-with-squash.empty) { bitmap = "img/recipes/american/fish-with-squash.empty.png" type = "blend" }
+        sprite(recipe.pasta-with-veggies.empty) { bitmap = "img/recipes/american/pasta-with-veggies.empty.png" type = "blend" }
+        sprite(recipe.pumpkin-soup.empty) { bitmap = "img/recipes/american/pumpkin-soup.empty.png" type = "blend" }
+        sprite(recipe.salmon-chowder.empty) { bitmap = "img/recipes/american/salmon-chowder.empty.png" type = "blend" }
+        sprite(recipe.sw-chowder.empty) { bitmap = "img/recipes/american/sw-chowder.empty.png" type = "blend" }
+        sprite(recipe.sweet-sour-fish.empty) { bitmap = "img/recipes/american/sweet-sour-fish.empty.png" type = "blend" }
         
         //Mexican
         sprite(recipe.assorted-empanadas) { bitmap = "img/recipes/mexican/assorted-empanadas.png" type = "blend" }

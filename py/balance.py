@@ -4,6 +4,7 @@ import scraft
 from scraft import engine as oE
 from Tkinter import *
 import Image, ImageTk, tkFont
+import string, traceback
 import globalvars
 import defs
 
@@ -234,13 +235,14 @@ class Application(Frame):
                     tmpDiff = 0
                     tmpRcp = Recipes[i].get()
                     if tmpRcp != ZEROSTRING:
-                        tmpIngRequired = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(rcp).GetSrtAttr("requires"))
+                        tmpIngRequired = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(tmpRcp).GetStrAttr("requires"))
                         for ing in tmpIngRequired.keys():
                             ind = tmpAllIngredients.index(ing)
                             tmpDiff += max(1.0*tmpIngRequired[ing]/IngredGroup[ind].get(), MIN_DIFF)
                         tmpDiff = int(1000*tmpDiff)*0.001
                         RecipeDiffs[i].set(tmpDiff)
         except:
+            print unicode(string.join(apply(traceback.format_exception, sys.exc_info())))
             pass
         
     #copy recipes from listbox to a list

@@ -51,6 +51,10 @@ MasterChef {
         Ingredient(tortilla) { type = "pasta" src = "ingredient.tortilla" iconSrc = "ingredient.tortilla.icon"}
         Ingredient(tortilla-chips) { type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
         
+        //American
+        Ingredient(pineapple) { type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
+        Ingredient(pasta) { type = "pasta" src = "ingredient.pasta" iconSrc = "ingredient.pasta.icon"}
+        
         //SweetShop
         Ingredient(apple) { type = "fruit" src = "ingredient.apple" iconSrc = "ingredient.apple.icon"}
         Ingredient(banana) { type = "fruit" src = "ingredient.banana" iconSrc = "ingredient.banana.icon"}
@@ -65,7 +69,6 @@ MasterChef {
         Ingredient(sugar) { type = "sweet" src = "ingredient.sugar" iconSrc = "ingredient.sugar.icon"}
         
         
-        //Ingredient(pineapple) { type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
         //Ingredient(olives) { type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
         //Ingredient(artichoke) { type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
         
@@ -229,6 +232,137 @@ MasterChef {
             src = "recipe.truffles"
             emptySrc = "recipe.truffles.empty"
             requires = "{ 'chocolate': 5, 'sour-cream': 5, 'nuts': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        //American recipes
+        Recipe(Barbequed Fish) {
+            setting = "American"
+            type = ""
+            src = "recipe.barbequed-fish"
+            emptySrc = "recipe.barbequed-fish.empty"
+            requires = "{ 'salmon': 5, 'chili-pepper': 5, 'tomato': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Barbequed Meat) {
+            setting = "American"
+            type = ""
+            src = "recipe.barbequed-meat"
+            emptySrc = "recipe.barbequed-meat.empty"
+            requires = "{ 'pork': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(BeanSoup Am) {
+            setting = "American"
+            type = ""
+            src = "recipe.bean-soup"
+            emptySrc = "recipe.bean-soup.empty"
+            requires = "{ 'bean': 10, 'onion': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chicken Pasta Salad) {
+            setting = "American"
+            type = ""
+            src = "recipe.chicken-pasta-salad"
+            emptySrc = "recipe.chicken-pasta-salad.empty"
+            requires = "{ 'meat': 5, 'veggymix': 5, 'pasta': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chicken-Stuffed Chili) {
+            setting = "American"
+            type = ""
+            src = "recipe.chicken-stuffed-chili"
+            emptySrc = "recipe.chicken-stuffed-chili.empty"
+            requires = "{ 'meat': 5, 'chili-pepper': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chicken with Pineapple) {
+            setting = "American"
+            type = ""
+            src = "recipe.chicken-pineapple"
+            emptySrc = "recipe.chicken-pineapple.empty"
+            requires = "{ 'meat': 10, 'pineapple': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chili con Carne Am) {
+            setting = "American"
+            type = ""
+            src = "recipe.chili-con-carne"
+            emptySrc = "recipe.chili-con-carne.empty"
+            requires = "{ 'chili-pepper': 5, 'tomato': 5, 'pork': 5, 'bean': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fish with Squash) {
+            setting = "American"
+            type = ""
+            src = "recipe.fish-with-squash"
+            emptySrc = "recipe.fish-with-squash.empty"
+            requires = "{ 'salmon': 5, 'pumpkin': 5, 'chili-pepper': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pasta with Veggies) {
+            setting = "American"
+            type = ""
+            src = "recipe.pasta-with-veggies"
+            emptySrc = "recipe.pasta-with-veggies.empty"
+            requires = "{ 'chili-pepper': 5, 'pasta': 5, 'pumpkin': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pumpkin Soup) {
+            setting = "American"
+            type = ""
+            src = "recipe.pumpkin-soup"
+            emptySrc = "recipe.pumpkin-soup.empty"
+            requires = "{ 'pumpkin': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Salmon Chowder) {
+            setting = "American"
+            type = ""
+            src = "recipe.salmon-chowder"
+            emptySrc = "recipe.salmon-chowder.empty"
+            requires = "{ 'salmon': 5, 'veggymix': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(SW Chowder) {
+            setting = "American"
+            type = ""
+            src = "recipe.sw-chowder"
+            emptySrc = "recipe.sw-chowder.empty"
+            requires = "{ 'veggymix': 5, 'tomato': 5, 'meat': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Sweet N Sour Fish) {
+            setting = "American"
+            type = ""
+            src = "recipe.sweet-sour-fish"
+            emptySrc = "recipe.sweet-sour-fish.empty"
+            requires = "{ 'salmon': 5, 'onion': 5, 'pineapple': 5 }"
             readyAt = "5"
             price = "100"
         }

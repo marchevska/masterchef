@@ -91,11 +91,19 @@ MasterChef{
         sprite(ingredient.strawberry.icon) { bitmap = "img/ingredients/strawberry.icon.png" type = "blend" }
         sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
         
+        //Hawaii
+        sprite(ingredient.bun) { bitmap = "img/ingredients/bun.png" type = "blend" }
+        
+        //Hawaii - icons
+        sprite(ingredient.bun.icon) { bitmap = "img/ingredients/bun.icon.png" type = "blend" }
+        
         //American
         sprite(ingredient.pineapple) { bitmap = "img/ingredients/pineapple.png" type = "blend" }
+        sprite(ingredient.pasta) { bitmap = "img/ingredients/pasta.png" type = "blend" }
         
         //American - icons
         sprite(ingredient.pineapple.icon) { bitmap = "img/ingredients/pineapple.icon.png" type = "blend" }
+        sprite(ingredient.pasta.icon) { bitmap = "img/ingredients/pasta.icon.png" type = "blend" }
         
         //Bonus
         sprite(bonus.bomb) { bitmap = "img/ingredients/bonus.bomb.png" type = "blend" }
@@ -149,11 +157,11 @@ MasterChef{
         //American
         sprite(recipe.barbequed-fish) { bitmap = "img/recipes/american/barbequed-fish.png" type = "blend" }
         sprite(recipe.barbequed-meat) { bitmap = "img/recipes/american/barbequed-meat.png" type = "blend" }
-        sprite(recipe.bean-soup) { bitmap = "img/recipes/american/bean-soup.png" type = "blend" }
+        //sprite(recipe.bean-soup) { bitmap = "img/recipes/american/bean-soup.png" type = "blend" }
         sprite(recipe.chicken-pasta-salad) { bitmap = "img/recipes/american/chicken-pasta-salad.png" type = "blend" }
         sprite(recipe.chicken-stuffed-chili) { bitmap = "img/recipes/american/chicken-stuffed-chili.png" type = "blend" }
         sprite(recipe.chicken-pineapple) { bitmap = "img/recipes/american/chicken-pineapple.png" type = "blend" }
-        sprite(recipe.chili-con-carne) { bitmap = "img/recipes/american/chili-con-carne.png" type = "blend" }
+        //sprite(recipe.chili-con-carne) { bitmap = "img/recipes/american/chili-con-carne.png" type = "blend" }
         sprite(recipe.fish-with-squash) { bitmap = "img/recipes/american/fish-with-squash.png" type = "blend" }
         sprite(recipe.pasta-with-veggies) { bitmap = "img/recipes/american/pasta-with-veggies.png" type = "blend" }
         sprite(recipe.pumpkin-soup) { bitmap = "img/recipes/american/pumpkin-soup.png" type = "blend" }
@@ -164,17 +172,47 @@ MasterChef{
         //American - empty
         sprite(recipe.barbequed-fish.empty) { bitmap = "img/recipes/american/barbequed-fish.empty.png" type = "blend" }
         sprite(recipe.barbequed-meat.empty) { bitmap = "img/recipes/american/barbequed-meat.empty.png" type = "blend" }
-        sprite(recipe.bean-soup.empty) { bitmap = "img/recipes/american/bean-soup.empty.png" type = "blend" }
+        //sprite(recipe.bean-soup.empty) { bitmap = "img/recipes/american/bean-soup.empty.png" type = "blend" }
         sprite(recipe.chicken-pasta-salad.empty) { bitmap = "img/recipes/american/chicken-pasta-salad.empty.png" type = "blend" }
         sprite(recipe.chicken-stuffed-chili.empty) { bitmap = "img/recipes/american/chicken-stuffed-chili.empty.png" type = "blend" }
         sprite(recipe.chicken-pineapple.empty) { bitmap = "img/recipes/american/chicken-pineapple.empty.png" type = "blend" }
-        sprite(recipe.chili-con-carne.empty) { bitmap = "img/recipes/american/chili-con-carne.empty.png" type = "blend" }
+        //sprite(recipe.chili-con-carne.empty) { bitmap = "img/recipes/american/chili-con-carne.empty.png" type = "blend" }
         sprite(recipe.fish-with-squash.empty) { bitmap = "img/recipes/american/fish-with-squash.empty.png" type = "blend" }
         sprite(recipe.pasta-with-veggies.empty) { bitmap = "img/recipes/american/pasta-with-veggies.empty.png" type = "blend" }
         sprite(recipe.pumpkin-soup.empty) { bitmap = "img/recipes/american/pumpkin-soup.empty.png" type = "blend" }
         sprite(recipe.salmon-chowder.empty) { bitmap = "img/recipes/american/salmon-chowder.empty.png" type = "blend" }
         sprite(recipe.sw-chowder.empty) { bitmap = "img/recipes/american/sw-chowder.empty.png" type = "blend" }
         sprite(recipe.sweet-sour-fish.empty) { bitmap = "img/recipes/american/sweet-sour-fish.empty.png" type = "blend" }
+        
+        //Hawaiian
+        sprite(recipe.avocado-salad) { bitmap = "img/recipes/hawaiian/avocado-salad.png" type = "blend" }
+        sprite(recipe.avocado-salmon-sandwitch) { bitmap = "img/recipes/hawaiian/avocado-salmon-sandwitch.png" type = "blend" }
+        sprite(recipe.bombay-turkey) { bitmap = "img/recipes/hawaiian/bombay-turkey.png" type = "blend" }
+        sprite(recipe.chicken-avocado-rice) { bitmap = "img/recipes/hawaiian/chicken-avocado-rice.png" type = "blend" }
+        sprite(recipe.curried-ckicken) { bitmap = "img/recipes/hawaiian/curried-ckicken.png" type = "blend" }
+        sprite(recipe.grilled-salmon) { bitmap = "img/recipes/hawaiian/grilled-salmon.png" type = "blend" }
+        sprite(recipe.pasta-seafood) { bitmap = "img/recipes/hawaiian/pasta-seafood.png" type = "blend" }
+        sprite(recipe.salmon-creole) { bitmap = "img/recipes/hawaiian/salmon-creole.png" type = "blend" }
+        sprite(recipe.scampi) { bitmap = "img/recipes/hawaiian/scampi.png" type = "blend" }
+        sprite(recipe.shark-citrus-salad) { bitmap = "img/recipes/hawaiian/shark-citrus-salad.png" type = "blend" }
+        sprite(recipe.shrimp-sandwitch) { bitmap = "img/recipes/hawaiian/shrimp-sandwitch.png" type = "blend" }
+        sprite(recipe.spaghetti-veg) { bitmap = "img/recipes/hawaiian/spaghetti-veg.png" type = "blend" }
+        sprite(recipe.spicy-shrimps) { bitmap = "img/recipes/hawaiian/spicy-shrimps.png" type = "blend" }
+        
+        //Hawaiian - empty
+        sprite(recipe.avocado-salad.empty) { bitmap = "img/recipes/hawaiian/avocado-salad.empty.png" type = "blend" }
+        sprite(recipe.avocado-salmon-sandwitch.empty) { bitmap = "img/recipes/hawaiian/avocado-salmon-sandwitch.empty.png" type = "blend" }
+        sprite(recipe.bombay-turkey.empty) { bitmap = "img/recipes/hawaiian/bombay-turkey.empty.png" type = "blend" }
+        sprite(recipe.chicken-avocado-rice.empty) { bitmap = "img/recipes/hawaiian/chicken-avocado-rice.empty.png" type = "blend" }
+        sprite(recipe.curried-ckicken.empty) { bitmap = "img/recipes/hawaiian/curried-ckicken.empty.png" type = "blend" }
+        sprite(recipe.grilled-salmon.empty) { bitmap = "img/recipes/hawaiian/grilled-salmon.empty.png" type = "blend" }
+        sprite(recipe.pasta-seafood.empty) { bitmap = "img/recipes/hawaiian/pasta-seafood.empty.png" type = "blend" }
+        sprite(recipe.salmon-creole.empty) { bitmap = "img/recipes/hawaiian/salmon-creole.empty.png" type = "blend" }
+        sprite(recipe.scampi.empty) { bitmap = "img/recipes/hawaiian/scampi.empty.png" type = "blend" }
+        sprite(recipe.shark-citrus-salad.empty) { bitmap = "img/recipes/hawaiian/shark-citrus-salad.empty.png" type = "blend" }
+        sprite(recipe.shrimp-sandwitch.empty) { bitmap = "img/recipes/hawaiian/shrimp-sandwitch.empty.png" type = "blend" }
+        sprite(recipe.spaghetti-veg.empty) { bitmap = "img/recipes/hawaiian/spaghetti-veg.empty.png" type = "blend" }
+        sprite(recipe.spicy-shrimps.empty) { bitmap = "img/recipes/hawaiian/spicy-shrimps.empty.png" type = "blend" }
         
         //Mexican
         sprite(recipe.assorted-empanadas) { bitmap = "img/recipes/mexican/assorted-empanadas.png" type = "blend" }

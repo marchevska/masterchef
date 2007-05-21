@@ -263,7 +263,7 @@ defs.ReadResourceInfo()
 
 AllRecipes = map(lambda x: x.GetContent(), globalvars.CuisineInfo.GetTag("Recipes").Tags())
 AllRecipes.sort()
-AllSettings = ["Japanese", "Mexican", "Rusian", "SweetShop", "American"]
+AllSettings = ["Japanese", "Mexican", "Rusian", "Hawaiian", "American"]
 AllIngredients = map(lambda x: x.GetContent(), globalvars.CuisineInfo.GetTag("Ingredients").Tags())
 AllIngredients.sort()
 CurrentRecipes = []

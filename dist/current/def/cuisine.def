@@ -55,6 +55,9 @@ MasterChef {
         Ingredient(pineapple) { type = "fruit" src = "ingredient.pineapple" iconSrc = "ingredient.pineapple.icon"}
         Ingredient(pasta) { type = "pasta" src = "ingredient.pasta" iconSrc = "ingredient.pasta.icon"}
         
+        //Hawaii
+        Ingredient(bun) { type = "pasta" src = "ingredient.bun" iconSrc = "ingredient.bun.icon"}
+        
         //SweetShop
         Ingredient(apple) { type = "fruit" src = "ingredient.apple" iconSrc = "ingredient.apple.icon"}
         Ingredient(banana) { type = "fruit" src = "ingredient.banana" iconSrc = "ingredient.banana.icon"}
@@ -668,6 +671,140 @@ MasterChef {
             readyAt = "15"
             price = "100"
         }
+        
+        
+        //Hawaiian recipes
+        
+        Recipe(Avocado Salad) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.avocado-salad"
+            emptySrc = "recipe.avocado-salad.empty"
+            requires = "{ 'avocado': 5, 'tomato': 5, 'egg':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Avocado Salmon Sandwitch) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.avocado-salmon-sandwitch"
+            emptySrc = "recipe.avocado-salmon-sandwitch.empty"
+            requires = "{ 'salmon': 5, 'avocado': 5, 'cheese': 5, 'lime':2, 'bun': 5 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Bombay Turkey) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.bombay-turkey"
+            emptySrc = "recipe.bombay-turkey.empty"
+            requires = "{ 'meat': 5, 'veggymix': 5, 'sour-cream':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Chicken with Avocado Rice) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.chicken-avocado-rice"
+            emptySrc = "recipe.chicken-avocado-rice.empty"
+            requires = "{ 'avocado': 5, 'meat': 5, 'rice':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Curried Chicken) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.curried-ckicken"
+            emptySrc = "recipe.curried-ckicken.empty"
+            requires = "{ 'veggymix': 5, 'meat': 5, 'rice':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Grilled Salmon) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.grilled-salmon"
+            emptySrc = "recipe.grilled-salmon.empty"
+            requires = "{ 'salmon': 5, 'tomato': 5, 'chili-pepper': 5, 'lime':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Pasta with Seafood) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.pasta-seafood"
+            emptySrc = "recipe.pasta-seafood.empty"
+            requires = "{ 'shrimp': 5, 'pasta': 5, 'sour-cream':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Salmon Creole) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.salmon-creole"
+            emptySrc = "recipe.salmon-creole.empty"
+            requires = "{ 'salmon': 5, 'tomato': 5, 'cheese': 5, 'egg':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Scampi) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.scampi"
+            emptySrc = "recipe.scampi.empty"
+            requires = "{ 'shrimp': 5, 'chili-pepper': 5, 'lime':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Shark Citrus Salad) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.shark-citrus-salad"
+            emptySrc = "recipe.shark-citrus-salad.empty"
+            requires = "{ 'salmon': 5, 'chili-pepper': 5, 'lime':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Shrimp Sandwitch) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.shrimp-sandwitch"
+            emptySrc = "recipe.shrimp-sandwitch.empty"
+            requires = "{ 'shrimp': 5, 'cheese': 5, 'egg':2, 'bun': 5 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Spaghetti with Vegetables) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.spaghetti-veg"
+            emptySrc = "recipe.spaghetti-veg.empty"
+            requires = "{ 'pasta': 5, 'veggymix': 5, 'sour-cream':2 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Spicy Shrimps) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.spicy-shrimps"
+            emptySrc = "recipe.spicy-shrimps.empty"
+            requires = "{ 'shrimp': 5, 'tomato': 5, 'chili-pepper':2, 'rice': 5 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
         
     }
    

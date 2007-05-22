@@ -47,9 +47,9 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                                     {"x": 185, "y": 51, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
-        self.HudElements["Score"] = MakeSprite(u"hobor-17", Layer_InterfaceTxt,
+        self.HudElements["Score"] = MakeSprite(u"domcasual-20-green", Layer_InterfaceTxt,
                                     {"x": 237, "y": 50, "hotspot": scraft.HotspotCenter,
-                                     "cfilt-color": 0xFF8000})
+                                     "cfilt-color": 0xFFFFF})
         self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                                     {"x": 293, "y": 51, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
@@ -230,7 +230,7 @@ class GameBoard(scraft.Dispatcher):
             self.NoErrors = min(self.NoErrors+1, globalvars.GameSettings.GetIntAttr("maxColapsoidErrors"))
             self.AddScore(-self.NoErrors*len(tmp))
             for (x, y) in tmp:
-                self._PopupText(str(-self.NoErrors), "hobor-17", x, y)
+                self._PopupText(str(-self.NoErrors), "domcasual-20-red", x, y)
             
         elif cmd == Cmd_ClickStation:
             if self.GameCursorState == GameCursorState_Tokens:
@@ -239,7 +239,7 @@ class GameBoard(scraft.Dispatcher):
                         tmpFrom = self.TokensFrom
                         tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
                         self.AddScore(tmpDeltaScore)
-                        self._PopupText(str(tmpDeltaScore), "hobor-17", parameter["station"].CrdX, parameter["station"].CrdY)
+                        self._PopupText("+"+str(tmpDeltaScore), "domcasual-20-green", parameter["station"].CrdX, parameter["station"].CrdY)
                         self.TokensFrom.RemoveTokens()
                         self.SendCommand(Cmd_DropWhatYouCarry)
                         if tmpFrom in self.Fields:
@@ -464,7 +464,7 @@ class GameBoard(scraft.Dispatcher):
         
     def _PopupText(self, text, font, x, y):
         spr = MakeTextSprite(font, Layer_Popups, x, y, scraft.HotspotCenter, text)
-        spr.cfilt.color = 0xFF8000
+        #spr.cfilt.color = 0xFF8000
         tmp = Popup(spr, "Bubble", "FadeOut")
         
     def _UpdateLevelInfo(self):

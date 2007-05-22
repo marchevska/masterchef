@@ -64,13 +64,15 @@ MasterChef{
     //}
     
     //Comics{
-        comic(MaserChef.intro) { seen = "no" unlocked = "yes" }
+        comic(MasterChef.intro.1) { seen = "no" unlocked = "yes" }
+        comic(MasterChef.intro.2) { seen = "no" unlocked = "no" }
+        comic(MasterChef.intro.3) { seen = "no" unlocked = "no" }
         comic(SweetShop.intro) { seen = "no" unlocked = "no" }
         comic(Mexican.intro) { seen = "no" unlocked = "no" }
         comic(Japanese.intro) { seen = "no" unlocked = "no" }
         comic(Russian.intro) { seen = "no" unlocked = "no" }
         comic(American.intro) { seen = "no" unlocked = "no" }
-        comic(MaserChef.outro) { seen = "no" unlocked = "no" }
+        comic(MasterChef.outro) { seen = "no" unlocked = "no" }
     //}
     
     //Hints{

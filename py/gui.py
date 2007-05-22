@@ -630,7 +630,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_Comics)
             #проходим по списку уровней и находим последний разлоченный
             tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr(u"unlocked"),
-                                     globalvars.LevelProgress.GetTag("Levels").Tags())
+                                        globalvars.LevelProgress.GetTag("Levels").Tags())
             tmpLastUnlocked = tmpAllUnlocked[-1]
             tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == u"level", tmpAllUnlocked))
             

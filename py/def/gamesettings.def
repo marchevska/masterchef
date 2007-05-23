@@ -34,6 +34,11 @@ MasterChef {
         maxColapsoidErrors = "10"
         burnCollapsoidRows = "1"
         burnCollapsoidTime = "1.0"
+        
+        //the following are parameters for #115
+        levelRatesMultiplier = 5
+        boardNeededMultiplier = 20
+        exceedDecreasePercent = 70
     }
     
     Themes {

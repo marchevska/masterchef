@@ -17,6 +17,7 @@ from guielements import *
 from customerstation import CustomerStation
 from storage import Store, SingularStore, Field, TrashCan, Collapsoid
 from conveyor import Conveyor
+from blackboard import BlackBoard
 from extra import *
 from customer import *
 import config
@@ -87,6 +88,7 @@ class GameBoard(scraft.Dispatcher):
         self.Freeze(True)
         
     def LaunchLevel(self):
+        globalvars.BlackBoard = BlackBoard()
         self.Freeze(False)
         try:
             self.Load()

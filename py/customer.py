@@ -226,7 +226,7 @@ class CustomersQue(scraft.Dispatcher):
                        globalvars.LevelSettings.GetTag("CustomerRates").Tags("Customer")))
             if i>=2:
                 if self.CustomersList[i-2] == self.CustomersList[i-1]:
-                    if len(tmpRates) > 1:
+                    if len(filter(lambda x: tmpRates[x]>0, tmpRates.keys())) > 1:
                         tmpRates.pop(self.CustomersList[i-1])
             self.CustomersList.append(RandomKeyByRates(tmpRates))
             

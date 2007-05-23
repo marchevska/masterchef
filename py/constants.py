@@ -71,6 +71,9 @@ Layer_InterfaceTxt = 78
 Layer_InterfaceTools = 75
 Layer_Popups = 60
 
+#теги для черной доски
+BBTag_Ingredients = 0
+
 #состояния игры
 GameState_None = 0
 GameState_StartLevel = 1

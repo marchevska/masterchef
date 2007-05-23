@@ -30,5 +30,6 @@ global Musician
 global Cursor
 global Timer
 global Board
+global BlackBoard
 global GUI
 

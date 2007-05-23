@@ -25,6 +25,7 @@ class CustomerStation(scraft.Dispatcher):
         self.Active = False
         self.MealReady = False
         self.CrdX, self.CrdY = newX, newY
+        self.TokensNeeded = []
         self.NeededIndicators = []
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
                                      Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Station)
@@ -76,6 +77,8 @@ class CustomerStation(scraft.Dispatcher):
                 self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Indicators, 
                 globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.TokensNeeded[i]["item"]).GetStrAttr("iconSrc"),
                 u"domcasual-10-up", u"galka", self.TokensNeeded[i]["no"]))
+            globalvars.BlackBoard.Update(BBTag_Ingredients,
+                { "type": self.TokensNeeded[i]["item"], "delta": self.TokensNeeded[i]["no"] })
         
     #--------------
     # удалить заказ
@@ -124,6 +127,8 @@ class CustomerStation(scraft.Dispatcher):
             #если закончен один из компонентов рецепта
             if tmpNew == 0 and tmpOld != 0:
                 self.Customer.AddHearts(1)
+            globalvars.BlackBoard.Update(BBTag_Ingredients,
+                { "type": food, "delta": tmpNew - tmpOld })
             
         #проверить, готов ли рецепт !!!!
         tmpRemaining = reduce(lambda a,b: a+b["no"], self.TokensNeeded, 0)

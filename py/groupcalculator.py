@@ -18,8 +18,8 @@ def _Compare(i, j, color, kind):
                 for (dx, dy) in MatchDeltas:
                     _Compare(i+dx, j+dy, color, kind)
 
-for m in range(3,11):
-    for n in range(m,11):
+for m in (9,10,8,7,6):
+    for n in (13, 12, 11):
         print m, n
         filename = "balance/"+str(m)+"x"+str(n)+".def"
         f = file(filename, "wt")
@@ -30,6 +30,7 @@ for m in range(3,11):
         f.write("  group {rate = '0.0' size = '0' max = '0' min = '0'}\n")
         
         for pp in range(100):
+            print pp
             p = (pp+1)*0.01
             
             NonZero = 0

@@ -250,9 +250,9 @@ MasterChef {
             type = ""
             src = "recipe.barbequed-fish"
             emptySrc = "recipe.barbequed-fish.empty"
-            requires = "{ 'salmon': 5, 'chili-pepper': 5, 'tomato': 5 }"
+            requires = "{ 'salmon': 9, 'chili-pepper': 7, 'tomato': 7 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Barbequed Meat) {
@@ -260,9 +260,9 @@ MasterChef {
             type = ""
             src = "recipe.barbequed-meat"
             emptySrc = "recipe.barbequed-meat.empty"
-            requires = "{ 'pork': 5, 'onion': 5 }"
+            requires = "{ 'pork': 9, 'onion': 6 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(BeanSoup Am) {
@@ -270,9 +270,9 @@ MasterChef {
             type = ""
             src = "recipe.bean-soup"
             emptySrc = "recipe.bean-soup.empty"
-            requires = "{ 'bean': 10, 'onion': 10 }"
+            requires = "{ 'bean': 9, 'onion': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(Chicken Pasta Salad) {
@@ -280,7 +280,7 @@ MasterChef {
             type = ""
             src = "recipe.chicken-pasta-salad"
             emptySrc = "recipe.chicken-pasta-salad.empty"
-            requires = "{ 'meat': 5, 'veggymix': 5, 'pasta': 5, 'milk': 5 }"
+            requires = "{ 'meat': 9, 'veggymix': 9, 'pasta': 9, 'milk': 6 }"
             readyAt = "5"
             price = "100"
         }
@@ -290,9 +290,9 @@ MasterChef {
             type = ""
             src = "recipe.chicken-stuffed-chili"
             emptySrc = "recipe.chicken-stuffed-chili.empty"
-            requires = "{ 'meat': 5, 'chili-pepper': 5 }"
+            requires = "{ 'meat': 9, 'chili-pepper': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(Chicken with Pineapple) {
@@ -300,9 +300,9 @@ MasterChef {
             type = ""
             src = "recipe.chicken-pineapple"
             emptySrc = "recipe.chicken-pineapple.empty"
-            requires = "{ 'meat': 10, 'pineapple': 10 }"
+            requires = "{ 'meat': 8, 'pineapple': 8 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(Chili con Carne Am) {
@@ -320,9 +320,9 @@ MasterChef {
             type = ""
             src = "recipe.fish-with-squash"
             emptySrc = "recipe.fish-with-squash.empty"
-            requires = "{ 'salmon': 5, 'pumpkin': 5, 'chili-pepper': 5 }"
+            requires = "{ 'salmon': 9, 'pumpkin': 9, 'chili-pepper': 6 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Pasta with Veggies) {
@@ -330,9 +330,9 @@ MasterChef {
             type = ""
             src = "recipe.pasta-with-veggies"
             emptySrc = "recipe.pasta-with-veggies.empty"
-            requires = "{ 'chili-pepper': 5, 'pasta': 5, 'pumpkin': 5 }"
+            requires = "{ 'chili-pepper': 6, 'pasta': 9, 'pumpkin': 8 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Pumpkin Soup) {
@@ -340,9 +340,9 @@ MasterChef {
             type = ""
             src = "recipe.pumpkin-soup"
             emptySrc = "recipe.pumpkin-soup.empty"
-            requires = "{ 'pumpkin': 5, 'onion': 5 }"
+            requires = "{ 'pumpkin': 9, 'onion': 6, 'milk': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Salmon Chowder) {
@@ -350,9 +350,9 @@ MasterChef {
             type = ""
             src = "recipe.salmon-chowder"
             emptySrc = "recipe.salmon-chowder.empty"
-            requires = "{ 'salmon': 5, 'veggymix': 5, 'milk': 5 }"
+            requires = "{ 'salmon': 9, 'veggymix': 9, 'milk': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(SW Chowder) {
@@ -360,7 +360,7 @@ MasterChef {
             type = ""
             src = "recipe.sw-chowder"
             emptySrc = "recipe.sw-chowder.empty"
-            requires = "{ 'veggymix': 5, 'tomato': 5, 'meat': 5, 'onion': 5 }"
+            requires = "{ 'veggymix': 9, 'tomato': 8, 'meat': 9, 'onion': 6 }"
             readyAt = "5"
             price = "100"
         }
@@ -370,9 +370,9 @@ MasterChef {
             type = ""
             src = "recipe.sweet-sour-fish"
             emptySrc = "recipe.sweet-sour-fish.empty"
-            requires = "{ 'salmon': 5, 'onion': 5, 'pineapple': 5 }"
+            requires = "{ 'salmon': 9, 'onion': 6, 'pineapple': 6 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         //Mexican recipes

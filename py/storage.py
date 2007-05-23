@@ -392,8 +392,29 @@ class Field(Storage):
     # Поместить произвольный токен в заданную клетку
     #--------------------------
     def _PutRandomToken(self, cell):
-        tmp = RandomKeyByRates(dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
-                       globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))))
+        #считаем рекомендованные частоты
+        tmpLevelIngredRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+                       globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient")))
+        tmpBoardNeeded = dict(globalvars.BlackBoard.Inspect(BBTag_Ingredients))
+        tmpRecommendedRates = dict(tmpLevelIngredRates)
+        for ing in tmpRecommendedRates.keys():
+            tmpRecommendedRates[ing] *= globalvars.GameSettings.GetIntAttr("levelRatesMultiplier")
+            if tmpBoardNeeded.has_key(ing):
+                tmpRecommendedRates[ing] += tmpBoardNeeded[ing]*globalvars.GameSettings.GetIntAttr("boardNeededMultiplier")
+        tmpRecommendedSum = reduce(lambda a,b: a+b, tmpRecommendedRates.values(),0)
+        
+        #считаем реальные частоты
+        tmpRealRates = dict(map(lambda x: (x, len(filter(lambda y: self.Cells[y] == x, self.Cells.keys()))),
+                           tmpLevelIngredRates.keys()))
+        tmpRealSum = reduce(lambda a,b: a+b, tmpRealRates.values(),0)
+        
+        #делаем коррекцию, когда реальные превышают рекомендованные
+        for ing in tmpRecommendedRates.keys():
+            if tmpRecommendedRates[ing]*tmpRealSum > tmpRealRates[ing]*tmpRecommendedSum:
+                tmpRecommendedRates[ing] = int(1.0*tmpRecommendedRates[ing]*\
+                                (1-globalvars.GameSettings.GetIntAttr("exceedDecreasePercent")/100))
+        
+        tmp = RandomKeyByRates(tmpRecommendedRates)
         self.Cells[cell] = tmp
         self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(tmp).GetStrAttr("src"))
         

@@ -502,7 +502,7 @@ def RandomKeyByRates(dict):
     tmpKeys = dict.keys()
     tmpNoKeys = len(tmpKeys)
     tmpValues = map(lambda x: dict[x], tmpKeys)
-    tmpValueSums = map(lambda x: reduce(lambda a,b: a+b, tmpValues[0:x+1],0), range(tmpNoKeys))    
+    tmpValueSums = map(lambda x: reduce(lambda a,b: a+b, tmpValues[0:x+1],0), range(tmpNoKeys))
     tmpResultValue = randint(1, tmpValueSums[-1])
     tmpTargetKeyNo = (filter(lambda x: tmpValueSums[x] >= tmpResultValue, range(tmpNoKeys)))[0]
     return tmpKeys[tmpTargetKeyNo]    

@@ -39,6 +39,9 @@ MasterChef {
         levelRatesMultiplier = 5
         boardNeededMultiplier = 20
         exceedDecreasePercent = 70
+        expMultiplier = 4.0
+        //minimal number of tokens applicable for rates correction
+        minCorrectionAmount = 10
     }
     
     Themes {

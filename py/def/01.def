@@ -24,19 +24,19 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Barbequed Meat" rate = "2" }
+        //Recipe{ type = "Barbequed Meat" rate = "2" }
         Recipe{ type = "Chicken-Stuffed Chili" rate = "3" }
     }
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "pork" rate = "20" }
+        //Ingredient{ type = "pork" rate = "20" }
         Ingredient{ type = "meat" rate = "25" }
         Ingredient{ type = "salmon" rate = "0" }
         Ingredient{ type = "tomato" rate = "0" }
         Ingredient{ type = "chili-pepper" rate = "25" }
         Ingredient{ type = "bean" rate = "0" }
-        Ingredient{ type = "onion" rate = "20" }
+        //Ingredient{ type = "onion" rate = "20" }
         Ingredient{ type = "veggymix" rate = "0" }
         Ingredient{ type = "pumpkin" rate = "0" }
         Ingredient{ type = "pasta" rate = "0" }
@@ -69,7 +69,7 @@ Level{
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "3" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }

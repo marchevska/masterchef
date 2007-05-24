@@ -408,11 +408,13 @@ class Field(Storage):
                            tmpLevelIngredRates.keys()))
         tmpRealSum = reduce(lambda a,b: a+b, tmpRealRates.values(),0)
         
-        #делаем коррекцию, когда реальные превышают рекомендованные
+        #делаем коррекцию, когда реальная частота появления ингредиента превышают рекомендованную
         for ing in tmpRecommendedRates.keys():
-            if tmpRecommendedRates[ing]*tmpRealSum > tmpRealRates[ing]*tmpRecommendedSum:
+            if tmpRealRates[ing]*tmpRecommendedSum > tmpRecommendedRates[ing]*tmpRealSum and \
+                    tmpRealSum > globalvars.GameSettings.GetIntAttr("minCorrectionAmount") and tmpRecommendedRates[ing] > 0:
+                tmpExceedDelta = 1.0*(tmpRealRates[ing]*tmpRecommendedSum)/(tmpRecommendedRates[ing]*tmpRealSum) - 1.0
                 tmpRecommendedRates[ing] = int(1.0*tmpRecommendedRates[ing]*\
-                                (1-globalvars.GameSettings.GetIntAttr("exceedDecreasePercent")/100))
+                    math.exp(-tmpExceedDelta**2*globalvars.GameSettings.GetFltAttr("expMultiplier")))
         
         tmp = RandomKeyByRates(tmpRecommendedRates)
         self.Cells[cell] = tmp

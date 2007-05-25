@@ -88,6 +88,12 @@ bitmap = img/gui/2nd-popup-background.png
 type = blend
 }
 
+sprite comics.next-button {
+bitmap = img/gui/comics.next-button.png
+type   = blend
+layout = 1x4
+}
+
 
 #########
 # logos #

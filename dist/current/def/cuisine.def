@@ -58,6 +58,11 @@ MasterChef {
         //Hawaii
         Ingredient(bun) { type = "pasta" src = "ingredient.bun" iconSrc = "ingredient.bun.icon"}
         
+        //Russian
+        Ingredient(cabbage) { type = "vegetable" src = "ingredient.cabbage" iconSrc = "ingredient.cabbage.icon"}
+        Ingredient(potato) { type = "vegetable" src = "ingredient.potato" iconSrc = "ingredient.potato.icon"}
+        Ingredient(carrot) { type = "vegetable" src = "ingredient.carrot" iconSrc = "ingredient.carrot.icon"}
+        
         //SweetShop
         Ingredient(apple) { type = "fruit" src = "ingredient.apple" iconSrc = "ingredient.apple.icon"}
         Ingredient(banana) { type = "fruit" src = "ingredient.banana" iconSrc = "ingredient.banana.icon"}
@@ -245,9 +250,9 @@ MasterChef {
             type = ""
             src = "recipe.barbequed-fish"
             emptySrc = "recipe.barbequed-fish.empty"
-            requires = "{ 'salmon': 5, 'chili-pepper': 5, 'tomato': 5 }"
+            requires = "{ 'salmon': 9, 'chili-pepper': 7, 'tomato': 7 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Barbequed Meat) {
@@ -255,9 +260,9 @@ MasterChef {
             type = ""
             src = "recipe.barbequed-meat"
             emptySrc = "recipe.barbequed-meat.empty"
-            requires = "{ 'pork': 5, 'onion': 5 }"
+            requires = "{ 'pork': 9, 'onion': 6 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(BeanSoup Am) {
@@ -265,9 +270,9 @@ MasterChef {
             type = ""
             src = "recipe.bean-soup"
             emptySrc = "recipe.bean-soup.empty"
-            requires = "{ 'bean': 10, 'onion': 10 }"
+            requires = "{ 'bean': 9, 'onion': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(Chicken Pasta Salad) {
@@ -275,7 +280,7 @@ MasterChef {
             type = ""
             src = "recipe.chicken-pasta-salad"
             emptySrc = "recipe.chicken-pasta-salad.empty"
-            requires = "{ 'meat': 5, 'veggymix': 5, 'pasta': 5, 'milk': 5 }"
+            requires = "{ 'meat': 9, 'veggymix': 9, 'pasta': 9, 'milk': 6 }"
             readyAt = "5"
             price = "100"
         }
@@ -285,9 +290,9 @@ MasterChef {
             type = ""
             src = "recipe.chicken-stuffed-chili"
             emptySrc = "recipe.chicken-stuffed-chili.empty"
-            requires = "{ 'meat': 5, 'chili-pepper': 5 }"
+            requires = "{ 'meat': 9, 'chili-pepper': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(Chicken with Pineapple) {
@@ -295,9 +300,9 @@ MasterChef {
             type = ""
             src = "recipe.chicken-pineapple"
             emptySrc = "recipe.chicken-pineapple.empty"
-            requires = "{ 'meat': 10, 'pineapple': 10 }"
+            requires = "{ 'meat': 8, 'pineapple': 8 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
         Recipe(Chili con Carne Am) {
@@ -315,9 +320,9 @@ MasterChef {
             type = ""
             src = "recipe.fish-with-squash"
             emptySrc = "recipe.fish-with-squash.empty"
-            requires = "{ 'salmon': 5, 'pumpkin': 5, 'chili-pepper': 5 }"
+            requires = "{ 'salmon': 9, 'pumpkin': 9, 'chili-pepper': 6 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Pasta with Veggies) {
@@ -325,9 +330,9 @@ MasterChef {
             type = ""
             src = "recipe.pasta-with-veggies"
             emptySrc = "recipe.pasta-with-veggies.empty"
-            requires = "{ 'chili-pepper': 5, 'pasta': 5, 'pumpkin': 5 }"
+            requires = "{ 'chili-pepper': 6, 'pasta': 9, 'pumpkin': 8 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Pumpkin Soup) {
@@ -335,9 +340,9 @@ MasterChef {
             type = ""
             src = "recipe.pumpkin-soup"
             emptySrc = "recipe.pumpkin-soup.empty"
-            requires = "{ 'pumpkin': 5, 'onion': 5 }"
+            requires = "{ 'pumpkin': 9, 'onion': 6, 'milk': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Salmon Chowder) {
@@ -345,9 +350,9 @@ MasterChef {
             type = ""
             src = "recipe.salmon-chowder"
             emptySrc = "recipe.salmon-chowder.empty"
-            requires = "{ 'salmon': 5, 'veggymix': 5, 'milk': 5 }"
+            requires = "{ 'salmon': 9, 'veggymix': 9, 'milk': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(SW Chowder) {
@@ -355,7 +360,7 @@ MasterChef {
             type = ""
             src = "recipe.sw-chowder"
             emptySrc = "recipe.sw-chowder.empty"
-            requires = "{ 'veggymix': 5, 'tomato': 5, 'meat': 5, 'onion': 5 }"
+            requires = "{ 'veggymix': 9, 'tomato': 8, 'meat': 9, 'onion': 6 }"
             readyAt = "5"
             price = "100"
         }
@@ -365,9 +370,9 @@ MasterChef {
             type = ""
             src = "recipe.sweet-sour-fish"
             emptySrc = "recipe.sweet-sour-fish.empty"
-            requires = "{ 'salmon': 5, 'onion': 5, 'pineapple': 5 }"
+            requires = "{ 'salmon': 9, 'onion': 6, 'pineapple': 6 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         //Mexican recipes
@@ -521,7 +526,139 @@ MasterChef {
             price = "100"
         }
         
-         //Japanese recipes
+         
+        //Russian recipes
+        Recipe(Beef Stroganoff) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.beef-stroganoff"
+            emptySrc = "recipe.beef-stroganoff.empty"
+            requires = "{ 'meat': 10, 'sour-cream': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fish Jelly) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.fish-jelly"
+            emptySrc = "recipe.fish-jelly.empty"
+            requires = "{ 'salmon': 10, 'carrot': 5, 'egg': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fish Pie) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.fish-pie"
+            emptySrc = "recipe.fish-pie.empty"
+            requires = "{ 'salmon': 10, 'rice': 5, 'flour': 5, 'egg': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Golubtsy) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.golubtsy"
+            emptySrc = "recipe.golubtsy.empty"
+            requires = "{ 'meat': 10, 'cabbage': 5, 'rice': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Grilled Mushrooms) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.grilled-mushrooms"
+            emptySrc = "recipe.grilled-mushrooms.empty"
+            requires = "{ 'mushroom': 10, 'potato': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Kulebyaka) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.kulebyaka"
+            emptySrc = "recipe.kulebyaka.empty"
+            requires = "{ 'cabbage': 10, 'milk': 5, 'flour': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Milk Noodle Soup) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.milk-noodle-soup"
+            emptySrc = "recipe.milk-noodle-soup.empty"
+            requires = "{ 'mushroom': 10, 'milk': 5, 'flour': 5, 'egg': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Mushroom Soup) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.mushroom-soup"
+            emptySrc = "recipe.mushroom-soup.empty"
+            requires = "{ 'mushroom': 10, 'potato': 5, 'carrot': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Mushroom Stuffed Fish) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.mushroom-stuffed-fish"
+            emptySrc = "recipe.mushroom-stuffed-fish.empty"
+            requires = "{ 'salmon': 10, 'mushroom': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pancakes with Mushrooms) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.pancakes-with-mushrooms"
+            emptySrc = "recipe.pancakes-with-mushrooms.empty"
+            requires = "{ 'mushroom': 10, 'milk': 5, 'egg': 5, 'flour': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pelmeni) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.pelmeni"
+            emptySrc = "recipe.pelmeni.empty"
+            requires = "{ 'meat': 10, 'egg': 5, 'flour': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Shchi) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.shshi"
+            emptySrc = "recipe.shshi"
+            requires = "{ 'meat': 10, 'cabbage': 5, 'potato': 5, 'carrot': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Ukha) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.ukha"
+            emptySrc = "recipe.ukha.empty"
+            requires = "{ 'salmon': 10, 'potato': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+         
+        //Japanese recipes
         Recipe(Osechi) {
             setting = "Japanese"
             type = "new year dish"

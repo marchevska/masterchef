@@ -9,41 +9,48 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker"           rate = "1" }
-        Customer{ type = "Vegetarian"       rate = "1" }
-        Customer{ type = "Schoolkid"        rate = "1" }
-        Customer{ type = "Student"          rate = "1" }
-        Customer{ type = "Oldlady"          rate = "1" }
-        Customer{ type = "Critic"           rate = "1" }
-        Customer{ type = "Business"         rate = "1" }
-        Customer{ type = "Tourist Hawaiian" rate = "1" }
-        Customer{ type = "Tourist Mexican"  rate = "1" }
-        Customer{ type = "Tourist Japanese" rate = "1" }
-        Customer{ type = "Tourist Russian"  rate = "1" }
+        Customer{ type = "Worker"           rate = "10" }
+        Customer{ type = "Vegetarian"       rate = "0" }
+        Customer{ type = "Schoolkid"        rate = "0" }
+        Customer{ type = "Student"          rate = "0" }
+        Customer{ type = "Oldlady"          rate = "0" }
+        Customer{ type = "Critic"           rate = "0" }
+        Customer{ type = "Business"         rate = "0" }
+        Customer{ type = "Tourist Hawaiian" rate = "0" }
+        Customer{ type = "Tourist Mexican"  rate = "0" }
+        Customer{ type = "Tourist Japanese" rate = "0" }
+        Customer{ type = "Tourist Russian"  rate = "0" }
     }
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Banana Split" rate = "2" }
-        Recipe{ type = "Strawberry Shake" rate = "3" }
+        //Recipe{ type = "Barbequed Meat" rate = "2" }
+        Recipe{ type = "Chicken-Stuffed Chili" rate = "3" }
     }
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "banana" rate = "10" }
-        Ingredient{ type = "chocolate" rate = "10" }
-        Ingredient{ type = "ice-cream" rate = "10" }
-        Ingredient{ type = "milk" rate = "30" }
-        Ingredient{ type = "strawberry" rate = "40" }
-        Ingredient{ type = "bonus.spoon" rate = "5" }
-        Ingredient{ type = "bonus.gift" rate = "5" }
-        Ingredient{ type = "bonus.sweet" rate = "5" }
-        Ingredient{ type = "bonus.magicwand" rate = "5" }
-        Ingredient{ type = "bonus.bomb" rate = "5" }
-        Ingredient{ type = "bonus.removerow" rate = "5" }
-        Ingredient{ type = "bonus.scrollback" rate = "5" }
-        Ingredient{ type = "bonus.hearts" rate = "5" }
-        Ingredient{ type = "bonus.shuffle" rate = "5" }
+        //Ingredient{ type = "pork" rate = "20" }
+        Ingredient{ type = "meat" rate = "25" }
+        Ingredient{ type = "salmon" rate = "0" }
+        Ingredient{ type = "tomato" rate = "0" }
+        Ingredient{ type = "chili-pepper" rate = "25" }
+        Ingredient{ type = "bean" rate = "0" }
+        //Ingredient{ type = "onion" rate = "20" }
+        Ingredient{ type = "veggymix" rate = "0" }
+        Ingredient{ type = "pumpkin" rate = "0" }
+        Ingredient{ type = "pasta" rate = "0" }
+        Ingredient{ type = "pineapple" rate = "0" }
+        Ingredient{ type = "milk" rate = "0" }
+        Ingredient{ type = "bonus.spoon" rate = "0" }
+        Ingredient{ type = "bonus.gift" rate = "0" }
+        Ingredient{ type = "bonus.sweet" rate = "0" }
+        Ingredient{ type = "bonus.magicwand" rate = "0" }
+        Ingredient{ type = "bonus.bomb" rate = "0" }
+        Ingredient{ type = "bonus.removerow" rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.hearts" rate = "0" }
+        Ingredient{ type = "bonus.shuffle" rate = "0" }
     }
     
     //level settings
@@ -62,7 +69,7 @@ Level{
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "3" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }

@@ -187,7 +187,7 @@ MasterChef {
     
     Animation(animation.janeeyes) {
         Sequence(None) { frames = "(0, 100000)," loops = "0" }
-        Sequence(Smile) { frames = "(1, 2000), (0, 200), (1, 2000), (0, 200), (1, 200), (0, 200)" loops = "0" }
+        Sequence(Smile) { frames = "(1, 1000), (0, 200), (1, 2000), (0, 300)" loops = "0" }
     }    
     
 }

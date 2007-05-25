@@ -1,7 +1,13 @@
 MasterChef{
     Levels {
-        comic(MaserChef.intro) {
-            image = "comics.masterchef.intro"
+        comic(MasterChef.intro.1) {
+            image = "comics.masterchef.intro.1"
+        }
+        comic(MasterChef.intro.2) {
+            image = "comics.masterchef.intro.2"
+        }
+        comic(MasterChef.intro.3) {
+            image = "comics.masterchef.intro.3"
         }
         //Episode - American
         comic(American.intro) {
@@ -84,7 +90,7 @@ MasterChef{
         level(def/49.def) { name = "5-9" no = "49" x = "654" y = "542" }
         level(def/50.def) { name = "5-10" no = "50" x = "683" y = "538" }
         
-        comic(MaserChef.outro) {
+        comic(MasterChef.outro) {
             image = "comics.masterchef.outro"
         }
     }

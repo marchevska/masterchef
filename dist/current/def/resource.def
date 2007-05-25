@@ -105,6 +105,16 @@ MasterChef{
         sprite(ingredient.pineapple.icon) { bitmap = "img/ingredients/pineapple.icon.png" type = "blend" }
         sprite(ingredient.pasta.icon) { bitmap = "img/ingredients/pasta.icon.png" type = "blend" }
         
+        //Russian
+        sprite(ingredient.cabbage) { bitmap = "img/ingredients/cabbage.png" type = "blend" }
+        sprite(ingredient.potato) { bitmap = "img/ingredients/potato.png" type = "blend" }
+        sprite(ingredient.carrot) { bitmap = "img/ingredients/carrot.png" type = "blend" }
+        
+        //Russian - icons
+        sprite(ingredient.cabbage.icon) { bitmap = "img/ingredients/cabbage.icon.png" type = "blend" }
+        sprite(ingredient.potato.icon) { bitmap = "img/ingredients/potato.icon.png" type = "blend" }
+        sprite(ingredient.carrot.icon) { bitmap = "img/ingredients/carrot.icon.png" type = "blend" }
+        
         //Bonus
         sprite(bonus.bomb) { bitmap = "img/ingredients/bonus.bomb.png" type = "blend" }
         sprite(bonus.gift) { bitmap = "img/ingredients/bonus.gift.png" type = "blend" }
@@ -247,6 +257,36 @@ MasterChef{
         sprite(recipe.stuffed-tacos.empty) { bitmap = "img/recipes/mexican/stuffed-tacos.empty.png" type = "blend" }
         sprite(recipe.tex-mex-tuna.empty) { bitmap = "img/recipes/mexican/tex-mex-tuna.empty.png" type = "blend" }
         sprite(recipe.tortilla-soup.empty) { bitmap = "img/recipes/mexican/tortilla-soup.empty.png" type = "blend" }
+        
+        //Russian
+        sprite(recipe.beef-stroganoff) { bitmap = "img/recipes/russian/beef-stroganoff.png" type = "blend" }
+        sprite(recipe.fish-jelly) { bitmap = "img/recipes/russian/fish-jelly.png" type = "blend" }
+        sprite(recipe.fish-pie) { bitmap = "img/recipes/russian/fish-pie.png" type = "blend" }
+        sprite(recipe.golubtsy) { bitmap = "img/recipes/russian/golubtsy.png" type = "blend" }
+        sprite(recipe.grilled-mushrooms) { bitmap = "img/recipes/russian/grilled-mushrooms.png" type = "blend" }
+        sprite(recipe.kulebyaka) { bitmap = "img/recipes/russian/kulebyaka.png" type = "blend" }
+        sprite(recipe.milk-noodle-soup) { bitmap = "img/recipes/russian/milk-noodle-soup.png" type = "blend" }
+        sprite(recipe.mushroom-soup) { bitmap = "img/recipes/russian/mushroom-soup.png" type = "blend" }
+        sprite(recipe.mushroom-stuffed-fish) { bitmap = "img/recipes/russian/mushroom-stuffed-fish.png" type = "blend" }
+        sprite(recipe.pancakes-with-mushrooms) { bitmap = "img/recipes/russian/pancakes-with-mushrooms.png" type = "blend" }
+        sprite(recipe.pelmeni) { bitmap = "img/recipes/russian/pelmeni.png" type = "blend" }
+        sprite(recipe.shshi) { bitmap = "img/recipes/russian/shshi.png" type = "blend" }
+        sprite(recipe.ukha) { bitmap = "img/recipes/russian/ukha.png" type = "blend" }
+        
+        //Russian - empty
+        sprite(recipe.beef-stroganoff.empty) { bitmap = "img/recipes/russian/beef-stroganoff.empty.png" type = "blend" }
+        sprite(recipe.fish-jelly.empty) { bitmap = "img/recipes/russian/fish-jelly.empty.png" type = "blend" }
+        sprite(recipe.fish-pie.empty) { bitmap = "img/recipes/russian/fish-pie.empty.png" type = "blend" }
+        sprite(recipe.golubtsy.empty) { bitmap = "img/recipes/russian/golubtsy.empty.png" type = "blend" }
+        sprite(recipe.grilled-mushrooms.empty) { bitmap = "img/recipes/russian/grilled-mushrooms.empty.png" type = "blend" }
+        sprite(recipe.kulebyaka.empty) { bitmap = "img/recipes/russian/kulebyaka.empty.png" type = "blend" }
+        sprite(recipe.milk-noodle-soup.empty) { bitmap = "img/recipes/russian/milk-noodle-soup.empty.png" type = "blend" }
+        sprite(recipe.mushroom-soup.empty) { bitmap = "img/recipes/russian/mushroom-soup.empty.png" type = "blend" }
+        sprite(recipe.mushroom-stuffed-fish.empty) { bitmap = "img/recipes/russian/mushroom-stuffed-fish.empty.png" type = "blend" }
+        sprite(recipe.pancakes-with-mushrooms.empty) { bitmap = "img/recipes/russian/pancakes-with-mushrooms.empty.png" type = "blend" }
+        sprite(recipe.pelmeni.empty) { bitmap = "img/recipes/russian/pelmeni.empty.png" type = "blend" }
+        sprite(recipe.shshi.empty) { bitmap = "img/recipes/russian/shshi.empty.png" type = "blend" }
+        sprite(recipe.ukha.empty) { bitmap = "img/recipes/russian/ukha.empty.png" type = "blend" }
         
         //SweetShop
         sprite(recipe.angel-cake) { bitmap = "img/recipes/sweetshop/angel-cake.png" type = "blend" }
@@ -419,7 +459,9 @@ MasterChef{
     }
     
     Comics{
-        sprite(comics.masterchef.intro) { bitmap = "img/comics/masterchef.intro.png" }
+        sprite(comics.masterchef.intro.1) { bitmap = "img/comics/masterchef.intro.1.png" }
+        sprite(comics.masterchef.intro.2) { bitmap = "img/comics/masterchef.intro.2.png" }
+        sprite(comics.masterchef.intro.3) { bitmap = "img/comics/masterchef.intro.3.png" }
         sprite(comics.sweetshop.intro) { bitmap = "img/comics/sweetshop.intro.png" }
         sprite(comics.mexican.intro) { bitmap = "img/comics/mexican.intro.png" }
         sprite(comics.japanese.intro) { bitmap = "img/comics/japanese.intro.png" }

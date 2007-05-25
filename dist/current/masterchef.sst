@@ -13,7 +13,6 @@ hotspot = 4,0
 sprite cell-highlight {
 bitmap = img/common/cell-highlight.png
 type   = blend
-truecolor=yes
 layout = 5x8
 }
 
@@ -389,6 +388,24 @@ font domcasual-11 {
 bitmap = img/fonts/domcasual-11.png
 type = blend
 symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
+}
+
+font domcasual-20-green {
+bitmap = img/fonts/domcasual-20-green.png
+type = blend
+symbols=1234567890-+/ .
+}
+
+font domcasual-20-red {
+bitmap = img/fonts/domcasual-20-red.png
+type = blend
+symbols=1234567890-+/ .
+}
+
+font domcasual-20-orange {
+bitmap = img/fonts/domcasual-20-orange.png
+type = blend
+symbols=1234567890-+/ .
 }
 
 font hobor-17 {

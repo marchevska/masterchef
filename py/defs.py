@@ -88,10 +88,15 @@ def ReadLevelSettings(filename):
         if globalvars.LevelSettings.GetCountTag(u"GameSettings") == 1:
             tmp = globalvars.LevelSettings.GetTag(u"GameSettings")
             for tmpIntAttr in ("newCustomerTimeMin", "newCustomerTimeMax",
-                               "tokensGroupMin", "tokensGroupMax"):
+                               "tokensGroupMin", "tokensGroupMax",
+                               "minCorrectionAmount",
+                               "levelRatesMultiplier", "boardNeededMultiplier",
+                               "maxColapsoidErrors"):
                 if tmp.HasAttr(tmpIntAttr):
                     globalvars.GameSettings.SetIntAttr(tmpIntAttr, tmp.GetIntAttr(tmpIntAttr))
             for tmpFltAttr in ("tokensFallingTime", "shuffleTime", "magicWandConvertingTime",
+                               "scrollBackTime", "burnCollapsoidTime",
+                               "expMultiplier",
                                "approvalPerDollar", "maxApproval"):
                 if tmp.HasAttr(tmpFltAttr):
                     globalvars.GameSettings.SetFltAttr(tmpFltAttr, tmp.GetFltAttr(tmpFltAttr))

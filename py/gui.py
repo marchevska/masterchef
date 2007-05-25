@@ -369,9 +369,8 @@ class Gui(scraft.Dispatcher):
                 Layer_Background, 400, 300, 800, 600)
         self.ComicScreen["Buttons"]["Next"] = PushButton("ComicsNext",
                 self, Cmd_ComicsNext, PState_Comics,
-                u"button-4st", [0, 1, 2, 3], 
-                Layer_BtnText, 700, 560, 120, 40,
-                Str_ComicsNext, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                u"comics.next-button", [0, 1, 2, 3], 
+                Layer_BtnText, 760, 550, 80, 100)
         
         #-------
         # карта карьерного режима

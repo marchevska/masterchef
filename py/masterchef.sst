@@ -94,6 +94,18 @@ type   = blend
 layout = 1x4
 }
 
+sprite comics.play-button {
+bitmap = img/gui/comics.play-button.png
+type   = blend
+layout = 1x4
+}
+
+sprite comics.end-button {
+bitmap = img/gui/comics.end-button.png
+type   = blend
+layout = 1x4
+}
+
 
 #########
 # logos #

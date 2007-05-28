@@ -12,7 +12,8 @@ MasterChef {
         magicWandRadiusSquared = "2"
         allowBonusConvertion = "no"
         
-        heartsPerCompletedIngredient = "1"
+        heartsPerCompletedIngredient = "0"
+        heartsPerCompletedOrder = "2"
         approvalPerDollar = "0.2"
         maxApproval = "5.0"
         customerLossPrice = "100"
@@ -29,7 +30,7 @@ MasterChef {
         
         tokensGroupMin = "1"
         tokensGroupMax = "10"
-        tokenScores = "{ 1: 2, 2: 5, 3: 10, 4: 17, 5: 25, 6: 35, 7: 47, 8: 62, 9: 77, 10: 100 }"
+        tokenScores = "{ 1: 1, 2: 2, 3: 3, 4: 5, 5: 7, 6: 10, 7: 13, 8: 16, 9: 20, 10: 25 }"
         
         maxColapsoidErrors = "10"
         burnCollapsoidRows = "1"

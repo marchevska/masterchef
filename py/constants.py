@@ -31,7 +31,10 @@ Cmd_ReturnToConveyor = 19
 Cmd_CollapsoidFashShift = 20
 Cmd_CollapsoidBurn = 21
 Cmd_Station_DeleteCustomer = 22
-Cmd_Customer_SayThankYou = 23
+Cmd_Station_DeleteCustomerAndLoseMoney = 23
+Cmd_Customer_SayThankYou = 24
+Cmd_StopDropper = 25                    #команда посылается коллапсоиду, чтобы завершить выброс новых токенов,
+                                        #когда все покупатели обслужены (то есть отдавать токены некуда)
 
 Cmd_PickPowerUp = 60
 Cmd_UtilizePowerUp = 61

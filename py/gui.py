@@ -156,14 +156,14 @@ class Gui(scraft.Dispatcher):
         self.EnterNameDialog["Static"]["TextCursor"].AnimateLoop(2)
         self.EnterNameDialog["Buttons"]["Ok"] = PushButton("EnterNameOk",
                 self, Cmd_EnterNameOk, PState_EnterName,
-                u"button-4st", [0, 1, 2], 
+                u"button-4st", [0, 1, 2, 3], 
                 Layer_2ndPopupBtnTxt, 330, 350, 120, 40,
-                Str_EnterNameOk, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_EnterNameOk, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.EnterNameDialog["Buttons"]["Cancel"] = PushButton("EnterNameCancel",
                 self, Cmd_EnterNameCancel, PState_EnterName,
-                u"button-4st", [0, 1, 2], 
+                u"button-4st", [0, 1, 2, 3], 
                 Layer_2ndPopupBtnTxt, 470, 350, 120, 40,
-                Str_EnterNameCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_EnterNameCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.EnterNameDialog["Text"]["Name"] = MakeTextSprite(u"domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 290)
         self.EnterNameDialog["Text"]["NameErrors"] = MakeTextSprite(u"domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 320)
         self.EnterNameDialog["Text"]["NameErrors"].xScale, self.EnterNameDialog["Text"]["NameErrors"].yScale = 50,50
@@ -508,6 +508,19 @@ class Gui(scraft.Dispatcher):
             self.PlayersDialog["Buttons"]["Ok"].SetState(ButtonState_Inert)
             self.PlayersDialog["Buttons"]["Cancel"].SetState(ButtonState_Inert)
         
+    #обновляет кнопки cancel и ok в диалоге ввода имени:
+    #если ничего не введено и список игроков пуст, кнопка cancel должна быть инертной
+    #евсли ничего не введено, кнопка ok должна быть инертной
+    def _UpdateEnterNameDialog(self):
+        if len(globalvars.PlayerList.GetPlayerList())<=1 and self.EnterNameDialog["Text"]["Name"].text == "":
+            self.EnterNameDialog["Buttons"]["Cancel"].SetState(ButtonState_Inert)
+        else:
+            self.EnterNameDialog["Buttons"]["Cancel"].SetState(ButtonState_Up)
+        if self.EnterNameDialog["Text"]["Name"].text == "":
+            self.EnterNameDialog["Buttons"]["Ok"].SetState(ButtonState_Inert)
+        else:
+            self.EnterNameDialog["Buttons"]["Ok"].SetState(ButtonState_Up)
+        
     def _UpdateHiscoresDialog(self):
         tmpTotalScores = len(globalvars.HiscoresList)
         for i in range(tmpTotalScores):
@@ -576,7 +589,8 @@ class Gui(scraft.Dispatcher):
     #-------------------------------------------
     def _UpdateComics(self):
         tmp = globalvars.CurrentPlayer.GetLevel()
-        self.ComicScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr(u"image"))
+        self.ComicScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("image"))
+        self.ComicScreen["Buttons"]["Next"].SetButtonKlass(tmp.GetStrAttr("button"))
         
     #-------------------------------------------
     # обновить данные в диалоге "цели уровня", при старте уровня
@@ -902,6 +916,7 @@ class Gui(scraft.Dispatcher):
                     self.EnterNameDialog["Text"]["Name"].text = unicode(tmpName)
                     self.EnterNameDialog["Static"]["TextCursor"].x = self.EnterNameDialog["Text"]["Name"].x + \
                         self.EnterNameDialog["Text"]["Name"].width/2
+                    self._UpdateEnterNameDialog()
                 
             if oE.EvtIsESC():
                 if globalvars.StateStack[-1] == PState_DevLogo:
@@ -1101,6 +1116,7 @@ class Gui(scraft.Dispatcher):
             
         elif state == PState_EnterName:
             self._ShowDialog(self.EnterNameDialog, True)
+            self._UpdateEnterNameDialog()
             
         elif state == PState_Help:
             self._ReleaseState(PState_MainMenu)

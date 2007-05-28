@@ -308,16 +308,37 @@ class GameBoard(scraft.Dispatcher):
             if self.RemainingCustomers > 0 and len(tmpFreeStations) > 1:
                 self.CustomersQue.SetState(QueState_Active)
                 
+        # покупатель успешно обслужен
         elif cmd == Cmd_CustomerServed:
             self.CustomersServed += 1
+            #проверить - есть ли еще покупатели, которых надо обслуживать
+            if self.CustomersServed+self.CustomersLost == \
+                    globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers"):
+                for tmp in self.Fields:
+                    tmp.SendCommand(Cmd_StopDropper)
             
+        #покупатель ушел недовольный
         elif cmd == Cmd_CustomerLost:
             self.CustomersLost += 1
+            #проверить - есть ли еще покупатели, которых надо обслуживать
+            if self.CustomersServed+self.CustomersLost == \
+                    globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers"):
+                for tmp in self.Fields:
+                    tmp.SendCommand(Cmd_StopDropper)
                 
         elif cmd == Cmd_FreeStation:
             if self.RemainingCustomers > 0:
                 self.CustomersQue.SetState(QueState_Active)
                 
+        elif cmd == Cmd_TakeMoney:
+            self.AddScore(parameter["amount"])
+            if parameter["amount"] > 0:
+                self._PopupText("+"+str(parameter["amount"]), "domcasual-20-green",
+                            parameter["station"].CrdX, parameter["station"].CrdY)
+            elif parameter["amount"] < 0:
+                self._PopupText(str(parameter["amount"]), "domcasual-20-red",
+                            parameter["station"].CrdX, parameter["station"].CrdY)
+            
         elif cmd == Cmd_PickPowerUp:
             self._PickPowerUp(parameter["type"], parameter["where"])
         

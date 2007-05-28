@@ -115,7 +115,7 @@ class CustomerStation(scraft.Dispatcher):
         #tmp - номер нужного ингредиента, для обновления индикаторов
         tmp = filter(lambda x: self.TokensNeeded[x]["item"] == food, range(len(self.TokensNeeded)))
         
-        tmpScoreMultiplier = 1
+        #tmpScoreMultiplier = 1
         
         #добавление ингредиентов
         if tmp != []:
@@ -123,19 +123,23 @@ class CustomerStation(scraft.Dispatcher):
             tmpNew = max(tmpOld - no, 0)
             self.TokensNeeded[tmp[0]]["no"] = tmpNew
             self.NeededIndicators[tmp[0]].SetValue(tmpNew)
-            tmpScoreMultiplier *= 2
+            #tmpScoreMultiplier *= 2
             #если закончен один из компонентов рецепта
-            if tmpNew == 0 and tmpOld != 0:
-                self.Customer.AddHearts(1)
+            if tmpNew == 0 and tmpOld > 0 and globalvars.GameSettings.GetIntAttr("heartsPerCompletedIngredient") > 0:
+                self.Customer.AddHearts(globalvars.GameSettings.GetIntAttr("heartsPerCompletedIngredient"))
             globalvars.BlackBoard.Update(BBTag_Ingredients,
                 { "type": food, "delta": tmpNew - tmpOld })
             
-        #проверить, готов ли рецепт !!!!
+        #проверить, готов ли рецепт
+        #рецепт готов, если: он полностью выполнен, либо
+        #разрешены неполные рецепты и готово достаточное кол-во ингредиентов
         tmpRemaining = reduce(lambda a,b: a+b["no"], self.TokensNeeded, 0)
         if tmpRemaining == 0 or \
-            (tmpRemaining <= globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(self.OrderType).GetIntAttr("readyAt") and \
-            globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("takesIncompleteOrder")) and \
-            not globalvars.GameSettings.GetBoolAttr("exactRecipes"):
+                (tmpRemaining <= globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(self.OrderType).GetIntAttr("readyAt") and \
+                globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("takesIncompleteOrder")) and \
+                not globalvars.GameSettings.GetBoolAttr("exactRecipes"):
+            if globalvars.GameSettings.GetIntAttr("heartsPerCompletedOrder") > 0:
+                self.Customer.AddHearts(globalvars.GameSettings.GetIntAttr("heartsPerCompletedOrder"))
             if globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
                 self.SendCommand(Cmd_ReleaseCustomer)
                 #self.MoneyButton.Show(True)
@@ -153,11 +157,13 @@ class CustomerStation(scraft.Dispatcher):
         elif tmp == [] and not globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("allowsExcessIngredients"):
             self.Customer.AddHearts(-1)
         
-        #проверить - является ли ингредиент любимым для покуаптеля
-        if globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetStrAttr("likes") == food:
-            tmpScoreMultiplier *= 2
-            
-        return no*tmpScoreMultiplier
+        ##проверить - является ли ингредиент любимым для покуаптеля
+        #if globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetStrAttr("likes") == food:
+        #    tmpScoreMultiplier *= 2
+        #    
+        #return no*tmpScoreMultiplier
+        
+        return eval(globalvars.GameSettings.GetStrAttr("tokenScores"))[min(no, globalvars.GameSettings.GetIntAttr("tokensGroupMax"))]
         
     def _OnMouseOver(self, sprite, flag):
         if globalvars.StateStack[-1] == PState_Game:
@@ -212,7 +218,6 @@ class CustomerStation(scraft.Dispatcher):
         elif cmd == Cmd_FlopOrder:
             self._RemoveOrder()
             self.Active = False
-            print "flop order!"
             globalvars.Board.SendCommand(Cmd_CustomerLost)
             
         elif cmd == Cmd_Station_DeleteCustomer:
@@ -222,10 +227,27 @@ class CustomerStation(scraft.Dispatcher):
             if globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
                 self.MoneyButton.Show(True)
             
-        elif cmd == Cmd_FreeStation or cmd == Cmd_TakeMoney:
+        elif cmd == Cmd_FreeStation:
             self.MoneyButton.Show(False)
             self.State = CStationState_Free
             globalvars.Board.SendCommand(Cmd_FreeStation)
+            
+        elif cmd == Cmd_TakeMoney:
+            self.MoneyButton.Show(False)
+            self.State = CStationState_Free
+            globalvars.Board.SendCommand(Cmd_FreeStation)
+            globalvars.Board.SendCommand(Cmd_TakeMoney, { "station": self,
+                        "amount": globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(self.OrderType).GetIntAttr("price") })
+            
+        elif cmd == Cmd_Station_DeleteCustomerAndLoseMoney:
+            self.Active = False
+            self.Customer.Kill()
+            self.Hero.Show(False)
+            self.State = CStationState_Free
+            globalvars.Board.SendCommand(Cmd_FreeStation)
+            globalvars.Board.SendCommand(Cmd_TakeMoney, { "station": self,
+                        "amount": -globalvars.GameSettings.GetIntAttr("customerLossPrice") })
+            
         
     def Kill(self):
         if self.Active:

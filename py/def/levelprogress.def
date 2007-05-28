@@ -2,16 +2,20 @@ MasterChef{
     Levels {
         comic(MasterChef.intro.1) {
             image = "comics.masterchef.intro.1"
+            button = "comics.next-button"
         }
         comic(MasterChef.intro.2) {
             image = "comics.masterchef.intro.2"
+            button = "comics.next-button"
         }
         comic(MasterChef.intro.3) {
             image = "comics.masterchef.intro.3"
+            button = "comics.next-button"
         }
         //Episode - American
         comic(American.intro) {
             image = "comics.american.intro"
+            button = "comics.play-button"
             unlock = "American"
         }
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
@@ -29,6 +33,7 @@ MasterChef{
         //Episode - Mexican
         comic(Mexican.intro) {
             image = "comics.mexican.intro"
+            button = "comics.play-button"
             unlock = "Mexican"
         }
         level(def/11.def) { name = "2-1" no = "11" x = "211" y = "272" }
@@ -45,6 +50,7 @@ MasterChef{
         //Episode - Japanese
         comic(Japanese.intro) {
             image = "comics.japanese.intro"
+            button = "comics.play-button"
             unlock = "Japanese"
         }
         level(def/21.def) { name = "3-1" no = "21" x = "416" y = "45" }
@@ -61,6 +67,7 @@ MasterChef{
         //Episode - Russian
         comic(Russian.intro) {
             image = "comics.russian.intro"
+            button = "comics.play-button"
             unlock = "Russian"
         }
         level(def/31.def) { name = "4-1" no = "31" x = "714" y = "177" }
@@ -77,6 +84,7 @@ MasterChef{
         //Episode - SweetShop
         comic(SweetShop.intro) {
             image = "comics.sweetshop.intro"
+            button = "comics.play-button"
             unlock = "SweetShop"
         }
         level(def/41.def) { name = "5-1" no = "41" x = "586" y = "407" }
@@ -92,6 +100,7 @@ MasterChef{
         
         comic(MasterChef.outro) {
             image = "comics.masterchef.outro"
+            button = "comics.end-button"
         }
     }
     

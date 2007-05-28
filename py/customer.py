@@ -174,8 +174,7 @@ class Customer(scraft.Dispatcher):
                         
                     elif self.State == CustomerState_GoAway:
                         self._SetState(CustomerState_None)
-                        self.Host.SendCommand(Cmd_Station_DeleteCustomer)
-                        self.Host.SendCommand(Cmd_FreeStation)
+                        self.Host.SendCommand(Cmd_Station_DeleteCustomerAndLoseMoney)
                         
                     elif self.State == CustomerState_MealReady:
                         self._SetState(CustomerState_ThankYou)
@@ -351,7 +350,11 @@ class CustomersAnimator(scraft.Dispatcher):
             if self.NextFrameTime <= 0:
                 if self.NextFrame < len(self.CurrentAnimation) or self.Cycling:
                     self.Sprite.frno = self.CurrentAnimation[self.NextFrame][0]
-                    self.NextFrameTime += self.CurrentAnimation[self.NextFrame][1]
+                    tmpNextFrameData = self.CurrentAnimation[self.NextFrame]
+                    if len(tmpNextFrameData) == 2:
+                        self.NextFrameTime += tmpNextFrameData[1]
+                    else:
+                        self.NextFrameTime += randint(tmpNextFrameData[1], tmpNextFrameData[2])
                     self.NextFrame = (self.NextFrame + 1) % len(self.CurrentAnimation)
                 else:
                     self.SetState(self.States[0])

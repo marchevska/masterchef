@@ -76,7 +76,7 @@ class PushButton(scraft.Dispatcher):
         
     def _OnMouseOver(self, sprite, flag):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
-            if flag:
+            if flag and globalvars.StateStack[-1] == self.ActiveWhen:
                 #if globalvars.LastCookie == sprite.cookie:
                 #    self.SetState(ButtonState_Down)
                 #else:
@@ -86,12 +86,12 @@ class PushButton(scraft.Dispatcher):
         
     def _OnMouseDown(self, sprite, x, y, button):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
-            if button == 1:
+            if button == 1 and globalvars.StateStack[-1] == self.ActiveWhen:
                 globalvars.LastCookie = sprite.cookie
                 self.SetState(ButtonState_Down)
         
     def _OnMouseUp(self, sprite, x, y, button):
-        if button == 1:
+        if button == 1 and globalvars.StateStack[-1] == self.ActiveWhen:
             if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
                 self.SetState(ButtonState_Roll)
                 if globalvars.LastCookie == sprite.cookie and globalvars.StateStack[-1] == self.ActiveWhen:

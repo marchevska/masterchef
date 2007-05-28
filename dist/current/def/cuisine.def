@@ -260,7 +260,7 @@ MasterChef {
             type = ""
             src = "recipe.barbequed-meat"
             emptySrc = "recipe.barbequed-meat.empty"
-            requires = "{ 'pork': 9, 'onion': 6 }"
+            requires = "{ 'pork': 9, 'onion': 5, 'pineapple': 5 }"
             readyAt = "5"
             price = "50"
         }

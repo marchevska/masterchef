@@ -285,7 +285,7 @@ class Store(Storage):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
-                        if self.Cells[tmpPos] != Const_EmptyCell:
+                        if self.Cells.has_key(tmpPos) and self.Cells[tmpPos] != Const_EmptyCell:
                             self._HighlightCells(tmpPos, flag)
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -360,7 +360,7 @@ class SingularStore(Storage):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
-                        if self.Cells[tmpPos] != Const_EmptyCell:
+                        if self.Cells.has_key(tmpPos) and self.Cells[tmpPos] != Const_EmptyCell:
                             self._HighlightCells(tmpPos, flag)
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -715,7 +715,7 @@ class Field(Storage):
                 if sprite.cookie == Cmd_Receptor:
                     tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                     #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
-                    if self.Cells[tmpPos] != Const_EmptyCell:
+                    if self.Cells.has_key(tmpPos) and self.Cells[tmpPos] != Const_EmptyCell:
                         self._HighlightCells(tmpPos, flag)
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
@@ -731,6 +731,8 @@ class Field(Storage):
             try:
                 #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                 tmpPos = self._CellByCoords((x, y))
+                if not self.Cells.has_key(tmpPos):
+                    return
                 tmpAllBonuses = map(lambda z: z.GetContent(),
                     filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags()))
                 
@@ -799,6 +801,10 @@ class Field(Storage):
             except:
                 oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             
+    def SendCommand(self, cmd, parameter=None):
+        if cmd == Cmd_StopDropper:
+            pass
+        
     def Freeze(self, flag):
         if flag:
             oE.executor.GetQueue(self.QueNo).Suspend()
@@ -1039,6 +1045,10 @@ class Collapsoid(Field):
             
         elif cmd == Cmd_CollapsoidBurn:
             self.SetDropperState(DropperState_Burn)
+            
+        elif cmd == Cmd_StopDropper:
+            self._FastShift()
+            self.SetDropperState(DropperState_None)
         
     def Clear(self):
         self.ScrollButton.Kill()

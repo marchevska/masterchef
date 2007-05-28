@@ -18,8 +18,8 @@ def _Compare(i, j, color, kind):
                 for (dx, dy) in MatchDeltas:
                     _Compare(i+dx, j+dy, color, kind)
 
-for m in (12, 13):
-    for n in range(m, 14):
+for m in (11,):
+    for n in range(13, 14):
         print m, n
         filename = "balance/"+str(m)+"x"+str(n)+".def"
         f = file(filename, "wt")

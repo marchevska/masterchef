@@ -27,36 +27,48 @@ level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Recipe1" rate = "1" }
-        Recipe{ type = "Recipe1" rate = "2" }
-        Recipe{ type = "Recipe1" rate = "3" }
+        //American
+        Recipe{ type = "Barbequed Fish"         rate = "1" }
+        Recipe{ type = "Barbequed Meat"         rate = "1" }
+        Recipe{ type = "BeanSoup Am"            rate = "1" }
+        Recipe{ type = "Chicken Pasta Salad"    rate = "1" }
+        Recipe{ type = "Chicken-Stuffed Chili"  rate = "1" }
+        Recipe{ type = "Chicken with Pineapple" rate = "1" }
+        Recipe{ type = "Chili con Carne Am"     rate = "1" }
+        Recipe{ type = "Fish with Squash"       rate = "1" }
+        Recipe{ type = "Pasta with Veggies"     rate = "1" }
+        Recipe{ type = "Pumpkin Soup"           rate = "1" }
+        Recipe{ type = "Salmon Chowder"         rate = "1" }
+        Recipe{ type = "SW Chowder"             rate = "1" }
+        Recipe{ type = "Sweet N Sour Fish"      rate = "1" }
     }
     
     //ingredient appearance rates
     IngredientRates{
         //American
-        Ingredient{ type = "pork" rate = "10" }
-        Ingredient{ type = "meat" rate = "10" }
-        Ingredient{ type = "salmon" rate = "10" }
-        Ingredient{ type = "tomato" rate = "10" }
-        Ingredient{ type = "bean" rate = "10" }
-        Ingredient{ type = "onion" rate = "10" }
-        Ingredient{ type = "veggymix" rate = "10" }
-        Ingredient{ type = "pumpkin" rate = "10" }
-        Ingredient{ type = "pasta" rate = "10" }
-        Ingredient{ type = "pineapple" rate = "10" }
-        Ingredient{ type = "milk" rate = "10" }
+        Ingredient{ type = "pork"         rate = "10" }
+        Ingredient{ type = "meat"         rate = "10" }
+        Ingredient{ type = "salmon"       rate = "10" }
+        Ingredient{ type = "tomato"       rate = "10" }
+        Ingredient{ type = "chili-pepper" rate = "10" }
+        Ingredient{ type = "bean"         rate = "10" }
+        Ingredient{ type = "onion"        rate = "10" }
+        Ingredient{ type = "veggymix"     rate = "10" }
+        Ingredient{ type = "pumpkin"      rate = "10" }
+        Ingredient{ type = "pasta"        rate = "10" }
+        Ingredient{ type = "pineapple"    rate = "10" }
+        Ingredient{ type = "milk"         rate = "10" }
         
         //Bonus
-        Ingredient{ type = "bonus.spoon" rate = "5" }
-        Ingredient{ type = "bonus.gift" rate = "5" }
-        Ingredient{ type = "bonus.sweet" rate = "5" }
-        Ingredient{ type = "bonus.magicwand" rate = "5" }
-        Ingredient{ type = "bonus.bomb" rate = "5" }
-        Ingredient{ type = "bonus.removerow" rate = "5" }
+        Ingredient{ type = "bonus.spoon"      rate = "5" }
+        Ingredient{ type = "bonus.gift"       rate = "5" }
+        Ingredient{ type = "bonus.sweet"      rate = "5" }
+        Ingredient{ type = "bonus.magicwand"  rate = "5" }
+        Ingredient{ type = "bonus.bomb"       rate = "5" }
+        Ingredient{ type = "bonus.removerow"  rate = "5" }
         Ingredient{ type = "bonus.scrollback" rate = "5" }
-        Ingredient{ type = "bonus.hearts" rate = "5" }
-        Ingredient{ type = "bonus.shuffle" rate = "5" }
+        Ingredient{ type = "bonus.hearts"     rate = "5" }
+        Ingredient{ type = "bonus.shuffle"    rate = "5" }
     }
     
     //level settings

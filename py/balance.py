@@ -8,9 +8,9 @@ import string, traceback
 import globalvars
 import defs
 
-MAX_RECIPES = 5
+MAX_RECIPES = 12
 MAX_RECIPES_IN_SETTING = 15
-MAX_INGREDIENTS = 10
+MAX_INGREDIENTS = 8
 MAX_ING_IN_RECIPE = 6
 MIN_DIFF = 1.0
 ZEROSTRING = ""

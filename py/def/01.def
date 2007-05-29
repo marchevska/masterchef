@@ -60,7 +60,7 @@ Level{
     //level settings
     LevelSettings{
         title = "'American 1'"
-        noCustomers = "10"
+        noCustomers = "8"
         moneyGoal = "100"
         expertGoal = "200"
     }
@@ -69,10 +69,8 @@ Level{
     //layout of the game field
     Layout{
         theme = "American" 
-        CustomerStation{ type = "" x = "100" y = "330" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "430" occupied = "yes" }
-        CustomerStation{ type = "" x = "100" y = "530" occupied = "no" }
-        //CustomerStation{ type = "" x = "260" y = "530" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "330" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "530" occupied = "no" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "3" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         //Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }

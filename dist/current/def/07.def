@@ -11,65 +11,58 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker"           rate = "1" }
-        Customer{ type = "Vegetarian"       rate = "1" }
-        Customer{ type = "Schoolkid"        rate = "1" }
-        Customer{ type = "Student"          rate = "1" }
-        Customer{ type = "Oldlady"          rate = "1" }
-        Customer{ type = "Critic"           rate = "1" }
-        Customer{ type = "Business"         rate = "1" }
-        Customer{ type = "Tourist Hawaiian" rate = "1" }
-        Customer{ type = "Tourist Mexican"  rate = "1" }
-        Customer{ type = "Tourist Japanese" rate = "1" }
-        Customer{ type = "Tourist Russian"  rate = "1" }
+        Customer{ type = "Worker"           rate = "0" }
+        Customer{ type = "Vegetarian"       rate = "0" }
+        Customer{ type = "Schoolkid"        rate = "0" }
+        Customer{ type = "Student"          rate = "10" }
+        Customer{ type = "Oldlady"          rate = "0" }
+        Customer{ type = "Critic"           rate = "0" }
+        Customer{ type = "Business"         rate = "10" }
+        Customer{ type = "Tourist Hawaiian" rate = "0" }
+        Customer{ type = "Tourist Mexican"  rate = "0" }
+        Customer{ type = "Tourist Japanese" rate = "0" }
+        Customer{ type = "Tourist Russian"  rate = "0" }
     }
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Barbequed Fish"         rate = "1" }
-        Recipe{ type = "Barbequed Meat"         rate = "1" }
-        Recipe{ type = "BeanSoup Am"            rate = "1" }
-        Recipe{ type = "Chicken Pasta Salad"    rate = "1" }
-        Recipe{ type = "Chicken-Stuffed Chili"  rate = "1" }
-        Recipe{ type = "Chicken with Pineapple" rate = "1" }
-        Recipe{ type = "Chili con Carne Am"     rate = "1" }
-        Recipe{ type = "Fish with Squash"       rate = "1" }
-        Recipe{ type = "Pasta with Veggies"     rate = "1" }
-        Recipe{ type = "Pumpkin Soup"           rate = "1" }
-        Recipe{ type = "Salmon Chowder"         rate = "1" }
-        Recipe{ type = "SW Chowder"             rate = "1" }
-        Recipe{ type = "Sweet N Sour Fish"      rate = "1" }
+        Recipe{ type = "Squash with Tomato Sauce"         rate = "1" }
+        Recipe{ type = "Pasta with Tomato Sauce"          rate = "1" }
+        Recipe{ type = "Pineapple Tomato Salad"           rate = "0" }
+        Recipe{ type = "Caribbean Spice Chicken"          rate = "1" }
+        Recipe{ type = "Crispy Baked Chicken"             rate = "0" }
+        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "1" }
+        Recipe{ type = "Grilled Meat"                     rate = "1" }
+        Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "1" }
+        Recipe{ type = "Pineapple Lasagna"                rate = "1" }
+        Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "1" }
+        Recipe{ type = "Chicken Pasta Casseroule"         rate = "0" }
+        Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "0" }
     }
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "pork"         rate = "10" }
-        Ingredient{ type = "meat"         rate = "10" }
-        Ingredient{ type = "salmon"       rate = "10" }
-        Ingredient{ type = "tomato"       rate = "10" }
-        Ingredient{ type = "chili-pepper" rate = "10" }
-        Ingredient{ type = "bean"         rate = "10" }
-        Ingredient{ type = "onion"        rate = "10" }
-        Ingredient{ type = "veggymix"     rate = "10" }
-        Ingredient{ type = "pumpkin"      rate = "10" }
-        Ingredient{ type = "pasta"        rate = "10" }
-        Ingredient{ type = "pineapple"    rate = "10" }
-        Ingredient{ type = "milk"         rate = "10" }
-        Ingredient{ type = "bonus.spoon"      rate = "5" }
-        Ingredient{ type = "bonus.gift"       rate = "5" }
-        Ingredient{ type = "bonus.sweet"      rate = "5" }
-        Ingredient{ type = "bonus.magicwand"  rate = "5" }
-        Ingredient{ type = "bonus.bomb"       rate = "5" }
-        Ingredient{ type = "bonus.removerow"  rate = "5" }
-        Ingredient{ type = "bonus.scrollback" rate = "5" }
-        Ingredient{ type = "bonus.hearts"     rate = "5" }
-        Ingredient{ type = "bonus.shuffle"    rate = "5" }
+        Ingredient{ type = "meat"      rate = "35" }
+        Ingredient{ type = "milk"      rate = "15" }
+        Ingredient{ type = "pasta"     rate = "25" }
+        Ingredient{ type = "pineapple" rate = "17" }
+        Ingredient{ type = "pumpkin"   rate = "26" }
+        Ingredient{ type = "tomato"    rate = "27" }
+        Ingredient{ type = "bonus.spoon"      rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.magicwand"  rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.removerow"  rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.hearts"     rate = "0" }
+        Ingredient{ type = "bonus.shuffle"    rate = "0" }
     }
     
     //level settings
     LevelSettings{
         title = "'American 7'"
-        noCustomers = "10"
+        noCustomers = "20"
         moneyGoal = "100"
         expertGoal = "200"
     }
@@ -78,13 +71,11 @@ Level{
     //layout of the game field
     Layout{
         theme = "American" 
-        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "330" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "530" occupied = "no" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         Counter{ type = "" x = "230" y = "145" }
-        CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
+        CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }
         Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
         Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }

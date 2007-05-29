@@ -28,36 +28,29 @@ level{
     //recipe appearance rates
     RecipeRates{
         //American
-        Recipe{ type = "Barbequed Fish"         rate = "1" }
-        Recipe{ type = "Barbequed Meat"         rate = "1" }
-        Recipe{ type = "BeanSoup Am"            rate = "1" }
-        Recipe{ type = "Chicken Pasta Salad"    rate = "1" }
-        Recipe{ type = "Chicken-Stuffed Chili"  rate = "1" }
-        Recipe{ type = "Chicken with Pineapple" rate = "1" }
-        Recipe{ type = "Chili con Carne Am"     rate = "1" }
-        Recipe{ type = "Fish with Squash"       rate = "1" }
-        Recipe{ type = "Pasta with Veggies"     rate = "1" }
-        Recipe{ type = "Pumpkin Soup"           rate = "1" }
-        Recipe{ type = "Salmon Chowder"         rate = "1" }
-        Recipe{ type = "SW Chowder"             rate = "1" }
-        Recipe{ type = "Sweet N Sour Fish"      rate = "1" }
+        Recipe{ type = "Squash with Tomato Sauce"         rate = "1" }
+        Recipe{ type = "Pasta with Tomato Sauce"          rate = "1" }
+        Recipe{ type = "Pineapple Tomato Salad"           rate = "1" }
+        Recipe{ type = "Caribbean Spice Chicken"          rate = "1" }
+        Recipe{ type = "Crispy Baked Chicken"             rate = "1" }
+        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "1" }
+        Recipe{ type = "Grilled Meat"                     rate = "1" }
+        Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "1" }
+        Recipe{ type = "Pineapple Lasagna"                rate = "1" }
+        Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "1" }
+        Recipe{ type = "Chicken Pasta Casseroule"         rate = "1" }
+        Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "1" }
     }
     
     //ingredient appearance rates
     IngredientRates{
         //American
-        Ingredient{ type = "pork"         rate = "10" }
-        Ingredient{ type = "meat"         rate = "10" }
-        Ingredient{ type = "salmon"       rate = "10" }
-        Ingredient{ type = "tomato"       rate = "10" }
-        Ingredient{ type = "chili-pepper" rate = "10" }
-        Ingredient{ type = "bean"         rate = "10" }
-        Ingredient{ type = "onion"        rate = "10" }
-        Ingredient{ type = "veggymix"     rate = "10" }
-        Ingredient{ type = "pumpkin"      rate = "10" }
-        Ingredient{ type = "pasta"        rate = "10" }
-        Ingredient{ type = "pineapple"    rate = "10" }
-        Ingredient{ type = "milk"         rate = "10" }
+        Ingredient{ type = "meat"      rate = "10" }
+        Ingredient{ type = "milk"      rate = "10" }
+        Ingredient{ type = "pasta"     rate = "10" }
+        Ingredient{ type = "pineapple" rate = "10" }
+        Ingredient{ type = "pumpkin"   rate = "10" }
+        Ingredient{ type = "tomato"    rate = "10" }
         
         //Bonus
         Ingredient{ type = "bonus.spoon"      rate = "5" }

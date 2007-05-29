@@ -26,7 +26,7 @@ class Application(Frame):
         self.Frame0.grid(row=0, column=0, rowspan = 3, sticky = NW, ipadx = 0, ipady = 0, padx = 1, pady = 1)
         self.Frame0.Elements = {}
         
-        self.Frame0.Elements["text"] = Text(self.Frame0, width=36, height=31, 
+        self.Frame0.Elements["text"] = Text(self.Frame0, width=55, height=31, 
                                             bg="lightgrey", relief = FLAT)
         self.Frame0.Elements["text"].grid(row=0, column=0, sticky = NW)
         self.Frame0.Elements["frame"] = Frame(self.Frame0.Elements["text"])
@@ -39,7 +39,7 @@ class Application(Frame):
                 value = AllSettings[i], text = AllSettings[i], variable = CurrentSetting, command = self.ResetCuisine)
             self.Frame0.Elements["radio"+str(i)].grid(row=i+1, column=0, columnspan=2, sticky = W)
         fnt = tkFont.Font (family="Verdana", size=-(ICON_HEIGHT-2))
-        self.Frame0.Elements["listbox"] = Listbox(self.Frame0.Elements["frame"], width=15, height=MAX_RECIPES_IN_SETTING,
+        self.Frame0.Elements["listbox"] = Listbox(self.Frame0.Elements["frame"], width=30, height=MAX_RECIPES_IN_SETTING,
                                             selectmode = MULTIPLE, font = fnt)
         self.Frame0.Elements["listbox"].grid(row=10, column=0, rowspan=MAX_RECIPES_IN_SETTING, sticky = NW)
         for i in range(MAX_RECIPES_IN_SETTING):

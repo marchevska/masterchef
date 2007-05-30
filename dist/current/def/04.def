@@ -53,7 +53,7 @@ Level{
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
-        Ingredient{ type = "bonus.removerow"  rate = "0" }
+        Ingredient{ type = "bonus.removerow"  rate = "2" }
         Ingredient{ type = "bonus.scrollback" rate = "0" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "0" }
@@ -74,7 +74,7 @@ Level{
         CustomerStation{ type = "" x = "100" y = "330" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "430" occupied = "yes" }
         CustomerStation{ type = "" x = "100" y = "530" occupied = "no" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "4" Delay = "1200" DropIn = "700" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }

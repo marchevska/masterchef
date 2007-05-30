@@ -70,9 +70,6 @@ class GameBoard(scraft.Dispatcher):
         self.Stores = []
         self.Conveyors = []
         self.Static = []
-        self.PickedTool = ""
-        self.PickedTokens = ""
-        self.PickedTokensNo = 0
         self.TokenSprite = None
         self.TokensNoSprite = None
         self.ToolSprite = None
@@ -237,9 +234,9 @@ class GameBoard(scraft.Dispatcher):
         elif cmd == Cmd_ClickStation:
             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 if parameter["hasOrder"] and not parameter["mealReady"]:
-                    if parameter["station"].CanAddTokens(self.PickedTokens, self.PickedTokensNo):
+                    if parameter["station"].CanAddTokens():
                         tmpFrom = self.TokensFrom
-                        tmpDeltaScore = parameter["station"].AddTokens(self.PickedTokens, self.PickedTokensNo)
+                        tmpDeltaScore = parameter["station"].AddTokens()
                         self.AddScore(tmpDeltaScore)
                         self._PopupText("+"+str(tmpDeltaScore), "domcasual-20-green", parameter["station"].CrdX, parameter["station"].CrdY)
                         self.TokensFrom.RemoveTokens()
@@ -249,10 +246,10 @@ class GameBoard(scraft.Dispatcher):
                     
             #иначе - использовать бонус
             elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
-                if self.PickedTool in ('bonus.sweet', 'bonus.gift'):
-                    if self.PickedTool == 'bonus.sweet':
+                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift'):
+                    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.sweet':
                         parameter["station"].Customer.GiveSweet()
-                    elif self.PickedTool == 'bonus.gift':
+                    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.gift':
                         parameter["station"].Customer.GiveGift()
                     tmpFrom = self.TokensFrom
                     self.TokensFrom.RemoveTokens()
@@ -262,10 +259,10 @@ class GameBoard(scraft.Dispatcher):
                 
         elif cmd == Cmd_ClickStorage:
             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
-                if parameter["where"].HasFreeSlots(self.PickedTokensNo):# and self.TokensFrom == self:
+                if parameter["where"].HasFreeSlots(globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"]):# and self.TokensFrom == self:
                     tmpFrom = self.TokensFrom
-                    tmpType = self.PickedTokens
-                    tmpNo = self.PickedTokensNo
+                    tmpType = globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokentype"]
+                    tmpNo = globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"]
                     tmpFrom.RemoveTokens()
                     self.SendCommand(Cmd_DropWhatYouCarry)
                     parameter["where"].AddTokens(tmpType, tmpNo, parameter["pos"])
@@ -275,7 +272,7 @@ class GameBoard(scraft.Dispatcher):
         elif cmd == Cmd_TrashCan:
             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 tmpFrom = self.TokensFrom
-                tmpNo = self.PickedTokensNo
+                tmpNo = globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"]
                 self.TokensFrom.RemoveTokens()
                 self._DropTokensTo(tmpFrom)
                 parameter.Discard(tmpNo)
@@ -299,7 +296,8 @@ class GameBoard(scraft.Dispatcher):
             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 if self.TokensFrom != None:
                     parameter["where"].SendCommand(Cmd_ReturnToConveyor,
-                                    { "type": self.PickedTokens, "position": parameter["position"] })
+                                    { "type": globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokentype"],
+                                     "position": parameter["position"] })
             self._PickFromConveyor(parameter["where"], parameter["type"])
             
         elif cmd == Cmd_NewCustomer:
@@ -432,8 +430,7 @@ class GameBoard(scraft.Dispatcher):
     def _PickPowerUp(self, type, where):
         self.SendCommand(Cmd_DropWhatYouCarry)
         self.ToolSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
-        self.PickedTool = type
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tool})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tool, "tooltype": type})
         self.TokensFrom = where
     
     #--------------------------
@@ -444,39 +441,35 @@ class GameBoard(scraft.Dispatcher):
             where.DropTokens()
         self.ToolSprite.Dispose()
         self.ToolSprite = None
-        self.PickedTool = ""
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default, "tooltype": ""})
         self.TokensFrom = None
         
     def _PickFromConveyor(self, where, type):
-        self.PickedTokens = type
-        self.PickedTokensNo = 1
         self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": 20, "y": 30, "text": "",
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
+                                                "tokentype": type, "tokenno": 1 })
         self.TokensFrom = where
         
         
     def _PickTokensFrom(self, where, type, no):
-        self.PickedTokens = type
-        self.PickedTokensNo = no
         self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": 20, "y": 30, "text": str(no),
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
+                                                "tokentype": type, "tokenno": no })
         self.TokensFrom = where
         
     def _DropTokensTo(self, where):
         if where != None:
             where.DropTokens()
-        self.PickedTokens = ""
-        self.PickedTokensNo = 0
         self.TokenSprite.Dispose()
         self.TokensNoSprite.Dispose()
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default,
+                                                "tokentype": "", "tokenno": 0})
         self.TokensFrom = None
         
     def _PopupText(self, text, font, x, y):

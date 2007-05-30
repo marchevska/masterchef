@@ -94,13 +94,14 @@ class CustomerStation(scraft.Dispatcher):
         self.ReleaseButton.Show(False)
     
     #--------------
-    # проверка - можно ли к данному заказу добавить этот тип ингредиентов
+    # проверка - можно ли к данному заказу добавить текущий тип ингредиентов с курсора
     #--------------
-    def CanAddTokens(self, food, no):
+    def CanAddTokens(self):
         if globalvars.GameSettings.GetBoolAttr("allowExtraIngredients"):
             return True
         else:
-            tmp = filter(lambda x: self.TokensNeeded[x]["item"] == food, range(len(self.TokensNeeded)))
+            tmp = filter(lambda x: self.TokensNeeded[x]["item"] == globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokentype"],
+                    range(len(self.TokensNeeded)))
             if tmp == []:
                 return False
             elif self.TokensNeeded[tmp[0]]["no"] <= 0:
@@ -111,7 +112,9 @@ class CustomerStation(scraft.Dispatcher):
     #--------------
     # добавить "no" токенов типа "food" + проверки
     #--------------
-    def AddTokens(self, food, no):
+    def AddTokens(self):
+        food = globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokentype"]
+        no = globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"]
         #tmp - номер нужного ингредиента, для обновления индикаторов
         tmp = filter(lambda x: self.TokensNeeded[x]["item"] == food, range(len(self.TokensNeeded)))
         
@@ -177,11 +180,23 @@ class CustomerStation(scraft.Dispatcher):
                                                             "mealReady": self.MealReady})
         
     def _Hilight(self, flag):
-        self.Customer.Hilight(flag)
-        if flag:
-            self.TableSprite.frno = 1
-        else:
-            self.TableSprite.frno = 0
+        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Tool, GameCursorState_Tokens):
+            self.Customer.Hilight(flag)
+            if flag:
+                self.TableSprite.frno = 1
+            else:
+                self.TableSprite.frno = 0
+            if not flag or \
+                    (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
+                    (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \
+                    globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
+                self.Customer.Sprite.cfilt.color = CFilt_White
+                self.TableSprite.cfilt.color = CFilt_White
+                self.RecipeInfoSprite.cfilt.color = CFilt_White
+            else:
+                self.Customer.Sprite.cfilt.color = CFilt_Red
+                self.TableSprite.cfilt.color = CFilt_Red
+                self.RecipeInfoSprite.cfilt.color = CFilt_Red
         
     def Show(self, flag):
         self.Dummy.visible = flag

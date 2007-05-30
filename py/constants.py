@@ -146,8 +146,8 @@ Crd_QueueMarker_TabletDx = 0
 Crd_QueueMarker_TabletDy = -23
 Crd_QueueCustomerDx = 42
 Crd_QueueCustomerDy = 0
-Crd_StationDummyWidth = 100
-Crd_StationDummyHeight = 130
+Crd_StationDummyWidth = 110
+Crd_StationDummyHeight = 140
 Crd_StationDummyDx = 30
 Crd_StationDummyDy = -20
 Crd_Indicator_DeltaX = 48
@@ -184,4 +184,5 @@ Const_VisibleCustomers = 7
 MatchDeltas = [(0,-1), (-1,0), (0,1), (1,0)]
 Indexes = { "Col": 0, "Row": 1 }
 
-
+CFilt_White = 0xFFFFFF
+CFilt_Red = 0xFFDDCC

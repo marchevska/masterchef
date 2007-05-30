@@ -552,13 +552,13 @@ class Field(Storage):
             else:
                 #если на курсоре бонус, который действует на токены - подсвечиваем активную область
                 if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool \
-                        and globalvars.Board.PickedTool in ('bonus.spoon', 'bonus.magicwand'):
+                        and globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.spoon', 'bonus.magicwand'):
                     #ложка - подсветить все клетки поля того же типа
-                    if globalvars.Board.PickedTool == 'bonus.spoon':
+                    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
                         self.HighlightedCells = filter(lambda x: self.Cells[x] == self.Cells[pos] and x[1] < self.Rows, self.Cells.keys())
                         self.Action = Const_HighlightAct
                     #волшебная палочка - подсветить круг - и проверить, что мы не размножаем бонусы!
-                    elif globalvars.Board.PickedTool == 'bonus.magicwand':
+                    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
                         if globalvars.GameSettings.GetBoolAttr("allowBonusConvertion"):
                             tmpNonConvertable = [Const_EmptyCell]
                         else:
@@ -774,7 +774,7 @@ class Field(Storage):
                 #проверяем использование бонуса с курсора
                 elif button == 1 and self.Action == Const_HighlightAct:
                     #ложка - удалить подсвеченные токены
-                    if globalvars.Board.PickedTool == 'bonus.spoon':
+                    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
                         if len(self.HighlightedCells) >0:
                             self._RemoveTokenFrom(self.SelectedCells[0], False, True)
                             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
@@ -784,7 +784,7 @@ class Field(Storage):
                             self.SetState(FieldState_Collapse)
                         
                     #волшебная палочка - превращение токенов
-                    elif globalvars.Board.PickedTool == 'bonus.magicwand':
+                    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
                         if len(self.HighlightedCells) >0:
                             self.ConvertedCells = list(self.HighlightedCells)
                             self.SetState(FieldState_MagicWandConverting, self.Cells[tmpPos])

@@ -29,11 +29,16 @@ class BlackBoard:
             self.Records[tag][data["type"]] = max(0, self.Records[tag][data["type"]] + data["delta"])
             if self.Records[tag][data["type"]] == 0:
                 self.Records[tag].pop(data["type"])
+        #о курсоре и его содержимом
+        elif tag == BBTag_Cursor:
+            for tmp in data.keys():
+                self.Records[BBTag_Cursor][tmp] = data[tmp]
         
     def Inspect(self, tag, parameter = None):
         if not self.Records.has_key(tag):
             self.Records[tag] = {}
-        if tag == BBTag_Ingredients:
+        if tag in (BBTag_Ingredients, BBTag_Cursor):
             return self.Records[tag]
+        
     
     

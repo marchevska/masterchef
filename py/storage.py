@@ -133,7 +133,7 @@ class Storage(scraft.Dispatcher):
                         globalvars.Board.SendCommand(Cmd_PickFromStorage,
                             {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
                     else:
-                        if globalvars.Board.GameCursorState == GameCursorState_Tokens:
+                        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                             #put tokens from mouse
                             globalvars.Board.SendCommand(Cmd_ClickStorage, {"where": self, "pos": tmpPos})        
     
@@ -281,7 +281,7 @@ class Store(Storage):
     def _OnMouseOver(self, sprite, flag):
         try:
             if globalvars.StateStack[-1] == PState_Game:
-                if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
@@ -356,7 +356,7 @@ class SingularStore(Storage):
     def _OnMouseOver(self, sprite, flag):
         try:
             if globalvars.StateStack[-1] == PState_Game:
-                if globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
@@ -551,7 +551,7 @@ class Field(Storage):
             #если под курсором обычный токен - проверяем, что на курсоре
             else:
                 #если на курсоре бонус, который действует на токены - подсвечиваем активную область
-                if globalvars.Board.GameCursorState == GameCursorState_Tool \
+                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool \
                         and globalvars.Board.PickedTool in ('bonus.spoon', 'bonus.magicwand'):
                     #ложка - подсветить все клетки поля того же типа
                     if globalvars.Board.PickedTool == 'bonus.spoon':
@@ -1025,9 +1025,10 @@ class Collapsoid(Field):
     #--------------------------
     def _OnMouseClick(self, sprite, x, y, button):
         if globalvars.StateStack[-1] == PState_Game:
-            if (button == 1 and globalvars.Board.GameCursorState == GameCursorState_Tool) or button == 2:
+            if (button == 1 and globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool) \
+                    or button == 2:
                 Field._OnMouseClick(self, sprite, x, y, button)
-            elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
                 if sprite.cookie == Cmd_Receptor:
                     tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                     #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
@@ -1047,7 +1048,8 @@ class Collapsoid(Field):
             self.SetDropperState(DropperState_Burn)
             
         elif cmd == Cmd_StopDropper:
-            self._FastShift()
+            if self.DropperState == DropperState_Move:
+                self._FastShift()
             self.SetDropperState(DropperState_None)
         
     def Clear(self):

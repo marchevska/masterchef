@@ -76,6 +76,7 @@ Layer_Popups = 60
 
 #теги для черной доски
 BBTag_Ingredients = 0
+BBTag_Cursor = 1
 
 #состояния игры
 GameState_None = 0

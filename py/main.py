@@ -13,6 +13,7 @@ from configconst import *
 from gui import Gui
 from gameboard import GameBoard
 from playerlist import Player, PlayerList
+from blackboard import BlackBoard
 from extra import *
 import config
 import globalvars
@@ -51,6 +52,7 @@ config.ReadBestResults()
 globalvars.PlayerList = PlayerList()
 globalvars.PlayerList.Read()
 
+globalvars.BlackBoard = BlackBoard()
 globalvars.Cursor = Cursor()
 globalvars.Timer = Timer()
 globalvars.Musician = Musician()

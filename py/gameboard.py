@@ -82,7 +82,7 @@ class GameBoard(scraft.Dispatcher):
         self.Playing = False
         self.MyRand = oE.NewRandomizer()
         self._SetState(GameState_None)
-        self._SetGameCursorState(GameCursorState_Default)
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         self.QueNo = oE.executor.Schedule(self)
         self.Show(False)
         self.Freeze(True)
@@ -202,7 +202,7 @@ class GameBoard(scraft.Dispatcher):
             tmp.InitialFilling()
         
         self._SetState(GameState_StartLevel)
-        self._SetGameCursorState(GameCursorState_Default)
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         
     #--------------------------
     # ѕоместить следующего покупател€ к заданному стейшену
@@ -235,7 +235,7 @@ class GameBoard(scraft.Dispatcher):
                 self._PopupText(str(-self.NoErrors), "domcasual-20-red", x, y)
             
         elif cmd == Cmd_ClickStation:
-            if self.GameCursorState == GameCursorState_Tokens:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 if parameter["hasOrder"] and not parameter["mealReady"]:
                     if parameter["station"].CanAddTokens(self.PickedTokens, self.PickedTokensNo):
                         tmpFrom = self.TokensFrom
@@ -248,7 +248,7 @@ class GameBoard(scraft.Dispatcher):
                             tmpFrom.SetState(FieldState_Collapse)
                     
             #иначе - использовать бонус
-            elif self.GameCursorState == GameCursorState_Tool:
+            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
                 if self.PickedTool in ('bonus.sweet', 'bonus.gift'):
                     if self.PickedTool == 'bonus.sweet':
                         parameter["station"].Customer.GiveSweet()
@@ -261,7 +261,7 @@ class GameBoard(scraft.Dispatcher):
                         tmpFrom.SetState(FieldState_Collapse)
                 
         elif cmd == Cmd_ClickStorage:
-            if self.GameCursorState == GameCursorState_Tokens:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 if parameter["where"].HasFreeSlots(self.PickedTokensNo):# and self.TokensFrom == self:
                     tmpFrom = self.TokensFrom
                     tmpType = self.PickedTokens
@@ -273,7 +273,7 @@ class GameBoard(scraft.Dispatcher):
                         tmpFrom.SetState(FieldState_Collapse)
             
         elif cmd == Cmd_TrashCan:
-            if self.GameCursorState == GameCursorState_Tokens:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 tmpFrom = self.TokensFrom
                 tmpNo = self.PickedTokensNo
                 self.TokensFrom.RemoveTokens()
@@ -283,10 +283,10 @@ class GameBoard(scraft.Dispatcher):
                     tmpFrom.SetState(FieldState_Collapse)
             
         elif cmd == Cmd_DropWhatYouCarry:
-            if self.GameCursorState == GameCursorState_Tokens:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 if self.TokensFrom != None:
                     self._DropTokensTo(self.TokensFrom)
-            elif self.GameCursorState == GameCursorState_Tool:
+            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
                 if self.TokensFrom != None:
                     self._DropPowerUp(self.TokensFrom)
                 else:
@@ -296,7 +296,7 @@ class GameBoard(scraft.Dispatcher):
             self._PickTokensFrom(parameter["where"], parameter["type"], parameter["no"])
             
         elif cmd == Cmd_PickFromConveyor:
-            if self.GameCursorState == GameCursorState_Tokens:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                 if self.TokensFrom != None:
                     parameter["where"].SendCommand(Cmd_ReturnToConveyor,
                                     { "type": self.PickedTokens, "position": parameter["position"] })
@@ -404,10 +404,10 @@ class GameBoard(scraft.Dispatcher):
                 
             elif self.State == GameState_Play:
                 #перенос токенов или иконки бонуса на мыши
-                if self.GameCursorState == GameCursorState_Tokens:
+                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                     self.TokenSprite.x = oE.mouseX
                     self.TokenSprite.y = oE.mouseY
-                elif self.GameCursorState == GameCursorState_Tool:
+                elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
                     self.ToolSprite.x = oE.mouseX
                     self.ToolSprite.y = oE.mouseY
                 #проверка на конец уровн€
@@ -427,19 +427,13 @@ class GameBoard(scraft.Dispatcher):
         return scraft.CommandStateRepeat
         
     #--------------------------
-    # «адает состо€ние игрового курсора (свободный, держит токены, держит тул)
-    #--------------------------
-    def _SetGameCursorState(self, state):
-        self.GameCursorState = state
-        
-    #--------------------------
     # ѕодбирает иконку бонуса
     #--------------------------
     def _PickPowerUp(self, type, where):
         self.SendCommand(Cmd_DropWhatYouCarry)
         self.ToolSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
         self.PickedTool = type
-        self._SetGameCursorState(GameCursorState_Tool)
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tool})
         self.TokensFrom = where
     
     #--------------------------
@@ -451,7 +445,7 @@ class GameBoard(scraft.Dispatcher):
         self.ToolSprite.Dispose()
         self.ToolSprite = None
         self.PickedTool = ""
-        self._SetGameCursorState(GameCursorState_Default)
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         self.TokensFrom = None
         
     def _PickFromConveyor(self, where, type):
@@ -461,7 +455,7 @@ class GameBoard(scraft.Dispatcher):
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": 20, "y": 30, "text": "",
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
-        self._SetGameCursorState(GameCursorState_Tokens)
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens})
         self.TokensFrom = where
         
         
@@ -472,7 +466,7 @@ class GameBoard(scraft.Dispatcher):
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": 20, "y": 30, "text": str(no),
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
-        self._SetGameCursorState(GameCursorState_Tokens)
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens})
         self.TokensFrom = where
         
     def _DropTokensTo(self, where):
@@ -482,7 +476,7 @@ class GameBoard(scraft.Dispatcher):
         self.PickedTokensNo = 0
         self.TokenSprite.Dispose()
         self.TokensNoSprite.Dispose()
-        self._SetGameCursorState(GameCursorState_Default)
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         self.TokensFrom = None
         
     def _PopupText(self, text, font, x, y):
@@ -504,10 +498,10 @@ class GameBoard(scraft.Dispatcher):
     def Clear(self):
         oE.executor.GetQueue(self.QueNo).Suspend()
         self.Playing = False
-        if self.GameCursorState == GameCursorState_Tokens:
+        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
             self.TokenSprite.Dispose()
             self.TokensNoSprite.Dispose()
-        elif self.GameCursorState == GameCursorState_Tool:
+        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
             self.ToolSprite.Dispose()
         for tmp in self.CStations + self.TrashCans: 
             tmp.Kill()

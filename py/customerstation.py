@@ -56,6 +56,8 @@ class CustomerStation(scraft.Dispatcher):
         self.Customer = customer
         customer.AttachTo(self)
         self.Active = True
+        if self.Dummy.mouseOver:
+            self._Hilight(True)
         
     #--------------
     # "type" - название рецепта 
@@ -79,6 +81,8 @@ class CustomerStation(scraft.Dispatcher):
                 u"domcasual-10-up", u"galka", self.TokensNeeded[i]["no"]))
             globalvars.BlackBoard.Update(BBTag_Ingredients,
                 { "type": self.TokensNeeded[i]["item"], "delta": self.TokensNeeded[i]["no"] })
+        if self.Dummy.mouseOver:
+            self._Hilight(True)
         
     #--------------
     # удалить заказ
@@ -237,6 +241,8 @@ class CustomerStation(scraft.Dispatcher):
             
         elif cmd == Cmd_Station_DeleteCustomer:
             self.Active = False
+            if self.Dummy.mouseOver:
+                self._Hilight(False)
             self.Customer.Kill()
             self.Hero.Show(False)
             if globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
@@ -256,6 +262,8 @@ class CustomerStation(scraft.Dispatcher):
             
         elif cmd == Cmd_Station_DeleteCustomerAndLoseMoney:
             self.Active = False
+            if self.Dummy.mouseOver:
+                self._Hilight(False)
             self.Customer.Kill()
             self.Hero.Show(False)
             self.State = CStationState_Free

@@ -40,6 +40,20 @@ level{
         Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "1" }
         Recipe{ type = "Chicken Pasta Casseroule"         rate = "1" }
         Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "1" }
+        
+        //Mexican
+        Recipe{ type = "Tortilla Soup"             rate = "1" }
+        Recipe{ type = "Guacamole"                 rate = "1" }
+        Recipe{ type = "Cheese Nachos"             rate = "1" }
+        Recipe{ type = "Chiles Renellos"           rate = "1" }
+        Recipe{ type = "Avocado Stuffed Tacos"     rate = "1" }
+        Recipe{ type = "Burrito"                   rate = "1" }
+        Recipe{ type = "Chili con Carne"           rate = "1" }
+        Recipe{ type = "Quesadilla"                rate = "1" }
+        Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "1" }
+        Recipe{ type = "Avocado Salsa"             rate = "1" }
+        Recipe{ type = "Fajitas"                   rate = "1" }
+        Recipe{ type = "Football Fan Nachos"       rate = "1" }
     }
     
     //ingredient appearance rates
@@ -51,6 +65,14 @@ level{
         Ingredient{ type = "pineapple" rate = "10" }
         Ingredient{ type = "pumpkin"   rate = "10" }
         Ingredient{ type = "tomato"    rate = "10" }
+        
+        //Mexican
+        Ingredient{ type = "pork"         rate = "10" }
+        Ingredient{ type = "chili-pepper" rate = "10" }
+        Ingredient{ type = "avocado"      rate = "10" }
+        Ingredient{ type = "cheese"       rate = "10" }
+        Ingredient{ type = "tortilla"     rate = "10" }
+        Ingredient{ type = "tomato"       rate = "10" }
         
         //Bonus
         Ingredient{ type = "bonus.spoon"      rate = "5" }

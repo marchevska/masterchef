@@ -14,30 +14,49 @@ Level{
         Customer{ type = "Worker"           rate = "1" }
         Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "1" }
-        Customer{ type = "Student"          rate = "1" }
-        Customer{ type = "Oldlady"          rate = "1" }
-        Customer{ type = "Critic"           rate = "1" }
+        Customer{ type = "Student"          rate = "0" }
+        Customer{ type = "Oldlady"          rate = "0" }
+        Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "1" }
-        Customer{ type = "Tourist Hawaiian" rate = "1" }
+        Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "1" }
-        Customer{ type = "Tourist Japanese" rate = "1" }
-        Customer{ type = "Tourist Russian"  rate = "1" }
+        Customer{ type = "Tourist Japanese" rate = "0" }
+        Customer{ type = "Tourist Russian"  rate = "0" }
     }
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Chili con Carne" rate = "2" }
-        Recipe{ type = "Burrito" rate = "3" }
-        Recipe{ type = "Assorted Empanadas" rate = "2" }
+        Recipe{ type = "Tortilla Soup"             rate = "1" }
+        Recipe{ type = "Guacamole"                 rate = "0" }
+        Recipe{ type = "Cheese Nachos"             rate = "1" }
+        Recipe{ type = "Chiles Renellos"           rate = "0" }
+        Recipe{ type = "Avocado Stuffed Tacos"     rate = "1" }
+        Recipe{ type = "Burrito"                   rate = "1" }
+        Recipe{ type = "Chili con Carne"           rate = "0" }
+        Recipe{ type = "Quesadilla"                rate = "1" }
+        Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "1" }
+        Recipe{ type = "Avocado Salsa"             rate = "1" }
+        Recipe{ type = "Fajitas"                   rate = "1" }
+        Recipe{ type = "Football Fan Nachos"       rate = "0" }
     }
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "pork" rate = "30" }
-        Ingredient{ type = "bean" rate = "10" }
-        Ingredient{ type = "tomato" rate = "10" }
-        Ingredient{ type = "chili-pepper" rate = "10" }
-        Ingredient{ type = "tortilla" rate = "30" }
+        Ingredient{ type = "pork"         rate = "30" }
+        Ingredient{ type = "chili-pepper" rate = "15" }
+        Ingredient{ type = "avocado"      rate = "29" }
+        Ingredient{ type = "cheese"       rate = "19" }
+        Ingredient{ type = "tortilla"     rate = "48" }
+        Ingredient{ type = "tomato"       rate = "19" }
+        Ingredient{ type = "bonus.spoon"      rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.magicwand"  rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.removerow"  rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.hearts"     rate = "0" }
+        Ingredient{ type = "bonus.shuffle"    rate = "0" }
     }
     
     //level settings

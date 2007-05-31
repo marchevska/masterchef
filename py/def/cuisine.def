@@ -22,6 +22,20 @@ MasterChef {
         Ingredient(pumpkin) { type = "vegetable" src = "ingredient.pumpkin" iconSrc = "ingredient.pumpkin.icon"}
         Ingredient(tomato) { type = "vegetable" src = "ingredient.tomato" iconSrc = "ingredient.tomato.icon" }
         
+        //Mexican
+        Ingredient(pork) { type = "meat" src = "ingredient.pork" iconSrc = "ingredient.pork.icon"}
+        Ingredient(chili-pepper) { type = "vegetable" src = "ingredient.chili-pepper" iconSrc = "ingredient.chili-pepper.icon" }
+        Ingredient(avocado) { type = "vegetable" src = "ingredient.avocado" iconSrc = "ingredient.avocado.icon" }
+        Ingredient(cheese) { type = "dairy" src = "ingredient.cheese" iconSrc = "ingredient.cheese.icon"}
+        Ingredient(tortilla) { type = "pasta" src = "ingredient.tortilla" iconSrc = "ingredient.tortilla.icon"}
+        
+        //Mexican - unused
+        Ingredient(tortilla-chips) { type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
+        Ingredient(onion) { type = "vegetable" src = "ingredient.onion" iconSrc = "ingredient.onion.icon" }
+        Ingredient(sour-cream) { type = "dairy" src = "ingredient.sour-cream" iconSrc = "ingredient.sour-cream.icon"}
+        Ingredient(bean) { type = "soy" src = "ingredient.bean" iconSrc = "ingredient.bean.icon"}
+        Ingredient(lime) { type = "fruit" src = "ingredient.lime" iconSrc = "ingredient.lime.icon"}
+
         //Japanese
         Ingredient(rice) { type = "cereal" src = "ingredient.rice" iconSrc = "ingredient.rice.icon"}
         Ingredient(noodle) { type = "pasta" src = "ingredient.noodle" iconSrc = "ingredient.noodle.icon"}
@@ -44,18 +58,6 @@ MasterChef {
         //Ingredient(sake) { type = "spice" src = "ingredient.sake" iconSrc = "ingredient.sake.icon"}
         //Ingredient(dashi) { type = "fish" src = "ingredient.dashi" iconSrc = "ingredient.dashi.icon"}
         //Ingredient(oyster) { type = "fish" src = "ingredient.oyster" iconSrc = "ingredient.oyster.icon"}
-        
-        //Mexican
-        Ingredient(chili-pepper) { type = "vegetable" src = "ingredient.chili-pepper" iconSrc = "ingredient.chili-pepper.icon" }
-        Ingredient(onion) { type = "vegetable" src = "ingredient.onion" iconSrc = "ingredient.onion.icon" }
-        Ingredient(avocado) { type = "vegetable" src = "ingredient.avocado" iconSrc = "ingredient.avocado.icon" }
-        Ingredient(cheese) { type = "dairy" src = "ingredient.cheese" iconSrc = "ingredient.cheese.icon"}
-        Ingredient(sour-cream) { type = "dairy" src = "ingredient.sour-cream" iconSrc = "ingredient.sour-cream.icon"}
-        Ingredient(bean) { type = "soy" src = "ingredient.bean" iconSrc = "ingredient.bean.icon"}
-        Ingredient(lime) { type = "fruit" src = "ingredient.lime" iconSrc = "ingredient.lime.icon"}
-        Ingredient(pork) { type = "meat" src = "ingredient.pork" iconSrc = "ingredient.pork.icon"}
-        Ingredient(tortilla) { type = "pasta" src = "ingredient.tortilla" iconSrc = "ingredient.tortilla.icon"}
-        Ingredient(tortilla-chips) { type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
         
         //Hawaii
         Ingredient(bun) { type = "pasta" src = "ingredient.bun" iconSrc = "ingredient.bun.icon"}
@@ -93,157 +95,6 @@ MasterChef {
     }
     
     Recipes {
-        //SweetShop recipes
-        Recipe(Angel Cake) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.angel-cake"
-            emptySrc = "recipe.angel-cake.empty"
-            requires = "{ 'flour': 5, 'egg': 5, 'strawberry': 5, 'sugar': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Baked Alaska) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.baked-alaska"
-            emptySrc = "recipe.baked-alaska.empty"
-            requires = "{ 'flour': 5, 'ice-cream': 5, 'nuts': 5, 'sugar': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Banana Split) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.banana-split"
-            emptySrc = "recipe.banana-split.empty"
-            requires = "{ 'ice-cream': 5, 'chocolate': 5, 'strawberry': 5, 'banana': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Berry Tart) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.berry-tart"
-            emptySrc = "recipe.berry-tart.empty"
-            requires = "{ 'flour': 5, 'egg': 5, 'berries': 5, 'sugar': 5, 'apple': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Berry Triffle) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.berry-triffle"
-            emptySrc = "recipe.berry-triffle.empty"
-            requires = "{ 'berries': 10, 'sour-cream': 10 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Choc Banana Milkshake) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.choc-banana-milkshake"
-            emptySrc = "recipe.choc-banana-milkshake.empty"
-            requires = "{ 'chocolate': 5, 'banana': 5, 'ice-cream': 5, 'milk': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Chocolate Fondue) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.chocolate-fondue"
-            emptySrc = "recipe.chocolate-fondue.empty"
-            requires = "{ 'chocolate': 5, 'strawberry': 5, 'sour-cream': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Fried Dough) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.fried-dough"
-            emptySrc = "recipe.fried-dough.empty"
-            requires = "{ 'flour': 10, 'egg': 10 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Fried Ice-Cream) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.fried-ice-cream"
-            emptySrc = "recipe.fried-ice-cream.empty"
-            requires = "{ 'chocolate': 5, 'nuts': 5, 'ice-cream': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Muffins) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.muffins"
-            emptySrc = "recipe.muffins.empty"
-            requires = "{ 'flour': 5, 'egg': 5, 'berries': 5, 'milk': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Pancakes) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.pancakes"
-            emptySrc = "recipe.pancakes.empty"
-            requires = "{ 'flour': 5, 'egg': 5, 'milk': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Pumpkin Cheesecake) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.pumpkin-cheesecake"
-            emptySrc = "recipe.pumpkin-cheesecake.empty"
-            requires = "{ 'flour': 5, 'egg': 5, 'sour-cream': 5, 'pumpkin': 5, 'sugar': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Pumpkin Cookies) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.pumpkin-cookies"
-            emptySrc = "recipe.pumpkin-cookies.empty"
-            requires = "{ 'flour': 5, 'apple': 5, 'pumpkin': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Strawberry Shake) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.strawberry-shake"
-            emptySrc = "recipe.strawberry-shake.empty"
-            requires = "{ 'strawberry': 10, 'milk': 10 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Truffles) {
-            setting = "SweetShop"
-            type = ""
-            src = "recipe.truffles"
-            emptySrc = "recipe.truffles.empty"
-            requires = "{ 'chocolate': 5, 'sour-cream': 5, 'nuts': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
         //American recipes
         Recipe(Squash with Tomato Sauce) {
             setting = "American"
@@ -366,24 +217,54 @@ MasterChef {
         }
         
         //Mexican recipes
-        Recipe(Assorted Empanadas) {
+        Recipe(Tortilla Soup) {
             setting = "Mexican"
             type = ""
-            src = "recipe.assorted-empanadas"
-            emptySrc = "recipe.assorted-empanadas.empty"
-            requires = "{ 'tortilla': 10, 'pork': 10 }"
+            src = "recipe.tortilla-soup"
+            emptySrc = "recipe.tortilla-soup.empty"
+            requires = "{ 'pork': 8, 'tortilla': 6 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
-        Recipe(BeanSoup) {
+        Recipe(Guacamole) {
             setting = "Mexican"
             type = ""
-            src = "recipe.bean-soup"
-            emptySrc = "recipe.bean-soup.empty"
-            requires = "{ 'bean': 10, 'onion': 10 }"
+            src = "recipe.guacamole"
+            emptySrc = "recipe.guacamole.empty"
+            requires = "{ 'tomato': 5, 'avocado': 9 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
+        }
+        
+        Recipe(Cheese Nachos) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.cheese-nachos"
+            emptySrc = "recipe.cheese-nachos.empty"
+            requires = "{ 'tortilla': 8, 'cheese': 8 }"
+            readyAt = "5"
+            price = "50"
+        }
+        
+        Recipe(Chiles Renellos) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.chilies-renellos"
+            emptySrc = "recipe.chilies-renellos.empty"
+            requires = "{ 'pork': 6, 'chili-pepper': 9 }"
+            readyAt = "5"
+            price = "50"
+        }
+        
+        Recipe(Avocado Stuffed Tacos) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.avocado-stuffed-tacos"
+            emptySrc = "recipe.avocado-stuffed-tacos.empty"
+            requires = "{ 'tortilla': 8, 'avocado': 8 }"
+            readyAt = "5"
+            price = "50"
         }
         
         Recipe(Burrito) {
@@ -391,39 +272,9 @@ MasterChef {
             type = ""
             src = "recipe.burrito"
             emptySrc = "recipe.burrito.empty"
-            requires = "{ 'tortilla': 5, 'tomato': 5, 'pork': 5, 'bean': 5 }"
+            requires = "{ 'pork': 6, 'tomato': 6, 'tortilla': 8 }"
             readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Caldo de Pollo) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.caldo-de-pollo"
-            emptySrc = "recipe.caldo-de-pollo.empty"
-            requires = "{ 'meat': 5, 'bean': 10, 'onion': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Ceviche) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.ceviche"
-            emptySrc = "recipe.ceviche.empty"
-            requires = "{ 'salmon': 10, 'shrimp': 5, 'lime': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Chicken Chilaquiles) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.chicken-chilaquiles"
-            emptySrc = "recipe.chicken-chilaquiles.empty"
-            requires = "{ 'tortilla-chips': 5, 'meat': 5, 'avocado': 5, 'cheese': 5 }"
-            readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
         Recipe(Chili con Carne) {
@@ -431,19 +282,39 @@ MasterChef {
             type = ""
             src = "recipe.chili-con-carne"
             emptySrc = "recipe.chili-con-carne.empty"
-            requires = "{ 'chili-pepper': 5, 'tomato': 5, 'pork': 5, 'bean': 5 }"
+            requires = "{ 'pork': 6, 'chili-pepper': 8, 'tomato': 4 }"
             readyAt = "5"
-            price = "100"
+            price = "75"
         }
         
-        Recipe(Chimichanga) {
+        Recipe(Quesadilla) {
             setting = "Mexican"
             type = ""
-            src = "recipe.chimichanga"
-            emptySrc = "recipe.chimichanga.empty"
-            requires = "{ 'tortilla': 10, 'tomato': 5, 'cheese': 5, 'onion': 5, 'rice':5 }"
-            readyAt = "7"
-            price = "100"
+            src = "recipe.quesadilla"
+            emptySrc = "recipe.quesadilla.empty"
+            requires = "{ 'tortilla': 9, 'avocado': 6, 'cheese': 4 }"
+            readyAt = "5"
+            price = "75"
+        }
+        
+        Recipe(Tex-Mex Turkey Casseruole) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.tex-mex-turkey-casseruole"
+            emptySrc = "recipe.tex-mex-turkey-casseruole.empty"
+            requires = "{ 'pork': 9, 'chili-pepper': 7, 'cheese': 7 }"
+            readyAt = "5"
+            price = "75"
+        }
+        
+        Recipe(Avocado Salsa) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.avocado-salsa"
+            emptySrc = "recipe.avocado-salsa.empty"
+            requires = "{ 'chili-pepper': 8, 'tomato': 6, 'avocado': 8 }"
+            readyAt = "5"
+            price = "75"
         }
         
         Recipe(Fajitas) {
@@ -451,7 +322,7 @@ MasterChef {
             type = ""
             src = "recipe.fajitas"
             emptySrc = "recipe.fajitas.empty"
-            requires = "{ 'tortilla': 10, 'chili-pepper': 5, 'meat': 5, 'avocado': 5, 'sour-cream': 5 }"
+            requires = "{ 'pork': 7, 'tomato': 7, 'tortilla': 9, 'avocado': 7 }"
             readyAt = "5"
             price = "100"
         }
@@ -461,57 +332,7 @@ MasterChef {
             type = ""
             src = "recipe.football-fan-nachos"
             emptySrc = "recipe.football-fan-nachos.empty"
-            requires = "{ 'tortilla-chips': 5, 'chili-pepper': 5, 'pork': 5, 'cheese': 5, 'sour-cream': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Grilled Shrimps) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.grilled-shrimps"
-            emptySrc = "recipe.grilled-shrimps.empty"
-            requires = "{ 'chili-pepper': 5, 'shrimp': 5, 'avocado': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Quesadilla) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.quesadilla"
-            emptySrc = "recipe.quesadilla.empty"
-            requires = "{ 'tortilla': 5, 'cheese': 5, 'avocado': 5, 'sour-cream': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Stuffed Tacos) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.stuffed-tacos"
-            emptySrc = "recipe.stuffed-tacos.empty"
-            requires = "{ 'tomato': 5, 'salmon': 5, 'avocado': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Tex-Mex Tuna) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.tex-mex-tuna"
-            emptySrc = "recipe.tex-mex-tuna.empty"
-            requires = "{ 'salmon': 10, 'tomato': 5, 'rice': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Tortilla Soup) {
-            setting = "Mexican"
-            type = ""
-            src = "recipe.tortilla-soup"
-            emptySrc = "recipe.tortilla-soup.empty"
-            requires = "{ 'tortilla-chips': 10, 'meat': 5, 'onion': 5 }"
+            requires = "{ 'pork': 7, 'chili-pepper': 7, 'tortilla': 9, 'cheese': 7 }"
             readyAt = "5"
             price = "100"
         }

@@ -1,13 +1,54 @@
 MasterChef{
     //source classes for ingredients
     IngredientKlasses{
+        //American
+        sprite(ingredient.meat) { bitmap = "img/ingredients/meat.png" type = "blend" }
+        sprite(ingredient.milk) { bitmap = "img/ingredients/milk.png" type = "blend" }
+        sprite(ingredient.pasta) { bitmap = "img/ingredients/pasta.png" type = "blend" }
+        sprite(ingredient.pineapple) { bitmap = "img/ingredients/pineapple.png" type = "blend" }
+        sprite(ingredient.pumpkin) { bitmap = "img/ingredients/pumpkin.png" type = "blend" }
+        sprite(ingredient.tomato) { bitmap = "img/ingredients/tomato.png" type = "blend" }
+        
+        //American - icons
+        sprite(ingredient.meat.icon) { bitmap = "img/ingredients/meat.icon.png" type = "blend" }
+        sprite(ingredient.milk.icon) { bitmap = "img/ingredients/milk.icon.png" type = "blend" }
+        sprite(ingredient.pasta.icon) { bitmap = "img/ingredients/pasta.icon.png" type = "blend" }
+        sprite(ingredient.pineapple.icon) { bitmap = "img/ingredients/pineapple.icon.png" type = "blend" }
+        sprite(ingredient.pumpkin.icon) { bitmap = "img/ingredients/pumpkin.icon.png" type = "blend" }
+        sprite(ingredient.tomato.icon) { bitmap = "img/ingredients/tomato.icon.png" type = "blend" }
+        
+        //Mexican
+        sprite(ingredient.pork) { bitmap = "img/ingredients/pork.png" type = "blend" }
+        sprite(ingredient.chili-pepper) { bitmap = "img/ingredients/chili-pepper.png" type = "blend" }
+        sprite(ingredient.avocado) { bitmap = "img/ingredients/avocado.png" type = "blend" }
+        sprite(ingredient.cheese) { bitmap = "img/ingredients/cheese.png" type = "blend" }
+        sprite(ingredient.tortilla) { bitmap = "img/ingredients/tortilla.png" type = "blend" }
+        
+        //Mexican - icons
+        sprite(ingredient.pork.icon) { bitmap = "img/ingredients/pork.icon.png" type = "blend" }
+        sprite(ingredient.chili-pepper.icon) { bitmap = "img/ingredients/chili-pepper.icon.png" type = "blend" }
+        sprite(ingredient.avocado.icon) { bitmap = "img/ingredients/avocado.icon.png" type = "blend" }
+        sprite(ingredient.cheese.icon) { bitmap = "img/ingredients/cheese.icon.png" type = "blend" }
+        sprite(ingredient.tortilla.icon) { bitmap = "img/ingredients/tortilla.icon.png" type = "blend" }
+        
+        //Mexican - unused
+        sprite(ingredient.onion) { bitmap = "img/ingredients/onion.png" type = "blend" }
+        sprite(ingredient.sour-cream) { bitmap = "img/ingredients/sour-cream.png" type = "blend" }
+        sprite(ingredient.bean) { bitmap = "img/ingredients/bean.png" type = "blend" }
+        sprite(ingredient.lime) { bitmap = "img/ingredients/lime.png" type = "blend" }
+        sprite(ingredient.tortilla-chips) { bitmap = "img/ingredients/tortilla-chips.png" type = "blend" }
+        sprite(ingredient.onion.icon) { bitmap = "img/ingredients/onion.icon.png" type = "blend" }
+        sprite(ingredient.sour-cream.icon) { bitmap = "img/ingredients/sour-cream.icon.png" type = "blend" }
+        sprite(ingredient.bean.icon) { bitmap = "img/ingredients/bean.icon.png" type = "blend" }
+        sprite(ingredient.lime.icon) { bitmap = "img/ingredients/lime.icon.png" type = "blend" }
+        sprite(ingredient.tortilla-chips.icon) { bitmap = "img/ingredients/tortilla-chips.icon.png" type = "blend" }
+        
         //Japanese
         sprite(ingredient.rice) { bitmap = "img/ingredients/rice.png" type = "blend" }
         sprite(ingredient.noodle) { bitmap = "img/ingredients/noodle.png" type = "blend" }
         sprite(ingredient.salmon) { bitmap = "img/ingredients/salmon.png" type = "blend" }
         sprite(ingredient.tuna) { bitmap = "img/ingredients/tuna.png" type = "blend" }
         sprite(ingredient.anchovies) { bitmap = "img/ingredients/anchovies.png" type = "blend" }
-        sprite(ingredient.meat) { bitmap = "img/ingredients/meat.png" type = "blend" }
         sprite(ingredient.seaweed) { bitmap = "img/ingredients/seaweed.png" type = "blend" }
         sprite(ingredient.egg) { bitmap = "img/ingredients/egg.png" type = "blend" }
         sprite(ingredient.tofu) { bitmap = "img/ingredients/tofu.png" type = "blend" }
@@ -26,7 +67,6 @@ MasterChef{
         sprite(ingredient.salmon.icon) { bitmap = "img/ingredients/salmon.icon.png" type = "blend" }
         sprite(ingredient.tuna.icon) { bitmap = "img/ingredients/tuna.icon.png" type = "blend" }
         sprite(ingredient.anchovies.icon) { bitmap = "img/ingredients/anchovies.icon.png" type = "blend" }
-        sprite(ingredient.meat.icon) { bitmap = "img/ingredients/meat.icon.png" type = "blend" }
         sprite(ingredient.seaweed.icon) { bitmap = "img/ingredients/seaweed.icon.png" type = "blend" }
         sprite(ingredient.egg.icon) { bitmap = "img/ingredients/egg.icon.png" type = "blend" }
         sprite(ingredient.tofu.icon) { bitmap = "img/ingredients/tofu.icon.png" type = "blend" }
@@ -39,32 +79,6 @@ MasterChef{
         sprite(ingredient.shrimp.icon) { bitmap = "img/ingredients/shrimp.icon.png" type = "blend" }
         sprite(ingredient.veggymix.icon) { bitmap = "img/ingredients/veggymix.icon.png" type = "blend" }
         
-        //Mexican
-        sprite(ingredient.tomato) { bitmap = "img/ingredients/tomato.png" type = "blend" }
-        sprite(ingredient.chili-pepper) { bitmap = "img/ingredients/chili-pepper.png" type = "blend" }
-        sprite(ingredient.onion) { bitmap = "img/ingredients/onion.png" type = "blend" }
-        sprite(ingredient.avocado) { bitmap = "img/ingredients/avocado.png" type = "blend" }
-        sprite(ingredient.cheese) { bitmap = "img/ingredients/cheese.png" type = "blend" }
-        sprite(ingredient.sour-cream) { bitmap = "img/ingredients/sour-cream.png" type = "blend" }
-        sprite(ingredient.bean) { bitmap = "img/ingredients/bean.png" type = "blend" }
-        sprite(ingredient.lime) { bitmap = "img/ingredients/lime.png" type = "blend" }
-        sprite(ingredient.pork) { bitmap = "img/ingredients/pork.png" type = "blend" }
-        sprite(ingredient.tortilla) { bitmap = "img/ingredients/tortilla.png" type = "blend" }
-        sprite(ingredient.tortilla-chips) { bitmap = "img/ingredients/tortilla-chips.png" type = "blend" }
-        
-        //Mexican - icons
-        sprite(ingredient.tomato.icon) { bitmap = "img/ingredients/tomato.icon.png" type = "blend" }
-        sprite(ingredient.chili-pepper.icon) { bitmap = "img/ingredients/chili-pepper.icon.png" type = "blend" }
-        sprite(ingredient.onion.icon) { bitmap = "img/ingredients/onion.icon.png" type = "blend" }
-        sprite(ingredient.avocado.icon) { bitmap = "img/ingredients/avocado.icon.png" type = "blend" }
-        sprite(ingredient.cheese.icon) { bitmap = "img/ingredients/cheese.icon.png" type = "blend" }
-        sprite(ingredient.sour-cream.icon) { bitmap = "img/ingredients/sour-cream.icon.png" type = "blend" }
-        sprite(ingredient.bean.icon) { bitmap = "img/ingredients/bean.icon.png" type = "blend" }
-        sprite(ingredient.lime.icon) { bitmap = "img/ingredients/lime.icon.png" type = "blend" }
-        sprite(ingredient.pork.icon) { bitmap = "img/ingredients/pork.icon.png" type = "blend" }
-        sprite(ingredient.tortilla.icon) { bitmap = "img/ingredients/tortilla.icon.png" type = "blend" }
-        sprite(ingredient.tortilla-chips.icon) { bitmap = "img/ingredients/tortilla-chips.icon.png" type = "blend" }
-        
         //SweetShop
         sprite(ingredient.apple) { bitmap = "img/ingredients/apple.png" type = "blend" }
         sprite(ingredient.banana) { bitmap = "img/ingredients/banana.png" type = "blend" }
@@ -72,9 +86,7 @@ MasterChef{
         sprite(ingredient.chocolate) { bitmap = "img/ingredients/chocolate.png" type = "blend" }
         sprite(ingredient.flour) { bitmap = "img/ingredients/flour.png" type = "blend" }
         sprite(ingredient.ice-cream) { bitmap = "img/ingredients/ice-cream.png" type = "blend" }
-        sprite(ingredient.milk) { bitmap = "img/ingredients/milk.png" type = "blend" }
         sprite(ingredient.nuts) { bitmap = "img/ingredients/nuts.png" type = "blend" }
-        sprite(ingredient.pumpkin) { bitmap = "img/ingredients/pumpkin.png" type = "blend" }
         sprite(ingredient.strawberry) { bitmap = "img/ingredients/strawberry.png" type = "blend" }
         sprite(ingredient.sugar) { bitmap = "img/ingredients/sugar.png" type = "blend" }
         
@@ -85,9 +97,7 @@ MasterChef{
         sprite(ingredient.chocolate.icon) { bitmap = "img/ingredients/chocolate.icon.png" type = "blend" }
         sprite(ingredient.flour.icon) { bitmap = "img/ingredients/flour.icon.png" type = "blend" }
         sprite(ingredient.ice-cream.icon) { bitmap = "img/ingredients/ice-cream.icon.png" type = "blend" }
-        sprite(ingredient.milk.icon) { bitmap = "img/ingredients/milk.icon.png" type = "blend" }
         sprite(ingredient.nuts.icon) { bitmap = "img/ingredients/nuts.icon.png" type = "blend" }
-        sprite(ingredient.pumpkin.icon) { bitmap = "img/ingredients/pumpkin.icon.png" type = "blend" }
         sprite(ingredient.strawberry.icon) { bitmap = "img/ingredients/strawberry.icon.png" type = "blend" }
         sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
         
@@ -96,14 +106,6 @@ MasterChef{
         
         //Hawaii - icons
         sprite(ingredient.bun.icon) { bitmap = "img/ingredients/bun.icon.png" type = "blend" }
-        
-        //American
-        sprite(ingredient.pineapple) { bitmap = "img/ingredients/pineapple.png" type = "blend" }
-        sprite(ingredient.pasta) { bitmap = "img/ingredients/pasta.png" type = "blend" }
-        
-        //American - icons
-        sprite(ingredient.pineapple.icon) { bitmap = "img/ingredients/pineapple.icon.png" type = "blend" }
-        sprite(ingredient.pasta.icon) { bitmap = "img/ingredients/pasta.icon.png" type = "blend" }
         
         //Russian
         sprite(ingredient.cabbage) { bitmap = "img/ingredients/cabbage.png" type = "blend" }
@@ -130,6 +132,62 @@ MasterChef{
       
     //source classes for dishes
     RecipeKlasses{
+        //American
+        sprite(recipe.squash-tomato-sauce) { bitmap = "img/recipes/american/squash-tomato-sauce.png" type = "blend" }
+        sprite(recipe.pasta-with-tomato-sauce) { bitmap = "img/recipes/american/pasta-with-tomato-sauce.png" type = "blend" }
+        sprite(recipe.pineapple-tomato-salad) { bitmap = "img/recipes/american/pineapple-tomato-salad.png" type = "blend" }
+        sprite(recipe.caribbean-spice-chicken) { bitmap = "img/recipes/american/caribbean-spice-chicken.png" type = "blend" }
+        sprite(recipe.crispy-baked-chicken) { bitmap = "img/recipes/american/crispy-baked-chicken.png" type = "blend" }
+        sprite(recipe.chicken-squash-stir-fry) { bitmap = "img/recipes/american/chicken-squash-stir-fry.png" type = "blend" }
+        sprite(recipe.grilled-meat) { bitmap = "img/recipes/american/grilled-meat.png" type = "blend" }
+        sprite(recipe.hubbard-squash-soup) { bitmap = "img/recipes/american/hubbard-squash-soup.png" type = "blend" }
+        sprite(recipe.pineapple-lasagna) { bitmap = "img/recipes/american/pineapple-lasagna.png" type = "blend" }
+        sprite(recipe.spaghetti-with-turkey-meat-sauce) { bitmap = "img/recipes/american/spaghetti-with-turkey-meat-sauce.png" type = "blend" }
+        sprite(recipe.chicken-pasta-casseroule) { bitmap = "img/recipes/american/chicken-pasta-casseroule.png" type = "blend" }
+        sprite(recipe.chicken-pineapple-pasta-pockets) { bitmap = "img/recipes/american/chicken-pineapple-pasta-pockets.png" type = "blend" }
+        
+        //American - empty
+        sprite(recipe.squash-tomato-sauce.empty) { bitmap = "img/recipes/american/squash-tomato-sauce.empty.png" type = "blend" }
+        sprite(recipe.pasta-with-tomato-sauce.empty) { bitmap = "img/recipes/american/pasta-with-tomato-sauce.empty.png" type = "blend" }
+        sprite(recipe.pineapple-tomato-salad.empty) { bitmap = "img/recipes/american/pineapple-tomato-salad.empty.png" type = "blend" }
+        sprite(recipe.caribbean-spice-chicken.empty) { bitmap = "img/recipes/american/caribbean-spice-chicken.empty.png" type = "blend" }
+        sprite(recipe.crispy-baked-chicken.empty) { bitmap = "img/recipes/american/crispy-baked-chicken.empty.png" type = "blend" }
+        sprite(recipe.chicken-squash-stir-fry.empty) { bitmap = "img/recipes/american/chicken-squash-stir-fry.empty.png" type = "blend" }
+        sprite(recipe.grilled-meat.empty) { bitmap = "img/recipes/american/grilled-meat.empty.png" type = "blend" }
+        sprite(recipe.hubbard-squash-soup.empty) { bitmap = "img/recipes/american/hubbard-squash-soup.empty.png" type = "blend" }
+        sprite(recipe.pineapple-lasagna.empty) { bitmap = "img/recipes/american/pineapple-lasagna.empty.png" type = "blend" }
+        sprite(recipe.spaghetti-with-turkey-meat-sauce.empty) { bitmap = "img/recipes/american/spaghetti-with-turkey-meat-sauce.empty.png" type = "blend" }
+        sprite(recipe.chicken-pasta-casseroule.empty) { bitmap = "img/recipes/american/chicken-pasta-casseroule.empty.png" type = "blend" }
+        sprite(recipe.chicken-pineapple-pasta-pockets.empty) { bitmap = "img/recipes/american/chicken-pineapple-pasta-pockets.empty.png" type = "blend" }
+        
+        //Mexican
+        sprite(recipe.tortilla-soup) { bitmap = "img/recipes/mexican/tortilla-soup.png" type = "blend" }
+        sprite(recipe.guacamole) { bitmap = "img/recipes/mexican/guacamole.png" type = "blend" }
+        sprite(recipe.cheese-nachos) { bitmap = "img/recipes/mexican/cheese-nachos.png" type = "blend" }
+        sprite(recipe.chilies-renellos) { bitmap = "img/recipes/mexican/chilies-renellos.png" type = "blend" }
+        sprite(recipe.avocado-stuffed-tacos) { bitmap = "img/recipes/mexican/avocado-stuffed-tacos.png" type = "blend" }
+        sprite(recipe.burrito) { bitmap = "img/recipes/mexican/burrito.png" type = "blend" }
+        sprite(recipe.chili-con-carne) { bitmap = "img/recipes/mexican/chili-con-carne.png" type = "blend" }
+        sprite(recipe.quesadilla) { bitmap = "img/recipes/mexican/quesadilla.png" type = "blend" }
+        sprite(recipe.tex-mex-turkey-casseruole) { bitmap = "img/recipes/mexican/tex-mex-turkey-casseruole.png" type = "blend" }
+        sprite(recipe.avocado-salsa) { bitmap = "img/recipes/mexican/avocado-salsa.png" type = "blend" }
+        sprite(recipe.fajitas) { bitmap = "img/recipes/mexican/fajitas.png" type = "blend" }
+        sprite(recipe.football-fan-nachos) { bitmap = "img/recipes/mexican/football-fan-nachos.png" type = "blend" }
+        
+        //Mexican - empty
+        sprite(recipe.tortilla-soup.empty) { bitmap = "img/recipes/mexican/tortilla-soup.empty.png" type = "blend" }
+        sprite(recipe.guacamole.empty) { bitmap = "img/recipes/mexican/guacamole.empty.png" type = "blend" }
+        sprite(recipe.cheese-nachos.empty) { bitmap = "img/recipes/mexican/cheese-nachos.empty.png" type = "blend" }
+        sprite(recipe.chilies-renellos.empty) { bitmap = "img/recipes/mexican/chilies-renellos.empty.png" type = "blend" }
+        sprite(recipe.avocado-stuffed-tacos.empty) { bitmap = "img/recipes/mexican/avocado-stuffed-tacos.empty.png" type = "blend" }
+        sprite(recipe.burrito.empty) { bitmap = "img/recipes/mexican/burrito.empty.png" type = "blend" }
+        sprite(recipe.chili-con-carne.empty) { bitmap = "img/recipes/mexican/chili-con-carne.empty.png" type = "blend" }
+        sprite(recipe.quesadilla.empty) { bitmap = "img/recipes/mexican/quesadilla.empty.png" type = "blend" }
+        sprite(recipe.tex-mex-turkey-casseruole.empty) { bitmap = "img/recipes/mexican/tex-mex-turkey-casseruole.empty.png" type = "blend" }
+        sprite(recipe.avocado-salsa.empty) { bitmap = "img/recipes/mexican/avocado-salsa.empty.png" type = "blend" }
+        sprite(recipe.fajitas.empty) { bitmap = "img/recipes/mexican/fajitas.empty.png" type = "blend" }
+        sprite(recipe.football-fan-nachos.empty) { bitmap = "img/recipes/mexican/football-fan-nachos.empty.png" type = "blend" }
+        
         //Japanese
         sprite(recipe.osechi) { bitmap = "img/recipes/japanese/osechi.png" type = "blend" }
         sprite(recipe.tonjiru) { bitmap = "img/recipes/japanese/tonjiru.png" type = "blend" }
@@ -164,34 +222,6 @@ MasterChef{
         sprite(recipe.nigirizushi.empty) { bitmap = "img/recipes/japanese/nigirizushi.empty.png" type = "blend" }
         sprite(recipe.morikomi.empty) { bitmap = "img/recipes/japanese/morikomi.empty.png" type = "blend" }
         
-        //American
-        sprite(recipe.squash-tomato-sauce) { bitmap = "img/recipes/american/squash-tomato-sauce.png" type = "blend" }
-        sprite(recipe.pasta-with-tomato-sauce) { bitmap = "img/recipes/american/pasta-with-tomato-sauce.png" type = "blend" }
-        sprite(recipe.pineapple-tomato-salad) { bitmap = "img/recipes/american/pineapple-tomato-salad.png" type = "blend" }
-        sprite(recipe.caribbean-spice-chicken) { bitmap = "img/recipes/american/caribbean-spice-chicken.png" type = "blend" }
-        sprite(recipe.crispy-baked-chicken) { bitmap = "img/recipes/american/crispy-baked-chicken.png" type = "blend" }
-        sprite(recipe.chicken-squash-stir-fry) { bitmap = "img/recipes/american/chicken-squash-stir-fry.png" type = "blend" }
-        sprite(recipe.grilled-meat) { bitmap = "img/recipes/american/grilled-meat.png" type = "blend" }
-        sprite(recipe.hubbard-squash-soup) { bitmap = "img/recipes/american/hubbard-squash-soup.png" type = "blend" }
-        sprite(recipe.pineapple-lasagna) { bitmap = "img/recipes/american/pineapple-lasagna.png" type = "blend" }
-        sprite(recipe.spaghetti-with-turkey-meat-sauce) { bitmap = "img/recipes/american/spaghetti-with-turkey-meat-sauce.png" type = "blend" }
-        sprite(recipe.chicken-pasta-casseroule) { bitmap = "img/recipes/american/chicken-pasta-casseroule.png" type = "blend" }
-        sprite(recipe.chicken-pineapple-pasta-pockets) { bitmap = "img/recipes/american/chicken-pineapple-pasta-pockets.png" type = "blend" }
-        
-        //American - empty
-        sprite(recipe.squash-tomato-sauce.empty) { bitmap = "img/recipes/american/squash-tomato-sauce.empty.png" type = "blend" }
-        sprite(recipe.pasta-with-tomato-sauce.empty) { bitmap = "img/recipes/american/pasta-with-tomato-sauce.empty.png" type = "blend" }
-        sprite(recipe.pineapple-tomato-salad.empty) { bitmap = "img/recipes/american/pineapple-tomato-salad.empty.png" type = "blend" }
-        sprite(recipe.caribbean-spice-chicken.empty) { bitmap = "img/recipes/american/caribbean-spice-chicken.empty.png" type = "blend" }
-        sprite(recipe.crispy-baked-chicken.empty) { bitmap = "img/recipes/american/crispy-baked-chicken.empty.png" type = "blend" }
-        sprite(recipe.chicken-squash-stir-fry.empty) { bitmap = "img/recipes/american/chicken-squash-stir-fry.empty.png" type = "blend" }
-        sprite(recipe.grilled-meat.empty) { bitmap = "img/recipes/american/grilled-meat.empty.png" type = "blend" }
-        sprite(recipe.hubbard-squash-soup.empty) { bitmap = "img/recipes/american/hubbard-squash-soup.empty.png" type = "blend" }
-        sprite(recipe.pineapple-lasagna.empty) { bitmap = "img/recipes/american/pineapple-lasagna.empty.png" type = "blend" }
-        sprite(recipe.spaghetti-with-turkey-meat-sauce.empty) { bitmap = "img/recipes/american/spaghetti-with-turkey-meat-sauce.empty.png" type = "blend" }
-        sprite(recipe.chicken-pasta-casseroule.empty) { bitmap = "img/recipes/american/chicken-pasta-casseroule.empty.png" type = "blend" }
-        sprite(recipe.chicken-pineapple-pasta-pockets.empty) { bitmap = "img/recipes/american/chicken-pineapple-pasta-pockets.empty.png" type = "blend" }
-        
         //Hawaiian
         sprite(recipe.avocado-salad) { bitmap = "img/recipes/hawaiian/avocado-salad.png" type = "blend" }
         sprite(recipe.avocado-salmon-sandwitch) { bitmap = "img/recipes/hawaiian/avocado-salmon-sandwitch.png" type = "blend" }
@@ -221,40 +251,6 @@ MasterChef{
         sprite(recipe.shrimp-sandwitch.empty) { bitmap = "img/recipes/hawaiian/shrimp-sandwitch.empty.png" type = "blend" }
         sprite(recipe.spaghetti-veg.empty) { bitmap = "img/recipes/hawaiian/spaghetti-veg.empty.png" type = "blend" }
         sprite(recipe.spicy-shrimps.empty) { bitmap = "img/recipes/hawaiian/spicy-shrimps.empty.png" type = "blend" }
-        
-        //Mexican
-        sprite(recipe.assorted-empanadas) { bitmap = "img/recipes/mexican/assorted-empanadas.png" type = "blend" }
-        sprite(recipe.bean-soup) { bitmap = "img/recipes/mexican/bean-soup.png" type = "blend" }
-        sprite(recipe.burrito) { bitmap = "img/recipes/mexican/burrito.png" type = "blend" }
-        sprite(recipe.caldo-de-pollo) { bitmap = "img/recipes/mexican/caldo-de-pollo.png" type = "blend" }
-        sprite(recipe.ceviche) { bitmap = "img/recipes/mexican/ceviche.png" type = "blend" }
-        sprite(recipe.chicken-chilaquiles) { bitmap = "img/recipes/mexican/chicken-chilaquiles.png" type = "blend" }
-        sprite(recipe.chili-con-carne) { bitmap = "img/recipes/mexican/chili-con-carne.png" type = "blend" }
-        sprite(recipe.chimichanga) { bitmap = "img/recipes/mexican/chimichanga.png" type = "blend" }
-        sprite(recipe.fajitas) { bitmap = "img/recipes/mexican/fajitas.png" type = "blend" }
-        sprite(recipe.football-fan-nachos) { bitmap = "img/recipes/mexican/football-fan-nachos.png" type = "blend" }
-        sprite(recipe.grilled-shrimps) { bitmap = "img/recipes/mexican/grilled-shrimps.png" type = "blend" }
-        sprite(recipe.quesadilla) { bitmap = "img/recipes/mexican/quesadilla.png" type = "blend" }
-        sprite(recipe.stuffed-tacos) { bitmap = "img/recipes/mexican/stuffed-tacos.png" type = "blend" }
-        sprite(recipe.tex-mex-tuna) { bitmap = "img/recipes/mexican/tex-mex-tuna.png" type = "blend" }
-        sprite(recipe.tortilla-soup) { bitmap = "img/recipes/mexican/tortilla-soup.png" type = "blend" }
-        
-        //Mexican - empty
-        sprite(recipe.assorted-empanadas.empty) { bitmap = "img/recipes/mexican/assorted-empanadas.empty.png" type = "blend" }
-        sprite(recipe.bean-soup.empty) { bitmap = "img/recipes/mexican/bean-soup.empty.png" type = "blend" }
-        sprite(recipe.burrito.empty) { bitmap = "img/recipes/mexican/burrito.empty.png" type = "blend" }
-        sprite(recipe.caldo-de-pollo.empty) { bitmap = "img/recipes/mexican/caldo-de-pollo.empty.png" type = "blend" }
-        sprite(recipe.ceviche.empty) { bitmap = "img/recipes/mexican/ceviche.empty.png" type = "blend" }
-        sprite(recipe.chicken-chilaquiles.empty) { bitmap = "img/recipes/mexican/chicken-chilaquiles.empty.png" type = "blend" }
-        sprite(recipe.chili-con-carne.empty) { bitmap = "img/recipes/mexican/chili-con-carne.empty.png" type = "blend" }
-        sprite(recipe.chimichanga.empty) { bitmap = "img/recipes/mexican/chimichanga.empty.png" type = "blend" }
-        sprite(recipe.fajitas.empty) { bitmap = "img/recipes/mexican/fajitas.empty.png" type = "blend" }
-        sprite(recipe.football-fan-nachos.empty) { bitmap = "img/recipes/mexican/football-fan-nachos.empty.png" type = "blend" }
-        sprite(recipe.grilled-shrimps.empty) { bitmap = "img/recipes/mexican/grilled-shrimps.empty.png" type = "blend" }
-        sprite(recipe.quesadilla.empty) { bitmap = "img/recipes/mexican/quesadilla.empty.png" type = "blend" }
-        sprite(recipe.stuffed-tacos.empty) { bitmap = "img/recipes/mexican/stuffed-tacos.empty.png" type = "blend" }
-        sprite(recipe.tex-mex-tuna.empty) { bitmap = "img/recipes/mexican/tex-mex-tuna.empty.png" type = "blend" }
-        sprite(recipe.tortilla-soup.empty) { bitmap = "img/recipes/mexican/tortilla-soup.empty.png" type = "blend" }
         
         //Russian
         sprite(recipe.beef-stroganoff) { bitmap = "img/recipes/russian/beef-stroganoff.png" type = "blend" }

@@ -29,30 +29,33 @@ MasterChef {
         Ingredient(cheese) { type = "dairy" src = "ingredient.cheese" iconSrc = "ingredient.cheese.icon"}
         Ingredient(tortilla) { type = "pasta" src = "ingredient.tortilla" iconSrc = "ingredient.tortilla.icon"}
         
+        //Japanese
+        Ingredient(salmon) { type = "fish" src = "ingredient.salmon" iconSrc = "ingredient.salmon.icon"}
+        Ingredient(shrimp) { type = "fish" src = "ingredient.shrimp" iconSrc = "ingredient.shrimp.icon"}
+        Ingredient(rice) { type = "cereal" src = "ingredient.rice" iconSrc = "ingredient.rice.icon"}
+        Ingredient(tofu) { type = "soy" src = "ingredient.tofu" iconSrc = "ingredient.tofu.icon"}
+        Ingredient(veggymix) { type = "vegetable" src = "ingredient.veggymix" iconSrc = "ingredient.veggymix.icon"}
+        Ingredient(seaweed) { type = "vegetable" src = "ingredient.seaweed" iconSrc = "ingredient.seaweed.icon"}
+        
+        
         //Mexican - unused
         Ingredient(tortilla-chips) { type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
         Ingredient(onion) { type = "vegetable" src = "ingredient.onion" iconSrc = "ingredient.onion.icon" }
         Ingredient(sour-cream) { type = "dairy" src = "ingredient.sour-cream" iconSrc = "ingredient.sour-cream.icon"}
         Ingredient(bean) { type = "soy" src = "ingredient.bean" iconSrc = "ingredient.bean.icon"}
         Ingredient(lime) { type = "fruit" src = "ingredient.lime" iconSrc = "ingredient.lime.icon"}
-
-        //Japanese
-        Ingredient(rice) { type = "cereal" src = "ingredient.rice" iconSrc = "ingredient.rice.icon"}
+        
+        //Japanese - unused
         Ingredient(noodle) { type = "pasta" src = "ingredient.noodle" iconSrc = "ingredient.noodle.icon"}
-        Ingredient(salmon) { type = "fish" src = "ingredient.salmon" iconSrc = "ingredient.salmon.icon"}
         Ingredient(tuna) { type = "fish" src = "ingredient.tuna" iconSrc = "ingredient.tuna.icon"}
         Ingredient(anchovies) { type = "fish" src = "ingredient.anchovies" iconSrc = "ingredient.anchovies.icon"}
-        Ingredient(seaweed) { type = "vegetable" src = "ingredient.seaweed" iconSrc = "ingredient.seaweed.icon"}
         Ingredient(egg) { type = "egg" src = "ingredient.egg" iconSrc = "ingredient.egg.icon"}
-        Ingredient(tofu) { type = "soy" src = "ingredient.tofu" iconSrc = "ingredient.tofu.icon"}
         Ingredient(soya) { type = "soy" src = "ingredient.soya" iconSrc = "ingredient.soya.icon"}
         Ingredient(mushroom) { type = "vegetable" src = "ingredient.mushroom" iconSrc = "ingredient.mushroom.icon"}
         Ingredient(shoyu) { type = "spice" src = "ingredient.shoyu" iconSrc = "ingredient.shoyu.icon"}
         Ingredient(umeboshi) { type = "vegetable" src = "ingredient.umeboshi" iconSrc = "ingredient.umeboshi.icon"}
         Ingredient(pickles) { type = "vegetable" src = "ingredient.pickles" iconSrc = "ingredient.pickles.icon"}
         Ingredient(miso) { type = "soy" src = "ingredient.miso" iconSrc = "ingredient.miso.icon"}
-        Ingredient(shrimp) { type = "fish" src = "ingredient.shrimp" iconSrc = "ingredient.shrimp.icon"}
-        Ingredient(veggymix) { type = "vegetable" src = "ingredient.veggymix" iconSrc = "ingredient.veggymix.icon"}
         
         //Japanese unused
         //Ingredient(sake) { type = "spice" src = "ingredient.sake" iconSrc = "ingredient.sake.icon"}
@@ -470,74 +473,34 @@ MasterChef {
         }
          
         //Japanese recipes
-        Recipe(Osechi) {
+        Recipe(Nigiri Zushi) {
             setting = "Japanese"
-            type = "new year dish"
-            src = "recipe.osechi"
-            emptySrc = "recipe.osechi.empty"
-            requires = "{ 'salmon': 3, 'anchovies': 3, 'seaweed': 3, 'egg': 3, 'shoyu': 3}"
-            readyAt = "12"
-            price = "100"
+            type = "rice dish"
+            src = "recipe.nigirizushi"
+            emptySrc = "recipe.nigirizushi.empty"
+            requires = "{ 'salmon': 6, 'rice': 8 }"
+            readyAt = "3"
+            price = "50"
         }
         
-        Recipe(Tonjiru) {
-            setting = "Japanese"
-            type = "miso soup with meat"
-            src = "recipe.tonjiru"
-            emptySrc = "recipe.tonjiru.empty"
-            requires = "{ 'noodle': 5, 'meat': 5, 'miso': 5, 'veggymix': 5}"
-            readyAt = "15"
-            price = "100"
-        }
-        
-        Recipe(Sukiyaki) {
-            setting = "Japanese"
-            type = "meat with tofu, mushrooms and vegetables"
-            src = "recipe.sukiyaki"
-            emptySrc = "recipe.sukiyaki.empty"
-            requires = "{ 'meat': 5, 'tofu': 5, 'mushroom': 5, 'veggymix': 5}"
-            readyAt = "15"
-            price = "100"
-        }
-        
-        Recipe(Omuraysu) {
+        Recipe(Sashimi) {
             setting = "Japanese"
             type = ""
-            src = "recipe.omuraysu"
-            emptySrc = "recipe.omuraysu.empty"
-            requires = "{ 'meat': 5, 'rice': 5, 'mushroom': 5, 'umeboshi': 5}"
-            readyAt = "15"
-            price = "100"
-        }
-        
-        Recipe(Yakitori) {
-            setting = "Japanese"
-            type = ""
-            src = "recipe.yakitori"
-            emptySrc = "recipe.yakitori.empty"
-            requires = "{ 'meat': 5, 'shoyu': 2 }"
+            src = "recipe.sashimi"
+            emptySrc = "recipe.sashimi.empty"
+            requires = "{ 'salmon': 8, 'veggymix': 8 }"
             readyAt = "5"
-            price = "100"
+            price = "50"
         }
         
-        Recipe(Tempura) {
+        Recipe(Seafood Tempura) {
             setting = "Japanese"
             type = ""
-            src = "recipe.tempura"
-            emptySrc = "recipe.tempura.empty"
-            requires = "{ 'noodle': 5, 'salmon': 5, 'egg': 5, 'shrimp': 5}"
+            src = "recipe.seafood-tempura"
+            emptySrc = "recipe.seafood-tempura.empty"
+            requires = "{ 'shrimp': 8, 'veggymix': 6 }"
             readyAt = "15"
-            price = "100"
-        }
-        
-        Recipe(Gedza) {
-            setting = "Japanese"
-            type = ""
-            src = "recipe.gedza"
-            emptySrc = "recipe.gedza.empty"
-            requires = "{ 'meat': 5, 'egg': 5, 'shrimp': 5}"
-            readyAt = "10"
-            price = "100"
+            price = "50"
         }
         
         Recipe(TofuDengaku) {
@@ -545,8 +508,68 @@ MasterChef {
             type = ""
             src = "recipe.tofudengaku"
             emptySrc = "recipe.tofudengaku.empty"
-            requires = "{ 'tofu': 5, 'miso': 5, 'pickles': 5}"
+            requires = "{ 'tofu': 9, 'seaweed': 6 }"
             readyAt = "10"
+            price = "50"
+        }
+        
+        Recipe(Tempura) {
+            setting = "Japanese"
+            type = ""
+            src = "recipe.tempura"
+            emptySrc = "recipe.tempura.empty"
+            requires = "{ 'salmon': 6, 'shrimp': 9, 'veggymix': 6 }"
+            readyAt = "15"
+            price = "75"
+        }
+        
+        Recipe(Koyungohan) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.koyungohan"
+            emptySrc = "recipe.koyungohan.empty"
+            requires = "{ 'salmon': 6, 'rice': 9, 'tofu': 6 }"
+            readyAt = "4"
+            price = "75"
+        }
+        
+        Recipe(Ochazuke) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.ochazuke"
+            emptySrc = "recipe.ochazuke.empty"
+            requires = "{ 'salmon': 8, 'rice': 6, 'seaweed': 6 }"
+            readyAt = "4"
+            price = "75"
+        }
+        
+        Recipe(Tempura Shrimp Roll) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.tempura-shrimp-roll"
+            emptySrc = "recipe.tempura-shrimp-roll.empty"
+            requires = "{ 'shrimp': 6, 'rice': 9, 'seaweed': 6 }"
+            readyAt = "4"
+            price = "75"
+        }
+        
+        Recipe(Onigiri) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.onigiri"
+            emptySrc = "recipe.onigiri.empty"
+            requires = "{ 'rice': 7, 'tofu': 7, 'seaweed': 7 }"
+            readyAt = "3"
+            price = "75"
+        }
+        
+        Recipe(Osechi) {
+            setting = "Japanese"
+            type = "new year dish"
+            src = "recipe.osechi"
+            emptySrc = "recipe.osechi.empty"
+            requires = "{ 'salmon': 7, 'shrimp': 7, 'rice': 7, 'seaweed': 6 }"
+            readyAt = "12"
             price = "100"
         }
         
@@ -555,68 +578,18 @@ MasterChef {
             type = "hot seafood plate"
             src = "recipe.yosenabe"
             emptySrc = "recipe.yosenabe.empty"
-            requires = "{ 'shrimp': 3, 'anchovies': 5, 'tofu': 4, 'veggymix': 5, 'mushroom': 3}"
+            requires = "{ 'salmon': 7, 'shrimp': 7, 'tofu': 7, 'veggymix': 7 }"
             readyAt = "15"
             price = "100"
         }
         
-        Recipe(ZaruSoba) {
-            setting = "Japanese"
-            type = "noodle dish"
-            src = "recipe.zarusoba"
-            emptySrc = "recipe.zarusoba.empty"
-            requires = "{ 'noodle': 3, 'tofu': 4, 'shoyu': 5, 'pickles': 3}"
-            readyAt = "12"
-            price = "100"
-        }
-        
-        Recipe(OkonomiYaki) {
-            setting = "Japanese"
-            type = "pancakes"
-            src = "recipe.okonomiyaki"
-            emptySrc = "recipe.okonomiyaki.empty"
-            requires = "{ 'egg': 3, 'miso': 5, 'mushroom': 3}"
-            readyAt = "8"
-            price = "100"
-        }
-        
-        Recipe(Ochazuke) {
+        Recipe(Temaki Zushi) {
             setting = "Japanese"
             type = "rice dish"
-            src = "recipe.ochazuke"
-            emptySrc = "recipe.ochazuke.empty"
-            requires = "{ 'rice': 10, 'anchovies': 5, 'seaweed': 2 }"
+            src = "recipe.temakizushi"
+            emptySrc = "recipe.temakizushi.empty"
+            requires = "{ 'rice': 8, 'tofu': 6, 'veggymix': 6, 'seaweed': 6 }"
             readyAt = "4"
-            price = "100"
-        }
-        
-        Recipe(Onigiri) {
-            setting = "Japanese"
-            type = "rice dish"
-            src = "recipe.onigiri"
-            emptySrc = "recipe.onigiri.empty"
-            requires = "{ 'rice': 5, 'seaweed': 2, 'umeboshi':2 }"
-            readyAt = "3"
-            price = "100"
-        }
-        
-        Recipe(NigiriZushi) {
-            setting = "Japanese"
-            type = "rice dish"
-            src = "recipe.nigirizushi"
-            emptySrc = "recipe.nigirizushi.empty"
-            requires = "{ 'rice': 5, 'salmon': 2 }"
-            readyAt = "3"
-            price = "100"
-        }
-        
-        Recipe(Morikomi) {
-            setting = "Japanese"
-            type = "rice dish"
-            src = "recipe.morikomi"
-            emptySrc = "recipe.morikomi.empty"
-            requires = "{ 'rice': 5, 'salmon': 5, 'anchovies': 5, 'shrimp': 2, 'veggymix':2 }"
-            readyAt = "15"
             price = "100"
         }
         

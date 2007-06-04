@@ -54,6 +54,20 @@ level{
         Recipe{ type = "Avocado Salsa"             rate = "1" }
         Recipe{ type = "Fajitas"                   rate = "1" }
         Recipe{ type = "Football Fan Nachos"       rate = "1" }
+        
+        //Japanese
+        Recipe{ type = "Nigiri Zushi"        rate = "1" }
+        Recipe{ type = "Sashimi"             rate = "1" }
+        Recipe{ type = "Seafood Tempura"     rate = "1" }
+        Recipe{ type = "TofuDengaku"         rate = "1" }
+        Recipe{ type = "Tempura"             rate = "1" }
+        Recipe{ type = "Koyungohan"          rate = "1" }
+        Recipe{ type = "Ochazuke"            rate = "1" }
+        Recipe{ type = "Tempura Shrimp Roll" rate = "1" }
+        Recipe{ type = "Onigiri"             rate = "1" }
+        Recipe{ type = "Osechi"              rate = "1" }
+        Recipe{ type = "Yosenabe"            rate = "1" }
+        Recipe{ type = "Temaki Zushi"        rate = "1" }
     }
     
     //ingredient appearance rates
@@ -73,6 +87,14 @@ level{
         Ingredient{ type = "cheese"       rate = "10" }
         Ingredient{ type = "tortilla"     rate = "10" }
         Ingredient{ type = "tomato"       rate = "10" }
+        
+        //Japanese
+        Ingredient{ type = "salmon"   rate = "10" }
+        Ingredient{ type = "shrimp"   rate = "10" }
+        Ingredient{ type = "rice"     rate = "10" }
+        Ingredient{ type = "tofu"     rate = "10" }
+        Ingredient{ type = "veggymix" rate = "10" }
+        Ingredient{ type = "seaweed"  rate = "10" }
         
         //Bonus
         Ingredient{ type = "bonus.spoon"      rate = "5" }

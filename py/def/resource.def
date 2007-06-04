@@ -189,38 +189,32 @@ MasterChef{
         sprite(recipe.football-fan-nachos.empty) { bitmap = "img/recipes/mexican/football-fan-nachos.empty.png" type = "blend" }
         
         //Japanese
-        sprite(recipe.osechi) { bitmap = "img/recipes/japanese/osechi.png" type = "blend" }
-        sprite(recipe.tonjiru) { bitmap = "img/recipes/japanese/tonjiru.png" type = "blend" }
-        sprite(recipe.sukiyaki) { bitmap = "img/recipes/japanese/sukiyaki.png" type = "blend" }
-        sprite(recipe.omuraysu) { bitmap = "img/recipes/japanese/omuraysu.png" type = "blend" }
-        sprite(recipe.yakitori) { bitmap = "img/recipes/japanese/yakitori.png" type = "blend" }
-        sprite(recipe.tempura) { bitmap = "img/recipes/japanese/tempura.png" type = "blend" }
-        sprite(recipe.gedza) { bitmap = "img/recipes/japanese/gedza.png" type = "blend" }
-        sprite(recipe.tofudengaku) { bitmap = "img/recipes/japanese/tofudengaku.png" type = "blend" }
-        sprite(recipe.yosenabe) { bitmap = "img/recipes/japanese/yosenabe.png" type = "blend" }
-        sprite(recipe.zarusoba) { bitmap = "img/recipes/japanese/zarusoba.png" type = "blend" }
-        sprite(recipe.okonomiyaki) { bitmap = "img/recipes/japanese/okonomiyaki.png" type = "blend" }
-        sprite(recipe.ochazuke) { bitmap = "img/recipes/japanese/ochazuke.png" type = "blend" }
-        sprite(recipe.onigiri) { bitmap = "img/recipes/japanese/onigiri.png" type = "blend" }
         sprite(recipe.nigirizushi) { bitmap = "img/recipes/japanese/nigirizushi.png" type = "blend" }
-        sprite(recipe.morikomi) { bitmap = "img/recipes/japanese/morikomi.png" type = "blend" }
+        sprite(recipe.sashimi) { bitmap = "img/recipes/japanese/sashimi.png" type = "blend" }
+        sprite(recipe.seafood-tempura) { bitmap = "img/recipes/japanese/seafood-tempura.png" type = "blend" }
+        sprite(recipe.tofudengaku) { bitmap = "img/recipes/japanese/tofudengaku.png" type = "blend" }
+        sprite(recipe.tempura) { bitmap = "img/recipes/japanese/tempura.png" type = "blend" }
+        sprite(recipe.koyungohan) { bitmap = "img/recipes/japanese/koyungohan.png" type = "blend" }
+        sprite(recipe.ochazuke) { bitmap = "img/recipes/japanese/ochazuke.png" type = "blend" }
+        sprite(recipe.tempura-shrimp-roll) { bitmap = "img/recipes/japanese/tempura-shrimp-roll.png" type = "blend" }
+        sprite(recipe.onigiri) { bitmap = "img/recipes/japanese/onigiri.png" type = "blend" }
+        sprite(recipe.osechi) { bitmap = "img/recipes/japanese/osechi.png" type = "blend" }
+        sprite(recipe.yosenabe) { bitmap = "img/recipes/japanese/yosenabe.png" type = "blend" }
+        sprite(recipe.temakizushi) { bitmap = "img/recipes/japanese/temakizushi.png" type = "blend" }
         
         //Japanese - empty
-        sprite(recipe.osechi.empty) { bitmap = "img/recipes/japanese/osechi.empty.png" type = "blend" }
-        sprite(recipe.tonjiru.empty) { bitmap = "img/recipes/japanese/tonjiru.empty.png" type = "blend" }
-        sprite(recipe.sukiyaki.empty) { bitmap = "img/recipes/japanese/sukiyaki.empty.png" type = "blend" }
-        sprite(recipe.omuraysu.empty) { bitmap = "img/recipes/japanese/omuraysu.empty.png" type = "blend" }
-        sprite(recipe.yakitori.empty) { bitmap = "img/recipes/japanese/yakitori.empty.png" type = "blend" }
-        sprite(recipe.tempura.empty) { bitmap = "img/recipes/japanese/tempura.empty.png" type = "blend" }
-        sprite(recipe.gedza.empty) { bitmap = "img/recipes/japanese/gedza.empty.png" type = "blend" }
-        sprite(recipe.tofudengaku.empty) { bitmap = "img/recipes/japanese/tofudengaku.empty.png" type = "blend" }
-        sprite(recipe.yosenabe.empty) { bitmap = "img/recipes/japanese/yosenabe.empty.png" type = "blend" }
-        sprite(recipe.zarusoba.empty) { bitmap = "img/recipes/japanese/zarusoba.empty.png" type = "blend" }
-        sprite(recipe.okonomiyaki.empty) { bitmap = "img/recipes/japanese/okonomiyaki.empty.png" type = "blend" }
-        sprite(recipe.ochazuke.empty) { bitmap = "img/recipes/japanese/ochazuke.empty.png" type = "blend" }
-        sprite(recipe.onigiri.empty) { bitmap = "img/recipes/japanese/onigiri.empty.png" type = "blend" }
         sprite(recipe.nigirizushi.empty) { bitmap = "img/recipes/japanese/nigirizushi.empty.png" type = "blend" }
-        sprite(recipe.morikomi.empty) { bitmap = "img/recipes/japanese/morikomi.empty.png" type = "blend" }
+        sprite(recipe.sashimi.empty) { bitmap = "img/recipes/japanese/sashimi.empty.png" type = "blend" }
+        sprite(recipe.seafood-tempura.empty) { bitmap = "img/recipes/japanese/seafood-tempura.empty.png" type = "blend" }
+        sprite(recipe.tofudengaku.empty) { bitmap = "img/recipes/japanese/tofudengaku.empty.png" type = "blend" }
+        sprite(recipe.tempura.empty) { bitmap = "img/recipes/japanese/tempura.empty.png" type = "blend" }
+        sprite(recipe.koyungohan.empty) { bitmap = "img/recipes/japanese/koyungohan.empty.png" type = "blend" }
+        sprite(recipe.ochazuke.empty) { bitmap = "img/recipes/japanese/ochazuke.empty.png" type = "blend" }
+        sprite(recipe.tempura-shrimp-roll.empty) { bitmap = "img/recipes/japanese/tempura-shrimp-roll.empty.png" type = "blend" }
+        sprite(recipe.onigiri.empty) { bitmap = "img/recipes/japanese/onigiri.empty.png" type = "blend" }
+        sprite(recipe.osechi.empty) { bitmap = "img/recipes/japanese/osechi.empty.png" type = "blend" }
+        sprite(recipe.yosenabe.empty) { bitmap = "img/recipes/japanese/yosenabe.empty.png" type = "blend" }
+        sprite(recipe.temakizushi.empty) { bitmap = "img/recipes/japanese/temakizushi.empty.png" type = "blend" }
         
         //Hawaiian
         sprite(recipe.avocado-salad) { bitmap = "img/recipes/hawaiian/avocado-salad.png" type = "blend" }

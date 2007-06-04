@@ -185,7 +185,6 @@ class CustomerStation(scraft.Dispatcher):
                                                             "mealReady": self.MealReady})
         
     def _Hilight(self, flag):
-        print flag
         self.Customer.Hilight(flag)
         if flag:
             self.TableSprite.frno = 1

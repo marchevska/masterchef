@@ -1,0 +1,456 @@
+        //SweetShop recipes
+        Recipe(Angel Cake) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.angel-cake"
+            emptySrc = "recipe.angel-cake.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'strawberry': 5, 'sugar': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Baked Alaska) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.baked-alaska"
+            emptySrc = "recipe.baked-alaska.empty"
+            requires = "{ 'flour': 5, 'ice-cream': 5, 'nuts': 5, 'sugar': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Banana Split) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.banana-split"
+            emptySrc = "recipe.banana-split.empty"
+            requires = "{ 'ice-cream': 5, 'chocolate': 5, 'strawberry': 5, 'banana': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Berry Tart) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.berry-tart"
+            emptySrc = "recipe.berry-tart.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'berries': 5, 'sugar': 5, 'apple': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Berry Triffle) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.berry-triffle"
+            emptySrc = "recipe.berry-triffle.empty"
+            requires = "{ 'berries': 10, 'sour-cream': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Choc Banana Milkshake) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.choc-banana-milkshake"
+            emptySrc = "recipe.choc-banana-milkshake.empty"
+            requires = "{ 'chocolate': 5, 'banana': 5, 'ice-cream': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chocolate Fondue) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.chocolate-fondue"
+            emptySrc = "recipe.chocolate-fondue.empty"
+            requires = "{ 'chocolate': 5, 'strawberry': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fried Dough) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.fried-dough"
+            emptySrc = "recipe.fried-dough.empty"
+            requires = "{ 'flour': 10, 'egg': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fried Ice-Cream) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.fried-ice-cream"
+            emptySrc = "recipe.fried-ice-cream.empty"
+            requires = "{ 'chocolate': 5, 'nuts': 5, 'ice-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Muffins) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.muffins"
+            emptySrc = "recipe.muffins.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'berries': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pancakes) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.pancakes"
+            emptySrc = "recipe.pancakes.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'milk': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pumpkin Cheesecake) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.pumpkin-cheesecake"
+            emptySrc = "recipe.pumpkin-cheesecake.empty"
+            requires = "{ 'flour': 5, 'egg': 5, 'sour-cream': 5, 'pumpkin': 5, 'sugar': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pumpkin Cookies) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.pumpkin-cookies"
+            emptySrc = "recipe.pumpkin-cookies.empty"
+            requires = "{ 'flour': 5, 'apple': 5, 'pumpkin': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Strawberry Shake) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.strawberry-shake"
+            emptySrc = "recipe.strawberry-shake.empty"
+            requires = "{ 'strawberry': 10, 'milk': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Truffles) {
+            setting = "SweetShop"
+            type = ""
+            src = "recipe.truffles"
+            emptySrc = "recipe.truffles.empty"
+            requires = "{ 'chocolate': 5, 'sour-cream': 5, 'nuts': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+
+        //Mexican recipes
+        Recipe(Assorted Empanadas) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.assorted-empanadas"
+            emptySrc = "recipe.assorted-empanadas.empty"
+            requires = "{ 'tortilla': 10, 'pork': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(BeanSoup) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.bean-soup"
+            emptySrc = "recipe.bean-soup.empty"
+            requires = "{ 'bean': 10, 'onion': 10 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Burrito) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.burrito"
+            emptySrc = "recipe.burrito.empty"
+            requires = "{ 'tortilla': 5, 'tomato': 5, 'pork': 5, 'bean': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Caldo de Pollo) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.caldo-de-pollo"
+            emptySrc = "recipe.caldo-de-pollo.empty"
+            requires = "{ 'meat': 5, 'bean': 10, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Ceviche) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.ceviche"
+            emptySrc = "recipe.ceviche.empty"
+            requires = "{ 'salmon': 10, 'shrimp': 5, 'lime': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chicken Chilaquiles) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.chicken-chilaquiles"
+            emptySrc = "recipe.chicken-chilaquiles.empty"
+            requires = "{ 'tortilla-chips': 5, 'meat': 5, 'avocado': 5, 'cheese': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chili con Carne) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.chili-con-carne"
+            emptySrc = "recipe.chili-con-carne.empty"
+            requires = "{ 'chili-pepper': 5, 'tomato': 5, 'pork': 5, 'bean': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Chimichanga) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.chimichanga"
+            emptySrc = "recipe.chimichanga.empty"
+            requires = "{ 'tortilla': 10, 'tomato': 5, 'cheese': 5, 'onion': 5, 'rice':5 }"
+            readyAt = "7"
+            price = "100"
+        }
+        
+        Recipe(Fajitas) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.fajitas"
+            emptySrc = "recipe.fajitas.empty"
+            requires = "{ 'tortilla': 10, 'chili-pepper': 5, 'meat': 5, 'avocado': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Football Fan Nachos) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.football-fan-nachos"
+            emptySrc = "recipe.football-fan-nachos.empty"
+            requires = "{ 'tortilla-chips': 5, 'chili-pepper': 5, 'pork': 5, 'cheese': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Grilled Shrimps) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.grilled-shrimps"
+            emptySrc = "recipe.grilled-shrimps.empty"
+            requires = "{ 'chili-pepper': 5, 'shrimp': 5, 'avocado': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Quesadilla) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.quesadilla"
+            emptySrc = "recipe.quesadilla.empty"
+            requires = "{ 'tortilla': 5, 'cheese': 5, 'avocado': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Stuffed Tacos) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.stuffed-tacos"
+            emptySrc = "recipe.stuffed-tacos.empty"
+            requires = "{ 'tomato': 5, 'salmon': 5, 'avocado': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Tex-Mex Tuna) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.tex-mex-tuna"
+            emptySrc = "recipe.tex-mex-tuna.empty"
+            requires = "{ 'salmon': 10, 'tomato': 5, 'rice': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Tortilla Soup) {
+            setting = "Mexican"
+            type = ""
+            src = "recipe.tortilla-soup"
+            emptySrc = "recipe.tortilla-soup.empty"
+            requires = "{ 'tortilla-chips': 10, 'meat': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+
+        //Japanese recipes
+        Recipe(Osechi) {
+            setting = "Japanese"
+            type = "new year dish"
+            src = "recipe.osechi"
+            emptySrc = "recipe.osechi.empty"
+            requires = "{ 'salmon': 3, 'anchovies': 3, 'seaweed': 3, 'egg': 3, 'shoyu': 3}"
+            readyAt = "12"
+            price = "100"
+        }
+        
+        Recipe(Tonjiru) {
+            setting = "Japanese"
+            type = "miso soup with meat"
+            src = "recipe.tonjiru"
+            emptySrc = "recipe.tonjiru.empty"
+            requires = "{ 'noodle': 5, 'meat': 5, 'miso': 5, 'veggymix': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe(Sukiyaki) {
+            setting = "Japanese"
+            type = "meat with tofu, mushrooms and vegetables"
+            src = "recipe.sukiyaki"
+            emptySrc = "recipe.sukiyaki.empty"
+            requires = "{ 'meat': 5, 'tofu': 5, 'mushroom': 5, 'veggymix': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe(Omuraysu) {
+            setting = "Japanese"
+            type = ""
+            src = "recipe.omuraysu"
+            emptySrc = "recipe.omuraysu.empty"
+            requires = "{ 'meat': 5, 'rice': 5, 'mushroom': 5, 'umeboshi': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe(Yakitori) {
+            setting = "Japanese"
+            type = ""
+            src = "recipe.yakitori"
+            emptySrc = "recipe.yakitori.empty"
+            requires = "{ 'meat': 5, 'shoyu': 2 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Tempura) {
+            setting = "Japanese"
+            type = ""
+            src = "recipe.tempura"
+            emptySrc = "recipe.tempura.empty"
+            requires = "{ 'noodle': 5, 'salmon': 5, 'egg': 5, 'shrimp': 5}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe(Gedza) {
+            setting = "Japanese"
+            type = ""
+            src = "recipe.gedza"
+            emptySrc = "recipe.gedza.empty"
+            requires = "{ 'meat': 5, 'egg': 5, 'shrimp': 5}"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(TofuDengaku) {
+            setting = "Japanese"
+            type = ""
+            src = "recipe.tofudengaku"
+            emptySrc = "recipe.tofudengaku.empty"
+            requires = "{ 'tofu': 5, 'miso': 5, 'pickles': 5}"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Yosenabe) {
+            setting = "Japanese"
+            type = "hot seafood plate"
+            src = "recipe.yosenabe"
+            emptySrc = "recipe.yosenabe.empty"
+            requires = "{ 'shrimp': 3, 'anchovies': 5, 'tofu': 4, 'veggymix': 5, 'mushroom': 3}"
+            readyAt = "15"
+            price = "100"
+        }
+        
+        Recipe(ZaruSoba) {
+            setting = "Japanese"
+            type = "noodle dish"
+            src = "recipe.zarusoba"
+            emptySrc = "recipe.zarusoba.empty"
+            requires = "{ 'noodle': 3, 'tofu': 4, 'shoyu': 5, 'pickles': 3}"
+            readyAt = "12"
+            price = "100"
+        }
+        
+        Recipe(OkonomiYaki) {
+            setting = "Japanese"
+            type = "pancakes"
+            src = "recipe.okonomiyaki"
+            emptySrc = "recipe.okonomiyaki.empty"
+            requires = "{ 'egg': 3, 'miso': 5, 'mushroom': 3}"
+            readyAt = "8"
+            price = "100"
+        }
+        
+        Recipe(Ochazuke) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.ochazuke"
+            emptySrc = "recipe.ochazuke.empty"
+            requires = "{ 'rice': 10, 'anchovies': 5, 'seaweed': 2 }"
+            readyAt = "4"
+            price = "100"
+        }
+        
+        Recipe(Onigiri) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.onigiri"
+            emptySrc = "recipe.onigiri.empty"
+            requires = "{ 'rice': 5, 'seaweed': 2, 'umeboshi':2 }"
+            readyAt = "3"
+            price = "100"
+        }
+        
+        Recipe(NigiriZushi) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.nigirizushi"
+            emptySrc = "recipe.nigirizushi.empty"
+            requires = "{ 'rice': 5, 'salmon': 2 }"
+            readyAt = "3"
+            price = "100"
+        }
+        
+        Recipe(Morikomi) {
+            setting = "Japanese"
+            type = "rice dish"
+            src = "recipe.morikomi"
+            emptySrc = "recipe.morikomi.empty"
+            requires = "{ 'rice': 5, 'salmon': 5, 'anchovies': 5, 'shrimp': 2, 'veggymix':2 }"
+            readyAt = "15"
+            price = "100"
+        }
+        
+

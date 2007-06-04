@@ -44,6 +44,7 @@ class CustomerStation(scraft.Dispatcher):
         self.MoneyButton.Show(False)
         self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
         self.Hero.Show(False)
+        self.Customer = None
         self.State = CStationState_None
         
     def SetState(self, state):
@@ -174,7 +175,7 @@ class CustomerStation(scraft.Dispatcher):
         
     def _OnMouseOver(self, sprite, flag):
         if globalvars.StateStack[-1] == PState_Game:
-            if sprite.cookie == Cmd_CustomerStation and self.Active:
+            if sprite.cookie == Cmd_CustomerStation and self.Customer != None:
                 self._Hilight(flag)    
         
     def _OnMouseClick(self, sprite, button, x, y):
@@ -184,12 +185,13 @@ class CustomerStation(scraft.Dispatcher):
                                                             "mealReady": self.MealReady})
         
     def _Hilight(self, flag):
+        print flag
+        self.Customer.Hilight(flag)
+        if flag:
+            self.TableSprite.frno = 1
+        else:
+            self.TableSprite.frno = 0
         if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Tool, GameCursorState_Tokens):
-            self.Customer.Hilight(flag)
-            if flag:
-                self.TableSprite.frno = 1
-            else:
-                self.TableSprite.frno = 0
             if not flag or \
                     (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
                     (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \

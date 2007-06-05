@@ -60,6 +60,7 @@ Layer_Customer = 80       #покупатели
 Layer_Hero = 79           #повар
 Layer_Station = 78        #столик и инфо-табличка
 Layer_Recipe = 76         #рецепт
+Layer_RecipeFrame = 75    #рамка над рецептом
 Layer_Storage = 70
 Layer_StorageFrame = 70
 Layer_StorageBg = 69
@@ -135,40 +136,38 @@ QueState_Passive = 2
 # координаты
 #------------
 
-Crd_Queue_X0 = 200
-Crd_Queue_Y0 = 125
-Crd_QueueTablet_X0 = 150
-Crd_QueueTablet_Y0 = 70
-Crd_QueueMarker_X0 = 150
-Crd_QueueMarker_Y0 = 47
-
 Crd_QueueMarker_TabletDx = 0
 Crd_QueueMarker_TabletDy = -23
 Crd_QueueCustomerDx = 42
 Crd_QueueCustomerDy = 0
-Crd_StationDummyWidth = 110
-Crd_StationDummyHeight = 140
-Crd_StationDummyDx = 30
-Crd_StationDummyDy = -20
-Crd_Indicator_DeltaX = 48
-Crd_Indicator_DeltaY = -80
+
+Crd_StationDummyWidth = 140
+Crd_StationDummyHeight = 160
+Crd_StationDummyDx = 34
+Crd_StationDummyDy = -40
+Crd_Indicator_DeltaX = 60
+Crd_Indicator_DeltaY = -90
 Crd_IndicatorScaleXY = 50
-Crd_IndicatorText_DeltaX = 12
-Crd_IndicatorSign_DeltaY = 20
-Crd_HeroDx = 60
+Crd_IndicatorText_DeltaX = 20
+Crd_IndicatorSign_DeltaY = 30
+Crd_HeroDx = 70
 Crd_HeroDy = 2
 Crd_CustomerDx = 0
-Crd_CustomerDy = 15
-Crd_HeartsDx = -24
-Crd_HeartsDy = 10
-Crd_HeartSpritesDx = 12
+Crd_CustomerDy = 7
+Crd_HeartsDx = -26
+Crd_HeartsDy = 28
+Crd_HeartSpritesDx = 13
 Crd_HeartSpritesDy = 0
-Crd_RecipeSpriteDx = -26
-Crd_RecipeSpriteDy = -30
-Crd_RecipeInfoSpriteDx = 70
-Crd_RecipeInfoSpriteDy = -37
+Crd_RecipeSpriteDx = -31
+Crd_RecipeSpriteDy = -33
+Crd_RecipeSpriteWidth = 62
+Crd_RecipeSpriteHeight = 54
+Crd_RecipeInfoSpriteDx = 75
+Crd_RecipeInfoSpriteDy = -42
+Crd_RecipeMaskDx = 0
+Crd_RecipeMaskDy = -6
 
-Crd_ReleaseButtonDx = 55
+Crd_ReleaseButtonDx = 75
 Crd_ReleaseButtonDy = 15
 
 Const_BonusPaneDx = 0

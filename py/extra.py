@@ -173,14 +173,19 @@ class Animator(scraft.Dispatcher):
 #-----------------------------------------
 
 class BarIndicator:
-    def __init__(self, newX, newY, width, height, topKlass, bgKlass, newLayer, isVertical = False, isReverse = False):
+    def __init__(self, newX, newY, width, height, topKlass, bgKlass, newLayer,
+                 lineKlass = "$spritecraft$dummy$", isVertical = False, isReverse = False):
         self.sprite = MakeSimpleSprite(topKlass, newLayer, newX, newY, scraft.HotspotLeftTop)
         self.bgSprite = MakeSimpleSprite(bgKlass, newLayer, newX, newY, scraft.HotspotLeftTop)
-        self.sprite.sublayer = 0
-        self.bgSprite.sublayer = 1
+        self.lineSprite = MakeSimpleSprite(lineKlass, newLayer, 0, 0, scraft.HotspotCenter)
+        self.lineSprite.parent = self.bgSprite
+        #self.sprite.sublayer = 1
+        #self.bgSprite.sublayer = 2
+        #self.lineSprite.sublayer = 0
         self.Width, self.Height = width, height
         self.IsVertical = isVertical
         self.IsReverse = isReverse #справа налево или сверху вниз
+        self.Show(True)
         self.SetValue(0)
         
     def SetKlasses(self, newTopKlass, newBgKlass):
@@ -190,8 +195,10 @@ class BarIndicator:
     def Show(self, flag):
         self.sprite.visible = flag
         self.bgSprite.visible = flag
-        self.sprite.sublayer = 0
-        self.bgSprite.sublayer = 1
+        self.lineSprite.visible = flag
+        self.sprite.sublayer = 1
+        self.bgSprite.sublayer = 2
+        self.lineSprite.sublayer = 0
         
     def SetValue(self, newValue):
         if newValue < 0:
@@ -215,10 +222,24 @@ class BarIndicator:
         self.sprite.primitive.count = 4
         for i in range(4):
             self.sprite.primitive.SetXY(i, tmpCoords[i][0], tmpCoords[i][1])
+        
+        if self.IsVertical:
+            self.lineSprite.x = self.lineSprite.width/2
+            if self.IsReverse:
+                self.lineSprite.y = self.Height-height0 
+            else:
+                self.lineSprite.y = height0
+        else:
+            self.lineSprite.y = self.lineSprite.height/2
+            if self.IsReverse:
+                self.lineSprite.y = self.Width-width0
+            else:
+                self.lineSprite.y = width0
             
     def Kill(self):
         self.sprite.Dispose()
         self.bgSprite.Dispose()
+        self.lineSprite.Dispose()
 
 #-----------------------------------------
 # Числовой индикатор с плавным изменением

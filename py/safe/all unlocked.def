@@ -1,5 +1,10 @@
 masterchef{
   playername = ""
+        episode(American) { unlocked = "yes" }
+        episode(Mexican) { unlocked = "yes" }
+        episode(Russian) { unlocked = "yes" }
+        episode(Japanese) { unlocked = "yes" }
+        episode(SweetShop) { unlocked = "yes" }
   level(def/00.def){
     played = "yes"
     unlocked = "yes"

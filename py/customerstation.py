@@ -30,8 +30,12 @@ class CustomerStation(scraft.Dispatcher):
         self.Dummy = MakeDummySprite(self, Cmd_CustomerStation, newX + Crd_StationDummyDx, newY + Crd_StationDummyDy,
                                      Crd_StationDummyWidth, Crd_StationDummyHeight, Layer_Station)
         self.TableSprite = MakeSimpleSprite(theme.GetStrAttr("station"), Layer_Station, self.CrdX, self.CrdY)
-        self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy, 52, 46,
-                    u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe, True, True)
+        self.MaskSprite = MakeSimpleSprite(theme.GetStrAttr("stationMask"), Layer_RecipeFrame,
+                                           self.CrdX + Crd_RecipeMaskDx, self.CrdY + Crd_RecipeMaskDy)
+        self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy,
+                    Crd_RecipeSpriteWidth, Crd_RecipeSpriteHeight,
+                    u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe,
+                    theme.GetStrAttr("stationLine"), True, True)
         self.RecipeIndicator.Show(False)
         self.RecipeInfoSprite = MakeSimpleSprite(theme.GetStrAttr("recipeInfo"), Layer_RecipeInfo,
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
@@ -188,8 +192,10 @@ class CustomerStation(scraft.Dispatcher):
         self.Customer.Hilight(flag)
         if flag:
             self.TableSprite.frno = 1
+            self.MaskSprite.frno = 1
         else:
             self.TableSprite.frno = 0
+            self.MaskSprite.frno = 0
         if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Tool, GameCursorState_Tokens):
             if not flag or \
                     (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
@@ -197,15 +203,18 @@ class CustomerStation(scraft.Dispatcher):
                     globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
                 self.Customer.Sprite.cfilt.color = CFilt_White
                 self.TableSprite.cfilt.color = CFilt_White
+                self.MaskSprite.cfilt.color = CFilt_White
                 self.RecipeInfoSprite.cfilt.color = CFilt_White
             else:
                 self.Customer.Sprite.cfilt.color = CFilt_Red
                 self.TableSprite.cfilt.color = CFilt_Red
+                self.MaskSprite.cfilt.color = CFilt_Red
                 self.RecipeInfoSprite.cfilt.color = CFilt_Red
         
     def Show(self, flag):
         self.Dummy.visible = flag
         self.TableSprite.visible = flag
+        self.MaskSprite.visible = flag
         self.RecipeInfoSprite.visible = flag
         self.Hero.Show(False)
         self.ReleaseButton.Show(False)
@@ -245,6 +254,7 @@ class CustomerStation(scraft.Dispatcher):
             if self.Dummy.mouseOver:
                 self._Hilight(False)
             self.Customer.Kill()
+            self.Customer = None
             self.Hero.Show(False)
             if globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
                 self.MoneyButton.Show(True)
@@ -266,6 +276,7 @@ class CustomerStation(scraft.Dispatcher):
             if self.Dummy.mouseOver:
                 self._Hilight(False)
             self.Customer.Kill()
+            self.Customer = None
             self.Hero.Show(False)
             self.State = CStationState_Free
             globalvars.Board.SendCommand(Cmd_FreeStation)
@@ -276,9 +287,10 @@ class CustomerStation(scraft.Dispatcher):
     def Kill(self):
         if self.Active:
             self.Customer.Kill()
-            del self.Customer
+            self.Customer = None
         self.Dummy.Dispose()
         self.TableSprite.Dispose()
+        self.MaskSprite.Dispose()
         self.RecipeIndicator.Kill()
         self.RecipeInfoSprite.Dispose()
         self.ReleaseButton.Kill()

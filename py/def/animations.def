@@ -185,9 +185,19 @@ MasterChef {
         Sequence(GiveOrder) { frames = "(0, 500), (1, 500)" loops = "0" }
     }
     
-    Animation(animation.janeeyes) {
+    Animation(animation.mainmenu.janeeyes) {
         Sequence(None) { frames = "(0, 100000)," loops = "0" }
-        Sequence(Smile) { frames = "(1, 2000), (0, 200), (1, 2000), (0, 200), (1, 200), (0, 200)" loops = "0" }
+        Sequence(Smile) { frames = "(0, 2500, 7500), (1, 500, 700)" loops = "0" }
+    }    
+    
+    Animation(animation.map.janeeyes) {
+        Sequence(None) { frames = "(0, 100000)," loops = "0" }
+        Sequence(Smile) { frames = "(1, 1800, 2200), (0, 200, 300), (1, 1800, 2200), (0, 200, 250), (1, 200, 250), (0, 200, 250)" loops = "0" }
+    }    
+    
+    Animation(animation.mainmenu.vapor) {
+        Sequence(None) { frames = "(0, 100000)," loops = "0" }
+        Sequence(Play) { frames = "(0, 300, 400), (1, 300, 400), (2, 300, 400)" loops = "0" }
     }    
     
 }

@@ -51,41 +51,58 @@ class Gui(scraft.Dispatcher):
         #--------------
         # главное меню
         #--------------
-        self.MainMenuDialog = { "Static": {}, "Text": {}, "Buttons": {} }
+        self.MainMenuDialog = { "Static": {}, "Text": {}, "Buttons": {}, "Animations": {} }
         self.MainMenuDialog["Static"]["Back"] = MakeSimpleSprite(u"mainmenu-background", Layer_Background)
+        self.MainMenuDialog["Static"]["JaneEyes"] = MakeSprite("mainmenu.jane.eyes", Layer_BtnText,
+                { "x": 190, "y": 220 } )
+        self.MainMenuDialog["Animations"]["JaneEyes"] = CustomersAnimator(self.MainMenuDialog["Static"]["JaneEyes"],
+                globalvars.CustomerAnimations.GetSubtag("animation.mainmenu.janeeyes"))
+        self.MainMenuDialog["Animations"]["JaneEyes"].SetState("None")
+        self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(True)
+        self.MainMenuDialog["Static"]["Vapor"] = MakeSprite("mainmenu.vapor", Layer_BtnText,
+                { "x": 320, "y": 350 } )
+        self.MainMenuDialog["Animations"]["Vapor"] = CustomersAnimator(self.MainMenuDialog["Static"]["Vapor"],
+                globalvars.CustomerAnimations.GetSubtag("animation.mainmenu.vapor"))
+        self.MainMenuDialog["Animations"]["Vapor"].SetState("None")
+        self.MainMenuDialog["Animations"]["Vapor"].Freeze(True)
         #self.MainMenuDialog["Static"]["Back"].dispatcher = self
         #self.MainMenuDialog["Static"]["Back"].cookie = Cmd_Background
         self.MainMenuDialog["Buttons"]["PlayCareer"] = PushButton("PlayCareer",
                 self, Cmd_Menu_PlayCareer, PState_MainMenu,
-                "mainmenu-career-endless-button", [0, 2, 4, 6], 
-                Layer_BtnText, 365, 215, 130, 170)
-        self.MainMenuDialog["Buttons"]["PlayEndless"] = PushButton("PlayEndless",
-                self, Cmd_Menu_PlayEndless, PState_MainMenu,
-                "mainmenu-career-endless-button", [1, 3, 5, 7], 
-                Layer_BtnText, 495, 215, 130, 170)
+                "mainmenu.green-button", [0, 1, 2], 
+                Layer_BtnText, 675, 230, 210, 50,
+                Str_Menu_PlayCareer, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
+        #self.MainMenuDialog["Buttons"]["PlayEndless"] = PushButton("PlayEndless",
+        #        self, Cmd_Menu_PlayEndless, PState_MainMenu,
+        #        "mainmenu-career-endless-button", [1, 3, 5, 7], 
+        #        Layer_BtnText, 495, 215, 130, 170)
         self.MainMenuDialog["Buttons"]["Options"] = PushButton("Options",
                 self, Cmd_Menu_Options, PState_MainMenu,
-                "mainmenu-options-button", [0, 1, 2], 
-                Layer_BtnText, 455, 375, 150, 50)
-        self.MainMenuDialog["Buttons"]["Rules"] = PushButton("Help",
+                "mainmenu.yellow-button", [0, 1, 2], 
+                Layer_BtnText, 675, 275, 200, 40,
+                Str_Menu_Options, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
+        self.MainMenuDialog["Buttons"]["Help"] = PushButton("Help",
                 self, Cmd_Menu_Rules, PState_MainMenu,
-                "mainmenu-help-button", [0, 1, 2], 
-                Layer_BtnText, 455, 440, 180, 50)
+                "mainmenu.yellow-button", [0, 1, 2], 
+                Layer_BtnText, 675, 315, 200, 40,
+                Str_Menu_Rules, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Cookbook"] = PushButton("Cookbook",
                 self, Cmd_Menu_Cookbook, PState_MainMenu,
-                "mainmenu-cookbook-button", [0, 1, 2], 
-                Layer_BtnText, 455, 510, 210, 50)
+                "mainmenu.yellow-button", [0, 1, 2], 
+                Layer_BtnText, 675, 355, 200, 40,
+                Str_Menu_Cookbook, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Quit"] = PushButton("Quit",
                 self, Cmd_Menu_Quit, PState_MainMenu,
-                "mainmenu-exit-button", [0, 1, 2], 
-                Layer_BtnText, 740, 557, 100, 50)
+                "mainmenu.yellow-button", [0, 1, 2], 
+                Layer_BtnText, 675, 395, 200, 40,
+                Str_Menu_Quit, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Players"] = PushButton("Players",
                 self, Cmd_Menu_Players, PState_MainMenu,
                 "mainmenu-players-button", [0, 1, 2, 3], 
-                Layer_BtnText, 103, 183, 180, 40,
+                Layer_BtnText, 675, 160, 190, 30,
                 Str_Menu_Players, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
         self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeSprite("domcasual-11", Layer_BtnText,
-                { "x": 10, "y": 125, "cfilt-color": 0xFF8000 } )
+                { "x": 600, "y": 125, "cfilt-color": 0xFF8000 } )
         
         #---------
         # справка
@@ -380,7 +397,7 @@ class Gui(scraft.Dispatcher):
         self.MapCareerDialog["Static"]["Jane"] = MakeSprite("map.jane", Layer_Background-1, { "x": 300, "y": 140 } )
         self.MapCareerDialog["Static"]["JaneEyes"] = MakeSprite("map.jane.eyes", Layer_Background-2, { "x": 400, "y": 270 } )
         self.MapCareerDialog["Animations"]["JaneEyes"] = CustomersAnimator(self.MapCareerDialog["Static"]["JaneEyes"],
-                                                globalvars.CustomerAnimations.GetSubtag("animation.janeeyes"))
+                                                globalvars.CustomerAnimations.GetSubtag("animation.map.janeeyes"))
         self.MapCareerDialog["Animations"]["JaneEyes"].SetState("None")
         self.MapCareerDialog["Animations"]["JaneEyes"].Freeze(True)
         self.MapCareerDialog["Static"]["Tablet"] = MakeSprite("map.tablet", Layer_Background-1, { "x": 30, "y": 385 } )
@@ -972,6 +989,10 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.PubLogo, False)
         elif state == PState_MainMenu:
             self._ShowDialog(self.MainMenuDialog, False)
+            self.MainMenuDialog["Animations"]["JaneEyes"].SetState("None")
+            self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(True)
+            self.MainMenuDialog["Animations"]["Vapor"].SetState("None")
+            self.MainMenuDialog["Animations"]["Vapor"].Freeze(True)
         elif state == PState_MapCareer:
             self._ShowDialog(self.MapCareerDialog, False)
             self.MapCareerDialog["Animations"]["JaneEyes"].SetState("None")
@@ -1085,6 +1106,10 @@ class Gui(scraft.Dispatcher):
                 self.MainMenuDialog["Buttons"]["Players"].Show(True)
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = True
                 self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome + globalvars.GameConfig.GetStrAttr("Player")
+            self.MainMenuDialog["Animations"]["JaneEyes"].SetState("Smile")
+            self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(False)
+            self.MainMenuDialog["Animations"]["Vapor"].SetState("Play")
+            self.MainMenuDialog["Animations"]["Vapor"].Freeze(False)
             
         elif state == PState_MapCareer:
             self._ReleaseState(PState_MainMenu)

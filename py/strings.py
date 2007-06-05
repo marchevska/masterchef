@@ -7,11 +7,12 @@ Project: Master Chef
 """
 
 Str_Menu_Welcome = u"Welcome, "
-Str_Menu_PlayCareer = "PLAY CAREER"
+Str_Menu_PlayCareer = "P L A Y"
 Str_Menu_PlayEndless = "PLAY ENDLESS"
 Str_Menu_Players = "Click to change player"
 Str_Menu_Options = "Options"
 Str_Menu_Rules = "Help"
+Str_Menu_Cookbook = "Cookbook"
 Str_Menu_Hiscores = "Hiscores"
 Str_Menu_Quit = "Quit"
 

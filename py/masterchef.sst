@@ -128,36 +128,32 @@ bitmap = img/gui/mainmenu-background.png
 truecolor = yes
 }
 
-sprite mainmenu-career-endless-button { 
-bitmap = img/gui/mainmenu-career-endless-button.png
-truecolor = yes
-layout = 2x4
-}
-
-sprite mainmenu-options-button { 
-bitmap = img/gui/mainmenu-options-button.png
+sprite mainmenu.yellow-button { 
+bitmap = img/gui/mainmenu.yellow-button.png
 layout = 1x4
 type = blend
 }
 
-sprite mainmenu-help-button { 
-bitmap = img/gui/mainmenu-help-button.png
+sprite mainmenu.green-button { 
+bitmap = img/gui/mainmenu.green-button.png
 layout = 1x4
-}
-
-sprite mainmenu-cookbook-button { 
-bitmap = img/gui/mainmenu-cookbook-button.png
-layout = 1x4
-}
-
-sprite mainmenu-exit-button { 
-bitmap = img/gui/mainmenu-exit-button.png
-layout = 1x4
+type = blend
 }
 
 sprite mainmenu-players-button { 
 bitmap = img/gui/mainmenu-players-button.png
+type = blend
 layout = 1x4
+}
+
+sprite mainmenu.jane.eyes { 
+bitmap = img/gui/mainmenu.jane.eyes.png
+layout = 1x2
+}
+
+sprite mainmenu.vapor { 
+bitmap = img/gui/mainmenu.vapor.png
+layout = 1x3
 }
 
 ########################
@@ -371,6 +367,18 @@ sample = sound/timeover.ogg
 #########
 # fonts #
 #########
+
+font mainmenu.domcasual {
+bitmap = img/fonts/mainmenu.domcasual.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- .
+}
+
+font mainmenu.domcasual.down {
+bitmap = img/fonts/mainmenu.domcasual.down.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- .
+}
 
 font domcasual-10 {
 bitmap = img/fonts/domcasual-10.png

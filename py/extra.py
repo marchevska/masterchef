@@ -226,15 +226,15 @@ class BarIndicator:
         if self.IsVertical:
             self.lineSprite.x = self.lineSprite.width/2
             if self.IsReverse:
-                self.lineSprite.y = self.Height-height0 
+                self.lineSprite.y = self.Height-height0 - self.lineSprite.height/2
             else:
-                self.lineSprite.y = height0
+                self.lineSprite.y = height0 + self.lineSprite.height/2
         else:
             self.lineSprite.y = self.lineSprite.height/2
             if self.IsReverse:
-                self.lineSprite.y = self.Width-width0
+                self.lineSprite.y = self.Width-width0 - self.lineSprite.width/2
             else:
-                self.lineSprite.y = width0
+                self.lineSprite.y = width0 + self.lineSprite.width/2
             
     def Kill(self):
         self.sprite.Dispose()

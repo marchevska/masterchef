@@ -32,6 +32,7 @@ class CustomerStation(scraft.Dispatcher):
         self.TableSprite = MakeSimpleSprite(theme.GetStrAttr("station"), Layer_Station, self.CrdX, self.CrdY)
         self.MaskSprite = MakeSimpleSprite(theme.GetStrAttr("stationMask"), Layer_RecipeFrame,
                                            self.CrdX + Crd_RecipeMaskDx, self.CrdY + Crd_RecipeMaskDy)
+        self.MaskSprite.visible = False
         self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy,
                     Crd_RecipeSpriteWidth, Crd_RecipeSpriteHeight,
                     u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe,
@@ -76,6 +77,7 @@ class CustomerStation(scraft.Dispatcher):
         self.RecipeIndicator.SetKlasses(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("src"),
                                         globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("emptySrc"))
         self.RecipeIndicator.SetValue(0)
+        self.MaskSprite.visible = True
         tmpReq = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("requires"))
         self.TokensNeeded = map(lambda x: { "item": x, "no": tmpReq[x] }, tmpReq.keys())
         self.TotalRequired = reduce(lambda x, y: x+y["no"], self.TokensNeeded, 0)
@@ -96,6 +98,7 @@ class CustomerStation(scraft.Dispatcher):
         self.HasOrder = False
         self.RecipeIndicator.Show(False)
         self.RecipeInfoSprite.visible = False
+        self.MaskSprite.visible = False
         for tmp in self.NeededIndicators:
             tmp.Kill()
         self.NeededIndicators = []
@@ -214,12 +217,14 @@ class CustomerStation(scraft.Dispatcher):
     def Show(self, flag):
         self.Dummy.visible = flag
         self.TableSprite.visible = flag
-        self.MaskSprite.visible = flag
         self.RecipeInfoSprite.visible = flag
         self.Hero.Show(False)
         self.ReleaseButton.Show(False)
         if flag and self.HasOrder and self.Active:
+            self.MaskSprite.visible = False
             self.AddTokens("", 0)
+        else:
+            self.MaskSprite.visible = True
         if self.Active:
             self.Customer.Show(flag)
         #else:

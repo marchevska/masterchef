@@ -6,7 +6,11 @@ MasterChef {
         newCustomerTimeMax = "3"
         
         tokensFallingTime = "0.2"
+        
         shuffleTime = "0.35"
+        minimalAmountToDivide = "4"
+        minimalGroupSize = "4"
+        maximalGroupSize = "4"
         
         magicWandConvertingTime = "0.5"
         magicWandRadiusSquared = "2"

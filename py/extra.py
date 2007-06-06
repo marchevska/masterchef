@@ -224,17 +224,19 @@ class BarIndicator:
             self.sprite.primitive.SetXY(i, tmpCoords[i][0], tmpCoords[i][1])
         
         if self.IsVertical:
-            self.lineSprite.x = self.lineSprite.width/2
+            self.lineSprite.x = self.lineSprite.width0/2
+            height1 = int(newValue*(self.Height+self.lineSprite.height))
             if self.IsReverse:
-                self.lineSprite.y = self.Height-height0 - self.lineSprite.height/2
+                self.lineSprite.y = self.Height-height1 + self.lineSprite.height/2
             else:
-                self.lineSprite.y = height0 + self.lineSprite.height/2
+                self.lineSprite.y = height1 - self.lineSprite.height/2
         else:
             self.lineSprite.y = self.lineSprite.height/2
+            width1 = int(newValue*(self.Width+self.lineSprite.width))
             if self.IsReverse:
-                self.lineSprite.y = self.Width-width0 - self.lineSprite.width/2
+                self.lineSprite.x = self.Width-width1 + self.lineSprite.width/2
             else:
-                self.lineSprite.y = width0 + self.lineSprite.width/2
+                self.lineSprite.x = width1 - self.lineSprite.width/2
             
     def Kill(self):
         self.sprite.Dispose()

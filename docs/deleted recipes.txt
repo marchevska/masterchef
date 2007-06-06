@@ -453,4 +453,134 @@
             price = "100"
         }
         
+        Recipe(Beef Stroganoff) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.beef-stroganoff"
+            emptySrc = "recipe.beef-stroganoff.empty"
+            requires = "{ 'meat': 10, 'sour-cream': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fish Jelly) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.fish-jelly"
+            emptySrc = "recipe.fish-jelly.empty"
+            requires = "{ 'salmon': 10, 'carrot': 5, 'egg': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fish Pie) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.fish-pie"
+            emptySrc = "recipe.fish-pie.empty"
+            requires = "{ 'salmon': 10, 'rice': 5, 'flour': 5, 'egg': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Golubtsy) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.golubtsy"
+            emptySrc = "recipe.golubtsy.empty"
+            requires = "{ 'meat': 10, 'cabbage': 5, 'rice': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Grilled Mushrooms) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.grilled-mushrooms"
+            emptySrc = "recipe.grilled-mushrooms.empty"
+            requires = "{ 'mushroom': 10, 'potato': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Kulebyaka) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.kulebyaka"
+            emptySrc = "recipe.kulebyaka.empty"
+            requires = "{ 'cabbage': 10, 'milk': 5, 'flour': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Milk Noodle Soup) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.milk-noodle-soup"
+            emptySrc = "recipe.milk-noodle-soup.empty"
+            requires = "{ 'mushroom': 10, 'milk': 5, 'flour': 5, 'egg': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Mushroom Soup) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.mushroom-soup"
+            emptySrc = "recipe.mushroom-soup.empty"
+            requires = "{ 'mushroom': 10, 'potato': 5, 'carrot': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Mushroom Stuffed Fish) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.mushroom-stuffed-fish"
+            emptySrc = "recipe.mushroom-stuffed-fish.empty"
+            requires = "{ 'salmon': 10, 'mushroom': 5, 'sour-cream': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pancakes with Mushrooms) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.pancakes-with-mushrooms"
+            emptySrc = "recipe.pancakes-with-mushrooms.empty"
+            requires = "{ 'mushroom': 10, 'milk': 5, 'egg': 5, 'flour': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Pelmeni) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.pelmeni"
+            emptySrc = "recipe.pelmeni.empty"
+            requires = "{ 'meat': 10, 'egg': 5, 'flour': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Shchi) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.shshi"
+            emptySrc = "recipe.shshi"
+            requires = "{ 'meat': 10, 'cabbage': 5, 'potato': 5, 'carrot': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Ukha) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.ukha"
+            emptySrc = "recipe.ukha.empty"
+            requires = "{ 'salmon': 10, 'potato': 5, 'onion': 5 }"
+            readyAt = "5"
+            price = "100"
+        }
+         
 

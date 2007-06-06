@@ -224,7 +224,7 @@ class BarIndicator:
             self.sprite.primitive.SetXY(i, tmpCoords[i][0], tmpCoords[i][1])
         
         if self.IsVertical:
-            self.lineSprite.x = self.lineSprite.width0/2
+            self.lineSprite.x = self.lineSprite.width/2
             height1 = int(newValue*(self.Height+self.lineSprite.height))
             if self.IsReverse:
                 self.lineSprite.y = self.Height-height1 + self.lineSprite.height/2

@@ -26,17 +26,37 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Banana Split" rate = "2" }
-        Recipe{ type = "Strawberry Shake" rate = "3" }
+        Recipe{ type = "Cabbage Stew"             rate = "1" }
+        Recipe{ type = "Pelmeni"                  rate = "1" }
+        Recipe{ type = "Golubtsy"                 rate = "1" }
+        Recipe{ type = "Fried Mushrooms"          rate = "1" }
+        Recipe{ type = "Vareniki"                 rate = "1" }
+        Recipe{ type = "Baked Meat"               rate = "1" }
+        Recipe{ type = "Cutlets"                  rate = "1" }
+        Recipe{ type = "Mushroom Ragout"          rate = "1" }
+        Recipe{ type = "Cabbage Stuffed Pancakes" rate = "1" }
+        Recipe{ type = "Kulebyaka"                rate = "1" }
+        Recipe{ type = "Shchi"                    rate = "1" }
+        Recipe{ type = "Mushroom Soup"            rate = "1" }
     }
     
     //ingredient appearance rates
     IngredientRates{
-        Ingredient{ type = "banana" rate = "10" }
-        Ingredient{ type = "chocolate" rate = "10" }
-        Ingredient{ type = "ice-cream" rate = "10" }
-        Ingredient{ type = "milk" rate = "30" }
-        Ingredient{ type = "strawberry" rate = "40" }
+        Ingredient{ type = "pork"     rate = "10" }
+        Ingredient{ type = "mushroom" rate = "10" }
+        Ingredient{ type = "cabbage"  rate = "10" }
+        Ingredient{ type = "potato"   rate = "10" }
+        Ingredient{ type = "onion"    rate = "10" }
+        Ingredient{ type = "flour"    rate = "10" }
+        Ingredient{ type = "bonus.spoon"      rate = "1" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
+        Ingredient{ type = "bonus.magicwand"  rate = "1" }
+        Ingredient{ type = "bonus.bomb"       rate = "1" }
+        Ingredient{ type = "bonus.removerow"  rate = "1" }
+        Ingredient{ type = "bonus.scrollback" rate = "1" }
+        Ingredient{ type = "bonus.hearts"     rate = "1" }
+        Ingredient{ type = "bonus.shuffle"    rate = "1" }
     }
     
     //level settings

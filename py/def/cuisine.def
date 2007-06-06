@@ -29,6 +29,13 @@ MasterChef {
         Ingredient(cheese) { type = "dairy" src = "ingredient.cheese" iconSrc = "ingredient.cheese.icon"}
         Ingredient(tortilla) { type = "pasta" src = "ingredient.tortilla" iconSrc = "ingredient.tortilla.icon"}
         
+        //Russian
+        Ingredient(mushroom) { type = "vegetable" src = "ingredient.mushroom" iconSrc = "ingredient.mushroom.icon"}
+        Ingredient(cabbage) { type = "vegetable" src = "ingredient.cabbage" iconSrc = "ingredient.cabbage.icon"}
+        Ingredient(potato) { type = "vegetable" src = "ingredient.potato" iconSrc = "ingredient.potato.icon"}
+        Ingredient(onion) { type = "vegetable" src = "ingredient.onion" iconSrc = "ingredient.onion.icon" }
+        Ingredient(flour) { type = "pasta" src = "ingredient.flour" iconSrc = "ingredient.flour.icon"}
+        
         //Japanese
         Ingredient(salmon) { type = "fish" src = "ingredient.salmon" iconSrc = "ingredient.salmon.icon"}
         Ingredient(shrimp) { type = "fish" src = "ingredient.shrimp" iconSrc = "ingredient.shrimp.icon"}
@@ -40,7 +47,6 @@ MasterChef {
         
         //Mexican - unused
         Ingredient(tortilla-chips) { type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
-        Ingredient(onion) { type = "vegetable" src = "ingredient.onion" iconSrc = "ingredient.onion.icon" }
         Ingredient(sour-cream) { type = "dairy" src = "ingredient.sour-cream" iconSrc = "ingredient.sour-cream.icon"}
         Ingredient(bean) { type = "soy" src = "ingredient.bean" iconSrc = "ingredient.bean.icon"}
         Ingredient(lime) { type = "fruit" src = "ingredient.lime" iconSrc = "ingredient.lime.icon"}
@@ -51,7 +57,6 @@ MasterChef {
         Ingredient(anchovies) { type = "fish" src = "ingredient.anchovies" iconSrc = "ingredient.anchovies.icon"}
         Ingredient(egg) { type = "egg" src = "ingredient.egg" iconSrc = "ingredient.egg.icon"}
         Ingredient(soya) { type = "soy" src = "ingredient.soya" iconSrc = "ingredient.soya.icon"}
-        Ingredient(mushroom) { type = "vegetable" src = "ingredient.mushroom" iconSrc = "ingredient.mushroom.icon"}
         Ingredient(shoyu) { type = "spice" src = "ingredient.shoyu" iconSrc = "ingredient.shoyu.icon"}
         Ingredient(umeboshi) { type = "vegetable" src = "ingredient.umeboshi" iconSrc = "ingredient.umeboshi.icon"}
         Ingredient(pickles) { type = "vegetable" src = "ingredient.pickles" iconSrc = "ingredient.pickles.icon"}
@@ -62,25 +67,19 @@ MasterChef {
         //Ingredient(dashi) { type = "fish" src = "ingredient.dashi" iconSrc = "ingredient.dashi.icon"}
         //Ingredient(oyster) { type = "fish" src = "ingredient.oyster" iconSrc = "ingredient.oyster.icon"}
         
+        
         //Hawaii
         Ingredient(bun) { type = "pasta" src = "ingredient.bun" iconSrc = "ingredient.bun.icon"}
-        
-        //Russian
-        Ingredient(cabbage) { type = "vegetable" src = "ingredient.cabbage" iconSrc = "ingredient.cabbage.icon"}
-        Ingredient(potato) { type = "vegetable" src = "ingredient.potato" iconSrc = "ingredient.potato.icon"}
-        Ingredient(carrot) { type = "vegetable" src = "ingredient.carrot" iconSrc = "ingredient.carrot.icon"}
         
         //SweetShop
         Ingredient(apple) { type = "fruit" src = "ingredient.apple" iconSrc = "ingredient.apple.icon"}
         Ingredient(banana) { type = "fruit" src = "ingredient.banana" iconSrc = "ingredient.banana.icon"}
         Ingredient(berries) { type = "fruit" src = "ingredient.berries" iconSrc = "ingredient.berries.icon"}
         Ingredient(chocolate) { type = "sweet" src = "ingredient.chocolate" iconSrc = "ingredient.chocolate.icon"}
-        Ingredient(flour) { type = "pasta" src = "ingredient.flour" iconSrc = "ingredient.flour.icon"}
         Ingredient(ice-cream) { type = "dairy" src = "ingredient.ice-cream" iconSrc = "ingredient.ice-cream.icon"}
         Ingredient(nuts) { type = "fruit" src = "ingredient.nuts" iconSrc = "ingredient.nuts.icon"}
         Ingredient(strawberry) { type = "fruit" src = "ingredient.strawberry" iconSrc = "ingredient.strawberry.icon"}
         Ingredient(sugar) { type = "sweet" src = "ingredient.sugar" iconSrc = "ingredient.sugar.icon"}
-        
         
         //Ingredient(olives) { type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
         //Ingredient(artichoke) { type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
@@ -342,102 +341,12 @@ MasterChef {
         
          
         //Russian recipes
-        Recipe(Beef Stroganoff) {
+        Recipe(Cabbage Stew) {
             setting = "Russian"
             type = ""
-            src = "recipe.beef-stroganoff"
-            emptySrc = "recipe.beef-stroganoff.empty"
-            requires = "{ 'meat': 10, 'sour-cream': 5, 'onion': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Fish Jelly) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.fish-jelly"
-            emptySrc = "recipe.fish-jelly.empty"
-            requires = "{ 'salmon': 10, 'carrot': 5, 'egg': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Fish Pie) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.fish-pie"
-            emptySrc = "recipe.fish-pie.empty"
-            requires = "{ 'salmon': 10, 'rice': 5, 'flour': 5, 'egg': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Golubtsy) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.golubtsy"
-            emptySrc = "recipe.golubtsy.empty"
-            requires = "{ 'meat': 10, 'cabbage': 5, 'rice': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Grilled Mushrooms) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.grilled-mushrooms"
-            emptySrc = "recipe.grilled-mushrooms.empty"
-            requires = "{ 'mushroom': 10, 'potato': 5, 'sour-cream': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Kulebyaka) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.kulebyaka"
-            emptySrc = "recipe.kulebyaka.empty"
-            requires = "{ 'cabbage': 10, 'milk': 5, 'flour': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Milk Noodle Soup) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.milk-noodle-soup"
-            emptySrc = "recipe.milk-noodle-soup.empty"
-            requires = "{ 'mushroom': 10, 'milk': 5, 'flour': 5, 'egg': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Mushroom Soup) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.mushroom-soup"
-            emptySrc = "recipe.mushroom-soup.empty"
-            requires = "{ 'mushroom': 10, 'potato': 5, 'carrot': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Mushroom Stuffed Fish) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.mushroom-stuffed-fish"
-            emptySrc = "recipe.mushroom-stuffed-fish.empty"
-            requires = "{ 'salmon': 10, 'mushroom': 5, 'sour-cream': 5 }"
-            readyAt = "5"
-            price = "100"
-        }
-        
-        Recipe(Pancakes with Mushrooms) {
-            setting = "Russian"
-            type = ""
-            src = "recipe.pancakes-with-mushrooms"
-            emptySrc = "recipe.pancakes-with-mushrooms.empty"
-            requires = "{ 'mushroom': 10, 'milk': 5, 'egg': 5, 'flour': 5 }"
+            src = "recipe.cabbage-stew"
+            emptySrc = "recipe.cabbage-stew.empty"
+            requires = "{ 'pork': 6, 'cabbage': 9 }"
             readyAt = "5"
             price = "100"
         }
@@ -447,7 +356,87 @@ MasterChef {
             type = ""
             src = "recipe.pelmeni"
             emptySrc = "recipe.pelmeni.empty"
-            requires = "{ 'meat': 10, 'egg': 5, 'flour': 5 }"
+            requires = "{ 'pork': 8, 'flour': 6 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Golubtsy) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.golubtsy"
+            emptySrc = "recipe.golubtsy.empty"
+            requires = "{ 'mushroom': 8, 'cabbage': 8 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Fried Mushrooms) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.fried-mushrooms"
+            emptySrc = "recipe.fried-mushrooms.empty"
+            requires = "{ 'mushroom': 9, 'onion': 6 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Vareniki) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.vareniki"
+            emptySrc = "recipe.vareniki.empty"
+            requires = "{ 'potato': 9, 'flour': 6 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Baked Meat) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.baked-meat"
+            emptySrc = "recipe.baked-meat.empty"
+            requires = "{ 'pork': 7, 'mushroom': 6, 'potato': 7 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Cutlets) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.cutlets"
+            emptySrc = "recipe.cutlets.empty"
+            requires = "{ 'pork': 8, 'onion': 6, 'flour': 6 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Mushroom Ragout) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.mushroom-ragout"
+            emptySrc = "recipe.mushroom-ragout.empty"
+            requires = "{ 'mushroom': 8, 'potato': 8, 'onion': 6 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Cabbage Stuffed Pancakes) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.cabbage-stuffed-pancakes"
+            emptySrc = "recipe.cabbage-stuffed-pancakes.empty"
+            requires = "{ 'cabbage': 8, 'onion': 6, 'flour': 8 }"
+            readyAt = "5"
+            price = "100"
+        }
+        
+        Recipe(Kulebyaka) {
+            setting = "Russian"
+            type = ""
+            src = "recipe.kulebyaka"
+            emptySrc = "recipe.kulebyaka.empty"
+            requires = "{ 'pork': 6, 'mushroom': 6, 'potato': 6, 'flour': 9 }"
             readyAt = "5"
             price = "100"
         }
@@ -457,20 +446,21 @@ MasterChef {
             type = ""
             src = "recipe.shshi"
             emptySrc = "recipe.shshi"
-            requires = "{ 'meat': 10, 'cabbage': 5, 'potato': 5, 'carrot': 5, 'onion': 5 }"
+            requires = "{ 'pork': 8, 'cabbage': 6, 'potato': 8, 'onion': 6 }"
             readyAt = "5"
             price = "100"
         }
         
-        Recipe(Ukha) {
+        Recipe(Mushroom Soup) {
             setting = "Russian"
             type = ""
-            src = "recipe.ukha"
-            emptySrc = "recipe.ukha.empty"
-            requires = "{ 'salmon': 10, 'potato': 5, 'onion': 5 }"
+            src = "recipe.mushroom-soup"
+            emptySrc = "recipe.mushroom-soup.empty"
+            requires = "{ 'mushroom': 8, 'cabbage': 8, 'potato': 6, 'onion': 6 }"
             readyAt = "5"
             price = "100"
         }
+        
          
         //Japanese recipes
         Recipe(Nigiri Zushi) {

@@ -444,8 +444,8 @@ MasterChef {
         Recipe(Shchi) {
             setting = "Russian"
             type = ""
-            src = "recipe.shshi"
-            emptySrc = "recipe.shshi"
+            src = "recipe.shchi"
+            emptySrc = "recipe.shchi"
             requires = "{ 'pork': 8, 'cabbage': 6, 'potato': 8, 'onion': 6 }"
             readyAt = "5"
             price = "100"

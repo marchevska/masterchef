@@ -229,7 +229,7 @@ MasterChef{
         sprite(recipe.mushroom-ragout) { bitmap = "img/recipes/russian/mushroom-ragout.png" type = "blend" }
         sprite(recipe.cabbage-stuffed-pancakes) { bitmap = "img/recipes/russian/cabbage-stuffed-pancakes.png" type = "blend" }
         sprite(recipe.kulebyaka) { bitmap = "img/recipes/russian/kulebyaka.png" type = "blend" }
-        sprite(recipe.shshi) { bitmap = "img/recipes/russian/shshi.png" type = "blend" }
+        sprite(recipe.shchi) { bitmap = "img/recipes/russian/shchi.png" type = "blend" }
         sprite(recipe.mushroom-soup) { bitmap = "img/recipes/russian/mushroom-soup.png" type = "blend" }
         
         //Russian - empty
@@ -243,7 +243,7 @@ MasterChef{
         sprite(recipe.mushroom-ragout.empty) { bitmap = "img/recipes/russian/mushroom-ragout.empty.png" type = "blend" }
         sprite(recipe.cabbage-stuffed-pancakes.empty) { bitmap = "img/recipes/russian/cabbage-stuffed-pancakes.empty.png" type = "blend" }
         sprite(recipe.kulebyaka.empty) { bitmap = "img/recipes/russian/kulebyaka.empty.png" type = "blend" }
-        sprite(recipe.shshi.empty) { bitmap = "img/recipes/russian/shshi.empty.png" type = "blend" }
+        sprite(recipe.shchi.empty) { bitmap = "img/recipes/russian/shchi.empty.png" type = "blend" }
         sprite(recipe.mushroom-soup.empty) { bitmap = "img/recipes/russian/mushroom-soup.empty.png" type = "blend" }
         
         //Hawaiian

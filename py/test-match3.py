@@ -63,7 +63,7 @@ class Storage(scraft.Dispatcher):
     def _PutRandomToken(self, cell):
         tmp = RandomKeyByRates(TokenRates)
         self.Cells[cell] = tmp
-        self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(tmp).GetstrAttr("src"))
+        self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(tmp).GetStrAttr("src"))
         
     #--------------------------
     # ѕерестановка содержимого двух €чеек

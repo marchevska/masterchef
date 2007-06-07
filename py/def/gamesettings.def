@@ -8,9 +8,10 @@ MasterChef {
         tokensFallingTime = "0.2"
         
         shuffleTime = "0.35"
+        shuffleEvenDistribution = "0.75"
         minimalAmountToDivide = "4"
-        minimalGroupSize = "4"
-        maximalGroupSize = "4"
+        minimalGroupSize = "3"
+        maximalGroupSize = "9"
         
         magicWandConvertingTime = "0.5"
         magicWandRadiusSquared = "2"

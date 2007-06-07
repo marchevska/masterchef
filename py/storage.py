@@ -676,14 +676,111 @@ class Field(Storage):
         #перемешивание токенов на поле
         elif state == FieldState_Shuffle:
             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+            
+            tmpShufflingKeys = filter(lambda x: x[1] < self.Rows, self.Cells.keys())
+            #переопределение формы поля - только для коллапсоида
+            if self.Collapsing:
+                tmpFilledCells = filter(lambda x: self.Cells[x] != Const_EmptyCell, tmpShufflingKeys)
+                tmpNoTiles = len(tmpFilledCells)
+                tmpFullRows = int(1.0*tmpNoTiles*globalvars.GameSettings.GetFltAttr("shuffleEvenDistribution")/self.Cols)
+                tmpTilesForRandom = tmpNoTiles - tmpFullRows*self.Cols
+                
+                #равномерное распределение части фишек
+                tmpNewFilledCellsKeys = []
+                for i in range(self.Cols):
+                    for j in range(self.Rows-tmpFullRows, self.Rows):
+                        tmpNewFilledCellsKeys.append((i,j))
+                
+                #другое распределение оставшейся части фишек -  по секторам дуги круга
+                tmpXi = map(lambda i: math.sqrt(2.0)*(1.0*i/self.Cols - 0.5), range(self.Cols+1))
+                tmpSx = map(lambda x: 0.5*(math.pi-math.acos(x) + math.sqrt(1-x**2)*x), tmpXi)
+                tmpSi = map(lambda i: tmpSx[i+1] - tmpSx[i] - 1.0/self.Cols, range(self.Cols))
+                tmpSum = reduce(lambda a,b: a+b, tmpSi)
+                tmpRates = dict(map(lambda i: (i, int(tmpSi[i]/tmpSum*100)), range(self.Cols)))
+                
+                for tmp in range(tmpTilesForRandom):
+                    #удалим столбцы, куда уже нельзя ничего поставить
+                    for i in range(self.Cols):
+                        if filter(lambda j: (i,j) not in tmpNewFilledCellsKeys, range(self.Rows)) == []:
+                            tmpRates[i] = 0
+                    i = RandomKeyByRates(tmpRates)
+                    j = filter(lambda j: (i,j) not in tmpNewFilledCellsKeys, range(self.Rows))[-1]
+                    tmpNewFilledCellsKeys.append((i,j))
+            else:
+                tmpNewFilledCellsKeys = tmpShufflingKeys
+                
+            #список ингредиентов и их количество на поле
+            tmpAllIngredients = map(lambda x: (x.GetStrAttr("type")),
+                globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))
+            tmpIngredientAmounts = dict(map(lambda x: (x, len(filter(lambda cell: self.Cells[cell] == x, tmpShufflingKeys))),
+                tmpAllIngredients))
+            
+            #сначала бонусы, чтобы они не образовывали больших групп
+            tmpAllIngredients.reverse()
+            
+            #рисуем новое заполнение поля
+            tmpNewLayout = {}
+            tmpEmptyCells = list(tmpNewFilledCellsKeys)
+            for ing in tmpAllIngredients:
+                #ингрединеты - размещаем большими группами
+                if globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(ing).GetStrAttr("type") != "bonus":
+                    while tmpIngredientAmounts[ing] > 0:
+                        #определяем размер очередной группы
+                        if tmpIngredientAmounts[ing] > globalvars.GameSettings.GetIntAttr("minimalAmountToDivide"):
+                            tmpGroupSize = randint(globalvars.GameSettings.GetIntAttr("minimalGroupSize"),
+                                            min(globalvars.GameSettings.GetIntAttr("maximalGroupSize"), tmpIngredientAmounts[ing]))
+                        else:
+                            tmpGroupSize = tmpIngredientAmounts[ing]
+                            
+                        #располагаем группу на поле
+                        tmpThisGroup = []
+                        while len(tmpThisGroup) < tmpGroupSize:
+                            if len(tmpThisGroup) == 0:
+                                tmpAvailableCells = list(tmpEmptyCells)
+                            else:
+                                #пустые клетки, соседние с уже выбранными
+                                tmpAvailableCells = filter(lambda cell: \
+                                    filter(lambda x: x in tmpThisGroup, map(lambda (dx, dy): (cell[0]+dx, cell[1]+dy), MatchDeltas)) != [],
+                                    tmpEmptyCells)
+                            #нет соседних пустых клеток
+                            if tmpAvailableCells == []:
+                                break
+                            else:
+                                tmpNextCell = choice(tmpAvailableCells)
+                                tmpEmptyCells.remove(tmpNextCell)
+                                tmpThisGroup.append(tmpNextCell)
+                                tmpNewLayout[tmpNextCell] = ing
+                                
+                        tmpIngredientAmounts[ing] -= len(tmpThisGroup)
+                    
+                #бонусы - раскидываем по одному
+                else:
+                    while tmpIngredientAmounts[ing] > 0:
+                        tmpNextCell = choice(tmpEmptyCells)
+                        tmpEmptyCells.remove(tmpNextCell)
+                        tmpNewLayout[tmpNextCell] = ing
+                        tmpIngredientAmounts[ing] -= 1
+                 
+            #определяем, какие фишки куда будут перекинуты
+            tmpOldKeys = []
+            tmpNewKeys = []
+            for ing in tmpAllIngredients:
+                tmpOldIngKeys = filter(lambda x: self.Cells[x] == ing, tmpShufflingKeys)
+                shuffle(tmpOldIngKeys)
+                tmpOldKeys =  tmpOldKeys + tmpOldIngKeys
+                tmpNewIngKeys = filter(lambda x: tmpNewLayout[x] == ing, tmpNewLayout.keys())
+                shuffle(tmpNewIngKeys)
+                tmpNewKeys = tmpNewKeys + tmpNewIngKeys
+            
+            tmpCells = dict(self.Cells)
+            for cell in tmpShufflingKeys:
+                self._RemoveTokenFrom(cell, False)
+            
             self.ShuffleTime = int(globalvars.GameSettings.GetFltAttr("shuffleTime")*1000)
             self.ShufflingBlocks = {}
             tmpBasicSpeedX = int(1.0*Crd_deltaX/globalvars.GameSettings.GetFltAttr("shuffleTime"))
             tmpBasicSpeedY = int(1.0*Crd_deltaY/globalvars.GameSettings.GetFltAttr("shuffleTime"))
-            tmpOldKeys = filter(lambda x: self.Cells[x]!=Const_EmptyCell and x[1]<self.Rows, self.Cells.keys())
-            tmpNewKeys = list(tmpOldKeys)
-            shuffle(tmpNewKeys)
-            tmpValues = map(lambda x: self.Cells[x], tmpOldKeys)
+            tmpValues = map(lambda x: tmpCells[x], tmpOldKeys)
             for i in range(len(tmpOldKeys)):
                 self.Cells[tmpNewKeys[i]] = tmpValues[i]
                 self.Grid[tmpNewKeys[i]].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[tmpNewKeys[i]]).GetStrAttr("src"))

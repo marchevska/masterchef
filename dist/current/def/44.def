@@ -26,23 +26,47 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Pumpkin Cheesecake" rate = "2" }
-        Recipe{ type = "Pumpkin Cookies" rate = "3" }
+        Recipe{ type = "Chicken Shrimp Soup" rate = "1" }
+        Recipe{ type = "Spicy Shrimps"       rate = "1" }
+        Recipe{ type = "Hulihuli Chicken"    rate = "1" }
+        Recipe{ type = "Mango Mui"           rate = "1" }
+        Recipe{ type = "Wonton"              rate = "1" }
+        Recipe{ type = "Shrimp Canton"       rate = "1" }
+        Recipe{ type = "Lime Chicken"        rate = "1" }
+        Recipe{ type = "Mango Salsa"         rate = "1" }
+        Recipe{ type = "Chicken Laulau"      rate = "1" }
+        Recipe{ type = "Shrimp Mango Salad"  rate = "1" }
+        Recipe{ type = "Pipikaula"           rate = "1" }
+        Recipe{ type = "Mango Chicken"       rate = "1" }
     }
     
     //ingredient appearance rates
+    TokenRates {
+        Token{ type = "ingredient" rate = "95" }
+        Token{ type = "bonus" rate = "5" }
+    }
+    
     IngredientRates{
-        Ingredient{ type = "egg" rate = "10" }
-        Ingredient{ type = "sugar" rate = "10" }
-        Ingredient{ type = "pumpkin" rate = "30" }
-        Ingredient{ type = "sour-cream" rate = "10" }
-        Ingredient{ type = "flour" rate = "30" }
-        Ingredient{ type = "apple" rate = "15" }
+        Ingredient{ type = "shrimp"       rate = "10" }
+        Ingredient{ type = "meat"         rate = "10" }
+        Ingredient{ type = "chili-pepper" rate = "10" }
+        Ingredient{ type = "lime"         rate = "10" }
+        Ingredient{ type = "mango"        rate = "10" }
+        Ingredient{ type = "shoyu"        rate = "10" }
+        Ingredient{ type = "bonus.spoon"      rate = "1" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
+        Ingredient{ type = "bonus.magicwand"  rate = "1" }
+        Ingredient{ type = "bonus.bomb"       rate = "1" }
+        Ingredient{ type = "bonus.removerow"  rate = "1" }
+        Ingredient{ type = "bonus.scrollback" rate = "1" }
+        Ingredient{ type = "bonus.hearts"     rate = "1" }
+        Ingredient{ type = "bonus.shuffle"    rate = "1" }
     }
     
     //level settings
     LevelSettings{
-        title = "'SweetShop 4'"
+        title = "'Hawaiian 4'"
         noCustomers = "10"
         moneyGoal = "100"
         expertGoal = "200"
@@ -51,18 +75,15 @@ Level{
     //level layout: customer stations, power-up buttons, decorations
     //layout of the game field
     Layout{
-        theme = "SweetShop" 
+        theme = "Hawaiian" 
         CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
-        Counter{ type = "" x = "230" y = "145" }
-        CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
+        //Counter{ type = "" x = "230" y = "145" }
+        CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }
-        //Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
-        //Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
-        //Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }
     }
     
 }

@@ -81,11 +81,11 @@ MasterChef{
         level(def/39.def) { name = "4-9" no = "39" x = "704" y = "374" }
         level(def/40.def) { name = "4-10" no = "40" x = "681" y = "388" }
         
-        //Episode - SweetShop
-        comic(SweetShop.intro) {
-            image = "comics.sweetshop.intro"
+        //Episode - Hawaiian
+        comic(Hawaiian.intro) {
+            image = "comics.hawaiian.intro"
             button = "comics.play-button"
-            unlock = "SweetShop"
+            unlock = "Hawaiian"
         }
         level(def/41.def) { name = "5-1" no = "41" x = "586" y = "407" }
         level(def/42.def) { name = "5-2" no = "42" x = "561" y = "423" }
@@ -110,6 +110,6 @@ MasterChef{
         episode(Mexican) { image = "episode.mexican" x = "220" y = "320" }
         episode(Russian) { image = "episode.russian" x = "360" y = "70" }
         episode(Japanese) { image = "episode.japanese" x = "680" y = "130" }
-        episode(SweetShop) { image = "episode.sweetshop" x = "630" y = "385" }
+        episode(Hawaiian) { image = "episode.hawaiian" x = "630" y = "385" }
     }
 }

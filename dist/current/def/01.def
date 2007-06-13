@@ -39,6 +39,11 @@ Level{
     }
     
     //ingredient appearance rates
+    TokenRates {
+        Token{ type = "ingredient" rate = "100" }
+        Token{ type = "bonus" rate = "0" }
+    }
+    
     IngredientRates{
         Ingredient{ type = "meat"      rate = "9" }
         Ingredient{ type = "milk"      rate = "0" }
@@ -75,8 +80,8 @@ Level{
         //Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }
-        Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
-        Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
+        //Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
+        //Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
     }
     
 }

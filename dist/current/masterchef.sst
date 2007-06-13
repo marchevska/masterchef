@@ -148,7 +148,7 @@ layout = 1x4
 
 sprite mainmenu.jane.eyes { 
 bitmap = img/gui/mainmenu.jane.eyes.png
-layout = 1x2
+layout = 1x3
 }
 
 sprite mainmenu.vapor { 

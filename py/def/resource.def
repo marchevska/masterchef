@@ -61,63 +61,15 @@ MasterChef{
         sprite(ingredient.veggymix.icon) { bitmap = "img/ingredients/veggymix.icon.png" type = "blend" }
         sprite(ingredient.seaweed.icon) { bitmap = "img/ingredients/seaweed.icon.png" type = "blend" }
         
-        
-        
-        //Mexican - unused
-        sprite(ingredient.sour-cream) { bitmap = "img/ingredients/sour-cream.png" type = "blend" }
-        sprite(ingredient.bean) { bitmap = "img/ingredients/bean.png" type = "blend" }
+        //Hawaiian
         sprite(ingredient.lime) { bitmap = "img/ingredients/lime.png" type = "blend" }
-        sprite(ingredient.tortilla-chips) { bitmap = "img/ingredients/tortilla-chips.png" type = "blend" }
-        sprite(ingredient.sour-cream.icon) { bitmap = "img/ingredients/sour-cream.icon.png" type = "blend" }
-        sprite(ingredient.bean.icon) { bitmap = "img/ingredients/bean.icon.png" type = "blend" }
-        sprite(ingredient.lime.icon) { bitmap = "img/ingredients/lime.icon.png" type = "blend" }
-        sprite(ingredient.tortilla-chips.icon) { bitmap = "img/ingredients/tortilla-chips.icon.png" type = "blend" }
-        
-        //Japanese
-        sprite(ingredient.noodle) { bitmap = "img/ingredients/noodle.png" type = "blend" }
-        sprite(ingredient.tuna) { bitmap = "img/ingredients/tuna.png" type = "blend" }
-        sprite(ingredient.anchovies) { bitmap = "img/ingredients/anchovies.png" type = "blend" }
-        sprite(ingredient.egg) { bitmap = "img/ingredients/egg.png" type = "blend" }
-        sprite(ingredient.soya) { bitmap = "img/ingredients/soya.png" type = "blend" }
+        sprite(ingredient.mango) { bitmap = "img/ingredients/mango.png" type = "blend" }
         sprite(ingredient.shoyu) { bitmap = "img/ingredients/shoyu.png" type = "blend" }
-        sprite(ingredient.umeboshi) { bitmap = "img/ingredients/umeboshi.png" type = "blend" }
-        sprite(ingredient.pickles) { bitmap = "img/ingredients/pickles.png" type = "blend" }
-        sprite(ingredient.miso) { bitmap = "img/ingredients/miso.png" type = "blend" }
-        sprite(ingredient.noodle.icon) { bitmap = "img/ingredients/noodle.icon.png" type = "blend" }
-        sprite(ingredient.tuna.icon) { bitmap = "img/ingredients/tuna.icon.png" type = "blend" }
-        sprite(ingredient.anchovies.icon) { bitmap = "img/ingredients/anchovies.icon.png" type = "blend" }
-        sprite(ingredient.egg.icon) { bitmap = "img/ingredients/egg.icon.png" type = "blend" }
-        sprite(ingredient.soya.icon) { bitmap = "img/ingredients/soya.icon.png" type = "blend" }
+        
+        //Hawaiian - icons
+        sprite(ingredient.lime.icon) { bitmap = "img/ingredients/lime.icon.png" type = "blend" }
+        sprite(ingredient.mango.icon) { bitmap = "img/ingredients/mango.icon.png" type = "blend" }
         sprite(ingredient.shoyu.icon) { bitmap = "img/ingredients/shoyu.icon.png" type = "blend" }
-        sprite(ingredient.umeboshi.icon) { bitmap = "img/ingredients/umeboshi.icon.png" type = "blend" }
-        sprite(ingredient.pickles.icon) { bitmap = "img/ingredients/pickles.icon.png" type = "blend" }
-        sprite(ingredient.miso.icon) { bitmap = "img/ingredients/miso.icon.png" type = "blend" }
-        
-        //SweetShop
-        sprite(ingredient.apple) { bitmap = "img/ingredients/apple.png" type = "blend" }
-        sprite(ingredient.banana) { bitmap = "img/ingredients/banana.png" type = "blend" }
-        sprite(ingredient.berries) { bitmap = "img/ingredients/berries.png" type = "blend" }
-        sprite(ingredient.chocolate) { bitmap = "img/ingredients/chocolate.png" type = "blend" }
-        sprite(ingredient.ice-cream) { bitmap = "img/ingredients/ice-cream.png" type = "blend" }
-        sprite(ingredient.nuts) { bitmap = "img/ingredients/nuts.png" type = "blend" }
-        sprite(ingredient.strawberry) { bitmap = "img/ingredients/strawberry.png" type = "blend" }
-        sprite(ingredient.sugar) { bitmap = "img/ingredients/sugar.png" type = "blend" }
-        
-        //SweetShop - icons
-        sprite(ingredient.apple.icon) { bitmap = "img/ingredients/apple.icon.png" type = "blend" }
-        sprite(ingredient.banana.icon) { bitmap = "img/ingredients/banana.icon.png" type = "blend" }
-        sprite(ingredient.berries.icon) { bitmap = "img/ingredients/berries.icon.png" type = "blend" }
-        sprite(ingredient.chocolate.icon) { bitmap = "img/ingredients/chocolate.icon.png" type = "blend" }
-        sprite(ingredient.ice-cream.icon) { bitmap = "img/ingredients/ice-cream.icon.png" type = "blend" }
-        sprite(ingredient.nuts.icon) { bitmap = "img/ingredients/nuts.icon.png" type = "blend" }
-        sprite(ingredient.strawberry.icon) { bitmap = "img/ingredients/strawberry.icon.png" type = "blend" }
-        sprite(ingredient.sugar.icon) { bitmap = "img/ingredients/sugar.icon.png" type = "blend" }
-        
-        //Hawaii
-        sprite(ingredient.bun) { bitmap = "img/ingredients/bun.png" type = "blend" }
-        
-        //Hawaii - icons
-        sprite(ingredient.bun.icon) { bitmap = "img/ingredients/bun.icon.png" type = "blend" }
         
         //Bonus
         sprite(bonus.bomb) { bitmap = "img/ingredients/bonus.bomb.png" type = "blend" }
@@ -247,104 +199,68 @@ MasterChef{
         sprite(recipe.mushroom-soup.empty) { bitmap = "img/recipes/russian/mushroom-soup.empty.png" type = "blend" }
         
         //Hawaiian
-        sprite(recipe.avocado-salad) { bitmap = "img/recipes/hawaiian/avocado-salad.png" type = "blend" }
-        sprite(recipe.avocado-salmon-sandwitch) { bitmap = "img/recipes/hawaiian/avocado-salmon-sandwitch.png" type = "blend" }
-        sprite(recipe.bombay-turkey) { bitmap = "img/recipes/hawaiian/bombay-turkey.png" type = "blend" }
-        sprite(recipe.chicken-avocado-rice) { bitmap = "img/recipes/hawaiian/chicken-avocado-rice.png" type = "blend" }
-        sprite(recipe.curried-ckicken) { bitmap = "img/recipes/hawaiian/curried-ckicken.png" type = "blend" }
-        sprite(recipe.grilled-salmon) { bitmap = "img/recipes/hawaiian/grilled-salmon.png" type = "blend" }
-        sprite(recipe.pasta-seafood) { bitmap = "img/recipes/hawaiian/pasta-seafood.png" type = "blend" }
-        sprite(recipe.salmon-creole) { bitmap = "img/recipes/hawaiian/salmon-creole.png" type = "blend" }
-        sprite(recipe.scampi) { bitmap = "img/recipes/hawaiian/scampi.png" type = "blend" }
-        sprite(recipe.shark-citrus-salad) { bitmap = "img/recipes/hawaiian/shark-citrus-salad.png" type = "blend" }
-        sprite(recipe.shrimp-sandwitch) { bitmap = "img/recipes/hawaiian/shrimp-sandwitch.png" type = "blend" }
-        sprite(recipe.spaghetti-veg) { bitmap = "img/recipes/hawaiian/spaghetti-veg.png" type = "blend" }
+        sprite(recipe.chicken-shrimp-soup) { bitmap = "img/recipes/hawaiian/chicken-shrimp-soup.png" type = "blend" }
         sprite(recipe.spicy-shrimps) { bitmap = "img/recipes/hawaiian/spicy-shrimps.png" type = "blend" }
+        sprite(recipe.hulihuli-chicken) { bitmap = "img/recipes/hawaiian/hulihuli-chicken.png" type = "blend" }
+        sprite(recipe.mango-mui) { bitmap = "img/recipes/hawaiian/mango-mui.png" type = "blend" }
+        sprite(recipe.wonton) { bitmap = "img/recipes/hawaiian/wonton.png" type = "blend" }
+        sprite(recipe.shrimp-canton) { bitmap = "img/recipes/hawaiian/shrimp-canton.png" type = "blend" }
+        sprite(recipe.lime-chicken) { bitmap = "img/recipes/hawaiian/lime-chicken.png" type = "blend" }
+        sprite(recipe.mango-salsa) { bitmap = "img/recipes/hawaiian/mango-salsa.png" type = "blend" }
+        sprite(recipe.chicken-laulau) { bitmap = "img/recipes/hawaiian/chicken-laulau.png" type = "blend" }
+        sprite(recipe.shrimp-mango-salad) { bitmap = "img/recipes/hawaiian/shrimp-mango-salad.png" type = "blend" }
+        sprite(recipe.pipikaula) { bitmap = "img/recipes/hawaiian/pipikaula.png" type = "blend" }
+        sprite(recipe.mango-chicken) { bitmap = "img/recipes/hawaiian/mango-chicken.png" type = "blend" }
         
         //Hawaiian - empty
-        sprite(recipe.avocado-salad.empty) { bitmap = "img/recipes/hawaiian/avocado-salad.empty.png" type = "blend" }
-        sprite(recipe.avocado-salmon-sandwitch.empty) { bitmap = "img/recipes/hawaiian/avocado-salmon-sandwitch.empty.png" type = "blend" }
-        sprite(recipe.bombay-turkey.empty) { bitmap = "img/recipes/hawaiian/bombay-turkey.empty.png" type = "blend" }
-        sprite(recipe.chicken-avocado-rice.empty) { bitmap = "img/recipes/hawaiian/chicken-avocado-rice.empty.png" type = "blend" }
-        sprite(recipe.curried-ckicken.empty) { bitmap = "img/recipes/hawaiian/curried-ckicken.empty.png" type = "blend" }
-        sprite(recipe.grilled-salmon.empty) { bitmap = "img/recipes/hawaiian/grilled-salmon.empty.png" type = "blend" }
-        sprite(recipe.pasta-seafood.empty) { bitmap = "img/recipes/hawaiian/pasta-seafood.empty.png" type = "blend" }
-        sprite(recipe.salmon-creole.empty) { bitmap = "img/recipes/hawaiian/salmon-creole.empty.png" type = "blend" }
-        sprite(recipe.scampi.empty) { bitmap = "img/recipes/hawaiian/scampi.empty.png" type = "blend" }
-        sprite(recipe.shark-citrus-salad.empty) { bitmap = "img/recipes/hawaiian/shark-citrus-salad.empty.png" type = "blend" }
-        sprite(recipe.shrimp-sandwitch.empty) { bitmap = "img/recipes/hawaiian/shrimp-sandwitch.empty.png" type = "blend" }
-        sprite(recipe.spaghetti-veg.empty) { bitmap = "img/recipes/hawaiian/spaghetti-veg.empty.png" type = "blend" }
+        sprite(recipe.chicken-shrimp-soup.empty) { bitmap = "img/recipes/hawaiian/chicken-shrimp-soup.empty.png" type = "blend" }
         sprite(recipe.spicy-shrimps.empty) { bitmap = "img/recipes/hawaiian/spicy-shrimps.empty.png" type = "blend" }
-        
-        //SweetShop
-        sprite(recipe.angel-cake) { bitmap = "img/recipes/sweetshop/angel-cake.png" type = "blend" }
-        sprite(recipe.baked-alaska) { bitmap = "img/recipes/sweetshop/baked-alaska.png" type = "blend" }
-        sprite(recipe.banana-split) { bitmap = "img/recipes/sweetshop/banana-split.png" type = "blend" }
-        sprite(recipe.berry-tart) { bitmap = "img/recipes/sweetshop/berry-tart.png" type = "blend" }
-        sprite(recipe.berry-triffle) { bitmap = "img/recipes/sweetshop/berry-triffle.png" type = "blend" }
-        sprite(recipe.choc-banana-milkshake) { bitmap = "img/recipes/sweetshop/choc-banana-milkshake.png" type = "blend" }
-        sprite(recipe.chocolate-fondue) { bitmap = "img/recipes/sweetshop/chocolate-fondue.png" type = "blend" }
-        sprite(recipe.fried-dough) { bitmap = "img/recipes/sweetshop/fried-dough.png" type = "blend" }
-        sprite(recipe.fried-ice-cream) { bitmap = "img/recipes/sweetshop/fried-ice-cream.png" type = "blend" }
-        sprite(recipe.muffins) { bitmap = "img/recipes/sweetshop/muffins.png" type = "blend" }
-        sprite(recipe.pancakes) { bitmap = "img/recipes/sweetshop/pancakes.png" type = "blend" }
-        sprite(recipe.pumpkin-cheesecake) { bitmap = "img/recipes/sweetshop/pumpkin-cheesecake.png" type = "blend" }
-        sprite(recipe.pumpkin-cookies) { bitmap = "img/recipes/sweetshop/pumpkin-cookies.png" type = "blend" }
-        sprite(recipe.strawberry-shake) { bitmap = "img/recipes/sweetshop/strawberry-shake.png" type = "blend" }
-        sprite(recipe.truffles) { bitmap = "img/recipes/sweetshop/truffles.png" type = "blend" }
-        
-        //SweetShop - empty
-        sprite(recipe.angel-cake.empty) { bitmap = "img/recipes/sweetshop/angel-cake.empty.png" type = "blend" }
-        sprite(recipe.baked-alaska.empty) { bitmap = "img/recipes/sweetshop/baked-alaska.empty.png" type = "blend" }
-        sprite(recipe.banana-split.empty) { bitmap = "img/recipes/sweetshop/banana-split.empty.png" type = "blend" }
-        sprite(recipe.berry-tart.empty) { bitmap = "img/recipes/sweetshop/berry-tart.empty.png" type = "blend" }
-        sprite(recipe.berry-triffle.empty) { bitmap = "img/recipes/sweetshop/berry-triffle.empty.png" type = "blend" }
-        sprite(recipe.choc-banana-milkshake.empty) { bitmap = "img/recipes/sweetshop/choc-banana-milkshake.empty.png" type = "blend" }
-        sprite(recipe.chocolate-fondue.empty) { bitmap = "img/recipes/sweetshop/chocolate-fondue.empty.png" type = "blend" }
-        sprite(recipe.fried-dough.empty) { bitmap = "img/recipes/sweetshop/fried-dough.empty.png" type = "blend" }
-        sprite(recipe.fried-ice-cream.empty) { bitmap = "img/recipes/sweetshop/fried-ice-cream.empty.png" type = "blend" }
-        sprite(recipe.muffins.empty) { bitmap = "img/recipes/sweetshop/muffins.empty.png" type = "blend" }
-        sprite(recipe.pancakes.empty) { bitmap = "img/recipes/sweetshop/pancakes.empty.png" type = "blend" }
-        sprite(recipe.pumpkin-cheesecake.empty) { bitmap = "img/recipes/sweetshop/pumpkin-cheesecake.empty.png" type = "blend" }
-        sprite(recipe.pumpkin-cookies.empty) { bitmap = "img/recipes/sweetshop/pumpkin-cookies.empty.png" type = "blend" }
-        sprite(recipe.strawberry-shake.empty) { bitmap = "img/recipes/sweetshop/strawberry-shake.empty.png" type = "blend" }
-        sprite(recipe.truffles.empty) { bitmap = "img/recipes/sweetshop/truffles.empty.png" type = "blend" }
+        sprite(recipe.hulihuli-chicken.empty) { bitmap = "img/recipes/hawaiian/hulihuli-chicken.empty.png" type = "blend" }
+        sprite(recipe.mango-mui.empty) { bitmap = "img/recipes/hawaiian/mango-mui.empty.png" type = "blend" }
+        sprite(recipe.wonton.empty) { bitmap = "img/recipes/hawaiian/wonton.empty.png" type = "blend" }
+        sprite(recipe.shrimp-canton.empty) { bitmap = "img/recipes/hawaiian/shrimp-canton.empty.png" type = "blend" }
+        sprite(recipe.lime-chicken.empty) { bitmap = "img/recipes/hawaiian/lime-chicken.empty.png" type = "blend" }
+        sprite(recipe.mango-salsa.empty) { bitmap = "img/recipes/hawaiian/mango-salsa.empty.png" type = "blend" }
+        sprite(recipe.chicken-laulau.empty) { bitmap = "img/recipes/hawaiian/chicken-laulau.empty.png" type = "blend" }
+        sprite(recipe.shrimp-mango-salad.empty) { bitmap = "img/recipes/hawaiian/shrimp-mango-salad.empty.png" type = "blend" }
+        sprite(recipe.pipikaula.empty) { bitmap = "img/recipes/hawaiian/pipikaula.empty.png" type = "blend" }
+        sprite(recipe.mango-chicken.empty) { bitmap = "img/recipes/hawaiian/mango-chicken.empty.png" type = "blend" }
         
     }
 
     //source classes for power-ups
-    PowerUpKlasses{
-        sprite(powerup.use.button) { bitmap = "img/powerups/use-powerup-button.png" type = "blend" layout = "2x2" }
-        sprite(powerup.buy.button) { bitmap = "img/powerups/buy-powerup-button.png" type = "blend" layout = "1x4" }
-        font(powerups) { bitmap = "img/powerups/powerups.png" type = "blend" symbols =12345678-$ }
-        font(powerups.roll) { bitmap = "img/powerups/powerups-roll.png" type = "blend" symbols =12345678-$ }
-        font(powerups.inert) { bitmap = "img/powerups/powerups-inert.png" type = "blend" symbols =12345678-$ }
-    }
+    //PowerUpKlasses{
+    //    sprite(powerup.use.button) { bitmap = "img/powerups/use-powerup-button.png" type = "blend" layout = "2x2" }
+    //    sprite(powerup.buy.button) { bitmap = "img/powerups/buy-powerup-button.png" type = "blend" layout = "1x4" }
+    //    font(powerups) { bitmap = "img/powerups/powerups.png" type = "blend" symbols =12345678-$ }
+    //    font(powerups.roll) { bitmap = "img/powerups/powerups-roll.png" type = "blend" symbols =12345678-$ }
+    //    font(powerups.inert) { bitmap = "img/powerups/powerups-inert.png" type = "blend" symbols =12345678-$ }
+    //}
     
     //source klasses for restaurant themes
     ThemeKlasses{
-        //Japanese
-        sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" truecolor = "yes" }
-        sprite(theme.japanese.counter) { bitmap = "img/episodes/japanese/counter.png" type = "blend" }
-        sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" layout = "2x1" }
-        sprite(theme.japanese.station-mask) { bitmap = "img/episodes/japanese/station-mask.png" type = "blend" layout = "2x1" }
-        sprite(theme.japanese.station-line) { bitmap = "img/episodes/japanese/station-line.png" type = "blend" }
-        sprite(theme.japanese.recipeinfo) { bitmap = "img/episodes/japanese/recipe-info.png" type = "blend" }
-        sprite(theme.japanese.field) { bitmap = "img/episodes/japanese/field.png" type = "blend" layout = "3x3" }
-        sprite(theme.japanese.collapsoid) { bitmap = "img/episodes/japanese/collapsoid.png" type = "blend" layout = "3x3" }
-        font(theme.japanese.collapsoid.dropper) { bitmap = "img/episodes/japanese/collapsoid.dropper.png" type = "blend" symbols="LMR" }
-        font(theme.japanese.collapsoid.dropper.roll) { bitmap = "img/episodes/japanese/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
-        font(theme.japanese.collapsoid.dropper.down) { bitmap = "img/episodes/japanese/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        sprite(theme.japanese.storage) { bitmap = "img/episodes/japanese/storage.png" type = "blend" layout = "3x3" }
-        sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" layout = "1x3" }
-        sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
-        sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
-        sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }
-        sprite(theme.japanese.tablet) { bitmap = "img/episodes/japanese/tablet.png" type = "blend" }
+        //American
+        sprite(theme.american.background) { bitmap = "img/episodes/american/background.png" truecolor = "yes" }
+        sprite(theme.american.counter) { bitmap = "img/episodes/american/counter.png" type = "blend" }
+        sprite(theme.american.station) { bitmap = "img/episodes/american/station.png" type = "blend" layout = "2x1" }
+        sprite(theme.american.station-mask) { bitmap = "img/episodes/american/station-mask.png" type = "blend" layout = "2x1" }
+        sprite(theme.american.station-line) { bitmap = "img/episodes/american/station-line.png" type = "blend" }
+        sprite(theme.american.recipeinfo) { bitmap = "img/episodes/american/recipe-info.png" type = "blend" }
+        sprite(theme.american.field) { bitmap = "img/episodes/american/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.american.collapsoid) { bitmap = "img/episodes/american/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.american.collapsoid.dropper) { bitmap = "img/episodes/american/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.american.collapsoid.dropper.roll) { bitmap = "img/episodes/american/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.american.collapsoid.dropper.down) { bitmap = "img/episodes/american/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
+        sprite(theme.american.storage) { bitmap = "img/episodes/american/storage.png" type = "blend" layout = "3x3" }
+        sprite(theme.american.bonuspane) { bitmap = "img/episodes/american/bonus-pane.png" type = "blend" layout = "1x3" }
+        sprite(theme.american.trashcan) { bitmap = "img/episodes/american/trashcan.png" type = "blend" }
+        sprite(theme.american.trashcan.bar.empty) { bitmap = "img/episodes/american/trashcan-bar-empty.png" type = "blend" }
+        sprite(theme.american.trashcan.bar.full) { bitmap = "img/episodes/american/trashcan-bar-full.png" type = "blend" }
+        sprite(theme.american.tablet) { bitmap = "img/episodes/american/tablet.png" type = "blend" }
         
-        sprite(theme.japanese.decoration.bonsai) { bitmap = "img/episodes/japanese/bonsai.png" type = "blend" }
-        sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }
-        sprite(theme.japanese.decoration.screen2) { bitmap = "img/episodes/japanese/screen2.png" type = "blend" }
+        sprite(theme.american.decoration.barrel) { bitmap = "img/episodes/american/barrel.png" type = "blend" }
+        sprite(theme.american.decoration.stand) { bitmap = "img/episodes/american/stand.png" type = "blend" }
+        sprite(theme.american.decoration.nopal) { bitmap = "img/episodes/american/nopal.png" type = "blend" }
         
         //Mexican
         sprite(theme.mexican.background) { bitmap = "img/episodes/mexican/background.png" truecolor = "yes" }
@@ -370,25 +286,6 @@ MasterChef{
         sprite(theme.mexican.decoration.carpet-sun) { bitmap = "img/episodes/mexican/carpet-sun.png" type = "blend" }
         sprite(theme.mexican.decoration.tree) { bitmap = "img/episodes/mexican/tree.png" type = "blend" }
         
-        //Italian
-        sprite(theme.italian.background) { bitmap = "img/episodes/italian/background.png" truecolor = "yes" }
-        sprite(theme.italian.counter) { bitmap = "img/episodes/italian/counter.png" type = "blend" }
-        sprite(theme.italian.station) { bitmap = "img/episodes/italian/station.png" type = "blend" layout = "2x1" }
-        sprite(theme.italian.station-mask) { bitmap = "img/episodes/italian/station-mask.png" type = "blend" layout = "2x1" }
-        sprite(theme.italian.station-line) { bitmap = "img/episodes/italian/station-line.png" type = "blend" }
-        sprite(theme.italian.recipeinfo) { bitmap = "img/episodes/italian/recipe-info.png" type = "blend" }
-        sprite(theme.italian.field) { bitmap = "img/episodes/italian/field.png" type = "blend" layout = "3x3" }
-        sprite(theme.italian.collapsoid) { bitmap = "img/episodes/italian/collapsoid.png" type = "blend" layout = "3x3" }
-        font(theme.italian.collapsoid.dropper) { bitmap = "img/episodes/italian/collapsoid.dropper.png" type = "blend" symbols="LMR" }
-        font(theme.italian.collapsoid.dropper.roll) { bitmap = "img/episodes/italian/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
-        font(theme.italian.collapsoid.dropper.down) { bitmap = "img/episodes/italian/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        sprite(theme.italian.storage) { bitmap = "img/episodes/italian/storage.png" type = "blend" layout = "3x3" }
-        sprite(theme.italian.bonuspane) { bitmap = "img/episodes/italian/bonus-pane.png" type = "blend" layout = "1x3" }
-        sprite(theme.italian.trashcan) { bitmap = "img/episodes/italian/trashcan.png" type = "blend" }
-        sprite(theme.italian.trashcan.bar.empty) { bitmap = "img/episodes/italian/trashcan-bar-empty.png" type = "blend" }
-        sprite(theme.italian.trashcan.bar.full) { bitmap = "img/episodes/italian/trashcan-bar-full.png" type = "blend" }
-        sprite(theme.italian.tablet) { bitmap = "img/episodes/italian/tablet.png" type = "blend" }
-        
         //Russian
         sprite(theme.russian.background) { bitmap = "img/episodes/russian/background.png" truecolor = "yes" }
         sprite(theme.russian.counter) { bitmap = "img/episodes/russian/counter.png" type = "blend" }
@@ -408,53 +305,53 @@ MasterChef{
         sprite(theme.russian.trashcan.bar.full) { bitmap = "img/episodes/russian/trashcan-bar-full.png" type = "blend" }
         sprite(theme.russian.tablet) { bitmap = "img/episodes/russian/tablet.png" type = "blend" }
         
-        //American
-        sprite(theme.american.background) { bitmap = "img/episodes/american/background.png" truecolor = "yes" }
-        sprite(theme.american.counter) { bitmap = "img/episodes/american/counter.png" type = "blend" }
-        sprite(theme.american.station) { bitmap = "img/episodes/american/station.png" type = "blend" layout = "2x1" }
-        sprite(theme.american.station-mask) { bitmap = "img/episodes/american/station-mask.png" type = "blend" layout = "2x1" }
-        sprite(theme.american.station-line) { bitmap = "img/episodes/american/station-line.png" type = "blend" }
-        sprite(theme.american.recipeinfo) { bitmap = "img/episodes/american/recipe-info.png" type = "blend" }
-        sprite(theme.american.field) { bitmap = "img/episodes/american/field.png" type = "blend" layout = "3x3" }
-        sprite(theme.american.collapsoid) { bitmap = "img/episodes/american/collapsoid.png" type = "blend" layout = "3x3" }
-        font(theme.american.collapsoid.dropper) { bitmap = "img/episodes/american/collapsoid.dropper.png" type = "blend" symbols="LMR" }
-        font(theme.american.collapsoid.dropper.roll) { bitmap = "img/episodes/american/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
-        font(theme.american.collapsoid.dropper.down) { bitmap = "img/episodes/american/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        sprite(theme.american.storage) { bitmap = "img/episodes/american/storage.png" type = "blend" layout = "3x3" }
-        sprite(theme.american.bonuspane) { bitmap = "img/episodes/american/bonus-pane.png" type = "blend" layout = "1x3" }
-        sprite(theme.american.trashcan) { bitmap = "img/episodes/american/trashcan.png" type = "blend" }
-        sprite(theme.american.trashcan.bar.empty) { bitmap = "img/episodes/american/trashcan-bar-empty.png" type = "blend" }
-        sprite(theme.american.trashcan.bar.full) { bitmap = "img/episodes/american/trashcan-bar-full.png" type = "blend" }
-        sprite(theme.american.tablet) { bitmap = "img/episodes/american/tablet.png" type = "blend" }
+        //Japanese
+        sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" truecolor = "yes" }
+        sprite(theme.japanese.counter) { bitmap = "img/episodes/japanese/counter.png" type = "blend" }
+        sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" layout = "2x1" }
+        sprite(theme.japanese.station-mask) { bitmap = "img/episodes/japanese/station-mask.png" type = "blend" layout = "2x1" }
+        sprite(theme.japanese.station-line) { bitmap = "img/episodes/japanese/station-line.png" type = "blend" }
+        sprite(theme.japanese.recipeinfo) { bitmap = "img/episodes/japanese/recipe-info.png" type = "blend" }
+        sprite(theme.japanese.field) { bitmap = "img/episodes/japanese/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.japanese.collapsoid) { bitmap = "img/episodes/japanese/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.japanese.collapsoid.dropper) { bitmap = "img/episodes/japanese/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.japanese.collapsoid.dropper.roll) { bitmap = "img/episodes/japanese/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.japanese.collapsoid.dropper.down) { bitmap = "img/episodes/japanese/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
+        sprite(theme.japanese.storage) { bitmap = "img/episodes/japanese/storage.png" type = "blend" layout = "3x3" }
+        sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" layout = "1x3" }
+        sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
+        sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
+        sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }
+        sprite(theme.japanese.tablet) { bitmap = "img/episodes/japanese/tablet.png" type = "blend" }
         
-        sprite(theme.american.decoration.barrel) { bitmap = "img/episodes/american/barrel.png" type = "blend" }
-        sprite(theme.american.decoration.stand) { bitmap = "img/episodes/american/stand.png" type = "blend" }
-        sprite(theme.american.decoration.nopal) { bitmap = "img/episodes/american/nopal.png" type = "blend" }
+        sprite(theme.japanese.decoration.bonsai) { bitmap = "img/episodes/japanese/bonsai.png" type = "blend" }
+        sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }
+        sprite(theme.japanese.decoration.screen2) { bitmap = "img/episodes/japanese/screen2.png" type = "blend" }
         
-        //Sweetshop
-        sprite(theme.sweetshop.background) { bitmap = "img/episodes/sweetshop/background.png" truecolor = "yes" }
-        sprite(theme.sweetshop.counter) { bitmap = "img/episodes/sweetshop/counter.png" type = "blend" }
-        sprite(theme.sweetshop.station) { bitmap = "img/episodes/sweetshop/station.png" type = "blend" layout = "2x1" }
-        sprite(theme.sweetshop.station-mask) { bitmap = "img/episodes/sweetshop/station-mask.png" type = "blend" layout = "2x1" }
-        sprite(theme.sweetshop.station-line) { bitmap = "img/episodes/sweetshop/station-line.png" type = "blend" }
-        sprite(theme.sweetshop.recipeinfo) { bitmap = "img/episodes/sweetshop/recipe-info.png" type = "blend" }
-        sprite(theme.sweetshop.field) { bitmap = "img/episodes/sweetshop/field.png" type = "blend" layout = "3x3" }
-        sprite(theme.sweetshop.collapsoid) { bitmap = "img/episodes/sweetshop/collapsoid.png" type = "blend" layout = "3x3" }
-        font(theme.sweetshop.collapsoid.dropper) { bitmap = "img/episodes/sweetshop/collapsoid.dropper.png" type = "blend" symbols="LMR" }
-        font(theme.sweetshop.collapsoid.dropper.roll) { bitmap = "img/episodes/sweetshop/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
-        font(theme.sweetshop.collapsoid.dropper.down) { bitmap = "img/episodes/sweetshop/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        sprite(theme.sweetshop.storage) { bitmap = "img/episodes/sweetshop/storage.png" type = "blend" layout = "3x3" }
-        sprite(theme.sweetshop.bonuspane) { bitmap = "img/episodes/sweetshop/bonus-pane.png" type = "blend" layout = "1x3" }
-        sprite(theme.sweetshop.trashcan) { bitmap = "img/episodes/sweetshop/trashcan.png" type = "blend" }
-        sprite(theme.sweetshop.trashcan.bar.empty) { bitmap = "img/episodes/sweetshop/trashcan-bar-empty.png" type = "blend" }
-        sprite(theme.sweetshop.trashcan.bar.full) { bitmap = "img/episodes/sweetshop/trashcan-bar-full.png" type = "blend" }
-        sprite(theme.sweetshop.tablet) { bitmap = "img/episodes/sweetshop/tablet.png" type = "blend" }
+        //Hawaiian
+        sprite(theme.hawaiian.background) { bitmap = "img/episodes/hawaiian/background.png" truecolor = "yes" }
+        sprite(theme.hawaiian.counter) { bitmap = "img/episodes/hawaiian/counter.png" type = "blend" }
+        sprite(theme.hawaiian.station) { bitmap = "img/episodes/hawaiian/station.png" type = "blend" layout = "2x1" }
+        sprite(theme.hawaiian.station-mask) { bitmap = "img/episodes/hawaiian/station-mask.png" type = "blend" layout = "2x1" }
+        sprite(theme.hawaiian.station-line) { bitmap = "img/episodes/hawaiian/station-line.png" type = "blend" }
+        sprite(theme.hawaiian.recipeinfo) { bitmap = "img/episodes/hawaiian/recipe-info.png" type = "blend" }
+        sprite(theme.hawaiian.field) { bitmap = "img/episodes/hawaiian/field.png" type = "blend" layout = "3x3" }
+        sprite(theme.hawaiian.collapsoid) { bitmap = "img/episodes/hawaiian/collapsoid.png" type = "blend" layout = "3x3" }
+        font(theme.hawaiian.collapsoid.dropper) { bitmap = "img/episodes/hawaiian/collapsoid.dropper.png" type = "blend" symbols="LMR" }
+        font(theme.hawaiian.collapsoid.dropper.roll) { bitmap = "img/episodes/hawaiian/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
+        font(theme.hawaiian.collapsoid.dropper.down) { bitmap = "img/episodes/hawaiian/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
+        sprite(theme.hawaiian.storage) { bitmap = "img/episodes/hawaiian/storage.png" type = "blend" layout = "3x3" }
+        sprite(theme.hawaiian.bonuspane) { bitmap = "img/episodes/hawaiian/bonus-pane.png" type = "blend" layout = "1x3" }
+        sprite(theme.hawaiian.trashcan) { bitmap = "img/episodes/hawaiian/trashcan.png" type = "blend" }
+        sprite(theme.hawaiian.trashcan.bar.empty) { bitmap = "img/episodes/hawaiian/trashcan-bar-empty.png" type = "blend" }
+        sprite(theme.hawaiian.trashcan.bar.full) { bitmap = "img/episodes/hawaiian/trashcan-bar-full.png" type = "blend" }
+        sprite(theme.hawaiian.tablet) { bitmap = "img/episodes/hawaiian/tablet.png" type = "blend" }
         
-        sprite(theme.sweetshop.decoration.candy-machine) { bitmap = "img/episodes/sweetshop/candy-machine.png" type = "blend" }
-        sprite(theme.sweetshop.decoration.flower) { bitmap = "img/episodes/sweetshop/flower.png" type = "blend" }
-        sprite(theme.sweetshop.decoration.screen1) { bitmap = "img/episodes/sweetshop/screen1.png" type = "blend" }
-        sprite(theme.sweetshop.decoration.screen2) { bitmap = "img/episodes/sweetshop/screen2.png" type = "blend" }
-        sprite(theme.sweetshop.decoration.screen3) { bitmap = "img/episodes/sweetshop/screen3.png" type = "blend" }
+        sprite(theme.hawaiian.decoration.candy-machine) { bitmap = "img/episodes/hawaiian/candy-machine.png" type = "blend" }
+        sprite(theme.hawaiian.decoration.flower) { bitmap = "img/episodes/hawaiian/flower.png" type = "blend" }
+        sprite(theme.hawaiian.decoration.screen1) { bitmap = "img/episodes/hawaiian/screen1.png" type = "blend" }
+        sprite(theme.hawaiian.decoration.screen2) { bitmap = "img/episodes/hawaiian/screen2.png" type = "blend" }
+        sprite(theme.hawaiian.decoration.screen3) { bitmap = "img/episodes/hawaiian/screen3.png" type = "blend" }
         
     }
     
@@ -462,11 +359,11 @@ MasterChef{
         sprite(comics.masterchef.intro.1) { bitmap = "img/comics/masterchef.intro.1.png" }
         sprite(comics.masterchef.intro.2) { bitmap = "img/comics/masterchef.intro.2.png" }
         sprite(comics.masterchef.intro.3) { bitmap = "img/comics/masterchef.intro.3.png" }
-        sprite(comics.sweetshop.intro) { bitmap = "img/comics/sweetshop.intro.png" }
-        sprite(comics.mexican.intro) { bitmap = "img/comics/mexican.intro.png" }
-        sprite(comics.japanese.intro) { bitmap = "img/comics/japanese.intro.png" }
-        sprite(comics.russian.intro) { bitmap = "img/comics/russian.intro.png" }
         sprite(comics.american.intro) { bitmap = "img/comics/american.intro.png" }
+        sprite(comics.mexican.intro) { bitmap = "img/comics/mexican.intro.png" }
+        sprite(comics.russian.intro) { bitmap = "img/comics/russian.intro.png" }
+        sprite(comics.japanese.intro) { bitmap = "img/comics/japanese.intro.png" }
+        sprite(comics.hawaiian.intro) { bitmap = "img/comics/hawaiian.intro.png" }
         sprite(comics.masterchef.outro) { bitmap = "img/comics/masterchef.outro.png" }
     }
     
@@ -475,6 +372,6 @@ MasterChef{
         sprite(episode.mexican) { bitmap = "img/gui/episode.mexican.png" type = "blend" layout = "2x1" }
         sprite(episode.russian) { bitmap = "img/gui/episode.russian.png" type = "blend" layout = "2x1" }
         sprite(episode.japanese) { bitmap = "img/gui/episode.japanese.png" type = "blend" layout = "2x1" }
-        sprite(episode.sweetshop) { bitmap = "img/gui/episode.sweetshop.png" type = "blend" layout = "2x1" }
+        sprite(episode.hawaiian) { bitmap = "img/gui/episode.hawaiian.png" type = "blend" layout = "2x1" }
     }
 }

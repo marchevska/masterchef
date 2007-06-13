@@ -392,29 +392,60 @@ class Field(Storage):
     # Поместить произвольный токен в заданную клетку
     #--------------------------
     def _PutRandomToken(self, cell):
-        #считаем рекомендованные частоты
-        tmpLevelIngredRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
-                       globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient")))
-        tmpBoardNeeded = dict(globalvars.BlackBoard.Inspect(BBTag_Ingredients))
-        tmpRecommendedRates = dict(tmpLevelIngredRates)
-        for ing in tmpRecommendedRates.keys():
-            tmpRecommendedRates[ing] *= globalvars.GameSettings.GetIntAttr("levelRatesMultiplier")
-            if tmpBoardNeeded.has_key(ing):
-                tmpRecommendedRates[ing] += tmpBoardNeeded[ing]*globalvars.GameSettings.GetIntAttr("boardNeededMultiplier")
-        tmpRecommendedSum = reduce(lambda a,b: a+b, tmpRecommendedRates.values(),0)
+        #определяем, бонус или токен
+        tmpLevelTokenRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+                       globalvars.LevelSettings.GetTag("TokenRates").Tags("Token")))
+        tmpTokenType = RandomKeyByRates(tmpLevelTokenRates)
+        tmpAllBonus = map(lambda z: z.GetContent(),
+                filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags()))
         
-        #считаем реальные частоты
-        tmpRealRates = dict(map(lambda x: (x, len(filter(lambda y: self.Cells[y] == x, self.Cells.keys()))),
-                           tmpLevelIngredRates.keys()))
-        tmpRealSum = reduce(lambda a,b: a+b, tmpRealRates.values(),0)
+        #размещаем бонус
+        if tmpTokenType == "bonus":
+            tmpRecommendedRates = dict(filter(lambda x: x[0] in tmpAllBonus,
+                map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+                globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))))
         
-        #делаем коррекцию, когда реальная частота появления ингредиента превышают рекомендованную
-        for ing in tmpRecommendedRates.keys():
-            if tmpRealRates[ing]*tmpRecommendedSum > tmpRecommendedRates[ing]*tmpRealSum and \
-                    tmpRealSum > globalvars.GameSettings.GetIntAttr("minCorrectionAmount") and tmpRecommendedRates[ing] > 0:
-                tmpExceedDelta = 1.0*(tmpRealRates[ing]*tmpRecommendedSum)/(tmpRecommendedRates[ing]*tmpRealSum) - 1.0
-                tmpRecommendedRates[ing] = int(1.0*tmpRecommendedRates[ing]*\
-                    math.exp(-tmpExceedDelta**2*globalvars.GameSettings.GetFltAttr("expMultiplier")))
+        #иначе - ингредиент
+        else:
+            #P[i]
+            tmpPRates = dict(filter(lambda x: x[0] not in tmpAllBonus,
+                map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+                globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))))
+            #tmpPRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
+            #           globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient")))
+            tmpPSum = reduce(lambda a,b: a+b, tmpPRates.values(),0)
+            #R[i]
+            tmpRRates = dict(map(lambda x: (x,0), tmpPRates.keys()))
+            tmpReq = dict(globalvars.BlackBoard.Inspect(BBTag_Ingredients))
+            for tmp in tmpReq.keys():
+                tmpRRates[tmp] = tmpReq[tmp]
+            tmpRSum = reduce(lambda a,b: a+b, tmpRRates.values(),0)
+            #T[i]
+            tmpTRates = dict(map(lambda x: (x, len(filter(lambda y: self.Cells[y] == x, self.Cells.keys()))),
+                        tmpPRates.keys()))
+            tmpTSum = reduce(lambda a,b: a+b, tmpTRates.values(),0)
+            
+            #заменить!!
+            a, b = 2, -1
+            
+            if min(tmpTSum, tmpRSum) > globalvars.GameSettings.GetIntAttr("minCorrectionAmount"):
+                tmpPRecRates = dict(map(lambda x: \
+                        (x, max(int(1.0*(tmpRRates[x]*tmpPSum+tmpPRates[x]*(tmpTSum-tmpRSum))/(tmpPSum)),0)),
+                        tmpPRates.keys()))
+                tmpRecommendedRates = dict(map(lambda x: \
+                        (x, max(int(10.0*(a*tmpPRecRates[x]+b*tmpPRates[x])/(a+b)), 1)),
+                        tmpPRates.keys()))
+                #print
+                #print tmpPRates.keys()
+                #print tmpPSum, tmpRSum, tmpTSum
+                #print map(lambda x: tmpPRates[x], tmpPRates.keys())
+                #print map(lambda x: tmpRRates[x], tmpPRates.keys())
+                #print map(lambda x: tmpTRates[x], tmpPRates.keys())
+                #print map(lambda x: tmpPRecRates[x], tmpPRates.keys())
+                #print map(lambda x: tmpRecommendedRates[x], tmpPRates.keys())
+                
+            else:
+                tmpRecommendedRates = tmpPRates
         
         tmp = RandomKeyByRates(tmpRecommendedRates)
         self.Cells[cell] = tmp
@@ -715,9 +746,21 @@ class Field(Storage):
             tmpIngredientAmounts = dict(map(lambda x: (x, len(filter(lambda cell: self.Cells[cell] == x, tmpShufflingKeys))),
                 tmpAllIngredients))
             
-            #сначала бонусы, чтобы они не образовывали больших групп
-            tmpAllIngredients.reverse()
-            
+            #сначала бонусы, чтобы они не образовывали больших групп,
+            #потом ингредиенты - сначала самые нужные
+            tmpAllBonus = filter(lambda x: globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(x).GetStrAttr("type") == "bonus",
+                                 tmpAllIngredients)
+            shuffle(tmpAllBonus)
+            tmpNonBonus = filter(lambda x: x not in tmpAllBonus, tmpAllIngredients)
+            tmpRRates = dict(map(lambda x: (x,0), tmpNonBonus))
+            tmpReq = dict(globalvars.BlackBoard.Inspect(BBTag_Ingredients))
+            for tmp in tmpReq.keys():
+                tmpRRates[tmp] = tmpReq[tmp]
+            tmpRatesList = tmpRRates.items()
+            tmpRatesList.sort(lambda x,y: cmp(y[1], x[1]))
+            tmpNonBonus = map(lambda x: x[0], tmpRatesList)
+            tmpAllIngredients = tmpAllBonus + tmpNonBonus
+                
             #рисуем новое заполнение поля
             tmpNewLayout = {}
             tmpEmptyCells = list(tmpNewFilledCellsKeys)

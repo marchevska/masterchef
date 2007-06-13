@@ -95,28 +95,6 @@ MasterChef {
             tablet = "theme.mexican.tablet"
         }
         
-        Theme(Italian)
-        {
-            background = "theme.italian.background"
-            counter = "theme.italian.counter"
-            customersQuePointer = "theme.italian.pointer"
-            station = "theme.italian.station"
-            stationMask = "theme.italian.station-mask"
-            stationLine = "theme.italian.station-line"
-            recipeInfo = "theme.italian.recipeinfo"
-            field = "theme.italian.field"
-            collapsoid = "theme.italian.collapsoid"
-            collapsoidDropper = "theme.italian.collapsoid.dropper"
-            collapsoidDropperRoll = "theme.italian.collapsoid.dropper.roll"
-            collapsoidDropperDown = "theme.italian.collapsoid.dropper.down"
-            storage = "theme.italian.storage"
-            bonuspane = "theme.italian.bonuspane"
-            trashcan = "theme.italian.trashcan"
-            trashcanBarEmpty = "theme.italian.trashcan.bar.empty"
-            trashcanBarFull = "theme.italian.trashcan.bar.full"
-            tablet = "theme.italian.tablet"
-        }
-        
         Theme(Russian)
         {
             background = "theme.russian.background"
@@ -161,26 +139,26 @@ MasterChef {
             tablet = "theme.american.tablet"
         }
         
-        Theme(SweetShop)
+        Theme(Hawaiian)
         {
-            background = "theme.sweetshop.background"
-            counter = "theme.sweetshop.counter"
-            customersQuePointer = "theme.sweetshop.pointer"
-            station = "theme.sweetshop.station"
-            stationMask = "theme.sweetshop.station-mask"
-            stationLine = "theme.sweetshop.station-line"
-            recipeInfo = "theme.sweetshop.recipeinfo"
-            field = "theme.sweetshop.field"
-            collapsoid = "theme.sweetshop.collapsoid"
-            collapsoidDropper = "theme.sweetshop.collapsoid.dropper"
-            collapsoidDropperRoll = "theme.sweetshop.collapsoid.dropper.roll"
-            collapsoidDropperDown = "theme.sweetshop.collapsoid.dropper.down"
-            storage = "theme.sweetshop.storage"
-            bonuspane = "theme.sweetshop.bonuspane"
-            trashcan = "theme.sweetshop.trashcan"
-            trashcanBarEmpty = "theme.sweetshop.trashcan.bar.empty"
-            trashcanBarFull = "theme.sweetshop.trashcan.bar.full"
-            tablet = "theme.sweetshop.tablet"
+            background = "theme.hawaiian.background"
+            counter = "theme.hawaiian.counter"
+            customersQuePointer = "theme.hawaiian.pointer"
+            station = "theme.hawaiian.station"
+            stationMask = "theme.hawaiian.station-mask"
+            stationLine = "theme.hawaiian.station-line"
+            recipeInfo = "theme.hawaiian.recipeinfo"
+            field = "theme.hawaiian.field"
+            collapsoid = "theme.hawaiian.collapsoid"
+            collapsoidDropper = "theme.hawaiian.collapsoid.dropper"
+            collapsoidDropperRoll = "theme.hawaiian.collapsoid.dropper.roll"
+            collapsoidDropperDown = "theme.hawaiian.collapsoid.dropper.down"
+            storage = "theme.hawaiian.storage"
+            bonuspane = "theme.hawaiian.bonuspane"
+            trashcan = "theme.hawaiian.trashcan"
+            trashcanBarEmpty = "theme.hawaiian.trashcan.bar.empty"
+            trashcanBarFull = "theme.hawaiian.trashcan.bar.full"
+            tablet = "theme.hawaiian.tablet"
         }
     }
     

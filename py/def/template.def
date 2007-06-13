@@ -82,9 +82,28 @@ level{
         Recipe{ type = "Osechi"              rate = "1" }
         Recipe{ type = "Yosenabe"            rate = "1" }
         Recipe{ type = "Temaki Zushi"        rate = "1" }
+        
+        //Hawaiian
+        Recipe{ type = "Chicken Shrimp Soup" rate = "1" }
+        Recipe{ type = "Spicy Shrimps"       rate = "1" }
+        Recipe{ type = "Hulihuli Chicken"    rate = "1" }
+        Recipe{ type = "Mango Mui"           rate = "1" }
+        Recipe{ type = "Wonton"              rate = "1" }
+        Recipe{ type = "Shrimp Canton"       rate = "1" }
+        Recipe{ type = "Lime Chicken"        rate = "1" }
+        Recipe{ type = "Mango Salsa"         rate = "1" }
+        Recipe{ type = "Chicken Laulau"      rate = "1" }
+        Recipe{ type = "Shrimp Mango Salad"  rate = "1" }
+        Recipe{ type = "Pipikaula"           rate = "1" }
+        Recipe{ type = "Mango Chicken"       rate = "1" }
     }
     
     //ingredient appearance rates
+    TokenRates {
+        Token{ type = "ingredient" rate = "95" }
+        Token{ type = "bonus" rate = "5" }
+    }
+    
     IngredientRates{
         //American
         Ingredient{ type = "meat"      rate = "10" }
@@ -118,16 +137,24 @@ level{
         Ingredient{ type = "veggymix" rate = "10" }
         Ingredient{ type = "seaweed"  rate = "10" }
         
+        //Hawaiian
+        Ingredient{ type = "shrimp"       rate = "10" }
+        Ingredient{ type = "meat"         rate = "10" }
+        Ingredient{ type = "chili-pepper" rate = "10" }
+        Ingredient{ type = "lime"         rate = "10" }
+        Ingredient{ type = "mango"        rate = "10" }
+        Ingredient{ type = "shoyu"        rate = "10" }
+        
         //Bonus
-        Ingredient{ type = "bonus.spoon"      rate = "5" }
-        Ingredient{ type = "bonus.gift"       rate = "5" }
-        Ingredient{ type = "bonus.sweet"      rate = "5" }
-        Ingredient{ type = "bonus.magicwand"  rate = "5" }
-        Ingredient{ type = "bonus.bomb"       rate = "5" }
-        Ingredient{ type = "bonus.removerow"  rate = "5" }
-        Ingredient{ type = "bonus.scrollback" rate = "5" }
-        Ingredient{ type = "bonus.hearts"     rate = "5" }
-        Ingredient{ type = "bonus.shuffle"    rate = "5" }
+        Ingredient{ type = "bonus.spoon"      rate = "1" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
+        Ingredient{ type = "bonus.magicwand"  rate = "1" }
+        Ingredient{ type = "bonus.bomb"       rate = "1" }
+        Ingredient{ type = "bonus.removerow"  rate = "1" }
+        Ingredient{ type = "bonus.scrollback" rate = "1" }
+        Ingredient{ type = "bonus.hearts"     rate = "1" }
+        Ingredient{ type = "bonus.shuffle"    rate = "1" }
     }
     
     //level settings
@@ -141,7 +168,7 @@ level{
     //level layout: customer stations, power-up buttons, decorations
     //layout of the game field
     Layout{
-        theme = "SweetShop" 
+        theme = "Hawaiian" 
         CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
@@ -157,9 +184,7 @@ level{
         Conveyor{ X0 = "600" Y0 = "150" Speed = "40"  Delta = "50" }
         //Field{ XSize = "6" YSize = "6" X0 = "530" Y0 = "130" }
         Store { XSize = "6" YSize = "3" X0 = "450" Y0 = "430" Multi = "no" }
-        //Decoration { type = "theme.sweetshop.decoration.screen1" x = "100" y = "200" }
-        //Decoration { type = "theme.sweetshop.decoration.screen3" x = "300" y = "200" }
-        //Decoration { type = "theme.sweetshop.decoration.candy-machine" x = "400" y = "200" }
+        //Decoration { type = "" x = "100" y = "200" }
     }
     
 }

@@ -44,45 +44,10 @@ MasterChef {
         Ingredient(veggymix) { type = "vegetable" src = "ingredient.veggymix" iconSrc = "ingredient.veggymix.icon"}
         Ingredient(seaweed) { type = "vegetable" src = "ingredient.seaweed" iconSrc = "ingredient.seaweed.icon"}
         
-        
-        //Mexican - unused
-        Ingredient(tortilla-chips) { type = "pasta" src = "ingredient.tortilla-chips" iconSrc = "ingredient.tortilla-chips.icon"}
-        Ingredient(sour-cream) { type = "dairy" src = "ingredient.sour-cream" iconSrc = "ingredient.sour-cream.icon"}
-        Ingredient(bean) { type = "soy" src = "ingredient.bean" iconSrc = "ingredient.bean.icon"}
+        //Hawaiian
         Ingredient(lime) { type = "fruit" src = "ingredient.lime" iconSrc = "ingredient.lime.icon"}
-        
-        //Japanese - unused
-        Ingredient(noodle) { type = "pasta" src = "ingredient.noodle" iconSrc = "ingredient.noodle.icon"}
-        Ingredient(tuna) { type = "fish" src = "ingredient.tuna" iconSrc = "ingredient.tuna.icon"}
-        Ingredient(anchovies) { type = "fish" src = "ingredient.anchovies" iconSrc = "ingredient.anchovies.icon"}
-        Ingredient(egg) { type = "egg" src = "ingredient.egg" iconSrc = "ingredient.egg.icon"}
-        Ingredient(soya) { type = "soy" src = "ingredient.soya" iconSrc = "ingredient.soya.icon"}
+        Ingredient(mango) { type = "fruit" src = "ingredient.mango" iconSrc = "ingredient.mango.icon"}
         Ingredient(shoyu) { type = "spice" src = "ingredient.shoyu" iconSrc = "ingredient.shoyu.icon"}
-        Ingredient(umeboshi) { type = "vegetable" src = "ingredient.umeboshi" iconSrc = "ingredient.umeboshi.icon"}
-        Ingredient(pickles) { type = "vegetable" src = "ingredient.pickles" iconSrc = "ingredient.pickles.icon"}
-        Ingredient(miso) { type = "soy" src = "ingredient.miso" iconSrc = "ingredient.miso.icon"}
-        
-        //Japanese unused
-        //Ingredient(sake) { type = "spice" src = "ingredient.sake" iconSrc = "ingredient.sake.icon"}
-        //Ingredient(dashi) { type = "fish" src = "ingredient.dashi" iconSrc = "ingredient.dashi.icon"}
-        //Ingredient(oyster) { type = "fish" src = "ingredient.oyster" iconSrc = "ingredient.oyster.icon"}
-        
-        
-        //Hawaii
-        Ingredient(bun) { type = "pasta" src = "ingredient.bun" iconSrc = "ingredient.bun.icon"}
-        
-        //SweetShop
-        Ingredient(apple) { type = "fruit" src = "ingredient.apple" iconSrc = "ingredient.apple.icon"}
-        Ingredient(banana) { type = "fruit" src = "ingredient.banana" iconSrc = "ingredient.banana.icon"}
-        Ingredient(berries) { type = "fruit" src = "ingredient.berries" iconSrc = "ingredient.berries.icon"}
-        Ingredient(chocolate) { type = "sweet" src = "ingredient.chocolate" iconSrc = "ingredient.chocolate.icon"}
-        Ingredient(ice-cream) { type = "dairy" src = "ingredient.ice-cream" iconSrc = "ingredient.ice-cream.icon"}
-        Ingredient(nuts) { type = "fruit" src = "ingredient.nuts" iconSrc = "ingredient.nuts.icon"}
-        Ingredient(strawberry) { type = "fruit" src = "ingredient.strawberry" iconSrc = "ingredient.strawberry.icon"}
-        Ingredient(sugar) { type = "sweet" src = "ingredient.sugar" iconSrc = "ingredient.sugar.icon"}
-        
-        //Ingredient(olives) { type = "vegetable" src = "ingredient.olives" iconSrc = "ingredient.olives.icon"}
-        //Ingredient(artichoke) { type = "spice" src = "ingredient.artichoke" iconSrc = "ingredient.artichoke.icon"}
         
         //Bonus tokens on the field
         Ingredient(bonus.bomb) { type = "bonus" src = "bonus.bomb" }
@@ -212,7 +177,7 @@ MasterChef {
             setting = "American"
             type = ""
             src = "recipe.chicken-pineapple-pasta-pockets"
-            emptySrc = "recipe.chicken-ineapple-pasta-pockets.empty"
+            emptySrc = "recipe.chicken-pineapple-pasta-pockets.empty"
             requires = "{ 'meat': 6, 'pasta': 9, 'milk': 6, 'pineapple': 6 }"
             readyAt = "0"
             price = "100"
@@ -585,123 +550,12 @@ MasterChef {
         
         
         //Hawaiian recipes
-        
-        Recipe(Avocado Salad) {
+        Recipe(Chicken Shrimp Soup) {
             setting = "Hawaiian"
             type = ""
-            src = "recipe.avocado-salad"
-            emptySrc = "recipe.avocado-salad.empty"
-            requires = "{ 'avocado': 5, 'tomato': 5, 'egg':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Avocado Salmon Sandwitch) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.avocado-salmon-sandwitch"
-            emptySrc = "recipe.avocado-salmon-sandwitch.empty"
-            requires = "{ 'salmon': 5, 'avocado': 5, 'cheese': 5, 'lime':2, 'bun': 5 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Bombay Turkey) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.bombay-turkey"
-            emptySrc = "recipe.bombay-turkey.empty"
-            requires = "{ 'meat': 5, 'veggymix': 5, 'sour-cream':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Chicken with Avocado Rice) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.chicken-avocado-rice"
-            emptySrc = "recipe.chicken-avocado-rice.empty"
-            requires = "{ 'avocado': 5, 'meat': 5, 'rice':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Curried Chicken) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.curried-ckicken"
-            emptySrc = "recipe.curried-ckicken.empty"
-            requires = "{ 'veggymix': 5, 'meat': 5, 'rice':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Grilled Salmon) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.grilled-salmon"
-            emptySrc = "recipe.grilled-salmon.empty"
-            requires = "{ 'salmon': 5, 'tomato': 5, 'chili-pepper': 5, 'lime':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Pasta with Seafood) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.pasta-seafood"
-            emptySrc = "recipe.pasta-seafood.empty"
-            requires = "{ 'shrimp': 5, 'pasta': 5, 'sour-cream':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Salmon Creole) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.salmon-creole"
-            emptySrc = "recipe.salmon-creole.empty"
-            requires = "{ 'salmon': 5, 'tomato': 5, 'cheese': 5, 'egg':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Scampi) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.scampi"
-            emptySrc = "recipe.scampi.empty"
-            requires = "{ 'shrimp': 5, 'chili-pepper': 5, 'lime':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Shark Citrus Salad) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.shark-citrus-salad"
-            emptySrc = "recipe.shark-citrus-salad.empty"
-            requires = "{ 'salmon': 5, 'chili-pepper': 5, 'lime':2 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Shrimp Sandwitch) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.shrimp-sandwitch"
-            emptySrc = "recipe.shrimp-sandwitch.empty"
-            requires = "{ 'shrimp': 5, 'cheese': 5, 'egg':2, 'bun': 5 }"
-            readyAt = "10"
-            price = "100"
-        }
-        
-        Recipe(Spaghetti with Vegetables) {
-            setting = "Hawaiian"
-            type = ""
-            src = "recipe.spaghetti-veg"
-            emptySrc = "recipe.spaghetti-veg.empty"
-            requires = "{ 'pasta': 5, 'veggymix': 5, 'sour-cream':2 }"
+            src = "recipe.chicken-shrimp-soup"
+            emptySrc = "recipe.chicken-shrimp-soup.empty"
+            requires = "{ 'shrimp': 8, 'meat': 8 }"
             readyAt = "10"
             price = "100"
         }
@@ -711,11 +565,110 @@ MasterChef {
             type = ""
             src = "recipe.spicy-shrimps"
             emptySrc = "recipe.spicy-shrimps.empty"
-            requires = "{ 'shrimp': 5, 'tomato': 5, 'chili-pepper':2, 'rice': 5 }"
+            requires = "{ 'shrimp': 8, 'chili-pepper': 6 }"
             readyAt = "10"
             price = "100"
         }
         
+        Recipe(Hulihuli Chicken) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.hulihuli-chicken"
+            emptySrc = "recipe.hulihuli-chicken.empty"
+            requires = "{ 'meat': 8, 'shoyu': 6 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Mango Mui) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.mango-mui"
+            emptySrc = "recipe.mango-mui.empty"
+            requires = "{ 'lime': 6, 'mango': 9 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Wonton) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.wonton"
+            emptySrc = "recipe.wonton.empty"
+            requires = "{ 'shrimp': 6, 'meat': 8, 'shoyu': 6 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Shrimp Canton) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.shrimp-canton"
+            emptySrc = "recipe.shrimp-canton.empty"
+            requires = "{ 'shrimp': 8, 'mango': 8, 'shoyu': 6 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Lime Chicken) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.lime-chicken"
+            emptySrc = "recipe.lime-chicken.empty"
+            requires = "{ 'meat': 8, 'chili-pepper': 6, 'lime': 6 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Mango Salsa) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.mango-salsa"
+            emptySrc = "recipe.mango-salsa.empty"
+            requires = "{ 'chili-pepper': 6, 'lime': 6, 'mango': 8 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Chicken Laulau) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.chicken-laulau"
+            emptySrc = "recipe.chicken-laulau.empty"
+            requires = "{ 'shrimp': 8, 'meat': 8, 'lime': 6, 'shoyu': 6 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Shrimp Mango Salad) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.shrimp-mango-salad"
+            emptySrc = "recipe.shrimp-mango-salad.empty"
+            requires = "{ 'shrimp': 7, 'chili-pepper': 7, 'lime': 7, 'mango': 7 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Pipikaula) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.pipikaula"
+            emptySrc = "recipe.pipikaula.empty"
+            requires = "{ 'meat': 6, 'chili-pepper': 8, 'lime': 6, 'shoyu': 6 }"
+            readyAt = "10"
+            price = "100"
+        }
+        
+        Recipe(Mango Chicken) {
+            setting = "Hawaiian"
+            type = ""
+            src = "recipe.mango-chicken"
+            emptySrc = "recipe.mango-chicken.empty"
+            requires = "{ 'meat': 8, 'chili-pepper': 6, 'mango': 8, 'shoyu': 6 }"
+            readyAt = "10"
+            price = "100"
+        }
         
     }
    

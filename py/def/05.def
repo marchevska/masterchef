@@ -41,6 +41,11 @@ Level{
     }
     
     //ingredient appearance rates
+    TokenRates {
+        Token{ type = "ingredient" rate = "95" }
+        Token{ type = "bonus" rate = "5" }
+    }
+    
     IngredientRates{
         Ingredient{ type = "meat"      rate = "24" }
         Ingredient{ type = "milk"      rate = "11" }
@@ -75,11 +80,11 @@ Level{
         CustomerStation{ type = "" x = "260" y = "430" occupied = "yes" }
         CustomerStation{ type = "" x = "100" y = "530" occupied = "no" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "4" Delay = "1200" DropIn = "700" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
-        Counter{ type = "" x = "230" y = "145" }
+        //Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         TrashCan{ type = "" size = "100" x = "350" y = "530" }
-        Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
-        Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
+        //Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
+        //Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
     }
     
 }

@@ -35,7 +35,7 @@ class GameBoard(scraft.Dispatcher):
         
         #create text sprites
         self.HudElements = {}
-        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 130, 29)
+        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 140, 29)
         self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 75, "y": 18, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_LevelText, "cfilt-color": 0x604020})
@@ -43,7 +43,7 @@ class GameBoard(scraft.Dispatcher):
                                     {"x": 150, "y": 18, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_ScoreText, "cfilt-color": 0x604020})
         self.HudElements["GoalText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
-                                    {"x": 225, "y": 18, "hotspot": scraft.HotspotCenter,
+                                    {"x": 235, "y": 18, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_GoalText, "cfilt-color": 0x604020})
         self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                                     {"x": 75, "y": 37, "hotspot": scraft.HotspotCenter,
@@ -52,7 +52,7 @@ class GameBoard(scraft.Dispatcher):
                                     {"x": 150, "y": 40, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xFFFFF})
         self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"x": 225, "y": 37, "hotspot": scraft.HotspotCenter,
+                                    {"x": 235, "y": 37, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
         
         #create buttons

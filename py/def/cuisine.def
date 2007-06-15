@@ -128,10 +128,11 @@ MasterChef {
             type = ""
             src = "recipe.grilled-meat"
             emptySrc = "recipe.grilled-meat.empty"
-            requires = "{ 'meat': 9, 'pineapple': 6, 'tomato': 6 }"
+            requires = "{ 'meat': 9, 'pineapple': 6, 'tomato': 6,  }"
             readyAt = "0"
             price = "75"
         }
+
         
         Recipe(Hubbard Squash Soup Du Jour) {
             setting = "American"

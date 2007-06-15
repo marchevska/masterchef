@@ -11,10 +11,10 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker"           rate = "10" }
+        Customer{ type = "Worker"           rate = "1" }
         Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "0" }
-        Customer{ type = "Student"          rate = "10" }
+        Customer{ type = "Student"          rate = "1" }
         Customer{ type = "Oldlady"          rate = "0" }
         Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "0" }
@@ -27,14 +27,14 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Squash with Tomato Sauce"         rate = "0" }
-        Recipe{ type = "Pasta with Tomato Sauce"          rate = "0" }
-        Recipe{ type = "Pineapple Tomato Salad"           rate = "0" }
-        Recipe{ type = "Caribbean Spice Chicken"          rate = "1" }
+        Recipe{ type = "Pasta with Tomato Sauce"          rate = "6" }
+        Recipe{ type = "Pineapple Tomato Salad"           rate = "4" }
+        Recipe{ type = "Caribbean Spice Chicken"          rate = "0" }
         Recipe{ type = "Crispy Baked Chicken"             rate = "0" }
-        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "1" }
+        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "0" }
         Recipe{ type = "Grilled Meat"                     rate = "0" }
-        Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "1" }
-        Recipe{ type = "Pineapple Lasagna"                rate = "0" }
+        Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "0" }
+        Recipe{ type = "Pineapple Lasagna"                rate = "5" }
         Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "0" }
         Recipe{ type = "Chicken Pasta Casseroule"         rate = "0" }
         Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "0" }
@@ -42,23 +42,23 @@ Level{
     
     //ingredient appearance rates
     TokenRates {
-        Token{ type = "ingredient" rate = "95" }
-        Token{ type = "bonus" rate = "5" }
+        Token{ type = "ingredient" rate = "97" }
+        Token{ type = "bonus" rate = "3" }
     }
     
     IngredientRates{
-        Ingredient{ type = "meat"      rate = "19" }
-        Ingredient{ type = "milk"      rate = "9" }
-        Ingredient{ type = "pasta"     rate = "0" }
-        Ingredient{ type = "pineapple" rate = "5" }
-        Ingredient{ type = "pumpkin"   rate = "17" }
-        Ingredient{ type = "tomato"    rate = "0" }
+        Ingredient{ type = "meat"      rate = "0" }
+        Ingredient{ type = "milk"      rate = "40" }
+        Ingredient{ type = "pasta"     rate = "88" }
+        Ingredient{ type = "pineapple" rate = "62" }
+        Ingredient{ type = "pumpkin"   rate = "0" }
+        Ingredient{ type = "tomato"    rate = "72" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
-        Ingredient{ type = "bonus.removerow"  rate = "2" }
+        Ingredient{ type = "bonus.removerow"  rate = "1" }
         Ingredient{ type = "bonus.scrollback" rate = "0" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "0" }

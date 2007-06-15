@@ -66,6 +66,11 @@ bitmap = img/hud/info-pane.png
 type = blend
 }
 
+sprite menu-button {
+bitmap = img/hud/menu-button.png
+layout = 1x4
+type   = blend
+}
 
 
 ################
@@ -274,13 +279,13 @@ bitmap = img/gui/episode1-complete.png
 #menu track
 sound menu {
 sample = sound/menu.ogg
-type = streamed
+type = static
 }
 
 #game track 1
 sound track1 {
 sample = sound/track1.ogg
-type = streamed
+type = static
 }
 
 #button click
@@ -438,5 +443,11 @@ font hobor-17 {
 bitmap = img/fonts/hobor-17.png
 type = blend
 symbols=1234567890
+}
+
+font simple {
+bitmap = img/fonts/simple.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZ .
 }
 

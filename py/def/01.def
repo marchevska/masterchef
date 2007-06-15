@@ -9,7 +9,7 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker"           rate = "10" }
+        Customer{ type = "Worker"           rate = "1" }
         Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "0" }
         Customer{ type = "Student"          rate = "0" }

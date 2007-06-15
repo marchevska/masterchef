@@ -12,55 +12,55 @@ Level{
     //customer appearance rates
     CustomerRates{
         Customer{ type = "Worker"           rate = "0" }
-        Customer{ type = "Vegetarian"       rate = "2" }
-        Customer{ type = "Schoolkid"        rate = "0" }
-        Customer{ type = "Student"          rate = "0" }
-        Customer{ type = "Oldlady"          rate = "2" }
+        Customer{ type = "Vegetarian"       rate = "1" }
+        Customer{ type = "Schoolkid"        rate = "1" }
+        Customer{ type = "Student"          rate = "1" }
+        Customer{ type = "Oldlady"          rate = "0" }
         Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "0" }
         Customer{ type = "Tourist Hawaiian" rate = "0" }
-        Customer{ type = "Tourist Mexican"  rate = "1" }
-        Customer{ type = "Tourist Japanese" rate = "5" }
-        Customer{ type = "Tourist Russian"  rate = "0" }
+        Customer{ type = "Tourist Mexican"  rate = "0" }
+        Customer{ type = "Tourist Japanese" rate = "0" }
+        Customer{ type = "Tourist Russian"  rate = "1" }
     }
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Nigiri Zushi"        rate = "1" }
-        Recipe{ type = "Sashimi"             rate = "1" }
-        Recipe{ type = "Seafood Tempura"     rate = "1" }
+        Recipe{ type = "Nigiri Zushi"        rate = "0" }
+        Recipe{ type = "Sashimi"             rate = "0" }
+        Recipe{ type = "Seafood Tempura"     rate = "0" }
         Recipe{ type = "TofuDengaku"         rate = "1" }
-        Recipe{ type = "Tempura"             rate = "1" }
+        Recipe{ type = "Tempura"             rate = "0" }
         Recipe{ type = "Koyungohan"          rate = "1" }
-        Recipe{ type = "Ochazuke"            rate = "1" }
-        Recipe{ type = "Tempura Shrimp Roll" rate = "1" }
+        Recipe{ type = "Ochazuke"            rate = "0" }
+        Recipe{ type = "Tempura Shrimp Roll" rate = "0" }
         Recipe{ type = "Onigiri"             rate = "1" }
-        Recipe{ type = "Osechi"              rate = "1" }
-        Recipe{ type = "Yosenabe"            rate = "1" }
-        Recipe{ type = "Temaki Zushi"        rate = "1" }
+        Recipe{ type = "Osechi"              rate = "0" }
+        Recipe{ type = "Yosenabe"            rate = "0" }
+        Recipe{ type = "Temaki Zushi"        rate = "0" }
     }
     
     //ingredient appearance rates
     TokenRates {
-        Token{ type = "ingredient" rate = "95" }
-        Token{ type = "bonus" rate = "5" }
+        Token{ type = "ingredient" rate = "97" }
+        Token{ type = "bonus" rate = "3" }
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "10" }
-        Ingredient{ type = "shrimp"   rate = "10" }
-        Ingredient{ type = "rice"     rate = "10" }
-        Ingredient{ type = "tofu"     rate = "10" }
-        Ingredient{ type = "veggymix" rate = "10" }
-        Ingredient{ type = "seaweed"  rate = "10" }
-        Ingredient{ type = "bonus.spoon"      rate = "1" }
-        Ingredient{ type = "bonus.gift"       rate = "1" }
-        Ingredient{ type = "bonus.sweet"      rate = "1" }
-        Ingredient{ type = "bonus.magicwand"  rate = "1" }
-        Ingredient{ type = "bonus.bomb"       rate = "1" }
-        Ingredient{ type = "bonus.removerow"  rate = "1" }
-        Ingredient{ type = "bonus.scrollback" rate = "1" }
-        Ingredient{ type = "bonus.hearts"     rate = "1" }
+        Ingredient{ type = "salmon"   rate = "6" }
+        Ingredient{ type = "shrimp"   rate = "0" }
+        Ingredient{ type = "rice"     rate = "16" }
+        Ingredient{ type = "tofu"     rate = "22" }
+        Ingredient{ type = "veggymix" rate = "0" }
+        Ingredient{ type = "seaweed"  rate = "13" }
+        Ingredient{ type = "bonus.spoon"      rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.magicwand"  rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.removerow"  rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "1" }
     }
     //level settings

@@ -11,56 +11,56 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker"           rate = "1" }
-        Customer{ type = "Vegetarian"       rate = "2" }
+        Customer{ type = "Worker"           rate = "0" }
+        Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "1" }
         Customer{ type = "Student"          rate = "1" }
-        Customer{ type = "Oldlady"          rate = "0" }
+        Customer{ type = "Oldlady"          rate = "1" }
         Customer{ type = "Critic"           rate = "0" }
-        Customer{ type = "Business"         rate = "2" }
+        Customer{ type = "Business"         rate = "0" }
         Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
         Customer{ type = "Tourist Japanese" rate = "0" }
-        Customer{ type = "Tourist Russian"  rate = "2" }
+        Customer{ type = "Tourist Russian"  rate = "1" }
     }
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Cabbage Stew"             rate = "1" }
-        Recipe{ type = "Pelmeni"                  rate = "1" }
+        Recipe{ type = "Cabbage Stew"             rate = "0" }
+        Recipe{ type = "Pelmeni"                  rate = "0" }
         Recipe{ type = "Golubtsy"                 rate = "1" }
         Recipe{ type = "Fried Mushrooms"          rate = "1" }
-        Recipe{ type = "Vareniki"                 rate = "1" }
-        Recipe{ type = "Baked Meat"               rate = "1" }
-        Recipe{ type = "Cutlets"                  rate = "1" }
+        Recipe{ type = "Vareniki"                 rate = "0" }
+        Recipe{ type = "Baked Meat"               rate = "0" }
+        Recipe{ type = "Cutlets"                  rate = "0" }
         Recipe{ type = "Mushroom Ragout"          rate = "1" }
-        Recipe{ type = "Cabbage Stuffed Pancakes" rate = "1" }
-        Recipe{ type = "Kulebyaka"                rate = "1" }
-        Recipe{ type = "Shchi"                    rate = "1" }
+        Recipe{ type = "Cabbage Stuffed Pancakes" rate = "0" }
+        Recipe{ type = "Kulebyaka"                rate = "0" }
+        Recipe{ type = "Shchi"                    rate = "0" }
         Recipe{ type = "Mushroom Soup"            rate = "1" }
     }
     
     //ingredient appearance rates
     TokenRates {
-        Token{ type = "ingredient" rate = "95" }
-        Token{ type = "bonus" rate = "5" }
+        Token{ type = "ingredient" rate = "97" }
+        Token{ type = "bonus" rate = "3" }
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"     rate = "10" }
-        Ingredient{ type = "mushroom" rate = "10" }
-        Ingredient{ type = "cabbage"  rate = "10" }
-        Ingredient{ type = "potato"   rate = "10" }
-        Ingredient{ type = "onion"    rate = "10" }
-        Ingredient{ type = "flour"    rate = "10" }
-        Ingredient{ type = "bonus.spoon"      rate = "1" }
-        Ingredient{ type = "bonus.gift"       rate = "1" }
-        Ingredient{ type = "bonus.sweet"      rate = "1" }
-        Ingredient{ type = "bonus.magicwand"  rate = "1" }
-        Ingredient{ type = "bonus.bomb"       rate = "1" }
-        Ingredient{ type = "bonus.removerow"  rate = "1" }
-        Ingredient{ type = "bonus.scrollback" rate = "1" }
-        Ingredient{ type = "bonus.hearts"     rate = "1" }
+        Ingredient{ type = "pork"     rate = "0" }
+        Ingredient{ type = "mushroom" rate = "33" }
+        Ingredient{ type = "cabbage"  rate = "16" }
+        Ingredient{ type = "potato"   rate = "14" }
+        Ingredient{ type = "onion"    rate = "18" }
+        Ingredient{ type = "flour"    rate = "0" }
+        Ingredient{ type = "bonus.spoon"      rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.magicwand"  rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.removerow"  rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "1" }
     }
     

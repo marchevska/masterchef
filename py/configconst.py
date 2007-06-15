@@ -31,6 +31,7 @@ File_BestResultsSafe = u"safe/best.def"
 File_SST = u"masterchef.sst"
 
 File_Cuisine = u"def/cuisine.def"
+File_Recipes = u"def/recipes.def"
 File_GameSettings = u"def/gamesettings.def"
 File_ResourceInfo = u"def/resource.def"
 File_Animations = u"def/animations.def"

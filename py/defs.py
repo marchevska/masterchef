@@ -11,7 +11,7 @@ import string, traceback
 import scraft
 from scraft import engine as oE
 import globalvars
-from configconst import File_Cuisine, File_GameSettings, File_ResourceInfo, File_Animations, File_LevelProgress
+from configconst import *
 
 #--------------------------
 # Чтение данных о ресурсах
@@ -43,9 +43,11 @@ def ReadResourceInfo():
 def ReadCuisine():
     try:
         globalvars.CuisineInfo = oE.ParseDEF(File_Cuisine).GetTag(u"MasterChef")
+        globalvars.RecipeInfo = oE.ParseDEF(File_Recipes).GetTag(u"MasterChef")
         
     except:
         oE.Log(u"Cannot read cuisine info")
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         sys.exit()
 
 #--------------------------
@@ -57,6 +59,7 @@ def ReadLevelProgress():
         globalvars.LevelProgress = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read levels list")
+        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         sys.exit()
         
 #--------------------------

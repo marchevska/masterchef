@@ -126,14 +126,14 @@ class Application(Frame):
     #chooses recipes from specified episode
     def ResetCuisine(self):
         global CurrentRecipes
-        CurrentRecipes = filter(lambda x: globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(x).GetStrAttr("setting") == CurrentSetting.get(), AllRecipes)
+        CurrentRecipes = filter(lambda x: globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("setting") == CurrentSetting.get(), AllRecipes)
         self.Frame0.Elements["listbox"].delete(0, self.Frame0.Elements["listbox"].size()-1)
         for tmp in CurrentRecipes:
             self.Frame0.Elements["listbox"].insert("end", tmp)
         #draw ingerients icons!
         for i in range(len(CurrentRecipes)):
             rcp = CurrentRecipes[i]
-            tmpIngRequired = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(rcp).GetStrAttr("requires"))
+            tmpIngRequired = eval(globalvars.RecipeInfo.GetSubtag(rcp).GetStrAttr("requires"))
             self.Frame0.Elements["ingred"+str(i)] = {}
             j = 0
             for ing in tmpIngRequired.keys():
@@ -177,7 +177,7 @@ class Application(Frame):
         tmpIngIdeal = dict(map(lambda x: (x,0), AllIngredients))
         for i in range(len(tmpAllRcp)):
             rcp = tmpAllRcp[i]
-            tmpIngRequired = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(rcp).GetStrAttr("requires"))
+            tmpIngRequired = eval(globalvars.RecipeInfo.GetSubtag(rcp).GetStrAttr("requires"))
             self.Frame2.Elements[2, i+1, "ing"] = {}
             j = 0
             for ing in tmpIngRequired.keys():
@@ -235,7 +235,7 @@ class Application(Frame):
                     tmpDiff = 0
                     tmpRcp = Recipes[i].get()
                     if tmpRcp != ZEROSTRING:
-                        tmpIngRequired = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(tmpRcp).GetStrAttr("requires"))
+                        tmpIngRequired = eval(globalvars.RecipeInfo.GetSubtag(tmpRcp).GetStrAttr("requires"))
                         for ing in tmpIngRequired.keys():
                             ind = tmpAllIngredients.index(ing)
                             tmpDiff += max(1.0*tmpIngRequired[ing]/IngredGroup[ind].get(), MIN_DIFF)
@@ -261,7 +261,7 @@ class Application(Frame):
 defs.ReadCuisine()
 defs.ReadResourceInfo()
 
-AllRecipes = map(lambda x: x.GetContent(), globalvars.CuisineInfo.GetTag("Recipes").Tags())
+AllRecipes = map(lambda x: x.GetContent(), globalvars.RecipeInfo.Tags())
 AllRecipes.sort()
 AllSettings = ["Japanese", "Mexican", "Russian", "Hawaiian", "American"]
 AllIngredients = map(lambda x: x.GetContent(), globalvars.CuisineInfo.GetTag("Ingredients").Tags())

@@ -6,7 +6,8 @@ Project: Master Chef
 Глобальные объекты
 """
 
-global CuisineInfo
+global CuisineInfo      #ингредиенты
+global RecipeInfo       #рецепты
 global CustomersInfo
 global ThemesInfo
 global LevelProgress

@@ -74,11 +74,11 @@ class CustomerStation(scraft.Dispatcher):
         self.OrderType = type
         self.RecipeInfoSprite.visible = True
         self.RecipeIndicator.Show(True)
-        self.RecipeIndicator.SetKlasses(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("src"),
-                                        globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("emptySrc"))
+        self.RecipeIndicator.SetKlasses(globalvars.RecipeInfo.GetSubtag(type).GetStrAttr("src"),
+                                        globalvars.RecipeInfo.GetSubtag(type).GetStrAttr("emptySrc"))
         self.RecipeIndicator.SetValue(0)
         self.MaskSprite.visible = True
-        tmpReq = eval(globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(type).GetStrAttr("requires"))
+        tmpReq = eval(globalvars.RecipeInfo.GetSubtag(type).GetStrAttr("requires"))
         self.TokensNeeded = map(lambda x: { "item": x, "no": tmpReq[x] }, tmpReq.keys())
         self.TotalRequired = reduce(lambda x, y: x+y["no"], self.TokensNeeded, 0)
         for i in range(len(self.TokensNeeded)):
@@ -150,7 +150,7 @@ class CustomerStation(scraft.Dispatcher):
         #разрешены неполные рецепты и готово достаточное кол-во ингредиентов
         tmpRemaining = reduce(lambda a,b: a+b["no"], self.TokensNeeded, 0)
         if tmpRemaining == 0 or \
-                (tmpRemaining <= globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(self.OrderType).GetIntAttr("readyAt") and \
+                (tmpRemaining <= globalvars.RecipeInfo.GetSubtag(self.OrderType).GetIntAttr("readyAt") and \
                 globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("takesIncompleteOrder")) and \
                 not globalvars.GameSettings.GetBoolAttr("exactRecipes"):
             if globalvars.GameSettings.GetIntAttr("heartsPerCompletedOrder") > 0:
@@ -274,7 +274,7 @@ class CustomerStation(scraft.Dispatcher):
             self.State = CStationState_Free
             globalvars.Board.SendCommand(Cmd_FreeStation)
             globalvars.Board.SendCommand(Cmd_TakeMoney, { "station": self,
-                        "amount": globalvars.CuisineInfo.GetTag("Recipes").GetSubtag(self.OrderType).GetIntAttr("price") })
+                        "amount": globalvars.RecipeInfo.GetSubtag(self.OrderType).GetIntAttr("price") })
             
         elif cmd == Cmd_Station_DeleteCustomerAndLoseMoney:
             self.Active = False

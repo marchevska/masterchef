@@ -1,0 +1,602 @@
+MasterChef {
+    Recipe(Squash with Tomato Sauce) {
+        setting = "American"
+        requires = "{ 'pumpkin':9, 'tomato':6,  }"
+        src = "recipe.squash-tomato-sauce"
+        emptySrc = "recipe.squash-tomato-sauce.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Chicken Squash Stir-Fry) {
+        setting = "American"
+        requires = "{ 'meat':6, 'pumpkin':8,  }"
+        src = "recipe.chicken-squash-stir-fry"
+        emptySrc = "recipe.chicken-squash-stir-fry.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Pasta with Tomato Sauce) {
+        setting = "American"
+        requires = "{ 'pasta':8, 'tomato':8,  }"
+        src = "recipe.pasta-with-tomato-sauce"
+        emptySrc = "recipe.pasta-with-tomato-sauce.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Pineapple Tomato Salad) {
+        setting = "American"
+        requires = "{ 'tomato':6, 'pineapple':8,  }"
+        src = "recipe.pineapple-tomato-salad"
+        emptySrc = "recipe.pineapple-tomato-salad.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Caribbean Spice Chicken) {
+        setting = "American"
+        requires = "{ 'meat':8, 'pineapple':6,  }"
+        src = "recipe.caribbean-spice-chicken"
+        emptySrc = "recipe.caribbean-spice-chicken.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Crispy Baked Chicken) {
+        setting = "American"
+        requires = "{ 'meat':8, 'milk':6,  }"
+        src = "recipe.crispy-baked-chicken"
+        emptySrc = "recipe.crispy-baked-chicken.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Pineapple Lasagna) {
+        setting = "American"
+        requires = "{ 'pasta':8, 'milk':8, 'pineapple':6,  }"
+        src = "recipe.pineapple-lasagna"
+        emptySrc = "recipe.pineapple-lasagna.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Hubbard Squash Soup Du Jour) {
+        setting = "American"
+        requires = "{ 'meat':4, 'pumpkin':9, 'milk':9,  }"
+        src = "recipe.hubbard-squash-soup"
+        emptySrc = "recipe.hubbard-squash-soup.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Grilled Meat) {
+        setting = "American"
+        requires = "{ 'meat':9, 'tomato':6, 'pineapple':6,  }"
+        src = "recipe.grilled-meat"
+        emptySrc = "recipe.grilled-meat.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Spaghetti with Turkey Meat Sauce) {
+        setting = "American"
+        requires = "{ 'meat':6, 'pasta':9, 'tomato':6,  }"
+        src = "recipe.spaghetti-with-turkey-meat-sauce"
+        emptySrc = "recipe.spaghetti-with-turkey-meat-sauce.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Chicken Pasta Casseroule) {
+        setting = "American"
+        requires = "{ 'meat':6, 'pasta':8, 'pumpkin':6, 'tomato':6,  }"
+        src = "recipe.chicken-pasta-casseroule"
+        emptySrc = "recipe.chicken-pasta-casseroule.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Chicken Pineapple Pasta Pockets) {
+        setting = "American"
+        requires = "{ 'meat':6, 'pasta':9, 'milk':6, 'pineapple':6,  }"
+        src = "recipe.chicken-pineapple-pasta-pockets"
+        emptySrc = "recipe.chicken-pineapple-pasta-pockets.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Tortilla Soup) {
+        setting = "Mexican"
+        requires = "{ 'pork':8, 'tortilla':6,  }"
+        src = "recipe.tortilla-soup"
+        emptySrc = "recipe.tortilla-soup.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Guacamole) {
+        setting = "Mexican"
+        requires = "{ 'tomato':5, 'avocado':9,  }"
+        src = "recipe.guacamole"
+        emptySrc = "recipe.guacamole.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Cheese Nachos) {
+        setting = "Mexican"
+        requires = "{ 'tortilla':8, 'cheese':8,  }"
+        src = "recipe.cheese-nachos"
+        emptySrc = "recipe.cheese-nachos.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Chiles Renellos) {
+        setting = "Mexican"
+        requires = "{ 'pork':6, 'chili-pepper':9,  }"
+        src = "recipe.chilies-renellos"
+        emptySrc = "recipe.chilies-renellos.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Avocado Stuffed Tacos) {
+        setting = "Mexican"
+        requires = "{ 'tortilla':8, 'avocado':8,  }"
+        src = "recipe.avocado-stuffed-tacos"
+        emptySrc = "recipe.avocado-stuffed-tacos.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Burrito) {
+        setting = "Mexican"
+        requires = "{ 'pork':6, 'tomato':6, 'tortilla':8,  }"
+        src = "recipe.burrito"
+        emptySrc = "recipe.burrito.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Chili con Carne) {
+        setting = "Mexican"
+        requires = "{ 'pork':6, 'chili-pepper':8, 'tomato':4,  }"
+        src = "recipe.chili-con-carne"
+        emptySrc = "recipe.chili-con-carne.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Quesadilla) {
+        setting = "Mexican"
+        requires = "{ 'tortilla':9, 'avocado':6, 'cheese':4,  }"
+        src = "recipe.quesadilla"
+        emptySrc = "recipe.quesadilla.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Tex-Mex Turkey Casseruole) {
+        setting = "Mexican"
+        requires = "{ 'pork':9, 'chili-pepper':7, 'cheese':7,  }"
+        src = "recipe.tex-mex-turkey-casseruole"
+        emptySrc = "recipe.tex-mex-turkey-casseruole.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Avocado Salsa) {
+        setting = "Mexican"
+        requires = "{ 'chili-pepper':8, 'tomato':6, 'avocado':8,  }"
+        src = "recipe.avocado-salsa"
+        emptySrc = "recipe.avocado-salsa.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Football Fan Nachos) {
+        setting = "Mexican"
+        requires = "{ 'pork':7, 'chili-pepper':7, 'tortilla':9, 'cheese':7,  }"
+        src = "recipe.football-fan-nachos"
+        emptySrc = "recipe.football-fan-nachos.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Fajitas) {
+        setting = "Mexican"
+        requires = "{ 'pork':7, 'tomato':7, 'tortilla':9, 'avocado':7,  }"
+        src = "recipe.fajitas"
+        emptySrc = "recipe.fajitas.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Cabbage Stew) {
+        setting = "Russian"
+        requires = "{ 'pork':6, 'cabbage':9,  }"
+        src = "recipe.cabbage-stew"
+        emptySrc = "recipe.cabbage-stew.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Pelmeni) {
+        setting = "Russian"
+        requires = "{ 'pork':8, 'flour':6,  }"
+        src = "recipe.pelmeni"
+        emptySrc = "recipe.pelmeni.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Golubtsy) {
+        setting = "Russian"
+        requires = "{ 'mushroom':8, 'cabbage':8,  }"
+        src = "recipe.golubtsy"
+        emptySrc = "recipe.golubtsy.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Fried Mushrooms) {
+        setting = "Russian"
+        requires = "{ 'mushroom':9, 'onion':6,  }"
+        src = "recipe.fried-mushrooms"
+        emptySrc = "recipe.fried-mushrooms.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Vareniki) {
+        setting = "Russian"
+        requires = "{ 'potato':9, 'flour':6,  }"
+        src = "recipe.vareniki"
+        emptySrc = "recipe.vareniki.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Baked Meat) {
+        setting = "Russian"
+        requires = "{ 'pork':7, 'mushroom':7, 'potato':7,  }"
+        src = "recipe.baked-meat"
+        emptySrc = "recipe.baked-meat.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Cutlets) {
+        setting = "Russian"
+        requires = "{ 'pork':8, 'onion':6, 'flour':6,  }"
+        src = "recipe.cutlets"
+        emptySrc = "recipe.cutlets.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Mushroom Ragout) {
+        setting = "Russian"
+        requires = "{ 'mushroom':8, 'potato':8, 'onion':6,  }"
+        src = "recipe.mushroom-ragout"
+        emptySrc = "recipe.mushroom-ragout.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Cabbage Stuffed Pancakes) {
+        setting = "Russian"
+        requires = "{ 'cabbage':8, 'onion':6, 'flour':8,  }"
+        src = "recipe.cabbage-stuffed-pancakes"
+        emptySrc = "recipe.cabbage-stuffed-pancakes.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Kulebyaka) {
+        setting = "Russian"
+        requires = "{ 'pork':6, 'mushroom':6, 'potato':6, 'flour':9,  }"
+        src = "recipe.kulebyaka"
+        emptySrc = "recipe.kulebyaka.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Shchi) {
+        setting = "Russian"
+        requires = "{ 'pork':8, 'cabbage':6, 'potato':8, 'onion':6,  }"
+        src = "recipe.shchi"
+        emptySrc = "recipe.shchi.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Mushroom Soup) {
+        setting = "Russian"
+        requires = "{ 'mushroom':8, 'cabbage':8, 'potato':6, 'onion':6,  }"
+        src = "recipe.mushroom-soup"
+        emptySrc = "recipe.mushroom-soup.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Nigiri Zushi) {
+        setting = "Japanese"
+        requires = "{ 'salmon':6, 'rice':9,  }"
+        src = "recipe.nigirizushi"
+        emptySrc = "recipe.nigirizushi.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Sashimi) {
+        setting = "Japanese"
+        requires = "{ 'salmon':8, 'veggies':8,  }"
+        src = "recipe.sashimi"
+        emptySrc = "recipe.sashimi.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Seafood Tempura) {
+        setting = "Japanese"
+        requires = "{ 'shrimp':8, 'veggies':6,  }"
+        src = "recipe.seafood-tempura"
+        emptySrc = "recipe.seafood-tempura.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(TofuDengaku) {
+        setting = "Japanese"
+        requires = "{ 'tofu':9, 'seaweed':6,  }"
+        src = "recipe.tofudengaku"
+        emptySrc = "recipe.tofudengaku.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Tempura) {
+        setting = "Japanese"
+        requires = "{ 'salmon':6, 'shrimp':9, 'veggies':6,  }"
+        src = "recipe.tempura"
+        emptySrc = "recipe.tempura.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Koyungohan) {
+        setting = "Japanese"
+        requires = "{ 'salmon':6, 'rice':9, 'tofu':6,  }"
+        src = "recipe.koyungohan"
+        emptySrc = "recipe.koyungohan.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Ochazuke) {
+        setting = "Japanese"
+        requires = "{ 'salmon':8, 'rice':6, 'seaweed':6,  }"
+        src = "recipe.ochazuke"
+        emptySrc = "recipe.ochazuke.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Tempura Shrimp Roll) {
+        setting = "Japanese"
+        requires = "{ 'shrimp':6, 'rice':9, 'seaweed':6,  }"
+        src = "recipe.tempura-shrimp-roll"
+        emptySrc = "recipe.tempura-shrimp-roll.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Onigiri) {
+        setting = "Japanese"
+        requires = "{ 'rice':7, 'tofu':7, 'seaweed':7,  }"
+        src = "recipe.onigiri"
+        emptySrc = "recipe.onigiri.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Osechi) {
+        setting = "Japanese"
+        requires = "{ 'salmon':7, 'shrimp':7, 'rice':7, 'seaweed':6,  }"
+        src = "recipe.osechi"
+        emptySrc = "recipe.osechi.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Yosenabe) {
+        setting = "Japanese"
+        requires = "{ 'salmon':7, 'shrimp':7, 'tofu':7, 'veggies':7,  }"
+        src = "recipe.yosenabe"
+        emptySrc = "recipe.yosenabe.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Temaki Zushi) {
+        setting = "Japanese"
+        requires = "{ 'rice':8, 'tofu':6, 'veggies':6, 'seaweed':6,  }"
+        src = "recipe.temakizushi"
+        emptySrc = "recipe.temakizushi.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Chicken Shrimp Soup) {
+        setting = "Hawaiian"
+        requires = "{ 'shrimp':8, 'meat':8,  }"
+        src = "recipe.chicken-shrimp-soup"
+        emptySrc = "recipe.chicken-shrimp-soup.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Spicy Shrimps) {
+        setting = "Hawaiian"
+        requires = "{ 'shrimp':8, 'chili-pepper':6,  }"
+        src = "recipe.spicy-shrimps"
+        emptySrc = "recipe.spicy-shrimps.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Hulihuli Chicken) {
+        setting = "Hawaiian"
+        requires = "{ 'meat':8, 'shoyu':6,  }"
+        src = "recipe.hulihuli-chicken"
+        emptySrc = "recipe.hulihuli-chicken.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Mango Mui) {
+        setting = "Hawaiian"
+        requires = "{ 'lime':6, 'mango':9,  }"
+        src = "recipe.mango-mui"
+        emptySrc = "recipe.mango-mui.empty"
+        price = "50"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Wonton) {
+        setting = "Hawaiian"
+        requires = "{ 'shrimp':6, 'meat':8, 'shoyu':6,  }"
+        src = "recipe.wonton"
+        emptySrc = "recipe.wonton.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Shrimp Canton) {
+        setting = "Hawaiian"
+        requires = "{ 'shrimp':8, 'mango':8, 'shoyu':6,  }"
+        src = "recipe.shrimp-canton"
+        emptySrc = "recipe.shrimp-canton.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Lime Chicken) {
+        setting = "Hawaiian"
+        requires = "{ 'meat':8, 'chili-pepper':6, 'lime':6,  }"
+        src = "recipe.lime-chicken"
+        emptySrc = "recipe.lime-chicken.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Mango Salsa) {
+        setting = "Hawaiian"
+        requires = "{ 'chili-pepper':6, 'lime':6, 'mango':8,  }"
+        src = "recipe.mango-salsa"
+        emptySrc = "recipe.mango-salsa.empty"
+        price = "75"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Chicken Laulau) {
+        setting = "Hawaiian"
+        requires = "{ 'shrimp':8, 'meat':8, 'lime':6, 'shoyu':6,  }"
+        src = "recipe.chicken-laulau"
+        emptySrc = "recipe.chicken-laulau.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Shrimp Mango Salad) {
+        setting = "Hawaiian"
+        requires = "{ 'shrimp':7, 'chili-pepper':7, 'lime':7, 'mango':7,  }"
+        src = "recipe.shrimp-mango-salad"
+        emptySrc = "recipe.shrimp-mango-salad.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Pipikaula) {
+        setting = "Hawaiian"
+        requires = "{ 'meat':6, 'chili-pepper':8, 'lime':6, 'shoyu':6,  }"
+        src = "recipe.pipikaula"
+        emptySrc = "recipe.pipikaula.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+    Recipe(Mango Chicken) {
+        setting = "Hawaiian"
+        requires = "{ 'meat':8, 'chili-pepper':6, 'mango':8, 'shoyu':6,  }"
+        src = "recipe.mango-chicken"
+        emptySrc = "recipe.mango-chicken.empty"
+        price = "100"
+        readyAt = "0"
+        type = ""
+    }
+
+}

@@ -27,17 +27,17 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Squash with Tomato Sauce"         rate = "2" }
-        Recipe{ type = "Pasta with Tomato Sauce"          rate = "0" }
+        Recipe{ type = "Pasta with Tomato Sauce"          rate = "1" }
         Recipe{ type = "Pineapple Tomato Salad"           rate = "0" }
         Recipe{ type = "Caribbean Spice Chicken"          rate = "0" }
-        Recipe{ type = "Crispy Baked Chicken"             rate = "0" }
-        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "2" }
+        Recipe{ type = "Crispy Baked Chicken"             rate = "3" }
+        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "1" }
         Recipe{ type = "Grilled Meat"                     rate = "0" }
         Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "0" }
-        Recipe{ type = "Pineapple Lasagna"                rate = "3" }
+        Recipe{ type = "Pineapple Lasagna"                rate = "0" }
         Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "2" }
-        Recipe{ type = "Chicken Pasta Casseroule"         rate = "3" }
-        Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "2" }
+        Recipe{ type = "Chicken Pasta Casseroule"         rate = "5" }
+        Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "0" }
     }
     
     //ingredient appearance rates
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "meat"      rate = "54" }
-        Ingredient{ type = "milk"      rate = "36" }
-        Ingredient{ type = "pasta"     rate = "84" }
-        Ingredient{ type = "pineapple" rate = "30" }
-        Ingredient{ type = "pumpkin"   rate = "52" }
-        Ingredient{ type = "tomato"    rate = "42" }
+        Ingredient{ type = "meat"      rate = "64" }
+        Ingredient{ type = "milk"      rate = "15" }
+        Ingredient{ type = "pasta"     rate = "63" }
+        Ingredient{ type = "pineapple" rate = "0" }
+        Ingredient{ type = "pumpkin"   rate = "44" }
+        Ingredient{ type = "tomato"    rate = "51" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "1" }

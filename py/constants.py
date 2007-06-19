@@ -68,7 +68,7 @@ Layer_Tokens = 55
 Layer_CollapsoidScrollButton = 54
 Layer_HighlightMarkers = 53
 Layer_SelectMarkers = 52
-Layer_Tools = 51
+Layer_Tools = 1
 Layer_InterfaceBg = 80
 Layer_InterfaceBtn = 79
 Layer_InterfaceTxt = 78
@@ -166,6 +166,15 @@ Crd_RecipeInfoSpriteDx = 75
 Crd_RecipeInfoSpriteDy = -42
 Crd_RecipeMaskDx = 0
 Crd_RecipeMaskDy = -6
+
+#координаты относительно курсора
+Crd_ToolSpriteDx = 4
+Crd_ToolSpriteDy = 7
+Crd_TokenSpriteDx = 4
+Crd_TokenSpriteDy = 7
+Crd_TokenNoSpriteDx = 54
+Crd_TokenNoSpriteDy = 22
+
 
 Crd_ReleaseButtonDx = 75
 Crd_ReleaseButtonDy = 15

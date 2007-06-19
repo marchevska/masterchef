@@ -53,6 +53,8 @@ class Gui(scraft.Dispatcher):
         #--------------
         self.MainMenuDialog = { "Static": {}, "Text": {}, "Buttons": {}, "Animations": {} }
         self.MainMenuDialog["Static"]["Back"] = MakeSimpleSprite(u"mainmenu-background", Layer_Background)
+        self.MainMenuDialog["Static"]["Tablet"] = MakeSprite("mainmenu.tablet", Layer_Static,
+                { "x": 675, "y": 100, "hotspot": scraft.HotspotCenter } )
         self.MainMenuDialog["Static"]["JaneEyes"] = MakeSprite("mainmenu.jane.eyes", Layer_BtnText,
                 { "x": 190, "y": 220 } )
         self.MainMenuDialog["Animations"]["JaneEyes"] = CustomersAnimator(self.MainMenuDialog["Static"]["JaneEyes"],
@@ -422,6 +424,9 @@ class Gui(scraft.Dispatcher):
                 u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
                 tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
         
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"red": False})
         self._SetState(PState_DevLogo)    
         self.QueNo = oE.executor.Schedule(self)
         

@@ -84,7 +84,8 @@ class GameBoard(scraft.Dispatcher):
         self.Freeze(True)
         
     def LaunchLevel(self):
-        globalvars.BlackBoard = BlackBoard()
+        #globalvars.BlackBoard = BlackBoard()
+        globalvars.BlackBoard.ClearTag(BBTag_Ingredients)
         self.Freeze(False)
         try:
             self.Load()
@@ -198,7 +199,8 @@ class GameBoard(scraft.Dispatcher):
             tmp.InitialFilling()
         
         self._SetState(GameState_StartLevel)
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
+        #globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
+        #globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
         
     #--------------------------
     # Поместить следующего покупателя к заданному стейшену
@@ -402,11 +404,11 @@ class GameBoard(scraft.Dispatcher):
             elif self.State == GameState_Play:
                 #перенос токенов или иконки бонуса на мыши
                 if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
-                    self.TokenSprite.x = oE.mouseX
-                    self.TokenSprite.y = oE.mouseY
+                    self.TokenSprite.x = oE.mouseX + Crd_TokenSpriteDx
+                    self.TokenSprite.y = oE.mouseY + Crd_TokenSpriteDy
                 elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
-                    self.ToolSprite.x = oE.mouseX
-                    self.ToolSprite.y = oE.mouseY
+                    self.ToolSprite.x = oE.mouseX + Crd_ToolSpriteDx
+                    self.ToolSprite.y = oE.mouseY + Crd_ToolSpriteDy
                 #проверка на конец уровня
                 if self.RemainingCustomers == 0:
                     tmpBusyStations = filter(lambda x: x.State == CStationState_Busy, self.CStations)
@@ -446,7 +448,8 @@ class GameBoard(scraft.Dispatcher):
     def _PickFromConveyor(self, where, type):
         self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
-                                        { "parent": self.TokenSprite, "x": 20, "y": 30, "text": "",
+                                        { "parent": self.TokenSprite, "x": Crd_TokenNoSpriteDx,
+                                         "y": Crd_TokenNoSpriteDy, "text": "",
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
                                                 "tokentype": type, "tokenno": 1 })
@@ -456,7 +459,8 @@ class GameBoard(scraft.Dispatcher):
     def _PickTokensFrom(self, where, type, no):
         self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
-                                        { "parent": self.TokenSprite, "x": 20, "y": 30, "text": str(no),
+                                        { "parent": self.TokenSprite, "x": Crd_TokenNoSpriteDx,
+                                         "y": Crd_TokenNoSpriteDy, "text": str(no),
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
                                                 "tokentype": type, "tokenno": no })

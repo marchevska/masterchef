@@ -136,6 +136,8 @@ Layer_PopupBtnTxt = 39
 Layer_PopupBtnTxt2 = 38
 Layer_2ndPopupBg = 30
 Layer_2ndPopupBtnTxt = 29
+Layer_CursorDown = 10
+Layer_CursorUpper = 0
 Layer_Cursor = 1
 
 #музыка

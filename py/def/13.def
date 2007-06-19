@@ -29,9 +29,9 @@ Level{
         Recipe{ type = "Tortilla Soup"             rate = "0" }
         Recipe{ type = "Guacamole"                 rate = "0" }
         Recipe{ type = "Cheese Nachos"             rate = "0" }
-        Recipe{ type = "Chiles Renellos"           rate = "1" }
+        Recipe{ type = "Chiles Renellos"           rate = "4" }
         Recipe{ type = "Avocado Stuffed Tacos"     rate = "0" }
-        Recipe{ type = "Burrito"                   rate = "1" }
+        Recipe{ type = "Burrito"                   rate = "3" }
         Recipe{ type = "Chili con Carne"           rate = "1" }
         Recipe{ type = "Quesadilla"                rate = "0" }
         Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "0" }
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"         rate = "18" }
-        Ingredient{ type = "chili-pepper" rate = "17" }
+        Ingredient{ type = "pork"         rate = "48" }
+        Ingredient{ type = "chili-pepper" rate = "40" }
         Ingredient{ type = "avocado"      rate = "0" }
         Ingredient{ type = "cheese"       rate = "0" }
-        Ingredient{ type = "tortilla"     rate = "8" }
-        Ingredient{ type = "tomato"       rate = "10" }
+        Ingredient{ type = "tortilla"     rate = "21" }
+        Ingredient{ type = "tomato"       rate = "23" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

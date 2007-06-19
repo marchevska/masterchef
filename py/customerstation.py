@@ -44,7 +44,7 @@ class CustomerStation(scraft.Dispatcher):
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
                 u"release-button", [0, 1, 2], Layer_Recipe-1, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
         self.MoneyButton = PushButton("", self, Cmd_TakeMoney, PState_Game,
-                u"money-button", [0, 1, 2], Layer_Recipe-1, newX, newY, 40, 30)
+                u"money-button", [0, 1, 2], Layer_Recipe-1, newX, newY, 60, 60)
         self.ReleaseButton.Show(False)
         self.MoneyButton.Show(False)
         self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
@@ -208,11 +208,13 @@ class CustomerStation(scraft.Dispatcher):
                 self.TableSprite.cfilt.color = CFilt_White
                 self.MaskSprite.cfilt.color = CFilt_White
                 self.RecipeInfoSprite.cfilt.color = CFilt_White
+                globalvars.BlackBoard.Update(BBTag_Cursor, {"red": False})
             else:
                 self.Customer.Sprite.cfilt.color = CFilt_Red
                 self.TableSprite.cfilt.color = CFilt_Red
                 self.MaskSprite.cfilt.color = CFilt_Red
                 self.RecipeInfoSprite.cfilt.color = CFilt_Red
+                globalvars.BlackBoard.Update(BBTag_Cursor, {"red": True})
         
     def Show(self, flag):
         self.Dummy.visible = flag

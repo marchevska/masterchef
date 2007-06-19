@@ -26,7 +26,7 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Cabbage Stew"             rate = "1" }
+        Recipe{ type = "Cabbage Stew"             rate = "3" }
         Recipe{ type = "Pelmeni"                  rate = "0" }
         Recipe{ type = "Golubtsy"                 rate = "0" }
         Recipe{ type = "Fried Mushrooms"          rate = "0" }
@@ -47,11 +47,11 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"     rate = "14" }
+        Ingredient{ type = "pork"     rate = "24" }
         Ingredient{ type = "mushroom" rate = "0" }
-        Ingredient{ type = "cabbage"  rate = "15" }
-        Ingredient{ type = "potato"   rate = "8" }
-        Ingredient{ type = "onion"    rate = "6" }
+        Ingredient{ type = "cabbage"  rate = "32" }
+        Ingredient{ type = "potato"   rate = "5" }
+        Ingredient{ type = "onion"    rate = "5" }
         Ingredient{ type = "flour"    rate = "0" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }

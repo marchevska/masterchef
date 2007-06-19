@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "shrimp"       rate = "83" }
-        Ingredient{ type = "meat"         rate = "60" }
-        Ingredient{ type = "chili-pepper" rate = "87" }
-        Ingredient{ type = "lime"         rate = "59" }
+        Ingredient{ type = "shrimp"       rate = "80" }
+        Ingredient{ type = "meat"         rate = "62" }
+        Ingredient{ type = "chili-pepper" rate = "80" }
+        Ingredient{ type = "lime"         rate = "54" }
         Ingredient{ type = "mango"        rate = "77" }
-        Ingredient{ type = "shoyu"        rate = "30" }
+        Ingredient{ type = "shoyu"        rate = "27" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

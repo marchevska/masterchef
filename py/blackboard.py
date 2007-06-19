@@ -34,6 +34,9 @@ class BlackBoard:
             for tmp in data.keys():
                 self.Records[BBTag_Cursor][tmp] = data[tmp]
         
+    def ClearTag(self, tag):
+        self.Records[tag] = {}
+        
     def Inspect(self, tag, parameter = None):
         if not self.Records.has_key(tag):
             self.Records[tag] = {}

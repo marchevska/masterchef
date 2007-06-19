@@ -32,7 +32,7 @@ Level{
         Recipe{ type = "Mango Mui"           rate = "4" }
         Recipe{ type = "Wonton"              rate = "3" }
         Recipe{ type = "Shrimp Canton"       rate = "1" }
-        Recipe{ type = "Lime Chicken"        rate = "1" }
+        Recipe{ type = "Lime Chicken"        rate = "2" }
         Recipe{ type = "Mango Salsa"         rate = "0" }
         Recipe{ type = "Chicken Laulau"      rate = "0" }
         Recipe{ type = "Shrimp Mango Salad"  rate = "1" }
@@ -47,11 +47,11 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "shrimp"       rate = "33" }
-        Ingredient{ type = "meat"         rate = "50" }
-        Ingredient{ type = "chili-pepper" rate = "37" }
-        Ingredient{ type = "lime"         rate = "55" }
-        Ingredient{ type = "mango"        rate = "51" }
+        Ingredient{ type = "shrimp"       rate = "36" }
+        Ingredient{ type = "meat"         rate = "61" }
+        Ingredient{ type = "chili-pepper" rate = "39" }
+        Ingredient{ type = "lime"         rate = "62" }
+        Ingredient{ type = "mango"        rate = "50" }
         Ingredient{ type = "shoyu"        rate = "42" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }

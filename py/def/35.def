@@ -27,12 +27,12 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Nigiri Zushi"        rate = "0" }
-        Recipe{ type = "Sashimi"             rate = "1" }
+        Recipe{ type = "Sashimi"             rate = "4" }
         Recipe{ type = "Seafood Tempura"     rate = "0" }
         Recipe{ type = "TofuDengaku"         rate = "0" }
         Recipe{ type = "Tempura"             rate = "0" }
-        Recipe{ type = "Koyungohan"          rate = "1" }
-        Recipe{ type = "Ochazuke"            rate = "1" }
+        Recipe{ type = "Koyungohan"          rate = "2" }
+        Recipe{ type = "Ochazuke"            rate = "3" }
         Recipe{ type = "Tempura Shrimp Roll" rate = "0" }
         Recipe{ type = "Onigiri"             rate = "0" }
         Recipe{ type = "Osechi"              rate = "0" }
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "22" }
+        Ingredient{ type = "salmon"   rate = "68" }
         Ingredient{ type = "shrimp"   rate = "0" }
-        Ingredient{ type = "rice"     rate = "23" }
-        Ingredient{ type = "tofu"     rate = "12" }
-        Ingredient{ type = "veggymix" rate = "14" }
-        Ingredient{ type = "seaweed"  rate = "12" }
+        Ingredient{ type = "rice"     rate = "45" }
+        Ingredient{ type = "tofu"     rate = "17" }
+        Ingredient{ type = "veggymix" rate = "34" }
+        Ingredient{ type = "seaweed"  rate = "21" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

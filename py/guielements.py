@@ -9,6 +9,7 @@ Project: Master Chef
 import scraft
 from scraft import engine as oE
 from configconst import *
+from constants import *
 from guiconst import *
 import config
 import globalvars
@@ -73,6 +74,7 @@ class PushButton(scraft.Dispatcher):
         if self.HasText:
             self.TextSprite.ChangeKlassTo(self.TextKlasses[state])
             self.TextSprite.hotspot = scraft.HotspotCenter
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"button": state})
         
     def _OnMouseOver(self, sprite, flag):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
@@ -162,6 +164,7 @@ class Slider(scraft.Dispatcher):
     def SetState(self, state):
         self.State = state
         self.SliderSprite.frno = self.SliderFrames[state]
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"button": state})
         
     def SetValue(self, value):
         self.SliderSprite.x = self.XRange[0] + int(value*(self.XRange[1] - self.XRange[0])/100)

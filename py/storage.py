@@ -117,6 +117,12 @@ class Storage(scraft.Dispatcher):
         else:
             self._HighlightCells(tmpPos, False)
         
+    def _OnMouseOver(self, sprite, flag):
+        if flag:
+            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Roll})
+        else:
+            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+        
     def _OnMouseClick(self, sprite, x, y, button):
         if globalvars.StateStack[-1] == PState_Game:
             if button == 2:
@@ -287,6 +293,7 @@ class Store(Storage):
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                         if self.Cells.has_key(tmpPos) and self.Cells[tmpPos] != Const_EmptyCell:
                             self._HighlightCells(tmpPos, flag)
+                            Storage._OnMouseOver(self, sprite, flag)
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             
@@ -362,6 +369,7 @@ class SingularStore(Storage):
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                         if self.Cells.has_key(tmpPos) and self.Cells[tmpPos] != Const_EmptyCell:
                             self._HighlightCells(tmpPos, flag)
+                            Storage._OnMouseOver(self, sprite, flag)
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         
@@ -857,6 +865,7 @@ class Field(Storage):
                     #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                     if self.Cells.has_key(tmpPos) and self.Cells[tmpPos] != Const_EmptyCell:
                         self._HighlightCells(tmpPos, flag)
+                        Storage._OnMouseOver(self, sprite, flag)
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
                     

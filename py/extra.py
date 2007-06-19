@@ -13,7 +13,8 @@ import math
 from random import randint
 from guiconst import *
 from configconst import *
-from guielements import MakeSimpleSprite, MakeTextSprite
+from constants import *
+from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
 import globalvars
 
 #----------------------------------
@@ -22,28 +23,35 @@ import globalvars
 
 class Cursor(scraft.Dispatcher):
     def __init__(self):
-        self.sprite = MakeSimpleSprite(u"cursor", Layer_Cursor)
+        self.Dummy = MakeSprite("$spritecraft$dummy$", Layer_Cursor)
+        self.UpperSprite = MakeSprite("$spritecraft$dummy$", Layer_CursorUpper,
+                { "x": 0, "y": 0, "parent": self.Dummy })
+        self.DownSprite = MakeSprite("$spritecraft$dummy$", Layer_CursorDown,
+                { "x": 0, "y": 0, "parent": self.Dummy })
         self.CursorState = CursorState_Default
         self.QueNo = oE.executor.Schedule(self)
         
-    def SetState(self, state):
-        if state == CursorState_Default:
-            self.sprite.ChangeKlassTo(u"cursor")
-        elif state == CursorState_Go:
-            self.sprite.ChangeKlassTo(u"cursor-go")
-        elif state == CursorState_NoWay:
-            self.sprite.ChangeKlassTo(u"cursor-noway")
-        elif state == CursorState_None:
-            self.sprite.ChangeKlassTo(u"cursor-none")
-        if state == CursorState_Go:
-            self.sprite.AnimateLoop(2)
-        else:
-            self.sprite.StopAnimation()
-        self.CursorState = state
-        
     def _OnExecute(self, que):    
-        self.sprite.x = oE.mouseX
-        self.sprite.y = oE.mouseY
+        self.Dummy.x = oE.mouseX
+        self.Dummy.y = oE.mouseY
+        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Default:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Up:
+                self.UpperSprite.ChangeKlassTo("cursor.hand.up")
+            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Roll:
+                self.UpperSprite.ChangeKlassTo("cursor.hand.roll")
+            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Down:
+                self.UpperSprite.ChangeKlassTo("cursor.hand.down")
+            self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
+        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["red"]:
+                self.UpperSprite.ChangeKlassTo("cursor.box.red.up")
+                self.DownSprite.ChangeKlassTo("cursor.box.red")
+            else:
+                self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
+                self.DownSprite.ChangeKlassTo("cursor.box.token")
+        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
+            self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
+            self.DownSprite.ChangeKlassTo("cursor.box.tool")
         
         return scraft.CommandStateRepeat
     

@@ -19,8 +19,6 @@ MasterChef {
         
         heartsPerCompletedIngredient = "0"
         heartsPerCompletedOrder = "2"
-        approvalPerDollar = "0.2"
-        maxApproval = "5.0"
         customerLossPrice = "100"
         
         autoReleaseCustomer = "yes"
@@ -41,13 +39,21 @@ MasterChef {
         burnCollapsoidRows = "1"
         burnCollapsoidTime = "1.0"
         
-        //the following are parameters for #115
-        levelRatesMultiplier = 5
-        boardNeededMultiplier = 20
-        exceedDecreasePercent = 70
-        expMultiplier = 4.0
+        //the following are parameters for #116
+        ratesSum = "100"
+        //m1
+        basicRatesRatio = "10" 
+        //m3
+        neededRatesRatio = "20" 
+        neededToBasicRatio = "2"
+        //m4
+        neighbourBonus = "5"
+        desiredNeighbourBonus = "10"
         //minimal number of tokens applicable for rates correction
-        minCorrectionAmount = 10
+        minCorrectionAmount = "10"
+        //maximal desired group size
+        maxGroup = "8"
+        minRateMultiplier = "25"
     }
     
     Themes {

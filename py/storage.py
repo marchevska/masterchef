@@ -440,7 +440,6 @@ class Field(Storage):
             tmpCellDeltas = [(-1,0), (0,-1)]
             tmpNeibIng = {}
             tmpM4 = {}
-            MaxGroup = 6
             for (dx,dy) in tmpCellDeltas:
                 if self.Cells.has_key((cell[0]+dx, cell[1]+dy)):
                     tmpNeibIng[dx,dy] = self.Cells[cell[0]+dx, cell[1]+dy]
@@ -453,21 +452,22 @@ class Field(Storage):
                     tmpGroupSize = 0
                 if tmpNeibIng[dx,dy] in tmpPRates.keys():
                     if tmpRTDifRates[tmpNeibIng[dx,dy]] > 0:
-                        tmpM4[dx,dy] = 10
+                        tmpM4[dx,dy] = globalvars.GameSettings.GetIntAttr("desiredNeighbourBonus")
                     else:
-                        tmpM4[dx,dy] = 5
-                    if tmpGroupSize >= MaxGroup:
+                        tmpM4[dx,dy] = globalvars.GameSettings.GetIntAttr("neighbourBonus")
+                    if tmpGroupSize >= globalvars.GameSettings.GetIntAttr("MaxGroup"):
                         tmpM4[dx,dy] *= (-1)
                 else:
                     tmpM4[dx,dy] = 0
             
             if SumRates(tmpTRates) > globalvars.GameSettings.GetIntAttr("minCorrectionAmount") and SumRates(tmpPosDifRates) > 0:
-                m3 = 20*(SumRates(tmpRRates) > 0)
-                m1 = 10
-                m2 = 100 - m1 - m3 - SumRates(tmpM4)
+                m3 = globalvars.GameSettings.GetIntAttr("neededRatesRatio")*(SumRates(tmpRRates) > 0)
+                m1 = globalvars.GameSettings.GetIntAttr("basicRatesRatio")
+                m2 = globalvars.GameSettings.GetIntAttr("ratesSum") - m1 - m3 - SumRates(tmpM4)
             else:
-                m3 = (100 - SumRates(tmpM4))/3*(SumRates(tmpRRates) > 0)
-                m1 = 100 - SumRates(tmpM4) - m3
+                m3 = (globalvars.GameSettings.GetIntAttr("ratesSum") - SumRates(tmpM4))/ \
+                    (1 + globalvars.GameSettings.GetIntAttr("neededToBasicRatio"))*(SumRates(tmpRRates) > 0)
+                m1 = globalvars.GameSettings.GetIntAttr("ratesSum") - SumRates(tmpM4) - m3
                 m2 = 0
             
             tmpRecommendedRates = {}
@@ -477,21 +477,16 @@ class Field(Storage):
                     tmpRecommendedRates[i] += 1.0*m2*tmpPosDifRates[i]/SumRates(tmpPosDifRates)
                 if SumRates(tmpRRates) > 0:
                     tmpRecommendedRates[i] += 1.0*m3*tmpRRates[i]/SumRates(tmpRRates)
-                tmpRecommendedRates[i] = int(tmpRecommendedRates[i])
-                
-            #if SumRates(tmpPosDifRates)>0:
-            #    tmpRecommendedRates = dict(map(lambda x: \
-            #            (x, int(m1*tmpPRates[x]/SumRates(tmpPRates) + m2*tmpPosDifRates[x]/SumRates(tmpPosDifRates))),
-            #            tmpPRates.keys()))
-            #else:
-            #    tmpRecommendedRates = dict(map(lambda x: \
-            #            (x, int(m1*tmpPRates[x]/SumRates(tmpPRates))),
-            #            tmpPRates.keys()))
                 
             for (dx,dy) in tmpCellDeltas:
                 if tmpNeibIng[dx,dy] in tmpPRates.keys():
-                    tmpRecommendedRates[tmpNeibIng[dx,dy]] = max(0, tmpRecommendedRates[tmpNeibIng[dx,dy]] + tmpM4[dx,dy])
+                    tmpRecommendedRates[tmpNeibIng[dx,dy]] = max(\
+                            1.0*globalvars.GameSettings.GetIntAttr("minRateMultiplier")*tmpPRates[i]/SumRates(tmpPRates),
+                            tmpRecommendedRates[tmpNeibIng[dx,dy]] + tmpM4[dx,dy])
             
+            for i in tmpPRates.keys():
+                tmpRecommendedRates[i] = int(tmpRecommendedRates[i]+0.5)
+                
             #if m2>0:
             #    print
             #    print tmpPRates.keys()

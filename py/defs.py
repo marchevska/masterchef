@@ -93,14 +93,16 @@ def ReadLevelSettings(filename):
             for tmpIntAttr in ("newCustomerTimeMin", "newCustomerTimeMax",
                                "tokensGroupMin", "tokensGroupMax",
                                "minCorrectionAmount",
+                               "ratesSum",
+                               "basicRatesRatio", "neededRatesRatio", "neededToBasicRatio",
+                               "neighbourBonus", "desiredNeighbourBonus",
+                               "maxGroup", "minRateMultiplier",
                                "levelRatesMultiplier", "boardNeededMultiplier",
                                "maxColapsoidErrors"):
                 if tmp.HasAttr(tmpIntAttr):
                     globalvars.GameSettings.SetIntAttr(tmpIntAttr, tmp.GetIntAttr(tmpIntAttr))
             for tmpFltAttr in ("tokensFallingTime", "shuffleTime", "magicWandConvertingTime",
-                               "scrollBackTime", "burnCollapsoidTime",
-                               "expMultiplier",
-                               "approvalPerDollar", "maxApproval"):
+                               "scrollBackTime", "burnCollapsoidTime"):
                 if tmp.HasAttr(tmpFltAttr):
                     globalvars.GameSettings.SetFltAttr(tmpFltAttr, tmp.GetFltAttr(tmpFltAttr))
             for tmpBoolAttr in ("autoReleaseCustomer", "allowExtraIngredients", "exactRecipes"):

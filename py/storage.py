@@ -400,6 +400,9 @@ class Field(Storage):
     # Поместить произвольный токен в заданную клетку
     #--------------------------
     def _PutRandomToken(self, cell):
+        def SumRates(dict):
+            return reduce(lambda a,b: a+b, dict.values(),0)
+        
         #определяем, бонус или токен
         tmpLevelTokenRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
                        globalvars.LevelSettings.GetTag("TokenRates").Tags("Token")))
@@ -421,43 +424,83 @@ class Field(Storage):
                 globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient"))))
             #tmpPRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
             #           globalvars.LevelSettings.GetTag("IngredientRates").Tags("Ingredient")))
-            tmpPSum = reduce(lambda a,b: a+b, tmpPRates.values(),0)
             #R[i]
             tmpRRates = dict(map(lambda x: (x,0), tmpPRates.keys()))
             tmpReq = dict(globalvars.BlackBoard.Inspect(BBTag_Ingredients))
             for tmp in tmpReq.keys():
                 tmpRRates[tmp] = tmpReq[tmp]
-            tmpRSum = reduce(lambda a,b: a+b, tmpRRates.values(),0)
             #T[i]
             tmpTRates = dict(map(lambda x: (x, len(filter(lambda y: self.Cells[y] == x, self.Cells.keys()))),
                         tmpPRates.keys()))
-            tmpTSum = reduce(lambda a,b: a+b, tmpTRates.values(),0)
+            #R[i]-T[i]
+            tmpRTDifRates = dict(map(lambda x: (x, tmpRRates[x]-tmpTRates[x]), tmpPRates.keys()))
+            tmpPosDifRates = dict(map(lambda x: (x[0], max(x[1],0)), tmpRTDifRates.items()))
             
-            #заменить!!
-            a, b = 2, -1
+            #коэффициенты групповой коррекции по соседним клеткам
+            tmpCellDeltas = [(-1,0), (0,-1)]
+            tmpNeibIng = {}
+            tmpM4 = {}
+            for (dx,dy) in tmpCellDeltas:
+                if self.Cells.has_key((cell[0]+dx, cell[1]+dy)):
+                    tmpNeibIng[dx,dy] = self.Cells[cell[0]+dx, cell[1]+dy]
+                else:
+                    tmpNeibIng[dx,dy] = ""
+                if tmpNeibIng[dx,dy] in tmpPRates.keys():
+                    if tmpRTDifRates[tmpNeibIng[dx,dy]] > 0:
+                        tmpM4[dx,dy] = 10
+                    else:
+                        tmpM4[dx,dy] = 5
+                else:
+                    tmpM4[dx,dy] = 0
             
-            if min(tmpTSum, tmpRSum) > globalvars.GameSettings.GetIntAttr("minCorrectionAmount"):
-                tmpPRecRates = dict(map(lambda x: \
-                        (x, max(int(1.0*(tmpRRates[x]*tmpPSum+tmpPRates[x]*(tmpTSum-tmpRSum))/(tmpPSum)),0)),
-                        tmpPRates.keys()))
-                tmpRecommendedRates = dict(map(lambda x: \
-                        (x, max(int(10.0*(a*tmpPRecRates[x]+b*tmpPRates[x])/(a+b)), 1)),
-                        tmpPRates.keys()))
-                #print
-                #print tmpPRates.keys()
-                #print tmpPSum, tmpRSum, tmpTSum
-                #print map(lambda x: tmpPRates[x], tmpPRates.keys())
-                #print map(lambda x: tmpRRates[x], tmpPRates.keys())
-                #print map(lambda x: tmpTRates[x], tmpPRates.keys())
-                #print map(lambda x: tmpPRecRates[x], tmpPRates.keys())
-                #print map(lambda x: tmpRecommendedRates[x], tmpPRates.keys())
-                
+            if SumRates(tmpTRates) > globalvars.GameSettings.GetIntAttr("minCorrectionAmount") and SumRates(tmpPosDifRates) > 0:
+                m3 = 20*(SumRates(tmpRRates) > 0)
+                m1 = 10
+                m2 = 100 - m1 - m3 - SumRates(tmpM4)
             else:
-                tmpRecommendedRates = tmpPRates
+                m3 = (100 - SumRates(tmpM4))/3*(SumRates(tmpRRates) > 0)
+                m1 = 100 - SumRates(tmpM4) - m3
+                m2 = 0
+            
+            tmpRecommendedRates = {}
+            for i in tmpPRates.keys():
+                tmpRecommendedRates[i] = 1.0*m1*tmpPRates[i]/SumRates(tmpPRates)
+                if SumRates(tmpPosDifRates) > 0:
+                    tmpRecommendedRates[i] += 1.0*m2*tmpPosDifRates[i]/SumRates(tmpPosDifRates)
+                if SumRates(tmpRRates) > 0:
+                    tmpRecommendedRates[i] += 1.0*m3*tmpRRates[i]/SumRates(tmpRRates)
+                tmpRecommendedRates[i] = int(tmpRecommendedRates[i])
+                
+            #if SumRates(tmpPosDifRates)>0:
+            #    tmpRecommendedRates = dict(map(lambda x: \
+            #            (x, int(m1*tmpPRates[x]/SumRates(tmpPRates) + m2*tmpPosDifRates[x]/SumRates(tmpPosDifRates))),
+            #            tmpPRates.keys()))
+            #else:
+            #    tmpRecommendedRates = dict(map(lambda x: \
+            #            (x, int(m1*tmpPRates[x]/SumRates(tmpPRates))),
+            #            tmpPRates.keys()))
+                
+            for (dx,dy) in tmpCellDeltas:
+                if tmpNeibIng[dx,dy] in tmpPRates.keys():
+                    tmpRecommendedRates[tmpNeibIng[dx,dy]] += tmpM4[dx,dy]
+            
+            #if m2>0:
+            #    print
+            #    print tmpPRates.keys()
+            #    print SumRates(tmpPRates), SumRates(tmpRRates), SumRates(tmpTRates)
+            #    print m1, m2, m3, tmpM4
+            #    print map(lambda x: tmpPRates[x], tmpPRates.keys())
+            #    print map(lambda x: tmpRRates[x], tmpPRates.keys())
+            #    print map(lambda x: tmpTRates[x], tmpPRates.keys())
+            #    print map(lambda x: tmpPosDifRates[x], tmpPRates.keys())
+            #    print map(lambda x: tmpRecommendedRates[x], tmpPRates.keys())
+            
         
         tmp = RandomKeyByRates(tmpRecommendedRates)
         self.Cells[cell] = tmp
         self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(tmp).GetStrAttr("src"))
+        
+        #print tmp
         
     #--------------------------
     # Удаление токенов с поля

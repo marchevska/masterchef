@@ -45,12 +45,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "meat"      rate = "8" }
+        Ingredient{ type = "meat"      rate = "80" }
         Ingredient{ type = "milk"      rate = "0" }
         Ingredient{ type = "pasta"     rate = "0" }
-        Ingredient{ type = "pineapple" rate = "5" }
+        Ingredient{ type = "pineapple" rate = "50" }
         Ingredient{ type = "pumpkin"   rate = "0" }
-        Ingredient{ type = "tomato"    rate = "5" }
+        Ingredient{ type = "tomato"    rate = "50" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
@@ -74,12 +74,12 @@ Level{
     //layout of the game field
     Layout{
         theme = "American" 
-        CustomerStation{ type = "" x = "150" y = "330" occupied = "yes" }
-        CustomerStation{ type = "" x = "150" y = "530" occupied = "no" }
+        CustomerStation{ type = "" x = "150" y = "300" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "520" occupied = "no" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "3" Delay = "1200" DropIn = "700" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         //Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
-        TrashCan{ type = "" size = "100" x = "350" y = "530" }
+        //TrashCan{ type = "" size = "100" x = "350" y = "530" }
         //Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
         //Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
     }

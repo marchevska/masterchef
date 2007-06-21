@@ -26,14 +26,14 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Tortilla Soup"             rate = "0" }
+        Recipe{ type = "Tortilla Soup"             rate = "1" }
         Recipe{ type = "Guacamole"                 rate = "0" }
-        Recipe{ type = "Cheese Nachos"             rate = "1" }
-        Recipe{ type = "Chiles Renellos"           rate = "3" }
-        Recipe{ type = "Avocado Stuffed Tacos"     rate = "2" }
+        Recipe{ type = "Cheese Nachos"             rate = "3" }
+        Recipe{ type = "Chiles Renellos"           rate = "2" }
+        Recipe{ type = "Avocado Stuffed Tacos"     rate = "0" }
         Recipe{ type = "Burrito"                   rate = "0" }
-        Recipe{ type = "Chili con Carne"           rate = "0" }
-        Recipe{ type = "Quesadilla"                rate = "4" }
+        Recipe{ type = "Chili con Carne"           rate = "4" }
+        Recipe{ type = "Quesadilla"                rate = "0" }
         Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "0" }
         Recipe{ type = "Avocado Salsa"             rate = "0" }
         Recipe{ type = "Fajitas"                   rate = "0" }
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"         rate = "28" }
-        Ingredient{ type = "chili-pepper" rate = "34" }
-        Ingredient{ type = "avocado"      rate = "40" }
-        Ingredient{ type = "cheese"       rate = "39" }
-        Ingredient{ type = "tortilla"     rate = "65" }
-        Ingredient{ type = "tomato"       rate = "0" }
+        Ingredient{ type = "pork"         rate = "54" }
+        Ingredient{ type = "chili-pepper" rate = "58" }
+        Ingredient{ type = "avocado"      rate = "0" }
+        Ingredient{ type = "cheese"       rate = "33" }
+        Ingredient{ type = "tortilla"     rate = "41" }
+        Ingredient{ type = "tomato"       rate = "20" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

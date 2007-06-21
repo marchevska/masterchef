@@ -27,16 +27,16 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Chicken Shrimp Soup" rate = "0" }
-        Recipe{ type = "Spicy Shrimps"       rate = "0" }
+        Recipe{ type = "Spicy Shrimps"       rate = "1" }
         Recipe{ type = "Hulihuli Chicken"    rate = "0" }
-        Recipe{ type = "Mango Mui"           rate = "4" }
-        Recipe{ type = "Wonton"              rate = "3" }
-        Recipe{ type = "Shrimp Canton"       rate = "3" }
-        Recipe{ type = "Lime Chicken"        rate = "3" }
-        Recipe{ type = "Mango Salsa"         rate = "0" }
-        Recipe{ type = "Chicken Laulau"      rate = "2" }
-        Recipe{ type = "Shrimp Mango Salad"  rate = "2" }
-        Recipe{ type = "Pipikaula"           rate = "0" }
+        Recipe{ type = "Mango Mui"           rate = "2" }
+        Recipe{ type = "Wonton"              rate = "0" }
+        Recipe{ type = "Shrimp Canton"       rate = "2" }
+        Recipe{ type = "Lime Chicken"        rate = "0" }
+        Recipe{ type = "Mango Salsa"         rate = "1" }
+        Recipe{ type = "Chicken Laulau"      rate = "1" }
+        Recipe{ type = "Shrimp Mango Salad"  rate = "0" }
+        Recipe{ type = "Pipikaula"           rate = "1" }
         Recipe{ type = "Mango Chicken"       rate = "2" }
     }
     
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "shrimp"       rate = "71" }
-        Ingredient{ type = "meat"         rate = "80" }
-        Ingredient{ type = "chili-pepper" rate = "40" }
-        Ingredient{ type = "lime"         rate = "69" }
-        Ingredient{ type = "mango"        rate = "87" }
-        Ingredient{ type = "shoyu"        rate = "58" }
+        Ingredient{ type = "shrimp"       rate = "30" }
+        Ingredient{ type = "meat"         rate = "31" }
+        Ingredient{ type = "chili-pepper" rate = "31" }
+        Ingredient{ type = "lime"         rate = "30" }
+        Ingredient{ type = "mango"        rate = "56" }
+        Ingredient{ type = "shoyu"        rate = "34" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

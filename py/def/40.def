@@ -26,17 +26,17 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Nigiri Zushi"        rate = "0" }
-        Recipe{ type = "Sashimi"             rate = "2" }
-        Recipe{ type = "Seafood Tempura"     rate = "0" }
-        Recipe{ type = "TofuDengaku"         rate = "3" }
-        Recipe{ type = "Tempura"             rate = "4" }
+        Recipe{ type = "Nigiri Zushi"        rate = "2" }
+        Recipe{ type = "Sashimi"             rate = "0" }
+        Recipe{ type = "Seafood Tempura"     rate = "2" }
+        Recipe{ type = "TofuDengaku"         rate = "2" }
+        Recipe{ type = "Tempura"             rate = "1" }
         Recipe{ type = "Koyungohan"          rate = "0" }
         Recipe{ type = "Ochazuke"            rate = "0" }
         Recipe{ type = "Tempura Shrimp Roll" rate = "0" }
-        Recipe{ type = "Onigiri"             rate = "2" }
+        Recipe{ type = "Onigiri"             rate = "0" }
         Recipe{ type = "Osechi"              rate = "2" }
-        Recipe{ type = "Yosenabe"            rate = "1" }
+        Recipe{ type = "Yosenabe"            rate = "2" }
         Recipe{ type = "Temaki Zushi"        rate = "2" }
     }
     
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "59" }
-        Ingredient{ type = "shrimp"   rate = "50" }
-        Ingredient{ type = "rice"     rate = "44" }
-        Ingredient{ type = "tofu"     rate = "54" }
-        Ingredient{ type = "veggymix" rate = "57" }
-        Ingredient{ type = "seaweed"  rate = "56" }
+        Ingredient{ type = "salmon"   rate = "44" }
+        Ingredient{ type = "shrimp"   rate = "48" }
+        Ingredient{ type = "rice"     rate = "48" }
+        Ingredient{ type = "tofu"     rate = "38" }
+        Ingredient{ type = "veggymix" rate = "46" }
+        Ingredient{ type = "seaweed"  rate = "36" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

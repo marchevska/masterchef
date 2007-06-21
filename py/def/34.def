@@ -26,18 +26,18 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Nigiri Zushi"        rate = "0" }
+        Recipe{ type = "Nigiri Zushi"        rate = "1" }
         Recipe{ type = "Sashimi"             rate = "0" }
-        Recipe{ type = "Seafood Tempura"     rate = "0" }
-        Recipe{ type = "TofuDengaku"         rate = "5" }
+        Recipe{ type = "Seafood Tempura"     rate = "3" }
+        Recipe{ type = "TofuDengaku"         rate = "0" }
         Recipe{ type = "Tempura"             rate = "0" }
-        Recipe{ type = "Koyungohan"          rate = "0" }
+        Recipe{ type = "Koyungohan"          rate = "3" }
         Recipe{ type = "Ochazuke"            rate = "0" }
-        Recipe{ type = "Tempura Shrimp Roll" rate = "3" }
-        Recipe{ type = "Onigiri"             rate = "2" }
+        Recipe{ type = "Tempura Shrimp Roll" rate = "0" }
+        Recipe{ type = "Onigiri"             rate = "0" }
         Recipe{ type = "Osechi"              rate = "0" }
-        Recipe{ type = "Yosenabe"            rate = "0" }
-        Recipe{ type = "Temaki Zushi"        rate = "1" }
+        Recipe{ type = "Yosenabe"            rate = "1" }
+        Recipe{ type = "Temaki Zushi"        rate = "0" }
     }
     
     //ingredient appearance rates
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "0" }
-        Ingredient{ type = "shrimp"   rate = "21" }
-        Ingredient{ type = "rice"     rate = "43" }
-        Ingredient{ type = "tofu"     rate = "62" }
-        Ingredient{ type = "veggymix" rate = "6" }
-        Ingredient{ type = "seaweed"  rate = "68" }
+        Ingredient{ type = "salmon"   rate = "31" }
+        Ingredient{ type = "shrimp"   rate = "30" }
+        Ingredient{ type = "rice"     rate = "33" }
+        Ingredient{ type = "tofu"     rate = "23" }
+        Ingredient{ type = "veggymix" rate = "28" }
+        Ingredient{ type = "seaweed"  rate = "0" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

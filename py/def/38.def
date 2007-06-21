@@ -26,14 +26,14 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Nigiri Zushi"        rate = "3" }
-        Recipe{ type = "Sashimi"             rate = "0" }
-        Recipe{ type = "Seafood Tempura"     rate = "2" }
+        Recipe{ type = "Nigiri Zushi"        rate = "0" }
+        Recipe{ type = "Sashimi"             rate = "3" }
+        Recipe{ type = "Seafood Tempura"     rate = "1" }
         Recipe{ type = "TofuDengaku"         rate = "0" }
-        Recipe{ type = "Tempura"             rate = "3" }
+        Recipe{ type = "Tempura"             rate = "1" }
         Recipe{ type = "Koyungohan"          rate = "0" }
-        Recipe{ type = "Ochazuke"            rate = "2" }
-        Recipe{ type = "Tempura Shrimp Roll" rate = "3" }
+        Recipe{ type = "Ochazuke"            rate = "1" }
+        Recipe{ type = "Tempura Shrimp Roll" rate = "2" }
         Recipe{ type = "Onigiri"             rate = "0" }
         Recipe{ type = "Osechi"              rate = "2" }
         Recipe{ type = "Yosenabe"            rate = "0" }
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "64" }
-        Ingredient{ type = "shrimp"   rate = "73" }
-        Ingredient{ type = "rice"     rate = "76" }
+        Ingredient{ type = "salmon"   rate = "50" }
+        Ingredient{ type = "shrimp"   rate = "42" }
+        Ingredient{ type = "rice"     rate = "35" }
         Ingredient{ type = "tofu"     rate = "0" }
-        Ingredient{ type = "veggymix" rate = "32" }
-        Ingredient{ type = "seaweed"  rate = "40" }
+        Ingredient{ type = "veggymix" rate = "34" }
+        Ingredient{ type = "seaweed"  rate = "29" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

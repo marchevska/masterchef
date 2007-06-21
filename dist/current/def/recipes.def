@@ -1,7 +1,7 @@
 MasterChef {
     Recipe(Squash with Tomato Sauce) {
         setting = "American"
-        requires = "{ 'pumpkin':9, 'tomato':6,  }"
+        requires = "{ 'pumpkin':8, 'tomato':5,  }"
         src = "recipe.squash-tomato-sauce"
         emptySrc = "recipe.squash-tomato-sauce.empty"
         price = "50"
@@ -11,7 +11,7 @@ MasterChef {
 
     Recipe(Chicken Squash Stir-Fry) {
         setting = "American"
-        requires = "{ 'meat':6, 'pumpkin':8,  }"
+        requires = "{ 'meat':5, 'pumpkin':8,  }"
         src = "recipe.chicken-squash-stir-fry"
         emptySrc = "recipe.chicken-squash-stir-fry.empty"
         price = "50"
@@ -21,7 +21,7 @@ MasterChef {
 
     Recipe(Pasta with Tomato Sauce) {
         setting = "American"
-        requires = "{ 'pasta':8, 'tomato':8,  }"
+        requires = "{ 'pasta':7, 'tomato':6,  }"
         src = "recipe.pasta-with-tomato-sauce"
         emptySrc = "recipe.pasta-with-tomato-sauce.empty"
         price = "50"
@@ -31,7 +31,7 @@ MasterChef {
 
     Recipe(Pineapple Tomato Salad) {
         setting = "American"
-        requires = "{ 'tomato':6, 'pineapple':8,  }"
+        requires = "{ 'tomato':6, 'pineapple':7,  }"
         src = "recipe.pineapple-tomato-salad"
         emptySrc = "recipe.pineapple-tomato-salad.empty"
         price = "50"
@@ -41,7 +41,7 @@ MasterChef {
 
     Recipe(Caribbean Spice Chicken) {
         setting = "American"
-        requires = "{ 'meat':8, 'pineapple':6,  }"
+        requires = "{ 'meat':8, 'pineapple':5,  }"
         src = "recipe.caribbean-spice-chicken"
         emptySrc = "recipe.caribbean-spice-chicken.empty"
         price = "50"
@@ -51,7 +51,7 @@ MasterChef {
 
     Recipe(Crispy Baked Chicken) {
         setting = "American"
-        requires = "{ 'meat':8, 'milk':6,  }"
+        requires = "{ 'meat':8, 'milk':5,  }"
         src = "recipe.crispy-baked-chicken"
         emptySrc = "recipe.crispy-baked-chicken.empty"
         price = "50"
@@ -61,7 +61,7 @@ MasterChef {
 
     Recipe(Pineapple Lasagna) {
         setting = "American"
-        requires = "{ 'pasta':8, 'milk':8, 'pineapple':6,  }"
+        requires = "{ 'pasta':6, 'milk':6, 'pineapple':6,  }"
         src = "recipe.pineapple-lasagna"
         emptySrc = "recipe.pineapple-lasagna.empty"
         price = "75"
@@ -71,7 +71,7 @@ MasterChef {
 
     Recipe(Hubbard Squash Soup Du Jour) {
         setting = "American"
-        requires = "{ 'meat':4, 'pumpkin':9, 'milk':9,  }"
+        requires = "{ 'meat':4, 'pumpkin':8, 'milk':6,  }"
         src = "recipe.hubbard-squash-soup"
         emptySrc = "recipe.hubbard-squash-soup.empty"
         price = "75"
@@ -81,7 +81,7 @@ MasterChef {
 
     Recipe(Grilled Meat) {
         setting = "American"
-        requires = "{ 'meat':9, 'tomato':6, 'pineapple':6,  }"
+        requires = "{ 'meat':8, 'tomato':5, 'pineapple':5,  }"
         src = "recipe.grilled-meat"
         emptySrc = "recipe.grilled-meat.empty"
         price = "75"
@@ -91,7 +91,7 @@ MasterChef {
 
     Recipe(Spaghetti with Turkey Meat Sauce) {
         setting = "American"
-        requires = "{ 'meat':6, 'pasta':9, 'tomato':6,  }"
+        requires = "{ 'meat':5, 'pasta':8, 'tomato':5,  }"
         src = "recipe.spaghetti-with-turkey-meat-sauce"
         emptySrc = "recipe.spaghetti-with-turkey-meat-sauce.empty"
         price = "75"
@@ -101,7 +101,7 @@ MasterChef {
 
     Recipe(Chicken Pasta Casseroule) {
         setting = "American"
-        requires = "{ 'meat':6, 'pasta':8, 'pumpkin':6, 'tomato':6,  }"
+        requires = "{ 'meat':5, 'pasta':8, 'pumpkin':4, 'tomato':5,  }"
         src = "recipe.chicken-pasta-casseroule"
         emptySrc = "recipe.chicken-pasta-casseroule.empty"
         price = "100"
@@ -111,7 +111,7 @@ MasterChef {
 
     Recipe(Chicken Pineapple Pasta Pockets) {
         setting = "American"
-        requires = "{ 'meat':6, 'pasta':9, 'milk':6, 'pineapple':6,  }"
+        requires = "{ 'meat':4, 'pasta':8, 'milk':6, 'pineapple':4,  }"
         src = "recipe.chicken-pineapple-pasta-pockets"
         emptySrc = "recipe.chicken-pineapple-pasta-pockets.empty"
         price = "100"
@@ -141,7 +141,7 @@ MasterChef {
 
     Recipe(Cheese Nachos) {
         setting = "Mexican"
-        requires = "{ 'tortilla':8, 'cheese':8,  }"
+        requires = "{ 'tortilla':7, 'cheese':7,  }"
         src = "recipe.cheese-nachos"
         emptySrc = "recipe.cheese-nachos.empty"
         price = "50"
@@ -151,7 +151,7 @@ MasterChef {
 
     Recipe(Chiles Renellos) {
         setting = "Mexican"
-        requires = "{ 'pork':6, 'chili-pepper':9,  }"
+        requires = "{ 'pork':6, 'chili-pepper':8,  }"
         src = "recipe.chilies-renellos"
         emptySrc = "recipe.chilies-renellos.empty"
         price = "50"
@@ -161,7 +161,7 @@ MasterChef {
 
     Recipe(Avocado Stuffed Tacos) {
         setting = "Mexican"
-        requires = "{ 'tortilla':8, 'avocado':8,  }"
+        requires = "{ 'tortilla':6, 'avocado':8,  }"
         src = "recipe.avocado-stuffed-tacos"
         emptySrc = "recipe.avocado-stuffed-tacos.empty"
         price = "50"
@@ -171,7 +171,7 @@ MasterChef {
 
     Recipe(Burrito) {
         setting = "Mexican"
-        requires = "{ 'pork':6, 'tomato':6, 'tortilla':8,  }"
+        requires = "{ 'pork':6, 'tomato':6, 'tortilla':7,  }"
         src = "recipe.burrito"
         emptySrc = "recipe.burrito.empty"
         price = "75"
@@ -181,7 +181,7 @@ MasterChef {
 
     Recipe(Chili con Carne) {
         setting = "Mexican"
-        requires = "{ 'pork':6, 'chili-pepper':8, 'tomato':4,  }"
+        requires = "{ 'pork':6, 'chili-pepper':8, 'tomato':5,  }"
         src = "recipe.chili-con-carne"
         emptySrc = "recipe.chili-con-carne.empty"
         price = "75"
@@ -191,7 +191,7 @@ MasterChef {
 
     Recipe(Quesadilla) {
         setting = "Mexican"
-        requires = "{ 'tortilla':9, 'avocado':6, 'cheese':4,  }"
+        requires = "{ 'tortilla':8, 'avocado':6, 'cheese':5,  }"
         src = "recipe.quesadilla"
         emptySrc = "recipe.quesadilla.empty"
         price = "75"
@@ -201,7 +201,7 @@ MasterChef {
 
     Recipe(Tex-Mex Turkey Casseruole) {
         setting = "Mexican"
-        requires = "{ 'pork':9, 'chili-pepper':7, 'cheese':7,  }"
+        requires = "{ 'pork':6, 'chili-pepper':7, 'cheese':6,  }"
         src = "recipe.tex-mex-turkey-casseruole"
         emptySrc = "recipe.tex-mex-turkey-casseruole.empty"
         price = "75"
@@ -211,7 +211,7 @@ MasterChef {
 
     Recipe(Avocado Salsa) {
         setting = "Mexican"
-        requires = "{ 'chili-pepper':8, 'tomato':6, 'avocado':8,  }"
+        requires = "{ 'chili-pepper':7, 'tomato':5, 'avocado':7,  }"
         src = "recipe.avocado-salsa"
         emptySrc = "recipe.avocado-salsa.empty"
         price = "75"
@@ -221,7 +221,7 @@ MasterChef {
 
     Recipe(Football Fan Nachos) {
         setting = "Mexican"
-        requires = "{ 'pork':7, 'chili-pepper':7, 'tortilla':9, 'cheese':7,  }"
+        requires = "{ 'pork':5, 'chili-pepper':5, 'tortilla':7, 'cheese':6,  }"
         src = "recipe.football-fan-nachos"
         emptySrc = "recipe.football-fan-nachos.empty"
         price = "100"
@@ -231,7 +231,7 @@ MasterChef {
 
     Recipe(Fajitas) {
         setting = "Mexican"
-        requires = "{ 'pork':7, 'tomato':7, 'tortilla':9, 'avocado':7,  }"
+        requires = "{ 'pork':6, 'tomato':5, 'tortilla':6, 'avocado':6,  }"
         src = "recipe.fajitas"
         emptySrc = "recipe.fajitas.empty"
         price = "100"
@@ -241,7 +241,7 @@ MasterChef {
 
     Recipe(Cabbage Stew) {
         setting = "Russian"
-        requires = "{ 'pork':6, 'cabbage':9,  }"
+        requires = "{ 'pork':6, 'cabbage':8,  }"
         src = "recipe.cabbage-stew"
         emptySrc = "recipe.cabbage-stew.empty"
         price = "50"
@@ -261,7 +261,7 @@ MasterChef {
 
     Recipe(Golubtsy) {
         setting = "Russian"
-        requires = "{ 'mushroom':8, 'cabbage':8,  }"
+        requires = "{ 'mushroom':7, 'cabbage':7,  }"
         src = "recipe.golubtsy"
         emptySrc = "recipe.golubtsy.empty"
         price = "50"
@@ -271,7 +271,7 @@ MasterChef {
 
     Recipe(Fried Mushrooms) {
         setting = "Russian"
-        requires = "{ 'mushroom':9, 'onion':6,  }"
+        requires = "{ 'mushroom':9, 'onion':5,  }"
         src = "recipe.fried-mushrooms"
         emptySrc = "recipe.fried-mushrooms.empty"
         price = "50"
@@ -281,7 +281,7 @@ MasterChef {
 
     Recipe(Vareniki) {
         setting = "Russian"
-        requires = "{ 'potato':9, 'flour':6,  }"
+        requires = "{ 'potato':8, 'flour':6,  }"
         src = "recipe.vareniki"
         emptySrc = "recipe.vareniki.empty"
         price = "50"
@@ -291,7 +291,7 @@ MasterChef {
 
     Recipe(Baked Meat) {
         setting = "Russian"
-        requires = "{ 'pork':7, 'mushroom':7, 'potato':7,  }"
+        requires = "{ 'pork':7, 'mushroom':6, 'potato':7,  }"
         src = "recipe.baked-meat"
         emptySrc = "recipe.baked-meat.empty"
         price = "75"
@@ -311,7 +311,7 @@ MasterChef {
 
     Recipe(Mushroom Ragout) {
         setting = "Russian"
-        requires = "{ 'mushroom':8, 'potato':8, 'onion':6,  }"
+        requires = "{ 'mushroom':8, 'potato':7, 'onion':5,  }"
         src = "recipe.mushroom-ragout"
         emptySrc = "recipe.mushroom-ragout.empty"
         price = "75"
@@ -321,7 +321,7 @@ MasterChef {
 
     Recipe(Cabbage Stuffed Pancakes) {
         setting = "Russian"
-        requires = "{ 'cabbage':8, 'onion':6, 'flour':8,  }"
+        requires = "{ 'cabbage':8, 'onion':4, 'flour':8,  }"
         src = "recipe.cabbage-stuffed-pancakes"
         emptySrc = "recipe.cabbage-stuffed-pancakes.empty"
         price = "75"
@@ -331,7 +331,7 @@ MasterChef {
 
     Recipe(Kulebyaka) {
         setting = "Russian"
-        requires = "{ 'pork':6, 'mushroom':6, 'potato':6, 'flour':9,  }"
+        requires = "{ 'pork':6, 'mushroom':6, 'potato':4, 'flour':8,  }"
         src = "recipe.kulebyaka"
         emptySrc = "recipe.kulebyaka.empty"
         price = "100"
@@ -341,7 +341,7 @@ MasterChef {
 
     Recipe(Shchi) {
         setting = "Russian"
-        requires = "{ 'pork':8, 'cabbage':6, 'potato':8, 'onion':6,  }"
+        requires = "{ 'pork':6, 'cabbage':8, 'potato':5, 'onion':5,  }"
         src = "recipe.shchi"
         emptySrc = "recipe.shchi.empty"
         price = "100"
@@ -351,7 +351,7 @@ MasterChef {
 
     Recipe(Mushroom Soup) {
         setting = "Russian"
-        requires = "{ 'mushroom':8, 'cabbage':8, 'potato':6, 'onion':6,  }"
+        requires = "{ 'mushroom':7, 'cabbage':6, 'potato':6, 'onion':5,  }"
         src = "recipe.mushroom-soup"
         emptySrc = "recipe.mushroom-soup.empty"
         price = "100"
@@ -371,7 +371,7 @@ MasterChef {
 
     Recipe(Sashimi) {
         setting = "Japanese"
-        requires = "{ 'salmon':8, 'veggies':8,  }"
+        requires = "{ 'salmon':8, 'veggies':7,  }"
         src = "recipe.sashimi"
         emptySrc = "recipe.sashimi.empty"
         price = "50"
@@ -381,7 +381,7 @@ MasterChef {
 
     Recipe(Seafood Tempura) {
         setting = "Japanese"
-        requires = "{ 'shrimp':8, 'veggies':6,  }"
+        requires = "{ 'shrimp':8, 'veggies':7,  }"
         src = "recipe.seafood-tempura"
         emptySrc = "recipe.seafood-tempura.empty"
         price = "50"
@@ -401,7 +401,7 @@ MasterChef {
 
     Recipe(Tempura) {
         setting = "Japanese"
-        requires = "{ 'salmon':6, 'shrimp':9, 'veggies':6,  }"
+        requires = "{ 'salmon':6, 'shrimp':8, 'veggies':6,  }"
         src = "recipe.tempura"
         emptySrc = "recipe.tempura.empty"
         price = "75"
@@ -411,7 +411,7 @@ MasterChef {
 
     Recipe(Koyungohan) {
         setting = "Japanese"
-        requires = "{ 'salmon':6, 'rice':9, 'tofu':6,  }"
+        requires = "{ 'salmon':6, 'rice':8, 'tofu':6,  }"
         src = "recipe.koyungohan"
         emptySrc = "recipe.koyungohan.empty"
         price = "75"
@@ -421,7 +421,7 @@ MasterChef {
 
     Recipe(Ochazuke) {
         setting = "Japanese"
-        requires = "{ 'salmon':8, 'rice':6, 'seaweed':6,  }"
+        requires = "{ 'salmon':8, 'rice':7, 'seaweed':5,  }"
         src = "recipe.ochazuke"
         emptySrc = "recipe.ochazuke.empty"
         price = "75"
@@ -431,7 +431,7 @@ MasterChef {
 
     Recipe(Tempura Shrimp Roll) {
         setting = "Japanese"
-        requires = "{ 'shrimp':6, 'rice':9, 'seaweed':6,  }"
+        requires = "{ 'shrimp':7, 'rice':7, 'seaweed':6,  }"
         src = "recipe.tempura-shrimp-roll"
         emptySrc = "recipe.tempura-shrimp-roll.empty"
         price = "75"
@@ -441,7 +441,7 @@ MasterChef {
 
     Recipe(Onigiri) {
         setting = "Japanese"
-        requires = "{ 'rice':7, 'tofu':7, 'seaweed':7,  }"
+        requires = "{ 'rice':7, 'tofu':6, 'seaweed':7,  }"
         src = "recipe.onigiri"
         emptySrc = "recipe.onigiri.empty"
         price = "75"
@@ -451,7 +451,7 @@ MasterChef {
 
     Recipe(Osechi) {
         setting = "Japanese"
-        requires = "{ 'salmon':7, 'shrimp':7, 'rice':7, 'seaweed':6,  }"
+        requires = "{ 'salmon':6, 'shrimp':6, 'rice':7, 'seaweed':6,  }"
         src = "recipe.osechi"
         emptySrc = "recipe.osechi.empty"
         price = "100"
@@ -461,7 +461,7 @@ MasterChef {
 
     Recipe(Yosenabe) {
         setting = "Japanese"
-        requires = "{ 'salmon':7, 'shrimp':7, 'tofu':7, 'veggies':7,  }"
+        requires = "{ 'salmon':7, 'shrimp':6, 'tofu':5, 'veggies':7,  }"
         src = "recipe.yosenabe"
         emptySrc = "recipe.yosenabe.empty"
         price = "100"
@@ -471,7 +471,7 @@ MasterChef {
 
     Recipe(Temaki Zushi) {
         setting = "Japanese"
-        requires = "{ 'rice':8, 'tofu':6, 'veggies':6, 'seaweed':6,  }"
+        requires = "{ 'rice':8, 'tofu':5, 'veggies':6, 'seaweed':6,  }"
         src = "recipe.temakizushi"
         emptySrc = "recipe.temakizushi.empty"
         price = "100"
@@ -481,7 +481,7 @@ MasterChef {
 
     Recipe(Chicken Shrimp Soup) {
         setting = "Hawaiian"
-        requires = "{ 'shrimp':8, 'meat':8,  }"
+        requires = "{ 'shrimp':7, 'meat':8,  }"
         src = "recipe.chicken-shrimp-soup"
         emptySrc = "recipe.chicken-shrimp-soup.empty"
         price = "50"
@@ -491,7 +491,7 @@ MasterChef {
 
     Recipe(Spicy Shrimps) {
         setting = "Hawaiian"
-        requires = "{ 'shrimp':8, 'chili-pepper':6,  }"
+        requires = "{ 'shrimp':8, 'chili-pepper':7,  }"
         src = "recipe.spicy-shrimps"
         emptySrc = "recipe.spicy-shrimps.empty"
         price = "50"
@@ -501,7 +501,7 @@ MasterChef {
 
     Recipe(Hulihuli Chicken) {
         setting = "Hawaiian"
-        requires = "{ 'meat':8, 'shoyu':6,  }"
+        requires = "{ 'meat':8, 'shoyu':7,  }"
         src = "recipe.hulihuli-chicken"
         emptySrc = "recipe.hulihuli-chicken.empty"
         price = "50"
@@ -521,7 +521,7 @@ MasterChef {
 
     Recipe(Wonton) {
         setting = "Hawaiian"
-        requires = "{ 'shrimp':6, 'meat':8, 'shoyu':6,  }"
+        requires = "{ 'shrimp':7, 'meat':8, 'shoyu':6,  }"
         src = "recipe.wonton"
         emptySrc = "recipe.wonton.empty"
         price = "75"
@@ -531,7 +531,7 @@ MasterChef {
 
     Recipe(Shrimp Canton) {
         setting = "Hawaiian"
-        requires = "{ 'shrimp':8, 'mango':8, 'shoyu':6,  }"
+        requires = "{ 'shrimp':8, 'mango':7, 'shoyu':6,  }"
         src = "recipe.shrimp-canton"
         emptySrc = "recipe.shrimp-canton.empty"
         price = "75"
@@ -541,7 +541,7 @@ MasterChef {
 
     Recipe(Lime Chicken) {
         setting = "Hawaiian"
-        requires = "{ 'meat':8, 'chili-pepper':6, 'lime':6,  }"
+        requires = "{ 'meat':8, 'chili-pepper':6, 'lime':7,  }"
         src = "recipe.lime-chicken"
         emptySrc = "recipe.lime-chicken.empty"
         price = "75"
@@ -551,7 +551,7 @@ MasterChef {
 
     Recipe(Mango Salsa) {
         setting = "Hawaiian"
-        requires = "{ 'chili-pepper':6, 'lime':6, 'mango':8,  }"
+        requires = "{ 'chili-pepper':7, 'lime':6, 'mango':8,  }"
         src = "recipe.mango-salsa"
         emptySrc = "recipe.mango-salsa.empty"
         price = "75"
@@ -561,7 +561,7 @@ MasterChef {
 
     Recipe(Chicken Laulau) {
         setting = "Hawaiian"
-        requires = "{ 'shrimp':8, 'meat':8, 'lime':6, 'shoyu':6,  }"
+        requires = "{ 'shrimp':6, 'meat':8, 'lime':6, 'shoyu':6,  }"
         src = "recipe.chicken-laulau"
         emptySrc = "recipe.chicken-laulau.empty"
         price = "100"
@@ -571,7 +571,7 @@ MasterChef {
 
     Recipe(Shrimp Mango Salad) {
         setting = "Hawaiian"
-        requires = "{ 'shrimp':7, 'chili-pepper':7, 'lime':7, 'mango':7,  }"
+        requires = "{ 'shrimp':7, 'chili-pepper':6, 'lime':6, 'mango':7,  }"
         src = "recipe.shrimp-mango-salad"
         emptySrc = "recipe.shrimp-mango-salad.empty"
         price = "100"
@@ -581,7 +581,7 @@ MasterChef {
 
     Recipe(Pipikaula) {
         setting = "Hawaiian"
-        requires = "{ 'meat':6, 'chili-pepper':8, 'lime':6, 'shoyu':6,  }"
+        requires = "{ 'meat':7, 'chili-pepper':7, 'lime':6, 'shoyu':6,  }"
         src = "recipe.pipikaula"
         emptySrc = "recipe.pipikaula.empty"
         price = "100"
@@ -591,7 +591,7 @@ MasterChef {
 
     Recipe(Mango Chicken) {
         setting = "Hawaiian"
-        requires = "{ 'meat':8, 'chili-pepper':6, 'mango':8, 'shoyu':6,  }"
+        requires = "{ 'meat':8, 'chili-pepper':5, 'mango':8, 'shoyu':5,  }"
         src = "recipe.mango-chicken"
         emptySrc = "recipe.mango-chicken.empty"
         price = "100"

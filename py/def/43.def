@@ -26,14 +26,14 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Chicken Shrimp Soup" rate = "2" }
-        Recipe{ type = "Spicy Shrimps"       rate = "0" }
+        Recipe{ type = "Chicken Shrimp Soup" rate = "0" }
+        Recipe{ type = "Spicy Shrimps"       rate = "3" }
         Recipe{ type = "Hulihuli Chicken"    rate = "0" }
         Recipe{ type = "Mango Mui"           rate = "0" }
         Recipe{ type = "Wonton"              rate = "0" }
-        Recipe{ type = "Shrimp Canton"       rate = "0" }
+        Recipe{ type = "Shrimp Canton"       rate = "1" }
         Recipe{ type = "Lime Chicken"        rate = "0" }
-        Recipe{ type = "Mango Salsa"         rate = "1" }
+        Recipe{ type = "Mango Salsa"         rate = "0" }
         Recipe{ type = "Chicken Laulau"      rate = "0" }
         Recipe{ type = "Shrimp Mango Salad"  rate = "1" }
         Recipe{ type = "Pipikaula"           rate = "0" }
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "shrimp"       rate = "21" }
-        Ingredient{ type = "meat"         rate = "16" }
-        Ingredient{ type = "chili-pepper" rate = "13" }
-        Ingredient{ type = "lime"         rate = "12" }
-        Ingredient{ type = "mango"        rate = "15" }
-        Ingredient{ type = "shoyu"        rate = "0" }
+        Ingredient{ type = "shrimp"       rate = "39" }
+        Ingredient{ type = "meat"         rate = "0" }
+        Ingredient{ type = "chili-pepper" rate = "27" }
+        Ingredient{ type = "lime"         rate = "6" }
+        Ingredient{ type = "mango"        rate = "14" }
+        Ingredient{ type = "shoyu"        rate = "6" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

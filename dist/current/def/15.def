@@ -26,41 +26,41 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Tortilla Soup"             rate = "0" }
-        Recipe{ type = "Guacamole"                 rate = "1" }
+        Recipe{ type = "Tortilla Soup"             rate = "2" }
+        Recipe{ type = "Guacamole"                 rate = "2" }
         Recipe{ type = "Cheese Nachos"             rate = "0" }
-        Recipe{ type = "Chiles Renellos"           rate = "1" }
+        Recipe{ type = "Chiles Renellos"           rate = "0" }
         Recipe{ type = "Avocado Stuffed Tacos"     rate = "0" }
-        Recipe{ type = "Burrito"                   rate = "0" }
-        Recipe{ type = "Chili con Carne"           rate = "1" }
+        Recipe{ type = "Burrito"                   rate = "2" }
+        Recipe{ type = "Chili con Carne"           rate = "0" }
         Recipe{ type = "Quesadilla"                rate = "0" }
-        Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "1" }
-        Recipe{ type = "Avocado Salsa"             rate = "1" }
-        Recipe{ type = "Fajitas"                   rate = "0" }
+        Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "0" }
+        Recipe{ type = "Avocado Salsa"             rate = "0" }
+        Recipe{ type = "Fajitas"                   rate = "1" }
         Recipe{ type = "Football Fan Nachos"       rate = "0" }
     }
     
     //ingredient appearance rates
     TokenRates {
-        Token{ type = "ingredient" rate = "95" }
-        Token{ type = "bonus" rate = "5" }
+        Token{ type = "ingredient" rate = "97" }
+        Token{ type = "bonus" rate = "3" }
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"         rate = "21" }
-        Ingredient{ type = "chili-pepper" rate = "32" }
-        Ingredient{ type = "avocado"      rate = "17" }
-        Ingredient{ type = "cheese"       rate = "7" }
-        Ingredient{ type = "tortilla"     rate = "0" }
-        Ingredient{ type = "tomato"       rate = "15" }
-        Ingredient{ type = "bonus.spoon"      rate = "1" }
-        Ingredient{ type = "bonus.gift"       rate = "1" }
-        Ingredient{ type = "bonus.sweet"      rate = "1" }
-        Ingredient{ type = "bonus.magicwand"  rate = "1" }
-        Ingredient{ type = "bonus.bomb"       rate = "1" }
-        Ingredient{ type = "bonus.removerow"  rate = "1" }
-        Ingredient{ type = "bonus.scrollback" rate = "1" }
-        Ingredient{ type = "bonus.hearts"     rate = "1" }
+        Ingredient{ type = "pork"         rate = "34" }
+        Ingredient{ type = "chili-pepper" rate = "0" }
+        Ingredient{ type = "avocado"      rate = "24" }
+        Ingredient{ type = "cheese"       rate = "0" }
+        Ingredient{ type = "tortilla"     rate = "32" }
+        Ingredient{ type = "tomato"       rate = "27" }
+        Ingredient{ type = "bonus.spoon"      rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.magicwand"  rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.removerow"  rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "1" }
     }
     

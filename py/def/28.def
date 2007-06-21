@@ -28,16 +28,16 @@ Level{
     RecipeRates{
         Recipe{ type = "Cabbage Stew"             rate = "0" }
         Recipe{ type = "Pelmeni"                  rate = "0" }
-        Recipe{ type = "Golubtsy"                 rate = "1" }
+        Recipe{ type = "Golubtsy"                 rate = "0" }
         Recipe{ type = "Fried Mushrooms"          rate = "3" }
         Recipe{ type = "Vareniki"                 rate = "1" }
         Recipe{ type = "Baked Meat"               rate = "0" }
-        Recipe{ type = "Cutlets"                  rate = "0" }
-        Recipe{ type = "Mushroom Ragout"          rate = "0" }
-        Recipe{ type = "Cabbage Stuffed Pancakes" rate = "1" }
-        Recipe{ type = "Kulebyaka"                rate = "0" }
+        Recipe{ type = "Cutlets"                  rate = "1" }
+        Recipe{ type = "Mushroom Ragout"          rate = "3" }
+        Recipe{ type = "Cabbage Stuffed Pancakes" rate = "0" }
+        Recipe{ type = "Kulebyaka"                rate = "2" }
         Recipe{ type = "Shchi"                    rate = "0" }
-        Recipe{ type = "Mushroom Soup"            rate = "3" }
+        Recipe{ type = "Mushroom Soup"            rate = "0" }
     }
     
     //ingredient appearance rates
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"     rate = "0" }
-        Ingredient{ type = "mushroom" rate = "55" }
-        Ingredient{ type = "cabbage"  rate = "33" }
-        Ingredient{ type = "potato"   rate = "26" }
-        Ingredient{ type = "onion"    rate = "34" }
-        Ingredient{ type = "flour"    rate = "14" }
+        Ingredient{ type = "pork"     rate = "20" }
+        Ingredient{ type = "mushroom" rate = "63" }
+        Ingredient{ type = "cabbage"  rate = "0" }
+        Ingredient{ type = "potato"   rate = "37" }
+        Ingredient{ type = "onion"    rate = "36" }
+        Ingredient{ type = "flour"    rate = "28" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }

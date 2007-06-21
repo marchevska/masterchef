@@ -1,0 +1,15 @@
+CookBook - размеры и координаты элементов
+
+Ќазвание и иконка ресторана
+cookbook.american.logo.png
+340х220   (230 х 130)
+
+стрелки навигации
+cookbook.arrow.prev.png
+48х48  (62 х 550)
+cookbook.arrow.foward.png
+48х48 (730 х 550)
+
+кнопка выхода в меню
+cookbook.menu.button.png
+136х100 (390 х 527)

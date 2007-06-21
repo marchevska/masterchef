@@ -34,6 +34,12 @@ type   = blend
 hotspot = 10,10
 }
 
+sprite cursor.box.replace {
+bitmap = img/gui/cursor.box.replace.png
+type   = blend
+hotspot = 10,10
+}
+
 sprite cursor.box.red {
 bitmap = img/gui/cursor.box.red.png
 type   = blend

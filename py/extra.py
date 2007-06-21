@@ -43,15 +43,18 @@ class Cursor(scraft.Dispatcher):
                 self.UpperSprite.ChangeKlassTo("cursor.hand.down")
             self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
         elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
-            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["red"]:
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Roll:
+                self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
+                self.DownSprite.ChangeKlassTo("cursor.box.replace")
+            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["red"]:
                 self.UpperSprite.ChangeKlassTo("cursor.box.red.up")
                 self.DownSprite.ChangeKlassTo("cursor.box.red")
             else:
                 self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
                 self.DownSprite.ChangeKlassTo("cursor.box.token")
         elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
-            self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
-            self.DownSprite.ChangeKlassTo("cursor.box.tool")
+            self.UpperSprite.ChangeKlassTo("cursor.box.tool")
+            self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
         
         return scraft.CommandStateRepeat
     

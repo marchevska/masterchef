@@ -440,16 +440,24 @@ class Field(Storage):
             tmpCellDeltas = [(-1,0), (0,-1)]
             tmpNeibIng = {}
             tmpM4 = {}
+            MaxGroup = 6
             for (dx,dy) in tmpCellDeltas:
                 if self.Cells.has_key((cell[0]+dx, cell[1]+dy)):
                     tmpNeibIng[dx,dy] = self.Cells[cell[0]+dx, cell[1]+dy]
                 else:
                     tmpNeibIng[dx,dy] = ""
+                if self.MatchMap.has_key((cell[0]+dx, cell[1]+dy)):
+                    tmpInd = self.MatchMap[cell[0]+dx, cell[1]+dy]
+                    tmpGroupSize = len(filter(lambda x: self.MatchMap[x] == tmpInd, self.MatchMap.keys()))
+                else:
+                    tmpGroupSize = 0
                 if tmpNeibIng[dx,dy] in tmpPRates.keys():
                     if tmpRTDifRates[tmpNeibIng[dx,dy]] > 0:
                         tmpM4[dx,dy] = 10
                     else:
                         tmpM4[dx,dy] = 5
+                    if tmpGroupSize >= MaxGroup:
+                        tmpM4[dx,dy] *= (-1)
                 else:
                     tmpM4[dx,dy] = 0
             
@@ -482,7 +490,7 @@ class Field(Storage):
                 
             for (dx,dy) in tmpCellDeltas:
                 if tmpNeibIng[dx,dy] in tmpPRates.keys():
-                    tmpRecommendedRates[tmpNeibIng[dx,dy]] += tmpM4[dx,dy]
+                    tmpRecommendedRates[tmpNeibIng[dx,dy]] = max(0, tmpRecommendedRates[tmpNeibIng[dx,dy]] + tmpM4[dx,dy])
             
             #if m2>0:
             #    print
@@ -499,7 +507,6 @@ class Field(Storage):
         tmp = RandomKeyByRates(tmpRecommendedRates)
         self.Cells[cell] = tmp
         self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(tmp).GetStrAttr("src"))
-        
         #print tmp
         
     #--------------------------
@@ -549,11 +556,12 @@ class Field(Storage):
     #--------------------------
     # Окрашивает клетки игрового поля по группам одного цвета
     #--------------------------
-    def _GenerateMatchMap(self):
+    def _GenerateMatchMap(self, inDropTime = False):
         self.MatchMap = {}
         #заглушка для коллапсоида - предотвращает клики по нижнему ряду
-        for i in range(self.Cols):
-            self.MatchMap[i, self.Rows] = -1
+        if not inDropTime:
+            for i in range(self.Cols):
+                self.MatchMap[i, self.Rows] = -1
             
         curKind = 0
         #найти и выделить все бонусы - пометить как отдельные бонусы
@@ -577,7 +585,7 @@ class Field(Storage):
             if not self.MatchMap.has_key((i,j)) or self.Cells[i,j] == Const_EmptyCell \
                 or len(tmpChains[self.MatchMap[i,j]]) < globalvars.GameSettings.GetIntAttr("tokensGroupMin"):
                 self.MatchMap[i,j] = -1
-                
+        
     #--------------------------
     # Рекурсивно окрашивает группу клеток одного цвета на игровом поле
     # (i,j) - координаты проверяемой клетки

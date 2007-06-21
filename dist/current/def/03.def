@@ -76,13 +76,13 @@ Level{
     //layout of the game field
     Layout{
         theme = "American" 
-        CustomerStation{ type = "" x = "100" y = "330" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "430" occupied = "yes" }
-        CustomerStation{ type = "" x = "100" y = "530" occupied = "no" }
+        CustomerStation{ type = "" x = "270" y = "300" occupied = "no" }
+        CustomerStation{ type = "" x = "90" y = "410" occupied = "yes" }
+        CustomerStation{ type = "" x = "270" y = "520" occupied = "no" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "3" Delay = "1200" DropIn = "700" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         //Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "350" TabletY = "206" }
-        TrashCan{ type = "" size = "100" x = "350" y = "530" }
+        //TrashCan{ type = "" size = "100" x = "350" y = "530" }
         //Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
         //Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
     }

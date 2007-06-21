@@ -76,16 +76,16 @@ Level{
     //layout of the game field
     Layout{
         theme = "Mexican" 
-        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
+        CustomerStation{ type = "" x = "270" y = "300" occupied = "no" }
+        CustomerStation{ type = "" x = "90" y = "410" occupied = "no" }
+        CustomerStation{ type = "" x = "270" y = "520" occupied = "no" }
         //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "4" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         //Counter{ type = "" x = "230" y = "145" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
-        TrashCan{ type = "" size = "100" x = "350" y = "530" }
-        Decoration { type = "theme.mexican.decoration.carpet-sun" x = "100" y = "200" }
-        Decoration { type = "theme.mexican.decoration.carpet-palm" x = "300" y = "200" }
+        //TrashCan{ type = "" size = "100" x = "350" y = "530" }
+        //Decoration { type = "theme.mexican.decoration.carpet-sun" x = "100" y = "200" }
+        //Decoration { type = "theme.mexican.decoration.carpet-palm" x = "300" y = "200" }
     }
     
 }

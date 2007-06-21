@@ -69,6 +69,7 @@ class CustomerStation(scraft.Dispatcher):
     # "type" - название рецепта 
     #--------------
     def PutOrder(self, type):
+        oE.Log("put order: "+type)
         self.HasOrder = True
         self.MealReady = False
         self.OrderType = type

@@ -50,6 +50,10 @@ Cmd_OptionsMute = 362
 Cmd_OptionsHints = 366
 Cmd_OptionsFullscreen = 363
 
+Cmd_CookbookNext = 370
+Cmd_CookbookPrev = 371
+Cmd_CookbookClose = 372
+
 Cmd_SliderDummy = 380
 Cmd_Slider = 381
 
@@ -101,6 +105,7 @@ PState_YesNoCancel = 13
 PState_Comics = 15
 PState_MapCareer = 16
 PState_MapEndless = 17
+PState_Cookbook = 22
 
 #длительность показа логотипов
 Time_DevLogoShow = 5000

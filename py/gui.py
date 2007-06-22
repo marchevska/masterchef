@@ -34,6 +34,8 @@ class Gui(scraft.Dispatcher):
         self.SelectedLevel = ""                 #название выбранного уровн€ (им€ файла)
         self.TotalPlayersOnScreen = 6
         self.TotalCareerLevels = 0
+        self.TotalRecipesOnPage = 12
+        self.CurrentCookbookPage = 0
         self.SavedOptions = []
            
         #--------------
@@ -126,6 +128,28 @@ class Gui(scraft.Dispatcher):
                 u"button-4st", [0, 1, 2], 
                 Layer_BtnText, 700, 570, 120, 40,
                 Str_HelpClose, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+        
+        #----------------
+        # кулинарна€ книга
+        #----------------
+        self.CookbookDialog = {"Static": {}, "Text": {}, "Buttons": {}}
+        self.CookbookDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBg)
+        self.CookbookDialog["Static"]["Logo"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt,
+                                                { "x": 50, "y": 35 })
+        self.CookbookDialog["Buttons"]["CookbookClose"] = PushButton("CookbookClose",
+                self, Cmd_CookbookClose, PState_Cookbook,
+                u"cookbook.close-button", [0, 1, 2, 3], 
+                Layer_PopupBtnTxt, 390, 527, 100, 130)
+        self.CookbookDialog["Buttons"]["CookbookNext"] = PushButton("CookbookNext",
+                self, Cmd_CookbookNext, PState_Cookbook,
+                u"cookbook.next-button", [0, 1, 2, 3], 
+                Layer_PopupBtnTxt, 700, 550, 100, 130)
+        self.CookbookDialog["Buttons"]["CookbookPrev"] = PushButton("CookbookPrev",
+                self, Cmd_CookbookPrev, PState_Cookbook,
+                u"cookbook.prev-button", [0, 1, 2, 3], 
+                Layer_PopupBtnTxt, 100, 550, 100, 130)
+        for i in range(self.TotalRecipesOnPage):
+            self.CookbookDialog["Static"]["Recipe"+str(i+1)] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt)
         
         #----------------
         # список игроков
@@ -474,6 +498,23 @@ class Gui(scraft.Dispatcher):
         self.YesNoCancelDialog["Buttons"]["No"].SetText(answerNo)
         self.YesNoCancelDialog["Buttons"]["Cancel"].SetText(answerCancel)
         
+    #----------------------------
+    #отображает заданную страницу кулинарной книги
+    #----------------------------
+    def _ShowCookBookPage(self, no):
+        tmpSetting = eval(globalvars.GameSettings.GetStrAttr("settings"))[no]
+        self.CookbookDialog["Static"]["Back"].ChangeKlassTo(globalvars.CookbookInfo.GetSubtag(tmpSetting).GetStrAttr("background"))
+        self.CookbookDialog["Static"]["Logo"].ChangeKlassTo(globalvars.CookbookInfo.GetSubtag(tmpSetting).GetStrAttr("logo"))
+        tmpRecipes = filter(lambda x: globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("setting") == tmpSetting,
+                                map(lambda x: x.GetContent(), globalvars.RecipeInfo.Tags()))
+        for i in range(self.TotalRecipesOnPage):
+            self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge"))
+            self.CookbookDialog["Static"]["Recipe"+str(i+1)].x = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeX")
+            self.CookbookDialog["Static"]["Recipe"+str(i+1)].y = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeY")
+        
+    #----------------------------
+    #переходит к заданной странице справки
+    #----------------------------
     def _ShowHelpPage(self, no):
         if no == 0:
             self.RulesDialog["Buttons"]["HelpPrev"].SetState(ButtonState_Inert)
@@ -530,9 +571,11 @@ class Gui(scraft.Dispatcher):
             self.PlayersDialog["Buttons"]["Ok"].SetState(ButtonState_Inert)
             self.PlayersDialog["Buttons"]["Cancel"].SetState(ButtonState_Inert)
         
+    #----------------------------
     #обновл€ет кнопки cancel и ok в диалоге ввода имени:
     #если ничего не введено и список игроков пуст, кнопка cancel должна быть инертной
     #евсли ничего не введено, кнопка ok должна быть инертной
+    #----------------------------
     def _UpdateEnterNameDialog(self):
         if len(globalvars.PlayerList.GetPlayerList())<=1 and self.EnterNameDialog["Text"]["Name"].text == "":
             self.EnterNameDialog["Buttons"]["Cancel"].SetState(ButtonState_Inert)
@@ -717,6 +760,9 @@ class Gui(scraft.Dispatcher):
                     self._SetState(PState_Options)
                 elif cmd == Cmd_Menu_Rules:
                     self._SetState(PState_Help)
+                elif cmd == Cmd_Menu_Cookbook:
+                    self._SetState(PState_Cookbook)
+                    self._ShowCookBookPage(self.CurrentCookbookPage)
                 elif cmd == Cmd_Menu_Hiscores:
                     self._SetState(PState_Hiscores)
                 elif cmd == Cmd_Menu_Quit:
@@ -741,6 +787,17 @@ class Gui(scraft.Dispatcher):
                                             u"level", u"no", str(cmd-Cmd_MapLevel)).GetContent()
                     self._UpdateMapWindow()
                 
+            #cookbook
+            elif globalvars.StateStack[-1] == PState_Cookbook:
+                if cmd == Cmd_HelpPrev:
+                    pass
+                    #self._ShowHelpPage(self.CurrentHelpPage-1)
+                elif cmd == Cmd_HelpNext:
+                    pass
+                    #self._ShowHelpPage(self.CurrentHelpPage+1)
+                elif cmd == Cmd_CookbookClose:
+                    self._ReleaseState(PState_Cookbook)    
+            
             #rules dialog
             elif globalvars.StateStack[-1] == PState_Help:
                 if cmd == Cmd_HelpPrev:
@@ -954,6 +1011,8 @@ class Gui(scraft.Dispatcher):
                         self.CallInternalMenu()
                 elif globalvars.StateStack[-1] == PState_Help:
                     self.SendCommand(Cmd_HelpClose)
+                elif globalvars.StateStack[-1] == PState_Cookbook:
+                    self.SendCommand(Cmd_CookbookClose)
                 elif globalvars.StateStack[-1] == PState_Options:
                     self._CloseOptionsDialog(False)
                 elif globalvars.StateStack[-1] == PState_YesNo:
@@ -1002,6 +1061,8 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.MapCareerDialog, False)
             self.MapCareerDialog["Animations"]["JaneEyes"].SetState("None")
             self.MapCareerDialog["Animations"]["JaneEyes"].Freeze(True)
+        elif state == PState_Cookbook:
+            self._ShowDialog(self.CookbookDialog, False)
         elif state == PState_Comics:
             self._ShowDialog(self.ComicScreen, False)
         elif state == PState_StartLevel:
@@ -1079,6 +1140,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_NextLevel)
             self._ReleaseState(PState_GameOver)
             self._ReleaseState(PState_MapCareer)
+            self._ReleaseState(PState_Cookbook)
             self._ReleaseState(PState_Comics)
             self.NextStateTime = Time_DevLogoShow
             
@@ -1100,6 +1162,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_NextLevel)
             self._ReleaseState(PState_GameOver)
             self._ReleaseState(PState_MapCareer)
+            self._ReleaseState(PState_Cookbook)
             if globalvars.GameConfig.GetStrAttr("Player") == "":
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = False
                 self.MainMenuDialog["Buttons"]["Players"].Show(False)
@@ -1147,6 +1210,10 @@ class Gui(scraft.Dispatcher):
         elif state == PState_EnterName:
             self._ShowDialog(self.EnterNameDialog, True)
             self._UpdateEnterNameDialog()
+            
+        elif state == PState_Cookbook:
+            #self._ReleaseState(PState_MainMenu)
+            self._ShowDialog(self.CookbookDialog, True)
             
         elif state == PState_Help:
             self._ReleaseState(PState_MainMenu)

@@ -159,6 +159,24 @@ type   = blend
 layout = 1x4
 }
 
+sprite cookbook.close-button {
+bitmap = img/gui/cookbook.close-button.png
+type   = blend
+layout = 1x4
+}
+
+sprite cookbook.next-button {
+bitmap = img/gui/cookbook.next-button.png
+type   = blend
+layout = 1x4
+}
+
+sprite cookbook.prev-button {
+bitmap = img/gui/cookbook.prev-button.png
+type   = blend
+layout = 1x4
+}
+
 
 #########
 # logos #

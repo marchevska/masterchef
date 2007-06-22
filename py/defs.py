@@ -71,6 +71,7 @@ def ReadGameSettings():
         globalvars.GameSettings = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("GameSettings")
         globalvars.CustomersInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Customers")
         globalvars.ThemesInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Themes")
+        globalvars.CookbookInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Cookbook")
         globalvars.PowerUpsInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("PowerUps")
         
     except:

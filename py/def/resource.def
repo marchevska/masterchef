@@ -228,6 +228,150 @@ MasterChef{
         
     }
 
+    //source classes for cookbook badges
+    CookbookKlasses{
+        //American
+        sprite(cookbook.squash-tomato-sauce) { bitmap = "img/cookbook/american/squash-tomato-sauce.png" type = "blend" }
+        sprite(cookbook.pasta-with-tomato-sauce) { bitmap = "img/cookbook/american/pasta-with-tomato-sauce.png" type = "blend" }
+        sprite(cookbook.pineapple-tomato-salad) { bitmap = "img/cookbook/american/pineapple-tomato-salad.png" type = "blend" }
+        sprite(cookbook.caribbean-spice-chicken) { bitmap = "img/cookbook/american/caribbean-spice-chicken.png" type = "blend" }
+        sprite(cookbook.crispy-baked-chicken) { bitmap = "img/cookbook/american/crispy-baked-chicken.png" type = "blend" }
+        sprite(cookbook.chicken-squash-stir-fry) { bitmap = "img/cookbook/american/chicken-squash-stir-fry.png" type = "blend" }
+        sprite(cookbook.grilled-meat) { bitmap = "img/cookbook/american/grilled-meat.png" type = "blend" }
+        sprite(cookbook.hubbard-squash-soup) { bitmap = "img/cookbook/american/hubbard-squash-soup.png" type = "blend" }
+        sprite(cookbook.pineapple-lasagna) { bitmap = "img/cookbook/american/pineapple-lasagna.png" type = "blend" }
+        sprite(cookbook.spaghetti-with-turkey-meat-sauce) { bitmap = "img/cookbook/american/spaghetti-with-turkey-meat-sauce.png" type = "blend" }
+        sprite(cookbook.chicken-pasta-casseroule) { bitmap = "img/cookbook/american/chicken-pasta-casseroule.png" type = "blend" }
+        sprite(cookbook.chicken-pineapple-pasta-pockets) { bitmap = "img/cookbook/american/chicken-pineapple-pasta-pockets.png" type = "blend" }
+        
+        //American - empty
+        sprite(cookbook.squash-tomato-sauce.empty) { bitmap = "img/cookbook/american/squash-tomato-sauce.empty.png" type = "blend" }
+        sprite(cookbook.pasta-with-tomato-sauce.empty) { bitmap = "img/cookbook/american/pasta-with-tomato-sauce.empty.png" type = "blend" }
+        sprite(cookbook.pineapple-tomato-salad.empty) { bitmap = "img/cookbook/american/pineapple-tomato-salad.empty.png" type = "blend" }
+        sprite(cookbook.caribbean-spice-chicken.empty) { bitmap = "img/cookbook/american/caribbean-spice-chicken.empty.png" type = "blend" }
+        sprite(cookbook.crispy-baked-chicken.empty) { bitmap = "img/cookbook/american/crispy-baked-chicken.empty.png" type = "blend" }
+        sprite(cookbook.chicken-squash-stir-fry.empty) { bitmap = "img/cookbook/american/chicken-squash-stir-fry.empty.png" type = "blend" }
+        sprite(cookbook.grilled-meat.empty) { bitmap = "img/cookbook/american/grilled-meat.empty.png" type = "blend" }
+        sprite(cookbook.hubbard-squash-soup.empty) { bitmap = "img/cookbook/american/hubbard-squash-soup.empty.png" type = "blend" }
+        sprite(cookbook.pineapple-lasagna.empty) { bitmap = "img/cookbook/american/pineapple-lasagna.empty.png" type = "blend" }
+        sprite(cookbook.spaghetti-with-turkey-meat-sauce.empty) { bitmap = "img/cookbook/american/spaghetti-with-turkey-meat-sauce.empty.png" type = "blend" }
+        sprite(cookbook.chicken-pasta-casseroule.empty) { bitmap = "img/cookbook/american/chicken-pasta-casseroule.empty.png" type = "blend" }
+        sprite(cookbook.chicken-pineapple-pasta-pockets.empty) { bitmap = "img/cookbook/american/chicken-pineapple-pasta-pockets.empty.png" type = "blend" }
+        
+        //Mexican
+        sprite(cookbook.tortilla-soup) { bitmap = "img/cookbook/mexican/tortilla-soup.png" type = "blend" }
+        sprite(cookbook.guacamole) { bitmap = "img/cookbook/mexican/guacamole.png" type = "blend" }
+        sprite(cookbook.cheese-nachos) { bitmap = "img/cookbook/mexican/cheese-nachos.png" type = "blend" }
+        sprite(cookbook.chilies-renellos) { bitmap = "img/cookbook/mexican/chilies-renellos.png" type = "blend" }
+        sprite(cookbook.avocado-stuffed-tacos) { bitmap = "img/cookbook/mexican/avocado-stuffed-tacos.png" type = "blend" }
+        sprite(cookbook.burrito) { bitmap = "img/cookbook/mexican/burrito.png" type = "blend" }
+        sprite(cookbook.chili-con-carne) { bitmap = "img/cookbook/mexican/chili-con-carne.png" type = "blend" }
+        sprite(cookbook.quesadilla) { bitmap = "img/cookbook/mexican/quesadilla.png" type = "blend" }
+        sprite(cookbook.tex-mex-turkey-casseruole) { bitmap = "img/cookbook/mexican/tex-mex-turkey-casseruole.png" type = "blend" }
+        sprite(cookbook.avocado-salsa) { bitmap = "img/cookbook/mexican/avocado-salsa.png" type = "blend" }
+        sprite(cookbook.fajitas) { bitmap = "img/cookbook/mexican/fajitas.png" type = "blend" }
+        sprite(cookbook.football-fan-nachos) { bitmap = "img/cookbook/mexican/football-fan-nachos.png" type = "blend" }
+        
+        //Mexican - empty
+        sprite(cookbook.tortilla-soup.empty) { bitmap = "img/cookbook/mexican/tortilla-soup.empty.png" type = "blend" }
+        sprite(cookbook.guacamole.empty) { bitmap = "img/cookbook/mexican/guacamole.empty.png" type = "blend" }
+        sprite(cookbook.cheese-nachos.empty) { bitmap = "img/cookbook/mexican/cheese-nachos.empty.png" type = "blend" }
+        sprite(cookbook.chilies-renellos.empty) { bitmap = "img/cookbook/mexican/chilies-renellos.empty.png" type = "blend" }
+        sprite(cookbook.avocado-stuffed-tacos.empty) { bitmap = "img/cookbook/mexican/avocado-stuffed-tacos.empty.png" type = "blend" }
+        sprite(cookbook.burrito.empty) { bitmap = "img/cookbook/mexican/burrito.empty.png" type = "blend" }
+        sprite(cookbook.chili-con-carne.empty) { bitmap = "img/cookbook/mexican/chili-con-carne.empty.png" type = "blend" }
+        sprite(cookbook.quesadilla.empty) { bitmap = "img/cookbook/mexican/quesadilla.empty.png" type = "blend" }
+        sprite(cookbook.tex-mex-turkey-casseruole.empty) { bitmap = "img/cookbook/mexican/tex-mex-turkey-casseruole.empty.png" type = "blend" }
+        sprite(cookbook.avocado-salsa.empty) { bitmap = "img/cookbook/mexican/avocado-salsa.empty.png" type = "blend" }
+        sprite(cookbook.fajitas.empty) { bitmap = "img/cookbook/mexican/fajitas.empty.png" type = "blend" }
+        sprite(cookbook.football-fan-nachos.empty) { bitmap = "img/cookbook/mexican/football-fan-nachos.empty.png" type = "blend" }
+        
+        //Japanese
+        sprite(cookbook.nigirizushi) { bitmap = "img/cookbook/japanese/nigirizushi.png" type = "blend" }
+        sprite(cookbook.sashimi) { bitmap = "img/cookbook/japanese/sashimi.png" type = "blend" }
+        sprite(cookbook.seafood-tempura) { bitmap = "img/cookbook/japanese/seafood-tempura.png" type = "blend" }
+        sprite(cookbook.tofudengaku) { bitmap = "img/cookbook/japanese/tofudengaku.png" type = "blend" }
+        sprite(cookbook.tempura) { bitmap = "img/cookbook/japanese/tempura.png" type = "blend" }
+        sprite(cookbook.koyungohan) { bitmap = "img/cookbook/japanese/koyungohan.png" type = "blend" }
+        sprite(cookbook.ochazuke) { bitmap = "img/cookbook/japanese/ochazuke.png" type = "blend" }
+        sprite(cookbook.tempura-shrimp-roll) { bitmap = "img/cookbook/japanese/tempura-shrimp-roll.png" type = "blend" }
+        sprite(cookbook.onigiri) { bitmap = "img/cookbook/japanese/onigiri.png" type = "blend" }
+        sprite(cookbook.osechi) { bitmap = "img/cookbook/japanese/osechi.png" type = "blend" }
+        sprite(cookbook.yosenabe) { bitmap = "img/cookbook/japanese/yosenabe.png" type = "blend" }
+        sprite(cookbook.temakizushi) { bitmap = "img/cookbook/japanese/temakizushi.png" type = "blend" }
+        
+        //Japanese - empty
+        sprite(cookbook.nigirizushi.empty) { bitmap = "img/cookbook/japanese/nigirizushi.empty.png" type = "blend" }
+        sprite(cookbook.sashimi.empty) { bitmap = "img/cookbook/japanese/sashimi.empty.png" type = "blend" }
+        sprite(cookbook.seafood-tempura.empty) { bitmap = "img/cookbook/japanese/seafood-tempura.empty.png" type = "blend" }
+        sprite(cookbook.tofudengaku.empty) { bitmap = "img/cookbook/japanese/tofudengaku.empty.png" type = "blend" }
+        sprite(cookbook.tempura.empty) { bitmap = "img/cookbook/japanese/tempura.empty.png" type = "blend" }
+        sprite(cookbook.koyungohan.empty) { bitmap = "img/cookbook/japanese/koyungohan.empty.png" type = "blend" }
+        sprite(cookbook.ochazuke.empty) { bitmap = "img/cookbook/japanese/ochazuke.empty.png" type = "blend" }
+        sprite(cookbook.tempura-shrimp-roll.empty) { bitmap = "img/cookbook/japanese/tempura-shrimp-roll.empty.png" type = "blend" }
+        sprite(cookbook.onigiri.empty) { bitmap = "img/cookbook/japanese/onigiri.empty.png" type = "blend" }
+        sprite(cookbook.osechi.empty) { bitmap = "img/cookbook/japanese/osechi.empty.png" type = "blend" }
+        sprite(cookbook.yosenabe.empty) { bitmap = "img/cookbook/japanese/yosenabe.empty.png" type = "blend" }
+        sprite(cookbook.temakizushi.empty) { bitmap = "img/cookbook/japanese/temakizushi.empty.png" type = "blend" }
+        
+        //Russian
+        sprite(cookbook.cabbage-stew) { bitmap = "img/cookbook/russian/cabbage-stew.png" type = "blend" }
+        sprite(cookbook.pelmeni) { bitmap = "img/cookbook/russian/pelmeni.png" type = "blend" }
+        sprite(cookbook.golubtsy) { bitmap = "img/cookbook/russian/golubtsy.png" type = "blend" }
+        sprite(cookbook.fried-mushrooms) { bitmap = "img/cookbook/russian/fried-mushrooms.png" type = "blend" }
+        sprite(cookbook.vareniki) { bitmap = "img/cookbook/russian/vareniki.png" type = "blend" }
+        sprite(cookbook.baked-meat) { bitmap = "img/cookbook/russian/baked-meat.png" type = "blend" }
+        sprite(cookbook.cutlets) { bitmap = "img/cookbook/russian/cutlets.png" type = "blend" }
+        sprite(cookbook.mushroom-ragout) { bitmap = "img/cookbook/russian/mushroom-ragout.png" type = "blend" }
+        sprite(cookbook.cabbage-stuffed-pancakes) { bitmap = "img/cookbook/russian/cabbage-stuffed-pancakes.png" type = "blend" }
+        sprite(cookbook.kulebyaka) { bitmap = "img/cookbook/russian/kulebyaka.png" type = "blend" }
+        sprite(cookbook.shchi) { bitmap = "img/cookbook/russian/shchi.png" type = "blend" }
+        sprite(cookbook.mushroom-soup) { bitmap = "img/cookbook/russian/mushroom-soup.png" type = "blend" }
+        
+        //Russian - empty
+        sprite(cookbook.cabbage-stew.empty) { bitmap = "img/cookbook/russian/cabbage-stew.empty.png" type = "blend" }
+        sprite(cookbook.pelmeni.empty) { bitmap = "img/cookbook/russian/pelmeni.empty.png" type = "blend" }
+        sprite(cookbook.golubtsy.empty) { bitmap = "img/cookbook/russian/golubtsy.empty.png" type = "blend" }
+        sprite(cookbook.fried-mushrooms.empty) { bitmap = "img/cookbook/russian/fried-mushrooms.empty.png" type = "blend" }
+        sprite(cookbook.vareniki.empty) { bitmap = "img/cookbook/russian/vareniki.empty.png" type = "blend" }
+        sprite(cookbook.baked-meat.empty) { bitmap = "img/cookbook/russian/baked-meat.empty.png" type = "blend" }
+        sprite(cookbook.cutlets.empty) { bitmap = "img/cookbook/russian/cutlets.empty.png" type = "blend" }
+        sprite(cookbook.mushroom-ragout.empty) { bitmap = "img/cookbook/russian/mushroom-ragout.empty.png" type = "blend" }
+        sprite(cookbook.cabbage-stuffed-pancakes.empty) { bitmap = "img/cookbook/russian/cabbage-stuffed-pancakes.empty.png" type = "blend" }
+        sprite(cookbook.kulebyaka.empty) { bitmap = "img/cookbook/russian/kulebyaka.empty.png" type = "blend" }
+        sprite(cookbook.shchi.empty) { bitmap = "img/cookbook/russian/shchi.empty.png" type = "blend" }
+        sprite(cookbook.mushroom-soup.empty) { bitmap = "img/cookbook/russian/mushroom-soup.empty.png" type = "blend" }
+        
+        //Hawaiian
+        sprite(cookbook.chicken-shrimp-soup) { bitmap = "img/cookbook/hawaiian/chicken-shrimp-soup.png" type = "blend" }
+        sprite(cookbook.spicy-shrimps) { bitmap = "img/cookbook/hawaiian/spicy-shrimps.png" type = "blend" }
+        sprite(cookbook.hulihuli-chicken) { bitmap = "img/cookbook/hawaiian/hulihuli-chicken.png" type = "blend" }
+        sprite(cookbook.mango-mui) { bitmap = "img/cookbook/hawaiian/mango-mui.png" type = "blend" }
+        sprite(cookbook.wonton) { bitmap = "img/cookbook/hawaiian/wonton.png" type = "blend" }
+        sprite(cookbook.shrimp-canton) { bitmap = "img/cookbook/hawaiian/shrimp-canton.png" type = "blend" }
+        sprite(cookbook.lime-chicken) { bitmap = "img/cookbook/hawaiian/lime-chicken.png" type = "blend" }
+        sprite(cookbook.mango-salsa) { bitmap = "img/cookbook/hawaiian/mango-salsa.png" type = "blend" }
+        sprite(cookbook.chicken-laulau) { bitmap = "img/cookbook/hawaiian/chicken-laulau.png" type = "blend" }
+        sprite(cookbook.shrimp-mango-salad) { bitmap = "img/cookbook/hawaiian/shrimp-mango-salad.png" type = "blend" }
+        sprite(cookbook.pipikaula) { bitmap = "img/cookbook/hawaiian/pipikaula.png" type = "blend" }
+        sprite(cookbook.mango-chicken) { bitmap = "img/cookbook/hawaiian/mango-chicken.png" type = "blend" }
+        
+        //Hawaiian - empty
+        sprite(cookbook.chicken-shrimp-soup.empty) { bitmap = "img/cookbook/hawaiian/chicken-shrimp-soup.empty.png" type = "blend" }
+        sprite(cookbook.spicy-shrimps.empty) { bitmap = "img/cookbook/hawaiian/spicy-shrimps.empty.png" type = "blend" }
+        sprite(cookbook.hulihuli-chicken.empty) { bitmap = "img/cookbook/hawaiian/hulihuli-chicken.empty.png" type = "blend" }
+        sprite(cookbook.mango-mui.empty) { bitmap = "img/cookbook/hawaiian/mango-mui.empty.png" type = "blend" }
+        sprite(cookbook.wonton.empty) { bitmap = "img/cookbook/hawaiian/wonton.empty.png" type = "blend" }
+        sprite(cookbook.shrimp-canton.empty) { bitmap = "img/cookbook/hawaiian/shrimp-canton.empty.png" type = "blend" }
+        sprite(cookbook.lime-chicken.empty) { bitmap = "img/cookbook/hawaiian/lime-chicken.empty.png" type = "blend" }
+        sprite(cookbook.mango-salsa.empty) { bitmap = "img/cookbook/hawaiian/mango-salsa.empty.png" type = "blend" }
+        sprite(cookbook.chicken-laulau.empty) { bitmap = "img/cookbook/hawaiian/chicken-laulau.empty.png" type = "blend" }
+        sprite(cookbook.shrimp-mango-salad.empty) { bitmap = "img/cookbook/hawaiian/shrimp-mango-salad.empty.png" type = "blend" }
+        sprite(cookbook.pipikaula.empty) { bitmap = "img/cookbook/hawaiian/pipikaula.empty.png" type = "blend" }
+        sprite(cookbook.mango-chicken.empty) { bitmap = "img/cookbook/hawaiian/mango-chicken.empty.png" type = "blend" }
+        
+    }
+
     //source classes for power-ups
     //PowerUpKlasses{
     //    sprite(powerup.use.button) { bitmap = "img/powerups/use-powerup-button.png" type = "blend" layout = "2x2" }
@@ -353,6 +497,19 @@ MasterChef{
         sprite(theme.hawaiian.decoration.screen2) { bitmap = "img/episodes/hawaiian/screen2.png" type = "blend" }
         sprite(theme.hawaiian.decoration.screen3) { bitmap = "img/episodes/hawaiian/screen3.png" type = "blend" }
         
+    }
+    
+    Cookbook{
+        sprite(cookbook.american.background) { bitmap = "img/cookbook/american.background.png" type = "blend" }
+        sprite(cookbook.mexican.background) { bitmap = "img/cookbook/mexican.background.png" type = "blend" }
+        sprite(cookbook.russian.background) { bitmap = "img/cookbook/russian.background.png" type = "blend" }
+        sprite(cookbook.japanese.background) { bitmap = "img/cookbook/japanese.background.png" type = "blend" }
+        sprite(cookbook.hawaiian.background) { bitmap = "img/cookbook/hawaiian.background.png" type = "blend" }
+        sprite(cookbook.american.logo) { bitmap = "img/cookbook/american.logo.png" type = "blend" }
+        sprite(cookbook.mexican.logo) { bitmap = "img/cookbook/mexican.logo.png" type = "blend" }
+        sprite(cookbook.russian.logo) { bitmap = "img/cookbook/russian.logo.png" type = "blend" }
+        sprite(cookbook.japanese.logo) { bitmap = "img/cookbook/japanese.logo.png" type = "blend" }
+        sprite(cookbook.hawaiian.logo) { bitmap = "img/cookbook/hawaiian.logo.png" type = "blend" }
     }
     
     Comics{

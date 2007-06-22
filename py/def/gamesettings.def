@@ -26,6 +26,7 @@ MasterChef {
         exactRecipes = "yes"
         
         powerups = "['Cross', 'Gift', 'Shuffle', 'Spoon', 'Sweet', 'Supersweet', 'Magicwand', 'EmptyTrash']"
+        settings = "['American', 'Mexican', 'Russian', 'Japanese', 'Hawaiian']"
         
         bombRadiusSquared = "5"
         scrollBackTime = "0.5"
@@ -166,6 +167,34 @@ MasterChef {
             trashcanBarFull = "theme.hawaiian.trashcan.bar.full"
             tablet = "theme.hawaiian.tablet"
         }
+    }
+    
+    Cookbook {
+        Page(American) {
+            background = "cookbook.american.background"
+            logo = "cookbook.american.logo"
+        }
+        
+        Page(Mexican) {
+            background = "cookbook.mexican.background"
+            logo = "cookbook.mexican.logo"
+        }
+        
+        Page(Russian) {
+            background = "cookbook.russian.background"
+            logo = "cookbook.russian.logo"
+        }
+        
+        Page(Japanese) {
+            background = "cookbook.japanese.background"
+            logo = "cookbook.japanese.logo"
+        }
+        
+        Page(Hawaiian) {
+            background = "cookbook.hawaiian.background"
+            logo = "cookbook.hawaiian.logo"
+        }
+        
     }
     
     Customers {

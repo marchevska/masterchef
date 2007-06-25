@@ -35,7 +35,8 @@ class GameBoard(scraft.Dispatcher):
         
         #create text sprites
         self.HudElements = {}
-        self.HudElements["InfoPane"] = MakeSprite(u"info-pane", Layer_InterfaceBg, { "x": 1, "y": 0 })
+        #self.HudElements["InfoPane"] = MakeSprite(u"info-pane", Layer_InterfaceBg, { "x": 1, "y": 0 })
+        self.HudElements["InfoPane"] = MakeSprite("$spritecraft$dummy$", Layer_InterfaceBg, { "x": 1, "y": 0 })
         self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 75, "y": 18, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_LevelText, "cfilt-color": 0x604020})
@@ -59,7 +60,8 @@ class GameBoard(scraft.Dispatcher):
         self.GameButtons = {}
         self.GameButtons["Menu"] = PushButton("Menu",
                 self, Cmd_Menu, PState_Game,
-                u"menu-button", [0, 1, 2, 3, 4], 
+                #u"menu-button", [0, 1, 2, 3, 4], 
+                u"$spritecraft$dummy$", [0, 1, 2, 3, 4], 
                 Layer_InterfaceBtn, 28, 31, 40, 40)
         
         self.CustomersQue = None
@@ -135,6 +137,8 @@ class GameBoard(scraft.Dispatcher):
         
         tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
         self.BgSprite.ChangeKlassTo(tmpTheme.GetStrAttr("background"))
+        self.HudElements["InfoPane"].ChangeKlassTo(tmpTheme.GetStrAttr("infopane"))
+        self.GameButtons["Menu"].SetButtonKlass(tmpTheme.GetStrAttr("menuButton"))
         
         #reset customer dispatcher
         self.RemainingCustomers = globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers")

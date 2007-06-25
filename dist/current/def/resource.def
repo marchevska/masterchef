@@ -401,6 +401,8 @@ MasterChef{
         sprite(theme.american.trashcan.bar.empty) { bitmap = "img/episodes/american/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.american.trashcan.bar.full) { bitmap = "img/episodes/american/trashcan-bar-full.png" type = "blend" }
         sprite(theme.american.tablet) { bitmap = "img/episodes/american/tablet.png" type = "blend" }
+        sprite(theme.american.info-pane) { bitmap = "img/episodes/american/info-pane.png" type = "blend" }
+        sprite(theme.american.menu-button) { bitmap = "img/episodes/american/menu-button.png" type = "blend" layout = "1x4" }
         
         sprite(theme.american.decoration.barrel) { bitmap = "img/episodes/american/barrel.png" type = "blend" }
         sprite(theme.american.decoration.stand) { bitmap = "img/episodes/american/stand.png" type = "blend" }
@@ -424,6 +426,8 @@ MasterChef{
         sprite(theme.mexican.trashcan.bar.empty) { bitmap = "img/episodes/mexican/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.mexican.trashcan.bar.full) { bitmap = "img/episodes/mexican/trashcan-bar-full.png" type = "blend" }
         sprite(theme.mexican.tablet) { bitmap = "img/episodes/mexican/tablet.png" type = "blend" }
+        sprite(theme.mexican.info-pane) { bitmap = "img/episodes/mexican/info-pane.png" type = "blend" }
+        sprite(theme.mexican.menu-button) { bitmap = "img/episodes/mexican/menu-button.png" type = "blend" layout = "1x4" }
         
         sprite(theme.mexican.decoration.carpet-palm) { bitmap = "img/episodes/mexican/carpet-palm.png" type = "blend" }
         sprite(theme.mexican.decoration.carpet-sombrero) { bitmap = "img/episodes/mexican/carpet-sombrero.png" type = "blend" }
@@ -448,6 +452,8 @@ MasterChef{
         sprite(theme.russian.trashcan.bar.empty) { bitmap = "img/episodes/russian/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.russian.trashcan.bar.full) { bitmap = "img/episodes/russian/trashcan-bar-full.png" type = "blend" }
         sprite(theme.russian.tablet) { bitmap = "img/episodes/russian/tablet.png" type = "blend" }
+        sprite(theme.russian.info-pane) { bitmap = "img/episodes/russian/info-pane.png" type = "blend" }
+        sprite(theme.russian.menu-button) { bitmap = "img/episodes/russian/menu-button.png" type = "blend" layout = "1x4" }
         
         //Japanese
         sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" truecolor = "yes" }
@@ -467,6 +473,8 @@ MasterChef{
         sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }
         sprite(theme.japanese.tablet) { bitmap = "img/episodes/japanese/tablet.png" type = "blend" }
+        sprite(theme.japanese.info-pane) { bitmap = "img/episodes/japanese/info-pane.png" type = "blend" }
+        sprite(theme.japanese.menu-button) { bitmap = "img/episodes/japanese/menu-button.png" type = "blend" layout = "1x4" }
         
         sprite(theme.japanese.decoration.bonsai) { bitmap = "img/episodes/japanese/bonsai.png" type = "blend" }
         sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }
@@ -490,6 +498,8 @@ MasterChef{
         sprite(theme.hawaiian.trashcan.bar.empty) { bitmap = "img/episodes/hawaiian/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.hawaiian.trashcan.bar.full) { bitmap = "img/episodes/hawaiian/trashcan-bar-full.png" type = "blend" }
         sprite(theme.hawaiian.tablet) { bitmap = "img/episodes/hawaiian/tablet.png" type = "blend" }
+        sprite(theme.hawaiian.info-pane) { bitmap = "img/episodes/hawaiian/info-pane.png" type = "blend" }
+        sprite(theme.hawaiian.menu-button) { bitmap = "img/episodes/hawaiian/menu-button.png" type = "blend" layout = "1x4" }
         
         sprite(theme.hawaiian.decoration.candy-machine) { bitmap = "img/episodes/hawaiian/candy-machine.png" type = "blend" }
         sprite(theme.hawaiian.decoration.flower) { bitmap = "img/episodes/hawaiian/flower.png" type = "blend" }

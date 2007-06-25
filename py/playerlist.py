@@ -3,7 +3,7 @@
 
 """
 Project: Master Chef
-РЈРїСЂР°РІР»РµРЅРёРµ РїСЂРѕС„РёР»СЏРјРё Рё СЃРїРёСЃРєРѕРј РёРіСЂРѕРєРѕРІ
+Работа со списком игроков и с профилями игроков
 """
 
 import os, os.path
@@ -40,6 +40,7 @@ class Player:
         self.Name = name
         self.Level = None
         self.Filename = ""
+        dummyXML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
         try:
             if name != "":
                 filename = globalvars.PlayerList.FilenameFor(name)
@@ -47,18 +48,31 @@ class Player:
                 if config.FileValid(filename):
                     self.XML = oE.ParseDEF(filename).GetTag(u"MasterChef")
                 else:
-                    self.XML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
+                    self.XML = dummyXML
             else:
-                self.XML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
+                self.XML = dummyXML
         except:
             try:
-                self.XML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
+                self.XML = dummyXML
             except:
                 #если никак-никак не можем прочитать
                 oE.Log(unicode("Cannot read player info for "+name))
                 oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
                 sys.exit()
-            
+        #append nodes from dummy profile if necessary
+        for tmpNode in dummyXML.Tags():
+            tmp = self.XML.GetSubtag(tmpNode.GetContent(), tmpNode.GetName())
+            if tmp == None:
+                tmp = self.XML.Insert(tmpNode.GetName())
+                tmp.SetContent(tmpNode.GetContent())
+            for attr in ("played", "unlocked", "expert", "seen"):
+                if tmpNode.HasAttr(attr) and not tmp.HasAttr(attr):
+                    tmp.SetBoolAttr(attr, tmpNode.GetBoolAttr(attr))
+            for attr in ("hiscore",):
+                if tmpNode.HasAttr(attr) and not tmp.HasAttr(attr):
+                    tmp.SetIntAttr(attr, tmpNode.GetIntAttr(attr))
+        self.Save()
+        
     #------------------------------------
     # сохраняет профиль игрока в файл
     #------------------------------------
@@ -118,10 +132,20 @@ class Player:
     #возвращает ноду уровня по его имени
     #------------------------------------
     def GetLevelParams(self, level):
-        return self.XML.GetSubtag(level)
+        if self.XML.GetSubtag(level) != None:
+            return self.XML.GetSubtag(level)
+        else:
+            return oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef").GetSubtag(level)
         
     def SetLevelParams(self, level, params):
-        pass
+        tmp = self.XML.GetSubtag(level)
+        for attr in ("played", "unlocked", "expert", "seen"):
+            if params.has_key(attr):
+                tmp.SetBoolAttr(attr, params[attr])
+        for attr in ("hiscore",):
+            if params.has_key(attr):
+                tmp.SetIntAttr(attr, params[attr])
+        self.Save()
         
     #------------------------------------
     # записать результаты текущего уровня + в профиль тоже
@@ -138,11 +162,15 @@ class Player:
                 if params.has_key("hiscore"):
                     if params["hiscore"] > tmpLevelNode.GetIntAttr("hiscore"):
                         tmpLevelNode.SetIntAttr("hiscore", params["hiscore"])
-                    #проверить, достигнута ли цель уровня; если да - разлочить следующий
+                    #проверить, достигнута ли цель уровня; 
+                    #если да - разлочить следующий и разлочить рецепты
                     if params["hiscore"] >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneyGoal"):
                         tmpNextLevelNode = self.XML.GetSubtag(self.Level.Next().GetContent())
                         if tmpNextLevelNode:
                             tmpNextLevelNode.SetBoolAttr("unlocked", True)
+                        tmpRecipes = eval(self.Level.GetStrAttr("unlock"))
+                        for rcp in tmpRecipes:
+                            self.XML.GetSubtag(rcp).SetBoolAttr("unlocked", True)
                 self.Save()
             else:
                 tmpLevelNode.SetBoolAttr("unlocked", True)
@@ -150,7 +178,21 @@ class Player:
             oE.Log(unicode("Cannot update player profile"))
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             sys.exit()
+        
+    #------------------------------------
+    # возвращает список вновь открытых, но еще
+    #не показанных рецептов в текущем сеттинге
+    #------------------------------------
+    def JustUnlockedRecipes(self, setting):
+        tmpRecipes = filter(lambda x: globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("setting") == setting,
+                                map(lambda x: x.GetContent(), globalvars.RecipeInfo.Tags()))
+        return filter(lambda x: self.GetLevelParams(x).GetBoolAttr("unlocked") == True and
+                    self.GetLevelParams(x).GetBoolAttr("seen") == False,
+                    tmpRecipes)
             
+#------------------------------------
+# управление списком игроков
+#------------------------------------
 class PlayerList:
     def __init__(self):
         try:

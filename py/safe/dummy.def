@@ -79,4 +79,68 @@ MasterChef{
         hint{ name = "" seen = "no" }
     //}
     
+    //Recipes{
+        //recipe(){ unlocked = "no" }
+        recipe(Squash with Tomato Sauce){ unlocked = "no" seen = "no" }
+        recipe(Chicken Squash Stir-Fry){ unlocked = "no" seen = "no" }
+        recipe(Pasta with Tomato Sauce){ unlocked = "no" seen = "no" }
+        recipe(Pineapple Tomato Salad){ unlocked = "no" seen = "no" }
+        recipe(Caribbean Spice Chicken){ unlocked = "no" seen = "no" }
+        recipe(Crispy Baked Chicken){ unlocked = "no" seen = "no" }
+        recipe(Pineapple Lasagna){ unlocked = "no" seen = "no" }
+        recipe(Hubbard Squash Soup Du Jour){ unlocked = "no" seen = "no" }
+        recipe(Grilled Meat){ unlocked = "no" seen = "no" }
+        recipe(Spaghetti with Turkey Meat Sauce){ unlocked = "no" seen = "no" }
+        recipe(Chicken Pasta Casseroule){ unlocked = "no" seen = "no" }
+        recipe(Chicken Pineapple Pasta Pockets){ unlocked = "no" seen = "no" }
+        recipe(Tortilla Soup){ unlocked = "no" seen = "no" }
+        recipe(Guacamole){ unlocked = "no" seen = "no" }
+        recipe(Cheese Nachos){ unlocked = "no" seen = "no" }
+        recipe(Chiles Renellos){ unlocked = "no" seen = "no" }
+        recipe(Avocado Stuffed Tacos){ unlocked = "no" seen = "no" }
+        recipe(Burrito){ unlocked = "no" seen = "no" }
+        recipe(Chili con Carne){ unlocked = "no" seen = "no" }
+        recipe(Quesadilla){ unlocked = "no" seen = "no" }
+        recipe(Tex-Mex Turkey Casseruole){ unlocked = "no" seen = "no" }
+        recipe(Avocado Salsa){ unlocked = "no" seen = "no" }
+        recipe(Football Fan Nachos){ unlocked = "no" seen = "no" }
+        recipe(Fajitas){ unlocked = "no" seen = "no" }
+        recipe(Cabbage Stew){ unlocked = "no" seen = "no" }
+        recipe(Pelmeni){ unlocked = "no" seen = "no" }
+        recipe(Golubtsy){ unlocked = "no" seen = "no" }
+        recipe(Fried Mushrooms){ unlocked = "no" seen = "no" }
+        recipe(Vareniki){ unlocked = "no" seen = "no" }
+        recipe(Baked Meat){ unlocked = "no" seen = "no" }
+        recipe(Cutlets){ unlocked = "no" seen = "no" }
+        recipe(Mushroom Ragout){ unlocked = "no" seen = "no" }
+        recipe(Cabbage Stuffed Pancakes){ unlocked = "no" seen = "no" }
+        recipe(Kulebyaka){ unlocked = "no" seen = "no" }
+        recipe(Shchi){ unlocked = "no" seen = "no" }
+        recipe(Mushroom Soup){ unlocked = "no" seen = "no" }
+        recipe(Nigiri Zushi){ unlocked = "no" seen = "no" }
+        recipe(Sashimi){ unlocked = "no" seen = "no" }
+        recipe(Seafood Tempura){ unlocked = "no" seen = "no" }
+        recipe(TofuDengaku){ unlocked = "no" seen = "no" }
+        recipe(Tempura){ unlocked = "no" seen = "no" }
+        recipe(Koyungohan){ unlocked = "no" seen = "no" }
+        recipe(Ochazuke){ unlocked = "no" seen = "no" }
+        recipe(Tempura Shrimp Roll){ unlocked = "no" seen = "no" }
+        recipe(Onigiri){ unlocked = "no" seen = "no" }
+        recipe(Osechi){ unlocked = "no" seen = "no" }
+        recipe(Yosenabe){ unlocked = "no" seen = "no" }
+        recipe(Temaki Zushi){ unlocked = "no" seen = "no" }
+        recipe(Chicken Shrimp Soup){ unlocked = "no" seen = "no" }
+        recipe(Spicy Shrimps){ unlocked = "no" seen = "no" }
+        recipe(Hulihuli Chicken){ unlocked = "no" seen = "no" }
+        recipe(Mango Mui){ unlocked = "no" seen = "no" }
+        recipe(Wonton){ unlocked = "no" seen = "no" }
+        recipe(Shrimp Canton){ unlocked = "no" seen = "no" }
+        recipe(Lime Chicken){ unlocked = "no" seen = "no" }
+        recipe(Mango Salsa){ unlocked = "no" seen = "no" }
+        recipe(Chicken Laulau){ unlocked = "no" seen = "no" }
+        recipe(Shrimp Mango Salad){ unlocked = "no" seen = "no" }
+        recipe(Pipikaula){ unlocked = "no" seen = "no" }
+        recipe(Mango Chicken){ unlocked = "no" seen = "no" }
+    //}
+    
 }

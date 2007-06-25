@@ -35,7 +35,7 @@ class GameBoard(scraft.Dispatcher):
         
         #create text sprites
         self.HudElements = {}
-        self.HudElements["InfoPane"] = MakeSimpleSprite(u"info-pane", Layer_InterfaceBg, 140, 29)
+        self.HudElements["InfoPane"] = MakeSprite(u"info-pane", Layer_InterfaceBg, { "x": 1, "y": 0 })
         self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 75, "y": 18, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_LevelText, "cfilt-color": 0x604020})

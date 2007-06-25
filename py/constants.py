@@ -194,3 +194,4 @@ Indexes = { "Col": 0, "Row": 1 }
 
 CFilt_White = 0xFFFFFF
 CFilt_Red = 0xFFDDCC
+CFilt_Grey = 0x999999

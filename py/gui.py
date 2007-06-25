@@ -36,6 +36,7 @@ class Gui(scraft.Dispatcher):
         self.TotalCareerLevels = 0
         self.TotalRecipesOnPage = 12
         self.CurrentCookbookPage = 0
+        self.NextState = PState_None
         self.SavedOptions = []
            
         #--------------
@@ -135,10 +136,14 @@ class Gui(scraft.Dispatcher):
         self.CookbookDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.CookbookDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBg)
         self.CookbookDialog["Static"]["Logo"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt,
-                                                { "x": 50, "y": 35 })
+                                                { "x": 50, "y": 50 })
         self.CookbookDialog["Buttons"]["CookbookClose"] = PushButton("CookbookClose",
                 self, Cmd_CookbookClose, PState_Cookbook,
                 u"cookbook.close-button", [0, 1, 2, 3], 
+                Layer_PopupBtnTxt, 390, 527, 100, 130)
+        self.CookbookDialog["Buttons"]["CookbookContinue"] = PushButton("CookbookContinue",
+                self, Cmd_CookbookClose, PState_Cookbook,
+                u"cookbook.continue-button", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 390, 527, 100, 130)
         self.CookbookDialog["Buttons"]["CookbookNext"] = PushButton("CookbookNext",
                 self, Cmd_CookbookNext, PState_Cookbook,
@@ -502,16 +507,49 @@ class Gui(scraft.Dispatcher):
     #отображает заданную страницу кулинарной книги
     #----------------------------
     def _ShowCookBookPage(self, no):
-        tmpSetting = eval(globalvars.GameSettings.GetStrAttr("settings"))[no]
+        #коррекция в случае переключения на другой профиль игрока:
+        #не показывать не разлоченные страницы книги
+        tmpAllSettings = eval(globalvars.GameSettings.GetStrAttr("settings"))
+        while not globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no]).GetBoolAttr("unlocked") and no>0:
+            no -= 1
+        tmpSetting = tmpAllSettings[no]
+        self.CurrentCookbookPage = no
+        
+        #нарисовать страницу сеттинга
         self.CookbookDialog["Static"]["Back"].ChangeKlassTo(globalvars.CookbookInfo.GetSubtag(tmpSetting).GetStrAttr("background"))
         self.CookbookDialog["Static"]["Logo"].ChangeKlassTo(globalvars.CookbookInfo.GetSubtag(tmpSetting).GetStrAttr("logo"))
         tmpRecipes = filter(lambda x: globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("setting") == tmpSetting,
                                 map(lambda x: x.GetContent(), globalvars.RecipeInfo.Tags()))
+        tmpNewRecipes = globalvars.CurrentPlayer.JustUnlockedRecipes(tmpSetting)
         for i in range(self.TotalRecipesOnPage):
-            self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge"))
+            if globalvars.CurrentPlayer.GetLevelParams(tmpRecipes[i]).GetBoolAttr("unlocked"):
+                self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge"))
+                if tmpRecipes[i] in tmpNewRecipes:
+                    self.CookbookDialog["Static"]["Recipe"+str(i+1)].cfilt.color = CFilt_Grey
+                    globalvars.CurrentPlayer.SetLevelParams(tmpRecipes[i], { "seen": True })
+                else:
+                    self.CookbookDialog["Static"]["Recipe"+str(i+1)].cfilt.color = CFilt_White
+            else:
+                self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("emptyBadge"))
             self.CookbookDialog["Static"]["Recipe"+str(i+1)].x = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeX")
             self.CookbookDialog["Static"]["Recipe"+str(i+1)].y = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeY")
         
+        #кнопки пролистывания ниги
+        self.CookbookDialog["Buttons"]["CookbookClose"].Show(self.NextState == PState_None)
+        self.CookbookDialog["Buttons"]["CookbookContinue"].Show(self.NextState != PState_None)
+        self.CookbookDialog["Buttons"]["CookbookPrev"].Show((no>0))
+        if no>0:
+            if globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no-1]).GetBoolAttr("unlocked"):
+                self.CookbookDialog["Buttons"]["CookbookPrev"].SetState(ButtonState_Up)
+            else:
+                self.CookbookDialog["Buttons"]["CookbookPrev"].SetState(ButtonState_Inert)
+        self.CookbookDialog["Buttons"]["CookbookNext"].Show((no<len(tmpAllSettings)-1))
+        if no<len(tmpAllSettings)-1:
+            if globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no+1]).GetBoolAttr("unlocked"):
+                self.CookbookDialog["Buttons"]["CookbookNext"].SetState(ButtonState_Up)
+            else:
+                self.CookbookDialog["Buttons"]["CookbookNext"].SetState(ButtonState_Inert)
+
     #----------------------------
     #переходит к заданной странице справки
     #----------------------------
@@ -762,7 +800,7 @@ class Gui(scraft.Dispatcher):
                     self._SetState(PState_Help)
                 elif cmd == Cmd_Menu_Cookbook:
                     self._SetState(PState_Cookbook)
-                    self._ShowCookBookPage(self.CurrentCookbookPage)
+                    #self._ShowCookBookPage(self.CurrentCookbookPage)
                 elif cmd == Cmd_Menu_Hiscores:
                     self._SetState(PState_Hiscores)
                 elif cmd == Cmd_Menu_Quit:
@@ -789,14 +827,15 @@ class Gui(scraft.Dispatcher):
                 
             #cookbook
             elif globalvars.StateStack[-1] == PState_Cookbook:
-                if cmd == Cmd_HelpPrev:
-                    pass
-                    #self._ShowHelpPage(self.CurrentHelpPage-1)
-                elif cmd == Cmd_HelpNext:
-                    pass
-                    #self._ShowHelpPage(self.CurrentHelpPage+1)
+                if cmd == Cmd_CookbookPrev:
+                    self._ShowCookBookPage(self.CurrentCookbookPage-1)
+                elif cmd == Cmd_CookbookNext:
+                    self._ShowCookBookPage(self.CurrentCookbookPage+1)
                 elif cmd == Cmd_CookbookClose:
-                    self._ReleaseState(PState_Cookbook)    
+                    self._ReleaseState(PState_Cookbook)
+                    if self.NextState != PState_None:
+                        self.NextState = PState_None
+                        self.NextCareerStage()
             
             #rules dialog
             elif globalvars.StateStack[-1] == PState_Help:
@@ -930,7 +969,14 @@ class Gui(scraft.Dispatcher):
                 self._ReleaseState(PState_NextLevel)
                 self._ReleaseState(PState_Game)
                 if cmd == Cmd_LvCompleteNextLevel:
-                    self.NextCareerStage()
+                    tmpSetting = globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme")
+                    if globalvars.CurrentPlayer.JustUnlockedRecipes(tmpSetting) != []:
+                        tmpAllSettings = eval(globalvars.GameSettings.GetStrAttr("settings"))
+                        self.CurrentCookbookPage = tmpAllSettings.index(tmpSetting)
+                        self.NextState = PState_Game
+                        self._SetState(PState_Cookbook)
+                    else:
+                        self.NextCareerStage()
                 elif cmd == Cmd_LvCompleteRestart:
                     self._SetState(PState_StartLevel)
                 elif cmd == Cmd_LvCompleteMainMenu:
@@ -1212,8 +1258,8 @@ class Gui(scraft.Dispatcher):
             self._UpdateEnterNameDialog()
             
         elif state == PState_Cookbook:
-            #self._ReleaseState(PState_MainMenu)
             self._ShowDialog(self.CookbookDialog, True)
+            self._ShowCookBookPage(self.CurrentCookbookPage)
             
         elif state == PState_Help:
             self._ReleaseState(PState_MainMenu)

@@ -165,6 +165,12 @@ type   = blend
 layout = 1x4
 }
 
+sprite cookbook.continue-button {
+bitmap = img/gui/cookbook.continue-button.png
+type   = blend
+layout = 1x4
+}
+
 sprite cookbook.next-button {
 bitmap = img/gui/cookbook.next-button.png
 type   = blend

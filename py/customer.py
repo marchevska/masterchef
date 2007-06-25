@@ -215,7 +215,7 @@ class Customer(scraft.Dispatcher):
 # Выпускает новых покупателей к столикам
 #-------------------------------
 class CustomersQue(scraft.Dispatcher):
-    def __init__(self, theme, x, y, tabletX, tabletY):
+    def __init__(self, theme, x, y):
         self.X0, self.Y0 = x, y
         #список покупателей и их заказов
         #обеспечиваем, чтобы не было более двух одинаовых покупателей подряд!
@@ -230,10 +230,9 @@ class CustomersQue(scraft.Dispatcher):
             self.CustomersList.append(RandomKeyByRates(tmpRates))
             
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
-        self.TabletSprite = MakeSimpleSprite(theme.GetStrAttr("tablet"), Layer_InterfaceBg, tabletX, tabletY)
         self.TextMarker = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                { "x": tabletX + Crd_QueueMarker_TabletDx, "y": tabletY + Crd_QueueMarker_TabletDy, "cfilt-color": 0x600000,
-                 "hotspot": scraft.HotspotCenter })
+                { "x": Crd_QueueMarker_TextX, "y": Crd_QueueMarker_TextY, "cfilt-color": 0x600000,
+                 "hotspot": scraft.HotspotLeftCenter })
         self._Draw()
         self.SetState(QueState_None)
         self.QueNo = oE.executor.Schedule(self)
@@ -245,9 +244,10 @@ class CustomersQue(scraft.Dispatcher):
         for i in range(Const_VisibleCustomers, len(self.Customers)):
             self.Customers[i].Show(False)
         if len(self.Customers) > 0:
-            self.TextMarker.text = unicode(str(len(self.Customers)))
+            self.TextMarker.text = str(len(self.Customers))
         else:
-            self.TextMarker.text = unicode(Str_HUD_RestaurantClosed)
+            #self.TextMarker.text = Str_HUD_RestaurantClosed
+            self.TextMarker.text = ""
         
     def HasCustomers(self):
         return (self.RemainingCustomers > 0)
@@ -277,7 +277,6 @@ class CustomersQue(scraft.Dispatcher):
     def Show(self, flag):
         for tmp in self.Customers:
             tmp.Show(flag)
-        self.TabletSprite.visible = flag
         self.TextMarker.visible = flag
         
     def Freeze(self, flag):
@@ -293,7 +292,6 @@ class CustomersQue(scraft.Dispatcher):
         for tmp in self.Customers:
             tmp.Kill()
             del tmp
-        self.TabletSprite.Dispose()
         self.TextMarker.Dispose()
     
 #-------------------------------

@@ -385,6 +385,7 @@ MasterChef{
     ThemeKlasses{
         //American
         sprite(theme.american.background) { bitmap = "img/episodes/american/background.png" truecolor = "yes" }
+        sprite(theme.american.door) { bitmap = "img/episodes/american/door.png" truecolor = "yes" }
         sprite(theme.american.counter) { bitmap = "img/episodes/american/counter.png" type = "blend" }
         sprite(theme.american.station) { bitmap = "img/episodes/american/station.png" type = "blend" layout = "2x1" }
         sprite(theme.american.station-mask) { bitmap = "img/episodes/american/station-mask.png" type = "blend" layout = "2x1" }

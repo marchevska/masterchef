@@ -30,6 +30,7 @@ class GameBoard(scraft.Dispatcher):
     
     def __init__(self):
         self.BgSprite = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_GameBg, 0, 0)
+        self.DoorSprite = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_Door, 0, 0)
         self.BgReceptor = MakeDummySprite(self, Cmd_BgReceptor,
                         400, 300, 800, 600, Layer_BgReceptor)
         
@@ -141,8 +142,7 @@ class GameBoard(scraft.Dispatcher):
         #reset customer dispatcher
         self.RemainingCustomers = globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers")
         tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("CustomersQue")
-        self.CustomersQue = CustomersQue(tmpTheme, tmp.GetIntAttr("X"), tmp.GetIntAttr("Y"),
-                                         tmp.GetIntAttr("TabletX"), tmp.GetIntAttr("TabletY"))
+        self.CustomersQue = CustomersQue(tmpTheme, tmp.GetIntAttr("X"), tmp.GetIntAttr("Y"))
         
         #размещение стейшенов 
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("CustomerStation"):
@@ -211,6 +211,12 @@ class GameBoard(scraft.Dispatcher):
         station.SetState(CStationState_Busy)
         station.AttachCustomer(self.CustomersQue.PopCustomer())
         self.RemainingCustomers -= 1
+        if self.RemainingCustomers <= 0:
+            tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
+            self.DoorSprite.ChangeKlassTo(tmpTheme.GetStrAttr("door"))
+            tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("Door")
+            self.DoorSprite.x = tmp.GetIntAttr("x")
+            self.DoorSprite.y = tmp.GetIntAttr("y")
         
     #--------------------------
     # обработка входящих команд
@@ -354,6 +360,10 @@ class GameBoard(scraft.Dispatcher):
             self.LevelScore = max(self.LevelScore,
                 globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
             self._SetState(GameState_EndLevel)
+            
+        elif cmd == Cmd_DebugLastCustomer:
+            if self.RemainingCustomers > 1:
+                self.RemainingCustomers = 1 
             
     def AddScore(self, delta):
         self.LevelScore = max(self.LevelScore + delta, 0)
@@ -531,6 +541,7 @@ class GameBoard(scraft.Dispatcher):
         Показать - спрятать
         """    
         self.BgSprite.visible = flag
+        self.DoorSprite.visible = flag
         self.BgReceptor.visible = flag
         for spr in self.HudElements.values():
             spr.visible = flag

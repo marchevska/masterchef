@@ -1069,7 +1069,7 @@ class Collapsoid(Field):
             
         elif state == DropperState_Burn:
             for cell in self.BurningTokens:
-                self._RemoveTokenFrom(cell)
+                self._RemoveTokenFrom(cell, True)
             self.BurningTime = int(1000*globalvars.GameSettings.GetFltAttr("burnCollapsoidTime"))
             
         elif state == DropperState_Move:

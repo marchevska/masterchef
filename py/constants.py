@@ -34,7 +34,8 @@ Cmd_Station_DeleteCustomer = 22
 Cmd_Station_DeleteCustomerAndLoseMoney = 23
 Cmd_Customer_SayThankYou = 24
 Cmd_DebugFinishLevel = 25
-Cmd_StopDropper = 26                    #команда посылается коллапсоиду, чтобы завершить выброс новых токенов,
+Cmd_DebugLastCustomer = 26
+Cmd_StopDropper = 30                    #команда посылается коллапсоиду, чтобы завершить выброс новых токенов,
                                         #когда все покупатели обслужены (то есть отдавать токены некуда)
 
 Cmd_PickPowerUp = 60
@@ -52,7 +53,8 @@ Cmd_Receptor = 100
 Layer_BgReceptor = 101
 Layer_Receptors = 100
 Layer_GameBg = 89
-Layer_CustomersQue = 88   #очередь покупателей
+Layer_Door = 88
+Layer_CustomersQue = 87   #очередь покупателей
 Layer_Counter = 75        #стойка
 Layer_Deco = 86           #декорации
 Layer_RecipeInfo = 82     #панель инормации о рецепте
@@ -137,6 +139,8 @@ QueState_Passive = 2
 # координаты
 #------------
 
+Crd_QueueMarker_TextX = 310
+Crd_QueueMarker_TextY = 37
 Crd_QueueMarker_TabletDx = 0
 Crd_QueueMarker_TabletDy = -23
 Crd_QueueCustomerDx = 42

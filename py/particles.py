@@ -9,10 +9,10 @@ mov   em0,x           ; using source point
 
 ; randomize particle speed
 ;em4 = 50;60 initial speed
-rnd   50,60,v.1 
+rnd   30,50,v.1 
 neg   v.1,v.1
 ;em5 = -1;1 direction
-rnd   -1,1,a
+rnd   -0.1,0.1,a
 rot   v,a,v
 
 ; mark particle as independed
@@ -23,15 +23,17 @@ indep
 
 updateonly 
 
-mul   (0;100),dt,a0
+mul   (0;200),dt,a0   
 add   a0,v,v
 mul   v,dt,a0         ; a0 = dx
+;rnd   0.95,1.05,a     ;random direction change
+;mul   a0,a,a0
 add   x,a0,x          ; x = x + dx
 
-; update particle attributes
-rnd   30,50,a 
-mul   a,dt,a
-add   trans,a,trans 
+; update particle transparency
+;rnd   20,30,a 
+;mul   a,dt,a
+;add   trans,a,trans 
 """
 
 Particles_RemoveTokenProgram1 = """

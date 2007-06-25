@@ -1015,6 +1015,8 @@ class Gui(scraft.Dispatcher):
                             globalvars.Board.Freeze(globalvars.Frozen)
                         elif oE.EvtKey() == scraft.Key_F6:
                             globalvars.Board.SendCommand(Cmd_DebugFinishLevel)
+                        elif oE.EvtKey() == scraft.Key_F7:
+                            globalvars.Board.SendCommand(Cmd_DebugLastCustomer)
             
             #обрабатываем ввод имени игрока с клавиатуры
             if globalvars.StateStack[-1] == PState_EnterName:

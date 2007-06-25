@@ -133,6 +133,7 @@ MasterChef {
         Theme(American)
         {
             background = "theme.american.background"
+            door = "theme.american.door"
             counter = "theme.american.counter"
             customersQuePointer = "theme.american.pointer"
             station = "theme.american.station"

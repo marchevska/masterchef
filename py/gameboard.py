@@ -35,7 +35,6 @@ class GameBoard(scraft.Dispatcher):
         
         #create text sprites
         self.HudElements = {}
-        #self.HudElements["InfoPane"] = MakeSprite(u"info-pane", Layer_InterfaceBg, { "x": 1, "y": 0 })
         self.HudElements["InfoPane"] = MakeSprite("$spritecraft$dummy$", Layer_InterfaceBg, { "x": 1, "y": 0 })
         self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 75, "y": 18, "hotspot": scraft.HotspotCenter,
@@ -60,7 +59,6 @@ class GameBoard(scraft.Dispatcher):
         self.GameButtons = {}
         self.GameButtons["Menu"] = PushButton("Menu",
                 self, Cmd_Menu, PState_Game,
-                #u"menu-button", [0, 1, 2, 3, 4], 
                 u"$spritecraft$dummy$", [0, 1, 2, 3, 4], 
                 Layer_InterfaceBtn, 28, 31, 40, 40)
         
@@ -226,7 +224,7 @@ class GameBoard(scraft.Dispatcher):
             if self.State == GameState_StartLevel:
                 self._SetState(GameState_Play)
             
-        #переполнение коллапсоида - штраф и сжигание лишнего
+        #переполнение коллапсоида - штраф и удаление лишнего
         elif cmd == Cmd_CollapsoidFull:
             tmp = parameter.GetBurnCrd()
             parameter.SendCommand(Cmd_CollapsoidBurn)
@@ -350,6 +348,12 @@ class GameBoard(scraft.Dispatcher):
                 for tmp in self.CStations:
                     if tmp.Active:
                         tmp.Customer.GiveSweet()
+                        
+        #экстренное завершение уровня в отладочном режиме
+        elif cmd == Cmd_DebugFinishLevel:       
+            self.LevelScore = max(self.LevelScore,
+                globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
+            self._SetState(GameState_EndLevel)
             
     def AddScore(self, delta):
         self.LevelScore = max(self.LevelScore + delta, 0)

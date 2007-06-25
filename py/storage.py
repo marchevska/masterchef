@@ -512,30 +512,14 @@ class Field(Storage):
         for tmpCell in self.SelectedCells:
             self._RemoveTokenFrom(tmpCell)
         
-    def _RemoveTokenFrom(self, cell, explode = True, removeUpper = False):
+    def _RemoveTokenFrom(self, cell, explode = False, removeUpper = False):
         if explode and self.Cells[cell] != Const_EmptyCell:
-            #p = oE.NewParticles("p"+str(cell), "heart", 0)
-            #p.dispatcher = self
-            #p.SetEmissionQuantity(5)
-            #p.SetEmissionPeriod(33)
-            #p.count = 20
-            #p.SetEmitterCf(scraft.EmCfIncAngle, 1, 3)
-            #p.SetEmitterCf(scraft.EmCfInitDirect, -3.14, 3.14)
-            #p.SetEmitterCf(scraft.EmCfInitSpeed, 30, 40)
-            #p.SetEmitterCf(scraft.EmCfIncTrans, 150, 150)
-            #p.lifeTime = 200
-            #p.cycled = False
-            #p.x = self._AbsCellCoords(cell)[0]
-            #p.y = self._AbsCellCoords(cell)[1]
             p = oE.NewParticles("p"+str(cell), globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"), 0)
             p.dispatcher = self
             p.SetProgram(Particles_RemoveTokenProgram)
             p.SetEmissionQuantity(1)
             p.SetEmissionPeriod(1000)
             p.count = 1
-            #p.SetEmitterCf(scraft.EmCfInitDirect, -1, 1)
-            #p.SetEmitterCf(scraft.EmCfInitSpeed, 30, 40)
-            #p.SetEmitterCf(scraft.EmCfIncTrans, 50, 50)
             p.lifeTime = 2000
             p.cycled = False
             p.x = self._AbsCellCoords(cell)[0]

@@ -1006,13 +1006,15 @@ class Gui(scraft.Dispatcher):
                 if self.NextStateTime <= 0:
                     self.SendCommand(Cmd_PubLogoClose)
                 
-            #пауза в игре
+            #пауза в игре, быстрое прохождение уровня
             if globalvars.GameSettings.GetBoolAttr("debugMode"):
                 if globalvars.StateStack[-1] == PState_Game:
                     if oE.EvtIsKeyDown():
                         if oE.EvtKey() == scraft.Key_F5:
                             globalvars.Frozen = not globalvars.Frozen
                             globalvars.Board.Freeze(globalvars.Frozen)
+                        elif oE.EvtKey() == scraft.Key_F6:
+                            globalvars.Board.SendCommand(Cmd_DebugFinishLevel)
             
             #обрабатываем ввод имени игрока с клавиатуры
             if globalvars.StateStack[-1] == PState_EnterName:

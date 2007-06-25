@@ -33,7 +33,8 @@ Cmd_CollapsoidBurn = 21
 Cmd_Station_DeleteCustomer = 22
 Cmd_Station_DeleteCustomerAndLoseMoney = 23
 Cmd_Customer_SayThankYou = 24
-Cmd_StopDropper = 25                    #команда посылается коллапсоиду, чтобы завершить выброс новых токенов,
+Cmd_DebugFinishLevel = 25
+Cmd_StopDropper = 26                    #команда посылается коллапсоиду, чтобы завершить выброс новых токенов,
                                         #когда все покупатели обслужены (то есть отдавать токены некуда)
 
 Cmd_PickPowerUp = 60

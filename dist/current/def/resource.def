@@ -385,6 +385,7 @@ MasterChef{
     ThemeKlasses{
         //American
         sprite(theme.american.background) { bitmap = "img/episodes/american/background.png" truecolor = "yes" }
+        sprite(theme.american.door) { bitmap = "img/episodes/american/door.png" truecolor = "yes" }
         sprite(theme.american.counter) { bitmap = "img/episodes/american/counter.png" type = "blend" }
         sprite(theme.american.station) { bitmap = "img/episodes/american/station.png" type = "blend" layout = "2x1" }
         sprite(theme.american.station-mask) { bitmap = "img/episodes/american/station-mask.png" type = "blend" layout = "2x1" }
@@ -410,6 +411,7 @@ MasterChef{
         
         //Mexican
         sprite(theme.mexican.background) { bitmap = "img/episodes/mexican/background.png" truecolor = "yes" }
+        sprite(theme.mexican.door) { bitmap = "img/episodes/mexican/door.png" truecolor = "yes" }
         sprite(theme.mexican.counter) { bitmap = "img/episodes/mexican/counter.png" type = "blend" }
         sprite(theme.mexican.station) { bitmap = "img/episodes/mexican/station.png" type = "blend" layout = "2x1" }
         sprite(theme.mexican.station-mask) { bitmap = "img/episodes/mexican/station-mask.png" type = "blend" layout = "2x1" }
@@ -436,6 +438,7 @@ MasterChef{
         
         //Russian
         sprite(theme.russian.background) { bitmap = "img/episodes/russian/background.png" truecolor = "yes" }
+        sprite(theme.russian.door) { bitmap = "img/episodes/russian/door.png" truecolor = "yes" }
         sprite(theme.russian.counter) { bitmap = "img/episodes/russian/counter.png" type = "blend" }
         sprite(theme.russian.station) { bitmap = "img/episodes/russian/station.png" type = "blend" layout = "2x1" }
         sprite(theme.russian.station-mask) { bitmap = "img/episodes/russian/station-mask.png" type = "blend" layout = "2x1" }
@@ -457,6 +460,7 @@ MasterChef{
         
         //Japanese
         sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" truecolor = "yes" }
+        sprite(theme.japanese.door) { bitmap = "img/episodes/japanese/door.png" truecolor = "yes" }
         sprite(theme.japanese.counter) { bitmap = "img/episodes/japanese/counter.png" type = "blend" }
         sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" layout = "2x1" }
         sprite(theme.japanese.station-mask) { bitmap = "img/episodes/japanese/station-mask.png" type = "blend" layout = "2x1" }
@@ -482,6 +486,7 @@ MasterChef{
         
         //Hawaiian
         sprite(theme.hawaiian.background) { bitmap = "img/episodes/hawaiian/background.png" truecolor = "yes" }
+        sprite(theme.hawaiian.door) { bitmap = "img/episodes/hawaiian/door.png" truecolor = "yes" }
         sprite(theme.hawaiian.counter) { bitmap = "img/episodes/hawaiian/counter.png" type = "blend" }
         sprite(theme.hawaiian.station) { bitmap = "img/episodes/hawaiian/station.png" type = "blend" layout = "2x1" }
         sprite(theme.hawaiian.station-mask) { bitmap = "img/episodes/hawaiian/station-mask.png" type = "blend" layout = "2x1" }

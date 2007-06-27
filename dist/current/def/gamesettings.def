@@ -61,6 +61,7 @@ MasterChef {
         Theme(Japanese)
         {
             background = "theme.japanese.background"
+            door = "theme.japanese.door"
             counter = "theme.japanese.counter"
             customersQuePointer = "theme.japanese.pointer"
             station = "theme.japanese.station"
@@ -85,6 +86,7 @@ MasterChef {
         Theme(Mexican)
         {
             background = "theme.mexican.background"
+            door = "theme.mexican.door"
             counter = "theme.mexican.counter"
             customersQuePointer = "theme.mexican.pointer"
             station = "theme.mexican.station"
@@ -109,6 +111,7 @@ MasterChef {
         Theme(Russian)
         {
             background = "theme.russian.background"
+            door = "theme.russian.door"
             counter = "theme.russian.counter"
             customersQuePointer = "theme.russian.pointer"
             station = "theme.russian.station"
@@ -133,6 +136,7 @@ MasterChef {
         Theme(American)
         {
             background = "theme.american.background"
+            door = "theme.american.door"
             counter = "theme.american.counter"
             customersQuePointer = "theme.american.pointer"
             station = "theme.american.station"
@@ -157,6 +161,7 @@ MasterChef {
         Theme(Hawaiian)
         {
             background = "theme.hawaiian.background"
+            door = "theme.hawaiian.door"
             counter = "theme.hawaiian.counter"
             customersQuePointer = "theme.hawaiian.pointer"
             station = "theme.hawaiian.station"

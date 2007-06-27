@@ -29,8 +29,8 @@ import traceback
 class GameBoard(scraft.Dispatcher):
     
     def __init__(self):
-        self.BgSprite = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_GameBg, 0, 0)
-        self.DoorSprite = MakeSimpleSprite(u"$spritecraft$dummy$", Layer_Door, 0, 0)
+        self.BgSprite = MakeSimpleSprite("$spritecraft$dummy$", Layer_GameBg, 0, 0)
+        self.DoorSprite = MakeSimpleSprite("$spritecraft$dummy$", Layer_Door, Crd_DoorX, Crd_DoorY)
         self.BgReceptor = MakeDummySprite(self, Cmd_BgReceptor,
                         400, 300, 800, 600, Layer_BgReceptor)
         
@@ -215,8 +215,6 @@ class GameBoard(scraft.Dispatcher):
             tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
             self.DoorSprite.ChangeKlassTo(tmpTheme.GetStrAttr("door"))
             tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("Door")
-            self.DoorSprite.x = tmp.GetIntAttr("x")
-            self.DoorSprite.y = tmp.GetIntAttr("y")
         
     #--------------------------
     # обработка входящих команд

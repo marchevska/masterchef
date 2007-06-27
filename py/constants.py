@@ -146,6 +146,9 @@ Crd_QueueMarker_TabletDy = -23
 Crd_QueueCustomerDx = 42
 Crd_QueueCustomerDy = 0
 
+Crd_DoorX = 0
+Crd_DoorY = 50
+
 Crd_StationDummyWidth = 140
 Crd_StationDummyHeight = 160
 Crd_StationDummyDx = 34

@@ -136,6 +136,7 @@ class GameBoard(scraft.Dispatcher):
         
         tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
         self.BgSprite.ChangeKlassTo(tmpTheme.GetStrAttr("background"))
+        self.DoorSprite.ChangeKlassTo("$spritecraft$dummy$")
         self.HudElements["InfoPane"].ChangeKlassTo(tmpTheme.GetStrAttr("infopane"))
         self.GameButtons["Menu"].SetButtonKlass(tmpTheme.GetStrAttr("menuButton"))
         

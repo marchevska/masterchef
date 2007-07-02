@@ -109,17 +109,6 @@ layout = 1x3
 type   = blend
 }
 
-sprite info-pane {
-bitmap = img/hud/info-pane.png
-type = blend
-}
-
-sprite menu-button {
-bitmap = img/hud/menu-button.png
-layout = 1x4
-type   = blend
-}
-
 
 ################
 # gui elements #
@@ -181,6 +170,12 @@ sprite cookbook.prev-button {
 bitmap = img/gui/cookbook.prev-button.png
 type   = blend
 layout = 1x4
+}
+
+sprite cookbook.new-recipe {
+bitmap = img/gui/cookbook.new-recipe.png
+type   = blend
+layout = 1x3
 }
 
 
@@ -252,6 +247,7 @@ bitmap = img/gui/help-page1.png
 
 sprite players-select-button {
 bitmap = img/gui/players-select-button.png
+type = blend
 layout = 1x5
 }
 
@@ -338,6 +334,12 @@ sprite map.play.button {
 bitmap = img/gui/map.play.button.png
 type = blend
 layout = 1x4
+}
+
+sprite map.back-button {
+bitmap = img/gui/map.back-button.png
+type = blend
+layout = 4x1
 }
 
 #########

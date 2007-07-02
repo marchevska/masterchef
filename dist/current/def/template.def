@@ -173,7 +173,7 @@ level{
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "100" y = "550" occupied = "no" }
         //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "8" YSize = "12" InitialRows = "6" DropIn = "600" ShiftSpeed = "40" X0 = "450" Y0 = "50" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "0" SensorAt = "4" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         PowerUp{ type = "Sweet" x = "370" y = "200" }
         PowerUp{ type = "Gift" x = "370" y = "250" }
         Counter{ type = "" x = "330" y = "95" }

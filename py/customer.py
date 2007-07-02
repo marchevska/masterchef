@@ -230,9 +230,6 @@ class CustomersQue(scraft.Dispatcher):
             self.CustomersList.append(RandomKeyByRates(tmpRates))
             
         self.Customers = map(lambda x: Customer(x), self.CustomersList)
-        self.TextMarker = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                { "x": Crd_QueueMarker_TextX, "y": Crd_QueueMarker_TextY, "cfilt-color": 0x600000,
-                 "hotspot": scraft.HotspotLeftCenter })
         self._Draw()
         self.SetState(QueState_None)
         self.QueNo = oE.executor.Schedule(self)
@@ -243,11 +240,6 @@ class CustomersQue(scraft.Dispatcher):
             self.Customers[i].Show(True)
         for i in range(Const_VisibleCustomers, len(self.Customers)):
             self.Customers[i].Show(False)
-        if len(self.Customers) > 0:
-            self.TextMarker.text = str(len(self.Customers))
-        else:
-            #self.TextMarker.text = Str_HUD_RestaurantClosed
-            self.TextMarker.text = ""
         
     def HasCustomers(self):
         return (self.RemainingCustomers > 0)
@@ -277,7 +269,6 @@ class CustomersQue(scraft.Dispatcher):
     def Show(self, flag):
         for tmp in self.Customers:
             tmp.Show(flag)
-        self.TextMarker.visible = flag
         
     def Freeze(self, flag):
         if flag:
@@ -292,7 +283,6 @@ class CustomersQue(scraft.Dispatcher):
         for tmp in self.Customers:
             tmp.Kill()
             del tmp
-        self.TextMarker.Dispose()
     
 #-------------------------------
 # ֳכאגדונמי

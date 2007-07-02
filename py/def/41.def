@@ -71,9 +71,9 @@ Level{
     //level settings
     LevelSettings{
         title = "'Hawaiian 1'"
-        noCustomers = "10"
-        moneyGoal = "100"
-        expertGoal = "200"
+        noCustomers = "20"
+        moneyGoal = "1700"
+        expertGoal = "2200"
     }
     
     //level layout: customer stations, power-up buttons, decorations
@@ -84,8 +84,7 @@ Level{
         CustomerStation{ type = "" x = "270" y = "410" occupied = "yes" }
         CustomerStation{ type = "" x = "90" y = "520" occupied = "no" }
         //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "4" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
-        //Counter{ type = "" x = "230" y = "145" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "0" SensorAt = "5" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         //TrashCan{ type = "" size = "100" x = "350" y = "530" }
     }

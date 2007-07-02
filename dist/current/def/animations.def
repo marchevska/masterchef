@@ -200,5 +200,10 @@ MasterChef {
         Sequence(Play) { frames = "(0, 300, 400), (1, 300, 400), (2, 300, 400)" loops = "0" }
     }    
     
+    Animation(animation.cookbook.new-recipe) {
+        Sequence(None) { frames = "(0, 100000)," loops = "0" }
+        Sequence(First) { frames = "(1, 1000), (2, 200)" loops = "0" }
+    }    
+    
 }
 

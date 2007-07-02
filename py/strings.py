@@ -98,4 +98,5 @@ Str_HUD_ScoreText = "SCORE"
 Str_HUD_GoalText = "GOAL"
 Str_HUD_ExpertText = "EXPERT"
 Str_HUD_ApprovalText = "BONUS"
+Str_HUD_NoPeopleText = "PEOPLE"
 

@@ -38,7 +38,7 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements = {}
         self.HudElements["InfoPane"] = MakeSprite("$spritecraft$dummy$", Layer_InterfaceBg, { "x": 1, "y": 0 })
         self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
-                                    {"x": 75, "y": 18, "hotspot": scraft.HotspotCenter,
+                                    {"x": 77, "y": 18, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_LevelText, "cfilt-color": 0x604020})
         self.HudElements["ScoreText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 150, "y": 18, "hotspot": scraft.HotspotCenter,
@@ -46,14 +46,24 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["GoalText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 235, "y": 18, "hotspot": scraft.HotspotCenter,
                                      "text": Str_HUD_GoalText, "cfilt-color": 0x604020})
+        self.HudElements["NoPeopleText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
+                                    {"x": 298, "y": 18, "hotspot": scraft.HotspotCenter,
+                                     "text": Str_HUD_NoPeopleText, "cfilt-color": 0x604020})
         self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"x": 75, "y": 37, "hotspot": scraft.HotspotCenter,
+                                    {"x": 77, "y": 37, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
         self.HudElements["Score"] = MakeSprite(u"domcasual-20-green", Layer_InterfaceTxt,
                                     {"x": 150, "y": 40, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xFFFFF})
         self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                                     {"x": 235, "y": 37, "hotspot": scraft.HotspotCenter,
+                                     "cfilt-color": 0xC04020})
+        self.HudElements["NoPeople"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+                                    {"x": Crd_QueueMarker_TextX, "y": Crd_QueueMarker_TextY,
+                                     "hotspot": scraft.HotspotCenter,
+                                     "cfilt-color": 0xC04020})
+        self.HudElements["Closed"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+                                    {"hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
         
         #create buttons
@@ -85,7 +95,6 @@ class GameBoard(scraft.Dispatcher):
         self.Freeze(True)
         
     def LaunchLevel(self):
-        #globalvars.BlackBoard = BlackBoard()
         globalvars.BlackBoard.ClearTag(BBTag_Ingredients)
         self.Freeze(False)
         try:
@@ -93,32 +102,20 @@ class GameBoard(scraft.Dispatcher):
         except:
             oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
         self._StartLevel()
-        #self.SaveGame()
         
     def _StartLevel(self):
         self.Expert = False
         self.HudElements["LevelName"].text = unicode(self.LevelName)
         self.HudElements["GoalText"].text = unicode(Str_HUD_GoalText)
         self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")))
+        self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
+        self.HudElements["Closed"].text = ""
         self._UpdateLevelInfo()
         
     def Restart(self):
         self.Clear()
         self.LaunchLevel()
         
-    def _EndLevel(self, flag):
-        """ Завершение уровня
-            flag == True означает победу в уровне
-            flag == False - поражение (игрок не уложился по времени)
-        """
-        pass
-        
-    def _EndGame(self, flag):
-        """ Завершение игры
-            flag == True означает полное прохождение игры
-            flag == False - поражение (жизни закончились)
-        """
-        pass
         
     #--------------------------
     # Загрузка уровня
@@ -137,6 +134,7 @@ class GameBoard(scraft.Dispatcher):
         tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
         self.BgSprite.ChangeKlassTo(tmpTheme.GetStrAttr("background"))
         self.DoorSprite.ChangeKlassTo("$spritecraft$dummy$")
+        self.HudElements["Closed"].x, self.HudElements["Closed"].y = eval(tmpTheme.GetStrAttr("closedSignXY"))
         self.HudElements["InfoPane"].ChangeKlassTo(tmpTheme.GetStrAttr("infopane"))
         self.GameButtons["Menu"].SetButtonKlass(tmpTheme.GetStrAttr("menuButton"))
         
@@ -161,7 +159,8 @@ class GameBoard(scraft.Dispatcher):
                         tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Collapsoid"):
             self.Fields.append(Collapsoid(tmp.GetIntAttr("XSize"), tmp.GetIntAttr("YSize"),
-                        tmp.GetIntAttr("InitialRows"), tmp.GetIntAttr("Delay"), tmp.GetIntAttr("DropIn"),
+                        tmp.GetIntAttr("InitialRows"), tmp.GetIntAttr("SensorAt"), 
+                        tmp.GetIntAttr("Delay"), tmp.GetIntAttr("DropIn"),
                         tmp.GetIntAttr("ShiftSpeed"), tmp.GetIntAttr("X0"), tmp.GetIntAttr("Y0"), tmpTheme))
         self.Stores = []
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("Store"):
@@ -212,10 +211,12 @@ class GameBoard(scraft.Dispatcher):
         station.SetState(CStationState_Busy)
         station.AttachCustomer(self.CustomersQue.PopCustomer())
         self.RemainingCustomers -= 1
+        self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
         if self.RemainingCustomers <= 0:
             tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
             self.DoorSprite.ChangeKlassTo(tmpTheme.GetStrAttr("door"))
             tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("Door")
+            self.HudElements["Closed"].text = Str_HUD_RestaurantClosed
         
     #--------------------------
     # обработка входящих команд
@@ -344,6 +345,10 @@ class GameBoard(scraft.Dispatcher):
             elif parameter["amount"] < 0:
                 self._PopupText(str(parameter["amount"]), "domcasual-20-red",
                             parameter["station"].CrdX, parameter["station"].CrdY)
+            if parameter.has_key("tips"):
+                self.AddScore(parameter["tips"])
+                self._PopupText("+"+str(parameter["tips"]), "domcasual-20-orange",
+                                parameter["station"].CrdX-20, parameter["station"].CrdY-20)
             
         elif cmd == Cmd_PickPowerUp:
             self._PickPowerUp(parameter["type"], parameter["where"])
@@ -380,10 +385,10 @@ class GameBoard(scraft.Dispatcher):
             
         #начало уровня; задать способ появления блоков на поле
         elif state == GameState_StartLevel:
+            self.StartTime = oE.millis
             for tmp in self.Fields:
                tmp.SetState(FieldState_StartLevel)
             self._SetState(GameState_Play)
-            pass
             
         #основной цикл - игра
         elif state == GameState_Play:
@@ -408,6 +413,7 @@ class GameBoard(scraft.Dispatcher):
                 globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
                         { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
                          "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
+                print "level", self.LevelName, "time", (oE.millis-self.StartTime)/1000
         
         
     #--------------------------

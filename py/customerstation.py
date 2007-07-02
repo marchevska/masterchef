@@ -50,6 +50,7 @@ class CustomerStation(scraft.Dispatcher):
         self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
         self.Hero.Show(False)
         self.Customer = None
+        self.Tips = 0
         self.State = CStationState_None
         
     def SetState(self, state):
@@ -173,16 +174,11 @@ class CustomerStation(scraft.Dispatcher):
         elif tmp == [] and not globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetBoolAttr("allowsExcessIngredients"):
             self.Customer.AddHearts(-1)
         
-        ##проверить - является ли ингредиент любимым для покуаптеля
-        #if globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetStrAttr("likes") == food:
-        #    tmpScoreMultiplier *= 2
-        #    
-        #return no*tmpScoreMultiplier
-        
-        return eval(globalvars.GameSettings.GetStrAttr("tokenScores"))[min(no, globalvars.GameSettings.GetIntAttr("tokensGroupMax"))]
+        #return eval(globalvars.GameSettings.GetStrAttr("tokenScores"))[min(no, globalvars.GameSettings.GetIntAttr("tokensGroupMax"))]
+        return eval(globalvars.GameSettings.GetStrAttr("tokenScores"))[tmpOld - tmpNew]
         
     def _OnMouseOver(self, sprite, flag):
-        if globalvars.StateStack[-1] == PState_Game:
+        if globalvars.StateStack[-1] == PState_Game and self.State != CStationState_None:
             if sprite.cookie == Cmd_CustomerStation and self.Customer != None:
                 self._Hilight(flag)    
         
@@ -193,7 +189,8 @@ class CustomerStation(scraft.Dispatcher):
                                                             "mealReady": self.MealReady})
         
     def _Hilight(self, flag):
-        self.Customer.Hilight(flag)
+        if self.Customer != None:
+            self.Customer.Hilight(flag)
         if flag:
             self.TableSprite.frno = 1
             self.MaskSprite.frno = 1
@@ -244,9 +241,10 @@ class CustomerStation(scraft.Dispatcher):
             self.PutOrder(parameter)
             
         elif cmd == Cmd_ReleaseCustomer:
+            globalvars.Board.SendCommand(Cmd_CustomerServed)
+            self.Tips = eval(globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetStrAttr("tips"))[self.Customer.Hearts]
             self.Customer.SendCommand(Cmd_Customer_SayThankYou)
             self.Active = False
-            globalvars.Board.SendCommand(Cmd_CustomerServed)
             
         elif cmd == Cmd_CustomerGoesAway:
             self._RemoveOrder()
@@ -277,7 +275,8 @@ class CustomerStation(scraft.Dispatcher):
             self.State = CStationState_Free
             globalvars.Board.SendCommand(Cmd_FreeStation)
             globalvars.Board.SendCommand(Cmd_TakeMoney, { "station": self,
-                        "amount": globalvars.RecipeInfo.GetSubtag(self.OrderType).GetIntAttr("price") })
+                        "amount": globalvars.RecipeInfo.GetSubtag(self.OrderType).GetIntAttr("price"),
+                        "tips": self.Tips})
             
         elif cmd == Cmd_Station_DeleteCustomerAndLoseMoney:
             self.Active = False

@@ -372,145 +372,92 @@ MasterChef{
         
     }
 
-    //source classes for power-ups
-    //PowerUpKlasses{
-    //    sprite(powerup.use.button) { bitmap = "img/powerups/use-powerup-button.png" type = "blend" layout = "2x2" }
-    //    sprite(powerup.buy.button) { bitmap = "img/powerups/buy-powerup-button.png" type = "blend" layout = "1x4" }
-    //    font(powerups) { bitmap = "img/powerups/powerups.png" type = "blend" symbols =12345678-$ }
-    //    font(powerups.roll) { bitmap = "img/powerups/powerups-roll.png" type = "blend" symbols =12345678-$ }
-    //    font(powerups.inert) { bitmap = "img/powerups/powerups-inert.png" type = "blend" symbols =12345678-$ }
-    //}
-    
     //source klasses for restaurant themes
     ThemeKlasses{
         //American
         sprite(theme.american.background) { bitmap = "img/episodes/american/background.png" truecolor = "yes" }
         sprite(theme.american.door) { bitmap = "img/episodes/american/door.png" truecolor = "yes" }
-        //sprite(theme.american.counter) { bitmap = "img/episodes/american/counter.png" type = "blend" }
         sprite(theme.american.station) { bitmap = "img/episodes/american/station.png" type = "blend" layout = "2x1" }
         sprite(theme.american.station-mask) { bitmap = "img/episodes/american/station-mask.png" type = "blend" layout = "2x1" }
         sprite(theme.american.station-line) { bitmap = "img/episodes/american/station-line.png" type = "blend" }
         sprite(theme.american.recipeinfo) { bitmap = "img/episodes/american/recipe-info.png" type = "blend" }
-        //sprite(theme.american.field) { bitmap = "img/episodes/american/field.png" type = "blend" layout = "3x3" }
         sprite(theme.american.collapsoid) { bitmap = "img/episodes/american/collapsoid.png" type = "blend" layout = "3x3" }
         font(theme.american.collapsoid.dropper) { bitmap = "img/episodes/american/collapsoid.dropper.png" type = "blend" symbols="LMR" }
         font(theme.american.collapsoid.dropper.roll) { bitmap = "img/episodes/american/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
         font(theme.american.collapsoid.dropper.down) { bitmap = "img/episodes/american/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        //sprite(theme.american.storage) { bitmap = "img/episodes/american/storage.png" type = "blend" layout = "3x3" }
-        //sprite(theme.american.bonuspane) { bitmap = "img/episodes/american/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.american.trashcan) { bitmap = "img/episodes/american/trashcan.png" type = "blend" }
         sprite(theme.american.trashcan.bar.empty) { bitmap = "img/episodes/american/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.american.trashcan.bar.full) { bitmap = "img/episodes/american/trashcan-bar-full.png" type = "blend" }
-        //sprite(theme.american.tablet) { bitmap = "img/episodes/american/tablet.png" type = "blend" }
         sprite(theme.american.info-pane) { bitmap = "img/episodes/american/info-pane.png" type = "blend" }
         sprite(theme.american.menu-button) { bitmap = "img/episodes/american/menu-button.png" type = "blend" layout = "1x4" }
-        
-        //sprite(theme.american.decoration.barrel) { bitmap = "img/episodes/american/barrel.png" type = "blend" }
-        //sprite(theme.american.decoration.stand) { bitmap = "img/episodes/american/stand.png" type = "blend" }
-        //sprite(theme.american.decoration.nopal) { bitmap = "img/episodes/american/nopal.png" type = "blend" }
         
         //Mexican
         sprite(theme.mexican.background) { bitmap = "img/episodes/mexican/background.png" truecolor = "yes" }
         sprite(theme.mexican.door) { bitmap = "img/episodes/mexican/door.png" truecolor = "yes" }
-        //sprite(theme.mexican.counter) { bitmap = "img/episodes/mexican/counter.png" type = "blend" }
         sprite(theme.mexican.station) { bitmap = "img/episodes/mexican/station.png" type = "blend" layout = "2x1" }
         sprite(theme.mexican.station-mask) { bitmap = "img/episodes/mexican/station-mask.png" type = "blend" layout = "2x1" }
         sprite(theme.mexican.station-line) { bitmap = "img/episodes/mexican/station-line.png" type = "blend" }
         sprite(theme.mexican.recipeinfo) { bitmap = "img/episodes/mexican/recipe-info.png" type = "blend" }
-        //sprite(theme.mexican.field) { bitmap = "img/episodes/mexican/field.png" type = "blend" layout = "3x3" }
         sprite(theme.mexican.collapsoid) { bitmap = "img/episodes/mexican/collapsoid.png" type = "blend" layout = "3x3" }
         font(theme.mexican.collapsoid.dropper) { bitmap = "img/episodes/mexican/collapsoid.dropper.png" type = "blend" symbols="LMR" }
         font(theme.mexican.collapsoid.dropper.roll) { bitmap = "img/episodes/mexican/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
         font(theme.mexican.collapsoid.dropper.down) { bitmap = "img/episodes/mexican/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        //sprite(theme.mexican.storage) { bitmap = "img/episodes/mexican/storage.png" type = "blend" layout = "3x3" }
-        //sprite(theme.mexican.bonuspane) { bitmap = "img/episodes/mexican/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.mexican.trashcan) { bitmap = "img/episodes/mexican/trashcan.png" type = "blend" }
         sprite(theme.mexican.trashcan.bar.empty) { bitmap = "img/episodes/mexican/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.mexican.trashcan.bar.full) { bitmap = "img/episodes/mexican/trashcan-bar-full.png" type = "blend" }
-        //sprite(theme.mexican.tablet) { bitmap = "img/episodes/mexican/tablet.png" type = "blend" }
         sprite(theme.mexican.info-pane) { bitmap = "img/episodes/mexican/info-pane.png" type = "blend" }
         sprite(theme.mexican.menu-button) { bitmap = "img/episodes/mexican/menu-button.png" type = "blend" layout = "1x4" }
-        
-        //sprite(theme.mexican.decoration.carpet-palm) { bitmap = "img/episodes/mexican/carpet-palm.png" type = "blend" }
-        //sprite(theme.mexican.decoration.carpet-sombrero) { bitmap = "img/episodes/mexican/carpet-sombrero.png" type = "blend" }
-        //sprite(theme.mexican.decoration.carpet-sun) { bitmap = "img/episodes/mexican/carpet-sun.png" type = "blend" }
-        //sprite(theme.mexican.decoration.tree) { bitmap = "img/episodes/mexican/tree.png" type = "blend" }
         
         //Russian
         sprite(theme.russian.background) { bitmap = "img/episodes/russian/background.png" truecolor = "yes" }
         sprite(theme.russian.door) { bitmap = "img/episodes/russian/door.png" truecolor = "yes" }
-        //sprite(theme.russian.counter) { bitmap = "img/episodes/russian/counter.png" type = "blend" }
         sprite(theme.russian.station) { bitmap = "img/episodes/russian/station.png" type = "blend" layout = "2x1" }
         sprite(theme.russian.station-mask) { bitmap = "img/episodes/russian/station-mask.png" type = "blend" layout = "2x1" }
         sprite(theme.russian.station-line) { bitmap = "img/episodes/russian/station-line.png" type = "blend" }
         sprite(theme.russian.recipeinfo) { bitmap = "img/episodes/russian/recipe-info.png" type = "blend" }
-        //sprite(theme.russian.field) { bitmap = "img/episodes/russian/field.png" type = "blend" layout = "3x3" }
         sprite(theme.russian.collapsoid) { bitmap = "img/episodes/russian/collapsoid.png" type = "blend" layout = "3x3" }
         font(theme.russian.collapsoid.dropper) { bitmap = "img/episodes/russian/collapsoid.dropper.png" type = "blend" symbols="LMR" }
         font(theme.russian.collapsoid.dropper.roll) { bitmap = "img/episodes/russian/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
         font(theme.russian.collapsoid.dropper.down) { bitmap = "img/episodes/russian/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        //sprite(theme.russian.storage) { bitmap = "img/episodes/russian/storage.png" type = "blend" layout = "3x3" }
-        //sprite(theme.russian.bonuspane) { bitmap = "img/episodes/russian/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.russian.trashcan) { bitmap = "img/episodes/russian/trashcan.png" type = "blend" }
         sprite(theme.russian.trashcan.bar.empty) { bitmap = "img/episodes/russian/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.russian.trashcan.bar.full) { bitmap = "img/episodes/russian/trashcan-bar-full.png" type = "blend" }
-        //sprite(theme.russian.tablet) { bitmap = "img/episodes/russian/tablet.png" type = "blend" }
         sprite(theme.russian.info-pane) { bitmap = "img/episodes/russian/info-pane.png" type = "blend" }
         sprite(theme.russian.menu-button) { bitmap = "img/episodes/russian/menu-button.png" type = "blend" layout = "1x4" }
         
         //Japanese
         sprite(theme.japanese.background) { bitmap = "img/episodes/japanese/background.png" truecolor = "yes" }
         sprite(theme.japanese.door) { bitmap = "img/episodes/japanese/door.png" truecolor = "yes" }
-        //sprite(theme.japanese.counter) { bitmap = "img/episodes/japanese/counter.png" type = "blend" }
         sprite(theme.japanese.station) { bitmap = "img/episodes/japanese/station.png" type = "blend" layout = "2x1" }
         sprite(theme.japanese.station-mask) { bitmap = "img/episodes/japanese/station-mask.png" type = "blend" layout = "2x1" }
         sprite(theme.japanese.station-line) { bitmap = "img/episodes/japanese/station-line.png" type = "blend" }
         sprite(theme.japanese.recipeinfo) { bitmap = "img/episodes/japanese/recipe-info.png" type = "blend" }
-        //sprite(theme.japanese.field) { bitmap = "img/episodes/japanese/field.png" type = "blend" layout = "3x3" }
         sprite(theme.japanese.collapsoid) { bitmap = "img/episodes/japanese/collapsoid.png" type = "blend" layout = "3x3" }
         font(theme.japanese.collapsoid.dropper) { bitmap = "img/episodes/japanese/collapsoid.dropper.png" type = "blend" symbols="LMR" }
         font(theme.japanese.collapsoid.dropper.roll) { bitmap = "img/episodes/japanese/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
         font(theme.japanese.collapsoid.dropper.down) { bitmap = "img/episodes/japanese/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        //sprite(theme.japanese.storage) { bitmap = "img/episodes/japanese/storage.png" type = "blend" layout = "3x3" }
-        //sprite(theme.japanese.bonuspane) { bitmap = "img/episodes/japanese/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.japanese.trashcan) { bitmap = "img/episodes/japanese/trashcan.png" type = "blend" }
         sprite(theme.japanese.trashcan.bar.empty) { bitmap = "img/episodes/japanese/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.japanese.trashcan.bar.full) { bitmap = "img/episodes/japanese/trashcan-bar-full.png" type = "blend" }
-        //sprite(theme.japanese.tablet) { bitmap = "img/episodes/japanese/tablet.png" type = "blend" }
         sprite(theme.japanese.info-pane) { bitmap = "img/episodes/japanese/info-pane.png" type = "blend" }
         sprite(theme.japanese.menu-button) { bitmap = "img/episodes/japanese/menu-button.png" type = "blend" layout = "1x4" }
-        
-        //sprite(theme.japanese.decoration.bonsai) { bitmap = "img/episodes/japanese/bonsai.png" type = "blend" }
-        //sprite(theme.japanese.decoration.screen1) { bitmap = "img/episodes/japanese/screen1.png" type = "blend" }
-        //sprite(theme.japanese.decoration.screen2) { bitmap = "img/episodes/japanese/screen2.png" type = "blend" }
         
         //Hawaiian
         sprite(theme.hawaiian.background) { bitmap = "img/episodes/hawaiian/background.png" truecolor = "yes" }
         sprite(theme.hawaiian.door) { bitmap = "img/episodes/hawaiian/door.png" truecolor = "yes" }
-        //sprite(theme.hawaiian.counter) { bitmap = "img/episodes/hawaiian/counter.png" type = "blend" }
         sprite(theme.hawaiian.station) { bitmap = "img/episodes/hawaiian/station.png" type = "blend" layout = "2x1" }
         sprite(theme.hawaiian.station-mask) { bitmap = "img/episodes/hawaiian/station-mask.png" type = "blend" layout = "2x1" }
         sprite(theme.hawaiian.station-line) { bitmap = "img/episodes/hawaiian/station-line.png" type = "blend" }
         sprite(theme.hawaiian.recipeinfo) { bitmap = "img/episodes/hawaiian/recipe-info.png" type = "blend" }
-        //sprite(theme.hawaiian.field) { bitmap = "img/episodes/hawaiian/field.png" type = "blend" layout = "3x3" }
         sprite(theme.hawaiian.collapsoid) { bitmap = "img/episodes/hawaiian/collapsoid.png" type = "blend" layout = "3x3" }
         font(theme.hawaiian.collapsoid.dropper) { bitmap = "img/episodes/hawaiian/collapsoid.dropper.png" type = "blend" symbols="LMR" }
         font(theme.hawaiian.collapsoid.dropper.roll) { bitmap = "img/episodes/hawaiian/collapsoid.dropper.roll.png" type = "blend" symbols="LMR" }
         font(theme.hawaiian.collapsoid.dropper.down) { bitmap = "img/episodes/hawaiian/collapsoid.dropper.down.png" type = "blend" symbols="LMR" }
-        //sprite(theme.hawaiian.storage) { bitmap = "img/episodes/hawaiian/storage.png" type = "blend" layout = "3x3" }
-        //sprite(theme.hawaiian.bonuspane) { bitmap = "img/episodes/hawaiian/bonus-pane.png" type = "blend" layout = "1x3" }
         sprite(theme.hawaiian.trashcan) { bitmap = "img/episodes/hawaiian/trashcan.png" type = "blend" }
         sprite(theme.hawaiian.trashcan.bar.empty) { bitmap = "img/episodes/hawaiian/trashcan-bar-empty.png" type = "blend" }
         sprite(theme.hawaiian.trashcan.bar.full) { bitmap = "img/episodes/hawaiian/trashcan-bar-full.png" type = "blend" }
-        //sprite(theme.hawaiian.tablet) { bitmap = "img/episodes/hawaiian/tablet.png" type = "blend" }
         sprite(theme.hawaiian.info-pane) { bitmap = "img/episodes/hawaiian/info-pane.png" type = "blend" }
         sprite(theme.hawaiian.menu-button) { bitmap = "img/episodes/hawaiian/menu-button.png" type = "blend" layout = "1x4" }
-        
-        //sprite(theme.hawaiian.decoration.candy-machine) { bitmap = "img/episodes/hawaiian/candy-machine.png" type = "blend" }
-        //sprite(theme.hawaiian.decoration.flower) { bitmap = "img/episodes/hawaiian/flower.png" type = "blend" }
-        //sprite(theme.hawaiian.decoration.screen1) { bitmap = "img/episodes/hawaiian/screen1.png" type = "blend" }
-        //sprite(theme.hawaiian.decoration.screen2) { bitmap = "img/episodes/hawaiian/screen2.png" type = "blend" }
-        //sprite(theme.hawaiian.decoration.screen3) { bitmap = "img/episodes/hawaiian/screen3.png" type = "blend" }
         
     }
     

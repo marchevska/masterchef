@@ -49,11 +49,11 @@ MasterChef {
         level(def/19.def) { name = "2-9" no = "19" x = "276" y = "65" unlock = "[ ]" }
         level(def/20.def) { name = "2-10" no = "20" x = "302" y = "61" unlock = "[ ]" }
         
-        //Episode - Japanese
-        comic(Japanese.intro) {
-            image = "comics.japanese.intro"
+        //Episode - Russian
+        comic(Russian.intro) {
+            image = "comics.russian.intro"
             button = "comics.play-button"
-            unlock = "Japanese"
+            unlock = "Russian"
         }
 
         level(def/21.def) { name = "3-1" no = "21" x = "416" y = "45" unlock = "[ 'Pelmeni', 'Cutlets', ]" }
@@ -67,11 +67,11 @@ MasterChef {
         level(def/29.def) { name = "3-9" no = "29" x = "620" y = "90" unlock = "[ ]" }
         level(def/30.def) { name = "3-10" no = "30" x = "642" y = "105" unlock = "[ ]" }
         
-        //Episode - Russian
-        comic(Russian.intro) {
-            image = "comics.russian.intro"
+        //Episode - Japanese
+        comic(Japanese.intro) {
+            image = "comics.japanese.intro"
             button = "comics.play-button"
-            unlock = "Russian"
+            unlock = "Japanese"
         }
 
         level(def/31.def) { name = "4-1" no = "31" x = "714" y = "177" unlock = "[ 'Sashimi', 'Ochazuke', ]" }

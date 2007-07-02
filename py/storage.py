@@ -514,7 +514,7 @@ class Field(Storage):
         
     def _RemoveTokenFrom(self, cell, explode = False, removeUpper = False):
         if explode and self.Cells[cell] != Const_EmptyCell:
-            p = oE.NewParticles("p"+str(cell), globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"), 0)
+            p = oE.NewParticles_(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"), 0)
             p.dispatcher = self
             p.SetProgram(Particles_RemoveTokenProgram)
             p.SetEmissionQuantity(1)
@@ -902,7 +902,8 @@ class Field(Storage):
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
         try:
-            if globalvars.StateStack[-1] == PState_Game:
+            if globalvars.StateStack[-1] == PState_Game and \
+                    self.State not in (FieldState_Shuffle, FieldState_MagicWandConverting):
             #if self.State == FieldState_Input:
                 if sprite.cookie == Cmd_Receptor:
                     tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
@@ -1016,7 +1017,7 @@ class Field(Storage):
 #--------------------------------------------
 #--------------------------------------------
 class Collapsoid(Field):
-    def __init__(self, cols, rows, initialrows, delay, dropin, shiftspeed, x, y, theme):
+    def __init__(self, cols, rows, initialrows, sensorat, delay, dropin, shiftspeed, x, y, theme):
         Storage.__init__(self, cols, rows+1, x, y, theme.GetStrAttr("collapsoid"))
         self.Rows -= 1
         #кнопка для быстрого сколлинга на строку
@@ -1030,12 +1031,14 @@ class Collapsoid(Field):
         self.FallingBlocks = {}
         self.Collapsing = True
         self.InitialRows = initialrows
+        self.SensorAt = sensorat
         self.Delay = delay
         self.DropIn = dropin
         self.ShiftSpeed = shiftspeed
         self.SetState(FieldState_None)
         self.SetDropperState(DropperState_None)
         self.QueNo = oE.executor.Schedule(self)
+        self.SpeedMiltiplier = 1
         
     #--------------------------
     # Начальное заполнение поля
@@ -1133,7 +1136,20 @@ class Collapsoid(Field):
     def _OnExecute(self, que):
         try:
             if self.DropperState == DropperState_Drop:
-                self.NextDropTime -= que.delta
+                tmpRows = map(lambda x: x[1],
+                              filter(lambda x: self.Cells[x] != Const_EmptyCell, self.Cells.keys()))
+                if tmpRows != []:
+                    tmpFilledRows = self.Rows - min(tmpRows)
+                else:
+                    tmpFilledRows = 0
+                if globalvars.GameSettings.GetBoolAttr("useCollapsoidSensor") and \
+                        tmpFilledRows < self.SensorAt:
+                    #self.SpeedMiltiplier = globalvars.GameSettings.GetIntAttr("underSensorSpeedIncrease")
+                    self.SpeedMiltiplier = 1.0*globalvars.GameSettings.GetIntAttr("underSensorSpeedIncrease")\
+                        *(self.SensorAt - tmpFilledRows)/self.SensorAt
+                else:
+                    self.SpeedMiltiplier = 1
+                self.NextDropTime -= que.delta*self.SpeedMiltiplier
                 if self.NextDropTime < 0:
                     if self.Dropped < self.Cols:
                         self.Dropped += 1
@@ -1152,7 +1168,7 @@ class Collapsoid(Field):
                     self.SetDropperState(DropperState_Move)
                 
             elif self.DropperState == DropperState_Move:
-                self.MovingTime = max(0, self.MovingTime - que.delta)
+                self.MovingTime = max(0, self.MovingTime - que.delta*self.SpeedMiltiplier)
                 tmpCrd = self.DestCrd - 1.0*self.MovingTime*self.Speed/1000
                 self.Base.y = self.Crd_minY + tmpCrd
                 self.Highlight.y = self.Crd_minY - Crd_deltaY/2 + tmpCrd

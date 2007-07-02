@@ -78,10 +78,9 @@ Level{
         theme = "American" 
         CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
         CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "6" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
-        Counter{ type = "" x = "230" y = "145" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "0" SensorAt = "5" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
-        TrashCan{ type = "" size = "100" x = "350" y = "530" }
+        //TrashCan{ type = "" size = "100" x = "350" y = "530" }
     }
     
 }

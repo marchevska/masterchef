@@ -520,7 +520,7 @@ MasterChef {
     Recipe(Sashimi) {
         setting = "Japanese"
         type = ""
-        requires = "{ 'salmon':8, 'veggies':7,  }"
+        requires = "{ 'salmon':8, 'veggymix':7,  }"
         price = "50"
         readyAt = "0"
         src = "recipe.sashimi"
@@ -534,7 +534,7 @@ MasterChef {
     Recipe(Seafood Tempura) {
         setting = "Japanese"
         type = ""
-        requires = "{ 'shrimp':8, 'veggies':7,  }"
+        requires = "{ 'shrimp':8, 'veggymix':7,  }"
         price = "50"
         readyAt = "0"
         src = "recipe.seafood-tempura"
@@ -562,7 +562,7 @@ MasterChef {
     Recipe(Tempura) {
         setting = "Japanese"
         type = ""
-        requires = "{ 'salmon':6, 'shrimp':8, 'veggies':6,  }"
+        requires = "{ 'salmon':6, 'shrimp':8, 'veggymix':6,  }"
         price = "75"
         readyAt = "0"
         src = "recipe.tempura"
@@ -646,7 +646,7 @@ MasterChef {
     Recipe(Yosenabe) {
         setting = "Japanese"
         type = ""
-        requires = "{ 'salmon':7, 'shrimp':6, 'tofu':5, 'veggies':7,  }"
+        requires = "{ 'salmon':7, 'shrimp':6, 'tofu':5, 'veggymix':7,  }"
         price = "100"
         readyAt = "0"
         src = "recipe.yosenabe"
@@ -660,7 +660,7 @@ MasterChef {
     Recipe(Temaki Zushi) {
         setting = "Japanese"
         type = ""
-        requires = "{ 'rice':8, 'tofu':5, 'veggies':6, 'seaweed':6,  }"
+        requires = "{ 'rice':8, 'tofu':5, 'veggymix':6, 'seaweed':6,  }"
         price = "100"
         readyAt = "0"
         src = "recipe.temakizushi"

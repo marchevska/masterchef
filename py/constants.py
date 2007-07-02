@@ -139,7 +139,7 @@ QueState_Passive = 2
 # координаты
 #------------
 
-Crd_QueueMarker_TextX = 310
+Crd_QueueMarker_TextX = 298
 Crd_QueueMarker_TextY = 37
 Crd_QueueMarker_TabletDx = 0
 Crd_QueueMarker_TabletDy = -23

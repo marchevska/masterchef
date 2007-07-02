@@ -67,9 +67,9 @@ Level{
     //level settings
     LevelSettings{
         title = "'American 7'"
-        noCustomers = "12"
-        moneyGoal = "100"
-        expertGoal = "200"
+        noCustomers = "20"
+        moneyGoal = "2100"
+        expertGoal = "2700"
     }
     
     //level layout: customer stations, power-up buttons, decorations
@@ -78,12 +78,9 @@ Level{
         theme = "American" 
         CustomerStation{ type = "" x = "150" y = "300" occupied = "yes" }
         CustomerStation{ type = "" x = "150" y = "520" occupied = "no" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "5" Delay = "1100" DropIn = "650" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
-        //Counter{ type = "" x = "230" y = "145" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "0" SensorAt = "5" Delay = "1100" DropIn = "650" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         //TrashCan{ type = "" size = "100" x = "350" y = "530" }
-        //Decoration { type = "theme.american.decoration.stand" x = "100" y = "240" }
-        //Decoration { type = "theme.american.decoration.stand" x = "300" y = "240" }
     }
     
 }

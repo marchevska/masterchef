@@ -69,7 +69,7 @@ Level{
         title = "'Russian 10'"
         noCustomers = "30"
         moneyGoal = "3400"
-        expertGoal = "4700"
+        expertGoal = "4500"
     }
     
     //level layout: customer stations, power-up buttons, decorations

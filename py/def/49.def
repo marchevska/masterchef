@@ -69,7 +69,7 @@ Level{
         title = "'Hawaiian 9'"
         noCustomers = "35"
         moneyGoal = "3800"
-        expertGoal = "5200"
+        expertGoal = "5000"
     }
     
     //level layout: customer stations, power-up buttons, decorations

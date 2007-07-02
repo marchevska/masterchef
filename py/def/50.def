@@ -68,7 +68,7 @@ Level{
     LevelSettings{
         title = "'Hawaiian 10'"
         noCustomers = "40"
-        moneyGoal = "4800"
+        moneyGoal = "4600"
         expertGoal = "6300"
     }
     

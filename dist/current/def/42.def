@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Hawaiian 2'"
         noCustomers = "20"
-        moneyGoal = "2100"
-        expertGoal = "2700"
+        moneyGoal = "1900"
+        expertGoal = "2600"
     }
     
     //level layout: customer stations, power-up buttons, decorations

@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'American 9'"
         noCustomers = "20"
-        moneyGoal = "2300"
-        expertGoal = "3000"
+        moneyGoal = "2000"
+        expertGoal = "2700"
     }
     
     //level layout: customer stations, power-up buttons, decorations

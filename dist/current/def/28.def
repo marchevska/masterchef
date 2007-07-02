@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Russian 8'"
         noCustomers = "25"
-        moneyGoal = "2800"
-        expertGoal = "3700"
+        moneyGoal = "2700"
+        expertGoal = "3600"
     }
     
     //level layout: customer stations, power-up buttons, decorations

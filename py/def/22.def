@@ -68,7 +68,7 @@ Level{
     LevelSettings{
         title = "'Russian 2'"
         noCustomers = "18"
-        moneyGoal = "1800"
+        moneyGoal = "1600"
         expertGoal = "2400"
     }
     

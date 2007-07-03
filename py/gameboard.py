@@ -62,9 +62,6 @@ class GameBoard(scraft.Dispatcher):
                                     {"x": Crd_QueueMarker_TextX, "y": Crd_QueueMarker_TextY,
                                      "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
-        self.HudElements["Closed"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"hotspot": scraft.HotspotCenter,
-                                     "cfilt-color": 0xC04020})
         
         #create buttons
         self.GameButtons = {}
@@ -109,7 +106,6 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["GoalText"].text = unicode(Str_HUD_GoalText)
         self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")))
         self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
-        self.HudElements["Closed"].text = ""
         self._UpdateLevelInfo()
         
     def Restart(self):
@@ -134,7 +130,6 @@ class GameBoard(scraft.Dispatcher):
         tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
         self.BgSprite.ChangeKlassTo(tmpTheme.GetStrAttr("background"))
         self.DoorSprite.ChangeKlassTo("$spritecraft$dummy$")
-        self.HudElements["Closed"].x, self.HudElements["Closed"].y = eval(tmpTheme.GetStrAttr("closedSignXY"))
         self.HudElements["InfoPane"].ChangeKlassTo(tmpTheme.GetStrAttr("infopane"))
         self.GameButtons["Menu"].SetButtonKlass(tmpTheme.GetStrAttr("menuButton"))
         
@@ -216,7 +211,6 @@ class GameBoard(scraft.Dispatcher):
             tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
             self.DoorSprite.ChangeKlassTo(tmpTheme.GetStrAttr("door"))
             tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("Door")
-            self.HudElements["Closed"].text = Str_HUD_RestaurantClosed
         
     #--------------------------
     # обработка входящих команд

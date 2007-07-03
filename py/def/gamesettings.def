@@ -78,7 +78,6 @@ MasterChef {
             trashcanBarFull = "theme.american.trashcan.bar.full"
             infopane = "theme.american.info-pane"
             menuButton = "theme.american.menu-button"
-            closedSignXY = "(85,163)"
         }
         
         Theme(Mexican)
@@ -98,7 +97,6 @@ MasterChef {
             trashcanBarFull = "theme.mexican.trashcan.bar.full"
             infopane = "theme.mexican.info-pane"
             menuButton = "theme.mexican.menu-button"
-            closedSignXY = "(75,172)"
         }
         
         Theme(Russian)
@@ -118,7 +116,6 @@ MasterChef {
             trashcanBarFull = "theme.russian.trashcan.bar.full"
             infopane = "theme.russian.info-pane"
             menuButton = "theme.russian.menu-button"
-            closedSignXY = "(83,179)"
         }
         
         Theme(Japanese)
@@ -138,7 +135,6 @@ MasterChef {
             trashcanBarFull = "theme.japanese.trashcan.bar.full"
             infopane = "theme.japanese.info-pane"
             menuButton = "theme.japanese.menu-button"
-            closedSignXY = "(66,174)"
         }
         
         Theme(Hawaiian)
@@ -158,7 +154,6 @@ MasterChef {
             trashcanBarFull = "theme.hawaiian.trashcan.bar.full"
             infopane = "theme.hawaiian.info-pane"
             menuButton = "theme.hawaiian.menu-button"
-            closedSignXY = "(87,177)"
         }
     }
     

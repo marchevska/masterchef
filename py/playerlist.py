@@ -102,17 +102,19 @@ class Player:
         try:
             self.Level = level#.Clone()
             tmpNode = self.XML.GetSubtag(level.GetContent())
-            if level.GetName() == u"comic":
-                #если комикс: отметить в профиле игрока комикс как увиденный
+            if level.GetName() in ("comic", "intro"):
+                #если комикс или интро: отметить в профиле игрока комикс как увиденный
                 tmpNode.SetBoolAttr(u"seen", True)
                 #если текущий - комикс, то отметить следующий уровень или комикс как разлоченный
                 if level.Next():
                     tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
                     if tmpNextLevel.HasAttr(u"unlocked"):
                         tmpNextLevel.SetBoolAttr(u"unlocked", True)
-                #разлочить эпизод, если необходимо
-                if level.HasAttr("unlock"):
-                    self.XML.GetSubtag(level.GetStrAttr("unlock")).SetBoolAttr(u"unlocked", True)
+                #разлочить эпизод после интро, если необходимо
+                if level.GetName() == "intro":
+                    self.XML.GetSubtag(level.GetStrAttr("episode")).SetBoolAttr(u"unlocked", True)
+                #if level.HasAttr("unlock"):
+                #    self.XML.GetSubtag(level.GetStrAttr("unlock")).SetBoolAttr(u"unlocked", True)
             elif level.GetName() == u"level":
                 #если уровень: отметить в профиле игрока уровень как начатый
                 tmpNode.SetBoolAttr(u"played", True)

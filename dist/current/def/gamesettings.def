@@ -78,6 +78,7 @@ MasterChef {
             trashcanBarFull = "theme.american.trashcan.bar.full"
             infopane = "theme.american.info-pane"
             menuButton = "theme.american.menu-button"
+            introPane = "theme.american.intro-pane"
         }
         
         Theme(Mexican)
@@ -97,6 +98,7 @@ MasterChef {
             trashcanBarFull = "theme.mexican.trashcan.bar.full"
             infopane = "theme.mexican.info-pane"
             menuButton = "theme.mexican.menu-button"
+            introPane = "theme.mexican.intro-pane"
         }
         
         Theme(Russian)
@@ -116,6 +118,7 @@ MasterChef {
             trashcanBarFull = "theme.russian.trashcan.bar.full"
             infopane = "theme.russian.info-pane"
             menuButton = "theme.russian.menu-button"
+            introPane = "theme.russian.intro-pane"
         }
         
         Theme(Japanese)
@@ -135,6 +138,7 @@ MasterChef {
             trashcanBarFull = "theme.japanese.trashcan.bar.full"
             infopane = "theme.japanese.info-pane"
             menuButton = "theme.japanese.menu-button"
+            introPane = "theme.japanese.intro-pane"
         }
         
         Theme(Hawaiian)
@@ -154,6 +158,7 @@ MasterChef {
             trashcanBarFull = "theme.hawaiian.trashcan.bar.full"
             infopane = "theme.hawaiian.info-pane"
             menuButton = "theme.hawaiian.menu-button"
+            introPane = "theme.hawaiian.intro-pane"
         }
     }
     
@@ -430,6 +435,29 @@ MasterChef {
         
     }
 
+    Competitors {
+        Competitor(Alban) { src = "competitor.alban" }
+        Competitor(Alex) { src = "competitor.alex" }
+        Competitor(Angela) { src = "competitor.angela" }
+        Competitor(Elisa) { src = "competitor.elisa" }
+        Competitor(Emma) { src = "competitor.emma" }
+        Competitor(Erica) { src = "competitor.erica" }
+        Competitor(Jenny) { src = "competitor.jenny" }
+        Competitor(Lora) { src = "competitor.lora" }
+        Competitor(Marty) { src = "competitor.marty" }
+        Competitor(Mary) { src = "competitor.mary" }
+        Competitor(Max) { src = "competitor.max" }
+        Competitor(Michael) { src = "competitor.michael" }
+        Competitor(Naomi) { src = "competitor.naomi" }
+        Competitor(Nina) { src = "competitor.nina" }
+        Competitor(Paula) { src = "competitor.paula" }
+        Competitor(Peter) { src = "competitor.peter" }
+        Competitor(Ronald) { src = "competitor.ronald" }
+        Competitor(Sam) { src = "competitor.sam" }
+        Competitor(Scott) { src = "competitor.scott" }
+        Competitor(Steve) { src = "competitor.steve" }
+    }
+    
     PowerUps {
         PowerUp(Cross)
         {

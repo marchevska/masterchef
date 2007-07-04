@@ -20,6 +20,7 @@ import playerlist
 import config
 import globalvars
 import traceback
+from random import shuffle
 
 class Gui(scraft.Dispatcher):
     def __init__(self):
@@ -36,7 +37,7 @@ class Gui(scraft.Dispatcher):
         self.TotalCareerLevels = 0
         self.TotalRecipesOnPage = 12
         self.MaxNewRecipes = 12
-        self.MaxPeopleOnLevel = 9
+        self.MaxPeopleOnLevel = 8
         self.CurrentCookbookPage = 0
         self.NextState = PState_None
         self.SavedOptions = []
@@ -434,12 +435,25 @@ class Gui(scraft.Dispatcher):
         #-------
         self.IntroScreen = {"Static": {}, "Text": {}, "Buttons": {}}
         self.IntroScreen["Buttons"]["Back"] = PushButton("",
-                self, Cmd_IntroNext, PState_Intro, u"$spritecraft$dummy$", [0, 0, 0], 
+                self, Cmd_IntroNext, PState_Intro, "$spritecraft$dummy$", [0, 0, 0], 
                 Layer_Background, 400, 300, 800, 600)
         self.IntroScreen["Buttons"]["Next"] = PushButton("IntroNext",
                 self, Cmd_IntroNext, PState_Intro,
-                u"comics.next-button", [0, 1, 2, 3], 
-                Layer_BtnText, 760, 550, 80, 100)
+                "intro.continue-button", [0, 1, 2], 
+                Layer_BtnText, 330, 555, 140, 50)
+        self.IntroScreen["Static"]["Logo"] = MakeSimpleSprite("intro.logo", Layer_Static, 230, 35)
+        self.IntroScreen["Text"]["Title"] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 360, "y": 35, "hotspot": scraft.HotspotCenter } )
+        self.IntroScreen["Static"]["IntroPane"] = MakeSimpleSprite("$spritecraft$dummy$", Layer_Static, 490, 18)
+        self.IntroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 520)
+        self.IntroScreen["Static"]["Balloon"] = MakeSimpleSprite("intro.balloon", Layer_Static, 270, 370)
+        self.IntroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_IntroCompetitors } )
+        for i in range(self.MaxPeopleOnLevel):
+            self.IntroScreen["Static"]["Character"+str(i)] = MakeSimpleSprite("$spritecraft$dummy$", Layer_BtnText,
+                                                    Crd_CharPositions[i][0], Crd_CharPositions[i][1])
+            self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
         
         #-------
         # карта карьерного режима
@@ -733,6 +747,24 @@ class Gui(scraft.Dispatcher):
         self.ComicScreen["Buttons"]["Next"].SetButtonKlass(tmp.GetStrAttr("button"))
         
     #-------------------------------------------
+    # показать текущий кадр комикса
+    #-------------------------------------------
+    def _ShowEpisodeIntro(self):
+        tmpEpisode = globalvars.CurrentPlayer.GetLevel().GetStrAttr("episode")
+        tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
+        tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).keys()
+        shuffle(tmpCharacters)
+        self.IntroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
+        self.IntroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
+        self.IntroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
+        for i in range(self.MaxPeopleOnLevel):
+            self.IntroScreen["Static"]["Character"+str(i)].\
+                ChangeKlassTo(globalvars.CompetitorsInfo.GetSubtag(tmpCharacters[i]).GetStrAttr("src"))
+            self.IntroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
+            self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i]
+        #self.IntroScreen["Text"]["1"].text = globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")
+        
+    #-------------------------------------------
     # обновить данные в диалоге "цели уровня", при старте уровня
     #-------------------------------------------
     def _UpdateLevelGoals(self):
@@ -781,6 +813,7 @@ class Gui(scraft.Dispatcher):
     def NextCareerStage(self):
         try:
             self._ReleaseState(PState_Comics)
+            self._ReleaseState(PState_Intro)
             #проходим по списку уровней и находим последний разлоченный
             tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr(u"unlocked"),
                                         globalvars.LevelProgress.GetTag("Levels").Tags())
@@ -797,8 +830,9 @@ class Gui(scraft.Dispatcher):
                     globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
                     self._SetState(PState_Comics)
             #вводная страница эпизода
-            elif tmpLastUnlocked.GetName() == u"intro":
-                pass
+            elif tmpLastUnlocked.GetName() == "intro":
+                globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
+                self._SetState(PState_Intro)
             #иначе: смотрим количество разлоченных уровней
             #если больше 1, то показываем карту
             elif tmpNoUnlockedLevels > 1:
@@ -849,6 +883,11 @@ class Gui(scraft.Dispatcher):
             #comics
             elif globalvars.StateStack[-1] == PState_Comics:
                 if cmd == Cmd_ComicsNext:
+                    self.NextCareerStage()
+                
+            #intro
+            elif globalvars.StateStack[-1] == PState_Intro:
+                if cmd == Cmd_IntroNext:
                     self.NextCareerStage()
                 
             #map window
@@ -1155,6 +1194,8 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.CookbookDialog, False)
         elif state == PState_Comics:
             self._ShowDialog(self.ComicScreen, False)
+        elif state == PState_Intro:
+            self._ShowDialog(self.IntroScreen, False)
         elif state == PState_StartLevel:
             self._ShowDialog(self.LevelGoalsDialog, False)
         elif state == PState_NextLevel:
@@ -1206,6 +1247,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_PubLogo)
             self._ReleaseState(PState_DevLogo)
             self._ReleaseState(PState_Comics)
+            self._ReleaseState(PState_Intro)
             globalvars.Board.Show(True)
             globalvars.Board.LaunchLevel()
             globalvars.Board.Freeze(True)
@@ -1232,6 +1274,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_MapCareer)
             self._ReleaseState(PState_Cookbook)
             self._ReleaseState(PState_Comics)
+            self._ReleaseState(PState_Intro)
             self.NextStateTime = Time_DevLogoShow
             
         elif state == PState_PubLogo:
@@ -1284,6 +1327,12 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_MapCareer)
             self._ReleaseState(PState_MainMenu)
             self._UpdateComics()
+            
+        elif state == PState_Intro:
+            self._ShowDialog(self.IntroScreen, True)
+            self._ReleaseState(PState_MapCareer)
+            self._ReleaseState(PState_MainMenu)
+            self._ShowEpisodeIntro()
             
         elif state == PState_NextLevel:
             globalvars.Board.Freeze(True)

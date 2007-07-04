@@ -1,10 +1,10 @@
 masterchef{
   playername = ""
-        episode(American) { unlocked = "no" }
-        episode(Mexican) { unlocked = "no" }
-        episode(Russian) { unlocked = "no" }
-        episode(Japanese) { unlocked = "no" }
-        episode(SweetShop) { unlocked = "no" }
+        episode(American) { unlocked = "yes" }
+        episode(Mexican) { unlocked = "yes" }
+        episode(Russian) { unlocked = "yes" }
+        episode(Japanese) { unlocked = "yes" }
+        episode(Hawaiian) { unlocked = "yes" }
   level(def/00.def){
     played = "yes"
     unlocked = "yes"
@@ -314,7 +314,7 @@ masterchef{
         comic(MasterChef.intro.1) { seen = "yes" unlocked = "yes" }
         comic(MasterChef.intro.2) { seen = "yes" unlocked = "yes" }
         comic(MasterChef.intro.3) { seen = "yes" unlocked = "yes" }
-  comic(SweetShop.intro){
+  comic(Hawaiian.intro){
     seen = "no"
     unlocked = "no"
   }

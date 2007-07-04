@@ -13,11 +13,11 @@ MasterChef {
             button = "comics.next-button"
         }
         //Episode - American
-        comic(American.intro) {
-            image = "comics.american.intro"
-            button = "comics.play-button"
-            unlock = "American"
+        intro(intro.American) {
+            episode = "American"
+            title = "AMERICAN OPEN"
         }
+
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
 
         level(def/01.def) { name = "1-1" no = "1" x = "62" y = "175" unlock = "[ 'Grilled Meat', ]" }
@@ -32,11 +32,11 @@ MasterChef {
         level(def/10.def) { name = "1-10" no = "10" x = "167" y = "358" unlock = "[ ]" }
 
         //Episode - Mexican
-        comic(Mexican.intro) {
-            image = "comics.mexican.intro"
-            button = "comics.play-button"
-            unlock = "Mexican"
+        intro(intro.Mexican) {
+            episode = "Mexican"
+            title = "MEXICAN OPEN"
         }
+
 
         level(def/11.def) { name = "2-1" no = "11" x = "211" y = "272" unlock = "[ 'Tortilla Soup', 'Burrito', ]" }
         level(def/12.def) { name = "2-2" no = "12" x = "201" y = "237" unlock = "[ 'Chiles Renellos', 'Chili con Carne', ]" }
@@ -49,12 +49,12 @@ MasterChef {
         level(def/19.def) { name = "2-9" no = "19" x = "276" y = "65" unlock = "[ ]" }
         level(def/20.def) { name = "2-10" no = "20" x = "302" y = "61" unlock = "[ ]" }
         
-        //Episode - Russian
-        comic(Russian.intro) {
-            image = "comics.russian.intro"
-            button = "comics.play-button"
-            unlock = "Russian"
+        //Episode – Russian
+        intro(intro.Russian) {
+            episode = "Russian"
+            title = "RUSSIAN OPEN"
         }
+
 
         level(def/21.def) { name = "3-1" no = "21" x = "416" y = "45" unlock = "[ 'Pelmeni', 'Cutlets', ]" }
         level(def/22.def) { name = "3-2" no = "22" x = "443" y = "46" unlock = "[ 'Cabbage Stew', 'Cabbage Stuffed Pancakes', ]" }
@@ -67,12 +67,12 @@ MasterChef {
         level(def/29.def) { name = "3-9" no = "29" x = "620" y = "90" unlock = "[ ]" }
         level(def/30.def) { name = "3-10" no = "30" x = "642" y = "105" unlock = "[ ]" }
         
-        //Episode - Japanese
-        comic(Japanese.intro) {
-            image = "comics.japanese.intro"
-            button = "comics.play-button"
-            unlock = "Japanese"
+        //Episode – Japanese
+        intro(intro.Japanese) {
+            episode = "Japanese"
+            title = "JAPANESE OPEN"
         }
+
 
         level(def/31.def) { name = "4-1" no = "31" x = "714" y = "177" unlock = "[ 'Sashimi', 'Ochazuke', ]" }
         level(def/32.def) { name = "4-2" no = "32" x = "734" y = "198" unlock = "[ 'Nigiri Zushi', 'Koyungohan', ]" }
@@ -117,4 +117,13 @@ MasterChef {
         episode(Japanese) { image = "episode.japanese" x = "680" y = "130" }
         episode(Hawaiian) { image = "episode.hawaiian" x = "630" y = "385" }
     }
+    
+    //Competitors and their results
+    People {
+        episode(American) { people= "{'Elisa':8000,'Emma':6500,'Jenny':1,'Lora':12000,'Marty':6000,'Max':7000,'Ronald':18200,'Steve':11000,}" }
+        episode(Mexican) { people= "{'Alex':17500,'Erica':16500,'Jenny':1,'Lora':18000,'Michael':19000,'Nina':22000,'Ronald':24700,'Steve':15000,}" }
+        episode(Russian) { people= "{'Alban':25000,'Angela':22000,'Jenny':1,'Michael':21000,'Naomi':27000,'Nina':20000,'Ronald':30800,'Sam':19000,}" }
+        episode(Japanese) { people= "{'Alban':29000,'Jenny':1,'Mary':24000,'Naomi':22000,'Paula':31000,'Peter':23000,'Ronald':33400,'Scott':21000,}" }
+    }
+
 }

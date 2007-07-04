@@ -79,6 +79,7 @@ Str_MapMainMenu = "Main menu"
 Str_MapHiscore = "Hiscore "
 Str_MapAchievedBy = " achieved by "
 Str_ComicsNext = "NEXT"
+Str_IntroCompetitors = "COMPETITORS"
 
 Str_Yes = "YES"
 Str_No = "NO"

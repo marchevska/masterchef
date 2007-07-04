@@ -67,12 +67,16 @@ MasterChef{
         comic(MasterChef.intro.1) { seen = "no" unlocked = "yes" }
         comic(MasterChef.intro.2) { seen = "no" unlocked = "no" }
         comic(MasterChef.intro.3) { seen = "no" unlocked = "no" }
-        comic(American.intro) { seen = "no" unlocked = "no" }
-        comic(Mexican.intro) { seen = "no" unlocked = "no" }
-        comic(Russian.intro) { seen = "no" unlocked = "no" }
-        comic(Japanese.intro) { seen = "no" unlocked = "no" }
+        //comic(American.intro) { seen = "no" unlocked = "no" }
+        //comic(Mexican.intro) { seen = "no" unlocked = "no" }
+        //comic(Russian.intro) { seen = "no" unlocked = "no" }
+        //comic(Japanese.intro) { seen = "no" unlocked = "no" }
         comic(Hawaiian.intro) { seen = "no" unlocked = "no" }
         comic(MasterChef.outro) { seen = "no" unlocked = "no" }
+        intro(intro.American) { seen = "no" unlocked = "no" }
+        intro(intro.Mexican) { seen = "no" unlocked = "no" }
+        intro(intro.Russian) { seen = "no" unlocked = "no" }
+        intro(intro.Japanese) { seen = "no" unlocked = "no" }
     //}
     
     //Hints{

@@ -175,6 +175,9 @@ Crd_RecipeInfoSpriteDy = -42
 Crd_RecipeMaskDx = 0
 Crd_RecipeMaskDy = -6
 
+Crd_CharPositions = [(409,270), (350,260), (275,250), (200,260),
+    (130,270), (60,330), (50,460), (130,580)]
+
 #координаты относительно курсора
 Crd_ToolSpriteDx = 4
 Crd_ToolSpriteDy = 7

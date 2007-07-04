@@ -148,6 +148,22 @@ type   = blend
 layout = 1x4
 }
 
+sprite intro.balloon {
+bitmap = img/gui/intro.balloon.png
+type   = blend
+}
+
+sprite intro.logo {
+bitmap = img/gui/intro.logo.png
+type   = blend
+}
+
+sprite intro.continue-button {
+bitmap = img/gui/intro.continue-button.png
+type   = blend
+layout = 1x4
+}
+
 sprite cookbook.close-button {
 bitmap = img/gui/cookbook.close-button.png
 type   = blend

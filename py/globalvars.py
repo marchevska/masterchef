@@ -9,6 +9,7 @@ Project: Master Chef
 global CuisineInfo      #ингредиенты
 global RecipeInfo       #рецепты
 global CustomersInfo
+global CompetitorsInfo
 global ThemesInfo
 global CookbookInfo
 global LevelProgress

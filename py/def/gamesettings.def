@@ -430,6 +430,29 @@ MasterChef {
         
     }
 
+    Competitors {
+        Competitor(Alban) { src = "competitor.alban" }
+        Competitor(Alex) { src = "competitor.alex" }
+        Competitor(Angela) { src = "competitor.angela" }
+        Competitor(Elisa) { src = "competitor.elisa" }
+        Competitor(Emma) { src = "competitor.emma" }
+        Competitor(Erica) { src = "competitor.erica" }
+        Competitor(Jenny) { src = "competitor.jenny" }
+        Competitor(Lora) { src = "competitor.lora" }
+        Competitor(Marty) { src = "competitor.marty" }
+        Competitor(Mary) { src = "competitor.mary" }
+        Competitor(Max) { src = "competitor.max" }
+        Competitor(Michael) { src = "competitor.michael" }
+        Competitor(Naomi) { src = "competitor.naomi" }
+        Competitor(Nina) { src = "competitor.nina" }
+        Competitor(Paula) { src = "competitor.paula" }
+        Competitor(Peter) { src = "competitor.peter" }
+        Competitor(Ronald) { src = "competitor.ronald" }
+        Competitor(Sam) { src = "competitor.sam" }
+        Competitor(Scott) { src = "competitor.scott" }
+        Competitor(Steve) { src = "competitor.steve" }
+    }
+    
     PowerUps {
         PowerUp(Cross)
         {

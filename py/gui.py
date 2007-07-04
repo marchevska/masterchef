@@ -36,6 +36,7 @@ class Gui(scraft.Dispatcher):
         self.TotalCareerLevels = 0
         self.TotalRecipesOnPage = 12
         self.MaxNewRecipes = 12
+        self.MaxPeopleOnLevel = 9
         self.CurrentCookbookPage = 0
         self.NextState = PState_None
         self.SavedOptions = []
@@ -429,6 +430,18 @@ class Gui(scraft.Dispatcher):
                 Layer_BtnText, 760, 550, 80, 100)
         
         #-------
+        # вводный экран
+        #-------
+        self.IntroScreen = {"Static": {}, "Text": {}, "Buttons": {}}
+        self.IntroScreen["Buttons"]["Back"] = PushButton("",
+                self, Cmd_IntroNext, PState_Intro, u"$spritecraft$dummy$", [0, 0, 0], 
+                Layer_Background, 400, 300, 800, 600)
+        self.IntroScreen["Buttons"]["Next"] = PushButton("IntroNext",
+                self, Cmd_IntroNext, PState_Intro,
+                u"comics.next-button", [0, 1, 2, 3], 
+                Layer_BtnText, 760, 550, 80, 100)
+        
+        #-------
         # карта карьерного режима
         #-------
         self.MapCareerDialog = {"Static": {}, "Text": {}, "Buttons": {}, "Animations": {}}
@@ -783,6 +796,9 @@ class Gui(scraft.Dispatcher):
                 else:
                     globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
                     self._SetState(PState_Comics)
+            #вводная страница эпизода
+            elif tmpLastUnlocked.GetName() == u"intro":
+                pass
             #иначе: смотрим количество разлоченных уровней
             #если больше 1, то показываем карту
             elif tmpNoUnlockedLevels > 1:

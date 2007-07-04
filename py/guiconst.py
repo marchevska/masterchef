@@ -78,6 +78,7 @@ Cmd_EpiCompleteNext = 418
 Cmd_EpiCompleteMainMenu = 419
 
 Cmd_ComicsNext = 422
+Cmd_IntroNext = 423
 Cmd_MapStart = 420
 Cmd_MapMainMenu = 421
 Cmd_MapLevel = 500
@@ -103,6 +104,7 @@ PState_Continue = 11
 PState_YesNo = 12
 PState_YesNoCancel = 13
 PState_Comics = 15
+PState_Intro = 23
 PState_MapCareer = 16
 PState_MapEndless = 17
 PState_Cookbook = 22

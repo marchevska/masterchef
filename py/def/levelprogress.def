@@ -13,11 +13,11 @@ MasterChef {
             button = "comics.next-button"
         }
         //Episode - American
-        comic(American.intro) {
-            image = "comics.american.intro"
-            button = "comics.play-button"
-            unlock = "American"
+        intro(American) {
+            episode = "American"
         }
+
+
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
 
         level(def/01.def) { name = "1-1" no = "1" x = "62" y = "175" unlock = "[ 'Grilled Meat', ]" }
@@ -117,4 +117,13 @@ MasterChef {
         episode(Japanese) { image = "episode.japanese" x = "680" y = "130" }
         episode(Hawaiian) { image = "episode.hawaiian" x = "630" y = "385" }
     }
+    
+    //Competitors and their results
+    People {
+        episode(American) { people= "['Elisa':8000,'Emma':6500,'Jenny':1,'Lora':12000,'Marty':6000,'Max':7000,'Ronald':18200,'Steve':11000,]" }
+        episode(Mexican) { people= "['Alex':17500,'Erica':16500,'Jenny':1,'Lora':18000,'Michael':19000,'Nina':22000,'Ronald':24700,'Steve':15000,]" }
+        episode(Russian) { people= "['Alban':25000,'Angela':22000,'Jenny':1,'Michael':21000,'Naomi':27000,'Nina':20000,'Ronald':30800,'Sam':19000,]" }
+        episode(Japanese) { people= "['Alban':29000,'Jenny':1,'Mary':24000,'Naomi':22000,'Paula':31000,'Peter':23000,'Ronald':33400,'Scott':21000,]" }
+    }
+
 }

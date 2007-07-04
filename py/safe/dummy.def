@@ -73,6 +73,7 @@ MasterChef{
         comic(Japanese.intro) { seen = "no" unlocked = "no" }
         comic(Hawaiian.intro) { seen = "no" unlocked = "no" }
         comic(MasterChef.outro) { seen = "no" unlocked = "no" }
+        intro(American) { seen = "no" unlocked = "no" }
     //}
     
     //Hints{

@@ -32,7 +32,7 @@ def ReadResourceInfo():
         globalvars.CustomerAnimations = oE.ParseDEF(File_Animations).GetTag(u"MasterChef")#.Tags("Animation")
                 
     except:
-        oE.Log(u"Cannot read resources")
+        oE.Log("Cannot read resources")
         sys.exit()
         
 
@@ -73,6 +73,7 @@ def ReadGameSettings():
         globalvars.ThemesInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Themes")
         globalvars.CookbookInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Cookbook")
         globalvars.PowerUpsInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("PowerUps")
+        globalvars.CompetitorsInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Competitors")
         
     except:
         oE.Log(u"Cannot read global game settings")

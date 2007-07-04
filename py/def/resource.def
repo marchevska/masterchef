@@ -493,4 +493,29 @@ MasterChef{
         sprite(episode.japanese) { bitmap = "img/gui/episode.japanese.png" type = "blend" layout = "2x1" }
         sprite(episode.hawaiian) { bitmap = "img/gui/episode.hawaiian.png" type = "blend" layout = "2x1" }
     }
+    
+    People{
+        sprite(competitor.alban) { bitmap = "img/comics/people/alban.png" type = "blend" }
+        sprite(competitor.alex) { bitmap = "img/comics/people/alex.png" type = "blend" }
+        sprite(competitor.angela) { bitmap = "img/comics/people/angela.png" type = "blend" }
+        sprite(competitor.elisa) { bitmap = "img/comics/people/elisa.png" type = "blend" }
+        sprite(competitor.emma) { bitmap = "img/comics/people/emma.png" type = "blend" }
+        sprite(competitor.erica) { bitmap = "img/comics/people/erica.png" type = "blend" }
+        sprite(competitor.jenny) { bitmap = "img/comics/people/jenny.png" type = "blend" }
+        sprite(competitor.lora) { bitmap = "img/comics/people/lora.png" type = "blend" }
+        sprite(competitor.marty) { bitmap = "img/comics/people/marty.png" type = "blend" }
+        sprite(competitor.mary) { bitmap = "img/comics/people/mary.png" type = "blend" }
+        sprite(competitor.max) { bitmap = "img/comics/people/max.png" type = "blend" }
+        sprite(competitor.michael) { bitmap = "img/comics/people/michael.png" type = "blend" }
+        sprite(competitor.naomi) { bitmap = "img/comics/people/naomi.png" type = "blend" }
+        sprite(competitor.nina) { bitmap = "img/comics/people/nina.png" type = "blend" }
+        sprite(competitor.paula) { bitmap = "img/comics/people/paula.png" type = "blend" }
+        sprite(competitor.peter) { bitmap = "img/comics/people/peter.png" type = "blend" }
+        sprite(competitor.ronald) { bitmap = "img/comics/people/ronald.png" type = "blend" }
+        sprite(competitor.sam) { bitmap = "img/comics/people/sam.png" type = "blend" }
+        sprite(competitor.scott) { bitmap = "img/comics/people/scott.png" type = "blend" }
+        sprite(competitor.steve) { bitmap = "img/comics/people/steve.png" type = "blend" }
+        sprite(comics.presenter) { bitmap = "img/comics/people/presenter.png" type = "blend" }
+    }
+    
 }

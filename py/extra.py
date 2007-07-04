@@ -270,7 +270,7 @@ class NumIndicator(scraft.Dispatcher):
             tmpDelta = self.Value - self.ValueShown
             tmpAbsDelta = int(min(1.0*que.delta*self.Speed/1000, abs(tmpDelta)))
             self.ValueShown += tmpAbsDelta*tmpDelta/abs(tmpDelta)
-            self.sprite.text = unicode(str(self.ValueShown))
+            self.sprite.text = str(self.ValueShown)
         return scraft.CommandStateRepeat
             
     def Show(self, flag):
@@ -278,7 +278,7 @@ class NumIndicator(scraft.Dispatcher):
             
     def SetValueStrict(self, newvalue):
         self.Value = self.ValueShown = newvalue
-        self.sprite.text = unicode(str(self.ValueShown))
+        self.sprite.text = str(self.ValueShown)
         
     def SetValue(self, newvalue):
         self.Value = newvalue

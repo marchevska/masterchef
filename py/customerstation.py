@@ -327,7 +327,7 @@ class NeededIndicator:
         if flag:
             self.TokenSprite.visible = True
             if self.Value > 0:
-                self.ValueTextSprite.text = unicode(str(self.Value))
+                self.ValueTextSprite.text = str(self.Value)
                 self.ValueTextSprite.visible = True
                 self.Checkersprite.visible = False
             else:

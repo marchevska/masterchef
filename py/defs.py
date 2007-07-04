@@ -47,7 +47,7 @@ def ReadCuisine():
         
     except:
         oE.Log(u"Cannot read cuisine info")
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
 
 #--------------------------
@@ -59,7 +59,7 @@ def ReadLevelProgress():
         globalvars.LevelProgress = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read levels list")
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
         
 #--------------------------
@@ -85,7 +85,7 @@ def ReadGameSettings():
 
 def ReadLevelSettings(filename):
     try:
-        globalvars.LevelSettings = oE.ParseDEF(unicode(filename)).GetTag(u"Level")
+        globalvars.LevelSettings = oE.ParseDEF(filename).GetTag(u"Level")
         globalvars.Layout = {}
         ReadGameSettings()
         
@@ -129,7 +129,7 @@ def ReadLevelSettings(filename):
         
     except:
         oE.Log(u"Cannot read level info from: "+filename)
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
         
 
@@ -139,7 +139,7 @@ def ReadLevelSettings(filename):
 
 def ReadGroups(filename):
     try:
-        tmpDataIterator = oE.ParseDEF(unicode(filename)).GetTag(u"MasterChef").IterateTag(u"group")
+        tmpDataIterator = oE.ParseDEF(filename).GetTag(u"MasterChef").IterateTag(u"group")
         tmpGroups = {}
         while tmpDataIterator.Next():
             tmp = tmpDataIterator.Get()
@@ -156,8 +156,8 @@ def GetTagWithAttribute(node, tag, attr, value):
     try:
         tmpIterator = node.IterateTag(tag)
         while tmpIterator.Next():
-            if tmpIterator.Get().HasAttr(unicode(attr)):
-                if tmpIterator.Get().GetStrAttr(unicode(attr)) == value:
+            if tmpIterator.Get().HasAttr(attr):
+                if tmpIterator.Get().GetStrAttr(attr) == value:
                     return tmpIterator.Get()
         return None
     except:

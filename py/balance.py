@@ -242,7 +242,7 @@ class Application(Frame):
                         tmpDiff = int(1000*tmpDiff)*0.001
                         RecipeDiffs[i].set(tmpDiff)
         except:
-            print unicode(string.join(apply(traceback.format_exception, sys.exc_info())))
+            print string.join(apply(traceback.format_exception, sys.exc_info()))
             pass
         
     #copy recipes from listbox to a list

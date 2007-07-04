@@ -29,7 +29,7 @@ def ReadGameConfig():
             globalvars.GameConfig = oE.ParseDEF(File_GameConfigSafe).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read game configuration files")
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
 
 def SaveGameConfig():
@@ -38,7 +38,7 @@ def SaveGameConfig():
             SaveToFile(globalvars.GameConfig.GetRoot(), File_GameConfig)
     except:
         oE.Log(u"Cannot write game configuration files")
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
     
 def ApplyOptions():
@@ -118,7 +118,7 @@ def ReadBestResults():
             globalvars.BestResults = oE.ParseDEF(File_BestResultsSafe).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read best results record")
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
 
 def SaveBestResults():
@@ -127,7 +127,7 @@ def SaveBestResults():
             SaveToFile(globalvars.BestResults.GetRoot(), File_BestResults)
     except:
         oE.Log(u"Cannot write best results record")
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
 
 def UpdateBestResults(level, name, score):
@@ -138,7 +138,7 @@ def UpdateBestResults(level, name, score):
         SaveBestResults()
     except:
         oE.Log(u"Error updating best results list")
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
 
 #---------------------------
 # Проверка валидности файла
@@ -193,5 +193,5 @@ def SaveToFile(node, filename):
         os.rename(tmpFilename, filename)
     except:
         oE.Log("Error saving to file: %s"%filename)
-        oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         

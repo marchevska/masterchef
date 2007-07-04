@@ -58,6 +58,12 @@ MasterChef {
         //maximal desired group size
         maxGroup = "8"
         minRateMultiplier = "25"
+        
+        //storyline parameters
+        levelPoints = "5"
+        expertPoints = "10"
+        expertAll = "100"
+        charName = "Jenny"
     }
     
     Themes {
@@ -79,6 +85,8 @@ MasterChef {
             infopane = "theme.american.info-pane"
             menuButton = "theme.american.menu-button"
             introPane = "theme.american.intro-pane"
+            outroPane = "theme.american.outro-pane"
+            winnerSign = "theme.american.outro-winner"
         }
         
         Theme(Mexican)
@@ -99,6 +107,8 @@ MasterChef {
             infopane = "theme.mexican.info-pane"
             menuButton = "theme.mexican.menu-button"
             introPane = "theme.mexican.intro-pane"
+            outroPane = "theme.mexican.outro-pane"
+            winnerSign = "theme.mexican.outro-winner"
         }
         
         Theme(Russian)
@@ -119,6 +129,8 @@ MasterChef {
             infopane = "theme.russian.info-pane"
             menuButton = "theme.russian.menu-button"
             introPane = "theme.russian.intro-pane"
+            outroPane = "theme.russian.outro-pane"
+            winnerSign = "theme.russian.outro-winner"
         }
         
         Theme(Japanese)
@@ -139,6 +151,8 @@ MasterChef {
             infopane = "theme.japanese.info-pane"
             menuButton = "theme.japanese.menu-button"
             introPane = "theme.japanese.intro-pane"
+            outroPane = "theme.japanese.outro-pane"
+            winnerSign = "theme.japanese.outro-winner"
         }
         
         Theme(Hawaiian)
@@ -159,6 +173,8 @@ MasterChef {
             infopane = "theme.hawaiian.info-pane"
             menuButton = "theme.hawaiian.menu-button"
             introPane = "theme.hawaiian.intro-pane"
+            outroPane = "theme.hawaiian.outro-pane"
+            winnerSign = "theme.hawaiian.outro-winner"
         }
     }
     

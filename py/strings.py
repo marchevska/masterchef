@@ -75,6 +75,7 @@ Str_HiscoresReset = "Reset scores"
 Str_HiscoresClose = "Close"
 
 Str_MapStart = "Start game"
+Str_MapViewResults = "View results"
 Str_MapMainMenu = "Main menu"
 Str_MapHiscore = "Hiscore "
 Str_MapAchievedBy = " achieved by "

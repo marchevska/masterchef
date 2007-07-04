@@ -97,14 +97,14 @@ class GameBoard(scraft.Dispatcher):
         try:
             self.Load()
         except:
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         self._StartLevel()
         
     def _StartLevel(self):
         self.Expert = False
-        self.HudElements["LevelName"].text = unicode(self.LevelName)
-        self.HudElements["GoalText"].text = unicode(Str_HUD_GoalText)
-        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")))
+        self.HudElements["LevelName"].text = self.LevelName
+        self.HudElements["GoalText"].text = Str_HUD_GoalText
+        self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
         self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
         self._UpdateLevelInfo()
         
@@ -439,7 +439,7 @@ class GameBoard(scraft.Dispatcher):
             #self._UpdateLevelInfo()
             
         except:
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         return scraft.CommandStateRepeat
         
     #--------------------------
@@ -498,11 +498,11 @@ class GameBoard(scraft.Dispatcher):
         tmp = Popup(spr, "Bubble", "FadeOut")
         
     def _UpdateLevelInfo(self):
-        self.HudElements["Score"].text = unicode(str(self.LevelScore))
+        self.HudElements["Score"].text = str(self.LevelScore)
         
     def _SwitchToExpert(self):
-        self.HudElements["GoalText"].text = unicode(Str_HUD_ExpertText)
-        self.HudElements["Goal"].text = unicode(str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal")))
+        self.HudElements["GoalText"].text = Str_HUD_ExpertText
+        self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal"))
         self.Expert = True
         
     #--------------------------

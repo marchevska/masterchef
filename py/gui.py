@@ -456,10 +456,35 @@ class Gui(scraft.Dispatcher):
                 { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
         
         #-------
+        # завершение уровня
+        #-------
+        self.OutroScreen = {"Static": {}, "Text": {}, "Buttons": {}}
+        self.OutroScreen["Buttons"]["Back"] = PushButton("",
+                self, Cmd_OutroNext, PState_Outro, "$spritecraft$dummy$", [0, 0, 0], 
+                Layer_Background, 400, 300, 800, 600)
+        self.OutroScreen["Buttons"]["Next"] = PushButton("IntroNext",
+                self, Cmd_OutroNext, PState_Outro,
+                "intro.continue-button", [0, 1, 2], 
+                Layer_BtnText, 330, 555, 140, 50)
+        self.OutroScreen["Static"]["Logo"] = MakeSimpleSprite("intro.logo", Layer_Static, 230, 35)
+        self.OutroScreen["Text"]["Title"] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 360, "y": 35, "hotspot": scraft.HotspotCenter } )
+        self.OutroScreen["Static"]["IntroPane"] = MakeSimpleSprite("$spritecraft$dummy$", Layer_Static, 490, 18)
+        self.OutroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 520)
+        self.OutroScreen["Static"]["Balloon"] = MakeSimpleSprite("intro.balloon", Layer_Static, 270, 370)
+        self.OutroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_IntroCompetitors } )
+        for i in range(self.MaxPeopleOnLevel):
+            self.OutroScreen["Static"]["Character"+str(i)] = MakeSimpleSprite("$spritecraft$dummy$", Layer_BtnText,
+                                                    Crd_CharPositions[i][0], Crd_CharPositions[i][1])
+            self.OutroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
+        
+        #-------
         # карта карьерного режима
         #-------
         self.MapCareerDialog = {"Static": {}, "Text": {}, "Buttons": {}, "Animations": {}}
-        self.MapCareerDialog["Static"]["Back"] = MakeSimpleSprite(u"map-background", Layer_Background)
+        self.MapCareerDialog["Static"]["Back"] = MakeSimpleSprite("map-background", Layer_Background)
         self.MapCareerDialog["Static"]["Jane"] = MakeSprite("map.jane", Layer_Background-1, { "x": 300, "y": 140 } )
         self.MapCareerDialog["Static"]["JaneEyes"] = MakeSprite("map.jane.eyes", Layer_Background-2, { "x": 400, "y": 270 } )
         self.MapCareerDialog["Animations"]["JaneEyes"] = CustomersAnimator(self.MapCareerDialog["Static"]["JaneEyes"],
@@ -474,6 +499,11 @@ class Gui(scraft.Dispatcher):
                 u"map.play.button", [0, 1, 2, 3], 
                 Layer_BtnText, 170, 540, 130, 50,
                 Str_MapStart, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+        self.MapCareerDialog["Buttons"]["ViewResults"] = PushButton("ViewResults",
+                self, Cmd_MapViewResults, PState_MapCareer,
+                u"map.play.button", [0, 1, 2, 3], 
+                Layer_BtnText, 170, 540, 130, 50,
+                Str_MapViewResults, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.MapCareerDialog["Buttons"]["MainMenu"] = PushButton("MapMainMenu",
                 self, Cmd_MapMainMenu, PState_MapCareer,
                 u"map.back-button", [0, 1, 2, 3], 
@@ -485,6 +515,13 @@ class Gui(scraft.Dispatcher):
             self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
                 self, Cmd_MapLevel + tmp.GetIntAttr(u"no"), PState_MapCareer,
                 u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
+                tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
+        for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("outro"):
+            self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
+                self,
+                Cmd_MapOutro + eval(globalvars.GameSettings.GetStrAttr("settings")).index(tmp.GetStrAttr("episode")),
+                PState_MapCareer,
+                u"outro-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
                 tmp.GetIntAttr(u"x"), tmp.GetIntAttr(u"y"), 30, 30)
         
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
@@ -530,13 +567,13 @@ class Gui(scraft.Dispatcher):
         
     def _Ask(self, question, answerYes = "Yes", answerNo = "No"):
         self._SetState(PState_YesNo)
-        self.YesNoDialog["Text"]["QuestionText"].text = unicode(question)
+        self.YesNoDialog["Text"]["QuestionText"].text = question
         self.YesNoDialog["Buttons"]["Yes"].SetText(answerYes)
         self.YesNoDialog["Buttons"]["No"].SetText(answerNo)
         
     def _AskYnc(self, question, answerYes = "Yes", answerNo = "No", answerCancel = "Cancel"):
         self._SetState(PState_YesNoCancel)
-        self.YesNoCancelDialog["Text"]["QuestionText"].text = unicode(question)
+        self.YesNoCancelDialog["Text"]["QuestionText"].text = question
         self.YesNoCancelDialog["Buttons"]["Yes"].SetText(answerYes)
         self.YesNoCancelDialog["Buttons"]["No"].SetText(answerNo)
         self.YesNoCancelDialog["Buttons"]["Cancel"].SetText(answerCancel)
@@ -580,6 +617,7 @@ class Gui(scraft.Dispatcher):
                 self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("emptyBadge"))
         
         #кнопки пролистывания ниги
+        #если книга открыта из главного меню
         if self.NextState == PState_None:
             self.CookbookDialog["Buttons"]["CookbookClose"].SetState(ButtonState_Up)
             self.CookbookDialog["Buttons"]["CookbookPrev"].Show((no>0))
@@ -595,6 +633,7 @@ class Gui(scraft.Dispatcher):
                 else:
                     self.CookbookDialog["Buttons"]["CookbookNext"].SetState(ButtonState_Inert)
             self.CookbookDialog["Buttons"]["CookbookContinue"].Show(False)
+        #иначе - книга открыта после прохождения уровня
         else:
             self.CookbookDialog["Buttons"]["CookbookClose"].SetState(ButtonState_Inert)
             self.CookbookDialog["Buttons"]["CookbookContinue"].Show(True)
@@ -679,8 +718,8 @@ class Gui(scraft.Dispatcher):
         tmpTotalScores = len(globalvars.HiscoresList)
         for i in range(tmpTotalScores):
             tmpScore = globalvars.HiscoresList[i]
-            self.HiscoresDialog["Text"]["Name_"+str(i)].text = unicode(tmpScore["Name"])
-            self.HiscoresDialog["Text"]["Score_"+str(i)].text = unicode(str(tmpScore["Score"]))
+            self.HiscoresDialog["Text"]["Name_"+str(i)].text = tmpScore["Name"]
+            self.HiscoresDialog["Text"]["Score_"+str(i)].text = str(tmpScore["Score"])
             if tmpScore["Active"]:
                 self.HiscoresDialog["Text"]["Name_"+str(i)].cfilt.color = CFilt_CurScore
                 self.HiscoresDialog["Text"]["Score_"+str(i)].cfilt.color = CFilt_CurScore
@@ -703,9 +742,20 @@ class Gui(scraft.Dispatcher):
     #----------------------------
     def _UpdateMapWindow(self):
         #список кнопок на карте, обозначающих уровни, он же список файлов уровней - так проще получить этот список
-        tmpLevelKeys = self.MapCareerDialog["Buttons"].keys()
-        tmpLevelKeys.remove("Start")
-        tmpLevelKeys.remove("MainMenu")
+        tmpOutroKeys = map(lambda x: x.GetContent(), globalvars.LevelProgress.GetTag("Levels").Tags("outro"))
+        for level in tmpOutroKeys:
+            #читаем запись из профиля игрока
+            tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(level)
+            if tmpPlayerResult.GetBoolAttr(u"expert"):
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass(u"outro-tropointers-expert")
+            else:
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass(u"outro-pointers")
+            if tmpPlayerResult.GetBoolAttr(u"unlocked"):
+                self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Up)
+            else:
+                self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Inert)
+        
+        tmpLevelKeys = map(lambda x: x.GetContent(), globalvars.LevelProgress.GetTag("Levels").Tags("level"))
         for level in tmpLevelKeys:
             #читаем запись из профиля игрока
             tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(level)
@@ -717,7 +767,11 @@ class Gui(scraft.Dispatcher):
                 self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Up)
             else:
                 self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Inert)
-        if self.SelectedLevel != "":
+        
+        #если выбран уровень 
+        if self.SelectedLevel in tmpLevelKeys:
+            self.MapCareerDialog["Buttons"]["ViewResults"].Show(False)
+            self.MapCareerDialog["Buttons"]["Start"].Show(True)
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Up)
             self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
             tmpBest = globalvars.BestResults.GetSubtag(self.SelectedLevel)
@@ -726,7 +780,15 @@ class Gui(scraft.Dispatcher):
                     Str_MapAchievedBy + tmpBest.GetStrAttr("player")
             else:
                 self.MapCareerDialog["Text"]["BestResult"].text = Str_MapHiscore + str(tmpBest.GetIntAttr("hiscore"))
+        #исправить
+        elif self.SelectedLevel in tmpOutroKeys:
+            self.MapCareerDialog["Buttons"]["ViewResults"].Show(True)
+            self.MapCareerDialog["Buttons"]["Start"].Show(False)
+            self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
+            self.MapCareerDialog["Text"]["BestResult"].text = self.SelectedLevel
         else:
+            self.MapCareerDialog["Buttons"]["ViewResults"].Show(False)
+            self.MapCareerDialog["Buttons"]["Start"].Show(True)
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
             self.MapCareerDialog["Text"]["BestResult"].text = ""
         #отрисовать картинки эпизодов - разлочены они или нет
@@ -747,22 +809,35 @@ class Gui(scraft.Dispatcher):
         self.ComicScreen["Buttons"]["Next"].SetButtonKlass(tmp.GetStrAttr("button"))
         
     #-------------------------------------------
-    # показать текущий кадр комикса
+    # показать вводный экран очередного эпизода
     #-------------------------------------------
     def _ShowEpisodeIntro(self):
         tmpEpisode = globalvars.CurrentPlayer.GetLevel().GetStrAttr("episode")
         tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
         tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).keys()
-        shuffle(tmpCharacters)
+        #shuffle(tmpCharacters)
         self.IntroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
         self.IntroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
         self.IntroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
         for i in range(self.MaxPeopleOnLevel):
-            self.IntroScreen["Static"]["Character"+str(i)].\
-                ChangeKlassTo(globalvars.CompetitorsInfo.GetSubtag(tmpCharacters[i]).GetStrAttr("src"))
-            self.IntroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
-            self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i]
-        #self.IntroScreen["Text"]["1"].text = globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")
+            if i < len(tmpCharacters):
+                self.IntroScreen["Static"]["Character"+str(i)].\
+                    ChangeKlassTo(globalvars.CompetitorsInfo.GetSubtag(tmpCharacters[i]).GetStrAttr("src"))
+                self.IntroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
+                self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i]
+            else:
+                self.IntroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
+                self.IntroScreen["Text"]["Character"+str(i)].text = ""
+        
+    #-------------------------------------------
+    # показать итоговый экран очередного эпизода
+    #-------------------------------------------
+    def _ShowEpisodeOutro(self):
+        tmpEpisode = globalvars.CurrentPlayer.GetLevel().GetStrAttr("episode")
+        tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
+        self.OutroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
+        self.OutroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("outroPane"))
+        #self.OutroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
         
     #-------------------------------------------
     # обновить данные в диалоге "цели уровня", при старте уровня
@@ -814,6 +889,7 @@ class Gui(scraft.Dispatcher):
         try:
             self._ReleaseState(PState_Comics)
             self._ReleaseState(PState_Intro)
+            self._ReleaseState(PState_Outro)
             #проходим по списку уровней и находим последний разлоченный
             tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr(u"unlocked"),
                                         globalvars.LevelProgress.GetTag("Levels").Tags())
@@ -842,8 +918,8 @@ class Gui(scraft.Dispatcher):
                 globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
                 self._SetState(PState_StartLevel)
         except:
-            oE.Log(unicode("Next stage fatal error"))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Next stage fatal error")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         
         
@@ -890,6 +966,11 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_IntroNext:
                     self.NextCareerStage()
                 
+            #outro
+            elif globalvars.StateStack[-1] == PState_Outro:
+                if cmd == Cmd_OutroNext:
+                    self.NextCareerStage()
+                
             #map window
             elif globalvars.StateStack[-1] == PState_MapCareer:
                 if cmd == Cmd_MapStart:
@@ -897,10 +978,18 @@ class Gui(scraft.Dispatcher):
                     self._ReleaseState(PState_MapCareer)
                     globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel))
                     self._SetState(PState_StartLevel)
+                elif cmd == Cmd_MapViewResults:
+                    self._ReleaseState(PState_MapCareer)
+                    self._SetState(PState_Outro)
                 elif cmd == Cmd_MapMainMenu:
                     self._ReleaseState(PState_MapCareer)
                 else:
-                    self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress.GetTag("Levels"),
+                    if cmd >= Cmd_MapOutro:
+                        self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress.GetTag("Levels"),
+                                u"outro", u"episode",
+                                eval(globalvars.GameSettings.GetStrAttr("settings"))[cmd-Cmd_MapOutro]).GetContent()
+                    else:
+                        self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress.GetTag("Levels"),
                                             u"level", u"no", str(cmd-Cmd_MapLevel)).GetContent()
                     self._UpdateMapWindow()
                 
@@ -1071,7 +1160,7 @@ class Gui(scraft.Dispatcher):
                     self._SetState(PState_MainMenu)
                 #self._ReleaseState(PState_Game)
         except:
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         
     def _OnExecute(self, que):
         try:
@@ -1121,7 +1210,7 @@ class Gui(scraft.Dispatcher):
                         self.SendCommand(Cmd_EnterNameOk)
                     if len(tmpName) > Max_NameLen:
                         tmpName = tmpName[0:len(tmpName)-1]
-                    self.EnterNameDialog["Text"]["Name"].text = unicode(tmpName)
+                    self.EnterNameDialog["Text"]["Name"].text = tmpName
                     self.EnterNameDialog["Static"]["TextCursor"].x = self.EnterNameDialog["Text"]["Name"].x + \
                         self.EnterNameDialog["Text"]["Name"].width/2
                     self._UpdateEnterNameDialog()
@@ -1170,7 +1259,7 @@ class Gui(scraft.Dispatcher):
                 else:
                     self._SetState(PState_EndGame)
         except:
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             
             
         return scraft.CommandStateRepeat
@@ -1182,20 +1271,16 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.PubLogo, False)
         elif state == PState_MainMenu:
             self._ShowDialog(self.MainMenuDialog, False)
-            #self.MainMenuDialog["Animations"]["JaneEyes"].SetState("None")
-            #self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(True)
-            #self.MainMenuDialog["Animations"]["Vapor"].SetState("None")
-            #self.MainMenuDialog["Animations"]["Vapor"].Freeze(True)
         elif state == PState_MapCareer:
             self._ShowDialog(self.MapCareerDialog, False)
-            #self.MapCareerDialog["Animations"]["JaneEyes"].SetState("None")
-            #self.MapCareerDialog["Animations"]["JaneEyes"].Freeze(True)
         elif state == PState_Cookbook:
             self._ShowDialog(self.CookbookDialog, False)
         elif state == PState_Comics:
             self._ShowDialog(self.ComicScreen, False)
         elif state == PState_Intro:
             self._ShowDialog(self.IntroScreen, False)
+        elif state == PState_Outro:
+            self._ShowDialog(self.OutroScreen, False)
         elif state == PState_StartLevel:
             self._ShowDialog(self.LevelGoalsDialog, False)
         elif state == PState_NextLevel:
@@ -1248,6 +1333,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_DevLogo)
             self._ReleaseState(PState_Comics)
             self._ReleaseState(PState_Intro)
+            self._ReleaseState(PState_Outro)
             globalvars.Board.Show(True)
             globalvars.Board.LaunchLevel()
             globalvars.Board.Freeze(True)
@@ -1275,6 +1361,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_Cookbook)
             self._ReleaseState(PState_Comics)
             self._ReleaseState(PState_Intro)
+            self._ReleaseState(PState_Outro)
             self.NextStateTime = Time_DevLogoShow
             
         elif state == PState_PubLogo:
@@ -1333,6 +1420,13 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_MapCareer)
             self._ReleaseState(PState_MainMenu)
             self._ShowEpisodeIntro()
+            
+        elif state == PState_Outro:
+            globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel))
+            self._ShowDialog(self.OutroScreen, True)
+            self._ReleaseState(PState_MapCareer)
+            self._ReleaseState(PState_MainMenu)
+            self._ShowEpisodeOutro()
             
         elif state == PState_NextLevel:
             globalvars.Board.Freeze(True)

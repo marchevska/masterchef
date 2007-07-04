@@ -23,7 +23,7 @@ oE.logging = True
 oE.Init(scraft.DevDisableDrvInfo)
 oE.vMode = Video_Mode
 oE.background.color = 0x402020
-oE.rscpath = unicode(sys.argv[0][0:sys.argv[0].rfind("\\")+1])
+oE.rscpath = sys.argv[0][0:sys.argv[0].rfind("\\")+1]
 oE.SST = File_SST
 oE.title = Window_Title
 oE.nativeCursor = False

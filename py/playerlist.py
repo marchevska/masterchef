@@ -27,10 +27,10 @@ class Player:
         self.Level = None       #указывает на ноду уровня в LevelProgress
         self.Filename = ""
         try:
-            self.XML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
+            self.XML = oE.ParseDEF(File_DummyProfile).GetTag("MasterChef")
         except:
-            oE.Log(unicode("Cannot create player profile"))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot create player profile")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
             
     #------------------------------------
@@ -40,13 +40,13 @@ class Player:
         self.Name = name
         self.Level = None
         self.Filename = ""
-        dummyXML = oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef")
+        dummyXML = oE.ParseDEF(File_DummyProfile).GetTag("MasterChef")
         try:
             if name != "":
                 filename = globalvars.PlayerList.FilenameFor(name)
                 self.Filename = filename
                 if config.FileValid(filename):
-                    self.XML = oE.ParseDEF(filename).GetTag(u"MasterChef")
+                    self.XML = oE.ParseDEF(filename).GetTag("MasterChef")
                 else:
                     self.XML = dummyXML
             else:
@@ -56,8 +56,8 @@ class Player:
                 self.XML = dummyXML
             except:
                 #если никак-никак не можем прочитать
-                oE.Log(unicode("Cannot read player info for "+name))
-                oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+                oE.Log("Cannot read player info for "+name)
+                oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
                 sys.exit()
         #append nodes from dummy profile if necessary
         for tmpNode in dummyXML.Tags():
@@ -81,15 +81,15 @@ class Player:
             if globalvars.RunMode == RunMode_Play and self.Filename != "":
                 config.SaveToFile(self.XML.GetRoot(), self.Filename)
         except:
-            oE.Log(unicode("Cannot save player info for "+self.Name))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot save player info for "+self.Name)
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         
     #------------------------------------
     # указатель на последний открытый уровень или комикс - см по значению type
     #------------------------------------
-    def LastUnlockedLevel(self, type = u"level"):
-        tmp = filter(lambda x: x.GetBoolAttr(u"unlocked"), self.XML.Tags(type))
+    def LastUnlockedLevel(self, type = "level"):
+        tmp = filter(lambda x: x.GetBoolAttr("unlocked"), self.XML.Tags(type))
         if len (tmp)>0:
             return tmp[-1]
         else:
@@ -103,25 +103,47 @@ class Player:
             self.Level = level#.Clone()
             tmpNode = self.XML.GetSubtag(level.GetContent())
             if level.GetName() in ("comic", "intro"):
-                #если комикс или интро: отметить в профиле игрока комикс как увиденный
-                tmpNode.SetBoolAttr(u"seen", True)
+                #если комикс или интро: отметить в профиле игрока уровень как увиденный
+                tmpNode.SetBoolAttr("seen", True)
                 #если текущий - комикс, то отметить следующий уровень или комикс как разлоченный
                 if level.Next():
                     tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
-                    if tmpNextLevel.HasAttr(u"unlocked"):
-                        tmpNextLevel.SetBoolAttr(u"unlocked", True)
+                    if tmpNextLevel.HasAttr("unlocked"):
+                        tmpNextLevel.SetBoolAttr("unlocked", True)
                 #разлочить эпизод после интро, если необходимо
                 if level.GetName() == "intro":
                     self.XML.GetSubtag(level.GetStrAttr("episode")).SetBoolAttr(u"unlocked", True)
-                #if level.HasAttr("unlock"):
-                #    self.XML.GetSubtag(level.GetStrAttr("unlock")).SetBoolAttr(u"unlocked", True)
+            
+            elif level.GetName() == "outro":
+                #если аутро: отметить в профиле игрока уровень как увиденный
+                tmpNode.SetBoolAttr("seen", True)
+                #проверка экспертного прохождения всех уровней этого эпизода
+                if self.XML.GetSubtag(level.GetStrAttr("episode")).GetIntAttr("points") >= \
+                        globalvars.GameSettings.GetIntAttr("expertAll"):
+                    tmpNode.SetBoolAttr("expert", True)
+                #проверить условие для разлочивания следующего уровня
+                tmpConditions = eval(level.GetStrAttr("passIf"))
+                tmpPass = True
+                for episode in tmpConditions.keys():
+                    tmpResults = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people"))
+                    tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
+                    tmp = tmpResults.items()
+                    tmp.sort(lambda x,y: cmp(y[1], x[1]))
+                    tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"),self.XML.GetSubtag(episode).GetIntAttr("points")))+1
+                    if tmpPlace > tmpConditions[episode]:
+                        tmpPass = False
+                if level.Next() and tmpPass:
+                    tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
+                    if tmpNextLevel.HasAttr("unlocked"):
+                        tmpNextLevel.SetBoolAttr("unlocked", True)
+            
             elif level.GetName() == u"level":
                 #если уровень: отметить в профиле игрока уровень как начатый
                 tmpNode.SetBoolAttr(u"played", True)
             self.Save()
         except:
-            oE.Log(unicode("Cannot set level to "+level.GetContent()))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot set level to "+level.GetContent())
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         
     def GetLevel(self):
@@ -173,12 +195,23 @@ class Player:
                         tmpRecipes = eval(self.Level.GetStrAttr("unlock"))
                         for rcp in tmpRecipes:
                             self.XML.GetSubtag(rcp).SetBoolAttr("unlocked", True)
-                self.Save()
             else:
                 tmpLevelNode.SetBoolAttr("unlocked", True)
+                
+            #сосчитать и записать суммарные результаты по всем уровням
+            #за простое прохождение уровня - 5 очков, за экспертное - 10
+            for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("outro"):
+                #tmpSum = reduce(lambda x,y: x+y,
+                #    map(lambda x: self.XML.GetSubtag(x).GetIntAttr("hiscore"), eval(tmp.GetStrAttr("sum"))))
+                tmpSum = reduce(lambda x,y: x+y,
+                        map(lambda x: (x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("expertPoints")+\
+                        (x.GetIntAttr("hiscore")>0 and not x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("levelPoints"),
+                        map(lambda y: self.XML.GetSubtag(y), eval(tmp.GetStrAttr("sum")))))
+                self.XML.GetSubtag(tmp.GetStrAttr("episode")).SetIntAttr("points", tmpSum)
+            self.Save()
         except:
-            oE.Log(unicode("Cannot update player profile"))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot update player profile")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         
     #------------------------------------
@@ -201,8 +234,8 @@ class PlayerList:
             self.Filename = ""
             self.XML = oE.ParseDEF(File_PlayersConfigSafe).GetTag(u"MasterChef")
         except:
-            oE.Log(unicode("Cannot create players list"))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot create players list")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         
     #считывает и парсит список игроков (в начале игры)
@@ -219,7 +252,7 @@ class PlayerList:
             except:
                 #если никак-никак не можем прочитать
                 oE.Log(u"Cannot read players list")
-                oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+                oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
                 sys.exit()
         
     def Save(self):
@@ -228,12 +261,12 @@ class PlayerList:
                 config.SaveToFile(self.XML.GetRoot(), self.Filename)
         except:
             oE.Log(u"Cannot save players list")
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             #sys.exit()
         
     #возвращает имя фала для заданного имени игрока
     def FilenameFor(self, name):
-        return self.XML.Subtags(unicode(name)).Get().GetStrAttr(u"file")
+        return self.XML.Subtags(name).Get().GetStrAttr(u"file")
         
     #возвращает список игроков для диалогов
     def GetPlayerList(self):
@@ -243,15 +276,15 @@ class PlayerList:
         try:
             filename = u"data/"+name+".def"
             tmp = scraft.Xdata("player(%s) { file = '%s' }" % (name, filename)).GetTag()
-            tmp.SetContent(unicode(name))
+            tmp.SetContent(name)
             self.XML.InsertCopyOf(tmp)
             self.Save()
             globalvars.CurrentPlayer = Player()
             globalvars.CurrentPlayer.Read(name)
             globalvars.CurrentPlayer.Save()
         except:
-            oE.Log(unicode("Cannot create player "+name))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot create player "+name)
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         
     # удаление игрока по имени
@@ -266,8 +299,8 @@ class PlayerList:
                 config.SaveGameConfig()
                 globalvars.CurrentPlayer = Player()
         except:
-            oE.Log(unicode("Cannot remove player "+name))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot remove player "+name)
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         
     #выбор игрока по номеру из списка
@@ -278,7 +311,7 @@ class PlayerList:
             config.SaveGameConfig()
             globalvars.CurrentPlayer.Read(name)
         except:
-            oE.Log(unicode("Cannot select player "+str(no)))
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log("Cannot select player "+str(no))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
         

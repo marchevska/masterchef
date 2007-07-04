@@ -66,7 +66,7 @@ class PushButton(scraft.Dispatcher):
             self.TextSprite.visible = flag
         
     def SetText(self, newText):
-        self.TextSprite.text = unicode(newText)
+        self.TextSprite.text = newText
         
     def SetState(self, state):
         self.State = state
@@ -237,7 +237,7 @@ def MakeTextSprite(newKlass, newLayer, newX, newY,
     tmpSpr.x = newX
     tmpSpr.y = newY
     tmpSpr.hotspot = newHotspot
-    tmpSpr.text = unicode(newText)
+    tmpSpr.text = newText
     return tmpSpr
     
 def MakeSimpleSprite(newKlass, newLayer, newX = FieldMaxX/2, newY = FieldMaxY/2,
@@ -271,7 +271,7 @@ def MakeSprite(newKlass, newLayer, param = {}):
     elif param.has_key("xy"):
         tmpSpr.x, tmpSpr.y = param["xy"]
     if param.has_key("text"):
-        tmpSpr.text = unicode(param["text"])
+        tmpSpr.text = param["text"]
     if param.has_key("frno"):
         tmpSpr.frno = param["frno"]
     if param.has_key("hotspot"):

@@ -187,7 +187,7 @@ class Customer(scraft.Dispatcher):
                             self.Host.SendCommand(Cmd_FreeStation)
                     
         except:
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         return scraft.CommandStateRepeat
         
     # сделать заказ
@@ -348,7 +348,7 @@ class CustomersAnimator(scraft.Dispatcher):
                     self.SetState(self.States[0])
             self.NextFrameTime -= que.delta
         except:
-            oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         return scraft.CommandStateRepeat
         
     def Kill(self):

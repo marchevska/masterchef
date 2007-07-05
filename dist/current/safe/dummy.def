@@ -2,11 +2,11 @@ MasterChef{
     PlayerName = ''
     
     //Episodes{
-        episode(American) { unlocked = "no" }
-        episode(Mexican) { unlocked = "no" }
-        episode(Russian) { unlocked = "no" }
-        episode(Japanese) { unlocked = "no" }
-        episode(Hawaiian) { unlocked = "no" }
+        episode(American) { unlocked = "no" points = "0" }
+        episode(Mexican) { unlocked = "no" points = "0" }
+        episode(Russian) { unlocked = "no" points = "0" }
+        episode(Japanese) { unlocked = "no" points = "0" }
+        episode(Hawaiian) { unlocked = "no" points = "0" }
     //}
     
     //Levels{
@@ -71,12 +71,18 @@ MasterChef{
         //comic(Mexican.intro) { seen = "no" unlocked = "no" }
         //comic(Russian.intro) { seen = "no" unlocked = "no" }
         //comic(Japanese.intro) { seen = "no" unlocked = "no" }
-        comic(Hawaiian.intro) { seen = "no" unlocked = "no" }
-        comic(MasterChef.outro) { seen = "no" unlocked = "no" }
+        //comic(Hawaiian.intro) { seen = "no" unlocked = "no" }
+        //comic(MasterChef.outro) { seen = "no" unlocked = "no" }
         intro(intro.American) { seen = "no" unlocked = "no" }
         intro(intro.Mexican) { seen = "no" unlocked = "no" }
         intro(intro.Russian) { seen = "no" unlocked = "no" }
         intro(intro.Japanese) { seen = "no" unlocked = "no" }
+        intro(intro.Hawaiian) { seen = "no" unlocked = "no" }
+        outro(outro.American) { seen = "no" unlocked = "no" expert = "no" }
+        outro(outro.Mexican) { seen = "no" unlocked = "no" expert = "no" }
+        outro(outro.Russian) { seen = "no" unlocked = "no" expert = "no" }
+        outro(outro.Japanese) { seen = "no" unlocked = "no" expert = "no" }
+        outro(outro.Hawaiian) { seen = "no" unlocked = "no" expert = "no" }
     //}
     
     //Hints{

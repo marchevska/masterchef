@@ -31,6 +31,15 @@ MasterChef {
         level(def/09.def) { name = "1-9" no = "9" x = "141" y = "353" unlock = "[ ]" }
         level(def/10.def) { name = "1-10" no = "10" x = "167" y = "358" unlock = "[ ]" }
 
+        outro(outro.American) {
+            sum = "[ 'def/01.def', 'def/02.def', 'def/03.def', 'def/04.def', 'def/05.def', 'def/06.def', 'def/07.def', 'def/08.def', 'def/09.def', 'def/10.def' ]"
+            x = "167" y = "390"
+            episode = "American"
+            title = "AMERICAN OPEN - RESULTS"
+            passIf = "{ 'American': 4 }"
+            passFurther = "4"
+        }
+
         //Episode - Mexican
         intro(intro.Mexican) {
             episode = "Mexican"
@@ -48,6 +57,15 @@ MasterChef {
         level(def/18.def) { name = "2-8" no = "18" x = "253" y = "75" unlock = "[ 'Avocado Stuffed Tacos', ]" }
         level(def/19.def) { name = "2-9" no = "19" x = "276" y = "65" unlock = "[ ]" }
         level(def/20.def) { name = "2-10" no = "20" x = "302" y = "61" unlock = "[ ]" }
+
+        outro(outro.Mexican) {
+            sum = "[ 'def/11.def', 'def/12.def', 'def/13.def', 'def/14.def', 'def/15.def', 'def/16.def', 'def/17.def', 'def/18.def', 'def/19.def', 'def/20.def' ]"
+            x = "302" y = "30"
+            episode = "Mexican"
+            title = "MEXICAN OPEN – RESULTS"
+            passIf = "{ 'Mexican': 4 }"
+            passFurther = "4"
+        }
         
         //Episode – Russian
         intro(intro.Russian) {
@@ -66,6 +84,15 @@ MasterChef {
         level(def/28.def) { name = "3-8" no = "28" x = "595" y = "79" unlock = "[ ]" }
         level(def/29.def) { name = "3-9" no = "29" x = "620" y = "90" unlock = "[ ]" }
         level(def/30.def) { name = "3-10" no = "30" x = "642" y = "105" unlock = "[ ]" }
+
+        outro(outro.Russian) {
+            sum = "[ 'def/21.def', 'def/22.def', 'def/23.def', 'def/24.def', 'def/25.def', 'def/26.def', 'def/27.def', 'def/28.def', 'def/29.def', 'def/30.def' ]"
+            x = "640" y = "70"
+            episode = "Russian"
+            title = "RUSSIAN OPEN – RESULTS"
+            passIf = "{ 'Russian': 4 }"
+            passFurther = "4"
+        }
         
         //Episode – Japanese
         intro(intro.Japanese) {
@@ -84,13 +111,22 @@ MasterChef {
         level(def/38.def) { name = "4-8" no = "38" x = "724" y = "357" unlock = "[ ]" }
         level(def/39.def) { name = "4-9" no = "39" x = "704" y = "374" unlock = "[ ]" }
         level(def/40.def) { name = "4-10" no = "40" x = "681" y = "388" unlock = "[ ]" }
+
+        outro(outro.Japanese) {
+            sum = "[ 'def/31.def', 'def/32.def', 'def/33.def', 'def/34.def', 'def/35.def', 'def/36.def', 'def/37.def', 'def/38.def', 'def/39.def', 'def/40.def' ]"
+            x = "710" y = "390"
+            episode = "Japanese"
+            title = "JAPANESE OPEN – RESULTS"
+            passIf = "{ 'American': 1,  'Mexican': 1,  'Russian': 1,  'Japanese': 1 }"
+            passFurther = "2"
+        }
         
         //Episode - Hawaiian
-        comic(Hawaiian.intro) {
-            image = "comics.hawaiian.intro"
-            button = "comics.play-button"
-            unlock = "Hawaiian"
+        intro(intro.Hawaiian) {
+            episode = "Hawaiian"
+            title = "FINALS"
         }
+
 
         level(def/41.def) { name = "5-1" no = "41" x = "586" y = "407" unlock = "[ 'Hulihuli Chicken', 'Lime Chicken', ]" }
         level(def/42.def) { name = "5-2" no = "42" x = "561" y = "423" unlock = "[ 'Wonton', 'Shrimp Canton', ]" }
@@ -103,9 +139,13 @@ MasterChef {
         level(def/49.def) { name = "5-9" no = "49" x = "654" y = "542" unlock = "[ ]" }
         level(def/50.def) { name = "5-10" no = "50" x = "683" y = "538" unlock = "[ ]" }
         
-        comic(MasterChef.outro) {
-            image = "comics.masterchef.outro"
-            button = "comics.end-button"
+        outro(outro.Hawaiian) {
+            sum = "[ 'def/41.def', 'def/42.def', 'def/43.def', 'def/44.def', 'def/45.def', 'def/46.def', 'def/47.def', 'def/48.def', 'def/49.def', 'def/50.def' ]"
+            x = "683" y = "570"
+            episode = "Hawaiian"
+            title = "FINALS – RESULTS"
+            passIf = "{ 'Hawaiian': 1 }"
+            passFurther = "1"
         }
     }
     
@@ -120,10 +160,11 @@ MasterChef {
     
     //Competitors and their results
     People {
-        episode(American) { people= "{'Elisa':8000,'Emma':6500,'Jenny':1,'Lora':12000,'Marty':6000,'Max':7000,'Ronald':18200,'Steve':11000,}" }
-        episode(Mexican) { people= "{'Alex':17500,'Erica':16500,'Jenny':1,'Lora':18000,'Michael':19000,'Nina':22000,'Ronald':24700,'Steve':15000,}" }
-        episode(Russian) { people= "{'Alban':25000,'Angela':22000,'Jenny':1,'Michael':21000,'Naomi':27000,'Nina':20000,'Ronald':30800,'Sam':19000,}" }
-        episode(Japanese) { people= "{'Alban':29000,'Jenny':1,'Mary':24000,'Naomi':22000,'Paula':31000,'Peter':23000,'Ronald':33400,'Scott':21000,}" }
+        episode(American) { people= "{'Elisa':45,'Emma':35,'Jenny':1,'Lora':50,'Marty':30,'Max':40,'Ronald':95,'Steve':60,}" }
+        episode(Mexican) { people= "{'Alex':40,'Erica':35,'Jenny':1,'Lora':45,'Michael':55,'Nina':70,'Ronald':95,'Steve':30,}" }
+        episode(Russian) { people= "{'Alban':80,'Angela':45,'Jenny':1,'Michael':40,'Naomi':65,'Nina':35,'Ronald':95,'Sam':30,}" }
+        episode(Japanese) { people= "{'Alban':85,'Jenny':1,'Mary':45,'Naomi':35,'Paula':90,'Peter':40,'Ronald':95,'Scott':30,}" }
+        episode(Hawaiian) { people= "{'Jenny':1,'Ronald':95,}" }
     }
 
 }

@@ -38,6 +38,7 @@ class Gui(scraft.Dispatcher):
         self.TotalRecipesOnPage = 12
         self.MaxNewRecipes = 12
         self.MaxPeopleOnLevel = 8
+        self.MaxPeopleOnOutro = 4
         self.CurrentCookbookPage = 0
         self.NextState = PState_None
         self.SavedOptions = []
@@ -451,7 +452,7 @@ class Gui(scraft.Dispatcher):
                 { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_IntroCompetitors } )
         for i in range(self.MaxPeopleOnLevel):
             self.IntroScreen["Static"]["Character"+str(i)] = MakeSimpleSprite("$spritecraft$dummy$", Layer_BtnText,
-                                                    Crd_CharPositions[i][0], Crd_CharPositions[i][1])
+                                                    Crd_CharIntroPositions[i][0], Crd_CharIntroPositions[i][1])
             self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
                 { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
         
@@ -465,20 +466,38 @@ class Gui(scraft.Dispatcher):
         self.OutroScreen["Buttons"]["Next"] = PushButton("IntroNext",
                 self, Cmd_OutroNext, PState_Outro,
                 "intro.continue-button", [0, 1, 2], 
-                Layer_BtnText, 330, 555, 140, 50)
-        self.OutroScreen["Static"]["Logo"] = MakeSimpleSprite("intro.logo", Layer_Static, 230, 35)
-        self.OutroScreen["Text"]["Title"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 360, "y": 35, "hotspot": scraft.HotspotCenter } )
+                Layer_BtnText, 650, 570, 140, 50)
+        self.OutroScreen["Static"]["Logo"] = MakeSimpleSprite("outro.bg-pane", Layer_BtnText, 230, 35)
+        self.OutroScreen["Text"]["Title"] = MakeSprite("domcasual-10-up", Layer_BtnText-1,
+                { "x": 230, "y": 35, "hotspot": scraft.HotspotCenter } )
+        self.OutroScreen["Text"]["Speech"] = MakeSprite("domcasual-10-up", Layer_BtnText-1,
+                { "x": 220, "y": 440, "hotspot": scraft.HotspotCenter } )
         self.OutroScreen["Static"]["IntroPane"] = MakeSimpleSprite("$spritecraft$dummy$", Layer_Static, 490, 18)
-        self.OutroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 520)
-        self.OutroScreen["Static"]["Balloon"] = MakeSimpleSprite("intro.balloon", Layer_Static, 270, 370)
+        self.OutroScreen["Static"]["Separator"] = MakeSimpleSprite("outro.separator", Layer_Static-1, 650, 408)
+        self.OutroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 420)
+        self.OutroScreen["Static"]["Balloon"] = MakeSimpleSprite("outro.balloon", Layer_Static, 220, 440)
         self.OutroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_IntroCompetitors } )
+                { "x": 580, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_OutroCompetitors } )
+        self.OutroScreen["Text"]["Points"] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 700, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_OutroPoints } )
+        for i in range(self.MaxPeopleOnOutro):
+            self.OutroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_Static-1)
+            self.OutroScreen["Static"]["Medallion"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_Static-1,
+                                    { "parent": self.OutroScreen["Static"]["Character"+str(i)],
+                                    "x":0, "y":-200, "hotspot": scraft.HotspotCenter })
+            self.OutroScreen["Static"]["Light"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_Static,
+                                    { "parent": self.OutroScreen["Static"]["Character"+str(i)], "x":0, "y":40 })
+            self.OutroScreen["Text"]["Number"+str(i)] = MakeSprite("domcasual-20-orange", Layer_Static-2,
+                                    { "parent": self.OutroScreen["Static"]["Character"+str(i)],
+                                    "x": 0, "y": -200, "hotspot": scraft.HotspotCenter } )
+            self.OutroScreen["Text"]["Name"+str(i)] = MakeSprite("mainmenu.domcasual", Layer_Static-2,
+                                    { "parent": self.OutroScreen["Static"]["Character"+str(i)],
+                                    "x": 0, "y": -170, "hotspot": scraft.HotspotCenter } )
         for i in range(self.MaxPeopleOnLevel):
-            self.OutroScreen["Static"]["Character"+str(i)] = MakeSimpleSprite("$spritecraft$dummy$", Layer_BtnText,
-                                                    Crd_CharPositions[i][0], Crd_CharPositions[i][1])
             self.OutroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
+                { "x": 600, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
+            self.OutroScreen["Text"]["Score"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 720, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
         
         #-------
         # карта карьерного режима
@@ -833,11 +852,47 @@ class Gui(scraft.Dispatcher):
     # показать итоговый экран очередного эпизода
     #-------------------------------------------
     def _ShowEpisodeOutro(self):
-        tmpEpisode = globalvars.CurrentPlayer.GetLevel().GetStrAttr("episode")
+        tmpLevel = globalvars.CurrentPlayer.GetLevel()
+        tmpEpisode = tmpLevel.GetStrAttr("episode")
         tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
+        tmpResults = globalvars.CurrentPlayer.GetScoresPlaceAndCondition()
+        
         self.OutroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
-        self.OutroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("outroPane"))
-        #self.OutroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
+        self.OutroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
+        self.OutroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
+        tmpStr = Str_OutroSpeech+"\n"
+        for i in range(tmpLevel.GetIntAttr("PassFurther")):
+            tmpStr += (tmpResults["scores"][i][0]+"\n")
+        if not tmpResults["pass"]:
+            tmpStr += Str_OutroNotPass
+        self.OutroScreen["Text"]["Speech"].text = tmpStr
+        for i in range(self.MaxPeopleOnOutro):
+            if i < tmpLevel.GetIntAttr("PassFurther"):
+                self.OutroScreen["Static"]["Character"+str(i)].\
+                        ChangeKlassTo(globalvars.CompetitorsInfo.GetSubtag(tmpResults["scores"][i][0]).GetStrAttr("src"))
+                self.OutroScreen["Static"]["Character"+str(i)].x, self.OutroScreen["Static"]["Character"+str(i)].y = \
+                    Crd_CharOutroPositions[tmpLevel.GetIntAttr("PassFurther")][i]
+                self.OutroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
+                self.OutroScreen["Static"]["Light"+str(i)].ChangeKlassTo("outro.light")
+                self.OutroScreen["Static"]["Light"+str(i)].hotspot = scraft.HotspotCenterBottom
+                self.OutroScreen["Static"]["Medallion"+str(i)].ChangeKlassTo(tmp.GetStrAttr("winnerSign"))
+                self.OutroScreen["Static"]["Medallion"+str(i)].hotspot = scraft.HotspotCenter
+                self.OutroScreen["Text"]["Number"+str(i)].text = str(i+1)
+                self.OutroScreen["Text"]["Name"+str(i)].text = tmpResults["scores"][i][0]
+            else:
+                self.OutroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
+                self.OutroScreen["Static"]["Light"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
+                self.OutroScreen["Static"]["Medallion"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
+                self.OutroScreen["Text"]["Number"+str(i)].text = ""
+                self.OutroScreen["Text"]["Name"+str(i)].text = ""
+        for i in range(self.MaxPeopleOnLevel):
+            if i < len(tmpResults["scores"]):
+                self.OutroScreen["Text"]["Character"+str(i)].text = tmpResults["scores"][i][0]
+                self.OutroScreen["Text"]["Score"+str(i)].text = str(tmpResults["scores"][i][1])
+            else:
+                self.OutroScreen["Text"]["Character"+str(i)].text = ""
+                self.OutroScreen["Text"]["Score"+str(i)].text = ""
+                
         
     #-------------------------------------------
     # обновить данные в диалоге "цели уровня", при старте уровня

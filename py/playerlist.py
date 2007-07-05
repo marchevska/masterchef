@@ -122,17 +122,7 @@ class Player:
                         globalvars.GameSettings.GetIntAttr("expertAll"):
                     tmpNode.SetBoolAttr("expert", True)
                 #проверить условие для разлочивания следующего уровня
-                tmpConditions = eval(level.GetStrAttr("passIf"))
-                tmpPass = True
-                for episode in tmpConditions.keys():
-                    tmpResults = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people"))
-                    tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
-                    tmp = tmpResults.items()
-                    tmp.sort(lambda x,y: cmp(y[1], x[1]))
-                    tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"),self.XML.GetSubtag(episode).GetIntAttr("points")))+1
-                    if tmpPlace > tmpConditions[episode]:
-                        tmpPass = False
-                if level.Next() and tmpPass:
+                if level.Next() and self.GetScoresPlaceAndCondition()["pass"]:
                     tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
                     if tmpNextLevel.HasAttr("unlocked"):
                         tmpNextLevel.SetBoolAttr("unlocked", True)
@@ -145,6 +135,22 @@ class Player:
             oE.Log("Cannot set level to "+level.GetContent())
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
+        
+    #------------------------------------
+    #проверить условие для разлочивания следующего уровня после outro
+    #------------------------------------
+    def GetScoresPlaceAndCondition(self):
+        tmpConditions = eval(self.Level.GetStrAttr("passIf"))
+        tmpPass = True
+        for episode in tmpConditions.keys():
+            tmpResults = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people"))
+            tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
+            tmp = tmpResults.items()
+            tmp.sort(lambda x,y: cmp(y[1], x[1]))
+            tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"),self.XML.GetSubtag(episode).GetIntAttr("points")))+1
+            if tmpPlace > tmpConditions[episode]:
+                tmpPass = False
+        return { "scores": tmp, "place": tmpPlace, "pass": tmpPass }
         
     def GetLevel(self):
         return self.Level

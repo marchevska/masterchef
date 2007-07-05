@@ -148,13 +148,33 @@ type   = blend
 layout = 1x4
 }
 
+sprite intro.logo {
+bitmap = img/gui/intro.logo.png
+type   = blend
+}
+
 sprite intro.balloon {
 bitmap = img/gui/intro.balloon.png
 type   = blend
 }
 
-sprite intro.logo {
-bitmap = img/gui/intro.logo.png
+sprite outro.balloon {
+bitmap = img/gui/outro.balloon.png
+type   = blend
+}
+
+sprite outro.light {
+bitmap = img/gui/outro.light.png
+type   = blend
+}
+
+sprite outro.bg-pane {
+bitmap = img/gui/outro.bg-pane.png
+type   = blend
+}
+
+sprite outro.separator {
+bitmap = img/gui/outro.separator.png
 type   = blend
 }
 
@@ -327,6 +347,18 @@ layout = 5x1
 
 sprite level-pointers-expert {
 bitmap = img/gui/level-pointers-expert.png
+type = blend
+layout = 5x1
+}
+
+sprite outro-pointers {
+bitmap = img/gui/outro-pointers.png
+type = blend
+layout = 5x1
+}
+
+sprite outro-pointers-expert {
+bitmap = img/gui/outro-pointers-expert.png
 type = blend
 layout = 5x1
 }

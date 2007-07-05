@@ -140,7 +140,7 @@ Frame_Sl = 5    #selected state
 #סכמט הכÿ ֳ׃ָ
 Layer_Background = 100
 Layer_Static = 99
-Layer_BtnText = 98
+Layer_BtnText = 97
 Layer_PopupGray = 41
 Layer_PopupBg = 40
 Layer_PopupBtnTxt = 39

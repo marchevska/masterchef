@@ -183,20 +183,14 @@ bitmap = img/gui/outro.separator.png
 type   = blend
 }
 
-sprite intro.continue-button {
-bitmap = img/gui/intro.continue-button.png
+sprite continue-button {
+bitmap = img/gui/continue-button.png
 type   = blend
 layout = 1x4
 }
 
 sprite cookbook.close-button {
 bitmap = img/gui/cookbook.close-button.png
-type   = blend
-layout = 1x4
-}
-
-sprite cookbook.continue-button {
-bitmap = img/gui/cookbook.continue-button.png
 type   = blend
 layout = 1x4
 }
@@ -272,6 +266,25 @@ layout = 1x3
 sprite mainmenu.vapor { 
 bitmap = img/gui/mainmenu.vapor.png
 layout = 1x3
+}
+
+#########################
+# level complete dialog #
+#########################
+
+sprite level-results.bg.bad {
+bitmap = img/gui/level-results.bg.bad.png
+type = blend
+}
+
+sprite level-results.bg.good {
+bitmap = img/gui/level-results.bg.good.png
+type = blend
+}
+
+sprite level-results.bg.expert {
+bitmap = img/gui/level-results.bg.expert.png
+type = blend
 }
 
 ########################

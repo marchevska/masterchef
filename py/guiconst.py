@@ -33,6 +33,7 @@ Cmd_HelpPrev = 311
 Cmd_HelpClose = 312
 
 Cmd_PlayersRemove = 320
+Cmd_PlayersNew = 325
 Cmd_PlayersOk = 321
 Cmd_PlayersCancel = 322
 Cmd_PlayersUp = 323

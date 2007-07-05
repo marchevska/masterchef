@@ -25,6 +25,7 @@ Str_Players_Create = "Create new player"
 Str_PlayersRemove = "Remove player"
 Str_PlayersOk = "Ok"
 Str_PlayersCancel = "Cancel"
+Str_PlayersNew = "Create new player"
 
 Str_EnterName_Title = "Please enter your name"
 Str_EnterNameOk = "Ok"

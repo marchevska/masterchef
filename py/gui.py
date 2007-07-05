@@ -43,6 +43,8 @@ class Gui(scraft.Dispatcher):
         self.NextState = PState_None
         self.SavedOptions = []
            
+        self.GraySprite = MakeSprite("gray.screen", Layer_Background+1)
+            
         #--------------
         # логотипы разработчика и издателя
         #--------------
@@ -1378,6 +1380,16 @@ class Gui(scraft.Dispatcher):
             globalvars.Musician.SetState(MusicState_Game)
         else:
             globalvars.Musician.SetState(MusicState_Menu)
+            
+        #серый спрайт рисуется под верхним попапом
+        if state in (PState_StartLevel, PState_NextLevel, PState_Players, PState_Options):
+            self.GraySprite.visible = True
+            self.GraySprite.layer = Layer_PopupGray
+        elif state in (PState_EnterName, PState_YesNo, PState_YesNoCancel):
+            self.GraySprite.visible = True
+            self.GraySprite.layer = Layer_2ndPopupGray
+        else:
+            self.GraySprite.visible = False
             
         if state == PState_StartLevel:
             globalvars.StateStack[-1] = PState_Game

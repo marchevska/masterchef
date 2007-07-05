@@ -114,6 +114,11 @@ type   = blend
 # gui elements #
 ################
 
+sprite gray.screen {
+bitmap = img/gui/gray.screen.png
+type   = blend
+}
+
 sprite button-4st {
 bitmap = img/gui/button-4st.png
 type   = blend

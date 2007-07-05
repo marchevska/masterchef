@@ -145,6 +145,7 @@ Layer_PopupGray = 41
 Layer_PopupBg = 40
 Layer_PopupBtnTxt = 39
 Layer_PopupBtnTxt2 = 38
+Layer_2ndPopupGray = 31
 Layer_2ndPopupBg = 30
 Layer_2ndPopupBtnTxt = 29
 Layer_CursorDown = 10

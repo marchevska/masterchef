@@ -287,6 +287,11 @@ bitmap = img/gui/level-results.bg.expert.png
 type = blend
 }
 
+sprite level-results.indicator {
+bitmap = img/gui/level-results.indicator.png
+type = blend
+}
+
 ########################
 # help screen elements #
 ########################

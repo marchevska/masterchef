@@ -33,6 +33,7 @@ class Gui(scraft.Dispatcher):
         self.FirstPlayer = 0
         self.SelectedPlayer = ""                #имя выбранного игрока
         self.SelectedLevel = ""                 #название выбранного уровня (имя файла)
+        self.HilightedLevel = ""      
         self.TotalPlayersOnScreen = 6
         self.TotalCareerLevels = 0
         self.TotalRecipesOnPage = 12
@@ -257,23 +258,23 @@ class Gui(scraft.Dispatcher):
         self.LevelCompleteDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBg)
         self.LevelCompleteDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 470, 130,
                                                                    scraft.HotspotCenter, Str_LvComplete_Title)
+        self.LevelCompleteDialog["Static"]["Indicator1"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 206)
+        self.LevelCompleteDialog["Static"]["Indicator2"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 241)
+        self.LevelCompleteDialog["Static"]["Indicator3"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 276)
         self.LevelCompleteDialog["Text"]["LabelServed"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 565, "y": 207, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Served })
+                    { "x": 570, "y": 207, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Served })
         self.LevelCompleteDialog["Text"]["LabelLost"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 565, "y": 242, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Lost })
+                    { "x": 570, "y": 242, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Lost })
         self.LevelCompleteDialog["Text"]["LabelEarned"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 565, "y": 277, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Score })
-        
-        self.LevelCompleteDialog["Text"]["Text3"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 300, 370)
-        self.LevelCompleteDialog["Text"]["Text4"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 500, 370)
-        self.LevelCompleteDialog["Text"]["Text5"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 400, 420)
-        
+                    { "x": 570, "y": 277, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Score })
         self.LevelCompleteDialog["Text"]["TextServed"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 580, "y": 207, "hotspot": scraft.HotspotLeftCenter })
+                    { "x": 583, "y": 207, "hotspot": scraft.HotspotLeftCenter })
         self.LevelCompleteDialog["Text"]["TextLost"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 580, "y": 242, "hotspot": scraft.HotspotLeftCenter })
+                    { "x": 583, "y": 242, "hotspot": scraft.HotspotLeftCenter })
         self.LevelCompleteDialog["Text"]["TextEarned"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 580, "y": 277, "hotspot": scraft.HotspotLeftCenter })
+                    { "x": 583, "y": 277, "hotspot": scraft.HotspotLeftCenter })
+        self.LevelCompleteDialog["Text"]["Comment"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
+                    { "x": 230, "y": 450, "hotspot": scraft.HotspotLeftCenter })
         
         self.LevelCompleteDialog["Buttons"]["Continue"] = PushButton("LvCompleteNextLevel",
                 self, Cmd_LvCompleteNextLevel, PState_NextLevel,
@@ -581,22 +582,25 @@ class Gui(scraft.Dispatcher):
         
     def CallLevelCompleteDialog(self, flag, params = {}):
         self._SetState(PState_NextLevel)
-        #фон
+        #фон и комментарий 
         if not flag:
             self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.bad")
+            self.LevelCompleteDialog["Text"]["Comment"].text = Str_LvComplete_FailedComment
         elif not params["expert"]:
             self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.good")
+            self.LevelCompleteDialog["Text"]["Comment"].text = Str_LvComplete_PassedComment
         else:
             self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.expert")
+            self.LevelCompleteDialog["Text"]["Comment"].text = Str_LvComplete_ExpertComment
             
         self.LevelCompleteDialog["Text"]["TextServed"].text = str(params["served"])
         self.LevelCompleteDialog["Text"]["TextLost"].text = str(params["lost"])
         self.LevelCompleteDialog["Text"]["TextEarned"].text = str(params["score"])
         tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
-        self.LevelCompleteDialog["Text"]["Text3"].text = Str_LvComplete_BestScore + str(tmpBest.GetIntAttr("hiscore"))
-        self.LevelCompleteDialog["Text"]["Text4"].text = Str_LvComplete_AchievedBy + str(tmpBest.GetStrAttr("player"))
-        self.LevelCompleteDialog["Text"]["Text5"].text = (params["expert"])*Str_LvComplete_Expert + \
-            (params["score"]==tmpBest.GetIntAttr("hiscore"))*Str_LvComplete_Hiscore
+        #self.LevelCompleteDialog["Text"]["Text3"].text = Str_LvComplete_BestScore + str(tmpBest.GetIntAttr("hiscore"))
+        #self.LevelCompleteDialog["Text"]["Text4"].text = Str_LvComplete_AchievedBy + str(tmpBest.GetStrAttr("player"))
+        #self.LevelCompleteDialog["Text"]["Text5"].text = (params["expert"])*Str_LvComplete_Expert + \
+            #(params["score"]==tmpBest.GetIntAttr("hiscore"))*Str_LvComplete_Hiscore
         if flag:
             self.LevelCompleteDialog["Buttons"]["Continue"].Show(True)
             self.LevelCompleteDialog["Buttons"]["Restart"].Show(False)
@@ -811,6 +815,8 @@ class Gui(scraft.Dispatcher):
                 self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Up)
             else:
                 self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Inert)
+        
+        #добавить анимацию по self.HilightedLevel
         
         #если выбран уровень 
         if self.SelectedLevel in tmpLevelKeys:
@@ -1493,11 +1499,14 @@ class Gui(scraft.Dispatcher):
             
         elif state == PState_MapCareer:
             self._ReleaseState(PState_MainMenu)
-            tmpLastLevel = globalvars.CurrentPlayer.LastUnlockedLevel()
-            if tmpLastLevel:
-                self.SelectedLevel = tmpLastLevel.GetContent()
-            else:
-                self.SelectedLevel = ""
+            #подсветка одного из уровней: либо последнего выбранного игроком,
+            #либо последнего открытого
+            if globalvars.CurrentPlayer.NewUnlockedLevel() != "":
+                self.HilightedLevel = self.SelectedLevel = globalvars.CurrentPlayer.NewUnlockedLevel()
+                globalvars.CurrentPlayer.PopNewUnlockedLevel()
+            if self.SelectedLevel == "":
+                self.SelectedLevel = globalvars.CurrentPlayer.LastUnlockedLevel()
+                self.HilightedLevel = ""
             self._ShowDialog(self.MapCareerDialog, True)
             self._UpdateMapWindow()
             

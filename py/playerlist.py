@@ -86,14 +86,28 @@ class Player:
             sys.exit()
         
     #------------------------------------
-    # указатель на последний открытый уровень или комикс - см по значению type
+    # название последнего открытого уровн€
     #------------------------------------
     def LastUnlockedLevel(self, type = "level"):
         tmp = filter(lambda x: x.GetBoolAttr("unlocked"), self.XML.Tags(type))
         if len (tmp)>0:
-            return tmp[-1]
+            return tmp[-1].GetContent()
         else:
-            return None
+            return ""
+        
+    def NewUnlockedLevel(self, type = "level"):
+        if self.XML.HasAttr("newUnlocked"):
+            if self.XML.GetStrAttr("newUnlocked")!="":
+                return self.XML.GetStrAttr("newUnlocked")
+        return ""
+        
+    def PopNewUnlockedLevel(self):
+        self.XML.SetStrAttr("newUnlocked", "")
+        
+    def _UnlockEntry(self, entry):
+        if not entry.GetBoolAttr("unlocked") and entry.GetName() in ("comic", "intro", "outro", "level"):
+            self.XML.SetStrAttr("newUnlocked", entry.GetContent())
+        entry.SetBoolAttr("unlocked", True)
         
     #------------------------------------
     # установить текущий уровень
@@ -109,10 +123,12 @@ class Player:
                 if level.Next():
                     tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
                     if tmpNextLevel.HasAttr("unlocked"):
-                        tmpNextLevel.SetBoolAttr("unlocked", True)
+                        self._UnlockEntry(tmpNextLevel)
+                        #tmpNextLevel.SetBoolAttr("unlocked", True)
                 #разлочить эпизод после интро, если необходимо
                 if level.GetName() == "intro":
-                    self.XML.GetSubtag(level.GetStrAttr("episode")).SetBoolAttr(u"unlocked", True)
+                    self._UnlockEntry(self.XML.GetSubtag(level.GetStrAttr("episode")))
+                    #self.XML.GetSubtag(level.GetStrAttr("episode")).SetBoolAttr(u"unlocked", True)
             
             elif level.GetName() == "outro":
                 #если аутро: отметить в профиле игрока уровень как увиденный
@@ -125,7 +141,8 @@ class Player:
                 if level.Next() and self.GetScoresPlaceAndCondition()["pass"]:
                     tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
                     if tmpNextLevel.HasAttr("unlocked"):
-                        tmpNextLevel.SetBoolAttr("unlocked", True)
+                        self._UnlockEntry(tmpNextLevel)
+                        #tmpNextLevel.SetBoolAttr("unlocked", True)
             
             elif level.GetName() == u"level":
                 #если уровень: отметить в профиле игрока уровень как начатый
@@ -197,12 +214,15 @@ class Player:
                     if params["hiscore"] >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneyGoal"):
                         tmpNextLevelNode = self.XML.GetSubtag(self.Level.Next().GetContent())
                         if tmpNextLevelNode:
-                            tmpNextLevelNode.SetBoolAttr("unlocked", True)
+                            self._UnlockEntry(tmpNextLevelNode)
+                            #tmpNextLevelNode.SetBoolAttr("unlocked", True)
                         tmpRecipes = eval(self.Level.GetStrAttr("unlock"))
                         for rcp in tmpRecipes:
-                            self.XML.GetSubtag(rcp).SetBoolAttr("unlocked", True)
+                            self._UnlockEntry(self.XML.GetSubtag(rcp))
+                            #self.XML.GetSubtag(rcp).SetBoolAttr("unlocked", True)
             else:
-                tmpLevelNode.SetBoolAttr("unlocked", True)
+                self._UnlockEntry(tmpLevelNode)
+                #tmpLevelNode.SetBoolAttr("unlocked", True)
                 
             #сосчитать и записать суммарные результаты по всем уровн€м
             #за простое прохождение уровн€ - 5 очков, за экспертное - 10

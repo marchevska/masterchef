@@ -63,8 +63,8 @@ class Gui(scraft.Dispatcher):
         #--------------
         self.MainMenuDialog = { "Static": {}, "Text": {}, "Buttons": {}, "Animations": {} }
         self.MainMenuDialog["Static"]["Back"] = MakeSimpleSprite(u"mainmenu-background", Layer_Background)
-        self.MainMenuDialog["Static"]["Tablet"] = MakeSprite("mainmenu.tablet", Layer_Static,
-                { "x": 675, "y": 100, "hotspot": scraft.HotspotCenter } )
+        #self.MainMenuDialog["Static"]["Tablet"] = MakeSprite("mainmenu.tablet", Layer_Static,
+        #        { "x": 675, "y": 100, "hotspot": scraft.HotspotCenter } )
         self.MainMenuDialog["Static"]["JaneEyes"] = MakeSprite("mainmenu.jane.eyes", Layer_BtnText,
                 { "x": 190, "y": 220 } )
         self.MainMenuDialog["Animations"]["JaneEyes"] = CustomersAnimator(self.MainMenuDialog["Static"]["JaneEyes"],
@@ -111,8 +111,10 @@ class Gui(scraft.Dispatcher):
                 "mainmenu-players-button", [0, 1, 2, 3], 
                 Layer_BtnText, 675, 160, 190, 30,
                 Str_Menu_Players, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
-        self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeSprite("domcasual-11", Layer_BtnText,
-                { "x": 600, "y": 125, "cfilt-color": 0xFF8000 } )
+        self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
+                { "x": 765, "y": 110, "hotspot": scraft.HotspotRightCenter  } )
+        self.MainMenuDialog["Text"]["WelcomeName"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
+                { "x": 765, "y": 135, "hotspot": scraft.HotspotRightCenter  } )
         
         #---------
         # справка
@@ -1485,6 +1487,7 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_Cookbook)
             if globalvars.GameConfig.GetStrAttr("Player") == "":
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = False
+                self.MainMenuDialog["Text"]["WelcomeName"].visible = False
                 self.MainMenuDialog["Buttons"]["Players"].Show(False)
                 if len(globalvars.PlayerList.GetPlayerList()) <= 1:
                     self._SetState(PState_EnterName)
@@ -1493,7 +1496,9 @@ class Gui(scraft.Dispatcher):
             else:
                 self.MainMenuDialog["Buttons"]["Players"].Show(True)
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = True
-                self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome + globalvars.GameConfig.GetStrAttr("Player")
+                self.MainMenuDialog["Text"]["WelcomeName"].visible = True
+                self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome
+                self.MainMenuDialog["Text"]["WelcomeName"].text = globalvars.GameConfig.GetStrAttr("Player")
             self.MainMenuDialog["Animations"]["JaneEyes"].SetState("Smile")
             self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(False)
             self.MainMenuDialog["Animations"]["Vapor"].SetState("Play")

@@ -6,7 +6,7 @@ Project: Master Chef
 Стоковые константы (для ГУИ/локализации)
 """
 
-Str_Menu_Welcome = u"Welcome, "
+Str_Menu_Welcome = "Welcome,"
 Str_Menu_PlayCareer = "P L A Y"
 Str_Menu_PlayEndless = "PLAY ENDLESS"
 Str_Menu_Players = "Click to change player"

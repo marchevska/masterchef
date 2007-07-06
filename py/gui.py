@@ -791,7 +791,7 @@ class Gui(scraft.Dispatcher):
             #читаем запись из профиля игрока
             tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(level)
             if tmpPlayerResult.GetBoolAttr(u"expert"):
-                self.MapCareerDialog["Buttons"][level].SetButtonKlass(u"outro-tropointers-expert")
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass(u"outro-pointers-expert")
             else:
                 self.MapCareerDialog["Buttons"][level].SetButtonKlass(u"outro-pointers")
             if tmpPlayerResult.GetBoolAttr(u"unlocked"):

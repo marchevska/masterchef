@@ -270,7 +270,7 @@ class PlayerList:
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             #sys.exit()
         
-    #возвращает имя фала для заданного имени игрока
+    #возвращает имя файла для заданного имени игрока
     def FilenameFor(self, name):
         return self.XML.Subtags(name).Get().GetStrAttr(u"file")
         

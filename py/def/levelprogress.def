@@ -33,7 +33,7 @@ MasterChef {
 
         outro(outro.American) {
             sum = "[ 'def/01.def', 'def/02.def', 'def/03.def', 'def/04.def', 'def/05.def', 'def/06.def', 'def/07.def', 'def/08.def', 'def/09.def', 'def/10.def' ]"
-            x = "167" y = "390"
+            x = "160" y = "90"
             episode = "American"
             title = "AMERICAN OPEN - RESULTS"
             passIf = "{ 'American': 4 }"
@@ -60,7 +60,7 @@ MasterChef {
 
         outro(outro.Mexican) {
             sum = "[ 'def/11.def', 'def/12.def', 'def/13.def', 'def/14.def', 'def/15.def', 'def/16.def', 'def/17.def', 'def/18.def', 'def/19.def', 'def/20.def' ]"
-            x = "302" y = "30"
+            x = "225" y = "360"
             episode = "Mexican"
             title = "MEXICAN OPEN – RESULTS"
             passIf = "{ 'Mexican': 4 }"
@@ -87,7 +87,7 @@ MasterChef {
 
         outro(outro.Russian) {
             sum = "[ 'def/21.def', 'def/22.def', 'def/23.def', 'def/24.def', 'def/25.def', 'def/26.def', 'def/27.def', 'def/28.def', 'def/29.def', 'def/30.def' ]"
-            x = "640" y = "70"
+            x = "330" y = "30"
             episode = "Russian"
             title = "RUSSIAN OPEN – RESULTS"
             passIf = "{ 'Russian': 4 }"
@@ -114,7 +114,7 @@ MasterChef {
 
         outro(outro.Japanese) {
             sum = "[ 'def/31.def', 'def/32.def', 'def/33.def', 'def/34.def', 'def/35.def', 'def/36.def', 'def/37.def', 'def/38.def', 'def/39.def', 'def/40.def' ]"
-            x = "710" y = "390"
+            x = "720" y = "145"
             episode = "Japanese"
             title = "JAPANESE OPEN – RESULTS"
             passIf = "{ 'American': 1,  'Mexican': 1,  'Russian': 1,  'Japanese': 1 }"
@@ -141,7 +141,7 @@ MasterChef {
         
         outro(outro.Hawaiian) {
             sum = "[ 'def/41.def', 'def/42.def', 'def/43.def', 'def/44.def', 'def/45.def', 'def/46.def', 'def/47.def', 'def/48.def', 'def/49.def', 'def/50.def' ]"
-            x = "683" y = "570"
+            x = "580" y = "380"
             episode = "Hawaiian"
             title = "FINALS – RESULTS"
             passIf = "{ 'Hawaiian': 1 }"

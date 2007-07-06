@@ -172,52 +172,54 @@ class Gui(scraft.Dispatcher):
         # список игроков
         #----------------
         self.PlayersDialog = {"Static": {}, "Text": {}, "Buttons": {}}
-        self.PlayersDialog["Static"]["Back"] = MakeSimpleSprite(u"popup-background", Layer_PopupBg)
-        self.PlayersDialog["Text"]["Title"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 400, 165,
+        self.PlayersDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
+        self.PlayersDialog["Static"]["ListBack"] = MakeSimpleSprite("players-list-background", Layer_PopupStatic, 490, 330)
+        self.PlayersDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 460, 140,
                                                                    scraft.HotspotCenter, Str_Players_Title)
         self.PlayersDialog["Buttons"]["Remove"] = PushButton("PlayersRemove",
                 self, Cmd_PlayersRemove, PState_Players,
                 u"button-4st", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 260, 470, 120, 40,
+                Layer_PopupBtnTxt, 310, 460, 120, 40,
                 Str_PlayersRemove, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Ok"] = PushButton("PlayersOk",
                 self, Cmd_PlayersOk, PState_Players,
                 u"button-4st", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 400, 470, 120, 40,
+                Layer_PopupBtnTxt, 450, 460, 120, 40,
                 Str_PlayersOk, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Cancel"] = PushButton("PlayersCancel",
                 self, Cmd_PlayersCancel, PState_Players,
                 u"button-4st", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 540, 470, 120, 40,
+                Layer_PopupBtnTxt, 590, 460, 120, 40,
                 Str_PlayersCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Up"] = PushButton("PlayersUp",
                 self, Cmd_PlayersUp, PState_Players,
                 u"players-arrow-up", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 520, 250, 30, 30)
+                Layer_PopupBtnTxt, 626, 248, 30, 30)
         self.PlayersDialog["Buttons"]["Down"] = PushButton("PlayersDown",
                 self, Cmd_PlayersDown, PState_Players,
                 u"players-arrow-down", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 520, 410, 30, 30)
+                Layer_PopupBtnTxt, 626, 418, 30, 30)
         self.PlayersDialog["Buttons"]["New"] = PushButton("NewPlayer",
                 self, Cmd_PlayersNew, PState_Players,
-                u"mainmenu.green-button", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 400, 210, 210, 50,
+                "button-4st-300", [0, 1, 2, 3], 
+                Layer_PopupBtnTxt, 490, 200, 300, 30,
                 Str_PlayersNew, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         for i in range(self.TotalPlayersOnScreen):
             self.PlayersDialog["Buttons"]["Player_"+str(i)] = PushButton("PlayerNo"+str(i),
                 self, Cmd_PlayersSelect+i, PState_Players,
                 u"players-select-button", [0, 1, 2, 4, 3], 
-                Layer_PopupBtnTxt, 390, 250 + 32 * i, 220, 30,
+                Layer_PopupBtnTxt, 485, 250 + 30 * i, 240, 30,
                 "", [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-up", u"domcasual-10-up"])
         
         #------------
         # ввод имени
         #------------
         self.EnterNameDialog = {"Static": {}, "Text": {}, "Buttons": {}}
-        self.EnterNameDialog["Static"]["Back"] = MakeSimpleSprite(u"2nd-popup-background", Layer_2ndPopupBg)
-        self.EnterNameDialog["Text"]["Title"] = MakeTextSprite(u"domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 250,
+        self.EnterNameDialog["Static"]["Back"] = MakeSimpleSprite("2nd-popup-background", Layer_2ndPopupBg)
+        self.EnterNameDialog["Static"]["TextField"] = MakeSimpleSprite("entername.text-field", Layer_2ndPopupStatic, 400, 293)
+        self.EnterNameDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 248,
                                                     scraft.HotspotCenterTop, Str_EnterName_Title)
-        self.EnterNameDialog["Static"]["TextCursor"] = MakeSimpleSprite(u"textcursor", Layer_2ndPopupBtnTxt, 400, 290)
+        self.EnterNameDialog["Static"]["TextCursor"] = MakeSimpleSprite(u"textcursor", Layer_2ndPopupBtnTxt, 400, 291)
         self.EnterNameDialog["Static"]["TextCursor"].AnimateLoop(2)
         self.EnterNameDialog["Buttons"]["Ok"] = PushButton("EnterNameOk",
                 self, Cmd_EnterNameOk, PState_EnterName,
@@ -229,7 +231,7 @@ class Gui(scraft.Dispatcher):
                 u"button-4st", [0, 1, 2, 3], 
                 Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
                 Str_EnterNameCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
-        self.EnterNameDialog["Text"]["Name"] = MakeTextSprite(u"domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 290)
+        self.EnterNameDialog["Text"]["Name"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 293)
         self.EnterNameDialog["Text"]["NameErrors"] = MakeTextSprite(u"domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 320)
         self.EnterNameDialog["Text"]["NameErrors"].xScale, self.EnterNameDialog["Text"]["NameErrors"].yScale = 50,50
         
@@ -353,64 +355,64 @@ class Gui(scraft.Dispatcher):
         # опции
         #-------
         self.OptionsDialog = {"Static": {}, "Text": {}, "Buttons": {}}
-        self.OptionsDialog["Static"]["Back"] = MakeSimpleSprite(u"popup-background", Layer_PopupBg)
-        self.OptionsDialog["Text"]["Title"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 400, 165,
+        self.OptionsDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
+        self.OptionsDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 460, 140,
                                                                    scraft.HotspotCenter, Str_Options_Title)
-        self.OptionsDialog["Text"]["Label_Sound"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 300, 230,
-                                                                   scraft.HotspotCenter, Str_Options_LabelSound)
-        self.OptionsDialog["Text"]["Label_Music"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 300, 280,
-                                                                   scraft.HotspotCenter, Str_Options_LabelMusic)
+        self.OptionsDialog["Text"]["Label_Sound"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 220,
+                                                                   scraft.HotspotLeftCenter, Str_Options_LabelSound)
+        self.OptionsDialog["Text"]["Label_Music"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 270,
+                                                                   scraft.HotspotLeftCenter, Str_Options_LabelMusic)
         self.OptionsDialog["Buttons"]["Slider_Sound"] = Slider("SliderSound", globalvars.GameConfig, 'Sound',
                 PState_Options, u"options-slider", [0, 1, 2], 
-                Layer_PopupBtnTxt, 400, 250, 250, 40, (310, 490), (250, 250), u"slider-background")
+                Layer_PopupBtnTxt, 555, 220, 220, 30, (460, 650), (220, 220), u"slider-background")
         self.OptionsDialog["Buttons"]["Slider_Music"] = Slider("SliderMusic", globalvars.GameConfig, 'Music',
                 PState_Options, u"options-slider", [0, 1, 2], 
-                Layer_PopupBtnTxt, 400, 300, 250, 40, (310, 490), (300, 300), u"slider-background")
-        self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 335, 343,
+                Layer_PopupBtnTxt, 555, 270, 220, 30, (460, 650), (270, 270), u"slider-background")
+        self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 320,
                                                                    scraft.HotspotLeftCenter, Str_Options_LabelMute)
-        self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 335, 373,
+        self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 365,
                                                                    scraft.HotspotLeftCenter, Str_Options_LabelHints)
-        self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite(u"domcasual-10-up", Layer_PopupBtnTxt, 335, 403,
+        self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 410,
                                                                    scraft.HotspotLeftCenter, Str_Options_LabelFullscreen)
         self.OptionsDialog["Buttons"]["Mute"] = PushButton("OptionsMute",
                 self, Cmd_OptionsMute, PState_Options,
                 u"options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 320, 340, 30, 30)
+                Layer_PopupBtnTxt, 372, 320, 30, 30)
         self.OptionsDialog["Buttons"]["Hints"] = PushButton("OptionsHints",
                 self, Cmd_OptionsHints, PState_Options,
                 u"options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 320, 370, 30, 30)
+                Layer_PopupBtnTxt, 372, 365, 30, 30)
         self.OptionsDialog["Buttons"]["Fullscreen"] = PushButton("OptionsFullscreen",
                 self, Cmd_OptionsFullscreen, PState_Options,
                 u"options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 320, 400, 30, 30)
-        self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite(u"options-galka", Layer_PopupBtnTxt2, 320, 340)
-        self.OptionsDialog["Static"]["Galka_Hints"] = MakeSimpleSprite(u"options-galka", Layer_PopupBtnTxt2, 320, 370)
-        self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite(u"options-galka", Layer_PopupBtnTxt2, 320, 400)
+                Layer_PopupBtnTxt, 372, 410, 30, 30)
+        self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite(u"options-galka", Layer_PopupBtnTxt2, 372, 320)
+        self.OptionsDialog["Static"]["Galka_Hints"] = MakeSimpleSprite(u"options-galka", Layer_PopupBtnTxt2, 372, 365)
+        self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite(u"options-galka", Layer_PopupBtnTxt2, 372, 410)
         self.OptionsDialog["Buttons"]["Ok"] = PushButton("OptionsOk",
                 self, Cmd_OptionsOk, PState_Options,
                 u"button-4st", [0, 1, 2], 
-                Layer_PopupBtnTxt, 400, 470, 120, 40,
+                Layer_PopupBtnTxt, 450, 460, 120, 40,
                 Str_OptionsOk, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
         #self.OptionsDialog["Buttons"]["Cancel"] = PushButton("Cmd_OptionsCancel",
         #        self, Cmd_OptionsCancel, PState_Options,
         #        u"button-4st", [0, 1, 2], 
-        #        Layer_PopupBtnTxt, 460, 470, 120, 40,
+        #        Layer_PopupBtnTxt, 460, 460, 120, 40,
         #        Str_OptionsCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
         self.OptionsDialog["Buttons"]["Resume"] = PushButton("OptionsResume",
                 self, Cmd_IGM_Resume, PState_Options,
                 u"button-4st", [0, 1, 2], 
-                Layer_PopupBtnTxt, 240, 470, 120, 40,
+                Layer_PopupBtnTxt, 310, 460, 120, 40,
                 Str_OptionsResume, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
         self.OptionsDialog["Buttons"]["Restart"] = PushButton("OptionsRestart",
                 self, Cmd_IGM_Restart, PState_Options,
                 u"button-4st", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 400, 470, 120, 40,
+                Layer_PopupBtnTxt, 450, 460, 120, 40,
                 Str_OptionsRestart, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
         self.OptionsDialog["Buttons"]["EndGame"] = PushButton("OptionsEndGame",
                 self, Cmd_IGM_EndGame, PState_Options,
                 u"button-4st", [0, 1, 2], 
-                Layer_PopupBtnTxt, 560, 470, 120, 40,
+                Layer_PopupBtnTxt, 590, 460, 120, 40,
                 Str_OptionsEndGame, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
         
         #---------

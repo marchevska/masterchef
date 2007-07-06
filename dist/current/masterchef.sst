@@ -125,6 +125,12 @@ type   = blend
 layout = 1x4
 }
 
+sprite button-4st-300 {
+bitmap = img/gui/button-4st-300.png
+type   = blend
+layout = 1x4
+}
+
 sprite popup-background { 
 bitmap = img/gui/popup-background.png
 type = blend
@@ -322,9 +328,19 @@ layout = 4x1
 type = blend
 }
 
+sprite players-list-background {
+bitmap = img/gui/players-list-background.png
+type = blend
+}
+
 sprite textcursor {
 bitmap = img/gui/textcursor.bmp
 layout = 2x1
+}
+
+sprite entername.text-field {
+bitmap = img/gui/entername.text-field.png
+type = blend
 }
 
 ###########################

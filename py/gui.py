@@ -723,6 +723,7 @@ class Gui(scraft.Dispatcher):
                 
     def _UpdatePlayersList(self):
         tmpList = globalvars.PlayerList.GetPlayerList()
+        print tmpList
         tmpCount = min(self.TotalPlayersOnScreen, len(tmpList))
         for i in range(tmpCount):
             if tmpList[self.FirstPlayer + i] == self.SelectedPlayer:
@@ -1550,6 +1551,7 @@ class Gui(scraft.Dispatcher):
             
         elif state == PState_EnterName:
             self._ShowDialog(self.EnterNameDialog, True)
+            self.EnterNameDialog["Text"]["Name"].text = ""
             self._UpdateEnterNameDialog()
             
         elif state == PState_Cookbook:

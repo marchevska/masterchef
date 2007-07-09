@@ -2,15 +2,15 @@ MasterChef {
     Levels {
         comic(MasterChef.intro.1) {
             image = "comics.masterchef.intro.1"
-            button = "comics.next-button"
+            button = "continue-button"
         }
         comic(MasterChef.intro.2) {
             image = "comics.masterchef.intro.2"
-            button = "comics.next-button"
+            button = "continue-button"
         }
         comic(MasterChef.intro.3) {
             image = "comics.masterchef.intro.3"
-            button = "comics.next-button"
+            button = "continue-button"
         }
         //Episode - American
         intro(intro.American) {

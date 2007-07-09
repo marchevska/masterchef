@@ -67,7 +67,7 @@ Level{
     //level settings
     LevelSettings{
         title = "'Tutorial'"
-        noCustomers = "3"
+        noCustomers = "5"
         moneyGoal = "100"
         expertGoal = "200"
     }
@@ -76,8 +76,10 @@ Level{
     //layout of the game field
     Layout{
         theme = "American" 
-        CustomerStation{ type = "" x = "100" y = "370" occupied = "no" }
-        CustomerStation{ type = "" x = "260" y = "370" occupied = "no" }
+        CustomerStation{ type = "" x = "150" y = "250" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "350" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "450" occupied = "yes" }
+        CustomerStation{ type = "" x = "150" y = "550" occupied = "yes" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "0" SensorAt = "5" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         CustomersQue { type = "" X = "100" Y = "175" TabletX = "40" TabletY = "120" }
         //TrashCan{ type = "" size = "100" x = "350" y = "530" }

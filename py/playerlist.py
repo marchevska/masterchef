@@ -96,9 +96,8 @@ class Player:
             return ""
         
     def NewUnlockedLevel(self, type = "level"):
-        if self.XML.HasAttr("newUnlocked"):
-            if self.XML.GetStrAttr("newUnlocked")!="":
-                return self.XML.GetStrAttr("newUnlocked")
+        if self.XML.HasAttr("newUnlocked") and self.XML.GetStrAttr("newUnlocked")!="":
+            return self.XML.GetStrAttr("newUnlocked")
         return ""
         
     def PopNewUnlockedLevel(self):
@@ -134,7 +133,7 @@ class Player:
                 #если аутро: отметить в профиле игрока уровень как увиденный
                 tmpNode.SetBoolAttr("seen", True)
                 #проверка экспертного прохождения всех уровней этого эпизода
-                if self.XML.GetSubtag(level.GetStrAttr("episode")).GetIntAttr("points") >= \
+                if self.XML.GetSubtag(level.GetStrAttr("episode")).GetIntAttr("points") == \
                         globalvars.GameSettings.GetIntAttr("expertAll"):
                     tmpNode.SetBoolAttr("expert", True)
                 #проверить условие для разлочивания следующего уровня
@@ -233,6 +232,9 @@ class Player:
                         map(lambda x: (x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("expertPoints")+\
                         (x.GetIntAttr("hiscore")>0 and not x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("levelPoints"),
                         map(lambda y: self.XML.GetSubtag(y), eval(tmp.GetStrAttr("sum")))))
+                if tmpSum == globalvars.GameSettings.GetIntAttr("expertAll") and \
+                        self.XML.GetSubtag(tmp.GetStrAttr("episode")).GetIntAttr("points") < tmpSum:
+                    self.XML.SetStrAttr("newUnlocked", tmp.GetContent())
                 self.XML.GetSubtag(tmp.GetStrAttr("episode")).SetIntAttr("points", tmpSum)
             self.Save()
         except:

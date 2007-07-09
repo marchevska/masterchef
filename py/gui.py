@@ -1008,9 +1008,16 @@ class Gui(scraft.Dispatcher):
                                         globalvars.LevelProgress.GetTag("Levels").Tags())
             tmpLastUnlocked = tmpAllUnlocked[-1]
             tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == u"level", tmpAllUnlocked))
-            
+            tmpNewUnlocked = globalvars.CurrentPlayer.NewUnlockedLevel() #str
+                
+            #результаты эпизода
+            if tmpNewUnlocked != "" and \
+                    globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpNewUnlocked).GetName() == "outro":
+                globalvars.CurrentPlayer.PopNewUnlockedLevel()
+                globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpNewUnlocked))
+                self._SetState(PState_Outro)
             #если последний разлоченный - комикс, то показать комикс
-            if tmpLastUnlocked.GetName() == u"comic":
+            elif tmpLastUnlocked.GetName() == u"comic":
                 #если это последний комикс, и его уже видели - показать опять карту
                 if not tmpLastUnlocked.Next() and \
                         globalvars.CurrentPlayer.GetLevelParams(tmpLastUnlocked.GetContent()).GetBoolAttr("seen"):
@@ -1093,6 +1100,7 @@ class Gui(scraft.Dispatcher):
                     self._SetState(PState_StartLevel)
                 elif cmd == Cmd_MapViewResults:
                     self._ReleaseState(PState_MapCareer)
+                    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel))
                     self._SetState(PState_Outro)
                 elif cmd == Cmd_MapMainMenu:
                     self._ReleaseState(PState_MapCareer)
@@ -1553,7 +1561,6 @@ class Gui(scraft.Dispatcher):
             self._ShowEpisodeIntro()
             
         elif state == PState_Outro:
-            globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel))
             self._ShowDialog(self.OutroScreen, True)
             self._ReleaseState(PState_MapCareer)
             self._ReleaseState(PState_MainMenu)

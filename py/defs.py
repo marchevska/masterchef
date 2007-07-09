@@ -57,6 +57,7 @@ def ReadCuisine():
 def ReadLevelProgress():
     try:
         globalvars.LevelProgress = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef")
+        globalvars.GameTexts = oE.ParseDEF(File_GameTexts).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read levels list")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

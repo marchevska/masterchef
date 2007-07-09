@@ -63,8 +63,10 @@ class CustomerStation(scraft.Dispatcher):
         self.Customer = customer
         customer.AttachTo(self)
         self.Active = True
-        if self.Dummy.mouseOver:
+        if self.Dummy.mouseOver and globalvars.StateStack[-1] == PState_Game:
             self._Hilight(True)
+        else:
+            self._Hilight(False)
         
     #--------------
     # "type" - название рецепта 

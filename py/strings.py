@@ -36,6 +36,9 @@ Str_EnterName_Error_Exist = u"This name already exists"
 
 Str_LvGoalsPlay = u"PLAY"
 Str_LvGoals_Title = "Level "
+Str_LvGoals_Level = "Level"
+Str_LvGoals_Goal = "Money goal"
+Str_LvGoals_Expert = "Expert goal"
 
 Str_LvComplete_Title = "LEVEL RESULTS"
 Str_LvCompleteRestart = "Try again"

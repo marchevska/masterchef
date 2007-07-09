@@ -14,6 +14,10 @@ from guiconst import *
 import config
 import globalvars
 
+RefStates = { ButtonState_Up: ButtonState_Up, ButtonState_Roll: ButtonState_Roll,
+             ButtonState_Down: ButtonState_Down, ButtonState_Inert: ButtonState_Up,
+             ButtonState_Selected: ButtonState_Up }
+
 #--------------------------------
 # Кнопка с текстом
 # Состоит из dummy-4-hit-area,
@@ -74,7 +78,8 @@ class PushButton(scraft.Dispatcher):
         if self.HasText:
             self.TextSprite.ChangeKlassTo(self.TextKlasses[state])
             self.TextSprite.hotspot = scraft.HotspotCenter
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"button": state})
+        if self.ButtonSprite.mouseOver:
+            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
         
     def _OnMouseOver(self, sprite, flag):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
@@ -164,7 +169,8 @@ class Slider(scraft.Dispatcher):
     def SetState(self, state):
         self.State = state
         self.SliderSprite.frno = self.SliderFrames[state]
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"button": state})
+        if self.SliderSprite.mouseOver:
+            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
         
     def SetValue(self, value):
         self.SliderSprite.x = self.XRange[0] + int(value*(self.XRange[1] - self.XRange[0])/100)

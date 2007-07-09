@@ -36,6 +36,7 @@ File_GameSettings = u"def/gamesettings.def"
 File_ResourceInfo = u"def/resource.def"
 File_Animations = u"def/animations.def"
 File_LevelProgress = u"def/levelprogress.def"
+File_GameTexts = u"def/text.def"
 
 #сигнатура
 Str_SignatureBegin = "signature{\n  value("

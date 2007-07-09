@@ -13,6 +13,7 @@ global CompetitorsInfo
 global ThemesInfo
 global CookbookInfo
 global LevelProgress
+global GameTexts
 global CustomerAnimations
 global PowerUpsInfo
 global GameSettings     #сюда парсятся общие насптройки игры, это XML-дерево

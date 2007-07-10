@@ -1000,6 +1000,7 @@ class Gui(scraft.Dispatcher):
     #-------------------------------------------
     def NextCareerStage(self):
         try:
+            self._ReleaseState(PState_Game)
             self._ReleaseState(PState_Comics)
             self._ReleaseState(PState_Intro)
             self._ReleaseState(PState_Outro)
@@ -1258,7 +1259,6 @@ class Gui(scraft.Dispatcher):
             #level complete dialog
             elif globalvars.StateStack[-1] == PState_NextLevel:
                 self._ReleaseState(PState_NextLevel)
-                self._ReleaseState(PState_Game)
                 if cmd == Cmd_LvCompleteNextLevel:
                     tmpSetting = globalvars.LevelSettings.GetTag("Layout").GetStrAttr("theme")
                     if globalvars.CurrentPlayer.JustUnlockedRecipes(tmpSetting) != []:
@@ -1271,7 +1271,7 @@ class Gui(scraft.Dispatcher):
                 elif cmd == Cmd_LvCompleteRestart:
                     self._SetState(PState_StartLevel)
                 elif cmd == Cmd_LvCompleteMainMenu:
-                    pass
+                    self._ReleaseState(PState_Game)
                 
             #end game dialog
             elif globalvars.StateStack[-1] == PState_GameOver:

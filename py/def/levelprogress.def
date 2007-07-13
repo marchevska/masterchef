@@ -162,7 +162,7 @@ MasterChef {
         level(def/22.def) {
             title = "Bread & Butter - Day 2" name = "3-2" no = "22" x = "443" y = "46"
             unlock = "[ 'Cabbage Stew', 'Cabbage Stuffed Pancakes', ]"
-            intro = "{ 'layout': 'custpic', 'title': 'def/22.def.intro.title', 'text': 'def/22.def.intro.text', 'picture': 'customer.tourist.russian', 'frno': 9 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/22.def.intro.title', 'text': 'def/22.def.intro.text', 'picture': 'customer.tourist.russian', 'frno': 4 }"
         }
         level(def/23.def) {
             title = "Bread & Butter - Day 3" name = "3-3" no = "23" x = "469" y = "48"

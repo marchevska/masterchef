@@ -244,6 +244,7 @@ class Gui(scraft.Dispatcher):
         self.LevelGoalsDialog["Static"]["Back"] = MakeSimpleSprite("level-start.background", Layer_PopupBg)
         self.LevelGoalsDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 470, 130,
                                                                 scraft.HotspotCenter, Str_LvGoals_Title)
+        #level goal parameters
         self.LevelGoalsDialog["Static"]["Indicator1"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 220)
         self.LevelGoalsDialog["Static"]["Indicator2"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 270)
         self.LevelGoalsDialog["Static"]["Indicator3"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 320)
@@ -259,8 +260,13 @@ class Gui(scraft.Dispatcher):
                     { "x": 583, "y": 271, "hotspot": scraft.HotspotLeftCenter })
         self.LevelGoalsDialog["Text"]["TextExpert"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
                     { "x": 583, "y": 321, "hotspot": scraft.HotspotLeftCenter })
-        self.LevelGoalsDialog["Text"]["Comment"] = MakeSprite("arial-italic-20", Layer_PopupBtnTxt,
-                    { "x": 300, "y": 450, "hotspot": scraft.HotspotCenter, "cfilt-color": 0x660000 })
+        #intro comments and pictures
+        self.LevelGoalsDialog["Text"]["IntroTitle"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt,
+                    { "hotspot": scraft.HotspotCenter })
+        self.LevelGoalsDialog["Static"]["IntroPicture"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt,
+                    { "hotspot": scraft.HotspotCenter })
+        self.LevelGoalsDialog["Buttons"]["IntroText"] = TextArea("arial-italic-20", Layer_PopupBtnTxt)
+        
         self.LevelGoalsDialog["Buttons"]["Continue"] = PushButton("PlayLevel",
                 self, Cmd_LvGoalsPlay, PState_StartLevel,
                 "continue-button", [0, 1, 2], 
@@ -951,14 +957,32 @@ class Gui(scraft.Dispatcher):
     #-------------------------------------------
     def _UpdateLevelGoals(self):
         tmpLevelName = globalvars.CurrentPlayer.GetLevel().GetContent()
-        self.LevelGoalsDialog["Text"]["Title"].text = \
-            globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName).GetStrAttr("title")
-        self.LevelGoalsDialog["Text"]["TextLevel"].text = \
-            globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName).GetStrAttr("name")
-        tmpCommentText = globalvars.GameTexts.GetSubtag(tmpLevelName).GetStrAttr("text")
-        self.LevelGoalsDialog["Text"]["Comment"].text = tmpCommentText.replace("RN", "\n")
+        tmpLevelParams = globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName)
+        self.LevelGoalsDialog["Text"]["Title"].text = tmpLevelParams.GetStrAttr("title")
+        self.LevelGoalsDialog["Text"]["TextLevel"].text = tmpLevelParams.GetStrAttr("name")
         self.LevelGoalsDialog["Text"]["TextGoal"].text = str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneyGoal"))
         self.LevelGoalsDialog["Text"]["TextExpert"].text = str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertGoal"))
+        
+        tmpIntro = eval(tmpLevelParams.GetStrAttr("intro"))
+        tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpIntro["layout"])
+        self.LevelGoalsDialog["Text"]["IntroTitle"].ChangeKlassTo(tmpLayout.GetStrAttr("titleFont"))
+        self.LevelGoalsDialog["Text"]["IntroTitle"].x, self.LevelGoalsDialog["Text"]["IntroTitle"].y = \
+            eval(tmpLayout.GetStrAttr("titleXY"))
+        self.LevelGoalsDialog["Text"]["IntroTitle"].cfilt.color = eval(tmpLayout.GetStrAttr("titleColor"))
+        self.LevelGoalsDialog["Text"]["IntroTitle"].hotspot = scraft.HotspotCenter
+        self.LevelGoalsDialog["Text"]["IntroTitle"].text = globalvars.GameTexts.GetSubtag(tmpIntro["title"]).GetStrAttr("str")
+        self.LevelGoalsDialog["Buttons"]["IntroText"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
+            "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
+            "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
+        self.LevelGoalsDialog["Buttons"]["IntroText"].SetText(globalvars.GameTexts.GetSubtag(tmpIntro["text"]).GetStrAttr("str"))
+        if tmpLayout.GetBoolAttr("hasPicture"):
+            self.LevelGoalsDialog["Static"]["IntroPicture"].ChangeKlassTo(tmpIntro["picture"])
+            self.LevelGoalsDialog["Static"]["IntroPicture"].frno = tmpIntro["frno"]
+            self.LevelGoalsDialog["Static"]["IntroPicture"].x, self.LevelGoalsDialog["Static"]["IntroPicture"].y = \
+                eval(tmpLayout.GetStrAttr("pictureXY"))
+            self.LevelGoalsDialog["Static"]["IntroPicture"].hotspot = eval(tmpLayout.GetStrAttr("hotspot"))
+        else:
+            self.LevelGoalsDialog["Static"]["IntroPicture"].ChangeKlassTo("$spritecraft$dummy$")
         
     #-------------------------------------------
     # показать диалог с опциями - обновить данные по текущим опциям

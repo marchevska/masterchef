@@ -21,7 +21,7 @@ Level{
         Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
         Customer{ type = "Tourist Japanese" rate = "0" }
-        Customer{ type = "Tourist Russian"  rate = "1" }
+        Customer{ type = "Tourist Russian"  rate = "0" }
     }
     
     //recipe appearance rates

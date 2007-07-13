@@ -14,7 +14,7 @@ Level{
         Customer{ type = "Worker"           rate = "1" }
         Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "0" }
-        Customer{ type = "Student"          rate = "1" }
+        Customer{ type = "Student"          rate = "0" }
         Customer{ type = "Oldlady"          rate = "1" }
         Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "1" }

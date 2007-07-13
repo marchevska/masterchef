@@ -13,6 +13,7 @@ from constants import *
 from guiconst import *
 import config
 import globalvars
+import string
 
 RefStates = { ButtonState_Up: ButtonState_Up, ButtonState_Roll: ButtonState_Roll,
              ButtonState_Down: ButtonState_Down, ButtonState_Inert: ButtonState_Up,
@@ -221,6 +222,49 @@ class Slider(scraft.Dispatcher):
             config.ApplyOptions()
         return scraft.CommandStateRepeat
 
+#--------------------------------
+# Текстовая область заданного размера
+# с автоматическим переносом строк 
+#--------------------------------
+
+class TextArea:
+    def __init__(self, font, layer, x0=0, y0=0, width=1, height=1):
+        self.TextSprite = MakeSimpleSprite(font, layer, x0, y0, scraft.HotspotLeftTop)
+        self.Width, self.Height = width, height
+        
+    def SetText(self, str):
+        tmpStr = MakeSprite(self.TextSprite.klass, Layer_Tmp)
+        self.TextSprite.text = ""
+        tmpStrings = string.split(str)
+        for tmp in tmpStrings:
+            tmpStr.text = string.lstrip(self.TextSprite.text+" "+tmp)
+            if tmpStr.width <= self.Width:
+                self.TextSprite.text = string.lstrip(self.TextSprite.text+" "+tmp)
+            else:
+                self.TextSprite.text = string.lstrip(self.TextSprite.text+"\n"+tmp)
+        
+    def SetParams(self, params = {}):
+        if params.has_key("klass"):
+            self.TextSprite.ChangeKlassTo(params["klass"])
+        if params.has_key("x") and params.has_key("y"):
+            self.TextSprite.x, self.TextSprite.y = params["x"], params["y"]
+        if params.has_key("xy"):
+            self.TextSprite.x, self.TextSprite.y = params["xy"]
+        if params.has_key("width") and params.has_key("height"):
+            self.Width, self.Height = params["width"], params["height"]
+        if params.has_key("area"):
+            self.Width, self.Height = params["area"]
+        if params.has_key("hotspot"):
+            self.TextSprite.hotspot = params["hotspot"]
+        if params.has_key("cfilt-color"):
+            self.TextSprite.cfilt.color = params["cfilt-color"]
+
+    def Show(self, flag):
+        self.TextSprite.visible = flag
+        
+#--------------------------------
+# Прочие функции
+#--------------------------------
 def MakeButton(whose, cmd, newKlass, newLayer, newX, newY,
                frUp, frRl, frDn, frIn = -1, frSl = -1):
     tmpButton = oE.NewSprite_(newKlass, newLayer)

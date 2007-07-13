@@ -1,6 +1,6 @@
 MasterChef {
-    text(def/01.def.intro.title) { str = "" }
-    text(def/01.def.intro.text) { str = "" }
+    text(def/01.def.intro.title) { str = "New customer * Blue Collar" }
+    text(def/01.def.intro.text) { str = "As we start the first round at Rocky Ranch, our first customers are blue collars. These guys work hard at their job and need some rest after the day." }
     text(def/01.def.passed.title) { str = "" }
     text(def/01.def.passed.text) { str = "" }
     text(def/01.def.failed.title) { str = "" }
@@ -11,8 +11,8 @@ MasterChef {
     text(def/02.def.passed.text) { str = "" }
     text(def/02.def.failed.title) { str = "" }
     text(def/02.def.failed.text) { str = "" }
-    text(def/03.def.intro.title) { str = "" }
-    text(def/03.def.intro.text) { str = "" }
+    text(def/03.def.intro.title) { str = "New customer * Student" }
+    text(def/03.def.intro.text) { str = "College students are back from their vacations." }
     text(def/03.def.passed.title) { str = "" }
     text(def/03.def.passed.text) { str = "" }
     text(def/03.def.failed.title) { str = "" }
@@ -95,8 +95,8 @@ MasterChef {
     text(def/16.def.passed.text) { str = "" }
     text(def/16.def.failed.title) { str = "" }
     text(def/16.def.failed.text) { str = "" }
-    text(def/17.def.intro.title) { str = "" }
-    text(def/17.def.intro.text) { str = "" }
+    text(def/17.def.intro.title) { str = "Men Only!" }
+    text(def/17.def.intro.text) { str = "The national Football League holds its semi-finals at the local stadium. I hope that football lovers will also like our special 'Football Fan Nachos'." }
     text(def/17.def.passed.title) { str = "" }
     text(def/17.def.passed.text) { str = "" }
     text(def/17.def.failed.title) { str = "" }

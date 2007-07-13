@@ -20,16 +20,56 @@ MasterChef {
 
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
 
-        level(def/01.def) { title = "Rocky Ranch - Day 1" name = "1-1" no = "1" x = "62" y = "175" unlock = "[ 'Grilled Meat', ]" }
-        level(def/02.def) { title = "Rocky Ranch - Day 2" name = "1-2" no = "2" x = "46" y = "201" unlock = "[ 'Pineapple Tomato Salad', ]" }
-        level(def/03.def) { title = "Rocky Ranch - Day 3" name = "1-3" no = "3" x = "41" y = "233" unlock = "[ 'Caribbean Spice Chicken', 'Spaghetti with Turkey Meat Sauce', ]" }
-        level(def/04.def) { title = "Rocky Ranch - Day 4" name = "1-4" no = "4" x = "48" y = "261" unlock = "[ 'Crispy Baked Chicken', 'Pineapple Lasagna', ]" }
-        level(def/05.def) { title = "Rocky Ranch - Day 5" name = "1-5" no = "5" x = "60" y = "287" unlock = "[ 'Chicken Squash Stir-Fry', 'Hubbard Squash Soup Du Jour', ]" }
-        level(def/06.def) { title = "Rocky Ranch - Day 6" name = "1-6" no = "6" x = "78" y = "308" unlock = "[ 'Pasta with Tomato Sauce', ]" }
-        level(def/07.def) { title = "Rocky Ranch - Day 7" name = "1-7" no = "7" x = "96" y = "327" unlock = "[ 'Squash with Tomato Sauce', 'Chicken Pasta Casseroule', ]" }
-        level(def/08.def) { title = "Rocky Ranch - Day 8" name = "1-8" no = "8" x = "118" y = "342" unlock = "[ 'Chicken Pineapple Pasta Pockets', ]" }
-        level(def/09.def) { title = "Rocky Ranch - Day 9" name = "1-9" no = "9" x = "141" y = "353" unlock = "[ ]" }
-        level(def/10.def) { title = "Rocky Ranch - Day 10" name = "1-10" no = "10" x = "167" y = "358" unlock = "[ ]" }
+        level(def/01.def) {
+            title = "Rocky Ranch - Day 1" name = "1-1" no = "1" x = "62" y = "175"
+            unlock = "[ 'Grilled Meat', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/01.def.intro.title', 'text': 'def/01.def.intro.text', 'picture': 'customer.worker', 'frno': 9 }"
+        }
+        level(def/02.def) {
+            title = "Rocky Ranch - Day 2" name = "1-2" no = "2" x = "46" y = "201"
+            unlock = "[ 'Pineapple Tomato Salad', ]"
+            intro = "{ 'layout': 'pic', 'title': 'def/02.def.intro.title', 'text': 'def/02.def.intro.text', 'picture': '' }"
+        }
+        level(def/03.def) {
+            title = "Rocky Ranch - Day 3" name = "1-3" no = "3" x = "41" y = "233"
+            unlock = "[ 'Caribbean Spice Chicken', 'Spaghetti with Turkey Meat Sauce', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/03.def.intro.title', 'text': 'def/03.def.intro.text', 'picture': 'customer.student', 'frno': 9 }"
+        }
+        level(def/04.def) {
+            title = "Rocky Ranch - Day 4" name = "1-4" no = "4" x = "48" y = "261"
+            unlock = "[ 'Crispy Baked Chicken', 'Pineapple Lasagna', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/04.def.intro.title', 'text': 'def/04.def.intro.text' }"
+        }
+        level(def/05.def) {
+            title = "Rocky Ranch - Day 5" name = "1-5" no = "5" x = "60" y = "287"
+            unlock = "[ 'Chicken Squash Stir-Fry', 'Hubbard Squash Soup Du Jour', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/05.def.intro.title', 'text': 'def/05.def.intro.text' }"
+        }
+        level(def/06.def) {
+            title = "Rocky Ranch - Day 6" name = "1-6" no = "6" x = "78" y = "308"
+            unlock = "[ 'Pasta with Tomato Sauce', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/06.def.intro.title', 'text': 'def/06.def.intro.text', 'picture': 'customer.business', 'frno': 9 }"
+        }
+        level(def/07.def) {
+            title = "Rocky Ranch - Day 7" name = "1-7" no = "7" x = "96" y = "327"
+            unlock = "[ 'Squash with Tomato Sauce', 'Chicken Pasta Casseroule', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/07.def.intro.title', 'text': 'def/07.def.intro.text' }"
+        }
+        level(def/08.def) {
+            title = "Rocky Ranch - Day 8" name = "1-8" no = "8" x = "118" y = "342"
+            unlock = "[ 'Chicken Pineapple Pasta Pockets', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/08.def.intro.title', 'text': 'def/08.def.intro.text' }"
+        }
+        level(def/09.def) {
+            title = "Rocky Ranch - Day 9" name = "1-9" no = "9" x = "141" y = "353"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/09.def.intro.title', 'text': 'def/09.def.intro.text', 'picture': 'customer.tourist.hawaiian', 'frno': 9 }"
+        }
+        level(def/10.def) {
+            title = "Rocky Ranch - Day 10" name = "1-10" no = "10" x = "167" y = "358"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/10.def.intro.title', 'text': 'def/10.def.intro.text' }"
+        }
 
         outro(outro.American) {
             sum = "[ 'def/01.def', 'def/02.def', 'def/03.def', 'def/04.def', 'def/05.def', 'def/06.def', 'def/07.def', 'def/08.def', 'def/09.def', 'def/10.def' ]"
@@ -47,16 +87,56 @@ MasterChef {
         }
 
 
-        level(def/11.def) { title = "Lemon Lime - Day 1" name = "2-1" no = "11" x = "211" y = "272" unlock = "[ 'Tortilla Soup', 'Burrito', ]" }
-        level(def/12.def) { title = "Lemon Lime - Day 2" name = "2-2" no = "12" x = "201" y = "237" unlock = "[ 'Chiles Renellos', 'Chili con Carne', ]" }
-        level(def/13.def) { title = "Lemon Lime - Day 3" name = "2-3" no = "13" x = "195" y = "205" unlock = "[ 'Tex-Mex Turkey Casseruole', ]" }
-        level(def/14.def) { title = "Lemon Lime - Day 4" name = "2-4" no = "14" x = "197" y = "172" unlock = "[ 'Guacamole', 'Avocado Salsa', ]" }
-        level(def/15.def) { title = "Lemon Lime - Day 5" name = "2-5" no = "15" x = "202" y = "141" unlock = "[ 'Fajitas', ]" }
-        level(def/16.def) { title = "Lemon Lime - Day 6" name = "2-6" no = "16" x = "215" y = "117" unlock = "[ 'Quesadilla', ]" }
-        level(def/17.def) { title = "Lemon Lime - Day 7" name = "2-7" no = "17" x = "230" y = "92" unlock = "[ 'Cheese Nachos', 'Football Fan Nachos', ]" }
-        level(def/18.def) { title = "Lemon Lime - Day 8" name = "2-8" no = "18" x = "253" y = "75" unlock = "[ 'Avocado Stuffed Tacos', ]" }
-        level(def/19.def) { title = "Lemon Lime - Day 9" name = "2-9" no = "19" x = "276" y = "65" unlock = "[ ]" }
-        level(def/20.def) { title = "Lemon Lime - Day 10" name = "2-10" no = "20" x = "302" y = "61" unlock = "[ ]" }
+        level(def/11.def) {
+            title = "Lemon Lime - Day 1" name = "2-1" no = "11" x = "211" y = "272"
+            unlock = "[ 'Tortilla Soup', 'Burrito', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/11.def.intro.title', 'text': 'def/11.def.intro.text' }"
+        }
+        level(def/12.def) {
+            title = "Lemon Lime - Day 2" name = "2-2" no = "12" x = "201" y = "237"
+            unlock = "[ 'Chiles Renellos', 'Chili con Carne', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/12.def.intro.title', 'text': 'def/12.def.intro.text' }"
+        }
+        level(def/13.def) {
+            title = "Lemon Lime - Day 3" name = "2-3" no = "13" x = "195" y = "205"
+            unlock = "[ 'Tex-Mex Turkey Casseruole', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/13.def.intro.title', 'text': 'def/13.def.intro.text', 'picture': 'customer.tourist.mexican', 'frno': 9 }"
+        }
+        level(def/14.def) {
+            title = "Lemon Lime - Day 4" name = "2-4" no = "14" x = "197" y = "172"
+            unlock = "[ 'Guacamole', 'Avocado Salsa', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/14.def.intro.title', 'text': 'def/14.def.intro.text' }"
+        }
+        level(def/15.def) {
+            title = "Lemon Lime - Day 5" name = "2-5" no = "15" x = "202" y = "141"
+            unlock = "[ 'Fajitas', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/15.def.intro.title', 'text': 'def/15.def.intro.text' }"
+        }
+        level(def/16.def) {
+            title = "Lemon Lime - Day 6" name = "2-6" no = "16" x = "215" y = "117"
+            unlock = "[ 'Quesadilla', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/16.def.intro.title', 'text': 'def/16.def.intro.text', 'picture': 'customer.oldlady', 'frno': 9 }"
+        }
+        level(def/17.def) {
+            title = "Lemon Lime - Day 7" name = "2-7" no = "17" x = "230" y = "92"
+            unlock = "[ 'Cheese Nachos', 'Football Fan Nachos', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/17.def.intro.title', 'text': 'def/17.def.intro.text' }"
+        }
+        level(def/18.def) {
+            title = "Lemon Lime - Day 8" name = "2-8" no = "18" x = "253" y = "75"
+            unlock = "[ 'Avocado Stuffed Tacos', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/18.def.intro.title', 'text': 'def/18.def.intro.text' }"
+        }
+        level(def/19.def) {
+            title = "Lemon Lime - Day 9" name = "2-9" no = "19" x = "276" y = "65"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/19.def.intro.title', 'text': 'def/19.def.intro.text' }"
+        }
+        level(def/20.def) {
+            title = "Lemon Lime - Day 10" name = "2-10" no = "20" x = "302" y = "61"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/20.def.intro.title', 'text': 'def/20.def.intro.text', 'picture': 'customer.critic', 'frno': 9 }"
+        }
 
         outro(outro.Mexican) {
             sum = "[ 'def/11.def', 'def/12.def', 'def/13.def', 'def/14.def', 'def/15.def', 'def/16.def', 'def/17.def', 'def/18.def', 'def/19.def', 'def/20.def' ]"
@@ -74,16 +154,56 @@ MasterChef {
         }
 
 
-        level(def/21.def) { title = "Bread & Butter - Day 1" name = "3-1" no = "21" x = "416" y = "45" unlock = "[ 'Pelmeni', 'Cutlets', ]" }
-        level(def/22.def) { title = "Bread & Butter - Day 2" name = "3-2" no = "22" x = "443" y = "46" unlock = "[ 'Cabbage Stew', 'Cabbage Stuffed Pancakes', ]" }
-        level(def/23.def) { title = "Bread & Butter - Day 3" name = "3-3" no = "23" x = "469" y = "48" unlock = "[ 'Baked Meat', 'Kulebyaka', ]" }
-        level(def/24.def) { title = "Bread & Butter - Day 4" name = "3-4" no = "24" x = "495" y = "50" unlock = "[ 'Golubtsy', 'Fried Mushrooms', ]" }
-        level(def/25.def) { title = "Bread & Butter - Day 5" name = "3-5" no = "25" x = "521" y = "56" unlock = "[ 'Mushroom Ragout', 'Mushroom Soup', ]" }
-        level(def/26.def) { title = "Bread & Butter - Day 6" name = "3-6" no = "26" x = "543" y = "63" unlock = "[ 'Vareniki', ]" }
-        level(def/27.def) { title = "Bread & Butter - Day 7" name = "3-7" no = "27" x = "571" y = "71" unlock = "[ 'Shchi', ]" }
-        level(def/28.def) { title = "Bread & Butter - Day 8" name = "3-8" no = "28" x = "595" y = "79" unlock = "[ ]" }
-        level(def/29.def) { title = "Bread & Butter - Day 9" name = "3-9" no = "29" x = "620" y = "90" unlock = "[ ]" }
-        level(def/30.def) { title = "Bread & Butter - Day 10" name = "3-10" no = "30" x = "642" y = "105" unlock = "[ ]" }
+        level(def/21.def) {
+            title = "Bread & Butter - Day 1" name = "3-1" no = "21" x = "416" y = "45"
+            unlock = "[ 'Pelmeni', 'Cutlets', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/21.def.intro.title', 'text': 'def/21.def.intro.text' }"
+        }
+        level(def/22.def) {
+            title = "Bread & Butter - Day 2" name = "3-2" no = "22" x = "443" y = "46"
+            unlock = "[ 'Cabbage Stew', 'Cabbage Stuffed Pancakes', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/22.def.intro.title', 'text': 'def/22.def.intro.text', 'picture': 'customer.tourist.russian', 'frno': 9 }"
+        }
+        level(def/23.def) {
+            title = "Bread & Butter - Day 3" name = "3-3" no = "23" x = "469" y = "48"
+            unlock = "[ 'Baked Meat', 'Kulebyaka', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/23.def.intro.title', 'text': 'def/23.def.intro.text' }"
+        }
+        level(def/24.def) {
+            title = "Bread & Butter - Day 4" name = "3-4" no = "24" x = "495" y = "50"
+            unlock = "[ 'Golubtsy', 'Fried Mushrooms', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/24.def.intro.title', 'text': 'def/24.def.intro.text' }"
+        }
+        level(def/25.def) {
+            title = "Bread & Butter - Day 5" name = "3-5" no = "25" x = "521" y = "56"
+            unlock = "[ 'Mushroom Ragout', 'Mushroom Soup', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/25.def.intro.title', 'text': 'def/25.def.intro.text' }"
+        }
+        level(def/26.def) {
+            title = "Bread & Butter - Day 6" name = "3-6" no = "26" x = "543" y = "63"
+            unlock = "[ 'Vareniki', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/26.def.intro.title', 'text': 'def/26.def.intro.text', 'picture': 'customer.vegetarian', 'frno': 9 }"
+        }
+        level(def/27.def) {
+            title = "Bread & Butter - Day 7" name = "3-7" no = "27" x = "571" y = "71"
+            unlock = "[ 'Shchi', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/27.def.intro.title', 'text': 'def/27.def.intro.text' }"
+        }
+        level(def/28.def) {
+            title = "Bread & Butter - Day 8" name = "3-8" no = "28" x = "595" y = "79"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/28.def.intro.title', 'text': 'def/28.def.intro.text' }"
+        }
+        level(def/29.def) {
+            title = "Bread & Butter - Day 9" name = "3-9" no = "29" x = "620" y = "90"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/29.def.intro.title', 'text': 'def/29.def.intro.text', 'picture': 'customer.schoolkid', 'frno': 9 }"
+        }
+        level(def/30.def) {
+            title = "Bread & Butter - Day 10" name = "3-10" no = "30" x = "642" y = "105"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/30.def.intro.title', 'text': 'def/30.def.intro.text' }"
+        }
 
         outro(outro.Russian) {
             sum = "[ 'def/21.def', 'def/22.def', 'def/23.def', 'def/24.def', 'def/25.def', 'def/26.def', 'def/27.def', 'def/28.def', 'def/29.def', 'def/30.def' ]"
@@ -101,16 +221,56 @@ MasterChef {
         }
 
 
-        level(def/31.def) { title = "Sushi Side - Day 1" name = "4-1" no = "31" x = "714" y = "177" unlock = "[ 'Sashimi', 'Ochazuke', ]" }
-        level(def/32.def) { title = "Sushi Side - Day 2" name = "4-2" no = "32" x = "734" y = "198" unlock = "[ 'Nigiri Zushi', 'Koyungohan', ]" }
-        level(def/33.def) { title = "Sushi Side - Day 3" name = "4-3" no = "33" x = "746" y = "222" unlock = "[ 'Tempura Shrimp Roll', 'Osechi', ]" }
-        level(def/34.def) { title = "Sushi Side - Day 4" name = "4-4" no = "34" x = "752" y = "249" unlock = "[ 'Seafood Tempura', 'Yosenabe', ]" }
-        level(def/35.def) { title = "Sushi Side - Day 5" name = "4-5" no = "35" x = "755" y = "278" unlock = "[ 'Onigiri', 'Temaki Zushi', ]" }
-        level(def/36.def) { title = "Sushi Side - Day 6" name = "4-6" no = "36" x = "752" y = "307" unlock = "[ 'TofuDengaku', ]" }
-        level(def/37.def) { title = "Sushi Side - Day 7" name = "4-7" no = "37" x = "741" y = "332" unlock = "[ 'Tempura', ]" }
-        level(def/38.def) { title = "Sushi Side - Day 8" name = "4-8" no = "38" x = "724" y = "357" unlock = "[ ]" }
-        level(def/39.def) { title = "Sushi Side - Day 9" name = "4-9" no = "39" x = "704" y = "374" unlock = "[ ]" }
-        level(def/40.def) { title = "Sushi Side - Day 10" name = "4-10" no = "40" x = "681" y = "388" unlock = "[ ]" }
+        level(def/31.def) {
+            title = "Sushi Side - Day 1" name = "4-1" no = "31" x = "714" y = "177"
+            unlock = "[ 'Sashimi', 'Ochazuke', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/31.def.intro.title', 'text': 'def/31.def.intro.text' }"
+        }
+        level(def/32.def) {
+            title = "Sushi Side - Day 2" name = "4-2" no = "32" x = "734" y = "198"
+            unlock = "[ 'Nigiri Zushi', 'Koyungohan', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/32.def.intro.title', 'text': 'def/32.def.intro.text' }"
+        }
+        level(def/33.def) {
+            title = "Sushi Side - Day 3" name = "4-3" no = "33" x = "746" y = "222"
+            unlock = "[ 'Tempura Shrimp Roll', 'Osechi', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/33.def.intro.title', 'text': 'def/33.def.intro.text', 'picture': 'customer.tourist.japanese', 'frno': 9 }"
+        }
+        level(def/34.def) {
+            title = "Sushi Side - Day 4" name = "4-4" no = "34" x = "752" y = "249"
+            unlock = "[ 'Seafood Tempura', 'Yosenabe', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/34.def.intro.title', 'text': 'def/34.def.intro.text' }"
+        }
+        level(def/35.def) {
+            title = "Sushi Side - Day 5" name = "4-5" no = "35" x = "755" y = "278"
+            unlock = "[ 'Onigiri', 'Temaki Zushi', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/35.def.intro.title', 'text': 'def/35.def.intro.text' }"
+        }
+        level(def/36.def) {
+            title = "Sushi Side - Day 6" name = "4-6" no = "36" x = "752" y = "307"
+            unlock = "[ 'TofuDengaku', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/36.def.intro.title', 'text': 'def/36.def.intro.text' }"
+        }
+        level(def/37.def) {
+            title = "Sushi Side - Day 7" name = "4-7" no = "37" x = "741" y = "332"
+            unlock = "[ 'Tempura', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/37.def.intro.title', 'text': 'def/37.def.intro.text' }"
+        }
+        level(def/38.def) {
+            title = "Sushi Side - Day 8" name = "4-8" no = "38" x = "724" y = "357"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/38.def.intro.title', 'text': 'def/38.def.intro.text' }"
+        }
+        level(def/39.def) {
+            title = "Sushi Side - Day 9" name = "4-9" no = "39" x = "704" y = "374"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/39.def.intro.title', 'text': 'def/39.def.intro.text' }"
+        }
+        level(def/40.def) {
+            title = "Sushi Side - Day 10" name = "4-10" no = "40" x = "681" y = "388"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/40.def.intro.title', 'text': 'def/40.def.intro.text' }"
+        }
 
         outro(outro.Japanese) {
             sum = "[ 'def/31.def', 'def/32.def', 'def/33.def', 'def/34.def', 'def/35.def', 'def/36.def', 'def/37.def', 'def/38.def', 'def/39.def', 'def/40.def' ]"
@@ -128,16 +288,56 @@ MasterChef {
         }
 
 
-        level(def/41.def) { title = "Tiki Time - Day 1" name = "5-1" no = "41" x = "586" y = "407" unlock = "[ 'Hulihuli Chicken', 'Lime Chicken', ]" }
-        level(def/42.def) { title = "Tiki Time - Day 2" name = "5-2" no = "42" x = "561" y = "423" unlock = "[ 'Wonton', 'Shrimp Canton', ]" }
-        level(def/43.def) { title = "Tiki Time - Day 3" name = "5-3" no = "43" x = "545" y = "450" unlock = "[ 'Spicy Shrimps', 'Shrimp Mango Salad', ]" }
-        level(def/44.def) { title = "Tiki Time - Day 4" name = "5-4" no = "44" x = "545" y = "482" unlock = "[ 'Chicken Shrimp Soup', 'Mango Mui', ]" }
-        level(def/45.def) { title = "Tiki Time - Day 5" name = "5-5" no = "45" x = "555" y = "508" unlock = "[ 'Chicken Laulau', 'Pipikaula', ]" }
-        level(def/46.def) { title = "Tiki Time - Day 6" name = "5-6" no = "46" x = "573" y = "527" unlock = "[ 'Mango Chicken', ]" }
-        level(def/47.def) { title = "Tiki Time - Day 7" name = "5-7" no = "47" x = "599" y = "537" unlock = "[ 'Mango Salsa', ]" }
-        level(def/48.def) { title = "Tiki Time - Day 8" name = "5-8" no = "48" x = "626" y = "540" unlock = "[ ]" }
-        level(def/49.def) { title = "Tiki Time - Day 9" name = "5-9" no = "49" x = "654" y = "542" unlock = "[ ]" }
-        level(def/50.def) { title = "Tiki Time - Day 10" name = "5-10" no = "50" x = "683" y = "538" unlock = "[ ]" }
+        level(def/41.def) {
+            title = "Tiki Time - Day 1" name = "5-1" no = "41" x = "586" y = "407"
+            unlock = "[ 'Hulihuli Chicken', 'Lime Chicken', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/41.def.intro.title', 'text': 'def/41.def.intro.text' }"
+        }
+        level(def/42.def) {
+            title = "Tiki Time - Day 2" name = "5-2" no = "42" x = "561" y = "423"
+            unlock = "[ 'Wonton', 'Shrimp Canton', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/42.def.intro.title', 'text': 'def/42.def.intro.text' }"
+        }
+        level(def/43.def) {
+            title = "Tiki Time - Day 3" name = "5-3" no = "43" x = "545" y = "450"
+            unlock = "[ 'Spicy Shrimps', 'Shrimp Mango Salad', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/43.def.intro.title', 'text': 'def/43.def.intro.text' }"
+        }
+        level(def/44.def) {
+            title = "Tiki Time - Day 4" name = "5-4" no = "44" x = "545" y = "482"
+            unlock = "[ 'Chicken Shrimp Soup', 'Mango Mui', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/44.def.intro.title', 'text': 'def/44.def.intro.text' }"
+        }
+        level(def/45.def) {
+            title = "Tiki Time - Day 5" name = "5-5" no = "45" x = "555" y = "508"
+            unlock = "[ 'Chicken Laulau', 'Pipikaula', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/45.def.intro.title', 'text': 'def/45.def.intro.text' }"
+        }
+        level(def/46.def) {
+            title = "Tiki Time - Day 6" name = "5-6" no = "46" x = "573" y = "527"
+            unlock = "[ 'Mango Chicken', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/46.def.intro.title', 'text': 'def/46.def.intro.text' }"
+        }
+        level(def/47.def) {
+            title = "Tiki Time - Day 7" name = "5-7" no = "47" x = "599" y = "537"
+            unlock = "[ 'Mango Salsa', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/47.def.intro.title', 'text': 'def/47.def.intro.text' }"
+        }
+        level(def/48.def) {
+            title = "Tiki Time - Day 8" name = "5-8" no = "48" x = "626" y = "540"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/48.def.intro.title', 'text': 'def/48.def.intro.text' }"
+        }
+        level(def/49.def) {
+            title = "Tiki Time - Day 9" name = "5-9" no = "49" x = "654" y = "542"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/49.def.intro.title', 'text': 'def/49.def.intro.text' }"
+        }
+        level(def/50.def) {
+            title = "Tiki Time - Day 10" name = "5-10" no = "50" x = "683" y = "538"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/50.def.intro.title', 'text': 'def/50.def.intro.text' }"
+        }
         
         outro(outro.Hawaiian) {
             sum = "[ 'def/41.def', 'def/42.def', 'def/43.def', 'def/44.def', 'def/45.def', 'def/46.def', 'def/47.def', 'def/48.def', 'def/49.def', 'def/50.def' ]"
@@ -165,6 +365,25 @@ MasterChef {
         episode(Russian) { people= "{'Alban':80,'Angela':45,'Jenny':1,'Michael':40,'Naomi':65,'Nina':35,'Ronald':95,'Sam':30,}" }
         episode(Japanese) { people= "{'Alban':85,'Jenny':1,'Mary':45,'Naomi':35,'Paula':90,'Peter':40,'Ronald':95,'Scott':30,}" }
         episode(Hawaiian) { people= "{'Jenny':1,'Ronald':95,}" }
+    }
+
+    //Level intro layouts
+    Layouts {
+        layout(custpic) { 
+            titleFont = "arial-italic-20" titleXY = "(280,380)" titleColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(180,400)" textArea = "(270,100)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(130,540)" hotspot = "scraft.HotspotCenterBottom" 
+        }
+        layout(pic) { 
+            titleFont = "arial-italic-20" titleXY = "(280,380)" titleColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(190,400)" textArea = "(260,100)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(145,470)" hotspot = "scraft.HotspotCenter" 
+        }
+        layout(nopic) { 
+            titleFont = "arial-italic-20" titleXY = "(280,380)" titleColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(100,400)" textArea = "(360,100)" textColor = "0x000000" 
+            hasPicture = "no" 
+        }
     }
 
 }

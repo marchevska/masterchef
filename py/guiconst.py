@@ -139,6 +139,7 @@ Frame_In = 4    #inert state
 Frame_Sl = 5    #selected state
 
 #סכמט הכÿ ֳ׃ָ
+Layer_Tmp = 101
 Layer_Background = 100
 Layer_Static = 99
 Layer_BtnText = 97

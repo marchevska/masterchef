@@ -294,9 +294,12 @@ class Gui(scraft.Dispatcher):
                     { "x": 583, "y": 242, "hotspot": scraft.HotspotLeftCenter })
         self.LevelCompleteDialog["Text"]["TextEarned"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
                     { "x": 583, "y": 277, "hotspot": scraft.HotspotLeftCenter })
-        self.LevelCompleteDialog["Text"]["Comment"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 230, "y": 450, "hotspot": scraft.HotspotLeftCenter })
+        self.LevelCompleteDialog["Buttons"]["Comment"] = TextArea("arial-italic-20", Layer_PopupBtnTxt)
         
+        self.LevelCompleteDialog["Static"]["BestSign"] = MakeSimpleSprite("level-results.best-sign",
+                                                        Layer_PopupStatic, 500, 365)
+        self.LevelCompleteDialog["Static"]["ExpertSign"] = MakeSimpleSprite("level-results.expert-sign",
+                                                        Layer_PopupStatic, 610, 365)
         self.LevelCompleteDialog["Buttons"]["Continue"] = PushButton("LvCompleteNextLevel",
                 self, Cmd_LvCompleteNextLevel, PState_NextLevel,
                 "continue-button", [0, 1, 2], 
@@ -606,24 +609,38 @@ class Gui(scraft.Dispatcher):
     def CallLevelCompleteDialog(self, flag, params = {}):
         self._SetState(PState_NextLevel)
         #фон и комментарий 
+        tmpLevelName = globalvars.CurrentPlayer.GetLevel().GetContent()
+        tmpLevelParams = globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName)
         if not flag:
             self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.bad")
-            self.LevelCompleteDialog["Text"]["Comment"].text = Str_LvComplete_FailedComment
-        elif not params["expert"]:
-            self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.good")
-            self.LevelCompleteDialog["Text"]["Comment"].text = Str_LvComplete_PassedComment
+            tmpFailed = eval(tmpLevelParams.GetStrAttr("failed"))
+            tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpFailed["layout"])
+            self.LevelCompleteDialog["Buttons"]["Comment"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
+                "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
+                "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
+            self.LevelCompleteDialog["Buttons"]["Comment"].SetText(globalvars.GameTexts.GetSubtag(tmpFailed["text"]).GetStrAttr("str"))
         else:
-            self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.expert")
-            self.LevelCompleteDialog["Text"]["Comment"].text = Str_LvComplete_ExpertComment
+            if  params["expert"]:
+                self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.expert")
+            else:
+                self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.good")
+            tmpPassed = eval(tmpLevelParams.GetStrAttr("passed"))
+            tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpPassed["layout"])
+            self.LevelCompleteDialog["Buttons"]["Comment"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
+                "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
+                "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
+            self.LevelCompleteDialog["Buttons"]["Comment"].SetText(globalvars.GameTexts.GetSubtag(tmpPassed["text"]).GetStrAttr("str"))
             
         self.LevelCompleteDialog["Text"]["TextServed"].text = str(params["served"])
         self.LevelCompleteDialog["Text"]["TextLost"].text = str(params["lost"])
         self.LevelCompleteDialog["Text"]["TextEarned"].text = str(params["score"])
+        
+        #medals
         tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
-        #self.LevelCompleteDialog["Text"]["Text3"].text = Str_LvComplete_BestScore + str(tmpBest.GetIntAttr("hiscore"))
-        #self.LevelCompleteDialog["Text"]["Text4"].text = Str_LvComplete_AchievedBy + str(tmpBest.GetStrAttr("player"))
-        #self.LevelCompleteDialog["Text"]["Text5"].text = (params["expert"])*Str_LvComplete_Expert + \
-            #(params["score"]==tmpBest.GetIntAttr("hiscore"))*Str_LvComplete_Hiscore
+        self.LevelCompleteDialog["Static"]["ExpertSign"].visible = params["expert"]
+        self.LevelCompleteDialog["Static"]["BestSign"].visible = \
+                (flag and params["score"]==tmpBest.GetIntAttr("hiscore") and params["score"]>0)
+        #buttons
         if flag:
             self.LevelCompleteDialog["Buttons"]["Continue"].Show(True)
             self.LevelCompleteDialog["Buttons"]["Restart"].Show(False)
@@ -977,7 +994,10 @@ class Gui(scraft.Dispatcher):
         self.LevelGoalsDialog["Buttons"]["IntroText"].SetText(globalvars.GameTexts.GetSubtag(tmpIntro["text"]).GetStrAttr("str"))
         if tmpLayout.GetBoolAttr("hasPicture"):
             self.LevelGoalsDialog["Static"]["IntroPicture"].ChangeKlassTo(tmpIntro["picture"])
-            self.LevelGoalsDialog["Static"]["IntroPicture"].frno = tmpIntro["frno"]
+            if tmpIntro.has_key("frno"):
+                self.LevelGoalsDialog["Static"]["IntroPicture"].frno = tmpIntro["frno"]
+            else:
+                self.LevelGoalsDialog["Static"]["IntroPicture"].frno = 0
             self.LevelGoalsDialog["Static"]["IntroPicture"].x, self.LevelGoalsDialog["Static"]["IntroPicture"].y = \
                 eval(tmpLayout.GetStrAttr("pictureXY"))
             self.LevelGoalsDialog["Static"]["IntroPicture"].hotspot = eval(tmpLayout.GetStrAttr("hotspot"))

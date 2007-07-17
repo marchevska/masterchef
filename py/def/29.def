@@ -54,7 +54,7 @@ Level{
         Ingredient{ type = "onion"    rate = "18" }
         Ingredient{ type = "flour"    rate = "22" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
-        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }

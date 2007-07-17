@@ -298,6 +298,16 @@ bitmap = img/gui/level-results.bg.expert.png
 type = blend
 }
 
+sprite level-results.best-sign {
+bitmap = img/gui/level-results.best-sign.png
+type = blend
+}
+
+sprite level-results.expert-sign {
+bitmap = img/gui/level-results.expert-sign.png
+type = blend
+}
+
 sprite level-results.indicator {
 bitmap = img/gui/level-results.indicator.png
 type = blend

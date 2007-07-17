@@ -11,7 +11,7 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker"           rate = "1" }
+        Customer{ type = "Worker"           rate = "0" }
         Customer{ type = "Vegetarian"       rate = "1" }
         Customer{ type = "Schoolkid"        rate = "0" }
         Customer{ type = "Student"          rate = "0" }
@@ -53,8 +53,8 @@ Level{
         Ingredient{ type = "tofu"     rate = "38" }
         Ingredient{ type = "veggymix" rate = "46" }
         Ingredient{ type = "seaweed"  rate = "36" }
-        Ingredient{ type = "bonus.spoon"      rate = "0" }
-        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.spoon"      rate = "1" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }

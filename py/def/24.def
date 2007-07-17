@@ -54,14 +54,14 @@ Level{
         Ingredient{ type = "onion"    rate = "5" }
         Ingredient{ type = "flour"    rate = "0" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
-        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
-        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "1" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }
         Ingredient{ type = "bonus.scrollback" rate = "0" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
-        Ingredient{ type = "bonus.shuffle"    rate = "1" }
+        Ingredient{ type = "bonus.shuffle"    rate = "0" }
     }
     
     //level settings

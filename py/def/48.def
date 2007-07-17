@@ -13,10 +13,10 @@ Level{
     CustomerRates{
         Customer{ type = "Worker"           rate = "0" }
         Customer{ type = "Vegetarian"       rate = "0" }
-        Customer{ type = "Schoolkid"        rate = "1" }
-        Customer{ type = "Student"          rate = "1" }
-        Customer{ type = "Oldlady"          rate = "1" }
-        Customer{ type = "Critic"           rate = "1" }
+        Customer{ type = "Schoolkid"        rate = "0" }
+        Customer{ type = "Student"          rate = "0" }
+        Customer{ type = "Oldlady"          rate = "0" }
+        Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "0" }
         Customer{ type = "Tourist Hawaiian" rate = "1" }
         Customer{ type = "Tourist Mexican"  rate = "1" }
@@ -53,11 +53,11 @@ Level{
         Ingredient{ type = "lime"         rate = "24" }
         Ingredient{ type = "mango"        rate = "16" }
         Ingredient{ type = "shoyu"        rate = "23" }
-        Ingredient{ type = "bonus.spoon"      rate = "0" }
-        Ingredient{ type = "bonus.gift"       rate = "0" }
-        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.spoon"      rate = "1" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
-        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "1" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }
         Ingredient{ type = "bonus.scrollback" rate = "0" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }

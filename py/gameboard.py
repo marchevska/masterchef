@@ -92,6 +92,7 @@ class GameBoard(scraft.Dispatcher):
         self.Freeze(True)
         
     def LaunchLevel(self):
+        self.Clear()
         globalvars.BlackBoard.ClearTag(BBTag_Ingredients)
         self.Freeze(False)
         try:
@@ -509,31 +510,35 @@ class GameBoard(scraft.Dispatcher):
     # очистка игрового поля
     #--------------------------
     def Clear(self):
-        oE.executor.GetQueue(self.QueNo).Suspend()
-        self.Playing = False
-        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
-            self.TokenSprite.Dispose()
-            self.TokensNoSprite.Dispose()
-        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
-            self.ToolSprite.Dispose()
-        for tmp in self.CStations + self.TrashCans: 
-            tmp.Kill()
-        self.CStations = []
-        self.TrashCans = []
-        
-        for tmp in self.Stores+self.Fields+self.Conveyors:
-            tmp.Clear()
-            del tmp
-        self.Stores = []
-        self.Fields = []
-        self.Conveyors = []
+        try:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+            self.Playing = False
+            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
+                self.TokenSprite.Dispose()
+                self.TokensNoSprite.Dispose()
+            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
+                self.ToolSprite.Dispose()
+            for tmp in self.CStations + self.TrashCans: 
+                tmp.Kill()
+            self.CStations = []
+            self.TrashCans = []
             
-        for spr in self.Static:
-            spr.Dispose()
-        self.Static = []
-        
-        self.CustomersQue.Kill()
-        self.CustomersQue = None
+            for tmp in self.Stores+self.Fields+self.Conveyors:
+                tmp.Clear()
+                del tmp
+            self.Stores = []
+            self.Fields = []
+            self.Conveyors = []
+                
+            for spr in self.Static:
+                spr.Dispose()
+            self.Static = []
+            
+            if self.CustomersQue != None:
+                self.CustomersQue.Kill()
+                self.CustomersQue = None
+        except:
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
              
     def Show(self, flag):
         """

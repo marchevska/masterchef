@@ -42,8 +42,8 @@ Level{
     
     //ingredient appearance rates
     TokenRates {
-        Token{ type = "ingredient" rate = "97" }
-        Token{ type = "bonus" rate = "3" }
+        Token{ type = "ingredient" rate = "100" }
+        Token{ type = "bonus" rate = "0" }
     }
     
     IngredientRates{
@@ -58,7 +58,7 @@ Level{
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
-        Ingredient{ type = "bonus.removerow"  rate = "1" }
+        Ingredient{ type = "bonus.removerow"  rate = "0" }
         Ingredient{ type = "bonus.scrollback" rate = "0" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "0" }

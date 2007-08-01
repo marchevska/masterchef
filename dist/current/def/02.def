@@ -42,8 +42,8 @@ Level{
     
     //ingredient appearance rates
     TokenRates {
-        Token{ type = "ingredient" rate = "97" }
-        Token{ type = "bonus" rate = "3" }
+        Token{ type = "ingredient" rate = "100" }
+        Token{ type = "bonus" rate = "0" }
     }
     
     IngredientRates{
@@ -58,7 +58,7 @@ Level{
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
-        Ingredient{ type = "bonus.removerow"  rate = "1" }
+        Ingredient{ type = "bonus.removerow"  rate = "0" }
         Ingredient{ type = "bonus.scrollback" rate = "0" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "0" }
@@ -78,7 +78,7 @@ Level{
         theme = "American" 
         CustomerStation{ type = "" x = "90" y = "300" occupied = "no" }
         CustomerStation{ type = "" x = "270" y = "410" occupied = "yes" }
-        CustomerStation{ type = "" x = "90" y = "520" occupied = "no" }
+        CustomerStation{ type = "" x = "90" y = "520" occupied = "yes" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "0" SensorAt = "5" Delay = "1200" DropIn = "700" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         //TrashCan{ type = "" size = "100" x = "350" y = "530" }

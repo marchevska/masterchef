@@ -51,11 +51,11 @@ class Gui(scraft.Dispatcher):
         #--------------
         self.DevLogo = { "Static": {}, "Text": {}, "Buttons": {} }
         self.DevLogo["Buttons"]["Back"] = PushButton("",
-                self, Cmd_DevLogoClose, PState_DevLogo, u"developer-logo", [0, 0, 0], 
+                self, Cmd_DevLogoClose, PState_DevLogo, "developer-logo", [0, 0, 0], 
                 Layer_Background, 400, 300, 800, 600)
         self.PubLogo = { "Static": {}, "Text": {}, "Buttons": {} }
         self.PubLogo["Buttons"]["Back"] = PushButton("",
-                self, Cmd_PubLogoClose, PState_PubLogo, u"publisher-logo", [0, 0, 0], 
+                self, Cmd_PubLogoClose, PState_PubLogo, "publisher-logo", [0, 0, 0], 
                 Layer_Background, 400, 300, 800, 600)
            
         #--------------
@@ -110,7 +110,7 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_Menu_Players, PState_MainMenu,
                 "mainmenu-players-button", [0, 1, 2, 3], 
                 Layer_BtnText, 675, 160, 190, 30,
-                Str_Menu_Players, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_Menu_Players, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
                 { "x": 765, "y": 110, "hotspot": scraft.HotspotRightCenter  } )
         self.MainMenuDialog["Text"]["WelcomeName"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
@@ -123,19 +123,19 @@ class Gui(scraft.Dispatcher):
         self.RulesDialog["Static"]["Back"] = MakeSimpleSprite("help-page1", Layer_Background)
         self.RulesDialog["Buttons"]["HelpPrev"] = PushButton("HelpPrev",
                 self, Cmd_HelpPrev, PState_Help,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_BtnText, 100, 570, 120, 40,
-                Str_HelpPrev, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_HelpPrev, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.RulesDialog["Buttons"]["HelpNext"] = PushButton("HelpNext",
                 self, Cmd_HelpNext, PState_Help,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_BtnText, 260, 570, 120, 40,
-                Str_HelpNext, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_HelpNext, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.RulesDialog["Buttons"]["HelpClose"] = PushButton("HelpClose",
                 self, Cmd_HelpClose, PState_Help,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_BtnText, 700, 570, 120, 40,
-                Str_HelpClose, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_HelpClose, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #----------------
         # кулинарная книга
@@ -146,19 +146,19 @@ class Gui(scraft.Dispatcher):
                                                 { "x": 50, "y": 50 })
         self.CookbookDialog["Buttons"]["CookbookClose"] = PushButton("CookbookClose",
                 self, Cmd_CookbookClose, PState_Cookbook,
-                u"cookbook.close-button", [0, 1, 2, 3], 
+                "cookbook.close-button", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 390, 527, 100, 130)
         self.CookbookDialog["Buttons"]["CookbookContinue"] = PushButton("CookbookContinue",
                 self, Cmd_CookbookClose, PState_Cookbook,
-                u"continue-button", [0, 1, 2, 3], 
+                "continue-button", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 600, 550, 140, 50)
         self.CookbookDialog["Buttons"]["CookbookNext"] = PushButton("CookbookNext",
                 self, Cmd_CookbookNext, PState_Cookbook,
-                u"cookbook.next-button", [0, 1, 2, 3], 
+                "cookbook.next-button", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 700, 550, 100, 130)
         self.CookbookDialog["Buttons"]["CookbookPrev"] = PushButton("CookbookPrev",
                 self, Cmd_CookbookPrev, PState_Cookbook,
-                u"cookbook.prev-button", [0, 1, 2, 3], 
+                "cookbook.prev-button", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 100, 550, 100, 130)
         for i in range(self.TotalRecipesOnPage):
             self.CookbookDialog["Static"]["Recipe"+str(i+1)] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt)
@@ -180,38 +180,38 @@ class Gui(scraft.Dispatcher):
                                                                    scraft.HotspotCenter, Str_Players_Title)
         self.PlayersDialog["Buttons"]["Remove"] = PushButton("PlayersRemove",
                 self, Cmd_PlayersRemove, PState_Players,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 310, 460, 120, 40,
-                Str_PlayersRemove, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_PlayersRemove, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Ok"] = PushButton("PlayersOk",
                 self, Cmd_PlayersOk, PState_Players,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 450, 460, 120, 40,
-                Str_PlayersOk, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_PlayersOk, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Cancel"] = PushButton("PlayersCancel",
                 self, Cmd_PlayersCancel, PState_Players,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 590, 460, 120, 40,
-                Str_PlayersCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_PlayersCancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Up"] = PushButton("PlayersUp",
                 self, Cmd_PlayersUp, PState_Players,
-                u"players-arrow-up", [0, 1, 2, 3], 
+                "players-arrow-up", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 626, 248, 30, 30)
         self.PlayersDialog["Buttons"]["Down"] = PushButton("PlayersDown",
                 self, Cmd_PlayersDown, PState_Players,
-                u"players-arrow-down", [0, 1, 2, 3], 
+                "players-arrow-down", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 626, 418, 30, 30)
         self.PlayersDialog["Buttons"]["New"] = PushButton("NewPlayer",
                 self, Cmd_PlayersNew, PState_Players,
                 "button-4st-300", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 490, 200, 300, 30,
-                Str_PlayersNew, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_PlayersNew, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         for i in range(self.TotalPlayersOnScreen):
             self.PlayersDialog["Buttons"]["Player_"+str(i)] = PushButton("PlayerNo"+str(i),
                 self, Cmd_PlayersSelect+i, PState_Players,
-                u"players-select-button", [0, 1, 2, 4, 3], 
+                "players-select-button", [0, 1, 2, 4, 3], 
                 Layer_PopupBtnTxt, 485, 250 + 30 * i, 240, 30,
-                "", [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-up", u"domcasual-10-up"])
+                "", ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-up", "domcasual-10-up"])
         
         #------------
         # ввод имени
@@ -225,14 +225,14 @@ class Gui(scraft.Dispatcher):
         self.EnterNameDialog["Static"]["TextCursor"].AnimateLoop(2)
         self.EnterNameDialog["Buttons"]["Ok"] = PushButton("EnterNameOk",
                 self, Cmd_EnterNameOk, PState_EnterName,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_2ndPopupBtnTxt, 330, 342, 120, 40,
-                Str_EnterNameOk, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_EnterNameOk, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.EnterNameDialog["Buttons"]["Cancel"] = PushButton("EnterNameCancel",
                 self, Cmd_EnterNameCancel, PState_EnterName,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
-                Str_EnterNameCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_EnterNameCancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.EnterNameDialog["Text"]["Name"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 293)
         self.EnterNameDialog["Text"]["NameErrors"] = MakeTextSprite("domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 320)
         self.EnterNameDialog["Text"]["NameErrors"].xScale, self.EnterNameDialog["Text"]["NameErrors"].yScale = 50,50
@@ -306,14 +306,14 @@ class Gui(scraft.Dispatcher):
                 Layer_PopupBtnTxt, 600, 450, 140, 50)
         self.LevelCompleteDialog["Buttons"]["Restart"] = PushButton("LvCompleteRestart",
                 self, Cmd_LvCompleteRestart, PState_NextLevel,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 600, 400, 120, 40,
-                Str_LvCompleteRestart, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_LvCompleteRestart, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.LevelCompleteDialog["Buttons"]["No"] = PushButton("LvCompleteMainMenu",
                 self, Cmd_LvCompleteMainMenu, PState_NextLevel,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 600, 450, 120, 40,
-                Str_LvCompleteMainMenu, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_LvCompleteMainMenu, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #---------------
         # игра окончена
@@ -324,14 +324,14 @@ class Gui(scraft.Dispatcher):
                                                                    scraft.HotspotCenter, Str_GameOver_Title)
         self.GameOverDialog["Buttons"]["Hiscores"] = PushButton("GameOverHiscores",
                 self, Cmd_GameOverHiscores, PState_GameOver,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 320, 470, 120, 40,
-                Str_GameOverHiscores, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_GameOverHiscores, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.GameOverDialog["Buttons"]["MainMenu"] = PushButton("GameOverMainMenu",
                 self, Cmd_GameOverMainMenu, PState_GameOver,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 460, 470, 120, 40,
-                Str_GameOverMainMenu, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_GameOverMainMenu, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.GameOverDialog["Text"]["Message"] = MakeTextSprite("domcasual-10-up", Layer_PopupBtnTxt, 320, 200)
         
         #---------
@@ -342,14 +342,14 @@ class Gui(scraft.Dispatcher):
         self.YesNoDialog["Text"]["QuestionText"] = MakeTextSprite("domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 250, scraft.HotspotCenterTop)
         self.YesNoDialog["Buttons"]["Yes"] = PushButton("Yes",
                 self, Cmd_Yes, PState_YesNo,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 330, 342, 120, 40,
-                Str_Yes, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_Yes, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.YesNoDialog["Buttons"]["No"] = PushButton("No",
                 self, Cmd_No, PState_YesNo,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
-                Str_No, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_No, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #---------------
         # Yes-No-Cancel
@@ -359,19 +359,19 @@ class Gui(scraft.Dispatcher):
         self.YesNoCancelDialog["Text"]["QuestionText"] = MakeTextSprite("domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 250, scraft.HotspotCenterTop)
         self.YesNoCancelDialog["Buttons"]["Yes"] = PushButton("Yes",
                 self, Cmd_YncYes, PState_YesNoCancel,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 260, 342, 120, 40,
-                Str_Yes, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_Yes, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.YesNoCancelDialog["Buttons"]["No"] = PushButton("No",
                 self, Cmd_YncNo, PState_YesNoCancel,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 400, 342, 120, 40,
-                Str_No, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_No, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.YesNoCancelDialog["Buttons"]["Cancel"] = PushButton("Cancel",
                 self, Cmd_YncCancel, PState_YesNoCancel,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 540, 342, 120, 40,
-                Str_Cancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_Cancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #-------
         # опции
@@ -385,11 +385,11 @@ class Gui(scraft.Dispatcher):
         self.OptionsDialog["Text"]["Label_Music"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 270,
                                                                    scraft.HotspotLeftCenter, Str_Options_LabelMusic)
         self.OptionsDialog["Buttons"]["Slider_Sound"] = Slider("SliderSound", globalvars.GameConfig, 'Sound',
-                PState_Options, u"options-slider", [0, 1, 2], 
-                Layer_PopupBtnTxt, 555, 220, 220, 30, (460, 650), (220, 220), u"slider-background")
+                PState_Options, "options-slider", [0, 1, 2], 
+                Layer_PopupBtnTxt, 555, 220, 220, 30, (460, 650), (220, 220), "slider-background")
         self.OptionsDialog["Buttons"]["Slider_Music"] = Slider("SliderMusic", globalvars.GameConfig, 'Music',
-                PState_Options, u"options-slider", [0, 1, 2], 
-                Layer_PopupBtnTxt, 555, 270, 220, 30, (460, 650), (270, 270), u"slider-background")
+                PState_Options, "options-slider", [0, 1, 2], 
+                Layer_PopupBtnTxt, 555, 270, 220, 30, (460, 650), (270, 270), "slider-background")
         self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 320,
                                                                    scraft.HotspotLeftCenter, Str_Options_LabelMute)
         self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 365,
@@ -398,44 +398,44 @@ class Gui(scraft.Dispatcher):
                                                                    scraft.HotspotLeftCenter, Str_Options_LabelFullscreen)
         self.OptionsDialog["Buttons"]["Mute"] = PushButton("OptionsMute",
                 self, Cmd_OptionsMute, PState_Options,
-                u"options-checkbox", [0, 1, 2], 
+                "options-checkbox", [0, 1, 2], 
                 Layer_PopupBtnTxt, 372, 320, 30, 30)
         self.OptionsDialog["Buttons"]["Hints"] = PushButton("OptionsHints",
                 self, Cmd_OptionsHints, PState_Options,
-                u"options-checkbox", [0, 1, 2], 
+                "options-checkbox", [0, 1, 2], 
                 Layer_PopupBtnTxt, 372, 365, 30, 30)
         self.OptionsDialog["Buttons"]["Fullscreen"] = PushButton("OptionsFullscreen",
                 self, Cmd_OptionsFullscreen, PState_Options,
-                u"options-checkbox", [0, 1, 2], 
+                "options-checkbox", [0, 1, 2], 
                 Layer_PopupBtnTxt, 372, 410, 30, 30)
         self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 320)
         self.OptionsDialog["Static"]["Galka_Hints"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 365)
         self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 410)
         self.OptionsDialog["Buttons"]["Ok"] = PushButton("OptionsOk",
                 self, Cmd_OptionsOk, PState_Options,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 450, 460, 120, 40,
-                Str_OptionsOk, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_OptionsOk, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         #self.OptionsDialog["Buttons"]["Cancel"] = PushButton("Cmd_OptionsCancel",
         #        self, Cmd_OptionsCancel, PState_Options,
-        #        u"button-4st", [0, 1, 2], 
+        #        "button-4st", [0, 1, 2], 
         #        Layer_PopupBtnTxt, 460, 460, 120, 40,
-        #        Str_OptionsCancel, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+        #        Str_OptionsCancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.OptionsDialog["Buttons"]["Resume"] = PushButton("OptionsResume",
                 self, Cmd_IGM_Resume, PState_Options,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 310, 460, 120, 40,
-                Str_OptionsResume, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_OptionsResume, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.OptionsDialog["Buttons"]["Restart"] = PushButton("OptionsRestart",
                 self, Cmd_IGM_Restart, PState_Options,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 450, 460, 120, 40,
-                Str_OptionsRestart, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_OptionsRestart, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.OptionsDialog["Buttons"]["EndGame"] = PushButton("OptionsEndGame",
                 self, Cmd_IGM_EndGame, PState_Options,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 590, 460, 120, 40,
-                Str_OptionsEndGame, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_OptionsEndGame, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #---------
         # рекорды
@@ -446,14 +446,14 @@ class Gui(scraft.Dispatcher):
                                                                    scraft.HotspotCenter, Str_Hiscores_Title)
         self.HiscoresDialog["Buttons"]["Reset"] = PushButton("HiscoresReset",
                 self, Cmd_HiscoresReset, PState_Hiscores,
-                u"button-4st", [0, 1, 2, 3], 
+                "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 330, 500, 120, 40,
-                Str_HiscoresReset, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_HiscoresReset, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.HiscoresDialog["Buttons"]["Close"] = PushButton("HiscoresClose",
                 self, Cmd_HiscoresClose, PState_Hiscores,
-                u"button-4st", [0, 1, 2], 
+                "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 470, 500, 120, 40,
-                Str_HiscoresClose, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down"])
+                Str_HiscoresClose, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         for i in range(Max_Scores):
             self.HiscoresDialog["Text"]["Name_"+str(i)] = MakeTextSprite("domcasual-10-up",
                 Layer_PopupBtnTxt, 280, 220 + 30* i, scraft.HotspotLeftCenter)
@@ -465,11 +465,11 @@ class Gui(scraft.Dispatcher):
         #-------
         self.ComicScreen = {"Static": {}, "Text": {}, "Buttons": {}}
         self.ComicScreen["Buttons"]["Back"] = PushButton("",
-                self, Cmd_ComicsNext, PState_Comics, u"$spritecraft$dummy$", [0, 0, 0], 
+                self, Cmd_ComicsNext, PState_Comics, "$spritecraft$dummy$", [0, 0, 0], 
                 Layer_Background, 400, 300, 800, 600)
         self.ComicScreen["Buttons"]["Next"] = PushButton("ComicsNext",
                 self, Cmd_ComicsNext, PState_Comics,
-                u"continue-button", [0, 1, 2, 3], 
+                "continue-button", [0, 1, 2, 3], 
                 Layer_BtnText, 760, 550, 80, 100)
         
         #-------
@@ -558,17 +558,17 @@ class Gui(scraft.Dispatcher):
                                                 { "x": 170, "y": 500, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Buttons"]["Start"] = PushButton("MapStart",
                 self, Cmd_MapStart, PState_MapCareer,
-                u"map.play.button", [0, 1, 2, 3], 
+                "map.play.button", [0, 1, 2, 3], 
                 Layer_BtnText, 170, 540, 130, 50,
-                Str_MapStart, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_MapStart, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.MapCareerDialog["Buttons"]["ViewResults"] = PushButton("ViewResults",
                 self, Cmd_MapViewResults, PState_MapCareer,
-                u"map.play.button", [0, 1, 2, 3], 
+                "map.play.button", [0, 1, 2, 3], 
                 Layer_BtnText, 170, 540, 130, 50,
-                Str_MapViewResults, [u"domcasual-10-up", u"domcasual-10-roll", u"domcasual-10-down", u"domcasual-10-inert"])
+                Str_MapViewResults, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.MapCareerDialog["Buttons"]["MainMenu"] = PushButton("MapMainMenu",
                 self, Cmd_MapMainMenu, PState_MapCareer,
-                u"map.back-button", [0, 1, 2, 3], 
+                "map.back-button", [0, 1, 2, 3], 
                 Layer_BtnText, 30, 25, 50, 50)
         for tmp in globalvars.LevelProgress.GetTag("Episodes").Tags("episode"):
             self.MapCareerDialog["Static"][tmp.GetContent()] = MakeSprite(tmp.GetStrAttr("image"), Layer_Static,
@@ -576,14 +576,14 @@ class Gui(scraft.Dispatcher):
         for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("level"):
             self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
                 self, Cmd_MapLevel + tmp.GetIntAttr("no"), PState_MapCareer,
-                u"level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
+                "level-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
                 tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 30, 30)
         for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("outro"):
             self.MapCareerDialog["Buttons"][tmp.GetContent()] = PushButton("",
                 self,
                 Cmd_MapOutro + eval(globalvars.GameSettings.GetStrAttr("settings")).index(tmp.GetStrAttr("episode")),
                 PState_MapCareer,
-                u"outro-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
+                "outro-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
                 tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 30, 30)
         
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
@@ -817,8 +817,8 @@ class Gui(scraft.Dispatcher):
                 self.HiscoresDialog["Text"]["Score_"+str(i)].cfilt.color = CFilt_None
         if tmpTotalScores < Max_Scores:
             for i in range(tmpTotalScores, Max_Scores):
-                self.HiscoresDialog["Text"]["Name_"+str(i)].text = u""
-                self.HiscoresDialog["Text"]["Score_"+str(i)].text = u""
+                self.HiscoresDialog["Text"]["Name_"+str(i)].text = ""
+                self.HiscoresDialog["Text"]["Score_"+str(i)].text = ""
         if tmpTotalScores == 0:
             self.HiscoresDialog["Buttons"]["Reset"].SetState(ButtonState_Inert)
         else:
@@ -1052,7 +1052,7 @@ class Gui(scraft.Dispatcher):
             tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr("unlocked"),
                                         globalvars.LevelProgress.GetTag("Levels").Tags())
             tmpLastUnlocked = tmpAllUnlocked[-1]
-            tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == u"level", tmpAllUnlocked))
+            tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == "level", tmpAllUnlocked))
             tmpNewUnlocked = globalvars.CurrentPlayer.NewUnlockedLevel() #str
                 
             #результаты эпизода
@@ -1062,7 +1062,7 @@ class Gui(scraft.Dispatcher):
                 globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpNewUnlocked))
                 self._SetState(PState_Outro)
             #если последний разлоченный - комикс, то показать комикс
-            elif tmpLastUnlocked.GetName() == u"comic":
+            elif tmpLastUnlocked.GetName() == "comic":
                 #если это последний комикс, и его уже видели - показать опять карту
                 if not tmpLastUnlocked.Next() and \
                         globalvars.CurrentPlayer.GetLevelParams(tmpLastUnlocked.GetContent()).GetBoolAttr("seen"):
@@ -1152,11 +1152,11 @@ class Gui(scraft.Dispatcher):
                 else:
                     if cmd >= Cmd_MapOutro:
                         self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress.GetTag("Levels"),
-                                u"outro", u"episode",
+                                "outro", "episode",
                                 eval(globalvars.GameSettings.GetStrAttr("settings"))[cmd-Cmd_MapOutro]).GetContent()
                     else:
                         self.SelectedLevel = defs.GetTagWithAttribute(globalvars.LevelProgress.GetTag("Levels"),
-                                            u"level", u"no", str(cmd-Cmd_MapLevel)).GetContent()
+                                            "level", "no", str(cmd-Cmd_MapLevel)).GetContent()
                     self._UpdateMapWindow()
                 
             #cookbook
@@ -1254,7 +1254,7 @@ class Gui(scraft.Dispatcher):
                         self._DrawPlayersList()
                 elif cmd == Cmd_EnterNameCancel:
                     pass
-                self.EnterNameDialog["Text"]["Name"].text = u""
+                self.EnterNameDialog["Text"]["Name"].text = ""
                 self.EnterNameDialog["Static"]["TextCursor"].x = self.EnterNameDialog["Text"]["Name"].x
                 self._ReleaseState(PState_EnterName)
             
@@ -1356,7 +1356,7 @@ class Gui(scraft.Dispatcher):
             #обрабатываем ввод имени игрока с клавиатуры
             if globalvars.StateStack[-1] == PState_EnterName:
                 if oE.EvtIsKeyDown():
-                    self.EnterNameDialog["Text"]["NameErrors"].text = u""
+                    self.EnterNameDialog["Text"]["NameErrors"].text = ""
                     tmpName = self.EnterNameDialog["Text"]["Name"].text
                     if scraft.Key_A <= oE.EvtKey() <= scraft.Key_Z:
                         tmpLetter = Const_AllChars[oE.EvtKey() - scraft.Key_A]

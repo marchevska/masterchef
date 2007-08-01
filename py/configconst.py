@@ -15,28 +15,29 @@ FieldMaxX = 800
 FieldMaxY = 600
 Crd_deltaX = Crd_deltaY = 40
 Video_Mode = scraft.VMODE_800x600x32
-Window_Title = u"Master Chef"
+Window_Title = "Master Chef"
+DEF_Header = "MasterChef"
 
 #имена файлов
-File_GameConfig = u"data/game.def"
-File_Hiscores = u"data/scores.def"
-File_BestResults = u"data/best.def"
-File_PlayersConfig = u"data/players.def"
+File_GameConfig = "data/game.def"
+File_Hiscores = "data/scores.def"
+File_BestResults = "data/best.def"
+File_PlayersConfig = "data/players.def"
 
-File_PlayersConfigSafe = u"safe/players.def"
-File_DummyProfile = u"safe/dummy.def"
-File_GameConfigSafe = u"safe/game.def"
-File_BestResultsSafe = u"safe/best.def"
+File_PlayersConfigSafe = "safe/players.def"
+File_DummyProfile = "safe/dummy.def"
+File_GameConfigSafe = "safe/game.def"
+File_BestResultsSafe = "safe/best.def"
 
-File_SST = u"masterchef.sst"
+File_SST = "masterchef.sst"
 
-File_Cuisine = u"def/cuisine.def"
-File_Recipes = u"def/recipes.def"
-File_GameSettings = u"def/gamesettings.def"
-File_ResourceInfo = u"def/resource.def"
-File_Animations = u"def/animations.def"
-File_LevelProgress = u"def/levelprogress.def"
-File_GameTexts = u"def/text.def"
+File_Cuisine = "def/cuisine.def"
+File_Recipes = "def/recipes.def"
+File_GameSettings = "def/gamesettings.def"
+File_ResourceInfo = "def/resource.def"
+File_Animations = "def/animations.def"
+File_LevelProgress = "def/levelprogress.def"
+File_GameTexts = "def/text.def"
 
 #сигнатура
 Str_SignatureBegin = "signature{\n  value("

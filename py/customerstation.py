@@ -190,6 +190,22 @@ class CustomerStation(scraft.Dispatcher):
                 globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
                                                             "mealReady": self.MealReady})
         
+    def _OnMouseDown(self, sprite, x, y, button):
+        if button == 1:
+            if (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
+                        (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \
+                        globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
+                globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Down})
+            
+    def _OnMouseUp(self, sprite, x, y, button):
+        if button == 1:
+            #if (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
+            #            (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \
+            #            globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
+            #    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Roll})
+            #else:
+                globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+        
     def _Hilight(self, flag):
         if self.Customer != None:
             self.Customer.Hilight(flag)
@@ -209,12 +225,18 @@ class CustomerStation(scraft.Dispatcher):
                 self.MaskSprite.cfilt.color = CFilt_White
                 self.RecipeInfoSprite.cfilt.color = CFilt_White
                 globalvars.BlackBoard.Update(BBTag_Cursor, {"red": False})
+                if flag:
+                    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Roll})
+                else:
+                    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
             else:
                 self.Customer.Sprite.cfilt.color = CFilt_Red
                 self.TableSprite.cfilt.color = CFilt_Red
                 self.MaskSprite.cfilt.color = CFilt_Red
                 self.RecipeInfoSprite.cfilt.color = CFilt_Red
-                globalvars.BlackBoard.Update(BBTag_Cursor, {"red": True})
+                globalvars.BlackBoard.Update(BBTag_Cursor, {"red": True, "button": ButtonState_Up})
+        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Default:
+            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
         
     def Show(self, flag):
         self.Dummy.visible = flag

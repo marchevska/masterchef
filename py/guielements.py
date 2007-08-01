@@ -79,8 +79,9 @@ class PushButton(scraft.Dispatcher):
         if self.HasText:
             self.TextSprite.ChangeKlassTo(self.TextKlasses[state])
             self.TextSprite.hotspot = scraft.HotspotCenter
-        if self.ButtonSprite.mouseOver:
-            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
+        #if self.ButtonSprite.mouseOver:
+        #    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
+        globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
         
     def _OnMouseOver(self, sprite, flag):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):

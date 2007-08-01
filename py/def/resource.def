@@ -528,4 +528,30 @@ MasterChef{
         sprite(comics.presenter) { bitmap = "img/comics/people/presenter.png" type = "blend" }
     }
     
+    GUI{
+        //Cursors 
+        sprite(cursor) { bitmap = "img/gui/cursor.png" type = "blend" hotspot = "4,0"}
+        sprite(cursor.hand.roll) { bitmap = "img/gui/cursor.hand.roll.png" type = "blend" hotspot = "10,5" }
+        sprite(cursor.hand.up) { bitmap = "img/gui/cursor.hand.up.png" type = "blend" hotspot = "10,5" }
+        sprite(cursor.hand.down) { bitmap = "img/gui/cursor.hand.down.png" type = "blend" hotspot = "10,5" }
+        sprite(cursor.box.token) { bitmap = "img/gui/cursor.box.token.png" type = "blend" hotspot = "10,10" }
+        sprite(cursor.box.replace) { bitmap = "img/gui/cursor.box.replace.png" type = "blend" hotspot = "10,10" }
+        sprite(cursor.box.red) { bitmap = "img/gui/cursor.box.red.png" type = "blend" hotspot = "10,10" }
+        sprite(cursor.box.red.up) { bitmap = "img/gui/cursor.box.red.up.png" type = "blend" hotspot = "10,10" }
+        sprite(cursor.box.tool) { bitmap = "img/gui/cursor.box.tool.png" type = "blend" hotspot = "10,10" }
+        
+        //Field cell highlights
+        sprite(cell-highlight) { bitmap = "img/common/cell-highlight.png" type = "blend" layout = "5x8" }
+        sprite(cell-select) { bitmap = "img/common/cell-select.png" type = "blend" layout = "5x8" }
+        sprite(cell-action) { bitmap = "img/common/cell-action.png" type = "blend" layout = "5x8" }
+        sprite(cell-use) { bitmap = "img/common/cell-use.png" type = "blend" layout = "5x8" }
+        
+        sprite(heart) { bitmap = "img/heart.png" type = "blend" }
+        sprite(galka) { bitmap = "img/galka.png" type = "blend" }
+        sprite(release-button) { bitmap = "img/release-button.png" layout = "1x3" type = "blend" }
+        sprite(money-button) { bitmap = "img/money-button.png" layout = "1x3" type = "blend" }
+        
+
+    }
+    
 }

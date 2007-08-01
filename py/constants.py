@@ -180,12 +180,12 @@ Crd_CharIntroPositions = [(409,270), (350,260), (275,250), (200,260),
 Crd_CharOutroPositions = { 4: [(80,290), (180,290), (280,290), (380,290)], 2: [(130,290), (330,290)], 1: [(230, 290)] }
 
 #координаты относительно курсора
-Crd_ToolSpriteDx = 4
-Crd_ToolSpriteDy = 7
-Crd_TokenSpriteDx = 4
-Crd_TokenSpriteDy = 7
-Crd_TokenNoSpriteDx = 54
-Crd_TokenNoSpriteDy = 22
+Crd_ToolSpriteDx = 27
+Crd_ToolSpriteDy = 0
+Crd_TokenSpriteDx = 27
+Crd_TokenSpriteDy = 4
+Crd_TokenNoSpriteDx = 43
+Crd_TokenNoSpriteDy = 19
 
 
 Crd_ReleaseButtonDx = 75

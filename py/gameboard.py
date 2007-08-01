@@ -292,6 +292,8 @@ class GameBoard(scraft.Dispatcher):
                     self._DropPowerUp(self.TokensFrom)
                 else:
                     self._DropTool()
+            globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default,
+                                                "tokentype": "", "tokenno": 0})
             
         elif cmd == Cmd_PickFromStorage:
             self._PickTokensFrom(parameter["where"], parameter["type"], parameter["no"])
@@ -464,7 +466,7 @@ class GameBoard(scraft.Dispatcher):
         self.TokensFrom = None
         
     def _PickFromConveyor(self, where, type):
-        self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
+        self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("iconSrc"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": Crd_TokenNoSpriteDx,
                                          "y": Crd_TokenNoSpriteDy, "text": "",
@@ -475,10 +477,10 @@ class GameBoard(scraft.Dispatcher):
         
         
     def _PickTokensFrom(self, where, type, no):
-        self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("src"), Layer_Tools)
+        self.TokenSprite = MakeSprite(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(type).GetStrAttr("iconSrc"), Layer_Tools)
         self.TokensNoSprite = MakeSprite("domcasual-11", Layer_Tools-1,
                                         { "parent": self.TokenSprite, "x": Crd_TokenNoSpriteDx,
-                                         "y": Crd_TokenNoSpriteDy, "text": str(no),
+                                         "y": Crd_TokenNoSpriteDy, "text": str(min(no,9)),
                                           "hotspot": scraft.HotspotCenter, "cfilt-color": 0x000000 })
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
                                                 "tokentype": type, "tokenno": no })

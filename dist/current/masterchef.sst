@@ -278,6 +278,11 @@ layout = 1x3
 # level complete dialog #
 #########################
 
+sprite level-start.background {
+bitmap = img/gui/level-start.background.png
+type = blend
+}
+
 sprite level-results.bg.bad {
 bitmap = img/gui/level-results.bg.bad.png
 type = blend
@@ -290,6 +295,16 @@ type = blend
 
 sprite level-results.bg.expert {
 bitmap = img/gui/level-results.bg.expert.png
+type = blend
+}
+
+sprite level-results.best-sign {
+bitmap = img/gui/level-results.best-sign.png
+type = blend
+}
+
+sprite level-results.expert-sign {
+bitmap = img/gui/level-results.expert-sign.png
 type = blend
 }
 
@@ -587,6 +602,12 @@ type = blend
 symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
 }
 
+font domcasual-20-yellow {
+bitmap = img/fonts/domcasual-20-yellow.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. .
+}
+
 font domcasual-20-green {
 bitmap = img/fonts/domcasual-20-green.png
 type = blend
@@ -617,3 +638,14 @@ type = blend
 symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZ .
 }
 
+font arial-italic-20 {
+bitmap = img/fonts/arial-italic-20.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'
+}
+
+font arial-italic-18 {
+bitmap = img/fonts/arial-italic-18.png
+type = blend
+symbols=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'”:;()
+}

@@ -20,16 +20,16 @@ from configconst import *
 def ReadResourceInfo():
     try:
         #define sprite classes
-        for tmpTags in oE.ParseDEF(File_ResourceInfo).GetTag(u"MasterChef").Tags():
+        for tmpTags in oE.ParseDEF(File_ResourceInfo).GetTag(DEF_Header).Tags():
             for sprTag in tmpTags:
                 oE.SstDefKlass(sprTag.GetContent(), sprTag)
         
         #define customer classes
-        for sprTag in oE.ParseDEF(File_Animations).GetTag(u"MasterChef").GetTag(u"CustomerKlasses").Tags():
+        for sprTag in oE.ParseDEF(File_Animations).GetTag(DEF_Header).GetTag(u"CustomerKlasses").Tags():
             oE.SstDefKlass(sprTag.GetContent(), sprTag)
         
         #read customer animations
-        globalvars.CustomerAnimations = oE.ParseDEF(File_Animations).GetTag(u"MasterChef")#.Tags("Animation")
+        globalvars.CustomerAnimations = oE.ParseDEF(File_Animations).GetTag(DEF_Header)#.Tags("Animation")
                 
     except:
         oE.Log("Cannot read resources")
@@ -42,8 +42,8 @@ def ReadResourceInfo():
 
 def ReadCuisine():
     try:
-        globalvars.CuisineInfo = oE.ParseDEF(File_Cuisine).GetTag(u"MasterChef")
-        globalvars.RecipeInfo = oE.ParseDEF(File_Recipes).GetTag(u"MasterChef")
+        globalvars.CuisineInfo = oE.ParseDEF(File_Cuisine).GetTag(DEF_Header)
+        globalvars.RecipeInfo = oE.ParseDEF(File_Recipes).GetTag(DEF_Header)
         
     except:
         oE.Log(u"Cannot read cuisine info")
@@ -56,8 +56,8 @@ def ReadCuisine():
 
 def ReadLevelProgress():
     try:
-        globalvars.LevelProgress = oE.ParseDEF(File_LevelProgress).GetTag(u"MasterChef")
-        globalvars.GameTexts = oE.ParseDEF(File_GameTexts).GetTag(u"MasterChef")
+        globalvars.LevelProgress = oE.ParseDEF(File_LevelProgress).GetTag(DEF_Header)
+        globalvars.GameTexts = oE.ParseDEF(File_GameTexts).GetTag(DEF_Header)
     except:
         oE.Log(u"Cannot read levels list")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -69,12 +69,12 @@ def ReadLevelProgress():
 
 def ReadGameSettings():
     try:
-        globalvars.GameSettings = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("GameSettings")
-        globalvars.CustomersInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Customers")
-        globalvars.ThemesInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Themes")
-        globalvars.CookbookInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Cookbook")
-        globalvars.PowerUpsInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("PowerUps")
-        globalvars.CompetitorsInfo = oE.ParseDEF(File_GameSettings).GetTag("MasterChef").GetTag("Competitors")
+        globalvars.GameSettings = oE.ParseDEF(File_GameSettings).GetTag(DEF_Header).GetTag("GameSettings")
+        globalvars.CustomersInfo = oE.ParseDEF(File_GameSettings).GetTag(DEF_Header).GetTag("Customers")
+        globalvars.ThemesInfo = oE.ParseDEF(File_GameSettings).GetTag(DEF_Header).GetTag("Themes")
+        globalvars.CookbookInfo = oE.ParseDEF(File_GameSettings).GetTag(DEF_Header).GetTag("Cookbook")
+        globalvars.PowerUpsInfo = oE.ParseDEF(File_GameSettings).GetTag(DEF_Header).GetTag("PowerUps")
+        globalvars.CompetitorsInfo = oE.ParseDEF(File_GameSettings).GetTag(DEF_Header).GetTag("Competitors")
         
     except:
         oE.Log(u"Cannot read global game settings")
@@ -140,7 +140,7 @@ def ReadLevelSettings(filename):
 
 def ReadGroups(filename):
     try:
-        tmpDataIterator = oE.ParseDEF(filename).GetTag(u"MasterChef").IterateTag(u"group")
+        tmpDataIterator = oE.ParseDEF(filename).GetTag(DEF_Header).IterateTag(u"group")
         tmpGroups = {}
         while tmpDataIterator.Next():
             tmp = tmpDataIterator.Get()

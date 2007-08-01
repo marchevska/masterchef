@@ -469,7 +469,7 @@ class Gui(scraft.Dispatcher):
                 Layer_Background, 400, 300, 800, 600)
         self.ComicScreen["Buttons"]["Next"] = PushButton("ComicsNext",
                 self, Cmd_ComicsNext, PState_Comics,
-                u"comics.next-button", [0, 1, 2, 3], 
+                u"continue-button", [0, 1, 2, 3], 
                 Layer_BtnText, 760, 550, 80, 100)
         
         #-------

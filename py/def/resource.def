@@ -551,6 +551,42 @@ MasterChef{
         sprite(release-button) { bitmap = "img/release-button.png" layout = "1x3" type = "blend" }
         sprite(money-button) { bitmap = "img/money-button.png" layout = "1x3" type = "blend" }
         
+        //Common elements
+        sprite(gray.screen) { bitmap = "img/gui/gray.screen.png" type = "blend" }
+        sprite(button-4st) { bitmap = "img/gui/button-4st.png" type = "blend" layout = "1x4" }
+        sprite(button-4st-300) { bitmap = "img/gui/button-4st-300.png" type = "blend" layout = "1x4" }
+        sprite(continue-button) { bitmap = "img/gui/continue-button.png" type = "blend" layout = "1x4" }
+        sprite(popup-background) { bitmap = "img/gui/popup-background.png" type = "blend" }
+        sprite(2nd-popup-background) { bitmap = "img/gui/2nd-popup-background.png" type = "blend" }
+        
+        //Intro, outro
+        sprite(intro.logo) { bitmap = "img/gui/intro.logo.png" type = "blend" }
+        sprite(intro.balloon) { bitmap = "img/gui/intro.balloon.png" type = "blend" }
+        sprite(outro.balloon) { bitmap = "img/gui/outro.balloon.png" type = "blend" }
+        sprite(outro.light) { bitmap = "img/gui/outro.light.png" type = "blend" }
+        sprite(outro.bg-pane) { bitmap = "img/gui/outro.bg-pane.png" type = "blend" }
+        sprite(outro.separator) { bitmap = "img/gui/outro.separator.png" type = "blend" }
+        
+        //Cookbook
+        sprite(cookbook.close-button) { bitmap = "img/gui/cookbook.close-button.png" type = "blend" layout = "1x4" }
+        sprite(cookbook.next-button) { bitmap = "img/gui/cookbook.next-button.png" type = "blend" layout = "1x4" }
+        sprite(cookbook.prev-button) { bitmap = "img/gui/cookbook.prev-button.png" type = "blend" layout = "1x4" }
+        sprite(cookbook.new-recipe) { bitmap = "img/gui/cookbook.new-recipe.png" type = "blend" layout = "1x3" }
+        
+        //Logos
+        sprite(developer-logo) { bitmap = "img/logos/developer-logo.png" }
+        sprite(publisher-logo) { bitmap  = "img/logos/publisher-logo.png" }
+        
+        //Main menu
+        sprite(mainmenu-background) { bitmap = "img/gui/mainmenu-background.png" truecolor = "yes" }
+        sprite(mainmenu.tablet) { bitmap = "img/gui/mainmenu.tablet.png" type = "blend" }
+        sprite(mainmenu.yellow-button) { bitmap = "img/gui/mainmenu.yellow-button.png" layout = "1x4" type = "blend" }
+        sprite(mainmenu.green-button) { bitmap = "img/gui/mainmenu.green-button.png" layout = "1x4" type = "blend" }
+        sprite(mainmenu-players-button) { bitmap = "img/gui/mainmenu-players-button.png" type = "blend" layout = "1x4" }
+        sprite(mainmenu.jane.eyes) { bitmap = "img/gui/mainmenu.jane.eyes.png" layout = "1x3" }
+        sprite(mainmenu.vapor) { bitmap = "img/gui/mainmenu.vapor.png" layout = "1x3" }
+
+
 
     }
     

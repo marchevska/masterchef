@@ -31,8 +31,8 @@ MasterChef {
     text(def/06.def.failed.text) { str = "We haven't made enough money today. It's not that easy do deal with business women, so try paying more attention to them." }
     text(def/07.def.intro.title) { str = "Girls only" }
     text(def/07.def.intro.text) { str = "Young Women Business Conference starts today at the Univercity. The conference committee reserved our restaurant to provide the participants with a fine lunch." }
-    text(def/07.def.passed.text) { str = "Good work with the ladies! Everyone loved our cuisine, and we expect they'll recommend ou restaurant to their friends." }
-    text(def/07.def.expert.text) { str = "Excellent work with the ladies! Everyone loved our cuisine, and we expect they'll recommend ou restaurant to their friends." }
+    text(def/07.def.passed.text) { str = "Good work with the ladies! Everyone loved our cuisine, and we expect they'll recommend our restaurant to their friends." }
+    text(def/07.def.expert.text) { str = "Excellent work with the ladies! Everyone loved our cuisine, and we expect they'll recommend our restaurant to their friends." }
     text(def/07.def.failed.text) { str = "We haven't made enough money today. If someone starts losing patience, she needs more attention from you." }
     text(def/08.def.intro.title) { str = "New bonus * Row Remover" }
     text(def/08.def.intro.text) { str = "This bonus will remove an entire row of tokens from the field." }

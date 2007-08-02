@@ -1,5 +1,68 @@
 #!SST
 
+#################
+# sound effects #
+#################
+
+#filed control
+#drop tokens
+
+#shift tokens
+
+#collapse tokens
+
+#remove tokens group with bonus
+
+#remove tokens group due to overflow
+
+#level flow
+#new order
+
+#order complete (thank you)
+
+#lose customer
+
+#give gift or sweet to the customer
+
+#game flow
+#start level
+
+#win level
+
+#lose level
+
+#new episode (episode intro)
+
+#episode complete (episode outro, won)
+
+#episode lost (episode outro, lost)
+
+#new restaurant available
+
+#new level available
+
+#GUI
+#button click
+
+
+
+################
+# music tracks #
+################
+
+#menu: main menu, options, help
+
+
+#game paused
+
+
+#world map
+
+
+#game tracks
+
+
+
 #menu track
 sound menu {
 sample = sound/menu.ogg

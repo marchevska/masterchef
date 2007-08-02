@@ -10,7 +10,7 @@ import sys
 import scraft
 from scraft import engine as oE
 import math
-from random import randint
+from random import randint, choice
 from guiconst import *
 from configconst import *
 from constants import *
@@ -124,7 +124,7 @@ class Anima(scraft.Dispatcher):
             if tmp.has_key("sublayer"):
                 self.sprite.sublayer = tmp["sublayer"]
             if tmp.has_key("sound") and tmp.has_key("channel"):
-                oE.PlaySound(tmp["sound"], tmp["channel"])
+                globalvars.Musician.PlaySound(tmp["sound"], tmp["channel"])
             if tmp.has_key("frno"):
                 self.sprite.frno = tmp["frno"]
             if self.Stopped and tmp.has_key("cue"):
@@ -183,7 +183,7 @@ class Animator(scraft.Dispatcher):
             if tmp.has_key("sublayer"):
                 self.sprite.sublayer = tmp["sublayer"]
             if tmp.has_key("sound") and tmp.has_key("channel"):
-                oE.PlaySound(tmp["sound"], tmp["channel"])
+                globalvars.Musician.PlaySound(tmp["sound"], tmp["channel"])
             self.Sprite.frno = tmp["frno"]
             self.NextFrameTime += tmp["delay"]
         self.NextFrameTime -= que.delta
@@ -525,17 +525,17 @@ class Musician(scraft.Dispatcher):
             self._PlayNewMelody()
             
     def _PlayNewMelody(self):
-        if self.State == MusicState_Menu:
-            tmpMelodies = list(Tracks_Menu)
-        else:
-            tmpMelodies = list(Tracks_Game)
-        tmpNewMelody = tmpMelodies[randint(0, len(tmpMelodies)-1)]
+        tmpNewMelody = choice(MusicTracks[self.State])
         oE.PlaySound(tmpNewMelody, Channel_Music, self)
+        print "music track:", tmpNewMelody
         
     def _OnStopSound(self, sound, channel, cookie, x):
         if not x:
             self._PlayNewMelody()
         
+    def PlaySound(self, sound, channel = Channel_Default):
+        oE.PlaySound(sound, channel)
+        print "sound:", sound
 
 #-----------------------------------
 # Возвращается произвольный ключ

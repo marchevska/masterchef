@@ -608,6 +608,11 @@ class Gui(scraft.Dispatcher):
         
     def CallLevelCompleteDialog(self, flag, params = {}):
         self._SetState(PState_NextLevel)
+        if flag:
+            globalvars.Musician.PlaySound("level.win")
+        else:
+            globalvars.Musician.PlaySound("level.lose")
+            
         #фон и комментарий 
         tmpLevelName = globalvars.CurrentPlayer.GetLevel().GetContent()
         tmpLevelParams = globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName)
@@ -649,9 +654,6 @@ class Gui(scraft.Dispatcher):
             self.LevelCompleteDialog["Buttons"]["Continue"].Show(False)
             self.LevelCompleteDialog["Buttons"]["Restart"].Show(True)
             self.LevelCompleteDialog["Buttons"]["No"].Show(True)
-        
-    def CallGameOverDialog(self, flag):
-        self._SetState(PState_GameOver)
         
     def _Ask(self, question, answerYes = "Yes", answerNo = "No"):
         self._SetState(PState_YesNo)
@@ -906,6 +908,7 @@ class Gui(scraft.Dispatcher):
     # показать вводный экран очередного эпизода
     #-------------------------------------------
     def _ShowEpisodeIntro(self):
+        globalvars.Musician.PlaySound("episode.intro")
         tmpEpisode = globalvars.CurrentPlayer.GetLevel().GetStrAttr("episode")
         tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
         tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).keys()
@@ -932,6 +935,11 @@ class Gui(scraft.Dispatcher):
         tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
         tmpResults = globalvars.CurrentPlayer.GetScoresPlaceAndCondition()
         
+        if tmpResults["pass"]:
+            globalvars.Musician.PlaySound("episode.win")
+        else:
+            globalvars.Musician.PlaySound("episode.lose")
+            
         self.OutroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
         self.OutroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
         self.OutroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
@@ -1485,9 +1493,13 @@ class Gui(scraft.Dispatcher):
     def _SetState(self, state):
         if globalvars.StateStack == [] or globalvars.StateStack[-1] != state:
             globalvars.StateStack.append(state)
-        if state in (PState_Game, PState_InGameMenu, PState_NextLevel,
+        if state in (PState_Game, PState_NextLevel, PState_StartLevel,
                      PState_GameOver):
             globalvars.Musician.SetState(MusicState_Game)
+        elif state == PState_InGameMenu:
+            globalvars.Musician.SetState(MusicState_Pause)
+        elif state == PState_MapCareer:
+            globalvars.Musician.SetState(MusicState_Map)
         else:
             globalvars.Musician.SetState(MusicState_Menu)
             
@@ -1502,6 +1514,7 @@ class Gui(scraft.Dispatcher):
             self.GraySprite.visible = False
             
         if state == PState_StartLevel:
+            globalvars.Musician.PlaySound("level.start")
             globalvars.StateStack[-1] = PState_Game
             globalvars.StateStack.append(PState_StartLevel)
             self._ReleaseState(PState_MainMenu)
@@ -1584,6 +1597,7 @@ class Gui(scraft.Dispatcher):
             #подсветка одного из уровней: либо последнего выбранного игроком,
             #либо последнего открытого
             if globalvars.CurrentPlayer.NewUnlockedLevel() != "":
+                globalvars.Musician.PlaySound("map.newlevel")
                 self.HilightedLevel = self.SelectedLevel = globalvars.CurrentPlayer.NewUnlockedLevel()
                 globalvars.CurrentPlayer.PopNewUnlockedLevel()
             if self.SelectedLevel == "":

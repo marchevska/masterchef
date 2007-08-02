@@ -173,10 +173,12 @@ class Customer(scraft.Dispatcher):
                             self._SetState(CustomerState_Ordering)
                         
                     elif self.State == CustomerState_GoAway:
+                        globalvars.Musician.PlaySound("customer.lost")
                         self._SetState(CustomerState_None)
                         self.Host.SendCommand(Cmd_Station_DeleteCustomerAndLoseMoney)
                         
                     elif self.State == CustomerState_MealReady:
+                        globalvars.Musician.PlaySound("customer.thankyou")
                         self._SetState(CustomerState_ThankYou)
                         self.Host.SendCommand(Cmd_CustomerGoesAway)
                         
@@ -192,6 +194,7 @@ class Customer(scraft.Dispatcher):
         
     # сделать заказ
     def _MakeOrder(self):
+        globalvars.Musician.PlaySound("customer.putorder")
         tmpLevelRecipeRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
             globalvars.LevelSettings.GetTag("RecipeRates").Tags("Recipe")))
         if globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes") != "nothing":

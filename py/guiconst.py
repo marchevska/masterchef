@@ -159,8 +159,14 @@ Layer_Cursor = 1
 #музыка
 MusicState_Menu = 0
 MusicState_Game = 1
-Tracks_Game = [u"track1", u"track1", u"track1"]
-Tracks_Menu = [u"menu", u"menu", u"menu"]
+MusicState_Pause = 2
+MusicState_Map = 3
+MusicTracks = {
+        MusicState_Menu: ["track.menu"],
+        MusicState_Game: ["track.game1", "track.game2", "track.game3"],
+        MusicState_Pause: ["track.map"],
+        MusicState_Map: ["track.paused"]
+}
 
 Channel_Music = 1
 Channel_Time = 2

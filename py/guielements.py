@@ -104,14 +104,14 @@ class PushButton(scraft.Dispatcher):
             if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
                 self.SetState(ButtonState_Roll)
                 if globalvars.LastCookie == sprite.cookie and globalvars.StateStack[-1] == self.ActiveWhen:
-                    oE.PlaySound(u"click", Channel_Default)
+                    globalvars.Musician.PlaySound("gui.click")
                     self.Whose.SendCommand(sprite.cookie)
             globalvars.LastCookie = Cmd_None
         
     #def _OnMouseClick(self, sprite, x, y, button):
     #    if globalvars.StateStack[-1] == self.ActiveWhen and button == 1:
     #        if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
-    #            oE.PlaySound(u"click", Channel_Default)
+    #            globalvars.Musician.PlaySound("gui.click")
     #            self.Whose.SendCommand(sprite.cookie)
         
     def Kill(self):

@@ -559,20 +559,6 @@ MasterChef{
         sprite(popup-background) { bitmap = "img/gui/popup-background.png" type = "blend" }
         sprite(2nd-popup-background) { bitmap = "img/gui/2nd-popup-background.png" type = "blend" }
         
-        //Intro, outro
-        sprite(intro.logo) { bitmap = "img/gui/intro.logo.png" type = "blend" }
-        sprite(intro.balloon) { bitmap = "img/gui/intro.balloon.png" type = "blend" }
-        sprite(outro.balloon) { bitmap = "img/gui/outro.balloon.png" type = "blend" }
-        sprite(outro.light) { bitmap = "img/gui/outro.light.png" type = "blend" }
-        sprite(outro.bg-pane) { bitmap = "img/gui/outro.bg-pane.png" type = "blend" }
-        sprite(outro.separator) { bitmap = "img/gui/outro.separator.png" type = "blend" }
-        
-        //Cookbook
-        sprite(cookbook.close-button) { bitmap = "img/gui/cookbook.close-button.png" type = "blend" layout = "1x4" }
-        sprite(cookbook.next-button) { bitmap = "img/gui/cookbook.next-button.png" type = "blend" layout = "1x4" }
-        sprite(cookbook.prev-button) { bitmap = "img/gui/cookbook.prev-button.png" type = "blend" layout = "1x4" }
-        sprite(cookbook.new-recipe) { bitmap = "img/gui/cookbook.new-recipe.png" type = "blend" layout = "1x3" }
-        
         //Logos
         sprite(developer-logo) { bitmap = "img/logos/developer-logo.png" }
         sprite(publisher-logo) { bitmap  = "img/logos/publisher-logo.png" }
@@ -585,9 +571,143 @@ MasterChef{
         sprite(mainmenu-players-button) { bitmap = "img/gui/mainmenu-players-button.png" type = "blend" layout = "1x4" }
         sprite(mainmenu.jane.eyes) { bitmap = "img/gui/mainmenu.jane.eyes.png" layout = "1x3" }
         sprite(mainmenu.vapor) { bitmap = "img/gui/mainmenu.vapor.png" layout = "1x3" }
-
-
-
+        
+        //Career map
+        sprite(map-background) { bitmap = "img/gui/map-background.png" truecolor = "yes" }
+        sprite(level-pointers) { bitmap = "img/gui/level-pointers.png" type = "blend" layout = "5x1" }
+        sprite(level-pointers-expert) { bitmap = "img/gui/level-pointers-expert.png" type = "blend" layout = "5x1" }
+        sprite(outro-pointers) { bitmap = "img/gui/outro-pointers.png" type = "blend" layout = "5x1" }
+        sprite(outro-pointers-expert) { bitmap = "img/gui/outro-pointers-expert.png" type = "blend" layout = "5x1" }
+        sprite(map.jane) { bitmap = "img/gui/map.jane.png" type = "blend" }
+        sprite(map.jane.eyes) { bitmap = "img/gui/map.jane.eyes.png" layout = "1x2" }
+        sprite(map.tablet) { bitmap = "img/gui/map.tablet.png" type = "blend" }
+        sprite(map.play.button) { bitmap = "img/gui/map.play.button.png" type = "blend" layout = "1x4" }
+        sprite(map.back-button) { bitmap = "img/gui/map.back-button.png" type = "blend" layout = "4x1" }
+        
+        //Intro, outro
+        sprite(intro.logo) { bitmap = "img/gui/intro.logo.png" type = "blend" }
+        sprite(intro.balloon) { bitmap = "img/gui/intro.balloon.png" type = "blend" }
+        sprite(outro.balloon) { bitmap = "img/gui/outro.balloon.png" type = "blend" }
+        sprite(outro.light) { bitmap = "img/gui/outro.light.png" type = "blend" }
+        sprite(outro.bg-pane) { bitmap = "img/gui/outro.bg-pane.png" type = "blend" }
+        sprite(outro.separator) { bitmap = "img/gui/outro.separator.png" type = "blend" }
+        
+        //Level start and finish
+        sprite(level-start.background) { bitmap = "img/gui/level-start.background.png" type = "blend" }
+        sprite(level-results.bg.bad) { bitmap = "img/gui/level-results.bg.bad.png" type = "blend" }
+        sprite(level-results.bg.good) { bitmap = "img/gui/level-results.bg.good.png" type = "blend" }
+        sprite(level-results.bg.expert) { bitmap = "img/gui/level-results.bg.expert.png" type = "blend" }
+        sprite(level-results.best-sign) { bitmap = "img/gui/level-results.best-sign.png" type = "blend" }
+        sprite(level-results.expert-sign) { bitmap = "img/gui/level-results.expert-sign.png" type = "blend" }
+        sprite(level-results.indicator) { bitmap = "img/gui/level-results.indicator.png" type = "blend" }
+        
+        //Cookbook
+        sprite(cookbook.close-button) { bitmap = "img/gui/cookbook.close-button.png" type = "blend" layout = "1x4" }
+        sprite(cookbook.next-button) { bitmap = "img/gui/cookbook.next-button.png" type = "blend" layout = "1x4" }
+        sprite(cookbook.prev-button) { bitmap = "img/gui/cookbook.prev-button.png" type = "blend" layout = "1x4" }
+        sprite(cookbook.new-recipe) { bitmap = "img/gui/cookbook.new-recipe.png" type = "blend" layout = "1x3" }
+        
+        //Players
+        sprite(players-select-button) { bitmap = "img/gui/players-select-button.png" type = "blend" layout = "1x5" }
+        sprite(players-arrow-up) { bitmap = "img/gui/players-arrow-up.png" type = "blend" layout = "4x1" }
+        sprite(players-arrow-down) { bitmap = "img/gui/players-arrow-down.png" type = "blend" layout = "4x1" }
+        sprite(players-list-background) { bitmap = "img/gui/players-list-background.png" type = "blend" }
+        sprite(textcursor) { bitmap = "img/gui/textcursor.bmp" layout = "2x1" }
+        sprite(entername.text-field) { bitmap = "img/gui/entername.text-field.png" type = "blend" }
+        
+        //Options
+        sprite(options-slider) { bitmap = "img/gui/options-slider.png" type = "blend" layout = "3x1" }
+        sprite(slider-background) { bitmap = "img/gui/slider-background.png" type = "blend" }
+        sprite(options-galka) { bitmap = "img/gui/options-galka.png" type = "blend" }
+        sprite(options-checkbox) { bitmap = "img/gui/options-checkbox.png" type = "blend" layout = "3x1" }
+        
+        //Help screen
+        sprite(help-page1) { bitmap = "img/gui/help-page1.png" }
+        
+    }
+    
+    Fonts {
+        font(mainmenu.domcasual) {
+            bitmap = "img/fonts/mainmenu.domcasual.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
+        }
+        font(mainmenu.domcasual.down) {
+            bitmap = "img/fonts/mainmenu.domcasual.down.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
+        }
+        font(domcasual-10) {
+            bitmap = "img/fonts/domcasual-10.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-10-up) {
+            bitmap = "img/fonts/domcasual-10-up.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-10-roll) {
+            bitmap = "img/fonts/domcasual-10-roll.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-10-down) {
+            bitmap = "img/fonts/domcasual-10-down.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-10-inert) {
+            bitmap = "img/fonts/domcasual-10-inert.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-11) {
+            bitmap = "img/fonts/domcasual-11.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-20-yellow) {
+            bitmap = "img/fonts/domcasual-20-yellow.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-20-green) {
+            bitmap = "img/fonts/domcasual-20-green.png"
+            type = "blend"
+            symbols = "1234567890-+/ ."
+        }
+        font(domcasual-20-red) {
+            bitmap = "img/fonts/domcasual-20-red.png"
+            type = "blend"
+            symbols = "1234567890-+/ ."
+        }
+        font(domcasual-20-orange) {
+            bitmap = "img/fonts/domcasual-20-orange.png"
+            type = "blend"
+            symbols = "1234567890-+/ ."
+        }
+        font(hobor-17) {
+            bitmap = "img/fonts/hobor-17.png"
+            type = "blend"
+            symbols = "1234567890"
+        }
+        font(simple) {
+            bitmap = "img/fonts/simple.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ."
+        }
+        font(arial-italic-20) {
+            bitmap = "img/fonts/arial-italic-20.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'"
+        }
+        font(arial-italic-18) {
+            bitmap = "img/fonts/arial-italic-18.png"
+            type = "blend"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'”:;()"
+        }
+        
     }
     
 }

@@ -1259,7 +1259,10 @@ class Gui(scraft.Dispatcher):
                     else:
                         globalvars.PlayerList.CreatePlayer(tmpName)
                         self.SelectedPlayer = tmpName
-                        self._DrawPlayersList()
+                        if globalvars.StateStack[-2] == PState_MainMenu:
+                            globalvars.PlayerList.SelectPlayer(self.SelectedPlayer)
+                        else:
+                            self._DrawPlayersList()
                 elif cmd == Cmd_EnterNameCancel:
                     pass
                 self.EnterNameDialog["Text"]["Name"].text = ""

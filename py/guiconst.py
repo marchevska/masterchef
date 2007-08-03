@@ -163,7 +163,7 @@ MusicState_Map = 2
 MusicTracks = {
         MusicState_Menu: ["track.menu"],
         MusicState_Game: ["track.game"],
-        MusicState_Map: ["track.paused"]
+        MusicState_Map: ["track.map"]
 }
 
 Channel_Music = 1

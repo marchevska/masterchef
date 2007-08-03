@@ -527,7 +527,7 @@ class Musician(scraft.Dispatcher):
     def _PlayNewMelody(self):
         tmpNewMelody = choice(MusicTracks[self.State])
         oE.PlaySound(tmpNewMelody, Channel_Music, self)
-        print "music track:", tmpNewMelody
+        #print "music track:", tmpNewMelody
         
     def _OnStopSound(self, sound, channel, cookie, x):
         if not x:
@@ -535,7 +535,7 @@ class Musician(scraft.Dispatcher):
         
     def PlaySound(self, sound, channel = Channel_Default):
         oE.PlaySound(sound, channel)
-        print "sound:", sound
+        #print "sound:", sound
 
 #-----------------------------------
 # Возвращается произвольный ключ

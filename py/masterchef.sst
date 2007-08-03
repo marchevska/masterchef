@@ -90,10 +90,10 @@ sound episode.lose {
 sample = sound/episode.lose.ogg
 }
 
-#new restaurant available (new episode unlocked) - unused
-sound map.newepisode {
-sample = sound/map.newepisode.ogg
-}
+##new restaurant available (new episode unlocked) - unused
+#sound map.newepisode {
+#sample = sound/map.newepisode.ogg
+#}
 
 #new level available (new level unlocked)
 sound map.newlevel {
@@ -107,15 +107,15 @@ sound gui.click {
 sample = sound/gui.click.ogg
 }
 
-#open new window - unused
-sound gui.openwindow {
-sample = sound/gui.openwindow.ogg
-}
+##open new window - unused
+#sound gui.openwindow {
+#sample = sound/gui.openwindow.ogg
+#}
 
-#close window - unused
-sound gui.closewindow {
-sample = sound/gui.closewindow.ogg
-}
+##close window - unused
+#sound gui.closewindow {
+#sample = sound/gui.closewindow.ogg
+#}
 
 
 ################
@@ -128,12 +128,6 @@ sample = sound/track.menu.ogg
 type = streamed
 }
 
-#game paused
-sound track.paused {
-sample = sound/track.paused.ogg
-type = streamed
-}
-
 #world map
 sound track.map {
 sample = sound/track.map.ogg
@@ -141,18 +135,8 @@ type = streamed
 }
 
 #game tracks
-sound track.game1 {
-sample = sound/track.game1.ogg
-type = streamed
-}
-
-sound track.game2 {
-sample = sound/track.game1.ogg
-type = streamed
-}
-
-sound track.game3 {
-sample = sound/track.game1.ogg
+sound track.game {
+sample = sound/track.game.ogg
 type = streamed
 }
 

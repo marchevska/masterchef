@@ -1494,10 +1494,10 @@ class Gui(scraft.Dispatcher):
         if globalvars.StateStack == [] or globalvars.StateStack[-1] != state:
             globalvars.StateStack.append(state)
         if state in (PState_Game, PState_NextLevel, PState_StartLevel,
-                     PState_GameOver):
+                     PState_GameOver, PState_InGameMenu):
             globalvars.Musician.SetState(MusicState_Game)
-        elif state == PState_InGameMenu:
-            globalvars.Musician.SetState(MusicState_Pause)
+        #elif state == PState_InGameMenu:
+        #    globalvars.Musician.SetState(MusicState_Pause)
         elif state == PState_MapCareer:
             globalvars.Musician.SetState(MusicState_Map)
         else:

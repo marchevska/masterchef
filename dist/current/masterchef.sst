@@ -1,94 +1,142 @@
 #!SST
 
-#menu track
-sound menu {
-sample = sound/menu.ogg
-type = static
+#################
+# sound effects #
+#################
+
+#field control
+
+#drop tokens
+sound tokens.drop {
+sample = sound/tokens.drop.ogg
 }
 
-#game track 1
-sound track1 {
-sample = sound/track1.ogg
-type = static
+#shift tokens
+sound tokens.shift {
+sample = sound/tokens.shift.ogg
 }
+
+#collapse tokens
+sound tokens.collapse {
+sample = sound/tokens.collapse.ogg
+}
+
+#shuffle tokens
+sound tokens.shuffle {
+sample = sound/tokens.shuffle.ogg
+}
+
+#remove tokens group with bonus
+sound tokens.remove {
+sample = sound/tokens.remove.ogg
+}
+
+#remove tokens group due to overflow
+sound tokens.burn {
+sample = sound/tokens.burn.ogg
+}
+
+#customers behavior
+
+#new order
+sound customer.putorder {
+sample = sound/customer.putorder.ogg
+}
+
+#order complete (thank you)
+sound customer.thankyou {
+sample = sound/customer.thankyou.ogg
+}
+
+#lose customer
+sound customer.lost {
+sample = sound/customer.lost.ogg
+}
+
+#give gift or sweet to the customer
+sound customer.gotgift {
+sample = sound/customer.gotgift.ogg
+}
+
+#game flow
+
+#start level
+sound level.start {
+sample = sound/level.start.ogg
+}
+
+#win level
+sound level.win {
+sample = sound/level.win.ogg
+}
+
+#lose level
+sound level.lose {
+sample = sound/level.lose.ogg
+}
+
+#new episode (episode intro)
+sound episode.intro {
+sample = sound/episode.intro.ogg
+}
+
+#episode complete (episode outro, win)
+sound episode.win {
+sample = sound/episode.win.ogg
+}
+
+#episode lost (episode outro, lose)
+sound episode.lose {
+sample = sound/episode.lose.ogg
+}
+
+##new restaurant available (new episode unlocked) - unused
+#sound map.newepisode {
+#sample = sound/map.newepisode.ogg
+#}
+
+#new level available (new level unlocked)
+sound map.newlevel {
+sample = sound/map.newlevel.ogg
+}
+
+#GUI
 
 #button click
-sound click {
-sample = sound/click.ogg
+sound gui.click {
+sample = sound/gui.click.ogg
 }
 
-#placing marker flag
-sound marker {
-sample = sound/click.ogg
+##open new window - unused
+#sound gui.openwindow {
+#sample = sound/gui.openwindow.ogg
+#}
+
+##close window - unused
+#sound gui.closewindow {
+#sample = sound/gui.closewindow.ogg
+#}
+
+
+################
+# music tracks #
+################
+
+#menu: main menu, options, help
+sound track.menu {
+sample = sound/track.menu.ogg
+type = streamed
 }
 
-#level beginning
-sound startlevel {
-sample = sound/startlevel.ogg
+#world map
+sound track.map {
+sample = sound/track.map.ogg
+type = streamed
 }
 
-#level end (victory)
-sound endlevel {
-sample = sound/endlevel.ogg
-}
-
-#episode complete (victory)
-sound endepisode {
-sample = sound/endepisode.ogg
-}
-
-#game won
-sound endgame {
-sample = sound/endgame.ogg
-}
-
-#opened trap (hero death)
-sound death {
-sample = sound/death.ogg
-}
-
-#defeat
-sound defeat {
-sample = sound/dedeat.ogg
-}
-
-#hero movement
-sound step {
-sample = sound/step.wav
-}
-
-#cell opening
-sound opencell {
-sample = sound/opencell.ogg
-}
-
-#cell disarming
-sound disarm {
-sample = sound/disarm.ogg
-}
-
-#setup bridge
-sound bridge {
-sample = sound/bridge.ogg
-}
-
-#explode obstacle
-sound explode {
-sample = sound/explode.ogg
-}
-
-#got bonus
-sound bonus {
-sample = sound/bonus.ogg
-}
-
-#extra time
-sound extratime {
-sample = sound/extratime.ogg
-}
-
-#level time warning
-sound timeover {
-sample = sound/timeover.ogg
+#game tracks
+sound track.game {
+sample = sound/track.game.ogg
+type = streamed
 }
 

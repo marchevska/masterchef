@@ -83,6 +83,7 @@ MasterChef{
         outro(outro.Russian) { seen = "no" unlocked = "no" expert = "no" }
         outro(outro.Japanese) { seen = "no" unlocked = "no" expert = "no" }
         outro(outro.Hawaiian) { seen = "no" unlocked = "no" expert = "no" }
+        comic(Help.Rules) { seen = "no" unlocked = "no" }
     //}
     
     //Hints{

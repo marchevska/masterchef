@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "meat"      rate = "64" }
+        Ingredient{ type = "meat"      rate = "32" }
         Ingredient{ type = "milk"      rate = "15" }
-        Ingredient{ type = "pasta"     rate = "63" }
+        Ingredient{ type = "pasta"     rate = "32" }
         Ingredient{ type = "pineapple" rate = "0" }
-        Ingredient{ type = "pumpkin"   rate = "44" }
-        Ingredient{ type = "tomato"    rate = "51" }
+        Ingredient{ type = "pumpkin"   rate = "32" }
+        Ingredient{ type = "tomato"    rate = "24" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "1" }

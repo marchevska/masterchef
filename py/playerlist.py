@@ -143,7 +143,7 @@ class Player:
                         self._UnlockEntry(tmpNextLevel)
                         #tmpNextLevel.SetBoolAttr("unlocked", True)
             
-            elif level.GetName() == u"level":
+            elif level.GetName() == "level":
                 #если уровень: отметить в профиле игрока уровень как начатый
                 tmpNode.SetBoolAttr(u"played", True)
             self.Save()
@@ -303,7 +303,7 @@ class PlayerList:
         
     def CreatePlayer(self, name):
         try:
-            filename = u"data/"+name+".def"
+            filename = "data/"+name+".def"
             tmp = scraft.Xdata("player(%s) { file = '%s' }" % (name, filename)).GetTag()
             tmp.SetContent(name)
             self.XML.InsertCopyOf(tmp)

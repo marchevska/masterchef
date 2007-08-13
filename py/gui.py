@@ -470,7 +470,7 @@ class Gui(scraft.Dispatcher):
         self.ComicScreen["Buttons"]["Next"] = PushButton("ComicsNext",
                 self, Cmd_ComicsNext, PState_Comics,
                 "continue-button", [0, 1, 2, 3], 
-                Layer_BtnText, 760, 550, 80, 100)
+                Layer_BtnText, 730, 578, 80, 100)
         
         #-------
         # вводный экран
@@ -1363,6 +1363,8 @@ class Gui(scraft.Dispatcher):
                             globalvars.Board.SendCommand(Cmd_DebugFinishLevel)
                         elif oE.EvtKey() == scraft.Key_F7:
                             globalvars.Board.SendCommand(Cmd_DebugLastCustomer)
+                        elif oE.EvtKey() == scraft.Key_F8:
+                            globalvars.Board.SendCommand(Cmd_DebugLoseLevel)
             
             #обрабатываем ввод имени игрока с клавиатуры
             if globalvars.StateStack[-1] == PState_EnterName:

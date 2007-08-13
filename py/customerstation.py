@@ -35,16 +35,16 @@ class CustomerStation(scraft.Dispatcher):
         self.MaskSprite.visible = False
         self.RecipeIndicator = BarIndicator(self.CrdX + Crd_RecipeSpriteDx, self.CrdY + Crd_RecipeSpriteDy,
                     Crd_RecipeSpriteWidth, Crd_RecipeSpriteHeight,
-                    u"$spritecraft$dummy$", u"$spritecraft$dummy$", Layer_Recipe,
+                    "$spritecraft$dummy$", "$spritecraft$dummy$", Layer_Recipe,
                     theme.GetStrAttr("stationLine"), True, True)
         self.RecipeIndicator.Show(False)
         self.RecipeInfoSprite = MakeSimpleSprite(theme.GetStrAttr("recipeInfo"), Layer_RecipeInfo,
                                     self.CrdX + Crd_RecipeInfoSpriteDx, self.CrdY + Crd_RecipeInfoSpriteDy)
         self.RecipeInfoSprite.visible = False
         self.ReleaseButton = PushButton("", self, Cmd_ReleaseCustomer, PState_Game,
-                u"release-button", [0, 1, 2], Layer_Recipe-1, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
+                "release-button", [0, 1, 2], Layer_Recipe-1, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
         self.MoneyButton = PushButton("", self, Cmd_TakeMoney, PState_Game,
-                u"money-button", [0, 1, 2], Layer_Recipe-1, newX, newY, 60, 60)
+                "money-button", [0, 1, 2], Layer_Recipe-1, newX, newY, 60, 60)
         self.ReleaseButton.Show(False)
         self.MoneyButton.Show(False)
         self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
@@ -72,7 +72,6 @@ class CustomerStation(scraft.Dispatcher):
     # "type" - название рецепта 
     #--------------
     def PutOrder(self, type):
-        oE.Log("put order: "+type)
         self.HasOrder = True
         self.MealReady = False
         self.OrderType = type
@@ -89,7 +88,7 @@ class CustomerStation(scraft.Dispatcher):
             self.NeededIndicators.append(NeededIndicator(self.CrdX + Crd_Indicator_DeltaX,
                 self.CrdY + Crd_Indicator_DeltaY + i*Crd_IndicatorSign_DeltaY, Layer_Indicators, 
                 globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.TokensNeeded[i]["item"]).GetStrAttr("iconSrc"),
-                u"domcasual-10-up", u"galka", self.TokensNeeded[i]["no"]))
+                "domcasual-10-up", "galka", self.TokensNeeded[i]["no"]))
             globalvars.BlackBoard.Update(BBTag_Ingredients,
                 { "type": self.TokensNeeded[i]["item"], "delta": self.TokensNeeded[i]["no"] })
         if self.Dummy.mouseOver:

@@ -195,23 +195,57 @@ class Customer(scraft.Dispatcher):
     # сделать заказ
     def _MakeOrder(self):
         globalvars.Musician.PlaySound("customer.putorder")
+        
         tmpLevelRecipeRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
             globalvars.LevelSettings.GetTag("RecipeRates").Tags("Recipe")))
+        tmpActualRates = globalvars.BlackBoard.Inspect(BBTag_Recipes)
+        for rcp in tmpLevelRecipeRates.keys():
+            if not tmpActualRates.has_key(rcp):
+                tmpActualRates[rcp] = 0
+        tmpAlignedRates = AlignRates(tmpLevelRecipeRates, tmpActualRates)
+        
         if globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes") != "nothing":
             #плохие ингредиенты - те, которые покупатель не любит
-            tmpBadIngredients = map(lambda y: y.GetContent(), filter(lambda x: x.GetStrAttr("type") == globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes"),
-                                       globalvars.CuisineInfo.GetTag("Ingredients").Tags()))
+            tmpBadIngredients = map(lambda y: y.GetContent(),
+                                    filter(lambda x: x.GetStrAttr("type") == globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("dislikes"),
+                                    globalvars.CuisineInfo.GetTag("Ingredients").Tags()))
             #хорошие рецепты - не используют плохих ингредиентов
             tmpGoodRecipes = filter(lambda x: \
                 filter(lambda y: y in tmpBadIngredients,
-                       eval(globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("requires")).keys()) == [],
-                tmpLevelRecipeRates.keys())
-            tmpGoodRecipeRates = dict(map(lambda x: (x, tmpLevelRecipeRates[x]), tmpGoodRecipes))
+                        eval(globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("requires")).keys()) == [],
+                        tmpAlignedRates.keys())
+            tmpGoodRecipeRates = dict(map(lambda x: (x, tmpAlignedRates[x]), tmpGoodRecipes))
         else:
-            tmpGoodRecipeRates = tmpLevelRecipeRates
-        self.HasOrder = True    
-        return RandomKeyByRates(tmpGoodRecipeRates)
+            tmpGoodRecipeRates = tmpAlignedRates
         
+        if SumRates(tmpGoodRecipeRates) == 0:
+            for tmp in tmpGoodRecipeRates.keys():
+                if tmpLevelRecipeRates[tmp] != 0:
+                    tmpGoodRecipeRates[tmp] = 1
+        self.HasOrder = True
+        tmpOrder = RandomKeyByRates(tmpGoodRecipeRates)
+        globalvars.BlackBoard.Update(BBTag_Recipes, { "type": tmpOrder, "delta": 1 })
+        return tmpOrder
+        
+#-------------------------------
+# p - ideal rates
+# r - actual rates
+#-------------------------------
+def SumRates(dict):
+    return reduce(lambda a,b: a+b, dict.values(),0)
+    
+def AlignRates(p, r):
+    a = 2
+    b = -1
+    tmpPSum = SumRates(p)
+    tmpRSum = SumRates(r)
+    if tmpRSum == 0:
+        return dict(p)
+    else:
+        t = {}
+        for tmp in p.keys():
+            t[tmp] = max(a*tmpRSum*p[tmp] + b*tmpPSum*r[tmp], 0)
+        return t
 
 #-------------------------------
 # Очередь покупателей

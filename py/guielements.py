@@ -301,7 +301,7 @@ def MakeSimpleSprite(newKlass, newLayer, newX = FieldMaxX/2, newY = FieldMaxY/2,
     return tmpSpr
     
 def MakeDummySprite(whose, cmd, newX, newY, newXSize, newYSize, newLayer,
-                    newSubLayer = 0, newHotspot = scraft.HotspotCenter, newName = u""):
+                    newSubLayer = 0, newHotspot = scraft.HotspotCenter, newName = ""):
     tmpSpr = oE.NewDummy(newName)
     tmpSpr.layer = newLayer
     tmpSpr.sublayer = newSubLayer

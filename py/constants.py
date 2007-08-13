@@ -35,6 +35,7 @@ Cmd_Station_DeleteCustomerAndLoseMoney = 23
 Cmd_Customer_SayThankYou = 24
 Cmd_DebugFinishLevel = 25
 Cmd_DebugLastCustomer = 26
+Cmd_DebugLoseLevel = 27
 Cmd_StopDropper = 30                    #команда посылается коллапсоиду, чтобы завершить выброс новых токенов,
                                         #когда все покупатели обслужены (то есть отдавать токены некуда)
 
@@ -76,11 +77,13 @@ Layer_InterfaceBg = 80
 Layer_InterfaceBtn = 79
 Layer_InterfaceTxt = 78
 Layer_InterfaceTools = 75
-Layer_Popups = 60
+Layer_Popups = 52
+Layer_Particles = 51
 
 #теги для черной доски
 BBTag_Ingredients = 0
-BBTag_Cursor = 1
+BBTag_Recipes = 1
+BBTag_Cursor = 2
 
 #состояния игры
 GameState_None = 0
@@ -190,11 +193,6 @@ Crd_TokenNoSpriteDy = 19
 
 Crd_ReleaseButtonDx = 75
 Crd_ReleaseButtonDy = 15
-
-Const_BonusPaneDx = 0
-Const_BonusPaneDy = 50
-Const_BuyPowerUpButton_Dx = 40
-Const_BuyPowerUpButton_Dy = 0
 
 Const_MinimalGroup = 1
 Const_MaxHearts = 5

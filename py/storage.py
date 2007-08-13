@@ -27,6 +27,7 @@ class Storage(scraft.Dispatcher):
     def __init__(self, cols, rows, x, y, klass):
         self.Crd_minX, self.Crd_minY = x, y
         self.Cols, self.Rows = cols, rows
+        self.Collapsing = False
         
         self.Action = Const_HighlightPick
         self.Base = MakeSprite("$spritecraft$dummy$", Layer_Receptors, {"x": x, "y": y })
@@ -190,7 +191,7 @@ class Storage(scraft.Dispatcher):
     #--------------------------
     def _RemoveTokenFrom(self, cell):
         self.Cells[cell] = Const_EmptyCell
-        self.Grid[cell].ChangeKlassTo(u"$spritecraft$dummy$")
+        self.Grid[cell].ChangeKlassTo("$spritecraft$dummy$")
         
     def _AbsCellCoords(self, cell):
         return (self.Crd_minX + cell[0]*Crd_deltaX + Crd_deltaX/2, 
@@ -207,6 +208,17 @@ class Storage(scraft.Dispatcher):
     def _CellByCoords(self, crd):
         return (int((crd[0]-self.Base.x)/Crd_deltaX),
                 int((crd[1]-self.Base.y)/Crd_deltaY))
+        
+    #возвращает координаты центра выделенных фишек
+    def _GetCentralCell(self, cells):
+        return (reduce(lambda x, y: x+y[0], self.SelectedCells, 0)/len(self.SelectedCells),
+                reduce(lambda x, y: x+y[1], self.SelectedCells, 0)/len(self.SelectedCells))
+        
+    def GetCentralCrd(self):
+        if len(self.SelectedCells) >0:
+            return self._AbsCellCoords(self._GetCentralCell(self.SelectedCells))
+        else:
+            return (-100, -100)
         
         
 #--------------------------------------------
@@ -514,7 +526,7 @@ class Field(Storage):
         
     def _RemoveTokenFrom(self, cell, explode = False, removeUpper = False):
         if explode and self.Cells[cell] != Const_EmptyCell:
-            p = oE.NewParticles_(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"), 0)
+            p = oE.NewParticles(str(cell),globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"), 0)
             p.dispatcher = self
             p.SetProgram(Particles_RemoveTokenProgram)
             p.SetEmissionQuantity(1)
@@ -530,6 +542,33 @@ class Field(Storage):
             for j in range(cell[1],0,-1):
                 self._SwapCells((cell[0], j), (cell[0], j-1))
         
+    def _ExplodeTokens(self, cells):
+        tmpCols = map(lambda x: x[0], cells)
+        tmpRows = map(lambda x: x[1], cells)
+        midCell = ((min(tmpCols) + max(tmpCols))/2, (min(tmpRows) + max(tmpRows))/2)
+        for cell in cells:
+            dX, dY = cell[0] - midCell[0], cell[1] - midCell[1]
+            tmpAngle = math.pi/2 - math.atan2(dY,dX)
+            tmpRad = math.sqrt(dX**2 + dY**2)
+            
+            p = oE.NewParticles(str(cell)+self.Cells[cell]+str(oE.millis),
+                globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"), Layer_Particles)
+            p.dispatcher = self
+            p.SetEmitterCf(1, tmpRad*10, tmpRad*10)
+            p.SetEmitterCf(2, tmpAngle, tmpAngle)
+            p.SetEmitterCf(3, 0, 250)
+            p.SetProgram(Particles_RemoveGroupWithGravity)
+            p.SetEmissionQuantity(1)
+            p.SetEmissionPeriod(1000)
+            p.count = 1
+            p.lifeTime = 3000
+            p.cycled = False
+            p.x = self._AbsCellCoords(cell)[0]
+            p.y = self._AbsCellCoords(cell)[1]
+            p.StartEmission()
+            
+            Storage._RemoveTokenFrom(self, cell)
+            
     def _OnLifetimeOut(self, p) :
         p.Dispose()
         
@@ -945,16 +984,14 @@ class Field(Storage):
                         
                     #бомба - взрыв
                     elif self.Cells[tmpPos] == 'bonus.bomb':
-                        for tmpCell in self.HighlightedCells:
-                            self._RemoveTokenFrom(tmpCell, True)
+                        self._ExplodeTokens(self.HighlightedCells)
                         self._HighlightCells((0,0), False)
                         self.SetState(FieldState_Collapse)
                         globalvars.Musician.PlaySound("tokens.remove")
                         
                     #удаление строки
                     elif self.Cells[tmpPos] == 'bonus.removerow':
-                        for tmpCell in self.HighlightedCells:
-                            self._RemoveTokenFrom(tmpCell, True)
+                        self._ExplodeTokens(self.HighlightedCells)
                         self._HighlightCells((0,0), False)
                         self.SetState(FieldState_Collapse)
                         globalvars.Musician.PlaySound("tokens.remove")
@@ -977,10 +1014,9 @@ class Field(Storage):
                     #ложка - удалить подсвеченные токены
                     if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
                         if len(self.HighlightedCells) >0:
-                            self._RemoveTokenFrom(self.SelectedCells[0], False, True)
+                            self._RemoveTokenFrom(self.SelectedCells[0], False, False)
                             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-                            for tmpCell in self.HighlightedCells:
-                                self._RemoveTokenFrom(tmpCell)
+                            self._ExplodeTokens(self.HighlightedCells)
                             self._HighlightCells((0,0), False)
                             self.SetState(FieldState_Collapse)
                             globalvars.Musician.PlaySound("tokens.remove")
@@ -1079,8 +1115,9 @@ class Collapsoid(Field):
             self.NextDropTime = self.Delay
             
         elif state == DropperState_Burn:
-            for cell in self.BurningTokens:
-                self._RemoveTokenFrom(cell, True)
+            self._ExplodeTokens(self.BurningTokens)
+            #for cell in self.BurningTokens:
+            #    self._RemoveTokenFrom(cell, True)
             self.BurningTime = int(1000*globalvars.GameSettings.GetFltAttr("burnCollapsoidTime"))
             globalvars.Musician.PlaySound("tokens.burn")
             
@@ -1124,9 +1161,12 @@ class Collapsoid(Field):
             self._DrawSelection()
             
             #удалить и сдвинуть
-            for tmpCell in filter(lambda (i,j): j >= self.Rows-noRows, self.Cells.keys()):
+            tmpRemovedCells = filter(lambda (i,j): j >= self.Rows-noRows and self.Cells[i,j] != Const_EmptyCell,
+                                     self.Cells.keys())
+            self._ExplodeTokens(tmpRemovedCells)
+            for tmpCell in tmpRemovedCells:
                 if self.Cells[tmpCell] != Const_EmptyCell:
-                    self._RemoveTokenFrom(tmpCell, True)
+                    #self._RemoveTokenFrom(tmpCell, True)
                     if self.FallingBlocks.has_key(tmpCell):
                         self.FallingBlocks.pop(tmpCell)
             for i in range(self.Cols):

@@ -12,6 +12,10 @@ MasterChef {
             image = "comics.masterchef.intro.3"
             button = "continue-button"
         }
+        comic(Help.Rules) {
+            image = "help.champ-rules"
+            button = "continue-button"
+        }
         //Episode - American
         intro(intro.American) {
             episode = "American"

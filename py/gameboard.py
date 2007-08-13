@@ -6,9 +6,8 @@ Project: Master Chef
 Игровое поле
 """
 
-import sys
-import string
-from random import choice, shuffle
+import sys, string, traceback
+from random import choice
 import scraft
 from scraft import engine as oE
 from constants import *
@@ -24,7 +23,6 @@ import config
 import defs
 import playerlist
 import globalvars
-import traceback
 
 class GameBoard(scraft.Dispatcher):
     
@@ -67,7 +65,7 @@ class GameBoard(scraft.Dispatcher):
         self.GameButtons = {}
         self.GameButtons["Menu"] = PushButton("Menu",
                 self, Cmd_Menu, PState_Game,
-                u"$spritecraft$dummy$", [0, 1, 2, 3, 4], 
+                "$spritecraft$dummy$", [0, 1, 2, 3, 4], 
                 Layer_InterfaceBtn, 28, 31, 40, 40)
         
         self.CustomersQue = None
@@ -94,6 +92,7 @@ class GameBoard(scraft.Dispatcher):
     def LaunchLevel(self):
         self.Clear()
         globalvars.BlackBoard.ClearTag(BBTag_Ingredients)
+        globalvars.BlackBoard.ClearTag(BBTag_Recipes)
         self.Freeze(False)
         try:
             self.Load()
@@ -233,7 +232,8 @@ class GameBoard(scraft.Dispatcher):
             self.NoErrors = min(self.NoErrors+1, globalvars.GameSettings.GetIntAttr("maxColapsoidErrors"))
             self.AddScore(-self.NoErrors*len(tmp))
             for (x, y) in tmp:
-                self._PopupText(str(-self.NoErrors), "domcasual-20-red", x, y)
+                PopupText(str(-self.NoErrors), "domcasual-20-red", x, y,
+                                InPlaceMotion(), BlinkTransp(400, 0.4, -50), BlinkScale(-100, 0.4, 150), 1500)
             
         elif cmd == Cmd_ClickStation:
             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
@@ -242,7 +242,19 @@ class GameBoard(scraft.Dispatcher):
                         tmpFrom = self.TokensFrom
                         tmpDeltaScore = parameter["station"].AddTokens()
                         self.AddScore(tmpDeltaScore)
-                        self._PopupText("+"+str(tmpDeltaScore), "domcasual-20-green", parameter["station"].CrdX, parameter["station"].CrdY)
+                        PopupText("+"+str(tmpDeltaScore), "domcasual-20-green",
+                                        parameter["station"].CrdX, parameter["station"].CrdY,
+                                        BubbleMotion(16, -100), FadeAwayTransp(50, -25))
+                        if tmpFrom.Collapsing:
+                            tmpX, tmpY = tmpFrom.GetCentralCrd()
+                            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokenForIncreadible"):
+                                PopupText(Str_Incredible, "domcasual-20-yellow", tmpX, tmpY,
+                                    InPlaceMotion(), BlinkTransp(400, 0.4, -50),
+                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500)
+                            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokensForGreat"):
+                                PopupText(Str_Great, "domcasual-20-yellow", tmpX, tmpY,
+                                    InPlaceMotion(), BlinkTransp(400, 0.4, -50),
+                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500)
                         self.TokensFrom.RemoveTokens()
                         self.SendCommand(Cmd_DropWhatYouCarry)
                         if tmpFrom in self.Fields:
@@ -339,15 +351,19 @@ class GameBoard(scraft.Dispatcher):
         elif cmd == Cmd_TakeMoney:
             self.AddScore(parameter["amount"])
             if parameter["amount"] > 0:
-                self._PopupText("+"+str(parameter["amount"]), "domcasual-20-green",
-                            parameter["station"].CrdX, parameter["station"].CrdY)
+                if parameter.has_key("tips"):
+                    self.AddScore(parameter["tips"])
+                    PopupText("+$"+str(parameter["amount"])+"+$"+str(parameter["tips"]), "domcasual-20-orange",
+                            parameter["station"].CrdX-20, parameter["station"].CrdY-20,
+                            BubbleMotion(16, -100), FadeAwayTransp(50, -25))
+                else:
+                    PopupText("+$"+str(parameter["amount"]), "domcasual-20-green",
+                            parameter["station"].CrdX, parameter["station"].CrdY,
+                            BubbleMotion(16, -100), FadeAwayTransp(50, -25))
             elif parameter["amount"] < 0:
-                self._PopupText(str(parameter["amount"]), "domcasual-20-red",
-                            parameter["station"].CrdX, parameter["station"].CrdY)
-            if parameter.has_key("tips"):
-                self.AddScore(parameter["tips"])
-                self._PopupText("+"+str(parameter["tips"]), "domcasual-20-orange",
-                                parameter["station"].CrdX-20, parameter["station"].CrdY-20)
+                PopupText("-$"+str(-parameter["amount"]), "domcasual-20-red",
+                            parameter["station"].CrdX, parameter["station"].CrdY,
+                            BubbleMotion(16, -100), FadeAwayTransp(50, -25))
             
         elif cmd == Cmd_PickPowerUp:
             self._PickPowerUp(parameter["type"], parameter["where"])
@@ -362,6 +378,9 @@ class GameBoard(scraft.Dispatcher):
         elif cmd == Cmd_DebugFinishLevel:       
             self.LevelScore = max(self.LevelScore,
                 globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
+            self._SetState(GameState_EndLevel)
+            
+        elif cmd == Cmd_DebugLoseLevel:       
             self._SetState(GameState_EndLevel)
             
         elif cmd == Cmd_DebugLastCustomer:
@@ -496,11 +515,6 @@ class GameBoard(scraft.Dispatcher):
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default,
                                                 "tokentype": "", "tokenno": 0})
         self.TokensFrom = None
-        
-    def _PopupText(self, text, font, x, y):
-        spr = MakeTextSprite(font, Layer_Popups, x, y, scraft.HotspotCenter, text)
-        #spr.cfilt.color = 0xFF8000
-        tmp = Popup(spr, "Bubble", "FadeOut")
         
     def _UpdateLevelInfo(self):
         self.HudElements["Score"].text = str(self.LevelScore)

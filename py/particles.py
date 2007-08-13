@@ -1,4 +1,19 @@
+Particles_RemoveGroupWithGravity = """
+mov   em0,x           
+rot   (0;1),em2.0,a0      
+mul   a0,em1.0,v         
+rnd   -0.1,0.1,a
+rot   v,a,v
 
+indep
+
+updateonly
+
+mul   em3,dt,a0   
+add   a0,v,v
+mul   v,dt,a0         ; a0 = dx
+add   x,a0,x          ; x = x + dx
+"""
 
 
 Particles_RemoveTokenProgram = """
@@ -9,7 +24,7 @@ mov   em0,x           ; using source point
 
 ; randomize particle speed
 ;em4 = 50;60 initial speed
-rnd   30,50,v.1 
+rnd   em4.0,em4.1,v.1 
 neg   v.1,v.1
 ;em5 = -1;1 direction
 rnd   -0.1,0.1,a
@@ -23,7 +38,7 @@ indep
 
 updateonly 
 
-mul   (0;200),dt,a0   
+mul   em4,dt,a0   
 add   a0,v,v
 mul   v,dt,a0         ; a0 = dx
 ;rnd   0.95,1.05,a     ;random direction change

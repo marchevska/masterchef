@@ -1,4 +1,10 @@
 #!/usr/bin/env python
+# -*- coding: cp1251 -*-
+
+"""
+Project: Master Chef 
+Балансирование сложности
+"""
 
 import scraft
 from scraft import engine as oE

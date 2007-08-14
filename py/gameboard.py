@@ -264,10 +264,10 @@ class GameBoard(scraft.Dispatcher):
             elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
                 if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift'):
                     if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.sweet':
-                        globalvars.Musician.PlaySound("customer.thankyou")
+                        globalvars.Musician.PlaySound("customer.gotgift")
                         parameter["station"].Customer.GiveSweet()
                     elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.gift':
-                        globalvars.Musician.PlaySound("customer.thankyou")
+                        globalvars.Musician.PlaySound("customer.gotgift")
                         parameter["station"].Customer.GiveGift()
                     tmpFrom = self.TokensFrom
                     self.TokensFrom.RemoveTokens()

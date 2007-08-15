@@ -28,7 +28,7 @@ RefStates = { ButtonState_Up: ButtonState_Up, ButtonState_Roll: ButtonState_Roll
 class PushButton(scraft.Dispatcher):
     def __init__(self, name, whose, cmd, when, newKlass, frames, 
                  newLayer, newX, newY, newXSize, newYSize,
-                 text = "", klasses = [], textDX = 0, textDY = 0):
+                 text = "", klasses = [], textDX = 0, textDY = 0, sound = "gui.click"):
         
         #dummy используется как hit area
         self.Dummy = MakeDummySprite(self, cmd, newX, newY, newXSize, newYSize, newLayer)
@@ -52,6 +52,7 @@ class PushButton(scraft.Dispatcher):
         self.TextKlasses = klasses
         self.ActiveWhen = when
         self.Whose = whose
+        self.Sound = sound
         self.SetState(ButtonState_Up)
         
     def MoveTo(self, newX, newY):
@@ -63,6 +64,9 @@ class PushButton(scraft.Dispatcher):
     def SetButtonKlass(self, newKlass):
         self.ButtonSprite.ChangeKlassTo(newKlass)
         self.ButtonSprite.hotspot = scraft.HotspotCenter
+        
+    def SetSound(self, sound = "gui.click"):
+        self.Sound = sound
         
     def Show(self, flag):
         self.Dummy.visible = flag
@@ -104,7 +108,7 @@ class PushButton(scraft.Dispatcher):
             if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
                 self.SetState(ButtonState_Roll)
                 if globalvars.LastCookie == sprite.cookie and globalvars.StateStack[-1] == self.ActiveWhen:
-                    globalvars.Musician.PlaySound("gui.click")
+                    globalvars.Musician.PlaySound(self.Sound)
                     self.Whose.SendCommand(sprite.cookie)
             globalvars.LastCookie = Cmd_None
         

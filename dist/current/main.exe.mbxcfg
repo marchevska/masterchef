@@ -1,4 +1,5 @@
 
+bootstub.dbg=0
 box.1.flags=2
 box.1.fname=lib.dat
 box.1.name=dlls
@@ -11,10 +12,12 @@ box.3.name=levels
 box.4.flags=2
 box.4.fname=def.dat
 box.4.name=def
+box.cmdline=
 box.encrypt=1
 box.packdefault=1
 box.pattern=*.dat
 box.separate=0
+box.sepfile=
 box.ziplevel=1
 dir.addfiles=C:\Projects\proto games\Master Chef\dist\current
 exe.crc=0

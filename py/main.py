@@ -76,11 +76,11 @@ while globalvars.StateStack[-1] != PState_EndGame:
     #    break
         #if globalvars.StateStack[-1] == PState_Edit:    
         #    globalvars.StateStack[-1] = PState_EndGame
-    if oE.EvtIsKeyDown() :
-        if oE.EvtKey() == scraft.Key_F3:
-            globalvars.Board.Restart()
-    if oE.EvtIsKeyDown() :
-        if oE.EvtKey() == scraft.Key_F4 :
+    #if oE.EvtIsKeyDown():
+    #    if oE.EvtKey() == scraft.Key_F3:
+    #        globalvars.Board.Restart()
+    if oE.EvtIsKeyDown():
+        if oE.EvtKey() == scraft.Key_F4 and not oE.IsKeyPressed(scraft.Key_ALT):
             globalvars.GameConfig.SetBoolAttr("Fullscreen", not(globalvars.GameConfig.GetBoolAttr("Fullscreen")))
             config.ApplyOptions()
     oE.DisplayEx(30)

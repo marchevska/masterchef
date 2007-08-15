@@ -793,8 +793,8 @@ class Field(Storage):
             for cell in self.FallingBlocks.keys():
                 self.Grid[cell].y = self._CellCoords(cell)[1] - \
                     int(self.FallingBlocks[cell]*self.FallingTime/1000)
-            if self.FallingBlocks != {}:
-                globalvars.Musician.PlaySound("tokens.collapse")
+            #if self.FallingBlocks != {}:
+            #    globalvars.Musician.PlaySound("tokens.collapse")
             self._GenerateMatchMap()
                 
         #перемешивание токенов на поле
@@ -1203,7 +1203,7 @@ class Collapsoid(Field):
                 self.NextDropTime -= que.delta*self.SpeedMiltiplier
                 if self.NextDropTime < 0:
                     if self.Dropped < self.Cols:
-                        globalvars.Musician.PlaySound("tokens.drop")
+                        #globalvars.Musician.PlaySound("tokens.drop")
                         self.Dropped += 1
                         self._PutRandomToken((self.Dropped-1, self.Rows))
                         self.NextDropTime += self.DropIn

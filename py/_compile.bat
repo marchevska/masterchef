@@ -1,1 +1,1 @@
-C:\Projects\Jungle\jungle.exe main.py
+C:\Projects\Jungle\jungle.exe --windows main.py

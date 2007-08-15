@@ -582,25 +582,31 @@ class Musician(scraft.Dispatcher):
     def __init__(self):
         self.State = MusicState_Menu
         self._PlayNewMelody()
+        self.NextStates = []
+        self.QueNo = oE.executor.Schedule(self)
         
     def SetState(self, state):
-        if state != self.State:
-            self.State = state
-            oE.StopSound(Channel_Music)
-            self._PlayNewMelody()
+        self.NextStates.append(state)
             
     def _PlayNewMelody(self):
         tmpNewMelody = choice(MusicTracks[self.State])
         oE.PlaySound(tmpNewMelody, Channel_Music, self)
-        #print "music track:", tmpNewMelody
         
     def _OnStopSound(self, sound, channel, cookie, x):
         if not x:
             self._PlayNewMelody()
         
+    def _OnExecute(self, que):
+        if self.NextStates != []:
+            if self.NextStates[-1] != self.State:
+                self.State = self.NextStates[-1]
+                oE.StopSound(Channel_Music)
+                self._PlayNewMelody()
+            self.NextStates = []
+        return scraft.CommandStateRepeat
+        
     def PlaySound(self, sound, channel = Channel_Default):
         oE.PlaySound(sound, channel)
-        #print "sound:", sound
 
 #-----------------------------------
 # Возвращается произвольный ключ

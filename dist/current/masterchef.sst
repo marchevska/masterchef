@@ -6,6 +6,18 @@
 
 #field control
 
+#pick tokens from anywhere
+sound tokens.pick {
+#sample = sound/tokens.pick.ogg
+sample = sound/pick.food.ogg
+}
+
+#give tokens to the customer
+sound tokens.give {
+#sample = sound/tokens.give.ogg
+sample = sound/give.food.ogg
+}
+
 #drop tokens
 sound tokens.drop {
 sample = sound/tokens.drop.ogg
@@ -56,6 +68,12 @@ sample = sound/customer.lost.ogg
 #give gift or sweet to the customer
 sound customer.gotgift {
 sample = sound/customer.gotgift.ogg
+}
+
+#take money after customer leaves
+sound customer.takemoney {
+sample = sound/take.money.ogg
+#sample = sound/customer.takemoney.ogg
 }
 
 #game flow

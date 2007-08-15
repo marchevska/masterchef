@@ -242,6 +242,8 @@ class GameBoard(scraft.Dispatcher):
                         tmpFrom = self.TokensFrom
                         tmpDeltaScore = parameter["station"].AddTokens()
                         self.AddScore(tmpDeltaScore)
+                        if tmpDeltaScore > 0:
+                            globalvars.Musician.PlaySound("tokens.give")
                         PopupText("+"+str(tmpDeltaScore), "domcasual-20-green",
                                         parameter["station"].CrdX, parameter["station"].CrdY,
                                         BubbleMotion(16, -100), FadeAwayTransp(50, -25))
@@ -495,6 +497,7 @@ class GameBoard(scraft.Dispatcher):
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
                                                 "tokentype": type, "tokenno": 1 })
         self.TokensFrom = where
+        globalvars.Musician.PlaySound("tokens.pick")
         
         
     def _PickTokensFrom(self, where, type, no):
@@ -506,6 +509,8 @@ class GameBoard(scraft.Dispatcher):
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
                                                 "tokentype": type, "tokenno": no })
         self.TokensFrom = where
+        if no > 0:
+            globalvars.Musician.PlaySound("tokens.pick")
         
     def _DropTokensTo(self, where):
         if where != None:

@@ -45,6 +45,7 @@ class CustomerStation(scraft.Dispatcher):
                 "release-button", [0, 1, 2], Layer_Recipe-1, newX + Crd_ReleaseButtonDx, newY + Crd_ReleaseButtonDy, 40, 30)
         self.MoneyButton = PushButton("", self, Cmd_TakeMoney, PState_Game,
                 "money-button", [0, 1, 2], Layer_Recipe-1, newX, newY, 60, 60)
+        self.MoneyButton.SetSound("customer.takemoney")
         self.ReleaseButton.Show(False)
         self.MoneyButton.Show(False)
         self.Hero = Hero(self.CrdX + Crd_HeroDx, self.CrdY + Crd_HeroDy)
@@ -168,7 +169,7 @@ class CustomerStation(scraft.Dispatcher):
             
         self.RecipeIndicator.SetValue(1.0 - 1.0*tmpRemaining/self.TotalRequired)
             
-        #проверить - является ли ингредиент нелюбимым для покуаптеля
+        #проверить - является ли ингредиент нелюбимым для покупателя
         if globalvars.CustomersInfo.GetSubtag(self.Customer.Type).GetStrAttr("dislikes") == food:
             self.Customer.AddHearts(-1)
         #если ингредиент не требуется и покупатель требует четкого соблюдения рецепта

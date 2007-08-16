@@ -16,7 +16,7 @@ Level{
     //customer appearance rates
     CustomerRates{
         Customer{ type = "Worker"           rate = "1" }
-        Customer{ type = "Vegetarian"       rate = "1" }
+        Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "0" }
         Customer{ type = "Student"          rate = "0" }
         Customer{ type = "Oldlady"          rate = "1" }
@@ -52,7 +52,7 @@ Level{
     
     IngredientRates{
         Ingredient{ type = "shrimp"       rate = "0" }
-        Ingredient{ type = "meat"         rate = "40" }
+        Ingredient{ type = "meat"         rate = "24" }
         Ingredient{ type = "chili-pepper" rate = "12" }
         Ingredient{ type = "lime"         rate = "14" }
         Ingredient{ type = "mango"        rate = "0" }

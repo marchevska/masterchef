@@ -47,9 +47,9 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "50" }
+        Ingredient{ type = "salmon"   rate = "24" }
         Ingredient{ type = "shrimp"   rate = "0" }
-        Ingredient{ type = "rice"     rate = "67" }
+        Ingredient{ type = "rice"     rate = "27" }
         Ingredient{ type = "tofu"     rate = "18" }
         Ingredient{ type = "veggymix" rate = "0" }
         Ingredient{ type = "seaweed"  rate = "5" }

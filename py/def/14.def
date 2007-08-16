@@ -48,11 +48,11 @@ Level{
     
     IngredientRates{
         Ingredient{ type = "pork"         rate = "12" }
-        Ingredient{ type = "chili-pepper" rate = "37" }
-        Ingredient{ type = "avocado"      rate = "48" }
+        Ingredient{ type = "chili-pepper" rate = "24" }
+        Ingredient{ type = "avocado"      rate = "27" }
         Ingredient{ type = "cheese"       rate = "0" }
         Ingredient{ type = "tortilla"     rate = "0" }
-        Ingredient{ type = "tomato"       rate = "35" }
+        Ingredient{ type = "tomato"       rate = "15" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "1" }

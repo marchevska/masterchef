@@ -464,11 +464,11 @@ MasterChef {
     
     //Competitors and their results
     People {
-        episode(American) { people= "{'Elisa':45,'Emma':35,'Jenny':1,'Lora':50,'Marty':30,'Max':40,'Ronald':95,'Steve':60,}" }
-        episode(Mexican) { people= "{'Alex':40,'Erica':35,'Jenny':1,'Lora':45,'Michael':55,'Nina':70,'Ronald':95,'Steve':30,}" }
-        episode(Russian) { people= "{'Alban':80,'Angela':45,'Jenny':1,'Michael':40,'Naomi':65,'Nina':35,'Ronald':95,'Sam':30,}" }
-        episode(Japanese) { people= "{'Alban':85,'Jenny':1,'Mary':45,'Naomi':35,'Paula':90,'Peter':40,'Ronald':95,'Scott':30,}" }
-        episode(Hawaiian) { people= "{'Jenny':1,'Ronald':95,}" }
+        episode(American) { people= "{'Elisa': { 'score': 45, 'xy': (55, 360) }, 'Emma': { 'score': 35, 'xy': (350, 265) }, 'Jenny': { 'score': 1, 'xy': (130, 570) }, 'Lora': { 'score': 50, 'xy': (200, 260) }, 'Marty': { 'score': 30, 'xy': (417, 285) }, 'Max': { 'score': 40, 'xy': (270, 250) }, 'Ronald': { 'score': 95, 'xy': (60, 490) }, 'Steve': { 'score': 60, 'xy': (127, 285) }, }" }
+        episode(Mexican) { people= "{'Alex': { 'score': 40, 'xy': (60, 370) }, 'Erica': { 'score': 35, 'xy': (65, 505) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Lora': { 'score': 45, 'xy': (280, 245) }, 'Michael': { 'score': 55, 'xy': (195, 260) }, 'Nina': { 'score': 70, 'xy': (420, 295) }, 'Ronald': { 'score': 95, 'xy': (120, 295) }, 'Steve': { 'score': 30, 'xy': (355, 260) }, }" }
+        episode(Russian) { people= "{'Alban': { 'score': 80, 'xy': (195, 260) }, 'Angela': { 'score': 45, 'xy': (125, 290) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Michael': { 'score': 40, 'xy': (60, 360) }, 'Naomi': { 'score': 65, 'xy': (280, 250) }, 'Nina': { 'score': 35, 'xy': (435, 320) }, 'Ronald': { 'score': 95, 'xy': (60, 495) }, 'Sam': { 'score': 30, 'xy': (360, 260) }, }" }
+        episode(Japanese) { people= "{'Alban': { 'score': 85, 'xy': (270, 255) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Mary': { 'score': 45, 'xy': (60, 365) }, 'Naomi': { 'score': 35, 'xy': (355, 265) }, 'Paula': { 'score': 90, 'xy': (195, 255) }, 'Peter': { 'score': 40, 'xy': (435, 325) }, 'Ronald': { 'score': 95, 'xy': (60, 495) }, 'Scott': { 'score': 30, 'xy': (115, 280) }, }" }
+        episode(Hawaiian) { people= "{'Jenny': { 'score': 1, 'xy': (60, 520) }, 'Ronald': { 'score': 95, 'xy': (60, 350) }, }" }
     }
 
     //Level intro/outro layouts

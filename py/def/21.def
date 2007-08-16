@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"     rate = "40" }
+        Ingredient{ type = "pork"     rate = "24" }
         Ingredient{ type = "mushroom" rate = "0" }
         Ingredient{ type = "cabbage"  rate = "0" }
         Ingredient{ type = "potato"   rate = "0" }
         Ingredient{ type = "onion"    rate = "12" }
-        Ingredient{ type = "flour"    rate = "30" }
+        Ingredient{ type = "flour"    rate = "18" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "1" }

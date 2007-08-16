@@ -48,11 +48,11 @@ Level{
     
     IngredientRates{
         Ingredient{ type = "shrimp"       rate = "22" }
-        Ingredient{ type = "meat"         rate = "40" }
+        Ingredient{ type = "meat"         rate = "24" }
         Ingredient{ type = "chili-pepper" rate = "0" }
         Ingredient{ type = "lime"         rate = "0" }
         Ingredient{ type = "mango"        rate = "7" }
-        Ingredient{ type = "shoyu"        rate = "39" }
+        Ingredient{ type = "shoyu"        rate = "21" }
         Ingredient{ type = "bonus.spoon"      rate = "1" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "1" }

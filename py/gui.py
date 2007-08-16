@@ -492,8 +492,7 @@ class Gui(scraft.Dispatcher):
         self.IntroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
                 { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_IntroCompetitors } )
         for i in range(self.MaxPeopleOnLevel):
-            self.IntroScreen["Static"]["Character"+str(i)] = MakeSimpleSprite("$spritecraft$dummy$", Layer_BtnText,
-                                                    Crd_CharIntroPositions[i][0], Crd_CharIntroPositions[i][1])
+            self.IntroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
             self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
                 { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
         
@@ -911,17 +910,17 @@ class Gui(scraft.Dispatcher):
         globalvars.Musician.PlaySound("episode.intro")
         tmpEpisode = globalvars.CurrentPlayer.GetLevel().GetStrAttr("episode")
         tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
-        tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).keys()
-        #shuffle(tmpCharacters)
+        tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).items()
         self.IntroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
         self.IntroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
         self.IntroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
         for i in range(self.MaxPeopleOnLevel):
             if i < len(tmpCharacters):
                 self.IntroScreen["Static"]["Character"+str(i)].\
-                    ChangeKlassTo(globalvars.CompetitorsInfo.GetSubtag(tmpCharacters[i]).GetStrAttr("src"))
+                    ChangeKlassTo(globalvars.CompetitorsInfo.GetSubtag(tmpCharacters[i][0]).GetStrAttr("src"))
+                self.IntroScreen["Static"]["Character"+str(i)].x, self.IntroScreen["Static"]["Character"+str(i)].y = tmpCharacters[i][1]["xy"]
                 self.IntroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
-                self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i]
+                self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i][0]
             else:
                 self.IntroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
                 self.IntroScreen["Text"]["Character"+str(i)].text = ""

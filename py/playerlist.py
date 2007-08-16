@@ -159,7 +159,8 @@ class Player:
         tmpConditions = eval(self.Level.GetStrAttr("passIf"))
         tmpPass = True
         for episode in tmpConditions.keys():
-            tmpResults = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people"))
+            tmpResults = dict(map(lambda x: (x[0], x[1]['score']),
+                eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people")).items()))
             tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
             tmp = tmpResults.items()
             tmp.sort(lambda x,y: cmp(y[1], x[1]))

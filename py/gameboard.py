@@ -227,6 +227,7 @@ class GameBoard(scraft.Dispatcher):
         #переполнение коллапсоида - штраф и удаление лишнего
         elif cmd == Cmd_CollapsoidFull:
             tmp = parameter.GetBurnCrd()
+            parameter.SendCommand(Cmd_ReselectBeforeBurn)
             parameter.SendCommand(Cmd_CollapsoidBurn)
             #максимальный штраф задан (=10 или около того)
             self.NoErrors = min(self.NoErrors+1, globalvars.GameSettings.GetIntAttr("maxColapsoidErrors"))

@@ -1305,6 +1305,24 @@ class Collapsoid(Field):
             if self.DropperState in (DropperState_Drop, DropperState_Move):
                 self._FastShift()
             
+        #удалить сгорающие токены из выделения и подсветки!
+        elif cmd == Cmd_ReselectBeforeBurn:
+            for tmp in self.BurningTokens:
+                if tmp in self.HighlightedCells:
+                    self.HighlightedCells.remove(tmp)
+                if tmp in self.SelectedCells:
+                    self.SelectedCells.remove(tmp)
+                
+            self._ReHighlight()
+            if self.HighlightedCells == []:
+                self.Action = Const_HighlightNone
+            self._DrawSelection()
+            if self.SelectedCells == []:
+                globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+            else:
+                globalvars.Board.SendCommand(Cmd_PickFromStorage,
+                    {"where": self, "type": self.Cells[self.SelectedCells[0]], "no": len(self.SelectedCells)})        
+            
         elif cmd == Cmd_CollapsoidBurn:
             self.SetDropperState(DropperState_Burn)
             

@@ -30,6 +30,7 @@ Cmd_PickFromConveyor = 18
 Cmd_ReturnToConveyor = 19
 Cmd_CollapsoidFashShift = 20
 Cmd_CollapsoidBurn = 21
+Cmd_ReselectBeforeBurn = 32
 Cmd_Station_DeleteCustomer = 22
 Cmd_Station_DeleteCustomerAndLoseMoney = 23
 Cmd_Customer_SayThankYou = 24

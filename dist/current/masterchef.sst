@@ -8,14 +8,12 @@
 
 #pick tokens from anywhere
 sound tokens.pick {
-#sample = sound/tokens.pick.ogg
-sample = sound/pick.food.ogg
+sample = sound/tokens.pick.ogg
 }
 
 #give tokens to the customer
 sound tokens.give {
-#sample = sound/tokens.give.ogg
-sample = sound/give.food.ogg
+sample = sound/tokens.give.ogg
 }
 
 #drop tokens
@@ -72,8 +70,7 @@ sample = sound/customer.gotgift.ogg
 
 #take money after customer leaves
 sound customer.takemoney {
-sample = sound/take.money.ogg
-#sample = sound/customer.takemoney.ogg
+sample = sound/customer.takemoney.ogg
 }
 
 #game flow

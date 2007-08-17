@@ -50,9 +50,9 @@ def GetFileLocations():
 def ReadGameConfig():
     try:
         if FileValid(globalvars.File_GameConfig) and globalvars.RunMode == RunMode_Play:
-            globalvars.GameConfig = oE.ParseDEF(globalvars.File_GameConfig).GetTag(u"MasterChef")
+            globalvars.GameConfig = oE.ParseDEF(globalvars.File_GameConfig).GetTag(DEF_Header)
         else:
-            globalvars.GameConfig = oE.ParseDEF(globalvars.File_GameConfigSafe).GetTag(u"MasterChef")
+            globalvars.GameConfig = oE.ParseDEF(globalvars.File_GameConfigSafe).GetTag(DEF_Header)
     except:
         oE.Log(u"Cannot read game configuration files")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -87,7 +87,7 @@ def ReadHiscores():
     globalvars.HiscoresList = []
     if FileValid(globalvars.File_Hiscores):
         Data_Hiscores = oE.ParseDEF(globalvars.File_Hiscores)
-        HiscoresIterator = Data_Hiscores.GetTag(u"MasterChef").IterateTag(u"score")
+        HiscoresIterator = Data_Hiscores.GetTag(DEF_Header).IterateTag(u"score")
         HiscoresIterator.Reset()
         while HiscoresIterator.Next():
             tmpScore = HiscoresIterator.Get()
@@ -139,9 +139,9 @@ def AddScore():
 def ReadBestResults():
     try:
         if FileValid(globalvars.File_BestResults) and globalvars.RunMode == RunMode_Play:
-            globalvars.BestResults = oE.ParseDEF(globalvars.File_BestResults).GetTag(u"MasterChef")
+            globalvars.BestResults = oE.ParseDEF(globalvars.File_BestResults).GetTag(DEF_Header)
         else:
-            globalvars.BestResults = oE.ParseDEF(globalvars.File_BestResultsSafe).GetTag(u"MasterChef")
+            globalvars.BestResults = oE.ParseDEF(globalvars.File_BestResultsSafe).GetTag(DEF_Header)
     except:
         oE.Log(u"Cannot read best results record")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

@@ -27,7 +27,7 @@ class Player:
         self.Level = None       #указывает на ноду уровня в LevelProgress
         self.Filename = ""
         try:
-            self.XML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag("MasterChef")
+            self.XML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag(DEF_Header)
         except:
             oE.Log("Cannot create player profile")
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -40,13 +40,13 @@ class Player:
         self.Name = name
         self.Level = None
         self.Filename = ""
-        dummyXML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag("MasterChef")
+        dummyXML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag(DEF_Header)
         try:
             if name != "":
                 filename = globalvars.PlayerList.FilenameFor(name)
                 self.Filename = filename
                 if config.FileValid(filename):
-                    self.XML = oE.ParseDEF(filename).GetTag("MasterChef")
+                    self.XML = oE.ParseDEF(filename).GetTag(DEF_Header)
                 else:
                     self.XML = dummyXML
             else:
@@ -182,7 +182,7 @@ class Player:
         if self.XML.GetSubtag(level) != None:
             return self.XML.GetSubtag(level)
         else:
-            return oE.ParseDEF(globalvars.File_DummyProfile).GetTag(u"MasterChef").GetSubtag(level)
+            return oE.ParseDEF(globalvars.File_DummyProfile).GetTag(DEF_Header).GetSubtag(level)
         
     def SetLevelParams(self, level, params):
         tmp = self.XML.GetSubtag(level)
@@ -261,7 +261,7 @@ class PlayerList:
     def __init__(self):
         try:
             self.Filename = ""
-            self.XML = oE.ParseDEF(globalvars.File_PlayersConfigSafe).GetTag(u"MasterChef")
+            self.XML = oE.ParseDEF(globalvars.File_PlayersConfigSafe).GetTag(DEF_Header)
         except:
             oE.Log("Cannot create players list")
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -272,12 +272,12 @@ class PlayerList:
         try:
             self.Filename = globalvars.File_PlayersConfig
             if config.FileValid(self.Filename):
-                self.XML = oE.ParseDEF(self.Filename).GetTag(u"MasterChef")
+                self.XML = oE.ParseDEF(self.Filename).GetTag(DEF_Header)
             globalvars.CurrentPlayer = Player()
             globalvars.CurrentPlayer.Read(globalvars.GameConfig.GetStrAttr("Player"))
         except:
             try:
-                self.XML = oE.ParseDEF(globalvars.File_PlayersConfigSafe).GetTag(u"MasterChef")
+                self.XML = oE.ParseDEF(globalvars.File_PlayersConfigSafe).GetTag(DEF_Header)
             except:
                 #если никак-никак не можем прочитать
                 oE.Log(u"Cannot read players list")

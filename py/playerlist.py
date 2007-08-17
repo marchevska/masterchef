@@ -27,7 +27,7 @@ class Player:
         self.Level = None       #указывает на ноду уровня в LevelProgress
         self.Filename = ""
         try:
-            self.XML = oE.ParseDEF(File_DummyProfile).GetTag("MasterChef")
+            self.XML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag("MasterChef")
         except:
             oE.Log("Cannot create player profile")
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -40,7 +40,7 @@ class Player:
         self.Name = name
         self.Level = None
         self.Filename = ""
-        dummyXML = oE.ParseDEF(File_DummyProfile).GetTag("MasterChef")
+        dummyXML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag("MasterChef")
         try:
             if name != "":
                 filename = globalvars.PlayerList.FilenameFor(name)
@@ -182,7 +182,7 @@ class Player:
         if self.XML.GetSubtag(level) != None:
             return self.XML.GetSubtag(level)
         else:
-            return oE.ParseDEF(File_DummyProfile).GetTag(u"MasterChef").GetSubtag(level)
+            return oE.ParseDEF(globalvars.File_DummyProfile).GetTag(u"MasterChef").GetSubtag(level)
         
     def SetLevelParams(self, level, params):
         tmp = self.XML.GetSubtag(level)
@@ -261,7 +261,7 @@ class PlayerList:
     def __init__(self):
         try:
             self.Filename = ""
-            self.XML = oE.ParseDEF(File_PlayersConfigSafe).GetTag(u"MasterChef")
+            self.XML = oE.ParseDEF(globalvars.File_PlayersConfigSafe).GetTag(u"MasterChef")
         except:
             oE.Log("Cannot create players list")
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -270,14 +270,14 @@ class PlayerList:
     #считывает и парсит список игроков (в начале игры)
     def Read(self):
         try:
-            self.Filename = File_PlayersConfig
+            self.Filename = globalvars.File_PlayersConfig
             if config.FileValid(self.Filename):
                 self.XML = oE.ParseDEF(self.Filename).GetTag(u"MasterChef")
             globalvars.CurrentPlayer = Player()
             globalvars.CurrentPlayer.Read(globalvars.GameConfig.GetStrAttr("Player"))
         except:
             try:
-                self.XML = oE.ParseDEF(File_PlayersConfigSafe).GetTag(u"MasterChef")
+                self.XML = oE.ParseDEF(globalvars.File_PlayersConfigSafe).GetTag(u"MasterChef")
             except:
                 #если никак-никак не можем прочитать
                 oE.Log(u"Cannot read players list")
@@ -304,7 +304,8 @@ class PlayerList:
         
     def CreatePlayer(self, name):
         try:
-            filename = "data/"+name+".def"
+            filename = globalvars.DataDirectory+name+".def"
+            #filename = "data/"+name+".def"
             tmp = scraft.Xdata("player(%s) { file = '%s' }" % (name, filename)).GetTag()
             tmp.SetContent(name)
             self.XML.InsertCopyOf(tmp)

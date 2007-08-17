@@ -6,7 +6,7 @@ Project: Master Chef
 Основной модуль
 """
 
-import sys
+import os, sys
 import scraft
 from scraft import engine as oE
 from configconst import *
@@ -44,6 +44,7 @@ else:
     globalvars.RunMode = RunMode_Play
 # конец кода определения типа запуска
 
+config.GetFileLocations()
 config.ReadGameConfig()
 config.ApplyOptions()
 config.ReadHiscores()
@@ -74,17 +75,11 @@ while globalvars.StateStack[-1] != PState_EndGame:
     oE.NextEvent()
     #if oE.EvtIsESC() or oE.EvtIsQuit() :
     #    break
-        #if globalvars.StateStack[-1] == PState_Edit:    
-        #    globalvars.StateStack[-1] = PState_EndGame
-    #if oE.EvtIsKeyDown():
-    #    if oE.EvtKey() == scraft.Key_F3:
-    #        globalvars.Board.Restart()
     if oE.EvtIsKeyDown():
         if oE.EvtKey() == scraft.Key_F4 and not oE.IsKeyPressed(scraft.Key_ALT):
             globalvars.GameConfig.SetBoolAttr("Fullscreen", not(globalvars.GameConfig.GetBoolAttr("Fullscreen")))
             config.ApplyOptions()
     oE.DisplayEx(30)
-    #oE.Display()
 
 if globalvars.RunMode == RunMode_Play:
     config.SaveGameConfig()

@@ -15,19 +15,22 @@ FieldMaxX = 800
 FieldMaxY = 600
 Crd_deltaX = Crd_deltaY = 40
 Video_Mode = scraft.VMODE_800x600x32
-Window_Title = "Master Chef"
+
+Window_Title = "Champion Chef"
 DEF_Header = "MasterChef"
 
 #имена файлов
-File_GameConfig = "data/game.def"
-File_Hiscores = "data/scores.def"
-File_BestResults = "data/best.def"
-File_PlayersConfig = "data/players.def"
-
-File_PlayersConfigSafe = "safe/players.def"
-File_DummyProfile = "safe/dummy.def"
-File_GameConfigSafe = "safe/game.def"
-File_BestResultsSafe = "safe/best.def"
+Str_DeveloperDirectory = "Teggo"
+Str_ProductDirectory = "Champion Chef"
+Str_DataDirectory = "data/"
+File_GameConfigName = "game.def"
+File_HiscoresName = "scores.def"
+File_BestResultsName = "best.def"
+File_PlayersConfigName = "players.def"
+File_PlayersConfigSafeName = "safe/players.def"
+File_DummyProfileName = "safe/dummy.def"
+File_GameConfigSafeName = "safe/game.def"
+File_BestResultsSafeName = "safe/best.def"
 
 File_SST = "masterchef.sst"
 

@@ -18,15 +18,41 @@ import md5
 import os, os.path
 
 #------------------------------------------
+# найти каталог для записи данных -
+# либо в Application Data, лио рядом с игрой
+#------------------------------------------
+def GetFileLocations():
+    globalvars.DataDirectory = oE.rscpath + Str_DataDirectory
+    globalvars.CheckDirs = [globalvars.DataDirectory]
+    try:
+        tmp = os.getenv("APPDATA", "")
+        if tmp != "":
+            globalvars.DataDirectory = tmp + "\\" + Str_DeveloperDirectory + "\\" + Str_ProductDirectory + "\\" + Str_DataDirectory
+            globalvars.CheckDirs  = [tmp + "\\" + Str_DeveloperDirectory,
+                                    tmp + "\\" + Str_DeveloperDirectory + "\\" + Str_ProductDirectory,
+                                    tmp + "\\" + Str_DeveloperDirectory + "\\" + Str_ProductDirectory + "\\" + Str_DataDirectory]
+    except:
+        pass
+    
+    globalvars.File_GameConfig = globalvars.DataDirectory + File_GameConfigName
+    globalvars.File_Hiscores = globalvars.DataDirectory + File_HiscoresName
+    globalvars.File_BestResults = globalvars.DataDirectory + File_BestResultsName
+    globalvars.File_PlayersConfig = globalvars.DataDirectory + File_PlayersConfigName
+    globalvars.File_PlayersConfigSafe = oE.rscpath + File_PlayersConfigSafeName
+    globalvars.File_DummyProfile = oE.rscpath + File_DummyProfileName
+    globalvars.File_GameConfigSafe = oE.rscpath + File_GameConfigSafeName
+    globalvars.File_BestResultsSafe = oE.rscpath + File_BestResultsSafeName
+
+#------------------------------------------
 # Функции для работы с файлом конфигурации 
 #------------------------------------------
 
 def ReadGameConfig():
     try:
-        if FileValid(File_GameConfig) and globalvars.RunMode == RunMode_Play:
-            globalvars.GameConfig = oE.ParseDEF(File_GameConfig).GetTag(u"MasterChef")
+        if FileValid(globalvars.File_GameConfig) and globalvars.RunMode == RunMode_Play:
+            globalvars.GameConfig = oE.ParseDEF(globalvars.File_GameConfig).GetTag(u"MasterChef")
         else:
-            globalvars.GameConfig = oE.ParseDEF(File_GameConfigSafe).GetTag(u"MasterChef")
+            globalvars.GameConfig = oE.ParseDEF(globalvars.File_GameConfigSafe).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read game configuration files")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -35,7 +61,7 @@ def ReadGameConfig():
 def SaveGameConfig():
     try:
         if globalvars.RunMode == RunMode_Play:
-            SaveToFile(globalvars.GameConfig.GetRoot(), File_GameConfig)
+            SaveToFile(globalvars.GameConfig.GetRoot(), globalvars.File_GameConfig)
     except:
         oE.Log(u"Cannot write game configuration files")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -59,8 +85,8 @@ def ApplyOptions():
 def ReadHiscores():
     """ Reads hiscores list """
     globalvars.HiscoresList = []
-    if FileValid(File_Hiscores):
-        Data_Hiscores = oE.ParseDEF(File_Hiscores)
+    if FileValid(globalvars.File_Hiscores):
+        Data_Hiscores = oE.ParseDEF(globalvars.File_Hiscores)
         HiscoresIterator = Data_Hiscores.GetTag(u"MasterChef").IterateTag(u"score")
         HiscoresIterator.Reset()
         while HiscoresIterator.Next():
@@ -78,7 +104,7 @@ def SaveHiscores():
     #    tmpSaveStr += ("  score() { Name = '" + tmp["Name"] + \
     #                "' Score = " + str(tmp["Score"]) + " }\n")
     #tmpSaveStr += "}\n"
-    #SignAndSave(File_Hiscores, tmpSaveStr)
+    #SignAndSave(globalvars.File_Hiscores, tmpSaveStr)
     pass
 
 def UpdateHiscores():
@@ -112,10 +138,10 @@ def AddScore():
 
 def ReadBestResults():
     try:
-        if FileValid(File_BestResults) and globalvars.RunMode == RunMode_Play:
-            globalvars.BestResults = oE.ParseDEF(File_BestResults).GetTag(u"MasterChef")
+        if FileValid(globalvars.File_BestResults) and globalvars.RunMode == RunMode_Play:
+            globalvars.BestResults = oE.ParseDEF(globalvars.File_BestResults).GetTag(u"MasterChef")
         else:
-            globalvars.BestResults = oE.ParseDEF(File_BestResultsSafe).GetTag(u"MasterChef")
+            globalvars.BestResults = oE.ParseDEF(globalvars.File_BestResultsSafe).GetTag(u"MasterChef")
     except:
         oE.Log(u"Cannot read best results record")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -124,7 +150,7 @@ def ReadBestResults():
 def SaveBestResults():
     try:
         if globalvars.RunMode == RunMode_Play:
-            SaveToFile(globalvars.BestResults.GetRoot(), File_BestResults)
+            SaveToFile(globalvars.BestResults.GetRoot(), globalvars.File_BestResults)
     except:
         oE.Log(u"Cannot write best results record")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -183,9 +209,9 @@ def Hexy(str):
 
 def SaveToFile(node, filename):
     try:
-        tmpDir = os.path.dirname(filename)
-        if not os.access(tmpDir, os.W_OK):
-            os.mkdir(tmpDir)
+        for tmpDir in globalvars.CheckDirs:
+            if not os.access(tmpDir, os.W_OK):
+                os.mkdir(tmpDir)
         tmpFilename = filename+"$_$"
         node.StoreTo(tmpFilename)
         if os.access(filename, os.W_OK):

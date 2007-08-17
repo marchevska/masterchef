@@ -6,6 +6,17 @@ Project: Master Chef
 Глобальные объекты
 """
 
+global DataDirectory
+global CheckDirs
+global File_GameConfig
+global File_Hiscores
+global File_BestResults
+global File_PlayersConfig
+global File_PlayersConfigSafe
+global File_DummyProfile
+global File_GameConfigSafe
+global File_BestResultsSafe
+
 global CuisineInfo      #ингредиенты
 global RecipeInfo       #рецепты
 global CustomersInfo

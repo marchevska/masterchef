@@ -249,4 +249,5 @@ MasterChef {
     text(def/50.def.passed.text) { str = "Good work!" }
     text(def/50.def.expert.text) { str = "Excellent work!" }
     text(def/50.def.failed.text) { str = "We haven't made enough money today. " }
+    text(american.intro) { str = "Dear friends! Today we start our competition. The first round will take place in the American restaurant «Rocky Ranch». Let the best chefs win!" }
 }

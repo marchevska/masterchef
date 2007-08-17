@@ -20,6 +20,7 @@ MasterChef {
         intro(intro.American) {
             episode = "American"
             title = "AMERICAN OPEN"
+            text = "american.intro"
         }
 
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
@@ -490,6 +491,9 @@ MasterChef {
         }
         layout(outro) { 
             textFont = "arial-italic-20" textXY = "(125,380)" textArea = "(300,170)" textColor = "0x000000" 
+        }
+        layout(episode-intro) { 
+            textFont = "arial-italic-18" textXY = "(125,300)" textArea = "(280,170)" textColor = "0x000000" 
         }
     }
 

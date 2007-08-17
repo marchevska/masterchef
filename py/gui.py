@@ -495,6 +495,7 @@ class Gui(scraft.Dispatcher):
             self.IntroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
             self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
                 { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
+        self.IntroScreen["Buttons"]["Speech"] = TextArea("arial-italic-20", Layer_PopupBtnTxt)
         
         #-------
         # завершение уровня
@@ -924,6 +925,13 @@ class Gui(scraft.Dispatcher):
             else:
                 self.IntroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
                 self.IntroScreen["Text"]["Character"+str(i)].text = ""
+        #presenter's speech
+        tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro")
+        self.IntroScreen["Buttons"]["Speech"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
+                "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
+                "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
+        self.IntroScreen["Buttons"]["Speech"].SetText(globalvars.GameTexts.\
+                GetSubtag(globalvars.CurrentPlayer.GetLevel().GetStrAttr("text")).GetStrAttr("str"))
         
     #-------------------------------------------
     # показать итоговый экран очередного эпизода

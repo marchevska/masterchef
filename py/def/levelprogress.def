@@ -20,76 +20,81 @@ MasterChef {
         intro(intro.American) {
             episode = "American"
             title = "AMERICAN OPEN"
-            text = "american.intro"
+            text { str = "american.intro.1" layout = "episode-intro.1" }
+            text { str = "american.intro.2" layout = "episode-intro.2" }
+            text { str = "american.intro.3" layout = "episode-intro.3" }
+            text { str = "american.intro.4" layout = "episode-intro.4" }
+            text { str = "american.intro.5" layout = "episode-intro.5" }
+            text { str = "american.intro.6" layout = "episode-intro.6" }
         }
 
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
 
         level(def/01.def) {
-            title = "Rocky Ranch - Day 1" name = "1-1" no = "1" x = "62" y = "175"
+            title = "#Í/Ä" name = "1-1" no = "1" x = "62" y = "175"
             unlock = "[ 'Grilled Meat', ]"
             intro = "{ 'layout': 'custpic', 'title': 'def/01.def.intro.title', 'text': 'def/01.def.intro.text', 'picture': 'customer.worker', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/01.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/01.def.failed.text' }"
         }
         level(def/02.def) {
-            title = "Rocky Ranch - Day 2" name = "1-2" no = "2" x = "46" y = "201"
+            title = "#Í/Ä" name = "1-2" no = "2" x = "46" y = "201"
             unlock = "[ 'Pineapple Tomato Salad', ]"
             intro = "{ 'layout': 'nopic', 'title': 'def/02.def.intro.title', 'text': 'def/02.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/02.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/02.def.failed.text' }"
         }
         level(def/03.def) {
-            title = "Rocky Ranch - Day 3" name = "1-3" no = "3" x = "41" y = "233"
+            title = "#Í/Ä" name = "1-3" no = "3" x = "41" y = "233"
             unlock = "[ 'Caribbean Spice Chicken', 'Spaghetti with Turkey Meat Sauce', ]"
             intro = "{ 'layout': 'custpic', 'title': 'def/03.def.intro.title', 'text': 'def/03.def.intro.text', 'picture': 'customer.student', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/03.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/03.def.failed.text' }"
         }
         level(def/04.def) {
-            title = "Rocky Ranch - Day 4" name = "1-4" no = "4" x = "48" y = "261"
+            title = "#Í/Ä" name = "1-4" no = "4" x = "48" y = "261"
             unlock = "[ 'Crispy Baked Chicken', 'Pineapple Lasagna', ]"
             intro = "{ 'layout': 'nopic', 'title': 'def/04.def.intro.title', 'text': 'def/04.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/04.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/04.def.failed.text' }"
         }
         level(def/05.def) {
-            title = "Rocky Ranch - Day 5" name = "1-5" no = "5" x = "60" y = "287"
+            title = "#Í/Ä" name = "1-5" no = "5" x = "60" y = "287"
             unlock = "[ 'Chicken Squash Stir-Fry', 'Hubbard Squash Soup Du Jour', ]"
             intro = "{ 'layout': 'bonuspic', 'title': 'def/05.def.intro.title', 'text': 'def/05.def.intro.text', 'picture': 'bonus.sweet' }"
             passed = "{ 'layout': 'outro', 'text': 'def/05.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/05.def.failed.text' }"
         }
         level(def/06.def) {
-            title = "Rocky Ranch - Day 6" name = "1-6" no = "6" x = "78" y = "308"
+            title = "#Í/Ä" name = "1-6" no = "6" x = "78" y = "308"
             unlock = "[ 'Pasta with Tomato Sauce', ]"
             intro = "{ 'layout': 'custpic', 'title': 'def/06.def.intro.title', 'text': 'def/06.def.intro.text', 'picture': 'customer.business', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/06.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/06.def.failed.text' }"
         }
         level(def/07.def) {
-            title = "Rocky Ranch - Day 7" name = "1-7" no = "7" x = "96" y = "327"
+            title = "#Í/Ä" name = "1-7" no = "7" x = "96" y = "327"
             unlock = "[ 'Squash with Tomato Sauce', 'Chicken Pasta Casseroule', ]"
             intro = "{ 'layout': 'nopic', 'title': 'def/07.def.intro.title', 'text': 'def/07.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/07.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/07.def.failed.text' }"
         }
         level(def/08.def) {
-            title = "Rocky Ranch - Day 8" name = "1-8" no = "8" x = "118" y = "342"
+            title = "#Í/Ä" name = "1-8" no = "8" x = "118" y = "342"
             unlock = "[ 'Chicken Pineapple Pasta Pockets', ]"
             intro = "{ 'layout': 'bonuspic', 'title': 'def/08.def.intro.title', 'text': 'def/08.def.intro.text', 'picture': 'bonus.removerow' }"
             passed = "{ 'layout': 'outro', 'text': 'def/08.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/08.def.failed.text' }"
         }
         level(def/09.def) {
-            title = "Rocky Ranch - Day 9" name = "1-9" no = "9" x = "141" y = "353"
+            title = "#Í/Ä" name = "1-9" no = "9" x = "141" y = "353"
             unlock = "[ ]"
             intro = "{ 'layout': 'custpic', 'title': 'def/09.def.intro.title', 'text': 'def/09.def.intro.text', 'picture': 'customer.tourist.hawaiian', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/09.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/09.def.failed.text' }"
         }
         level(def/10.def) {
-            title = "Rocky Ranch - Day 10" name = "1-10" no = "10" x = "167" y = "358"
+            title = "#Í/Ä" name = "1-10" no = "10" x = "167" y = "358"
             unlock = "[ ]"
             intro = "{ 'layout': 'nopic', 'title': 'def/10.def.intro.title', 'text': 'def/10.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/10.def.passed.text' }"
@@ -109,8 +114,13 @@ MasterChef {
         intro(intro.Mexican) {
             episode = "Mexican"
             title = "MEXICAN OPEN"
+            text { str = "mexican.intro.1" layout = "episode-intro.1" }
+            text { str = "mexican.intro.2" layout = "episode-intro.2" }
+            text { str = "mexican.intro.3" layout = "episode-intro.3" }
+            text { str = "mexican.intro.4" layout = "episode-intro.4" }
+            text { str = "mexican.intro.5" layout = "episode-intro.5" }
+            text { str = "mexican.intro.6" layout = "episode-intro.6" }
         }
-
 
         level(def/11.def) {
             title = "Lemon Lime - Day 1" name = "2-1" no = "11" x = "211" y = "272"
@@ -196,6 +206,12 @@ MasterChef {
         intro(intro.Russian) {
             episode = "Russian"
             title = "RUSSIAN OPEN"
+            text { str = "russian.intro.1" layout = "episode-intro.1" }
+            text { str = "russian.intro.2" layout = "episode-intro.2" }
+            text { str = "russian.intro.3" layout = "episode-intro.3" }
+            text { str = "russian.intro.4" layout = "episode-intro.4" }
+            text { str = "russian.intro.5" layout = "episode-intro.5" }
+            text { str = "russian.intro.6" layout = "episode-intro.6" }
         }
 
 
@@ -283,6 +299,12 @@ MasterChef {
         intro(intro.Japanese) {
             episode = "Japanese"
             title = "JAPANESE OPEN"
+            text { str = "japanese.intro.1" layout = "episode-intro.1" }
+            text { str = "japanese.intro.2" layout = "episode-intro.2" }
+            text { str = "japanese.intro.3" layout = "episode-intro.3" }
+            text { str = "japanese.intro.4" layout = "episode-intro.4" }
+            text { str = "japanese.intro.5" layout = "episode-intro.5" }
+            text { str = "japanese.intro.6" layout = "episode-intro.6" }
         }
 
 
@@ -370,6 +392,13 @@ MasterChef {
         intro(intro.Hawaiian) {
             episode = "Hawaiian"
             title = "FINALS"
+            text { str = "hawaiian.intro.1" layout = "episode-intro.1" }
+            text { str = "hawaiian.intro.2" layout = "episode-intro.2" }
+            text { str = "hawaiian.intro.3" layout = "episode-intro.3" }
+            text { str = "hawaiian.intro.4" layout = "episode-intro.4" }
+            text { str = "hawaiian.intro.5" layout = "episode-intro.5" }
+            text { str = "hawaiian.intro.6" layout = "episode-intro.6" }
+            text { str = "hawaiian.intro.7" layout = "episode-intro.7" }
         }
 
 
@@ -493,7 +522,28 @@ MasterChef {
             textFont = "arial-italic-20" textXY = "(125,380)" textArea = "(300,170)" textColor = "0x000000" 
         }
         layout(episode-intro) { 
-            textFont = "arial-italic-18" textXY = "(125,300)" textArea = "(280,170)" textColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(125,280)" textArea = "(280,220)" textColor = "0x000000" 
+        }
+        layout(episode-intro.1) { 
+            textFont = "arial-italic-18" textXY = "(270,300)" textColor = "0x000000" 
+        }
+        layout(episode-intro.2) { 
+            textFont = "arial-italic-18" textXY = "(270,325)" textColor = "0x000000" 
+        }
+        layout(episode-intro.3) { 
+            textFont = "arial-italic-18" textXY = "(270,350)" textColor = "0x000000" 
+        }
+        layout(episode-intro.4) { 
+            textFont = "arial-italic-18" textXY = "(270,375)" textColor = "0x000000" 
+        }
+        layout(episode-intro.5) { 
+            textFont = "arial-italic-18" textXY = "(270,400)" textColor = "0x000000" 
+        }
+        layout(episode-intro.6) { 
+            textFont = "arial-italic-18" textXY = "(270,425)" textColor = "0x000000" 
+        }
+        layout(episode-intro.7) { 
+            textFont = "arial-italic-18" textXY = "(270,450)" textColor = "0x000000" 
         }
     }
 

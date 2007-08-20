@@ -40,6 +40,7 @@ class Gui(scraft.Dispatcher):
         self.MaxNewRecipes = 12
         self.MaxPeopleOnLevel = 8
         self.MaxPeopleOnOutro = 4
+        self.MaxSpeechLines = 8
         self.CurrentCookbookPage = 0
         self.NextState = PState_None
         self.SavedOptions = []
@@ -495,7 +496,8 @@ class Gui(scraft.Dispatcher):
             self.IntroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
             self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
                 { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
-        self.IntroScreen["Buttons"]["Speech"] = TextArea("arial-italic-20", Layer_PopupBtnTxt)
+        for i in range(self.MaxSpeechLines):
+            self.IntroScreen["Text"]["Speech"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
         
         #-------
         # завершение уровня
@@ -909,7 +911,8 @@ class Gui(scraft.Dispatcher):
     #-------------------------------------------
     def _ShowEpisodeIntro(self):
         globalvars.Musician.PlaySound("episode.intro")
-        tmpEpisode = globalvars.CurrentPlayer.GetLevel().GetStrAttr("episode")
+        tmpLevel = globalvars.CurrentPlayer.GetLevel()
+        tmpEpisode = tmpLevel.GetStrAttr("episode")
         tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
         tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).items()
         self.IntroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
@@ -926,12 +929,18 @@ class Gui(scraft.Dispatcher):
                 self.IntroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
                 self.IntroScreen["Text"]["Character"+str(i)].text = ""
         #presenter's speech
-        tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro")
-        self.IntroScreen["Buttons"]["Speech"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
-                "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
-                "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
-        self.IntroScreen["Buttons"]["Speech"].SetText(globalvars.GameTexts.\
-                GetSubtag(globalvars.CurrentPlayer.GetLevel().GetStrAttr("text")).GetStrAttr("str"))
+        tmpTextLines = list(tmpLevel.Tags("text"))
+        for i in range(len(tmpTextLines)):
+            tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpTextLines[i].GetStrAttr("layout"))
+            self.IntroScreen["Text"]["Speech"+str(i)].ChangeKlassTo(tmpLayout.GetStrAttr("textFont"))
+            self.IntroScreen["Text"]["Speech"+str(i)].x, self.IntroScreen["Text"]["Speech"+str(i)].y = \
+                    eval(tmpLayout.GetStrAttr("textXY"))
+            self.IntroScreen["Text"]["Speech"+str(i)].cfilt.color = eval(tmpLayout.GetStrAttr("textColor"))
+            self.IntroScreen["Text"]["Speech"+str(i)].hotspot = scraft.HotspotCenter
+            self.IntroScreen["Text"]["Speech"+str(i)].text = globalvars.GameTexts.\
+                    GetSubtag(tmpTextLines[i].GetStrAttr("str")).GetStrAttr("str")
+        for i in range(len(tmpTextLines), self.MaxSpeechLines):
+            self.IntroScreen["Text"]["Speech"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
         
     #-------------------------------------------
     # показать итоговый экран очередного эпизода

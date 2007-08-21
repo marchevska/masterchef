@@ -343,6 +343,18 @@ def MakeSprite(newKlass, newLayer, param = {}):
         tmpSpr.parent = param["parent"]
     return tmpSpr
     
+
+def ApplyTextLayout(sprite, layout):
+    if layout.HasAttr("textFont"):
+        sprite.ChangeKlassTo(layout.GetStrAttr("textFont"))
+    if layout.HasAttr("textXY"):
+        sprite.x, sprite.y = eval(layout.GetStrAttr("textXY"))
+    if layout.HasAttr("textColor"):
+        sprite.cfilt.color = eval(layout.GetStrAttr("textColor"))
+    if layout.HasAttr("hotspot"):
+        sprite.hotspot = eval(layout.GetStrAttr("hotspot"))
+   
+
 def Nearest(x, range):
     return min(max(x, range[0]), range[1])
 

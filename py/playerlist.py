@@ -156,17 +156,30 @@ class Player:
     #проверить условие для разлочивания следующего уровня после outro
     #------------------------------------
     def GetScoresPlaceAndCondition(self):
-        tmpConditions = eval(self.Level.GetStrAttr("passIf"))
         tmpPass = True
-        for episode in tmpConditions.keys():
+        #проверить место в каждом из эпизодов
+        tmpConditionsPlace = eval(self.Level.GetStrAttr("passIf"))
+        for episode in tmpConditionsPlace.keys():
             tmpResults = dict(map(lambda x: (x[0], x[1]['score']),
                 eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people")).items()))
             tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
             tmp = tmpResults.items()
             tmp.sort(lambda x,y: cmp(y[1], x[1]))
             tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"),self.XML.GetSubtag(episode).GetIntAttr("points")))+1
-            if tmpPlace > tmpConditions[episode]:
+            if tmpPlace > tmpConditionsPlace[episode]:
                 tmpPass = False
+        #проверить счет в каждом из эпизодов и суммарный счет
+        if self.Level.HasAttr("passScore"):
+            tmpConditionsScore = eval(self.Level.GetStrAttr("passScore"))
+            for episode in tmpConditionsScore.keys():
+                if self.XML.GetSubtag(episode).GetIntAttr("points") < tmpConditionsScore[episode]:
+                    tmpPass = False
+        if self.Level.HasAttr("sumScore"):
+            tmpPlayerSumScore = reduce(lambda x,y: x+y, map(lambda x: self.XML.GetSubtag(x).GetIntAttr("points"),
+                        eval(globalvars.GameSettings.GetStrAttr("settings"))))
+            if tmpPlayerSumScore < self.Level.GetIntAttr("sumScore"):
+                tmpPass = False
+                
         return { "scores": tmp, "place": tmpPlace, "pass": tmpPass }
         
     def GetLevel(self):

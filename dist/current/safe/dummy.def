@@ -78,11 +78,12 @@ MasterChef{
         intro(intro.Russian) { seen = "no" unlocked = "no" }
         intro(intro.Japanese) { seen = "no" unlocked = "no" }
         intro(intro.Hawaiian) { seen = "no" unlocked = "no" }
-        outro(outro.American) { seen = "no" unlocked = "no" expert = "no" }
-        outro(outro.Mexican) { seen = "no" unlocked = "no" expert = "no" }
-        outro(outro.Russian) { seen = "no" unlocked = "no" expert = "no" }
-        outro(outro.Japanese) { seen = "no" unlocked = "no" expert = "no" }
-        outro(outro.Hawaiian) { seen = "no" unlocked = "no" expert = "no" }
+        outro(outro.American) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Mexican) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Russian) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Japanese) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Hawaiian) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        comic(Help.Rules) { seen = "no" unlocked = "no" }
     //}
     
     //Hints{

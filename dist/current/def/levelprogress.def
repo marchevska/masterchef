@@ -12,10 +12,20 @@ MasterChef {
             image = "comics.masterchef.intro.3"
             button = "continue-button"
         }
+        comic(Help.Rules) {
+            image = "help.champ-rules"
+            button = "continue-button"
+        }
         //Episode - American
         intro(intro.American) {
             episode = "American"
             title = "AMERICAN OPEN"
+            text { str = "american.intro.1" layout = "episode-intro.1" }
+            text { str = "american.intro.2" layout = "episode-intro.2" }
+            text { str = "american.intro.3" layout = "episode-intro.3" }
+            text { str = "american.intro.4" layout = "episode-intro.4" }
+            text { str = "american.intro.5" layout = "episode-intro.5" }
+            text { str = "american.intro.6" layout = "episode-intro.6" }
         }
 
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
@@ -98,14 +108,30 @@ MasterChef {
             title = "AMERICAN OPEN - RESULTS"
             passIf = "{ 'American': 4 }"
             passFurther = "4"
+            showWinners = "yes"
+            passedText {
+                text { str = "american.passed.1" layout = "episode-outro.1" }
+                text { str = "american.passed.2" layout = "episode-outro.2" }
+                text { str = "american.passed.3" layout = "episode-outro.3" }
+                text { str = "american.passed.4" layout = "episode-outro.4" }
+                text { str = "american.passed.5" layout = "episode-outro.5" }
+                text { str = "american.passed.6" layout = "episode-outro.6" }
+            }
+            failedText {
+            }
         }
 
         //Episode - Mexican
         intro(intro.Mexican) {
             episode = "Mexican"
             title = "MEXICAN OPEN"
+            text { str = "mexican.intro.1" layout = "episode-intro.1" }
+            text { str = "mexican.intro.2" layout = "episode-intro.2" }
+            text { str = "mexican.intro.3" layout = "episode-intro.3" }
+            text { str = "mexican.intro.4" layout = "episode-intro.4" }
+            text { str = "mexican.intro.5" layout = "episode-intro.5" }
+            text { str = "mexican.intro.6" layout = "episode-intro.6" }
         }
-
 
         level(def/11.def) {
             title = "Lemon Lime - Day 1" name = "2-1" no = "11" x = "211" y = "272"
@@ -185,12 +211,29 @@ MasterChef {
             title = "MEXICAN OPEN – RESULTS"
             passIf = "{ 'Mexican': 4 }"
             passFurther = "4"
+            showWinners = "yes"
+            passedText {
+                text { str = "mexican.passed.1" layout = "episode-outro.1" }
+                text { str = "mexican.passed.2" layout = "episode-outro.2" }
+                text { str = "mexican.passed.3" layout = "episode-outro.3" }
+                text { str = "mexican.passed.4" layout = "episode-outro.4" }
+                text { str = "mexican.passed.5" layout = "episode-outro.5" }
+                text { str = "mexican.passed.6" layout = "episode-outro.6" }
+            }
+            failedText {
+            }
         }
         
         //Episode – Russian
         intro(intro.Russian) {
             episode = "Russian"
             title = "RUSSIAN OPEN"
+            text { str = "russian.intro.1" layout = "episode-intro.1" }
+            text { str = "russian.intro.2" layout = "episode-intro.2" }
+            text { str = "russian.intro.3" layout = "episode-intro.3" }
+            text { str = "russian.intro.4" layout = "episode-intro.4" }
+            text { str = "russian.intro.5" layout = "episode-intro.5" }
+            text { str = "russian.intro.6" layout = "episode-intro.6" }
         }
 
 
@@ -272,12 +315,29 @@ MasterChef {
             title = "RUSSIAN OPEN – RESULTS"
             passIf = "{ 'Russian': 4 }"
             passFurther = "4"
+            showWinners = "yes"
+            passedText {
+                text { str = "russian.passed.1" layout = "episode-outro.1" }
+                text { str = "russian.passed.2" layout = "episode-outro.2" }
+                text { str = "russian.passed.3" layout = "episode-outro.3" }
+                text { str = "russian.passed.4" layout = "episode-outro.4" }
+                text { str = "russian.passed.5" layout = "episode-outro.5" }
+                text { str = "russian.passed.6" layout = "episode-outro.6" }
+            }
+            failedText {
+            }
         }
         
         //Episode – Japanese
         intro(intro.Japanese) {
             episode = "Japanese"
             title = "JAPANESE OPEN"
+            text { str = "japanese.intro.1" layout = "episode-intro.1" }
+            text { str = "japanese.intro.2" layout = "episode-intro.2" }
+            text { str = "japanese.intro.3" layout = "episode-intro.3" }
+            text { str = "japanese.intro.4" layout = "episode-intro.4" }
+            text { str = "japanese.intro.5" layout = "episode-intro.5" }
+            text { str = "japanese.intro.6" layout = "episode-intro.6" }
         }
 
 
@@ -357,14 +417,41 @@ MasterChef {
             x = "720" y = "115"
             episode = "Japanese"
             title = "JAPANESE OPEN – RESULTS"
-            passIf = "{ 'American': 1,  'Mexican': 1,  'Russian': 1,  'Japanese': 1 }"
+            passIf = "{ 'American': 2,  'Mexican': 2,  'Russian': 2,  'Japanese': 2 }"
+            passScore = "{ 'American': 90,  'Mexican': 90,  'Russian': 90,  'Japanese': 90 }"
+            sumScore = "380"
             passFurther = "2"
+            showWinners = "no"
+            passedText {
+                text { str = "japanese.passed.1" layout = "episode-outro.japanese.1" }
+                text { str = "japanese.passed.2" layout = "episode-outro.japanese.2" }
+                text { str = "japanese.passed.3" layout = "episode-outro.japanese.3" }
+                text { str = "japanese.passed.4" layout = "episode-outro.japanese.4" }
+                text { str = "japanese.passed.5" layout = "episode-outro.japanese.5" }
+                text { str = "japanese.passed.6" layout = "episode-outro.japanese.6" }
+            }
+            failedText {
+                text { str = "japanese.failed.1" layout = "episode-outro.failed.1" }
+                text { str = "japanese.failed.2" layout = "episode-outro.failed.2" }
+                text { str = "japanese.failed.3" layout = "episode-outro.failed.3" }
+                text { str = "japanese.failed.4" layout = "episode-outro.failed.4" }
+                text { str = "japanese.failed.5" layout = "episode-outro.failed.5" }
+                text { str = "japanese.failed.6" layout = "episode-outro.failed.6" }
+                text { str = "japanese.failed.7" layout = "episode-outro.failed.7" }
+            }
         }
         
         //Episode - Hawaiian
         intro(intro.Hawaiian) {
             episode = "Hawaiian"
             title = "FINALS"
+            text { str = "hawaiian.intro.1" layout = "episode-intro.1" }
+            text { str = "hawaiian.intro.2" layout = "episode-intro.2" }
+            text { str = "hawaiian.intro.3" layout = "episode-intro.3" }
+            text { str = "hawaiian.intro.4" layout = "episode-intro.4" }
+            text { str = "hawaiian.intro.5" layout = "episode-intro.5" }
+            text { str = "hawaiian.intro.6" layout = "episode-intro.6" }
+            text { str = "hawaiian.intro.7" layout = "episode-intro.7" }
         }
 
 
@@ -446,6 +533,24 @@ MasterChef {
             title = "FINALS – RESULTS"
             passIf = "{ 'Hawaiian': 1 }"
             passFurther = "1"
+            sumScore = "100"
+            showWinners = "no"
+            passedText {
+                text { str = "hawaiian.passed.1" layout = "episode-outro.hawaiian.1" }
+                text { str = "hawaiian.passed.2" layout = "episode-outro.hawaiian.2" }
+                text { str = "hawaiian.passed.3" layout = "episode-outro.hawaiian.3" }
+                text { str = "hawaiian.passed.4" layout = "episode-outro.hawaiian.4" }
+                text { str = "hawaiian.passed.5" layout = "episode-outro.hawaiian.5" }
+            }
+            failedText {
+                text { str = "hawaiian.failed.1" layout = "episode-outro.failed.1" }
+                text { str = "hawaiian.failed.2" layout = "episode-outro.failed.2" }
+                text { str = "hawaiian.failed.3" layout = "episode-outro.failed.3" }
+                text { str = "hawaiian.failed.4" layout = "episode-outro.failed.4" }
+                text { str = "hawaiian.failed.5" layout = "episode-outro.failed.5" }
+                text { str = "hawaiian.failed.6" layout = "episode-outro.failed.6" }
+                text { str = "hawaiian.failed.7" layout = "episode-outro.failed.7" }
+            }
         }
     }
     
@@ -460,11 +565,11 @@ MasterChef {
     
     //Competitors and their results
     People {
-        episode(American) { people= "{'Elisa':45,'Emma':35,'Jenny':1,'Lora':50,'Marty':30,'Max':40,'Ronald':95,'Steve':60,}" }
-        episode(Mexican) { people= "{'Alex':40,'Erica':35,'Jenny':1,'Lora':45,'Michael':55,'Nina':70,'Ronald':95,'Steve':30,}" }
-        episode(Russian) { people= "{'Alban':80,'Angela':45,'Jenny':1,'Michael':40,'Naomi':65,'Nina':35,'Ronald':95,'Sam':30,}" }
-        episode(Japanese) { people= "{'Alban':85,'Jenny':1,'Mary':45,'Naomi':35,'Paula':90,'Peter':40,'Ronald':95,'Scott':30,}" }
-        episode(Hawaiian) { people= "{'Jenny':1,'Ronald':95,}" }
+        episode(American) { people= "{'Elisa': { 'score': 45, 'xy': (55, 360) }, 'Emma': { 'score': 35, 'xy': (350, 265) }, 'Jenny': { 'score': 1, 'xy': (130, 570) }, 'Lora': { 'score': 50, 'xy': (200, 260) }, 'Marty': { 'score': 30, 'xy': (417, 285) }, 'Max': { 'score': 40, 'xy': (270, 250) }, 'Ronald': { 'score': 95, 'xy': (60, 490) }, 'Steve': { 'score': 60, 'xy': (127, 285) }, }" }
+        episode(Mexican) { people= "{'Alex': { 'score': 40, 'xy': (60, 370) }, 'Erica': { 'score': 35, 'xy': (65, 505) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Lora': { 'score': 45, 'xy': (280, 245) }, 'Michael': { 'score': 55, 'xy': (195, 260) }, 'Nina': { 'score': 70, 'xy': (420, 295) }, 'Ronald': { 'score': 95, 'xy': (120, 295) }, 'Steve': { 'score': 30, 'xy': (355, 260) }, }" }
+        episode(Russian) { people= "{'Alban': { 'score': 80, 'xy': (195, 260) }, 'Angela': { 'score': 45, 'xy': (125, 290) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Michael': { 'score': 40, 'xy': (60, 360) }, 'Naomi': { 'score': 65, 'xy': (280, 250) }, 'Nina': { 'score': 35, 'xy': (435, 320) }, 'Ronald': { 'score': 95, 'xy': (60, 495) }, 'Sam': { 'score': 30, 'xy': (360, 260) }, }" }
+        episode(Japanese) { people= "{'Alban': { 'score': 85, 'xy': (270, 255) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Mary': { 'score': 45, 'xy': (60, 365) }, 'Naomi': { 'score': 35, 'xy': (355, 265) }, 'Paula': { 'score': 90, 'xy': (195, 255) }, 'Peter': { 'score': 40, 'xy': (435, 325) }, 'Ronald': { 'score': 95, 'xy': (60, 495) }, 'Scott': { 'score': 30, 'xy': (115, 280) }, }" }
+        episode(Hawaiian) { people= "{'Jenny': { 'score': 1, 'xy': (60, 520) }, 'Ronald': { 'score': 95, 'xy': (60, 350) }, }" }
     }
 
     //Level intro/outro layouts
@@ -484,9 +589,45 @@ MasterChef {
             textFont = "arial-italic-18" textXY = "(100,400)" textArea = "(360,150)" textColor = "0x000000" 
             hasPicture = "no" 
         }
-        layout(outro) { 
-            textFont = "arial-italic-20" textXY = "(125,380)" textArea = "(300,170)" textColor = "0x000000" 
-        }
+        layout(outro) { textFont = "arial-italic-20" textXY = "(125,380)" textArea = "(300,170)" textColor = "0x000000" }
+
+        layout(episode-intro) { textFont = "arial-italic-18" textXY = "(125,280)" textArea = "(280,220)" textColor = "0x000000" }
+        layout(episode-intro.1) { textFont = "arial-italic-18" textXY = "(270,300)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.2) { textFont = "arial-italic-18" textXY = "(270,325)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.3) { textFont = "arial-italic-18" textXY = "(270,350)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.4) { textFont = "arial-italic-18" textXY = "(270,375)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.5) { textFont = "arial-italic-18" textXY = "(270,400)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.6) {  textFont = "arial-italic-18" textXY = "(270,425)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.7) { textFont = "arial-italic-18" textXY = "(270,450)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.2) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.3) {  textFont = "arial-italic-18" textXY = "(210,445)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.4) { textFont = "arial-italic-18" textXY = "(210,470)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.5) { textFont = "arial-italic-18" textXY = "(210,495)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.6) { textFont = "arial-italic-18" textXY = "(210,520)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.winners) { textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x993300"hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.japanese.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x993300"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.3) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.4) { textFont = "arial-italic-18" textXY = "(210,450)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.5) { textFont = "arial-italic-18" textXY = "(210,480)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.6) { textFont = "arial-italic-18" textXY = "(210,510)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.hawaiian.1) { textFont = "arial-italic-20" textXY = "(210,370)" textColor = "0xcc3300"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.2) { textFont = "arial-italic-20" textXY = "(210,405)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.3) { textFont = "arial-italic-20" textXY = "(210,440)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.4) { textFont = "arial-italic-20" textXY = "(210,475)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.5) { textFont = "arial-italic-20" textXY = "(210,510)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.failed.1) {  textFont = "arial-italic-18" textXY = "(210,365)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.3) {  textFont = "arial-italic-18" textXY = "(210,415)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.4) { textFont = "arial-italic-18" textXY = "(210,440)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.5) { textFont = "arial-italic-18" textXY = "(210,465)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.6) { textFont = "arial-italic-18" textXY = "(210,490)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
     }
 
 }

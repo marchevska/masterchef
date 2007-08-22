@@ -494,6 +494,7 @@ MasterChef{
         sprite(comics.japanese.intro) { bitmap = "img/comics/japanese.intro.png" }
         sprite(comics.hawaiian.intro) { bitmap = "img/comics/hawaiian.intro.png" }
         sprite(comics.masterchef.outro) { bitmap = "img/comics/masterchef.outro.png" }
+        sprite(help.champ-rules) { bitmap = "img/comics/help.champ-rules.png" }
     }
     
     Episodes{
@@ -576,8 +577,10 @@ MasterChef{
         sprite(map-background) { bitmap = "img/gui/map-background.png" truecolor = "yes" }
         sprite(level-pointers) { bitmap = "img/gui/level-pointers.png" type = "blend" layout = "5x1" }
         sprite(level-pointers-expert) { bitmap = "img/gui/level-pointers-expert.png" type = "blend" layout = "5x1" }
-        sprite(outro-pointers) { bitmap = "img/gui/outro-pointers.png" type = "blend" layout = "5x1" }
-        sprite(outro-pointers-expert) { bitmap = "img/gui/outro-pointers-expert.png" type = "blend" layout = "5x1" }
+        sprite(outro-pointers.1st) { bitmap = "img/gui/outro-pointers.1st.png" type = "blend" layout = "5x1" }
+        sprite(outro-pointers.2nd) { bitmap = "img/gui/outro-pointers.2nd.png" type = "blend" layout = "5x1" }
+        sprite(outro-pointers.pass) { bitmap = "img/gui/outro-pointers.pass.png" type = "blend" layout = "5x1" }
+        sprite(outro-pointers.notpass) { bitmap = "img/gui/outro-pointers.notpass.png" type = "blend" layout = "5x1" }
         sprite(map.jane) { bitmap = "img/gui/map.jane.png" type = "blend" }
         sprite(map.jane.eyes) { bitmap = "img/gui/map.jane.eyes.png" layout = "1x2" }
         sprite(map.tablet) { bitmap = "img/gui/map.tablet.png" type = "blend" }
@@ -630,81 +633,97 @@ MasterChef{
         font(mainmenu.domcasual) {
             bitmap = "img/fonts/mainmenu.domcasual.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
         }
         font(mainmenu.domcasual.down) {
             bitmap = "img/fonts/mainmenu.domcasual.down.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
         }
         font(domcasual-10) {
             bitmap = "img/fonts/domcasual-10.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
         }
         font(domcasual-10-up) {
             bitmap = "img/fonts/domcasual-10-up.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
         }
         font(domcasual-10-roll) {
             bitmap = "img/fonts/domcasual-10-roll.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
         }
         font(domcasual-10-down) {
             bitmap = "img/fonts/domcasual-10-down.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
         }
         font(domcasual-10-inert) {
             bitmap = "img/fonts/domcasual-10-inert.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
         }
         font(domcasual-11) {
             bitmap = "img/fonts/domcasual-11.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
         }
         font(domcasual-20-yellow) {
             bitmap = "img/fonts/domcasual-20-yellow.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
         }
         font(domcasual-20-green) {
             bitmap = "img/fonts/domcasual-20-green.png"
             type = "blend"
-            symbols = "1234567890-+/ ."
+            filtering = "yes"
+            symbols = "1234567890-+/ $"
         }
         font(domcasual-20-red) {
             bitmap = "img/fonts/domcasual-20-red.png"
             type = "blend"
-            symbols = "1234567890-+/ ."
+            filtering = "yes"
+            symbols = "1234567890-+/ $"
         }
         font(domcasual-20-orange) {
             bitmap = "img/fonts/domcasual-20-orange.png"
             type = "blend"
-            symbols = "1234567890-+/ ."
+            filtering = "yes"
+            symbols = "1234567890-+/ $"
         }
         font(hobor-17) {
             bitmap = "img/fonts/hobor-17.png"
             type = "blend"
+            filtering = "yes"
             symbols = "1234567890"
         }
         font(simple) {
             bitmap = "img/fonts/simple.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ."
         }
         font(arial-italic-20) {
             bitmap = "img/fonts/arial-italic-20.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'"
         }
         font(arial-italic-18) {
             bitmap = "img/fonts/arial-italic-18.png"
             type = "blend"
+            filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'”:;()"
         }
         

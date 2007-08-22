@@ -64,6 +64,9 @@ MasterChef {
         expertPoints = "10"
         expertAll = "100"
         charName = "Jenny"
+        
+        tokensForGreat = "5"
+        tokenForIncreadible = "9"
     }
     
     Themes {
@@ -467,57 +470,6 @@ MasterChef {
         Competitor(Sam) { src = "competitor.sam" }
         Competitor(Scott) { src = "competitor.scott" }
         Competitor(Steve) { src = "competitor.steve" }
-    }
-    
-    PowerUps {
-        PowerUp(Cross)
-        {
-            symbol = "1"
-            price = "2"
-        }
-        
-        PowerUp(EmptyTrash)
-        {
-            symbol = "8"
-            price = "2"
-        }
-        
-        PowerUp(Gift)
-        {
-            symbol = "6"
-            price = "3"
-        }
-        
-        PowerUp(Magicwand)
-        {
-            symbol = "5"
-            price = "3"
-        }
-        
-        PowerUp(Shuffle)
-        {
-            symbol = "7"
-            price = "2"
-        }
-        
-        PowerUp(Spoon)
-        {
-            symbol = "2"
-            price = "1"
-        }
-        
-        PowerUp(Sweet)
-        {
-            symbol = "3"
-            price = "1"
-        }
-        
-        PowerUp(Supersweet)
-        {
-            symbol = "4"
-            price = "2"
-        }
-        
     }
     
     GameTips {

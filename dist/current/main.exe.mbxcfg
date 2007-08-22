@@ -1,15 +1,15 @@
 
 bootstub.dbg=0
-box.1.flags=2
+box.1.flags=16386
 box.1.fname=lib.dat
 box.1.name=dlls
-box.2.flags=2
+box.2.flags=16386
 box.2.fname=img.dat
 box.2.name=img
-box.3.flags=2
+box.3.flags=16386
 box.3.fname=levels.dat
 box.3.name=levels
-box.4.flags=2
+box.4.flags=16386
 box.4.fname=def.dat
 box.4.name=def
 box.cmdline=
@@ -19,7 +19,7 @@ box.pattern=*.dat
 box.separate=0
 box.sepfile=
 box.ziplevel=1
-dir.addfiles=C:\Projects\proto games\Master Chef\dist\current
+dir.addfiles=C:\Projects\proto games\Master Chef\dist\current\img
 exe.crc=0
 exe.pack=1
 exe.packedfilesvisible=1
@@ -382,8 +382,10 @@ box.2.contents~
 00 img\gui\options-checkbox.png
 00 img\gui\options-galka.png
 00 img\gui\options-slider.png
-00 img\gui\outro-pointers-expert.png
-00 img\gui\outro-pointers.png
+00 img\gui\outro-pointers.1st.png
+00 img\gui\outro-pointers.2nd.png
+00 img\gui\outro-pointers.notpass.png
+00 img\gui\outro-pointers.pass.png
 00 img\gui\outro.balloon.png
 00 img\gui\outro.bg-pane.png
 00 img\gui\outro.light.png
@@ -396,8 +398,6 @@ box.2.contents~
 00 img\gui\popup-background.png
 00 img\gui\slider-background.png
 00 img\gui\textcursor.bmp
-00 img\gui\win.gold.png
-00 img\gui\win.silver.png
 00 img\ingredients\avocado.icon.png
 00 img\ingredients\avocado.png
 00 img\ingredients\bonus.bomb.png

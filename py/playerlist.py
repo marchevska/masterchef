@@ -165,7 +165,14 @@ class Player:
             tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
             tmp = tmpResults.items()
             tmp.sort(lambda x,y: cmp(y[1], x[1]))
-            tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"),self.XML.GetSubtag(episode).GetIntAttr("points")))+1
+            tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"), self.XML.GetSubtag(episode).GetIntAttr("points")))+1
+            #если такое же количесвто очков, как у занявшее следующее место - понизить место!
+            if tmpPlace < len(tmp):
+                if tmp[tmpPlace][1] == self.XML.GetSubtag(episode).GetIntAttr("points"):
+                    tmpEntry = tuple(tmp[tmpPlace])
+                    tmp[tmpPlace] = tmp[tmpPlace-1]
+                    tmp[tmpPlace-1] = tmpEntry
+                    tmpPlace = tmpPlace + 1
             if tmpPlace > tmpConditionsPlace[episode]:
                 tmpPass = False
         #проверить счет в каждом из эпизодов и суммарный счет

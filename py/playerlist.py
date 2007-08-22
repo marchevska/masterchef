@@ -17,6 +17,9 @@ import defs
 import globalvars
 import string, traceback
 
+AllBoolAttrs = ("played", "unlocked", "expert", "seen", "beat1st", "beat2nd", "passed" )
+AllIntAttrs = ("hiscore", "place")
+
 class Player:
 
     #------------------------------------
@@ -26,6 +29,7 @@ class Player:
         self.Name = ""
         self.Level = None       #указывает на ноду уровня в LevelProgress
         self.Filename = ""
+        self.EpisodeResults = {}
         try:
             self.XML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag(DEF_Header)
         except:
@@ -65,10 +69,10 @@ class Player:
             if tmp == None:
                 tmp = self.XML.Insert(tmpNode.GetName())
                 tmp.SetContent(tmpNode.GetContent())
-            for attr in ("played", "unlocked", "expert", "seen"):
+            for attr in AllBoolAttrs:
                 if tmpNode.HasAttr(attr) and not tmp.HasAttr(attr):
                     tmp.SetBoolAttr(attr, tmpNode.GetBoolAttr(attr))
-            for attr in ("hiscore",):
+            for attr in AllIntAttrs:
                 if tmpNode.HasAttr(attr) and not tmp.HasAttr(attr):
                     tmp.SetIntAttr(attr, tmpNode.GetIntAttr(attr))
         self.Save()
@@ -132,16 +136,12 @@ class Player:
             elif level.GetName() == "outro":
                 #если аутро: отметить в профиле игрока уровень как увиденный
                 tmpNode.SetBoolAttr("seen", True)
-                #проверка экспертного прохождения всех уровней этого эпизода
-                if self.XML.GetSubtag(level.GetStrAttr("episode")).GetIntAttr("points") == \
-                        globalvars.GameSettings.GetIntAttr("expertAll"):
-                    tmpNode.SetBoolAttr("expert", True)
+                self._ReviewEpisodeResults(level)
                 #проверить условие для разлочивания следующего уровня
-                if level.Next() and self.GetScoresPlaceAndCondition()["pass"]:
+                if level.Next() and self.EpisodeResults[level.GetStrAttr("episode")]["pass"]:
                     tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
                     if tmpNextLevel.HasAttr("unlocked"):
                         self._UnlockEntry(tmpNextLevel)
-                        #tmpNextLevel.SetBoolAttr("unlocked", True)
             
             elif level.GetName() == "level":
                 #если уровень: отметить в профиле игрока уровень как начатый
@@ -153,41 +153,82 @@ class Player:
             sys.exit()
         
     #------------------------------------
+    # подсчитать результаты для заданного эпизода
+    # level - это outro-нода в levelprogress
+    #------------------------------------
+    def _ReviewEpisodeResults(self, level):
+        try:
+            #outro-нода и episode-нода в профиле игрока
+            tmpEpisodeName = level.GetStrAttr("episode")
+            tmpOutroNode = self.XML.GetSubtag(level.GetContent())
+            tmpOldOutroNode = tmpOutroNode.Clone()
+            tmpEpisodeNode = self.XML.GetSubtag(tmpEpisodeName)
+            
+            #сумма очков за эпизод - подсчитываем изаписываем
+            tmpSum = reduce(lambda x,y: x+y,
+                        map(lambda x: (x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("expertPoints")+\
+                        (x.GetIntAttr("hiscore")>0 and not x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("levelPoints"),
+                        map(lambda y: self.XML.GetSubtag(y), eval(level.GetStrAttr("sum")))))
+            tmpEpisodeNode.SetIntAttr("points", tmpSum)
+            
+            #проверяем - пройден ли эпизод по условиям
+            tmpPass = True
+            #проверить место в каждом из эпизодов
+            tmpConditionsPlace = eval(level.GetStrAttr("passIf"))
+            for episode in tmpConditionsPlace.keys():
+                tmpResults = dict(map(lambda x: (x[0], x[1]['score']),
+                    eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people")).items()))
+                tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
+                tmp = tmpResults.items()
+                tmp.sort(lambda x,y: cmp(y[1], x[1]))
+                tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"), self.XML.GetSubtag(episode).GetIntAttr("points")))+1
+                #если такое же количесвто очков, как у занявшее следующее место - понизить место!
+                if tmpPlace < len(tmp):
+                    if tmp[tmpPlace][1] == self.XML.GetSubtag(episode).GetIntAttr("points"):
+                        tmpEntry = tuple(tmp[tmpPlace])
+                        tmp[tmpPlace] = tmp[tmpPlace-1]
+                        tmp[tmpPlace-1] = tmpEntry
+                        tmpPlace = tmpPlace + 1
+                if tmpPlace > tmpConditionsPlace[episode]:
+                    tmpPass = False
+            #проверить счет в каждом из эпизодов и суммарный счет
+            if level.HasAttr("passScore"):
+                tmpConditionsScore = eval(level.GetStrAttr("passScore"))
+                for episode in tmpConditionsScore.keys():
+                    if self.XML.GetSubtag(episode).GetIntAttr("points") < tmpConditionsScore[episode]:
+                        tmpPass = False
+            if level.HasAttr("sumScore"):
+                tmpPlayerSumScore = reduce(lambda x,y: x+y, map(lambda x: self.XML.GetSubtag(x).GetIntAttr("points"),
+                            eval(globalvars.GameSettings.GetStrAttr("settings"))))
+                if tmpPlayerSumScore < level.GetIntAttr("sumScore"):
+                    tmpPass = False
+                    
+            #записываем результаты в профиль
+            self.EpisodeResults[tmpEpisodeName] = { "scores": tmp, "place": tmpPlace, "pass": tmpPass }
+            if tmpPlace <= 1 and tmpPass:
+                tmpOutroNode.SetBoolAttr("beat1st", True)
+            if tmpPlace <= 2 and tmpPass:
+                tmpOutroNode.SetBoolAttr("beat2nd", True)
+            if tmpPass:
+                tmpOutroNode.SetBoolAttr("passed", True)
+            if tmpPass:
+                tmpOutroNode.SetIntAttr("place", tmpPlace)
+                
+            #сравниваем полученные результаты с уже имеющимися
+            if (tmpOutroNode.GetBoolAttr("beat1st") != tmpOldOutroNode.GetBoolAttr("beat1st")) or \
+                    (tmpOutroNode.GetBoolAttr("beat2nd") != tmpOldOutroNode.GetBoolAttr("beat2nd")) or \
+                    (tmpOutroNode.GetBoolAttr("passed") != tmpOldOutroNode.GetBoolAttr("passed")):
+                self.XML.SetStrAttr("newUnlocked", level.GetContent())
+        except:
+            oE.Log("Cannot update player profile")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+            sys.exit()
+        
+    #------------------------------------
     #проверить условие для разлочивания следующего уровня после outro
     #------------------------------------
     def GetScoresPlaceAndCondition(self):
-        tmpPass = True
-        #проверить место в каждом из эпизодов
-        tmpConditionsPlace = eval(self.Level.GetStrAttr("passIf"))
-        for episode in tmpConditionsPlace.keys():
-            tmpResults = dict(map(lambda x: (x[0], x[1]['score']),
-                eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people")).items()))
-            tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
-            tmp = tmpResults.items()
-            tmp.sort(lambda x,y: cmp(y[1], x[1]))
-            tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"), self.XML.GetSubtag(episode).GetIntAttr("points")))+1
-            #если такое же количесвто очков, как у занявшее следующее место - понизить место!
-            if tmpPlace < len(tmp):
-                if tmp[tmpPlace][1] == self.XML.GetSubtag(episode).GetIntAttr("points"):
-                    tmpEntry = tuple(tmp[tmpPlace])
-                    tmp[tmpPlace] = tmp[tmpPlace-1]
-                    tmp[tmpPlace-1] = tmpEntry
-                    tmpPlace = tmpPlace + 1
-            if tmpPlace > tmpConditionsPlace[episode]:
-                tmpPass = False
-        #проверить счет в каждом из эпизодов и суммарный счет
-        if self.Level.HasAttr("passScore"):
-            tmpConditionsScore = eval(self.Level.GetStrAttr("passScore"))
-            for episode in tmpConditionsScore.keys():
-                if self.XML.GetSubtag(episode).GetIntAttr("points") < tmpConditionsScore[episode]:
-                    tmpPass = False
-        if self.Level.HasAttr("sumScore"):
-            tmpPlayerSumScore = reduce(lambda x,y: x+y, map(lambda x: self.XML.GetSubtag(x).GetIntAttr("points"),
-                        eval(globalvars.GameSettings.GetStrAttr("settings"))))
-            if tmpPlayerSumScore < self.Level.GetIntAttr("sumScore"):
-                tmpPass = False
-                
-        return { "scores": tmp, "place": tmpPlace, "pass": tmpPass }
+        return self.EpisodeResults[self.Level.GetStrAttr("episode")]
         
     def GetLevel(self):
         return self.Level
@@ -206,10 +247,10 @@ class Player:
         
     def SetLevelParams(self, level, params):
         tmp = self.XML.GetSubtag(level)
-        for attr in ("played", "unlocked", "expert", "seen"):
+        for attr in AllBoolAttrs:
             if params.has_key(attr):
                 tmp.SetBoolAttr(attr, params[attr])
-        for attr in ("hiscore",):
+        for attr in AllIntAttrs:
             if params.has_key(attr):
                 tmp.SetIntAttr(attr, params[attr])
         self.Save()
@@ -247,16 +288,17 @@ class Player:
             #сосчитать и записать суммарные результаты по всем уровням
             #за простое прохождение уровня - 5 очков, за экспертное - 10
             for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("outro"):
+                self._ReviewEpisodeResults(tmp)
                 #tmpSum = reduce(lambda x,y: x+y,
                 #    map(lambda x: self.XML.GetSubtag(x).GetIntAttr("hiscore"), eval(tmp.GetStrAttr("sum"))))
-                tmpSum = reduce(lambda x,y: x+y,
-                        map(lambda x: (x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("expertPoints")+\
-                        (x.GetIntAttr("hiscore")>0 and not x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("levelPoints"),
-                        map(lambda y: self.XML.GetSubtag(y), eval(tmp.GetStrAttr("sum")))))
-                if tmpSum == globalvars.GameSettings.GetIntAttr("expertAll") and \
-                        self.XML.GetSubtag(tmp.GetStrAttr("episode")).GetIntAttr("points") < tmpSum:
-                    self.XML.SetStrAttr("newUnlocked", tmp.GetContent())
-                self.XML.GetSubtag(tmp.GetStrAttr("episode")).SetIntAttr("points", tmpSum)
+                #tmpSum = reduce(lambda x,y: x+y,
+                #        map(lambda x: (x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("expertPoints")+\
+                #        (x.GetIntAttr("hiscore")>0 and not x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("levelPoints"),
+                #        map(lambda y: self.XML.GetSubtag(y), eval(tmp.GetStrAttr("sum")))))
+                #if tmpSum == globalvars.GameSettings.GetIntAttr("expertAll") and \
+                #        self.XML.GetSubtag(tmp.GetStrAttr("episode")).GetIntAttr("points") < tmpSum:
+                #    self.XML.SetStrAttr("newUnlocked", tmp.GetContent())
+                #self.XML.GetSubtag(tmp.GetStrAttr("episode")).SetIntAttr("points", tmpSum)
             self.Save()
         except:
             oE.Log("Cannot update player profile")

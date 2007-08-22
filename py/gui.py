@@ -588,8 +588,8 @@ class Gui(scraft.Dispatcher):
                 self,
                 Cmd_MapOutro + eval(globalvars.GameSettings.GetStrAttr("settings")).index(tmp.GetStrAttr("episode")),
                 PState_MapCareer,
-                "outro-pointers", [0, 1, 2, 3, 4], Layer_BtnText,
-                tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 30, 30)
+                "outro-pointers.notpass", [0, 1, 2, 3, 4], Layer_BtnText,
+                tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 42, 42)
         
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
@@ -841,10 +841,14 @@ class Gui(scraft.Dispatcher):
         for level in tmpOutroKeys:
             #читаем запись из профиля игрока
             tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(level)
-            if tmpPlayerResult.GetBoolAttr("expert"):
-                self.MapCareerDialog["Buttons"][level].SetButtonKlass("outro-pointers-expert")
+            if tmpPlayerResult.GetBoolAttr("beat1st"):
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass("outro-pointers.1st")
+            elif tmpPlayerResult.GetBoolAttr("beat2nd"):
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass("outro-pointers.2nd")
+            elif tmpPlayerResult.GetBoolAttr("passed"):
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass("outro-pointers.pass")
             else:
-                self.MapCareerDialog["Buttons"][level].SetButtonKlass("outro-pointers")
+                self.MapCareerDialog["Buttons"][level].SetButtonKlass("outro-pointers.notpass")
             if tmpPlayerResult.GetBoolAttr("unlocked"):
                 self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Up)
             else:
@@ -866,7 +870,8 @@ class Gui(scraft.Dispatcher):
         #добавить анимацию по self.HilightedLevel
         
         #если выбран уровень 
-        if self.SelectedLevel in tmpLevelKeys:
+        if self.SelectedLevel in tmpLevelKeys and \
+                    globalvars.CurrentPlayer.GetLevelParams(self.SelectedLevel).GetBoolAttr("unlocked"):
             self.MapCareerDialog["Buttons"]["ViewResults"].Show(False)
             self.MapCareerDialog["Buttons"]["Start"].Show(True)
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Up)
@@ -880,7 +885,8 @@ class Gui(scraft.Dispatcher):
             self.MapCareerDialog["Text"]["LevelTitle"].text = \
                 globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("title")
         #исправить
-        elif self.SelectedLevel in tmpOutroKeys:
+        elif self.SelectedLevel in tmpOutroKeys and \
+                    globalvars.CurrentPlayer.GetLevelParams(self.SelectedLevel).GetBoolAttr("unlocked"):
             self.MapCareerDialog["Buttons"]["ViewResults"].Show(True)
             self.MapCareerDialog["Buttons"]["Start"].Show(False)
             self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)

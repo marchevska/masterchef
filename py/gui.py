@@ -772,17 +772,23 @@ class Gui(scraft.Dispatcher):
         self.CurrentHelpPage = no
         
     def _DrawPlayersList(self):
+        tmpList = globalvars.PlayerList.GetPlayerList()
         if globalvars.GameConfig.GetStrAttr("Player") != "":
             tmpName = globalvars.GameConfig.GetStrAttr("Player")
-            tmpList = globalvars.PlayerList.GetPlayerList()
             if self.SelectedPlayer == "":
                 self.SelectedPlayer = tmpName
-            if tmpList.count(self.SelectedPlayer) > 0:
-                tmpInd = tmpList.index(self.SelectedPlayer)
-                if tmpInd < self.TotalPlayersOnScreen:
-                    self.FirstPlayer = 0
-                else:
-                    self.FirstPlayer = tmpInd - self.TotalPlayersOnScreen+1
+            #if tmpList.count(self.SelectedPlayer) > 0:
+            #    tmpInd = tmpList.index(self.SelectedPlayer)
+            #    if tmpInd < self.TotalPlayersOnScreen:
+            #        self.FirstPlayer = 0
+            #    else:
+            #        self.FirstPlayer = tmpInd - self.TotalPlayersOnScreen+1
+        if tmpList.count(self.SelectedPlayer) > 0:
+            tmpInd = tmpList.index(self.SelectedPlayer)
+            if tmpInd < self.TotalPlayersOnScreen:
+                self.FirstPlayer = 0
+            else:
+                self.FirstPlayer = tmpInd - self.TotalPlayersOnScreen+1
         self._UpdatePlayersList()
                 
     def _UpdatePlayersList(self):

@@ -138,8 +138,11 @@ class Storage(scraft.Dispatcher):
                         globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
                         #токены - подобрать на мышь
                         self.PickTokens()
-                        globalvars.Board.SendCommand(Cmd_PickFromStorage,
-                            {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
+                        if len(self.SelectedCells) > 0:
+                            globalvars.Board.SendCommand(Cmd_PickFromStorage,
+                                    {"where": self, "type": self.Cells[self.SelectedCells[0]], "no": len(self.HighlightedCells)})        
+                        #globalvars.Board.SendCommand(Cmd_PickFromStorage,
+                        #    {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
                     else:
                         if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                             #put tokens from mouse

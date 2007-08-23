@@ -642,6 +642,12 @@ MasterChef{
             filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
         }
+        font(mainmenu.domcasual.inert) {
+            bitmap = "img/fonts/mainmenu.domcasual.inert.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
+        }
         font(domcasual-10) {
             bitmap = "img/fonts/domcasual-10.png"
             type = "blend"

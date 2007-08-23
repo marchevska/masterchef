@@ -99,9 +99,9 @@ class Gui(scraft.Dispatcher):
                 Str_Menu_Rules, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Cookbook"] = PushButton("Cookbook",
                 self, Cmd_Menu_Cookbook, PState_MainMenu,
-                "mainmenu.yellow-button", [0, 1, 2], 
+                "mainmenu.yellow-button", [0, 1, 2, 3], 
                 Layer_BtnText, 675, 355, 200, 40,
-                Str_Menu_Cookbook, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
+                Str_Menu_Cookbook, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down", "mainmenu.domcasual.inert"])
         self.MainMenuDialog["Buttons"]["Quit"] = PushButton("Quit",
                 self, Cmd_Menu_Quit, PState_MainMenu,
                 "mainmenu.yellow-button", [0, 1, 2], 
@@ -590,6 +590,27 @@ class Gui(scraft.Dispatcher):
                 PState_MapCareer,
                 "outro-pointers.notpass", [0, 1, 2, 3, 4], Layer_BtnText,
                 tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 42, 42)
+            
+        self.AllDialogs = {
+            PState_DevLogo: self.DevLogo,
+            PState_PubLogo: self.PubLogo,
+            PState_MainMenu: self.MainMenuDialog,
+            PState_MapCareer: self.MapCareerDialog,
+            PState_Cookbook: self.CookbookDialog,
+            PState_Comics: self.ComicScreen,
+            PState_Intro: self.IntroScreen,
+            PState_Outro: self.OutroScreen,
+            PState_StartLevel: self.LevelGoalsDialog,
+            PState_NextLevel: self.LevelCompleteDialog,
+            PState_GameOver: self.GameOverDialog,
+            PState_Players: self.PlayersDialog,
+            PState_EnterName: self.EnterNameDialog,
+            PState_Help: self.RulesDialog,
+            PState_Hiscores: self.HiscoresDialog,
+            PState_Options: self.OptionsDialog,
+            PState_YesNo: self.YesNoDialog,
+            PState_YesNoCancel: self.YesNoCancelDialog,
+        }
         
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
@@ -1481,46 +1502,12 @@ class Gui(scraft.Dispatcher):
         return scraft.CommandStateRepeat
         
     def _ReleaseState(self, state):
-        if state == PState_DevLogo:
-            self._ShowDialog(self.DevLogo, False)
-        elif state == PState_PubLogo:
-            self._ShowDialog(self.PubLogo, False)
-        elif state == PState_MainMenu:
-            self._ShowDialog(self.MainMenuDialog, False)
-        elif state == PState_MapCareer:
-            self._ShowDialog(self.MapCareerDialog, False)
-        elif state == PState_Cookbook:
-            self._ShowDialog(self.CookbookDialog, False)
-        elif state == PState_Comics:
-            self._ShowDialog(self.ComicScreen, False)
-        elif state == PState_Intro:
-            self._ShowDialog(self.IntroScreen, False)
-        elif state == PState_Outro:
-            self._ShowDialog(self.OutroScreen, False)
-        elif state == PState_StartLevel:
-            self._ShowDialog(self.LevelGoalsDialog, False)
-        elif state == PState_NextLevel:
-            self._ShowDialog(self.LevelCompleteDialog, False)
-        elif state == PState_GameOver:
-            self._ShowDialog(self.GameOverDialog, False)
-        elif state == PState_Players:
-            self._ShowDialog(self.PlayersDialog, False)
-        elif state == PState_EnterName:
-            self._ShowDialog(self.EnterNameDialog, False)
-        elif state == PState_Help:
-            self._ShowDialog(self.RulesDialog, False)
-        elif state == PState_Hiscores:
-            self._ShowDialog(self.HiscoresDialog, False)
-        elif state == PState_Options:
-            self._ShowDialog(self.OptionsDialog, False)
-        elif state == PState_YesNo:
-            self._ShowDialog(self.YesNoDialog, False)
-        elif state == PState_YesNoCancel:
-            self._ShowDialog(self.YesNoCancelDialog, False)
-        elif state == PState_Game:
+        if state == PState_Game:
             globalvars.Board.Show(False)
             if globalvars.StateStack != [] and globalvars.StateStack[-1] == PState_Game:
                 globalvars.Board.Clear()
+        else:
+            self._ShowDialog(self.AllDialogs[state], False)
         if globalvars.StateStack != [] and globalvars.StateStack[-1] == state:
             globalvars.StateStack.pop()
             if len(globalvars.StateStack)>0:
@@ -1576,23 +1563,10 @@ class Gui(scraft.Dispatcher):
            
         elif state == PState_DevLogo:
             self._ShowDialog(self.DevLogo, True)
-            self._ReleaseState(PState_PubLogo)
-            self._ReleaseState(PState_MainMenu)
-            self._ReleaseState(PState_Players)
-            self._ReleaseState(PState_EnterName)
-            self._ReleaseState(PState_Help)
-            self._ReleaseState(PState_Options)
-            self._ReleaseState(PState_Hiscores)
-            self._ReleaseState(PState_YesNo)
-            self._ReleaseState(PState_YesNoCancel)
-            self._ReleaseState(PState_StartLevel)
-            self._ReleaseState(PState_NextLevel)
-            self._ReleaseState(PState_GameOver)
-            self._ReleaseState(PState_MapCareer)
-            self._ReleaseState(PState_Cookbook)
-            self._ReleaseState(PState_Comics)
-            self._ReleaseState(PState_Intro)
-            self._ReleaseState(PState_Outro)
+            tmpOterStates = self.AllDialogs.keys()
+            tmpOterStates.remove(state)
+            for tmpState in tmpOterStates:
+                self._ReleaseState(tmpState)
             self.NextStateTime = Time_DevLogoShow
             
         elif state == PState_PubLogo:
@@ -1600,20 +1574,14 @@ class Gui(scraft.Dispatcher):
             self._ReleaseState(PState_DevLogo)
             self.NextStateTime = Time_PubLogoShow
             
+        #главное меню
         elif state == PState_MainMenu:
             self._ShowDialog(self.MainMenuDialog, True)
-            self._ReleaseState(PState_PubLogo)
-            self._ReleaseState(PState_Players)
-            self._ReleaseState(PState_EnterName)
-            self._ReleaseState(PState_Help)
-            self._ReleaseState(PState_Options)
-            self._ReleaseState(PState_Hiscores)
-            self._ReleaseState(PState_YesNo)
-            self._ReleaseState(PState_YesNoCancel)
-            self._ReleaseState(PState_NextLevel)
-            self._ReleaseState(PState_GameOver)
-            self._ReleaseState(PState_MapCareer)
-            self._ReleaseState(PState_Cookbook)
+            tmpOterStates = self.AllDialogs.keys()
+            tmpOterStates.remove(state)
+            for tmpState in tmpOterStates:
+                self._ReleaseState(tmpState)
+            #если не выбран активный игрок, перейти к меню выбора игрока или ввода имени
             if globalvars.GameConfig.GetStrAttr("Player") == "":
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = False
                 self.MainMenuDialog["Text"]["WelcomeName"].visible = False
@@ -1628,6 +1596,16 @@ class Gui(scraft.Dispatcher):
                 self.MainMenuDialog["Text"]["WelcomeName"].visible = True
                 self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome
                 self.MainMenuDialog["Text"]["WelcomeName"].text = globalvars.GameConfig.GetStrAttr("Player")
+            #если у игрока не разлочен ни один эпизод, то кулинарная книга недоступна
+            tmpUnlockedSettings = filter(lambda x: \
+                                    globalvars.CurrentPlayer.GetLevelParams(x).GetBoolAttr("unlocked"),
+                                    eval(globalvars.GameSettings.GetStrAttr("settings")))
+            if tmpUnlockedSettings == []:
+                self.MainMenuDialog["Buttons"]["Cookbook"].SetState(ButtonState_Inert)
+            else:
+                self.MainMenuDialog["Buttons"]["Cookbook"].SetState(ButtonState_Up)
+            
+            #запустить все анимации
             self.MainMenuDialog["Animations"]["JaneEyes"].SetState("Smile")
             self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(False)
             self.MainMenuDialog["Animations"]["Vapor"].SetState("Play")

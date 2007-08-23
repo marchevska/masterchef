@@ -153,8 +153,10 @@ class Player:
             sys.exit()
         
     #------------------------------------
-    # подсчитать результаты для заданного эпизода
+    # Подсчитать результаты для заданного эпизода
     # level - это outro-нода в levelprogress
+    # Эта функция вызывается при активации outro-эпизода
+    # и при завершении уровня
     #------------------------------------
     def _ReviewEpisodeResults(self, level):
         try:
@@ -182,7 +184,7 @@ class Player:
                 tmp = tmpResults.items()
                 tmp.sort(lambda x,y: cmp(y[1], x[1]))
                 tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"), self.XML.GetSubtag(episode).GetIntAttr("points")))+1
-                #если такое же количесвто очков, как у занявшее следующее место - понизить место!
+                #если такое же количество очков, как у занявшее следующее место - понизить место!
                 if tmpPlace < len(tmp):
                     if tmp[tmpPlace][1] == self.XML.GetSubtag(episode).GetIntAttr("points"):
                         tmpEntry = tuple(tmp[tmpPlace])
@@ -237,7 +239,7 @@ class Player:
         self.Level = self.Level.Next()
         
     #------------------------------------
-    #возвращает ноду уровня по его имени
+    # возвращает ноду уровня по его имени
     #------------------------------------
     def GetLevelParams(self, level):
         if self.XML.GetSubtag(level) != None:
@@ -245,15 +247,23 @@ class Player:
         else:
             return oE.ParseDEF(globalvars.File_DummyProfile).GetTag(DEF_Header).GetSubtag(level)
         
+    #------------------------------------
+    # обновить параметры уровня в профиле игрока
+    #------------------------------------
     def SetLevelParams(self, level, params):
-        tmp = self.XML.GetSubtag(level)
-        for attr in AllBoolAttrs:
-            if params.has_key(attr):
-                tmp.SetBoolAttr(attr, params[attr])
-        for attr in AllIntAttrs:
-            if params.has_key(attr):
-                tmp.SetIntAttr(attr, params[attr])
-        self.Save()
+        try:
+            tmp = self.XML.GetSubtag(level)
+            for attr in AllBoolAttrs:
+                if params.has_key(attr):
+                    tmp.SetBoolAttr(attr, params[attr])
+            for attr in AllIntAttrs:
+                if params.has_key(attr):
+                    tmp.SetIntAttr(attr, params[attr])
+            self.Save()
+        except:
+            oE.Log("Cannot update player profile")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+            sys.exit()
         
     #------------------------------------
     # записать результаты текущего уровня + в профиль тоже

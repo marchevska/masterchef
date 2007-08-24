@@ -29,7 +29,7 @@ class Gui(scraft.Dispatcher):
         self.LastCookie = Cmd_None
         self.NextStateTime = 0
         self.CurrentHelpPage = 0
-        self.TotalHelpPages = 2
+        self.TotalHelpPages = 3
         self.FirstPlayer = 0
         self.SelectedPlayer = ""                #имя выбранного игрока
         self.SelectedLevel = ""                 #название выбранного уровня (имя файла)

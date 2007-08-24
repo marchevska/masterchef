@@ -627,6 +627,7 @@ MasterChef{
         //Help screen
         sprite(help-page1) { bitmap = "img/gui/help-page1.png" }
         sprite(help-page2) { bitmap = "img/gui/help-page2.png" }
+        sprite(help-page3) { bitmap = "img/gui/help-page3.png" }
         
     }
     

@@ -29,7 +29,7 @@ class Gui(scraft.Dispatcher):
         self.LastCookie = Cmd_None
         self.NextStateTime = 0
         self.CurrentHelpPage = 0
-        self.TotalHelpPages = 1
+        self.TotalHelpPages = 2
         self.FirstPlayer = 0
         self.SelectedPlayer = ""                #имя выбранного игрока
         self.SelectedLevel = ""                 #название выбранного уровня (имя файла)
@@ -121,7 +121,7 @@ class Gui(scraft.Dispatcher):
         # справка
         #---------
         self.RulesDialog = {"Static": {}, "Text": {}, "Buttons": {}}
-        self.RulesDialog["Static"]["Back"] = MakeSimpleSprite("help-page1", Layer_Background)
+        self.RulesDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_Background)
         self.RulesDialog["Buttons"]["HelpPrev"] = PushButton("HelpPrev",
                 self, Cmd_HelpPrev, PState_Help,
                 "button-4st", [0, 1, 2, 3], 

@@ -60,7 +60,7 @@ MasterChef {
         minRateMultiplier = "25"
         
         //storyline parameters
-        levelPoints = "5"
+        levelPoints = "6"
         expertPoints = "10"
         expertAll = "100"
         charName = "Jenny"

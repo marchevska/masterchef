@@ -488,13 +488,8 @@ MasterChef{
         sprite(comics.masterchef.intro.1) { bitmap = "img/comics/masterchef.intro.1.png" }
         sprite(comics.masterchef.intro.2) { bitmap = "img/comics/masterchef.intro.2.png" }
         sprite(comics.masterchef.intro.3) { bitmap = "img/comics/masterchef.intro.3.png" }
-        sprite(comics.american.intro) { bitmap = "img/comics/american.intro.png" }
-        sprite(comics.mexican.intro) { bitmap = "img/comics/mexican.intro.png" }
-        sprite(comics.russian.intro) { bitmap = "img/comics/russian.intro.png" }
-        sprite(comics.japanese.intro) { bitmap = "img/comics/japanese.intro.png" }
-        sprite(comics.hawaiian.intro) { bitmap = "img/comics/hawaiian.intro.png" }
         sprite(comics.masterchef.outro) { bitmap = "img/comics/masterchef.outro.png" }
-        sprite(help.champ-rules) { bitmap = "img/comics/help.champ-rules.png" }
+        sprite(help.champ-rules) { bitmap = "img/gui/help-page3.png" }
     }
     
     Episodes{
@@ -628,6 +623,7 @@ MasterChef{
         sprite(help-page1) { bitmap = "img/gui/help-page1.png" }
         sprite(help-page2) { bitmap = "img/gui/help-page2.png" }
         sprite(help-page3) { bitmap = "img/gui/help-page3.png" }
+        sprite(help-page4) { bitmap = "img/gui/help-page4.png" }
         
     }
     

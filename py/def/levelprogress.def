@@ -552,6 +552,10 @@ MasterChef {
                 text { str = "hawaiian.failed.7" layout = "episode-outro.failed.7" }
             }
         }
+        comic(MasterChef.outro) {
+            image = "comics.masterchef.outro"
+            button = "continue-button"
+        }
     }
     
     //Episode images to display on the travel map

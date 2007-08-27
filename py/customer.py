@@ -92,10 +92,10 @@ class Customer(scraft.Dispatcher):
             self.Animator.SetState("Queue")
             
         elif state == CustomerState_Ordering:
-            self.Animator.SetState("Order")
             self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMin")*1000,
                                          globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMax")*1000)
             self._SetHearts(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("heartsOnStart"))
+            self.Animator.SetState("Order")
             
         elif state == CustomerState_Wait:
             #self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,

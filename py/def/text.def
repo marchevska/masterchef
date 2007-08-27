@@ -246,9 +246,9 @@ MasterChef {
     text(def/49.def.failed.text) { str = "We haven't made enough money today. " }
     text(def/50.def.intro.title) { str = "The final trial" }
     text(def/50.def.intro.text) { str = "Roll up your sleeves for the last and the longest competition day. Tonight we'll finally know who wins the contest and owns this restaurant." }
-    text(def/50.def.passed.text) { str = "Good work!" }
-    text(def/50.def.expert.text) { str = "Excellent work!" }
-    text(def/50.def.failed.text) { str = "We haven't made enough money today. " }
+    text(def/50.def.passed.text) { str = "Good work! Now, let's check out who wins this round." }
+    text(def/50.def.expert.text) { str = "Excellent work! Now, let's check out who wins this round." }
+    text(def/50.def.failed.text) { str = "We haven't made enough money today. Make sure to serve every customer, don't let them get upset and just go away." }
     text(american.intro.1) { str = "Dear friends!" }
     text(american.intro.2) { str = "The first round of our" }
     text(american.intro.3) { str = "competition will take place" }

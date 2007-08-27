@@ -184,12 +184,6 @@ class CustomerStation(scraft.Dispatcher):
             if sprite.cookie == Cmd_CustomerStation and self.Customer != None:
                 self._Hilight(flag)    
         
-    def _OnMouseClick(self, sprite, button, x, y):
-        if globalvars.StateStack[-1] == PState_Game:
-            if sprite.cookie == Cmd_CustomerStation and self.Active:
-                globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
-                                                            "mealReady": self.MealReady})
-        
     def _OnMouseDown(self, sprite, x, y, button):
         if button == 1:
             if (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
@@ -205,6 +199,15 @@ class CustomerStation(scraft.Dispatcher):
             #    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Roll})
             #else:
                 globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+        if globalvars.StateStack[-1] == PState_Game:
+            if sprite.cookie == Cmd_CustomerStation and self.Active:
+                globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
+                                                            "mealReady": self.MealReady})
+    #def _OnMouseClick(self, sprite, button, x, y):
+    #    if globalvars.StateStack[-1] == PState_Game:
+    #        if sprite.cookie == Cmd_CustomerStation and self.Active:
+    #            globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
+    #                                                        "mealReady": self.MealReady})
         
     def _Hilight(self, flag):
         if self.Customer != None:

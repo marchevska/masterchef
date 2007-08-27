@@ -125,7 +125,9 @@ class Storage(scraft.Dispatcher):
         else:
             globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
         
-    def _OnMouseClick(self, sprite, x, y, button):
+    # подбор токенов при нажатии на группу
+    #def _OnMouseClick(self, sprite, x, y, button):
+    def _OnMouseDown(self, sprite, x, y, button):
         if globalvars.StateStack[-1] == PState_Game:
             if button == 2:
                 globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
@@ -141,8 +143,6 @@ class Storage(scraft.Dispatcher):
                         if len(self.SelectedCells) > 0:
                             globalvars.Board.SendCommand(Cmd_PickFromStorage,
                                     {"where": self, "type": self.Cells[self.SelectedCells[0]], "no": len(self.HighlightedCells)})        
-                        #globalvars.Board.SendCommand(Cmd_PickFromStorage,
-                        #    {"where": self, "type": self.Cells[tmpPos], "no": len(self.HighlightedCells)})        
                     else:
                         if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                             #put tokens from mouse
@@ -965,7 +965,8 @@ class Field(Storage):
     # проверка использования тулзов;
     # если тулзы не используются, то использовать родительскую функцию
     #--------------------------
-    def _OnMouseClick(self, sprite, x, y, button):
+    #def _OnMouseClick(self, sprite, x, y, button):
+    def _OnMouseDown(self, sprite, x, y, button):
         if globalvars.StateStack[-1] == PState_Game:
         #if self.State == FieldState_Input:
             try:
@@ -1038,7 +1039,8 @@ class Field(Storage):
                     globalvars.Board.SendCommand(Cmd_PickPowerUp, { "type":self.Cells[tmpPos], "where": self })
                         
                 else:
-                    Storage._OnMouseClick(self, sprite, x, y, button)
+                    #Storage._OnMouseClick(self, sprite, x, y, button)
+                    Storage._OnMouseDown(self, sprite, x, y, button)
             except:
                 oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             

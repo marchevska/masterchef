@@ -47,7 +47,7 @@ else:
 config.GetFileLocations()
 config.ReadGameConfig()
 config.ApplyOptions()
-config.ReadHiscores()
+#config.ReadHiscores()
 config.ReadBestResults()
 
 globalvars.PlayerList = PlayerList()
@@ -87,3 +87,4 @@ if globalvars.RunMode == RunMode_Play:
     config.SaveHiscores()
     globalvars.PlayerList.Save()
     globalvars.CurrentPlayer.Save()
+

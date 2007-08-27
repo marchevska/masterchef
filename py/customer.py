@@ -35,6 +35,7 @@ class Customer(scraft.Dispatcher):
                         self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx,
                         self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy))
         self.HasOrder = False
+        self.PrevState = CustomerState_None
         self._SetState(CustomerState_Queue)
         self.QueNo = oE.executor.Schedule(self)
         
@@ -52,10 +53,12 @@ class Customer(scraft.Dispatcher):
         
     def GiveSweet(self):
         self.AddHearts(1)
+        self.PrevState = self.State
         self._SetState(CustomerState_GotGift)
         
     def GiveGift(self):
         self.AddHearts(3)
+        self.PrevState = self.State
         self._SetState(CustomerState_GotGift)
         
     def AddHearts(self, no):
@@ -66,6 +69,9 @@ class Customer(scraft.Dispatcher):
         if self.State == CustomerState_Queue:
             self.Hearts = no
         elif no>0:
+            if self.HeartDecreaseTime <= 0:
+                self.HeartDecreaseTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,
+                                         globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMax")*1000)
             self.Hearts = no
             for i in range(no):
                 self.HeartSprites[i].visible = True
@@ -80,6 +86,8 @@ class Customer(scraft.Dispatcher):
     def _SetState(self, state):
         self.State = state
         if state == CustomerState_Queue:
+            self.NextStateTime = 0
+            self.HeartDecreaseTime = 0
             self._SetHearts(0)
             self.Animator.SetState("Queue")
             
@@ -87,10 +95,11 @@ class Customer(scraft.Dispatcher):
             self.Animator.SetState("Order")
             self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMin")*1000,
                                          globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMax")*1000)
+            self._SetHearts(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("heartsOnStart"))
             
         elif state == CustomerState_Wait:
-            self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,
-                                         globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMax")*1000)
+            #self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,
+            #                             globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMax")*1000)
             self._SetHearts(self.Hearts)
             
         elif state == CustomerState_GotGift:
@@ -153,40 +162,41 @@ class Customer(scraft.Dispatcher):
     def _OnExecute(self, que):
         try:
             if self.State != CustomerState_Queue:
-                self.NextStateTime -= que.delta
-                if self.NextStateTime <= 0:
-                    if self.State == CustomerState_Ordering:
-                        self.Host.SendCommand(Cmd_NewOrder, self._MakeOrder())
-                        self._SetState(CustomerState_Wait)
+                if self.State == CustomerState_Wait:
+                    self.HeartDecreaseTime -= que.delta
+                    if self.HeartDecreaseTime <= 0:
+                        self.Hearts -= 1
+                        self._SetHearts(self.Hearts)
                         
-                    elif self.State == CustomerState_Wait:
-                        if self.Hearts > 1:
-                            self.Hearts -= 1
+                else:
+                    self.NextStateTime -= que.delta
+                    if self.NextStateTime <= 0:
+                        if self.State == CustomerState_Ordering:
+                            self.Host.SendCommand(Cmd_NewOrder, self._MakeOrder())
                             self._SetState(CustomerState_Wait)
-                        else:
-                            self._SetState(CustomerState_GoAway)
                             
-                    elif self.State == CustomerState_GotGift:
-                        if self.HasOrder:
-                            self._SetState(CustomerState_Wait)
-                        else:
-                            self._SetState(CustomerState_Ordering)
-                        
-                    elif self.State == CustomerState_GoAway:
-                        globalvars.Musician.PlaySound("customer.lost")
-                        self._SetState(CustomerState_None)
-                        self.Host.SendCommand(Cmd_Station_DeleteCustomerAndLoseMoney)
-                        
-                    elif self.State == CustomerState_MealReady:
-                        globalvars.Musician.PlaySound("customer.thankyou")
-                        self._SetState(CustomerState_ThankYou)
-                        self.Host.SendCommand(Cmd_CustomerGoesAway)
-                        
-                    elif self.State == CustomerState_ThankYou:
-                        self._SetState(CustomerState_None)
-                        self.Host.SendCommand(Cmd_Station_DeleteCustomer)
-                        if not globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
-                            self.Host.SendCommand(Cmd_FreeStation)
+                        elif self.State == CustomerState_GotGift:
+                            self._SetState(self.PrevState)
+                            #if self.HasOrder:
+                            #    self._SetState(CustomerState_Wait)
+                            #else:
+                            #    self._SetState(CustomerState_Ordering)
+                            
+                        elif self.State == CustomerState_GoAway:
+                            globalvars.Musician.PlaySound("customer.lost")
+                            self._SetState(CustomerState_None)
+                            self.Host.SendCommand(Cmd_Station_DeleteCustomerAndLoseMoney)
+                            
+                        elif self.State == CustomerState_MealReady:
+                            globalvars.Musician.PlaySound("customer.thankyou")
+                            self._SetState(CustomerState_ThankYou)
+                            self.Host.SendCommand(Cmd_CustomerGoesAway)
+                            
+                        elif self.State == CustomerState_ThankYou:
+                            self._SetState(CustomerState_None)
+                            self.Host.SendCommand(Cmd_Station_DeleteCustomer)
+                            if not globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
+                                self.Host.SendCommand(Cmd_FreeStation)
                     
         except:
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

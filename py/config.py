@@ -84,17 +84,18 @@ def ApplyOptions():
 
 def ReadHiscores():
     """ Reads hiscores list """
-    globalvars.HiscoresList = []
-    if FileValid(globalvars.File_Hiscores):
-        Data_Hiscores = oE.ParseDEF(globalvars.File_Hiscores)
-        HiscoresIterator = Data_Hiscores.GetTag(DEF_Header).IterateTag(u"score")
-        HiscoresIterator.Reset()
-        while HiscoresIterator.Next():
-            tmpScore = HiscoresIterator.Get()
-            globalvars.HiscoresList.append({ "Name": tmpScore.GetStrAttr(u"Name"), \
-                                            "Score": tmpScore.GetIntAttr(u"Score"),
-                                            "Active": False })
-    UpdateHiscores()
+    pass
+    #globalvars.HiscoresList = []
+    #if FileValid(globalvars.File_Hiscores):
+    #    Data_Hiscores = oE.ParseDEF(globalvars.File_Hiscores)
+    #    HiscoresIterator = Data_Hiscores.GetTag(DEF_Header).IterateTag(u"score")
+    #    HiscoresIterator.Reset()
+    #    while HiscoresIterator.Next():
+    #        tmpScore = HiscoresIterator.Get()
+    #        globalvars.HiscoresList.append({ "Name": tmpScore.GetStrAttr(u"Name"), \
+    #                                        "Score": tmpScore.GetIntAttr(u"Score"),
+    #                                        "Active": False })
+    #UpdateHiscores()
 
 def SaveHiscores():
     """ Saves hiscores list """
@@ -173,47 +174,73 @@ def UpdateBestResults(level, name, score):
 
 def FileValid(filename):
     try:
-        f = file(filename, "rt")
-        return True
-        #tmpStr = f.read()
-        #f.close()
-        #tmpPos = string.rfind(tmpStr, Str_SignatureBegin)
-        #tmpPos2 = string.rfind(tmpStr, Str_SignatureEnd)
-        #tmpStrData = tmpStr[0:tmpPos]
-        #tmpSign = tmpStr[tmpPos+len(Str_SignatureBegin):tmpPos2]
-        #tmpRealSign = Hexy(md5.new(tmpStrData).digest())
-        #if tmpSign == tmpRealSign:
-        #    return True
-        #else:
-        #    return False
+        if globalvars.GameSettings.GetBoolAttr("debugMode") == True:
+            return True
+        else:
+            if not os.access(filename, os.W_OK):
+                return False
+            else:
+                tmp = oE.ParseDEF(filename)
+                if tmp.GetCountTag("signature") != 1:
+                    return False
+                elif tmp.GetTag("signature").GetContent() != Hexy(tmp):
+                    return False
+                else:
+                    return True
     except:
+        oE.Log("Validity check failed for the following file: %s"%filename)
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         return False
 
-def SignAndSave(filename, str):
-    tmpSaveData = str
-    tmpDir = os.path.dirname(filename)
-    if not os.access(tmpDir, os.W_OK):
-        os.mkdir(tmpDir)
-    #tmpHashStr = Hexy(md5.new(str).digest())
-    #tmpSaveData = str + Str_SignatureBegin + tmpHashStr + Str_SignatureEnd
-    tmpSaveData = str
-    f = file(filename, "w")
-    f.write(tmpSaveData)
-    f.close()
+#def SignAndSave(filename, str):
+#    tmpSaveData = str
+#    tmpDir = os.path.dirname(filename)
+#    if not os.access(tmpDir, os.W_OK):
+#        os.mkdir(tmpDir)
+#    #tmpHashStr = Hexy(md5.new(str).digest())
+#    #tmpSaveData = str + Str_SignatureBegin + tmpHashStr + Str_SignatureEnd
+#    tmpSaveData = str
+#    f = file(filename, "w")
+#    f.write(tmpSaveData)
+#    f.close()
  
-def Hexy(str):
+# возвращает md5-подпись от содержимого ноды
+def Hexy(node):
+    #подсчитать хэш записанных строк, не обращая внимания на атрибуты
+    tmpSum = ""
+    for tmp in [node.GetTag(DEF_Header)] + list(node.GetTag(DEF_Header).Tags()):
+        tmpAttrs = list(tmp.Attributes())
+        tmpAttrs.sort(lambda x,y: cmp(x[0], y[0]))
+        for (name, value) in tmpAttrs:
+            tmpSum += string.lower(name+value)
+    str = md5.new(tmpSum).digest()
     hexy = ""
     for sym in str:
         hexy += hex(ord(sym))
+    #print "hexy!", len(tmpSum), hexy
+    #print tmpSum
+    #print 
     return hexy
 
 def SaveToFile(node, filename):
     try:
+        #print filename
         for tmpDir in globalvars.CheckDirs:
             if not os.access(tmpDir, os.W_OK):
                 os.mkdir(tmpDir)
         tmpFilename = filename+"$_$"
+        #вставить ноду с подписью, записать файл, вырезать ноду
+        if node.GetCountTag("signature") < 1:
+            tmpSignNode = node.Insert("signature")
+        else:
+            tmpSignNode = node.GetTag("signature")
+        tmpSignNode.SetContent(Hexy(node))
         node.StoreTo(tmpFilename)
+        #try:
+        #    tmpSignNode.Erase()
+        #except:
+        #    oE.Log("Error saving to file: %s"%filename)
+        #    oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         if os.access(filename, os.W_OK):
             os.remove(filename)
         os.rename(tmpFilename, filename)

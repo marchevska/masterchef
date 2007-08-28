@@ -169,9 +169,7 @@ def UpdateBestResults(level, name, score):
 
 #---------------------------
 # Проверка валидности файла
-# Сохранение файла
 #---------------------------
-
 def FileValid(filename):
     try:
         if globalvars.GameSettings.GetBoolAttr("debugMode") == True:
@@ -192,19 +190,9 @@ def FileValid(filename):
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         return False
 
-#def SignAndSave(filename, str):
-#    tmpSaveData = str
-#    tmpDir = os.path.dirname(filename)
-#    if not os.access(tmpDir, os.W_OK):
-#        os.mkdir(tmpDir)
-#    #tmpHashStr = Hexy(md5.new(str).digest())
-#    #tmpSaveData = str + Str_SignatureBegin + tmpHashStr + Str_SignatureEnd
-#    tmpSaveData = str
-#    f = file(filename, "w")
-#    f.write(tmpSaveData)
-#    f.close()
- 
+#---------------------------
 # возвращает md5-подпись от содержимого ноды
+#---------------------------
 def Hexy(node):
     #подсчитать хэш записанных строк, не обращая внимания на атрибуты
     tmpSum = ""
@@ -217,14 +205,13 @@ def Hexy(node):
     hexy = ""
     for sym in str:
         hexy += hex(ord(sym))
-    #print "hexy!", len(tmpSum), hexy
-    #print tmpSum
-    #print 
     return hexy
 
+#---------------------------
+# Сохранение ноды в файл. Бехопасное и с подписью
+#---------------------------
 def SaveToFile(node, filename):
     try:
-        #print filename
         for tmpDir in globalvars.CheckDirs:
             if not os.access(tmpDir, os.W_OK):
                 os.mkdir(tmpDir)
@@ -236,11 +223,11 @@ def SaveToFile(node, filename):
             tmpSignNode = node.GetTag("signature")
         tmpSignNode.SetContent(Hexy(node))
         node.StoreTo(tmpFilename)
-        #try:
-        #    tmpSignNode.Erase()
-        #except:
-        #    oE.Log("Error saving to file: %s"%filename)
-        #    oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+        try:
+            tmpSignNode.Erase()
+        except:
+            oE.Log("Error saving to file: %s"%filename)
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         if os.access(filename, os.W_OK):
             os.remove(filename)
         os.rename(tmpFilename, filename)

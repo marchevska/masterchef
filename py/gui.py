@@ -316,25 +316,6 @@ class Gui(scraft.Dispatcher):
                 Layer_PopupBtnTxt, 600, 450, 120, 40,
                 Str_LvCompleteMainMenu, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
-        #---------------
-        # игра окончена
-        #---------------
-        self.GameOverDialog = {"Static": {}, "Text": {}, "Buttons": {}}
-        self.GameOverDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
-        self.GameOverDialog["Text"]["Title"] = MakeTextSprite("domcasual-10-up", Layer_PopupBtnTxt, 400, 165,
-                                                                   scraft.HotspotCenter, Str_GameOver_Title)
-        self.GameOverDialog["Buttons"]["Hiscores"] = PushButton("GameOverHiscores",
-                self, Cmd_GameOverHiscores, PState_GameOver,
-                "button-4st", [0, 1, 2], 
-                Layer_PopupBtnTxt, 320, 470, 120, 40,
-                Str_GameOverHiscores, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
-        self.GameOverDialog["Buttons"]["MainMenu"] = PushButton("GameOverMainMenu",
-                self, Cmd_GameOverMainMenu, PState_GameOver,
-                "button-4st", [0, 1, 2], 
-                Layer_PopupBtnTxt, 460, 470, 120, 40,
-                Str_GameOverMainMenu, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
-        self.GameOverDialog["Text"]["Message"] = MakeTextSprite("domcasual-10-up", Layer_PopupBtnTxt, 320, 200)
-        
         #---------
         # данетка
         #---------
@@ -602,7 +583,6 @@ class Gui(scraft.Dispatcher):
             PState_Outro: self.OutroScreen,
             PState_StartLevel: self.LevelGoalsDialog,
             PState_NextLevel: self.LevelCompleteDialog,
-            PState_GameOver: self.GameOverDialog,
             PState_Players: self.PlayersDialog,
             PState_EnterName: self.EnterNameDialog,
             PState_Help: self.RulesDialog,
@@ -1391,15 +1371,6 @@ class Gui(scraft.Dispatcher):
                 elif cmd == Cmd_LvCompleteMainMenu:
                     self._ReleaseState(PState_Game)
                 
-            #end game dialog
-            elif globalvars.StateStack[-1] == PState_GameOver:
-                self._ReleaseState(PState_GameOver)
-                self._ReleaseState(PState_Game)
-                if cmd == Cmd_GameOverHiscores:
-                    self._SetState(PState_Hiscores)
-                elif cmd == Cmd_GameOverMainMenu:
-                    self._SetState(PState_MainMenu)
-                #self._ReleaseState(PState_Game)
         except:
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         
@@ -1490,8 +1461,6 @@ class Gui(scraft.Dispatcher):
                     self.SendCommand(Cmd_EnterNameCancel)
                 elif globalvars.StateStack[-1] == PState_NextLevel:
                     self.SendCommand(Cmd_LvCompleteMainMenu)
-                elif globalvars.StateStack[-1] == PState_GameOver:
-                    self.SendCommand(Cmd_GameOverMainMenu)
             
             if oE.EvtIsQuit():
                 if globalvars.StateStack[-1] == PState_Game:
@@ -1528,7 +1497,7 @@ class Gui(scraft.Dispatcher):
         if globalvars.StateStack == [] or globalvars.StateStack[-1] != state:
             globalvars.StateStack.append(state)
         if state in (PState_Game, PState_NextLevel, PState_StartLevel,
-                     PState_GameOver, PState_InGameMenu):
+                     PState_InGameMenu):
             globalvars.Musician.SetState(MusicState_Game)
         #elif state == PState_InGameMenu:
         #    globalvars.Musician.SetState(MusicState_Pause)
@@ -1652,10 +1621,6 @@ class Gui(scraft.Dispatcher):
         elif state == PState_NextLevel:
             globalvars.Board.Freeze(True)
             self._ShowDialog(self.LevelCompleteDialog, True)
-            
-        elif state == PState_GameOver:
-            globalvars.Board.Freeze(True)
-            self._ShowDialog(self.GameOverDialog, True)
             
         elif state == PState_Players:
             self._ShowDialog(self.PlayersDialog, True)

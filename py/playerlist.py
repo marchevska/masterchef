@@ -371,7 +371,6 @@ class PlayerList:
         
     #возвращает список игроков для диалогов
     def GetPlayerList(self):
-        #return [Str_Players_Create]+[x.GetContent() for x in self.XML]
         return [x.GetContent() for x in self.XML]
         
     def CreatePlayer(self, name):

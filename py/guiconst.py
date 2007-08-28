@@ -72,9 +72,6 @@ Cmd_LvCompleteNextLevel = 414
 Cmd_LvCompleteRestart = 419
 Cmd_LvCompleteMainMenu = 415
 
-Cmd_GameOverHiscores = 416
-Cmd_GameOverMainMenu = 417
-
 Cmd_EpiCompleteNext = 418
 Cmd_EpiCompleteMainMenu = 419
 
@@ -103,7 +100,6 @@ PState_EnterName = 7
 PState_StartLevel = 18
 PState_NextLevel = 8
 PState_EpiComplete = 9
-PState_GameOver = 10
 PState_Continue = 11
 PState_YesNo = 12
 PState_YesNoCancel = 13

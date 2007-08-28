@@ -1112,7 +1112,7 @@ class Gui(scraft.Dispatcher):
     def _UpdateOptionsDialog(self):
         self.OptionsDialog["Static"]["Galka_Fullscreen"].visible = globalvars.GameConfig.GetBoolAttr("Fullscreen")
         self.OptionsDialog["Static"]["Galka_Mute"].visible = globalvars.GameConfig.GetBoolAttr("Mute")
-        self.OptionsDialog["Static"]["Galka_Hints"].visible = globalvars.GameConfig.GetBoolAttr("Hints")
+        #self.OptionsDialog["Static"]["Galka_Hints"].visible = globalvars.GameConfig.GetBoolAttr("Hints")
         self.OptionsDialog["Buttons"]["Slider_Sound"].SetValue(globalvars.GameConfig.GetIntAttr("Sound"))
         self.OptionsDialog["Buttons"]["Slider_Music"].SetValue(globalvars.GameConfig.GetIntAttr("Music"))
         if globalvars.StateStack[-2] == PState_Game:
@@ -1133,7 +1133,7 @@ class Gui(scraft.Dispatcher):
         if flag:
             globalvars.GameConfig.SetBoolAttr("Fullscreen", self.OptionsDialog["Static"]["Galka_Fullscreen"].visible)
             globalvars.GameConfig.SetBoolAttr("Mute", self.OptionsDialog["Static"]["Galka_Mute"].visible)
-            globalvars.GameConfig.SetBoolAttr("Hints", self.OptionsDialog["Static"]["Galka_Hints"].visible)
+            #globalvars.GameConfig.SetBoolAttr("Hints", self.OptionsDialog["Static"]["Galka_Hints"].visible)
         else:
             globalvars.GameConfig.SetIntAttr("Sound", self.SavedOptions.GetIntAttr("Sound"))
             globalvars.GameConfig.SetIntAttr("Music", self.SavedOptions.GetIntAttr("Music"))
@@ -1317,8 +1317,8 @@ class Gui(scraft.Dispatcher):
                     self._CloseOptionsDialog(False)
                 elif cmd == Cmd_OptionsMute:
                     self.OptionsDialog["Static"]["Galka_Mute"].visible = not(self.OptionsDialog["Static"]["Galka_Mute"].visible)
-                elif cmd == Cmd_OptionsHints:
-                    self.OptionsDialog["Static"]["Galka_Hints"].visible = not(self.OptionsDialog["Static"]["Galka_Hints"].visible)
+                #elif cmd == Cmd_OptionsHints:
+                #    self.OptionsDialog["Static"]["Galka_Hints"].visible = not(self.OptionsDialog["Static"]["Galka_Hints"].visible)
                 elif cmd == Cmd_OptionsFullscreen:
                     self.OptionsDialog["Static"]["Galka_Fullscreen"].visible = not(self.OptionsDialog["Static"]["Galka_Fullscreen"].visible)
                 elif cmd == Cmd_IGM_Resume:

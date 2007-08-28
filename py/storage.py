@@ -1013,8 +1013,44 @@ class Field(Storage):
                         globalvars.Board.SendCommand(Cmd_UtilizePowerUp, 'bonus.hearts')
                         globalvars.Musician.PlaySound("customer.gotgift")
                             
+                ##проверяем использование бонуса с курсора
+                #elif button == 1 and self.Action == Const_HighlightAct:
+                #    #ложка - удалить подсвеченные токены
+                #    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
+                #        if len(self.HighlightedCells) >0:
+                #            self._RemoveTokenFrom(self.SelectedCells[0], False, False)
+                #            globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+                #            self._ExplodeTokens(self.HighlightedCells)
+                #            self._HighlightCells((0,0), False)
+                #            self.SetState(FieldState_Collapse)
+                #            globalvars.Musician.PlaySound("tokens.remove")
+                #        
+                #    #волшебная палочка - превращение токенов
+                #    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
+                #        if len(self.HighlightedCells) >0:
+                #            self.ConvertedCells = list(self.HighlightedCells)
+                #            self.SetState(FieldState_MagicWandConverting, self.Cells[tmpPos])
+                #            self._RemoveTokenFrom(self.SelectedCells[0], False, True)
+                #            globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+                #            
+                elif button == 1 and self.Action == Const_HighlightPick and self.Cells[tmpPos] in tmpAllBonuses:
+                    globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
+                    self.PickTokens()
+                    globalvars.Board.SendCommand(Cmd_PickPowerUp, { "type":self.Cells[tmpPos], "where": self })
+                        
+                #else:
+                elif not (button == 1 and self.Action == Const_HighlightAct):
+                    #Storage._OnMouseClick(self, sprite, x, y, button)
+                    Storage._OnMouseDown(self, sprite, x, y, button)
+            except:
+                oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
+            
+    def _OnMouseUp(self, sprite, x, y, button):
+        if globalvars.StateStack[-1] == PState_Game:
+        #if self.State == FieldState_Input:
+            try:
                 #проверяем использование бонуса с курсора
-                elif button == 1 and self.Action == Const_HighlightAct:
+                if button == 1 and self.Action == Const_HighlightAct:
                     #ложка - удалить подсвеченные токены
                     if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
                         if len(self.HighlightedCells) >0:
@@ -1032,18 +1068,10 @@ class Field(Storage):
                             self.SetState(FieldState_MagicWandConverting, self.Cells[tmpPos])
                             self._RemoveTokenFrom(self.SelectedCells[0], False, True)
                             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-                            
-                elif button == 1 and self.Action == Const_HighlightPick and self.Cells[tmpPos] in tmpAllBonuses:
-                    globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-                    self.PickTokens()
-                    globalvars.Board.SendCommand(Cmd_PickPowerUp, { "type":self.Cells[tmpPos], "where": self })
-                        
-                else:
-                    #Storage._OnMouseClick(self, sprite, x, y, button)
-                    Storage._OnMouseDown(self, sprite, x, y, button)
             except:
                 oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
-            
+                
+                
     def SendCommand(self, cmd, parameter=None):
         if cmd == Cmd_StopDropper:
             pass
@@ -1289,17 +1317,20 @@ class Collapsoid(Field):
     #--------------------------
     # передавать только клики по непустым клеткам или правые клики
     #--------------------------
-    def _OnMouseClick(self, sprite, x, y, button):
+    #def _OnMouseClick(self, sprite, x, y, button):
+    def _OnMouseDown(self, sprite, x, y, button):
         if globalvars.StateStack[-1] == PState_Game:
             if (button == 1 and globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool) \
                     or button == 2:
-                Field._OnMouseClick(self, sprite, x, y, button)
+                #Field._OnMouseClick(self, sprite, x, y, button)
+                Field._OnMouseDown(self, sprite, x, y, button)
             elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
                 if sprite.cookie == Cmd_Receptor:
                     tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                     #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                     if self.MatchMap[tmpPos] != -1:
-                        Field._OnMouseClick(self, sprite, x, y, button)
+                        #Field._OnMouseClick(self, sprite, x, y, button)
+                        Field._OnMouseDown(self, sprite, x, y, button)
                     else:
                         #self._FastShift()
                         pass

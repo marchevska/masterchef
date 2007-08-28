@@ -223,11 +223,11 @@ def SaveToFile(node, filename):
             tmpSignNode = node.GetTag("signature")
         tmpSignNode.SetContent(Hexy(node))
         node.StoreTo(tmpFilename)
-        try:
-            tmpSignNode.Erase()
-        except:
-            oE.Log("Error saving to file: %s"%filename)
-            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+        #try:
+        #    tmpSignNode.Erase()
+        #except:
+        #    oE.Log("Error saving to file: %s"%filename)
+        #    oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         if os.access(filename, os.W_OK):
             os.remove(filename)
         os.rename(tmpFilename, filename)

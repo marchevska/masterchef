@@ -504,12 +504,12 @@ class Gui(scraft.Dispatcher):
         self.IntroScreen["Static"]["IntroPane"] = MakeSimpleSprite("$spritecraft$dummy$", Layer_Static, 490, 18)
         self.IntroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 520)
         self.IntroScreen["Static"]["Balloon"] = MakeSimpleSprite("intro.balloon", Layer_Static, 270, 370)
-        self.IntroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_IntroCompetitors") } )
+        self.IntroScreen["Text"]["Competitors"] = MakeSprite("$spritecraft$dummy$", Layer_BtnText,
+                { "x": 640, "y": 273, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_IntroCompetitors") } )
         for i in range(self.MaxPeopleOnLevel):
             self.IntroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
-            self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 640, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
+            self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText,
+                { "x": 640, "y": 315+30*i, "hotspot": scraft.HotspotCenter } )
         for i in range(self.MaxSpeechLines):
             self.IntroScreen["Text"]["Speech"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
         
@@ -531,13 +531,13 @@ class Gui(scraft.Dispatcher):
             self.OutroScreen["Text"]["Speech"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
         self.OutroScreen["Text"]["SpeechWinners"] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
         self.OutroScreen["Static"]["IntroPane"] = MakeSimpleSprite("$spritecraft$dummy$", Layer_Static, 490, 18)
-        self.OutroScreen["Static"]["Separator"] = MakeSimpleSprite("outro.separator", Layer_Static-1, 650, 408)
+        self.OutroScreen["Static"]["Separator"] = MakeSimpleSprite("outro.separator", Layer_Static-1, 670, 408)
         self.OutroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 420)
         self.OutroScreen["Static"]["Balloon"] = MakeSimpleSprite("outro.balloon", Layer_Static, 220, 440)
         self.OutroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 580, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_OutroCompetitors") } )
+                { "x": 570, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_OutroCompetitors") } )
         self.OutroScreen["Text"]["Points"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 700, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_OutroPoints") } )
+                { "x": 710, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_OutroPoints") } )
         for i in range(self.MaxPeopleOnOutro):
             self.OutroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_Static-1)
             self.OutroScreen["Static"]["Medallion"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_Static-1,
@@ -553,9 +553,9 @@ class Gui(scraft.Dispatcher):
                                     "x": 0, "y": -170, "hotspot": scraft.HotspotCenter } )
         for i in range(self.MaxPeopleOnLevel):
             self.OutroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 600, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
+                { "x": 550, "y": 305+30*i } )
             self.OutroScreen["Text"]["Score"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 720, "y": 340+25*i, "hotspot": scraft.HotspotCenter } )
+                { "x": 710, "y": 305+30*i } )
         for i in range(self.MaxSpeechLines):
             self.IntroScreen["Text"]["Speech"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
         
@@ -970,6 +970,8 @@ class Gui(scraft.Dispatcher):
         self.IntroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
         self.IntroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
         self.IntroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
+        ApplyTextLayout(self.IntroScreen["Text"]["Competitors"],
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro.competitors"))
         for i in range(self.MaxPeopleOnLevel):
             if i < len(tmpCharacters):
                 self.IntroScreen["Static"]["Character"+str(i)].\
@@ -977,14 +979,16 @@ class Gui(scraft.Dispatcher):
                 self.IntroScreen["Static"]["Character"+str(i)].x, self.IntroScreen["Static"]["Character"+str(i)].y = tmpCharacters[i][1]["xy"]
                 self.IntroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
                 self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i][0]
+                ApplyTextLayout(self.IntroScreen["Text"]["Character"+str(i)],
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro.names."+string.lower(tmpEpisode)))
             else:
                 self.IntroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
                 self.IntroScreen["Text"]["Character"+str(i)].text = ""
         #presenter's speech
         tmpTextLines = list(tmpLevel.Tags("text"))
         for i in range(len(tmpTextLines)):
-            tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpTextLines[i].GetStrAttr("layout"))
-            ApplyTextLayout(self.IntroScreen["Text"]["Speech"+str(i)], tmpLayout)
+            ApplyTextLayout(self.IntroScreen["Text"]["Speech"+str(i)],
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpTextLines[i].GetStrAttr("layout")))
             self.IntroScreen["Text"]["Speech"+str(i)].text = globalvars.GameTexts.\
                     GetSubtag(tmpTextLines[i].GetStrAttr("str")).GetStrAttr("str")
         for i in range(len(tmpTextLines), self.MaxSpeechLines):
@@ -1007,27 +1011,33 @@ class Gui(scraft.Dispatcher):
         self.OutroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
         self.OutroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
         self.OutroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
+        ApplyTextLayout(self.OutroScreen["Text"]["Competitors"],
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-outro.competitors"))
+        ApplyTextLayout(self.OutroScreen["Text"]["Points"],
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-outro.competitors"))
         
         if tmpResults["pass"]:
             tmpTextLines = list(tmpLevel.GetTag("passedText").Tags("text"))
         else:
             tmpTextLines = list(tmpLevel.GetTag("failedText").Tags("text"))
         for i in range(len(tmpTextLines)):
-            tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpTextLines[i].GetStrAttr("layout"))
-            ApplyTextLayout(self.OutroScreen["Text"]["Speech"+str(i)], tmpLayout)
+            ApplyTextLayout(self.OutroScreen["Text"]["Speech"+str(i)],
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpTextLines[i].GetStrAttr("layout")))
             self.OutroScreen["Text"]["Speech"+str(i)].text = globalvars.GameTexts.\
                     GetSubtag(tmpTextLines[i].GetStrAttr("str")).GetStrAttr("str")
         for i in range(len(tmpTextLines), self.MaxSpeechLines):
             self.OutroScreen["Text"]["Speech"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
         if tmpLevel.GetBoolAttr("showWinners") == True:
-            tmpWinnersTextLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-outro.winners")
-            ApplyTextLayout(self.OutroScreen["Text"]["SpeechWinners"], tmpWinnersTextLayout)
+            ApplyTextLayout(self.OutroScreen["Text"]["SpeechWinners"],
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-outro.winners"))
             self.OutroScreen["Text"]["SpeechWinners"].text = reduce(lambda x, y: x+y,
                                     map(lambda i: tmpResults["scores"][i][0]+\
                                         ", "*(i<tmpLevel.GetIntAttr("PassFurther")-2)+\
                                         " and "*(i==tmpLevel.GetIntAttr("PassFurther")-2),
                                     range(tmpLevel.GetIntAttr("PassFurther"))))
-        
+        else:
+            self.OutroScreen["Text"]["SpeechWinners"].ChangeKlassTo("$spritecraft$dummy$")
+            
         for i in range(self.MaxPeopleOnOutro):
             if i < tmpLevel.GetIntAttr("PassFurther"):
                 self.OutroScreen["Static"]["Character"+str(i)].\
@@ -1051,6 +1061,11 @@ class Gui(scraft.Dispatcher):
             if i < len(tmpResults["scores"]):
                 self.OutroScreen["Text"]["Character"+str(i)].text = tmpResults["scores"][i][0]
                 self.OutroScreen["Text"]["Score"+str(i)].text = str(tmpResults["scores"][i][1])
+                tmpLayoutName = "episode-outro.names-" + (i == tmpResults["place"]-1)*"jenny-" + \
+                            (i >= tmpLevel.GetIntAttr("PassFurther"))*"not" + "passed"
+                tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpLayoutName)
+                ApplyTextLayout(self.OutroScreen["Text"]["Character"+str(i)], tmpLayout)
+                ApplyTextLayout(self.OutroScreen["Text"]["Score"+str(i)], tmpLayout)
             else:
                 self.OutroScreen["Text"]["Character"+str(i)].text = ""
                 self.OutroScreen["Text"]["Score"+str(i)].text = ""

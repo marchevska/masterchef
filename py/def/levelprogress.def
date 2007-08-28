@@ -596,42 +596,51 @@ MasterChef {
         layout(outro) { textFont = "arial-italic-20" textXY = "(125,380)" textArea = "(300,170)" textColor = "0x000000" }
 
         layout(episode-intro) { textFont = "arial-italic-18" textXY = "(125,280)" textArea = "(280,220)" textColor = "0x000000" }
-        layout(episode-intro.1) { textFont = "arial-italic-18" textXY = "(270,300)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-intro.2) { textFont = "arial-italic-18" textXY = "(270,325)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-intro.3) { textFont = "arial-italic-18" textXY = "(270,350)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-intro.4) { textFont = "arial-italic-18" textXY = "(270,375)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-intro.5) { textFont = "arial-italic-18" textXY = "(270,400)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-intro.6) {  textFont = "arial-italic-18" textXY = "(270,425)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-intro.7) { textFont = "arial-italic-18" textXY = "(270,450)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.1) { textFont = "arial-italic-18" textXY = "(270,300)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.2) { textFont = "arial-italic-18" textXY = "(270,325)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.3) { textFont = "arial-italic-18" textXY = "(270,350)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.4) { textFont = "arial-italic-18" textXY = "(270,375)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.5) { textFont = "arial-italic-18" textXY = "(270,400)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.6) {  textFont = "arial-italic-18" textXY = "(270,425)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.7) { textFont = "arial-italic-18" textXY = "(270,450)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
 
-        layout(episode-outro.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.2) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.3) {  textFont = "arial-italic-18" textXY = "(210,445)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.4) { textFont = "arial-italic-18" textXY = "(210,470)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.5) { textFont = "arial-italic-18" textXY = "(210,495)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.6) { textFont = "arial-italic-18" textXY = "(210,520)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.winners) { textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x993300"hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.competitors) { textFont = "arial-italic-18" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.names) { textFont = "arial-italic-18" textColor = "0x663300" hotspot = "scraft.HotspotCenter" }
 
-        layout(episode-outro.japanese.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x993300"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.japanese.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.japanese.3) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.japanese.4) { textFont = "arial-italic-18" textXY = "(210,450)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.japanese.5) { textFont = "arial-italic-18" textXY = "(210,480)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.japanese.6) { textFont = "arial-italic-18" textXY = "(210,510)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.competitors) { textFont = "arial-italic-18" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.names-passed) { textFont = "arial-italic-18" textColor = "0x339900" }
+        layout(episode-outro.names-notpassed) { textFont = "arial-italic-18" textColor = "0x666666" }
+        layout(episode-outro.names-jenny-passed) { textFont = "arial-italic-20" textColor = "0x663300" }
+        layout(episode-outro.names-jenny-notpassed) { textFont = "arial-italic-20" textColor = "0x333333" }
 
-        layout(episode-outro.hawaiian.1) { textFont = "arial-italic-20" textXY = "(210,370)" textColor = "0xcc3300"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.hawaiian.2) { textFont = "arial-italic-20" textXY = "(210,405)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.hawaiian.3) { textFont = "arial-italic-20" textXY = "(210,440)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.hawaiian.4) { textFont = "arial-italic-20" textXY = "(210,475)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.hawaiian.5) { textFont = "arial-italic-20" textXY = "(210,510)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.2) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.3) {  textFont = "arial-italic-18" textXY = "(210,445)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.4) { textFont = "arial-italic-18" textXY = "(210,470)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.5) { textFont = "arial-italic-18" textXY = "(210,495)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.6) { textFont = "arial-italic-18" textXY = "(210,520)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.winners) { textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
 
-        layout(episode-outro.failed.1) {  textFont = "arial-italic-18" textXY = "(210,365)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.failed.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.failed.3) {  textFont = "arial-italic-18" textXY = "(210,415)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.failed.4) { textFont = "arial-italic-18" textXY = "(210,440)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.failed.5) { textFont = "arial-italic-18" textXY = "(210,465)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.failed.6) { textFont = "arial-italic-18" textXY = "(210,490)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
-        layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000"hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.3) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.4) { textFont = "arial-italic-18" textXY = "(210,450)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.5) { textFont = "arial-italic-18" textXY = "(210,480)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.6) { textFont = "arial-italic-18" textXY = "(210,510)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.hawaiian.1) { textFont = "arial-italic-20" textXY = "(210,370)" textColor = "0xcc3300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.2) { textFont = "arial-italic-20" textXY = "(210,405)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.3) { textFont = "arial-italic-20" textXY = "(210,440)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.4) { textFont = "arial-italic-20" textXY = "(210,475)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.5) { textFont = "arial-italic-20" textXY = "(210,510)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.failed.1) {  textFont = "arial-italic-18" textXY = "(210,365)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.3) {  textFont = "arial-italic-18" textXY = "(210,415)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.4) { textFont = "arial-italic-18" textXY = "(210,440)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.5) { textFont = "arial-italic-18" textXY = "(210,465)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.6) { textFont = "arial-italic-18" textXY = "(210,490)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
     }
 
 }

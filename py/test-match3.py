@@ -17,7 +17,7 @@ from extra import *
 import traceback, string
 
 TokenRates = { "tomato": 5, "flour": 5, "avocado": 5,
-              "banana": 5, "sugar": 5, "salmon": 5,
+              "meat": 5, "shrimp": 5, "salmon": 5,
               "rice": 0 }
 MatchDeltasHor = ((-1, 0), (1, 0))
 MatchDeltasVer = ((0, -1), (0, 1))
@@ -198,7 +198,7 @@ oE.background.color = 0x402020
 oE.rscpath = unicode(sys.argv[0][0:sys.argv[0].rfind("\\")+1])
 oE.SST = File_SST
 oE.title = "Match 3 Test"
-oE.nativeCursor = False
+oE.nativeCursor = True
 oE.showFps = False
 
 defs.ReadCuisine()

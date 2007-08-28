@@ -384,27 +384,41 @@ class Gui(scraft.Dispatcher):
         self.OptionsDialog["Buttons"]["Slider_Music"] = Slider("SliderMusic", globalvars.GameConfig, 'Music',
                 PState_Options, "options-slider", [0, 1, 2], 
                 Layer_PopupBtnTxt, 555, 270, 220, 30, (460, 650), (270, 270), "slider-background")
-        self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 320,
+        #self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 320,
+        #                                        scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMute"))
+        #self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 365,
+        #                                        scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelHints"))
+        #self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 410,
+        #                                        scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelFullscreen"))
+        self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 330,
                                                 scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMute"))
-        self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 365,
-                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelHints"))
-        self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 410,
+        self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 380,
                                                 scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelFullscreen"))
+        #self.OptionsDialog["Buttons"]["Mute"] = PushButton("OptionsMute",
+        #        self, Cmd_OptionsMute, PState_Options,
+        #        "options-checkbox", [0, 1, 2], 
+        #        Layer_PopupBtnTxt, 372, 320, 30, 30)
+        #self.OptionsDialog["Buttons"]["Hints"] = PushButton("OptionsHints",
+        #        self, Cmd_OptionsHints, PState_Options,
+        #        "options-checkbox", [0, 1, 2], 
+        #        Layer_PopupBtnTxt, 372, 365, 30, 30)
+        #self.OptionsDialog["Buttons"]["Fullscreen"] = PushButton("OptionsFullscreen",
+        #        self, Cmd_OptionsFullscreen, PState_Options,
+        #        "options-checkbox", [0, 1, 2], 
+        #        Layer_PopupBtnTxt, 372, 410, 30, 30)
         self.OptionsDialog["Buttons"]["Mute"] = PushButton("OptionsMute",
                 self, Cmd_OptionsMute, PState_Options,
                 "options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 372, 320, 30, 30)
-        self.OptionsDialog["Buttons"]["Hints"] = PushButton("OptionsHints",
-                self, Cmd_OptionsHints, PState_Options,
-                "options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 372, 365, 30, 30)
+                Layer_PopupBtnTxt, 372, 330, 30, 30)
         self.OptionsDialog["Buttons"]["Fullscreen"] = PushButton("OptionsFullscreen",
                 self, Cmd_OptionsFullscreen, PState_Options,
                 "options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 372, 410, 30, 30)
-        self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 320)
-        self.OptionsDialog["Static"]["Galka_Hints"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 365)
-        self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 410)
+                Layer_PopupBtnTxt, 372, 380, 30, 30)
+        #self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 320)
+        #self.OptionsDialog["Static"]["Galka_Hints"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 365)
+        #self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 410)
+        self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 330)
+        self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 380)
         self.OptionsDialog["Buttons"]["Ok"] = PushButton("OptionsOk",
                 self, Cmd_OptionsOk, PState_Options,
                 "button-4st", [0, 1, 2], 

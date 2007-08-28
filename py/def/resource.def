@@ -632,7 +632,7 @@ MasterChef{
             bitmap = "img/fonts/mainmenu.domcasual.png"
             type = "blend"
             filtering = "yes"
-            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- &"
         }
         font(mainmenu.domcasual.down) {
             bitmap = "img/fonts/mainmenu.domcasual.down.png"

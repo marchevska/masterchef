@@ -571,10 +571,12 @@ class Gui(scraft.Dispatcher):
         self.MapCareerDialog["Animations"]["JaneEyes"].SetState("None")
         self.MapCareerDialog["Animations"]["JaneEyes"].Freeze(True)
         self.MapCareerDialog["Static"]["Tablet"] = MakeSprite("map.tablet", Layer_Background-1, { "x": 30, "y": 385 } )
-        self.MapCareerDialog["Text"]["LevelTitle"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
-                                                { "x": 170, "y": 460, "hotspot": scraft.HotspotCenter } )
+        self.MapCareerDialog["Text"]["RestaurantTitle"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
+                                                { "x": 170, "y": 420, "hotspot": scraft.HotspotCenter } )
+        self.MapCareerDialog["Text"]["RestaurantDay"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
+                                                { "x": 170, "y": 450, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Text"]["BestResult"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                                                { "x": 170, "y": 500, "hotspot": scraft.HotspotCenter } )
+                                                { "x": 170, "y": 490, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Buttons"]["Start"] = PushButton("MapStart",
                 self, Cmd_MapStart, PState_MapCareer,
                 "map.play.button", [0, 1, 2, 3], 
@@ -921,26 +923,32 @@ class Gui(scraft.Dispatcher):
             tmpBest = globalvars.BestResults.GetSubtag(self.SelectedLevel)
             if tmpBest.GetIntAttr("hiscore") != 0 and tmpBest.GetStrAttr("player") != "":
                 self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapHiscore") + \
-                        str(tmpBest.GetIntAttr("hiscore")) + \
+                        str(tmpBest.GetIntAttr("hiscore")) + "\n\n" + \
                         defs.GetGameString("Str_MapAchievedBy") + tmpBest.GetStrAttr("player")
             else:
-                self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapHiscore") + str(tmpBest.GetIntAttr("hiscore"))
-            self.MapCareerDialog["Text"]["LevelTitle"].text = \
-                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("title")
+                self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapNoHiscore")
+            self.MapCareerDialog["Text"]["RestaurantTitle"].text = \
+                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant")
+            self.MapCareerDialog["Text"]["RestaurantDay"].text = \
+                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("day")
         #исправить
         elif self.SelectedLevel in tmpOutroKeys and \
                     globalvars.CurrentPlayer.GetLevelParams(self.SelectedLevel).GetBoolAttr("unlocked"):
             self.MapCareerDialog["Buttons"]["ViewResults"].Show(True)
             self.MapCareerDialog["Buttons"]["Start"].Show(False)
             self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
-            self.MapCareerDialog["Text"]["BestResult"].text = self.SelectedLevel
-            self.MapCareerDialog["Text"]["LevelTitle"].text = \
-                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("title")
+            self.MapCareerDialog["Text"]["BestResult"].text = ""
+            self.MapCareerDialog["Text"]["RestaurantTitle"].text = \
+                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant")
+            self.MapCareerDialog["Text"]["RestaurantDay"].text = \
+                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("day")
         else:
             self.MapCareerDialog["Buttons"]["ViewResults"].Show(False)
             self.MapCareerDialog["Buttons"]["Start"].Show(True)
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
             self.MapCareerDialog["Text"]["BestResult"].text = ""
+            self.MapCareerDialog["Text"]["RestaurantTitle"].text = ""
+            self.MapCareerDialog["Text"]["RestaurantDay"].text = ""
         #отрисовать картинки эпизодов - разлочены они или нет
         for tmp in globalvars.LevelProgress.GetTag("Episodes").Tags("episode"):
             if globalvars.CurrentPlayer.GetLevelParams(tmp.GetContent()).GetBoolAttr("unlocked"):

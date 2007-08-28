@@ -374,7 +374,8 @@ MasterChef {
     text(Str_MapStart) { str = "Start game" }
     text(Str_MapViewResults) { str = "View results" }
     text(Str_MapHiscore) { str = "Hiscore " }
-    text(Str_MapAchievedBy) { str = " achieved by " }
+    text(Str_MapNoHiscore) { str = "No hiscore set" }
+    text(Str_MapAchievedBy) { str = "achieved by " }
     text(Str_IntroCompetitors) { str = "COMPETITORS" }
     text(Str_OutroCompetitors) { str = "Competitors" }
     text(Str_OutroPoints) { str = "Points" }

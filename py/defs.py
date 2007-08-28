@@ -133,6 +133,12 @@ def ReadLevelSettings(filename):
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
         
+#------------------------
+# Поиск нужной строки
+#------------------------
+
+def GetGameString(strname):
+    return globalvars.GameTexts.GetSubtag(strname).GetStrAttr("str")
 
 #------------------------
 # Чтение размеров групп - для балансировки

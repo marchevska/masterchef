@@ -42,14 +42,6 @@ File_Animations = "def/animations.def"
 File_LevelProgress = "def/levelprogress.def"
 File_GameTexts = "def/text.def"
 
-#сигнатура
-Str_SignatureBegin = "signature{\n  value("
-Str_SignatureEnd = ")\n}\n"
-
-# стартовые параметры игрока
-NewGame_Score = 0
-NewLevel_Score = 0
-
 RunMode_Test = 0
 RunMode_Play = 1
 

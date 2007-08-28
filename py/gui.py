@@ -13,7 +13,6 @@ from scraft import engine as oE
 from configconst import *
 from guiconst import *
 from guielements import *
-from strings import *
 from customer import *
 import defs
 import playerlist
@@ -82,36 +81,38 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_Menu_PlayCareer, PState_MainMenu,
                 "mainmenu.green-button", [0, 1, 2], 
                 Layer_BtnText, 675, 230, 210, 50,
-                Str_Menu_PlayCareer, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
-        #self.MainMenuDialog["Buttons"]["PlayEndless"] = PushButton("PlayEndless",
-        #        self, Cmd_Menu_PlayEndless, PState_MainMenu,
-        #        "mainmenu-career-endless-button", [1, 3, 5, 7], 
-        #        Layer_BtnText, 495, 215, 130, 170)
+                defs.GetGameString("Str_Menu_PlayCareer"),
+                ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Options"] = PushButton("Options",
                 self, Cmd_Menu_Options, PState_MainMenu,
                 "mainmenu.yellow-button", [0, 1, 2], 
                 Layer_BtnText, 675, 275, 200, 40,
-                Str_Menu_Options, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
+                defs.GetGameString("Str_Menu_Options"),
+                ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Help"] = PushButton("Help",
                 self, Cmd_Menu_Rules, PState_MainMenu,
                 "mainmenu.yellow-button", [0, 1, 2], 
                 Layer_BtnText, 675, 315, 200, 40,
-                Str_Menu_Rules, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
+                defs.GetGameString("Str_Menu_Rules"),
+                ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Cookbook"] = PushButton("Cookbook",
                 self, Cmd_Menu_Cookbook, PState_MainMenu,
                 "mainmenu.yellow-button", [0, 1, 2, 3], 
                 Layer_BtnText, 675, 355, 200, 40,
-                Str_Menu_Cookbook, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down", "mainmenu.domcasual.inert"])
+                defs.GetGameString("Str_Menu_Cookbook"),
+                ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down", "mainmenu.domcasual.inert"])
         self.MainMenuDialog["Buttons"]["Quit"] = PushButton("Quit",
                 self, Cmd_Menu_Quit, PState_MainMenu,
                 "mainmenu.yellow-button", [0, 1, 2], 
                 Layer_BtnText, 675, 395, 200, 40,
-                Str_Menu_Quit, ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
+                defs.GetGameString("Str_Menu_Quit"),
+                ["mainmenu.domcasual", "mainmenu.domcasual", "mainmenu.domcasual.down"])
         self.MainMenuDialog["Buttons"]["Players"] = PushButton("Players",
                 self, Cmd_Menu_Players, PState_MainMenu,
                 "mainmenu-players-button", [0, 1, 2, 3], 
                 Layer_BtnText, 675, 160, 190, 30,
-                Str_Menu_Players, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_Menu_Players"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.MainMenuDialog["Text"]["WelcomeMessage"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
                 { "x": 765, "y": 110, "hotspot": scraft.HotspotRightCenter  } )
         self.MainMenuDialog["Text"]["WelcomeName"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
@@ -126,17 +127,20 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_HelpPrev, PState_Help,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_BtnText, 100, 570, 120, 40,
-                Str_HelpPrev, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_HelpPrev"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.RulesDialog["Buttons"]["HelpNext"] = PushButton("HelpNext",
                 self, Cmd_HelpNext, PState_Help,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_BtnText, 260, 570, 120, 40,
-                Str_HelpNext, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_HelpNext"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.RulesDialog["Buttons"]["HelpClose"] = PushButton("HelpClose",
                 self, Cmd_HelpClose, PState_Help,
                 "button-4st", [0, 1, 2], 
                 Layer_BtnText, 700, 570, 120, 40,
-                Str_HelpClose, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_HelpClose"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #----------------
         # кулинарная книга
@@ -178,22 +182,25 @@ class Gui(scraft.Dispatcher):
         self.PlayersDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
         self.PlayersDialog["Static"]["ListBack"] = MakeSimpleSprite("players-list-background", Layer_PopupStatic, 490, 330)
         self.PlayersDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 460, 140,
-                                                                   scraft.HotspotCenter, Str_Players_Title)
+                                                            scraft.HotspotCenter, defs.GetGameString("Str_Players_Title"))
         self.PlayersDialog["Buttons"]["Remove"] = PushButton("PlayersRemove",
                 self, Cmd_PlayersRemove, PState_Players,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 310, 460, 120, 40,
-                Str_PlayersRemove, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_PlayersRemove"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Ok"] = PushButton("PlayersOk",
                 self, Cmd_PlayersOk, PState_Players,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 450, 460, 120, 40,
-                Str_PlayersOk, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_PlayersOk"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Cancel"] = PushButton("PlayersCancel",
                 self, Cmd_PlayersCancel, PState_Players,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 590, 460, 120, 40,
-                Str_PlayersCancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_PlayersCancel"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.PlayersDialog["Buttons"]["Up"] = PushButton("PlayersUp",
                 self, Cmd_PlayersUp, PState_Players,
                 "players-arrow-up", [0, 1, 2, 3], 
@@ -206,7 +213,8 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_PlayersNew, PState_Players,
                 "button-4st-300", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 490, 200, 300, 30,
-                Str_PlayersNew, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_PlayersNew"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         for i in range(self.TotalPlayersOnScreen):
             self.PlayersDialog["Buttons"]["Player_"+str(i)] = PushButton("PlayerNo"+str(i),
                 self, Cmd_PlayersSelect+i, PState_Players,
@@ -221,19 +229,21 @@ class Gui(scraft.Dispatcher):
         self.EnterNameDialog["Static"]["Back"] = MakeSimpleSprite("2nd-popup-background", Layer_2ndPopupBg)
         self.EnterNameDialog["Static"]["TextField"] = MakeSimpleSprite("entername.text-field", Layer_2ndPopupStatic, 400, 293)
         self.EnterNameDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 248,
-                                                    scraft.HotspotCenterTop, Str_EnterName_Title)
+                                                    scraft.HotspotCenterTop, defs.GetGameString("Str_EnterName_Title"))
         self.EnterNameDialog["Static"]["TextCursor"] = MakeSimpleSprite("textcursor", Layer_2ndPopupBtnTxt, 400, 291)
         self.EnterNameDialog["Static"]["TextCursor"].AnimateLoop(2)
         self.EnterNameDialog["Buttons"]["Ok"] = PushButton("EnterNameOk",
                 self, Cmd_EnterNameOk, PState_EnterName,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_2ndPopupBtnTxt, 330, 342, 120, 40,
-                Str_EnterNameOk, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_EnterNameOk"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.EnterNameDialog["Buttons"]["Cancel"] = PushButton("EnterNameCancel",
                 self, Cmd_EnterNameCancel, PState_EnterName,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
-                Str_EnterNameCancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_EnterNameCancel"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.EnterNameDialog["Text"]["Name"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 293)
         self.EnterNameDialog["Text"]["NameErrors"] = MakeTextSprite("domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 320)
         self.EnterNameDialog["Text"]["NameErrors"].xScale, self.EnterNameDialog["Text"]["NameErrors"].yScale = 50,50
@@ -244,17 +254,17 @@ class Gui(scraft.Dispatcher):
         self.LevelGoalsDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.LevelGoalsDialog["Static"]["Back"] = MakeSimpleSprite("level-start.background", Layer_PopupBg)
         self.LevelGoalsDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 470, 130,
-                                                                scraft.HotspotCenter, Str_LvGoals_Title)
+                                                        scraft.HotspotCenter, defs.GetGameString("Str_LvGoals_Title"))
         #level goal parameters
         self.LevelGoalsDialog["Static"]["Indicator1"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 220)
         self.LevelGoalsDialog["Static"]["Indicator2"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 270)
         self.LevelGoalsDialog["Static"]["Indicator3"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 320)
         self.LevelGoalsDialog["Text"]["LabelLevel"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 360, "y": 221, "hotspot": scraft.HotspotLeftCenter, "text": Str_LvGoals_Level })
+                    { "x": 360, "y": 221, "hotspot": scraft.HotspotLeftCenter, "text": defs.GetGameString("Str_LvGoals_Level") })
         self.LevelGoalsDialog["Text"]["LabelGoal"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 360, "y": 271, "hotspot": scraft.HotspotLeftCenter, "text": Str_LvGoals_Goal })
+                    { "x": 360, "y": 271, "hotspot": scraft.HotspotLeftCenter, "text": defs.GetGameString("Str_LvGoals_Goal") })
         self.LevelGoalsDialog["Text"]["LabelExpert"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 360, "y": 321, "hotspot": scraft.HotspotLeftCenter, "text": Str_LvGoals_Expert })
+                    { "x": 360, "y": 321, "hotspot": scraft.HotspotLeftCenter, "text": defs.GetGameString("Str_LvGoals_Expert") })
         self.LevelGoalsDialog["Text"]["TextLevel"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
                     { "x": 583, "y": 221, "hotspot": scraft.HotspotLeftCenter })
         self.LevelGoalsDialog["Text"]["TextGoal"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
@@ -279,16 +289,16 @@ class Gui(scraft.Dispatcher):
         self.LevelCompleteDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.LevelCompleteDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBg)
         self.LevelCompleteDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 470, 130,
-                                                                   scraft.HotspotCenter, Str_LvComplete_Title)
+                                                        scraft.HotspotCenter, defs.GetGameString("Str_LvComplete_Title"))
         self.LevelCompleteDialog["Static"]["Indicator1"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 206)
         self.LevelCompleteDialog["Static"]["Indicator2"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 241)
         self.LevelCompleteDialog["Static"]["Indicator3"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 276)
         self.LevelCompleteDialog["Text"]["LabelServed"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 570, "y": 207, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Served })
+                    { "x": 570, "y": 207, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Served") })
         self.LevelCompleteDialog["Text"]["LabelLost"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 570, "y": 242, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Lost })
+                    { "x": 570, "y": 242, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Lost") })
         self.LevelCompleteDialog["Text"]["LabelEarned"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 570, "y": 277, "hotspot": scraft.HotspotRightCenter, "text": Str_LvComplete_Score })
+                    { "x": 570, "y": 277, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Score") })
         self.LevelCompleteDialog["Text"]["TextServed"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
                     { "x": 583, "y": 207, "hotspot": scraft.HotspotLeftCenter })
         self.LevelCompleteDialog["Text"]["TextLost"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
@@ -309,12 +319,14 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_LvCompleteRestart, PState_NextLevel,
                 "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 600, 400, 120, 40,
-                Str_LvCompleteRestart, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_LvCompleteRestart"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.LevelCompleteDialog["Buttons"]["No"] = PushButton("LvCompleteMainMenu",
                 self, Cmd_LvCompleteMainMenu, PState_NextLevel,
                 "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 600, 450, 120, 40,
-                Str_LvCompleteMainMenu, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_LvCompleteMainMenu"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #---------
         # данетка
@@ -326,12 +338,12 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_Yes, PState_YesNo,
                 "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 330, 342, 120, 40,
-                Str_Yes, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_Yes"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.YesNoDialog["Buttons"]["No"] = PushButton("No",
                 self, Cmd_No, PState_YesNo,
                 "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
-                Str_No, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_No"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #---------------
         # Yes-No-Cancel
@@ -343,17 +355,17 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_YncYes, PState_YesNoCancel,
                 "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 260, 342, 120, 40,
-                Str_Yes, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_Yes"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.YesNoCancelDialog["Buttons"]["No"] = PushButton("No",
                 self, Cmd_YncNo, PState_YesNoCancel,
                 "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 400, 342, 120, 40,
-                Str_No, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_No"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.YesNoCancelDialog["Buttons"]["Cancel"] = PushButton("Cancel",
                 self, Cmd_YncCancel, PState_YesNoCancel,
                 "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 540, 342, 120, 40,
-                Str_Cancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_Cancel"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #-------
         # опции
@@ -361,11 +373,11 @@ class Gui(scraft.Dispatcher):
         self.OptionsDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.OptionsDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
         self.OptionsDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 460, 140,
-                                                                   scraft.HotspotCenter, Str_Options_Title)
+                                                scraft.HotspotCenter, defs.GetGameString("Str_Options_Title"))
         self.OptionsDialog["Text"]["Label_Sound"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 220,
-                                                                   scraft.HotspotLeftCenter, Str_Options_LabelSound)
+                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelSound"))
         self.OptionsDialog["Text"]["Label_Music"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 270,
-                                                                   scraft.HotspotLeftCenter, Str_Options_LabelMusic)
+                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMusic"))
         self.OptionsDialog["Buttons"]["Slider_Sound"] = Slider("SliderSound", globalvars.GameConfig, 'Sound',
                 PState_Options, "options-slider", [0, 1, 2], 
                 Layer_PopupBtnTxt, 555, 220, 220, 30, (460, 650), (220, 220), "slider-background")
@@ -373,11 +385,11 @@ class Gui(scraft.Dispatcher):
                 PState_Options, "options-slider", [0, 1, 2], 
                 Layer_PopupBtnTxt, 555, 270, 220, 30, (460, 650), (270, 270), "slider-background")
         self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 320,
-                                                                   scraft.HotspotLeftCenter, Str_Options_LabelMute)
+                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMute"))
         self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 365,
-                                                                   scraft.HotspotLeftCenter, Str_Options_LabelHints)
+                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelHints"))
         self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 410,
-                                                                   scraft.HotspotLeftCenter, Str_Options_LabelFullscreen)
+                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelFullscreen"))
         self.OptionsDialog["Buttons"]["Mute"] = PushButton("OptionsMute",
                 self, Cmd_OptionsMute, PState_Options,
                 "options-checkbox", [0, 1, 2], 
@@ -397,27 +409,32 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_OptionsOk, PState_Options,
                 "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 450, 460, 120, 40,
-                Str_OptionsOk, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_OptionsOk"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         #self.OptionsDialog["Buttons"]["Cancel"] = PushButton("Cmd_OptionsCancel",
         #        self, Cmd_OptionsCancel, PState_Options,
         #        "button-4st", [0, 1, 2], 
         #        Layer_PopupBtnTxt, 460, 460, 120, 40,
-        #        Str_OptionsCancel, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+        #        defs.GetGameString("Str_OptionsCancel"),
+        #        ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.OptionsDialog["Buttons"]["Resume"] = PushButton("OptionsResume",
                 self, Cmd_IGM_Resume, PState_Options,
                 "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 310, 460, 120, 40,
-                Str_OptionsResume, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_OptionsResume"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         self.OptionsDialog["Buttons"]["Restart"] = PushButton("OptionsRestart",
                 self, Cmd_IGM_Restart, PState_Options,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 450, 460, 120, 40,
-                Str_OptionsRestart, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_OptionsRestart"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.OptionsDialog["Buttons"]["EndGame"] = PushButton("OptionsEndGame",
                 self, Cmd_IGM_EndGame, PState_Options,
                 "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 590, 460, 120, 40,
-                Str_OptionsEndGame, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_OptionsEndGame"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         #---------
         # рекорды
@@ -425,17 +442,19 @@ class Gui(scraft.Dispatcher):
         self.HiscoresDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.HiscoresDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
         self.HiscoresDialog["Text"]["Title"] = MakeTextSprite("domcasual-10-up", Layer_PopupBtnTxt, 400, 165,
-                                                                   scraft.HotspotCenter, Str_Hiscores_Title)
+                                                scraft.HotspotCenter, defs.GetGameString("Str_Hiscores_Title"))
         self.HiscoresDialog["Buttons"]["Reset"] = PushButton("HiscoresReset",
                 self, Cmd_HiscoresReset, PState_Hiscores,
                 "button-4st", [0, 1, 2, 3], 
                 Layer_PopupBtnTxt, 330, 500, 120, 40,
-                Str_HiscoresReset, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_HiscoresReset"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.HiscoresDialog["Buttons"]["Close"] = PushButton("HiscoresClose",
                 self, Cmd_HiscoresClose, PState_Hiscores,
                 "button-4st", [0, 1, 2], 
                 Layer_PopupBtnTxt, 470, 500, 120, 40,
-                Str_HiscoresClose, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+                defs.GetGameString("Str_HiscoresClose"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         for i in range(Max_Scores):
             self.HiscoresDialog["Text"]["Name_"+str(i)] = MakeTextSprite("domcasual-10-up",
                 Layer_PopupBtnTxt, 280, 220 + 30* i, scraft.HotspotLeftCenter)
@@ -472,7 +491,7 @@ class Gui(scraft.Dispatcher):
         self.IntroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 520)
         self.IntroScreen["Static"]["Balloon"] = MakeSimpleSprite("intro.balloon", Layer_Static, 270, 370)
         self.IntroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_IntroCompetitors } )
+                { "x": 640, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_IntroCompetitors") } )
         for i in range(self.MaxPeopleOnLevel):
             self.IntroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
             self.IntroScreen["Text"]["Character"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
@@ -502,9 +521,9 @@ class Gui(scraft.Dispatcher):
         self.OutroScreen["Static"]["Presenter"] = MakeSimpleSprite("comics.presenter", Layer_BtnText, 460, 420)
         self.OutroScreen["Static"]["Balloon"] = MakeSimpleSprite("outro.balloon", Layer_Static, 220, 440)
         self.OutroScreen["Text"]["Competitors"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 580, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_OutroCompetitors } )
+                { "x": 580, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_OutroCompetitors") } )
         self.OutroScreen["Text"]["Points"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                { "x": 700, "y": 270, "hotspot": scraft.HotspotCenter, "text": Str_OutroPoints } )
+                { "x": 700, "y": 270, "hotspot": scraft.HotspotCenter, "text": defs.GetGameString("Str_OutroPoints") } )
         for i in range(self.MaxPeopleOnOutro):
             self.OutroScreen["Static"]["Character"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_Static-1)
             self.OutroScreen["Static"]["Medallion"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_Static-1,
@@ -546,12 +565,14 @@ class Gui(scraft.Dispatcher):
                 self, Cmd_MapStart, PState_MapCareer,
                 "map.play.button", [0, 1, 2, 3], 
                 Layer_BtnText, 170, 540, 130, 50,
-                Str_MapStart, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_MapStart"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.MapCareerDialog["Buttons"]["ViewResults"] = PushButton("ViewResults",
                 self, Cmd_MapViewResults, PState_MapCareer,
                 "map.play.button", [0, 1, 2, 3], 
                 Layer_BtnText, 170, 540, 130, 50,
-                Str_MapViewResults, ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
+                defs.GetGameString("Str_MapViewResults"),
+                ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.MapCareerDialog["Buttons"]["MainMenu"] = PushButton("MapMainMenu",
                 self, Cmd_MapMainMenu, PState_MapCareer,
                 "map.back-button", [0, 1, 2, 3], 
@@ -885,10 +906,11 @@ class Gui(scraft.Dispatcher):
             self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
             tmpBest = globalvars.BestResults.GetSubtag(self.SelectedLevel)
             if tmpBest.GetIntAttr("hiscore") != 0 and tmpBest.GetStrAttr("player") != "":
-                self.MapCareerDialog["Text"]["BestResult"].text = Str_MapHiscore + str(tmpBest.GetIntAttr("hiscore")) + \
-                    Str_MapAchievedBy + tmpBest.GetStrAttr("player")
+                self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapHiscore") + \
+                        str(tmpBest.GetIntAttr("hiscore")) + \
+                        defs.GetGameString("Str_MapAchievedBy") + tmpBest.GetStrAttr("player")
             else:
-                self.MapCareerDialog["Text"]["BestResult"].text = Str_MapHiscore + str(tmpBest.GetIntAttr("hiscore"))
+                self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapHiscore") + str(tmpBest.GetIntAttr("hiscore"))
             self.MapCareerDialog["Text"]["LevelTitle"].text = \
                 globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("title")
         #исправить
@@ -1234,7 +1256,7 @@ class Gui(scraft.Dispatcher):
             #players dialog
             elif globalvars.StateStack[-1] == PState_Players:
                 if cmd == Cmd_PlayersRemove:
-                    self._Ask(Str_Question_RemovePlayer)
+                    self._Ask(defs.GetGameString("Str_Question_RemovePlayer"))
                 elif cmd == Cmd_PlayersOk:
                     if self.SelectedPlayer != "":
                         globalvars.PlayerList.SelectPlayer(self.SelectedPlayer)
@@ -1273,7 +1295,7 @@ class Gui(scraft.Dispatcher):
                 elif cmd == Cmd_IGM_Resume:
                     self._CloseOptionsDialog(True)
                 elif cmd == Cmd_IGM_Restart:
-                    self._Ask(Str_Question_RestartLevel)
+                    self._Ask(defs.GetGameString("Str_Question_RestartLevel"))
                 elif cmd == Cmd_IGM_EndGame:
                     self._ReleaseState(PState_Options)
                     self._ReleaseState(PState_Game)
@@ -1282,7 +1304,7 @@ class Gui(scraft.Dispatcher):
             #hiscores dialog
             elif globalvars.StateStack[-1] == PState_Hiscores:
                 if cmd == Cmd_HiscoresReset:
-                    self._Ask(Str_Question_ClearHiscores)
+                    self._Ask(defs.GetGameString("Str_Question_ClearHiscores"))
                 elif cmd == Cmd_HiscoresClose:
                     self._ReleaseState(PState_Hiscores)
             
@@ -1291,13 +1313,13 @@ class Gui(scraft.Dispatcher):
                 if cmd == Cmd_EnterNameOk:
                     tmpName = self.EnterNameDialog["Text"]["Name"].text
                     if len(tmpName) == 0:
-                        self.EnterNameDialog["Text"]["NameErrors"].text = Str_EnterName_Error_Empty
+                        self.EnterNameDialog["Text"]["NameErrors"].text = defs.GetGameString("Str_EnterName_Error_Empty")
                         return
                     elif tmpName == 'None':
-                        self.EnterNameDialog["Text"]["NameErrors"].text = Str_EnterName_Error_Bad
+                        self.EnterNameDialog["Text"]["NameErrors"].text = defs.GetGameString("Str_EnterName_Error_Bad")
                         return
                     elif globalvars.PlayerList.GetPlayerList().count(tmpName) > 0:
-                        self.EnterNameDialog["Text"]["NameErrors"].text = Str_EnterName_Error_Exist
+                        self.EnterNameDialog["Text"]["NameErrors"].text = defs.GetGameString("Str_EnterName_Error_Exist")
                         return
                     else:
                         globalvars.PlayerList.CreatePlayer(tmpName)
@@ -1569,7 +1591,7 @@ class Gui(scraft.Dispatcher):
                 self.MainMenuDialog["Buttons"]["Players"].Show(True)
                 self.MainMenuDialog["Text"]["WelcomeMessage"].visible = True
                 self.MainMenuDialog["Text"]["WelcomeName"].visible = True
-                self.MainMenuDialog["Text"]["WelcomeMessage"].text = Str_Menu_Welcome
+                self.MainMenuDialog["Text"]["WelcomeMessage"].text = defs.GetGameString("Str_Menu_Welcome")
                 self.MainMenuDialog["Text"]["WelcomeName"].text = globalvars.GameConfig.GetStrAttr("Player")
             #если у игрока не разлочен ни один эпизод, то кулинарная книга недоступна
             tmpUnlockedSettings = filter(lambda x: \

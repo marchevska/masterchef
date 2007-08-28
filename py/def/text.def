@@ -20,7 +20,7 @@ MasterChef {
     text(def/04.def.expert.text) { str = "We should learn serving customers that patient * if we're going to win the competition?" }
     text(def/04.def.failed.text) { str = "We haven't made enough money today. We really should learn serving customers that patient, or we'll never win the competition." }
     text(def/05.def.intro.title) { str = "New bonus * Candy Sweet" }
-    text(def/05.def.intro.text) { str = "Here is the first bonus token – a candy sweet. If a customer is getting angry, you can improve his mode with a candy." }
+    text(def/05.def.intro.text) { str = "Here is the first bonus token * a candy sweet. If a customer is getting angry, you can improve his mode with a candy." }
     text(def/05.def.passed.text) { str = "Good work! Now when you learned to use sweets, you're ready for more difficult customers." }
     text(def/05.def.expert.text) { str = "Excellent work! Now when you learned to use sweets, you're ready for more difficult customers." }
     text(def/05.def.failed.text) { str = "We haven't made enough money today. Let's try again, and don't forget to use sweets if someone is getting upset." }
@@ -71,8 +71,8 @@ MasterChef {
     text(def/14.def.failed.text) { str = "We haven't made enough money today. Don't overuse field acceleration, or you can easily lose some points." }
     text(def/15.def.intro.title) { str = "New bonus * Scroll Backward" }
     text(def/15.def.intro.text) { str = "With this bonus, you can scroll the entire field backwards for 3 rows." }
-    text(def/15.def.passed.text) { str = "Good work! Now with that back-scroll bonus you can prevent the board from overflow with the tokens." }
-    text(def/15.def.expert.text) { str = "Excellent work! Now with that back-scroll bonus you can prevent the board from overflow with the tokens." }
+    text(def/15.def.passed.text) { str = "Good work! Now with that back*scroll bonus you can prevent the board from overflow with the tokens." }
+    text(def/15.def.expert.text) { str = "Excellent work! Now with that back*scroll bonus you can prevent the board from overflow with the tokens." }
     text(def/15.def.failed.text) { str = "We haven't made enough money today. Keep your eye on the field, don't let it overflow with the tokens." }
     text(def/16.def.intro.title) { str = "New customer * Old Lady" }
     text(def/16.def.intro.text) { str = "Get ready to meet another customer: an Old Lady. She will certainly be your favorite customer * she is very patient, but still tips very well." }

@@ -37,16 +37,16 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["InfoPane"] = MakeSprite("$spritecraft$dummy$", Layer_InterfaceBg, { "x": 1, "y": 0 })
         self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 77, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": Str_HUD_LevelText, "cfilt-color": 0x604020})
+                                     "text": defs.GetGameString("Str_HUD_LevelText"), "cfilt-color": 0x604020})
         self.HudElements["ScoreText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 150, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": Str_HUD_ScoreText, "cfilt-color": 0x604020})
+                                     "text": defs.GetGameString("Str_HUD_ScoreText"), "cfilt-color": 0x604020})
         self.HudElements["GoalText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 235, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": Str_HUD_GoalText, "cfilt-color": 0x604020})
+                                     "text": defs.GetGameString("Str_HUD_GoalText"), "cfilt-color": 0x604020})
         self.HudElements["NoPeopleText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
                                     {"x": 298, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": Str_HUD_NoPeopleText, "cfilt-color": 0x604020})
+                                     "text": defs.GetGameString("Str_HUD_NoPeopleText"), "cfilt-color": 0x604020})
         self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
                                     {"x": 77, "y": 37, "hotspot": scraft.HotspotCenter,
                                      "cfilt-color": 0xC04020})
@@ -103,7 +103,7 @@ class GameBoard(scraft.Dispatcher):
     def _StartLevel(self):
         self.Expert = False
         self.HudElements["LevelName"].text = self.LevelName
-        self.HudElements["GoalText"].text = Str_HUD_GoalText
+        self.HudElements["GoalText"].text = defs.GetGameString("Str_HUD_GoalText")
         self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
         self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
         self._UpdateLevelInfo()
@@ -251,11 +251,11 @@ class GameBoard(scraft.Dispatcher):
                         if tmpFrom.Collapsing:
                             tmpX, tmpY = tmpFrom.GetCentralCrd()
                             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokenForIncreadible"):
-                                PopupText(Str_Incredible, "domcasual-20-yellow", tmpX, tmpY,
+                                PopupText(defs.GetGameString("Str_Incredible"), "domcasual-20-yellow", tmpX, tmpY,
                                     InPlaceMotion(), BlinkTransp(400, 0.4, -50),
                                     BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500)
                             elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokensForGreat"):
-                                PopupText(Str_Great, "domcasual-20-yellow", tmpX, tmpY,
+                                PopupText(defs.GetGameString("Str_Great"), "domcasual-20-yellow", tmpX, tmpY,
                                     InPlaceMotion(), BlinkTransp(400, 0.4, -50),
                                     BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500)
                         self.TokensFrom.RemoveTokens()
@@ -526,8 +526,8 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["Score"].text = str(self.LevelScore)
         
     def _SwitchToExpert(self):
-        self.HudElements["GoalText"].text = Str_HUD_ExpertText
-        self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal"))
+        self.HudElements["GoalText"].text = defs.GetGameString("Str_HUD_ExpertText")
+        self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertgoal"))
         self.Expert = True
         
     #--------------------------

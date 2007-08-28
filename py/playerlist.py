@@ -11,7 +11,6 @@ import sys
 import scraft
 from scraft import engine as oE
 from configconst import *
-from strings import *
 import config
 import defs
 import globalvars

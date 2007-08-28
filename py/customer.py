@@ -11,7 +11,6 @@ import scraft
 from scraft import engine as oE
 import globalvars
 from constants import *
-from strings import *
 from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
 from extra import Animator, RandomKeyByRates
 from random import randint

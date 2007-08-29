@@ -11,13 +11,13 @@ Level{
     
     //customer appearance rates
     CustomerRates{
-        Customer{ type = "Worker"           rate = "1" }
+        Customer{ type = "Worker"           rate = "0" }
         Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "0" }
         Customer{ type = "Student"          rate = "0" }
         Customer{ type = "Oldlady"          rate = "1" }
         Customer{ type = "Critic"           rate = "1" }
-        Customer{ type = "Business"         rate = "1" }
+        Customer{ type = "Business"         rate = "0" }
         Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
         Customer{ type = "Tourist Japanese" rate = "1" }
@@ -49,13 +49,13 @@ Level{
     IngredientRates{
         Ingredient{ type = "salmon"   rate = "14" }
         Ingredient{ type = "shrimp"   rate = "7" }
-        Ingredient{ type = "rice"     rate = "45" }
-        Ingredient{ type = "tofu"     rate = "46" }
+        Ingredient{ type = "rice"     rate = "24" }
+        Ingredient{ type = "tofu"     rate = "27" }
         Ingredient{ type = "veggymix" rate = "19" }
-        Ingredient{ type = "seaweed"  rate = "44" }
-        Ingredient{ type = "bonus.spoon"      rate = "0" }
+        Ingredient{ type = "seaweed"  rate = "21" }
+        Ingredient{ type = "bonus.spoon"      rate = "1" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
-        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }

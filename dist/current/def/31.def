@@ -20,7 +20,7 @@ Level{
         Customer{ type = "Business"         rate = "0" }
         Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
-        Customer{ type = "Tourist Japanese" rate = "1" }
+        Customer{ type = "Tourist Japanese" rate = "0" }
         Customer{ type = "Tourist Russian"  rate = "0" }
     }
     
@@ -47,7 +47,7 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "40" }
+        Ingredient{ type = "salmon"   rate = "24" }
         Ingredient{ type = "shrimp"   rate = "0" }
         Ingredient{ type = "rice"     rate = "14" }
         Ingredient{ type = "tofu"     rate = "0" }
@@ -55,7 +55,7 @@ Level{
         Ingredient{ type = "seaweed"  rate = "10" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
-        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }

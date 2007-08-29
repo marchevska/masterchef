@@ -13,12 +13,12 @@ Level{
     CustomerRates{
         Customer{ type = "Worker"           rate = "0" }
         Customer{ type = "Vegetarian"       rate = "1" }
-        Customer{ type = "Schoolkid"        rate = "1" }
+        Customer{ type = "Schoolkid"        rate = "0" }
         Customer{ type = "Student"          rate = "1" }
         Customer{ type = "Oldlady"          rate = "0" }
         Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "1" }
-        Customer{ type = "Tourist Hawaiian" rate = "1" }
+        Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
         Customer{ type = "Tourist Japanese" rate = "0" }
         Customer{ type = "Tourist Russian"  rate = "1" }
@@ -49,19 +49,19 @@ Level{
     IngredientRates{
         Ingredient{ type = "pork"     rate = "0" }
         Ingredient{ type = "mushroom" rate = "21" }
-        Ingredient{ type = "cabbage"  rate = "35" }
-        Ingredient{ type = "potato"   rate = "36" }
-        Ingredient{ type = "onion"    rate = "18" }
-        Ingredient{ type = "flour"    rate = "34" }
+        Ingredient{ type = "cabbage"  rate = "24" }
+        Ingredient{ type = "potato"   rate = "24" }
+        Ingredient{ type = "onion"    rate = "15" }
+        Ingredient{ type = "flour"    rate = "24" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }
-        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "1" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
-        Ingredient{ type = "bonus.shuffle"    rate = "1" }
+        Ingredient{ type = "bonus.shuffle"    rate = "0" }
     }
     
     //level settings

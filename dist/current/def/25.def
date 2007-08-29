@@ -12,12 +12,12 @@ Level{
     //customer appearance rates
     CustomerRates{
         Customer{ type = "Worker"           rate = "1" }
-        Customer{ type = "Vegetarian"       rate = "1" }
+        Customer{ type = "Vegetarian"       rate = "0" }
         Customer{ type = "Schoolkid"        rate = "0" }
         Customer{ type = "Student"          rate = "0" }
-        Customer{ type = "Oldlady"          rate = "1" }
+        Customer{ type = "Oldlady"          rate = "0" }
         Customer{ type = "Critic"           rate = "0" }
-        Customer{ type = "Business"         rate = "1" }
+        Customer{ type = "Business"         rate = "0" }
         Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
         Customer{ type = "Tourist Japanese" rate = "0" }
@@ -48,20 +48,20 @@ Level{
     
     IngredientRates{
         Ingredient{ type = "pork"     rate = "0" }
-        Ingredient{ type = "mushroom" rate = "46" }
+        Ingredient{ type = "mushroom" rate = "27" }
         Ingredient{ type = "cabbage"  rate = "20" }
         Ingredient{ type = "potato"   rate = "20" }
-        Ingredient{ type = "onion"    rate = "20" }
+        Ingredient{ type = "onion"    rate = "15" }
         Ingredient{ type = "flour"    rate = "0" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
-        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "1" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }
         Ingredient{ type = "bonus.scrollback" rate = "0" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
-        Ingredient{ type = "bonus.shuffle"    rate = "1" }
+        Ingredient{ type = "bonus.shuffle"    rate = "0" }
     }
     
     //level settings

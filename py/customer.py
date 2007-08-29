@@ -26,11 +26,14 @@ class Customer(scraft.Dispatcher):
         self.Type = type
         self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("src"), Layer_Customer,
                         0, 0, scraft.HotspotCenterBottom)
-        self.Animator = CustomersAnimator(self.Sprite,
+        self.HilightSprite = MakeSprite("$spritecraft$dummy$", Layer_Customer+1,
+                        { "x":0, "y": 0, "parent": self.Sprite, "hotspot": scraft.HotspotCenterBottom })
+        self.SpriteProxy = CustomerSpriteProxy(self.Sprite, self.HilightSprite)
+        self.Animator = CustomersAnimator(self.SpriteProxy,
                 globalvars.CustomerAnimations.GetSubtag(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("animation"), "Animation"))
         self.HeartSprites = []
         for i in range(Const_MaxHearts):
-            self.HeartSprites.append(MakeSimpleSprite(u"heart", Layer_Recipe,
+            self.HeartSprites.append(MakeSimpleSprite("heart", Layer_Recipe,
                         self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx,
                         self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy))
         self.HasOrder = False
@@ -141,10 +144,11 @@ class Customer(scraft.Dispatcher):
             
     def Hilight(self, flag):
         if flag:
-            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("hilight"))
+            self.HilightSprite.ChangeKlassTo(globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("hilight"))
         else:
-            self.Sprite.ChangeKlassTo(globalvars.CustomersInfo.GetSubtag(self.Type).GetStrAttr("src"))
-        self.Sprite.hotspot = scraft.HotspotCenterBottom
+            self.HilightSprite.ChangeKlassTo("$spritecraft$dummy$")
+        self.HilightSprite.hotspot = scraft.HotspotCenterBottom
+        self.HilightSprite.frno = self.Sprite.frno
         
     def Kill(self):
         oE.executor.DismissQueue(self.QueNo)
@@ -406,3 +410,23 @@ class CustomersAnimator(scraft.Dispatcher):
         else:
             oE.executor.GetQueue(self.QueNo).Resume()
             
+#------------
+# ѕрокси: покупатель с тенью
+#  онтролирует два спрайта, 
+# у обоих frno должен мен€тьс€ одинаково!
+#------------
+
+class CustomerSpriteProxy(object):
+    def __init__(self, mainSprite, secondSprite):
+        self.mainSprite = mainSprite
+        self.secondSprite = secondSprite
+        
+    def SetFrno(self, value):
+        self.mainSprite.frno = value
+        self.secondSprite.frno = value
+        
+    def GetFrno(self):
+        return self.mainSprite.frno
+        
+    frno = property(GetFrno, SetFrno)
+        

@@ -16,7 +16,7 @@ Level{
         Customer{ type = "Schoolkid"        rate = "1" }
         Customer{ type = "Student"          rate = "0" }
         Customer{ type = "Oldlady"          rate = "0" }
-        Customer{ type = "Critic"           rate = "1" }
+        Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "0" }
         Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
@@ -47,14 +47,14 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "pork"     rate = "27" }
+        Ingredient{ type = "pork"     rate = "24" }
         Ingredient{ type = "mushroom" rate = "20" }
-        Ingredient{ type = "cabbage"  rate = "46" }
+        Ingredient{ type = "cabbage"  rate = "24" }
         Ingredient{ type = "potato"   rate = "17" }
-        Ingredient{ type = "onion"    rate = "18" }
+        Ingredient{ type = "onion"    rate = "15" }
         Ingredient{ type = "flour"    rate = "22" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
-        Ingredient{ type = "bonus.gift"       rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "1" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }

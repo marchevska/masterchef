@@ -18,7 +18,7 @@ Level{
         Customer{ type = "Oldlady"          rate = "0" }
         Customer{ type = "Critic"           rate = "0" }
         Customer{ type = "Business"         rate = "1" }
-        Customer{ type = "Tourist Hawaiian" rate = "1" }
+        Customer{ type = "Tourist Hawaiian" rate = "0" }
         Customer{ type = "Tourist Mexican"  rate = "0" }
         Customer{ type = "Tourist Japanese" rate = "0" }
         Customer{ type = "Tourist Russian"  rate = "0" }
@@ -47,8 +47,8 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "meat"      rate = "38" }
-        Ingredient{ type = "milk"      rate = "34" }
+        Ingredient{ type = "meat"      rate = "24" }
+        Ingredient{ type = "milk"      rate = "18" }
         Ingredient{ type = "pasta"     rate = "22" }
         Ingredient{ type = "pineapple" rate = "14" }
         Ingredient{ type = "pumpkin"   rate = "24" }

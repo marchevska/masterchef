@@ -47,15 +47,15 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "salmon"   rate = "30" }
-        Ingredient{ type = "shrimp"   rate = "27" }
-        Ingredient{ type = "rice"     rate = "64" }
+        Ingredient{ type = "salmon"   rate = "18" }
+        Ingredient{ type = "shrimp"   rate = "21" }
+        Ingredient{ type = "rice"     rate = "27" }
         Ingredient{ type = "tofu"     rate = "0" }
         Ingredient{ type = "veggymix" rate = "0" }
-        Ingredient{ type = "seaweed"  rate = "24" }
+        Ingredient{ type = "seaweed"  rate = "18" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
-        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "0" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }

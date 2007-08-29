@@ -48,7 +48,7 @@ Level{
     
     IngredientRates{
         Ingredient{ type = "meat"      rate = "24" }
-        Ingredient{ type = "milk"      rate = "22" }
+        Ingredient{ type = "milk"      rate = "18" }
         Ingredient{ type = "pasta"     rate = "12" }
         Ingredient{ type = "pineapple" rate = "17" }
         Ingredient{ type = "pumpkin"   rate = "0" }

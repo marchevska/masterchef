@@ -34,6 +34,7 @@ class Cursor(scraft.Dispatcher):
         self.QueNo = oE.executor.Schedule(self)
         
     def _OnExecute(self, que):    
+        self.Dummy.visible = oE.mouseIn
         self.Dummy.x = oE.mouseX
         self.Dummy.y = oE.mouseY
         
@@ -590,11 +591,12 @@ class Musician(scraft.Dispatcher):
             
     def _PlayNewMelody(self):
         tmpNewMelody = choice(MusicTracks[self.State])
-        oE.PlaySound(tmpNewMelody, Channel_Music, self)
-        
-    def _OnStopSound(self, sound, channel, cookie, x):
-        if not x:
-            self._PlayNewMelody()
+        oE.PlaySoundLoop(tmpNewMelody, Channel_Music, self)
+    #    oE.PlaySound(tmpNewMelody, Channel_Music, self)
+    #    
+    #def _OnStopSound(self, sound, channel, cookie, x):
+    #    if not x:
+    #        self._PlayNewMelody()
         
     def _OnExecute(self, que):
         if self.NextStates != []:
@@ -604,6 +606,12 @@ class Musician(scraft.Dispatcher):
                 self._PlayNewMelody()
             self.NextStates = []
         return scraft.CommandStateRepeat
+        
+    def SetPause(self, flag):
+        oE.StopSound(Channel_Music)
+        oE.StopSound(Channel_Default)
+        if not flag:
+            self._PlayNewMelody()
         
     def PlaySound(self, sound, channel = Channel_Default):
         oE.PlaySound(sound, channel)

@@ -650,13 +650,13 @@ MasterChef{
             bitmap = "img/fonts/domcasual-10.png"
             type = "blend"
             filtering = "yes"
-            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ,!?()"
         }
         font(domcasual-10-up) {
             bitmap = "img/fonts/domcasual-10-up.png"
             type = "blend"
             filtering = "yes"
-            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ,!?()"
         }
         font(domcasual-10-roll) {
             bitmap = "img/fonts/domcasual-10-roll.png"

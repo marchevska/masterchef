@@ -27,6 +27,7 @@ Cmd_Menu_Rules = 303
 Cmd_Menu_Cookbook = 304
 Cmd_Menu_Hiscores = 306
 Cmd_Menu_Quit = 305
+Cmd_Menu_AskQuit = 309
 
 Cmd_HelpNext = 310
 Cmd_HelpPrev = 311

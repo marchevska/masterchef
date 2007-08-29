@@ -35,6 +35,7 @@ global GameConfig
 global StateStack
 global LastCookie
 global RunMode
+global PausedState
 
 global PlayerList        #список игроков
 global CurrentPlayer     #профиль игрока + информация о текущей игре

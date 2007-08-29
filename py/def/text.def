@@ -382,6 +382,7 @@ MasterChef {
     text(Str_Yes) { str = "YES" }
     text(Str_No) { str = "NO" }
     text(Str_Cancel) { str = "Cancel" }
+    text(Str_Question_ExitGame) { str = "Exit to Windows?" }
     text(Str_Question_RemovePlayer) { str = "Remove player, are you sure?" }
     text(Str_Question_RestartLevel) { str = "Restart level, are you sure?" }
     text(Str_Question_ClearHiscores) { str = "Clear hiscores list, are you sure?" }

@@ -43,6 +43,7 @@ class Gui(scraft.Dispatcher):
         self.CurrentCookbookPage = 0
         self.NextState = PState_None
         self.SavedOptions = []
+        self.LastQuestion = ""
            
         self.GraySprite = MakeSprite("gray.screen", Layer_Background+1)
             
@@ -649,6 +650,11 @@ class Gui(scraft.Dispatcher):
     def CallInternalMenu(self):
         self._SetState(PState_Options)
         
+    def SetPauseState(self, flag):
+        if flag:
+            self._SetState(PState_Options)
+        globalvars.Musician.SetPause(flag)
+        
     def CallLevelCompleteDialog(self, flag, params = {}):
         self._SetState(PState_NextLevel)
         if flag:
@@ -699,6 +705,7 @@ class Gui(scraft.Dispatcher):
             self.LevelCompleteDialog["Buttons"]["No"].Show(True)
         
     def _Ask(self, question, answerYes = "Yes", answerNo = "No"):
+        self.LastQuestion = question
         self._SetState(PState_YesNo)
         self.YesNoDialog["Text"]["QuestionText"].text = question
         self.YesNoDialog["Buttons"]["Yes"].SetText(answerYes)
@@ -1203,10 +1210,14 @@ class Gui(scraft.Dispatcher):
     #-------------------------------------------
     def SendCommand(self, cmd):
         try:
+            if cmd == Cmd_Menu_Quit:
+                self._Ask(defs.GetGameString("Str_Question_ExitGame"))
+            
             #developer logo
-            if globalvars.StateStack[-1] == PState_DevLogo:
+            elif globalvars.StateStack[-1] == PState_DevLogo:
                 if cmd == Cmd_DevLogoClose:
-                    self._SetState(PState_PubLogo)
+                    self._SetState(PState_MainMenu)
+                    #self._SetState(PState_PubLogo)
                 
             #publisher logo
             elif globalvars.StateStack[-1] == PState_PubLogo:
@@ -1228,8 +1239,9 @@ class Gui(scraft.Dispatcher):
                     #self._ShowCookBookPage(self.CurrentCookbookPage)
                 elif cmd == Cmd_Menu_Hiscores:
                     self._SetState(PState_Hiscores)
-                elif cmd == Cmd_Menu_Quit:
-                    self._SetState(PState_EndGame)
+                #elif cmd == Cmd_Menu_Quit:
+                #    #self._SetState(PState_EndGame)
+                #    self._Ask(defs.GetGameString("Str_Question_ExitGame"))
                     
             #comics
             elif globalvars.StateStack[-1] == PState_Comics:
@@ -1375,8 +1387,11 @@ class Gui(scraft.Dispatcher):
             elif globalvars.StateStack[-1] == PState_YesNo:
                 self._ReleaseState(PState_YesNo)
                 if cmd == Cmd_Yes:
+                    #exit game
+                    if self.LastQuestion == defs.GetGameString("Str_Question_ExitGame"):
+                        self._SetState(PState_EndGame)
                     #remove player
-                    if globalvars.StateStack[-1] == PState_Players:
+                    elif globalvars.StateStack[-1] == PState_Players:
                         globalvars.PlayerList.DelPlayer(self.SelectedPlayer)
                         self.SelectedPlayer = ""
                         self._DrawPlayersList()
@@ -1488,13 +1503,17 @@ class Gui(scraft.Dispatcher):
                         self.EnterNameDialog["Text"]["Name"].width/2
                     self._UpdateEnterNameDialog()
                 
+            elif globalvars.StateStack[-1] == PState_YesNo:
+                if oE.EvtKey() == scraft.Key_ENTER:
+                    self.SendCommand(Cmd_Yes)
+            
             if oE.EvtIsESC():
                 if globalvars.StateStack[-1] == PState_DevLogo:
                     self.SendCommand(Cmd_DevLogoClose)
                 elif globalvars.StateStack[-1] == PState_PubLogo:
                     self.SendCommand(Cmd_PubLogoClose)
                 elif globalvars.StateStack[-1] == PState_MainMenu:    
-                    self._SetState(PState_EndGame)
+                    self.SendCommand(Cmd_Menu_Quit)
                 elif globalvars.StateStack[-1] == PState_Game:
                     if globalvars.RunMode == RunMode_Test:
                         self._SetState(PState_EndGame)
@@ -1522,13 +1541,10 @@ class Gui(scraft.Dispatcher):
                     self.SendCommand(Cmd_LvCompleteMainMenu)
             
             if oE.EvtIsQuit():
-                if globalvars.StateStack[-1] == PState_Game:
-                    if globalvars.RunMode == RunMode_Test:
-                        self._SetState(PState_EndGame)
-                    else:
-                        self.CallInternalMenu()
-                else:
+                if globalvars.StateStack[-1] == PState_Game and globalvars.RunMode == RunMode_Test:
                     self._SetState(PState_EndGame)
+                else:
+                    self.SendCommand(Cmd_Menu_Quit)
         except:
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             
@@ -1560,7 +1576,8 @@ class Gui(scraft.Dispatcher):
             globalvars.Musician.SetState(MusicState_Game)
         #elif state == PState_InGameMenu:
         #    globalvars.Musician.SetState(MusicState_Pause)
-        elif state == PState_MapCareer:
+        elif state == PState_MapCareer or \
+                    (len(globalvars.StateStack) > 2 and globalvars.StateStack[-2] == PState_MapCareer):
             globalvars.Musician.SetState(MusicState_Map)
         else:
             globalvars.Musician.SetState(MusicState_Menu)

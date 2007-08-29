@@ -19,7 +19,7 @@ import config
 import globalvars
 import defs
 
-oE.logging = True
+oE.logging = False
 oE.Init(scraft.DevDisableDrvInfo)
 oE.vMode = Video_Mode
 oE.background.color = 0x402020
@@ -61,6 +61,7 @@ globalvars.StateStack = []
 
 globalvars.GUI = Gui()
 globalvars.Board = GameBoard()
+globalvars.PausedState = False
     
 # начало кода запуска заданного уровня
 if globalvars.RunMode == RunMode_Test:
@@ -75,6 +76,9 @@ while globalvars.StateStack[-1] != PState_EndGame:
     oE.NextEvent()
     #if oE.EvtIsESC() or oE.EvtIsQuit() :
     #    break
+    if oE.windowIsActive == globalvars.PausedState:
+        globalvars.PausedState = not globalvars.PausedState
+        globalvars.GUI.SetPauseState(globalvars.PausedState)
     if oE.EvtIsKeyDown():
         if oE.EvtKey() == scraft.Key_F4 and not oE.IsKeyPressed(scraft.Key_ALT):
             globalvars.GameConfig.SetBoolAttr("Fullscreen", not(globalvars.GameConfig.GetBoolAttr("Fullscreen")))

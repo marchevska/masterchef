@@ -38,10 +38,19 @@ def GetFileLocations():
     globalvars.File_Hiscores = globalvars.DataDirectory + File_HiscoresName
     globalvars.File_BestResults = globalvars.DataDirectory + File_BestResultsName
     globalvars.File_PlayersConfig = globalvars.DataDirectory + File_PlayersConfigName
+    
     globalvars.File_PlayersConfigSafe = oE.rscpath + File_PlayersConfigSafeName
     globalvars.File_DummyProfile = oE.rscpath + File_DummyProfileName
     globalvars.File_GameConfigSafe = oE.rscpath + File_GameConfigSafeName
     globalvars.File_BestResultsSafe = oE.rscpath + File_BestResultsSafeName
+
+    globalvars.File_Cuisine = oE.rscpath + File_CuisineName
+    globalvars.File_Recipes = oE.rscpath + File_RecipesName
+    globalvars.File_GameSettings = oE.rscpath + File_GameSettingsName
+    globalvars.File_ResourceInfo = oE.rscpath + File_ResourceInfoName
+    globalvars.File_Animations = oE.rscpath + File_AnimationsName
+    globalvars.File_LevelProgress = oE.rscpath + File_LevelProgressName
+    globalvars.File_GameTexts = oE.rscpath + File_GameTextsName
 
 #------------------------------------------
 # Функции для работы с файлом конфигурации 

@@ -652,6 +652,9 @@ class Gui(scraft.Dispatcher):
         
     def SetPauseState(self, flag):
         if flag:
+            if globalvars.StateStack[-1] in (PState_YesNo, PState_YesNoCancel):
+                self._ReleaseState(globalvars.StateStack[-1])
+                self.LastQuestion = ""
             self._SetState(PState_Options)
         globalvars.Musician.SetPause(flag)
         
@@ -712,6 +715,7 @@ class Gui(scraft.Dispatcher):
         self.YesNoDialog["Buttons"]["No"].SetText(answerNo)
         
     def _AskYnc(self, question, answerYes = "Yes", answerNo = "No", answerCancel = "Cancel"):
+        self.LastQuestion = question
         self._SetState(PState_YesNoCancel)
         self.YesNoCancelDialog["Text"]["QuestionText"].text = question
         self.YesNoCancelDialog["Buttons"]["Yes"].SetText(answerYes)
@@ -995,7 +999,7 @@ class Gui(scraft.Dispatcher):
                 self.IntroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
                 self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i][0]
                 ApplyTextLayout(self.IntroScreen["Text"]["Character"+str(i)],
-                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro.names."+string.lower(tmpEpisode)))
+                            globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro.names"))
             else:
                 self.IntroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
                 self.IntroScreen["Text"]["Character"+str(i)].text = ""
@@ -1391,15 +1395,15 @@ class Gui(scraft.Dispatcher):
                     if self.LastQuestion == defs.GetGameString("Str_Question_ExitGame"):
                         self._SetState(PState_EndGame)
                     #remove player
-                    elif globalvars.StateStack[-1] == PState_Players:
+                    elif self.LastQuestion == defs.GetGameString("Str_Question_RemovePlayer"):
                         globalvars.PlayerList.DelPlayer(self.SelectedPlayer)
                         self.SelectedPlayer = ""
                         self._DrawPlayersList()
                     #clear hiscores
-                    elif globalvars.StateStack[-1] == PState_Hiscores:
+                    elif self.LastQuestion == defs.GetGameString("Str_Question_ClearHiscores"):
                         config.ClearHiscores()
                     #restart game
-                    elif globalvars.StateStack[-1] == PState_Options:
+                    elif self.LastQuestion == defs.GetGameString("Str_Question_RestartLevel"):
                         self._ReleaseState(PState_Options)
                         #globalvars.Board.Clear()
                         self._ReleaseState(PState_Game)

@@ -19,23 +19,24 @@ import config
 import globalvars
 import defs
 
-oE.logging = False
+oE.logging = True
 oE.Init(scraft.DevDisableDrvInfo)
 oE.vMode = Video_Mode
 oE.background.color = 0x402020
 oE.rscpath = sys.argv[0][0:sys.argv[0].rfind("\\")+1]
-oE.SST = File_SST
+oE.SST = oE.rscpath + File_SST
 oE.title = Window_Title
 oE.nativeCursor = False
 oE.showFps = False
 
+config.GetFileLocations()
 defs.ReadLevelProgress()
 defs.ReadCuisine()
 defs.ReadResourceInfo()
 defs.ReadGameSettings()
 
 # определяем режим запска - тест или реальная игра
-if len(sys.argv) >= 3:
+if len(sys.argv) >= 3 and globalvars.GameSettings.GetBoolAttr("debugMode"):
     if sys.argv[1] == "run" and globalvars.LevelProgress.GetTag("Levels").GetSubtag(sys.argv[2]) != None:
         globalvars.RunMode = RunMode_Test
     else:
@@ -44,7 +45,6 @@ else:
     globalvars.RunMode = RunMode_Play
 # конец кода определения типа запуска
 
-config.GetFileLocations()
 config.ReadGameConfig()
 config.ApplyOptions()
 #config.ReadHiscores()

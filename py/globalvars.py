@@ -17,6 +17,15 @@ global File_DummyProfile
 global File_GameConfigSafe
 global File_BestResultsSafe
 
+global File_Cuisine
+global File_Recipes
+global File_GameSettings
+global File_ResourceInfo
+global File_Animations
+global File_LevelProgress
+global File_GameTexts
+
+global GameSettingsRoot
 global CuisineInfo      #ингредиенты
 global RecipeInfo       #рецепты
 global CustomersInfo

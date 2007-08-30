@@ -34,13 +34,13 @@ File_BestResultsSafeName = "safe/best.def"
 
 File_SST = "masterchef.sst"
 
-File_Cuisine = "def/cuisine.def"
-File_Recipes = "def/recipes.def"
-File_GameSettings = "def/gamesettings.def"
-File_ResourceInfo = "def/resource.def"
-File_Animations = "def/animations.def"
-File_LevelProgress = "def/levelprogress.def"
-File_GameTexts = "def/text.def"
+File_CuisineName = "def/cuisine.def"
+File_RecipesName = "def/recipes.def"
+File_GameSettingsName = "def/gamesettings.def"
+File_ResourceInfoName = "def/resource.def"
+File_AnimationsName = "def/animations.def"
+File_LevelProgressName = "def/levelprogress.def"
+File_GameTextsName = "def/text.def"
 
 RunMode_Test = 0
 RunMode_Play = 1

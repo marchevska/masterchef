@@ -1,17 +1,23 @@
 
 bootstub.dbg=0
-box.1.flags=16386
+box.1.flags=2
 box.1.fname=lib.dat
 box.1.name=dlls
-box.2.flags=16386
+box.2.flags=2
 box.2.fname=img.dat
 box.2.name=img
-box.3.flags=16386
+box.3.flags=2
 box.3.fname=levels.dat
 box.3.name=levels
-box.4.flags=16386
+box.4.flags=2
 box.4.fname=def.dat
 box.4.name=def
+box.5.flags=2
+box.5.fname=ide.dat
+box.5.name=logos
+box.6.flags=2
+box.6.fname=snd.dat
+box.6.name=sounds
 box.cmdline=
 box.encrypt=1
 box.packdefault=1
@@ -19,12 +25,12 @@ box.pattern=*.dat
 box.separate=0
 box.sepfile=
 box.ziplevel=1
-dir.addfiles=C:\Projects\proto games\Master Chef\dist\current\img
+dir.addfiles=C:\Projects\proto games\Master Chef\dist\current
 exe.crc=0
 exe.pack=1
 exe.packedfilesvisible=1
 exe.source=C:\Projects\proto games\Master Chef\dist\current\main.exe
-exe.target=C:\Projects\proto games\Master Chef\dist\mole\main.exe
+exe.target=C:\Projects\proto games\Master Chef\dist\release\ChampionChefReleaseEn.exe
 key.0=E46B16684178AF1D079F6B62CC226888
 key.1=EC19922B973826A569687DC47D9F4FCA
 
@@ -37,15 +43,10 @@ box.2.contents~
 00 img\heart.png
 00 img\money-button.png
 00 img\release-button.png
-00 img\comics\american.intro.png
-00 img\comics\hawaiian.intro.png
-00 img\comics\japanese.intro.png
 00 img\comics\masterchef.intro.1.png
 00 img\comics\masterchef.intro.2.png
 00 img\comics\masterchef.intro.3.png
 00 img\comics\masterchef.outro.png
-00 img\comics\mexican.intro.png
-00 img\comics\russian.intro.png
 00 img\comics\people\alban.png
 00 img\comics\people\alex.png
 00 img\comics\people\angela.png
@@ -328,6 +329,7 @@ box.2.contents~
 00 img\fonts\domcasual-24-numbers.png
 00 img\fonts\hobor-17.png
 00 img\fonts\mainmenu.domcasual.down.png
+00 img\fonts\mainmenu.domcasual.inert.png
 00 img\fonts\mainmenu.domcasual.png
 00 img\fonts\simple.png
 00 img\gui\2nd-popup-background.png
@@ -355,6 +357,9 @@ box.2.contents~
 00 img\gui\episode.russian.png
 00 img\gui\gray.screen.png
 00 img\gui\help-page1.png
+00 img\gui\help-page2.png
+00 img\gui\help-page3.png
+00 img\gui\help-page4.png
 00 img\gui\intro.balloon.png
 00 img\gui\intro.logo.png
 00 img\gui\level-pointers-expert.png
@@ -458,13 +463,6 @@ box.2.contents~
 00 img\ingredients\veggymix.icon.png
 00 img\ingredients\veggymix.png
 00 img\jason\jason.png
-00 img\logos\developer-logo.png
-00 img\logos\publisher-logo.png
-00 img\powerups\buy-powerup-button.png
-00 img\powerups\powerups-inert.png
-00 img\powerups\powerups-roll.png
-00 img\powerups\powerups.png
-00 img\powerups\use-powerup-button.png
 00 img\recipes\american\caribbean-spice-chicken.empty.png
 00 img\recipes\american\caribbean-spice-chicken.png
 00 img\recipes\american\chicken-pasta-casseroule.empty.png
@@ -587,7 +585,6 @@ box.2.contents~
 00 img\recipes\russian\vareniki.png
 ~
 box.3.contents~
-00 def\00.def
 00 def\01.def
 00 def\02.def
 00 def\03.def
@@ -640,6 +637,7 @@ box.3.contents~
 00 def\50.def
 ~
 box.4.contents~
+00 masterchef.sst
 00 def\animations.def
 00 def\cuisine.def
 00 def\gamesettings.def
@@ -647,12 +645,39 @@ box.4.contents~
 00 def\recipes.def
 00 def\resource.def
 00 def\sound.def
+00 def\template.def
 00 def\text.def
-00 safe\all unlocked.def
 00 safe\best.def
 00 safe\dummy.def
 00 safe\game.def
-00 safe\olka.def
 00 safe\players.def
 00 safe\scores.def
+~
+box.5.contents~
+00 img\logos\developer-logo.png
+00 img\logos\publisher-logo.png
+~
+box.6.contents~
+00 sound\customer.gotgift.ogg
+00 sound\customer.lost.ogg
+00 sound\customer.putorder.ogg
+00 sound\customer.takemoney.ogg
+00 sound\customer.thankyou.ogg
+00 sound\episode.intro.ogg
+00 sound\episode.lose.ogg
+00 sound\episode.win.ogg
+00 sound\gui.click.ogg
+00 sound\level.lose.ogg
+00 sound\level.start.ogg
+00 sound\level.win.ogg
+00 sound\map.newlevel.ogg
+00 sound\tokens.burn.ogg
+00 sound\tokens.give.ogg
+00 sound\tokens.pick.ogg
+00 sound\tokens.remove.ogg
+00 sound\tokens.shift.ogg
+00 sound\tokens.shuffle.ogg
+00 sound\track.game.ogg
+00 sound\track.map.ogg
+00 sound\track.menu.ogg
 ~

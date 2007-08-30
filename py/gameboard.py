@@ -212,6 +212,11 @@ class GameBoard(scraft.Dispatcher):
             self.DoorSprite.ChangeKlassTo(tmpTheme.GetStrAttr("door"))
             tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("Door")
         
+    def _OnMouseClick(self, sprite, x, y, button):
+        if button == 2:
+            if sprite.cookie == Cmd_BgReceptor:
+                self.SendCommand(Cmd_DropWhatYouCarry)
+    
     #--------------------------
     # обработка входящих команд
     #--------------------------

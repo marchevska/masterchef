@@ -1237,8 +1237,9 @@ class Gui(scraft.Dispatcher):
     def SendCommand(self, cmd):
         try:
             if cmd == Cmd_Menu_Quit:
-                globalvars.Board.Freeze(True)
                 self._Ask(defs.GetGameString("Str_Question_ExitGame"))
+                globalvars.Frozen = True
+                globalvars.Board.Freeze(True)
             
             #developer logo
             elif globalvars.StateStack[-1] == PState_DevLogo:

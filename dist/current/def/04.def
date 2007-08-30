@@ -79,7 +79,7 @@ Level{
         CustomerStation{ type = "" x = "90" y = "300" occupied = "no" }
         CustomerStation{ type = "" x = "270" y = "410" occupied = "yes" }
         CustomerStation{ type = "" x = "90" y = "520" occupied = "no" }
-        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "0" SensorAt = "5" Delay = "1200" DropIn = "700" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "5" SensorAt = "5" Delay = "1200" DropIn = "700" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
         CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
         //TrashCan{ type = "" size = "100" x = "350" y = "530" }
     }

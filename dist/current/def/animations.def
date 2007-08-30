@@ -41,12 +41,12 @@ MasterChef {
     }
 
     Animation(animation.vegetarian) {
-        Sequence(Order) { frames = "(0, 700), (1, 700)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 1000), (5, 1000)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1000), (9, 1000)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 2000), (13, 500)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 300), (3, 1300), (16, 2000)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 600)" loops = "0" }
+        Sequence(Order) { frames = "(0, 650, 750), (1, 650, 750)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 900, 1100), (5, 900, 1100)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 900, 1100), (9, 900, 1100)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1800, 2200), (13, 500, 600)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 300, 400), (3, 1200, 1500), (16, 1800, 2000)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 250, 350), (7, 550, 650)" loops = "0" }
         Sequence(GoAway) {  frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -55,12 +55,12 @@ MasterChef {
     }
 
     Animation(animation.schoolkid) {
-        Sequence(Order) { frames = "(0, 500), (1, 500)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 2000), (5, 700)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 700), (9, 700)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 1000), (13, 1000)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 1000), (3, 2000)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 500)" loops = "0" }
+        Sequence(Order) { frames = "(0, 500, 600), (1, 500, 600)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1800, 2500), (5, 600, 700)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 600, 800), (9, 600, 800)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 900, 1100), (13, 900, 1100)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 900, 1100), (3, 1800, 2200)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 250, 350), (7, 500, 600)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -69,12 +69,12 @@ MasterChef {
     }
 
     Animation(animation.student) {
-        Sequence(Order) { frames = "(0, 500), (1, 500)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 1000), (5, 1000)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1000), (9, 500)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 2000), (13, 700)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 1000), (3, 1000)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(Order) { frames = "(0, 500, 600), (1, 500, 600)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 900, 1100), (5, 900, 1100)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 900, 1100), (9, 500, 600)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1800, 2200), (13, 700, 800)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 900, 1100), (3, 900, 1100)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300, 400), (7, 300, 400)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -83,12 +83,12 @@ MasterChef {
     }
 
     Animation(animation.oldlady) {
-        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 2000), (5, 500)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 700), (9, 700)" loops = "0" }
-        Sequence(3Hearts) { frames = "(16, 2000), (12, 500), (13, 500), (12, 500), (13, 500), (12, 500), (13, 500)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 2000), (3, 500)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(Order) { frames = "(0, 900, 1100), (1, 900, 1100)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1800, 2200), (5, 500, 600)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 700, 800), (9, 700, 800)" loops = "0" }
+        Sequence(3Hearts) { frames = "(16, 1800, 2200), (12, 500, 600), (13, 500, 600), (12, 400, 500), (13, 400, 500), (12, 500, 600), (13, 500, 600)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 1800, 2200), (3, 500, 600)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 300, 400), (7, 300, 400)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 1000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -97,12 +97,12 @@ MasterChef {
     }
 
     Animation(animation.critic) {
-        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 2000), (5, 1000)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1000), (9, 500)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 1000), (13, 1000)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 500), (3, 1000)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 500), (7, 500)" loops = "0" }
+        Sequence(Order) { frames = "(0, 900, 1100), (1, 900, 1100)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 1800, 2200), (5, 900, 1100)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 900, 1100), (9, 500, 600)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 900, 1100), (13, 900, 1100)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 500, 600), (3, 900, 1100)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 500, 600), (7, 500, 600)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 1000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -111,12 +111,12 @@ MasterChef {
     }
 
     Animation(animation.business) {
-        Sequence(Order) { frames = "(0, 500), (1, 500)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1000), (9, 1000)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 1000), (13, 3000)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 500), (3,500)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(Order) { frames = "(0, 500, 600), (1, 500, 600)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 900, 1100), (5, 500, 600)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 900, 1100), (9, 1000)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 900, 1100), (13, 3000)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 500, 600), (3, 500, 600)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 250, 350), (7, 250, 350)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -125,12 +125,12 @@ MasterChef {
     }
 
     Animation(animation.tourist.hawaiian) {
-        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1000), (9, 700)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(Order) { frames = "(0, 900, 1100), (1, 900, 1100)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 900, 1100), (5, 500, 600)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 900, 1100), (9, 600, 700)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1800, 2200), (13, 900, 1100), (16, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700, 800), (3, 600, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 250, 350), (7, 250, 350)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -139,12 +139,12 @@ MasterChef {
     }
 
     Animation(animation.tourist.mexican) {
-        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 2000), (5, 2000)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1500), (9, 1000), (16, 300), (9, 1000)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (17, 250), (13, 500)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(Order) { frames = "(0, 900, 1100), (1, 900, 1100)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 900, 1100), (5, 900, 1100)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 1200, 1500), (9, 900, 1100), (16, 300, 400), (9, 900, 1100)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1800, 2200), (13, 900, 1100), (17, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700, 800), (3, 600, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 250, 350), (7, 250, 350)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -153,12 +153,12 @@ MasterChef {
     }
 
     Animation(animation.tourist.japanese) {
-        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1000), (9, 300)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(Order) { frames = "(0, 900, 1100), (1, 900, 1100)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 900, 1100), (5, 500, 600)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 900, 1100), (9, 250, 350)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1800, 2200), (13, 900, 1100), (16, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 700, 800), (3, 600, 700)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 250, 350), (7, 250, 350)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }
@@ -167,12 +167,12 @@ MasterChef {
     }
 
     Animation(animation.tourist.russian) {
-        Sequence(Order) { frames = "(0, 1000), (1, 1000)" loops = "0" }
-        Sequence(5Hearts) { frames = "(4, 1000), (5, 500)" loops = "0" }
-        Sequence(4Hearts) { frames = "(8, 1000), (9, 700)" loops = "0" }
-        Sequence(3Hearts) { frames = "(12, 2000), (13, 1000), (16, 250), (13, 500)" loops = "0" }
-        Sequence(2Hearts) { frames = "(2, 700), (3, 700)" loops = "0" }
-        Sequence(1Hearts) { frames = "(6, 300), (7, 300)" loops = "0" }
+        Sequence(Order) { frames = "(0, 900, 1100), (1, 900, 1100)" loops = "0" }
+        Sequence(5Hearts) { frames = "(4, 900, 1100), (5, 500, 600)" loops = "0" }
+        Sequence(4Hearts) { frames = "(8, 900, 1100), (9, 600, 700)" loops = "0" }
+        Sequence(3Hearts) { frames = "(12, 1800, 2200), (13, 900, 1100), (16, 250), (13, 500)" loops = "0" }
+        Sequence(2Hearts) { frames = "(2, 600, 700), (3, 700, 800)" loops = "0" }
+        Sequence(1Hearts) { frames = "(6, 250, 350), (7, 250, 350)" loops = "0" }
         Sequence(GoAway) { frames = "(11, 2000)," loops = "0" }
         Sequence(TakeOrder) { frames = "(10, 2000)," loops = "0" }
         Sequence(MealReady) { frames = "(14, 1500)," loops = "0" }

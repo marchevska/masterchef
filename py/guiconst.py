@@ -29,6 +29,8 @@ Cmd_Menu_Hiscores = 306
 Cmd_Menu_Quit = 305
 Cmd_Menu_AskQuit = 309
 
+Cmd_PauseUnPause = 313
+
 Cmd_HelpNext = 310
 Cmd_HelpPrev = 311
 Cmd_HelpClose = 312
@@ -110,6 +112,7 @@ PState_Outro = 24
 PState_MapCareer = 16
 PState_MapEndless = 17
 PState_Cookbook = 22
+PState_Pause = 25
 
 #длительность показа логотипов
 Time_DevLogoShow = 5000
@@ -140,15 +143,17 @@ Layer_Tmp = 101
 Layer_Background = 100
 Layer_Static = 99
 Layer_BtnText = 97
-Layer_PopupGray = 41
-Layer_PopupBg = 40
-Layer_PopupStatic = 39
-Layer_PopupBtnTxt = 38
-Layer_PopupBtnTxt2 = 37
-Layer_2ndPopupGray = 31
-Layer_2ndPopupBg = 30
-Layer_2ndPopupStatic = 29
-Layer_2ndPopupBtnTxt = 28
+Layer_CookbookBg = 40
+Layer_CookbookBtnTxt = 38
+Layer_PopupGray = 31
+Layer_PopupBg = 30
+Layer_PopupStatic = 29
+Layer_PopupBtnTxt = 28
+Layer_PopupBtnTxt2 = 27
+Layer_2ndPopupGray = 21
+Layer_2ndPopupBg = 20
+Layer_2ndPopupStatic = 19
+Layer_2ndPopupBtnTxt = 18
 Layer_CursorDown = 10
 Layer_CursorUpper = 0
 Layer_Cursor = 1

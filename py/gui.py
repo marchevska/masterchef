@@ -120,6 +120,19 @@ class Gui(scraft.Dispatcher):
                 { "x": 765, "y": 135, "hotspot": scraft.HotspotRightCenter  } )
         
         #---------
+        # пауза
+        #---------
+        self.PauseDialog = {"Static": {}, "Text": {}, "Buttons": {}}
+        self.PauseDialog["Static"]["Back"] = MakeSimpleSprite("2nd-popup-background", Layer_2ndPopupBg)
+        self.PauseDialog["Text"]["Text1"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 258,
+                                                    scraft.HotspotCenterTop, defs.GetGameString("Str_Paused1"))
+        self.PauseDialog["Text"]["Text2"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 288,
+                                                    scraft.HotspotCenterTop, defs.GetGameString("Str_Paused2"))
+        self.PauseDialog["Buttons"]["Back"] = PushButton("",
+                self, Cmd_PauseUnPause, PState_Pause,
+                "$spritecraft$dummy$", [0, 0, 0], Layer_2ndPopupBg+1, 400, 300, 800, 600)
+        
+        #---------
         # справка
         #---------
         self.RulesDialog = {"Static": {}, "Text": {}, "Buttons": {}}
@@ -147,29 +160,29 @@ class Gui(scraft.Dispatcher):
         # кулинарная книга
         #----------------
         self.CookbookDialog = {"Static": {}, "Text": {}, "Buttons": {}, "Animations": {}}
-        self.CookbookDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBg)
-        self.CookbookDialog["Static"]["Logo"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt,
+        self.CookbookDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_CookbookBg)
+        self.CookbookDialog["Static"]["Logo"] = MakeSprite("$spritecraft$dummy$", Layer_CookbookBtnTxt,
                                                 { "x": 50, "y": 50 })
         self.CookbookDialog["Buttons"]["CookbookClose"] = PushButton("CookbookClose",
                 self, Cmd_CookbookClose, PState_Cookbook,
                 "cookbook.close-button", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 390, 527, 100, 130)
+                Layer_CookbookBtnTxt, 390, 527, 100, 130)
         self.CookbookDialog["Buttons"]["CookbookContinue"] = PushButton("CookbookContinue",
                 self, Cmd_CookbookClose, PState_Cookbook,
                 "continue-button", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 600, 550, 140, 50)
+                Layer_CookbookBtnTxt, 600, 550, 140, 50)
         self.CookbookDialog["Buttons"]["CookbookNext"] = PushButton("CookbookNext",
                 self, Cmd_CookbookNext, PState_Cookbook,
                 "cookbook.next-button", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 700, 550, 100, 130)
+                Layer_CookbookBtnTxt, 700, 550, 100, 130)
         self.CookbookDialog["Buttons"]["CookbookPrev"] = PushButton("CookbookPrev",
                 self, Cmd_CookbookPrev, PState_Cookbook,
                 "cookbook.prev-button", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 100, 550, 100, 130)
+                Layer_CookbookBtnTxt, 100, 550, 100, 130)
         for i in range(self.TotalRecipesOnPage):
-            self.CookbookDialog["Static"]["Recipe"+str(i+1)] = MakeSprite("$spritecraft$dummy$", Layer_PopupBtnTxt)
+            self.CookbookDialog["Static"]["Recipe"+str(i+1)] = MakeSprite("$spritecraft$dummy$", Layer_CookbookBtnTxt)
         for i in range(self.MaxNewRecipes):
-            self.CookbookDialog["Static"]["NewRecipe"+str(i+1)] = MakeSprite("cookbook.new-recipe", Layer_PopupBtnTxt-1)
+            self.CookbookDialog["Static"]["NewRecipe"+str(i+1)] = MakeSprite("cookbook.new-recipe", Layer_CookbookBtnTxt-1)
             self.CookbookDialog["Animations"]["NewRecipe"+str(i+1)] = \
                             CustomersAnimator(self.CookbookDialog["Static"]["NewRecipe"+str(i+1)],
                             globalvars.CustomerAnimations.GetSubtag("animation.cookbook.new-recipe"))
@@ -614,6 +627,7 @@ class Gui(scraft.Dispatcher):
             PState_DevLogo: self.DevLogo,
             PState_PubLogo: self.PubLogo,
             PState_MainMenu: self.MainMenuDialog,
+            PState_Pause: self.PauseDialog,
             PState_MapCareer: self.MapCareerDialog,
             PState_Cookbook: self.CookbookDialog,
             PState_Comics: self.ComicScreen,
@@ -652,10 +666,16 @@ class Gui(scraft.Dispatcher):
         
     def SetPauseState(self, flag):
         if flag:
-            if globalvars.StateStack[-1] in (PState_YesNo, PState_YesNoCancel):
+            if globalvars.StateStack[-1] in (PState_YesNo, PState_YesNoCancel, PState_EnterName):
                 self._ReleaseState(globalvars.StateStack[-1])
                 self.LastQuestion = ""
-            self._SetState(PState_Options)
+            #if globalvars.StateStack[-1] in (PState_DevLogo, PState_PubLogo, PState_MainMenu,
+            #                                PState_MapCareer, PState_Cookbook, PState_Comics,
+            #                                PState_Intro, PState_Outro, PState_StartLevel,
+            #                                PState_NextLevel, PState_Game, PState_Players,
+            #                                PState_Help):
+            #    self._SetState(PState_Options)
+            self._SetState(PState_Pause)
         globalvars.Musician.SetPause(flag)
         
     def CallLevelCompleteDialog(self, flag, params = {}):
@@ -708,6 +728,7 @@ class Gui(scraft.Dispatcher):
             self.LevelCompleteDialog["Buttons"]["No"].Show(True)
         
     def _Ask(self, question, answerYes = "Yes", answerNo = "No"):
+        self._ReleaseState(PState_Pause)
         self.LastQuestion = question
         self._SetState(PState_YesNo)
         self.YesNoDialog["Text"]["QuestionText"].text = question
@@ -715,6 +736,7 @@ class Gui(scraft.Dispatcher):
         self.YesNoDialog["Buttons"]["No"].SetText(answerNo)
         
     def _AskYnc(self, question, answerYes = "Yes", answerNo = "No", answerCancel = "Cancel"):
+        self._ReleaseState(PState_Pause)
         self.LastQuestion = question
         self._SetState(PState_YesNoCancel)
         self.YesNoCancelDialog["Text"]["QuestionText"].text = question
@@ -1215,6 +1237,7 @@ class Gui(scraft.Dispatcher):
     def SendCommand(self, cmd):
         try:
             if cmd == Cmd_Menu_Quit:
+                globalvars.Board.Freeze(True)
                 self._Ask(defs.GetGameString("Str_Question_ExitGame"))
             
             #developer logo
@@ -1247,6 +1270,11 @@ class Gui(scraft.Dispatcher):
                 #    #self._SetState(PState_EndGame)
                 #    self._Ask(defs.GetGameString("Str_Question_ExitGame"))
                     
+            elif globalvars.StateStack[-1] == PState_Pause:
+                if cmd == Cmd_PauseUnPause:
+                    self._ReleaseState(PState_Pause)
+                    self.SetPauseState(False)
+            
             #comics
             elif globalvars.StateStack[-1] == PState_Comics:
                 if cmd == Cmd_ComicsNext:
@@ -1590,7 +1618,7 @@ class Gui(scraft.Dispatcher):
         if state in (PState_StartLevel, PState_NextLevel, PState_Players, PState_Options):
             self.GraySprite.visible = True
             self.GraySprite.layer = Layer_PopupGray
-        elif state in (PState_EnterName, PState_YesNo, PState_YesNoCancel):
+        elif state in (PState_EnterName, PState_YesNo, PState_YesNoCancel, PState_Pause):
             self.GraySprite.visible = True
             self.GraySprite.layer = Layer_2ndPopupGray
         else:
@@ -1665,6 +1693,12 @@ class Gui(scraft.Dispatcher):
             self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(False)
             self.MainMenuDialog["Animations"]["Vapor"].SetState("Play")
             self.MainMenuDialog["Animations"]["Vapor"].Freeze(False)
+            
+        #пауза в игре
+        elif state == PState_Pause:
+            globalvars.Frozen = True
+            globalvars.Board.Freeze(True)
+            self._ShowDialog(self.PauseDialog, True)
             
         elif state == PState_MapCareer:
             self._ReleaseState(PState_MainMenu)

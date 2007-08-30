@@ -434,7 +434,7 @@ class GameBoard(scraft.Dispatcher):
                 globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
                         { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
                          "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
-                print "level", self.LevelName, "time", (oE.millis-self.StartTime)/1000
+                #print "level", self.LevelName, "time", (oE.millis-self.StartTime)/1000
         
         
     #--------------------------

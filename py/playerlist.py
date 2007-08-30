@@ -206,20 +206,22 @@ class Player:
                     
             #записываем результаты в профиль
             self.EpisodeResults[tmpEpisodeName] = { "scores": tmp, "place": tmpPlace, "pass": tmpPass }
-            if tmpPlace <= 1 and tmpPass:
-                tmpOutroNode.SetBoolAttr("beat1st", True)
-            if tmpPlace <= 2 and tmpPass:
-                tmpOutroNode.SetBoolAttr("beat2nd", True)
             if tmpPass:
-                tmpOutroNode.SetBoolAttr("passed", True)
-            if tmpPass:
-                tmpOutroNode.SetIntAttr("place", tmpPlace)
-                
-            #сравниваем полученные результаты с уже имеющимися
-            if (tmpOutroNode.GetBoolAttr("beat1st") != tmpOldOutroNode.GetBoolAttr("beat1st")) or \
-                    (tmpOutroNode.GetBoolAttr("beat2nd") != tmpOldOutroNode.GetBoolAttr("beat2nd")) or \
-                    (tmpOutroNode.GetBoolAttr("passed") != tmpOldOutroNode.GetBoolAttr("passed")):
-                self.XML.SetStrAttr("newUnlocked", level.GetContent())
+                if tmpPlace <= 1 and tmpPass:
+                    tmpOutroNode.SetBoolAttr("beat1st", True)
+                if tmpPlace <= 2 and tmpPass:
+                    tmpOutroNode.SetBoolAttr("beat2nd", True)
+                if tmpPass:
+                    tmpOutroNode.SetBoolAttr("passed", True)
+                if tmpPass:
+                    tmpOutroNode.SetIntAttr("place", tmpPlace)
+                    
+                #сравниваем полученные результаты с уже имеющимися
+                if (tmpOutroNode.GetBoolAttr("beat1st") != tmpOldOutroNode.GetBoolAttr("beat1st")) or \
+                        (tmpOutroNode.GetBoolAttr("beat2nd") != tmpOldOutroNode.GetBoolAttr("beat2nd")) or \
+                        (tmpOutroNode.GetBoolAttr("passed") != tmpOldOutroNode.GetBoolAttr("passed")) and \
+                        tmpOutroNode.GetBoolAttr("unlocked"):
+                    self.XML.SetStrAttr("newUnlocked", level.GetContent())
         except:
             oE.Log("Cannot update player profile")
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

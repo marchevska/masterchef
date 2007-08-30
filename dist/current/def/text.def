@@ -332,6 +332,8 @@ MasterChef {
     text(Str_Menu_Cookbook) { str = "Cookbook" }
     text(Str_Menu_Hiscores) { str = "Hiscores" }
     text(Str_Menu_Quit) { str = "Quit" }
+    text(Str_Paused1) { str = "Game paused. Click" }
+    text(Str_Paused2) { str = "anywhere to continue" }
     text(Str_HelpPrev) { str = "Page down" }
     text(Str_HelpNext) { str = "Page up" }
     text(Str_HelpClose) { str = "Close window" }

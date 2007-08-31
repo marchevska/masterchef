@@ -28,7 +28,7 @@ Level{
     RecipeRates{
         Recipe{ type = "Squash with Tomato Sauce"         rate = "0" }
         Recipe{ type = "Pasta with Tomato Sauce"          rate = "0" }
-        Recipe{ type = "Pineapple Tomato Salad"           rate = "5" }
+        Recipe{ type = "Pineapple Tomato Salad"           rate = "3" }
         Recipe{ type = "Caribbean Spice Chicken"          rate = "0" }
         Recipe{ type = "Crispy Baked Chicken"             rate = "0" }
         Recipe{ type = "Chicken Squash Stir-Fry"          rate = "0" }

@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Mexican 9'"
         noCustomers = "25"
-        moneyGoal = "2700"
-        expertGoal = "3200"
+        moneyGoal = "2400"
+        expertGoal = "3000"
     }
     
     //level layout: customer stations, power-up buttons, decorations

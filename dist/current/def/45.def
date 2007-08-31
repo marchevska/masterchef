@@ -32,7 +32,7 @@ Level{
         Recipe{ type = "Mango Mui"           rate = "0" }
         Recipe{ type = "Wonton"              rate = "2" }
         Recipe{ type = "Shrimp Canton"       rate = "0" }
-        Recipe{ type = "Lime Chicken"        rate = "1" }
+        Recipe{ type = "Lime Chicken"        rate = "2" }
         Recipe{ type = "Mango Salsa"         rate = "0" }
         Recipe{ type = "Chicken Laulau"      rate = "1" }
         Recipe{ type = "Shrimp Mango Salad"  rate = "0" }
@@ -50,7 +50,7 @@ Level{
         Ingredient{ type = "shrimp"       rate = "24" }
         Ingredient{ type = "meat"         rate = "24" }
         Ingredient{ type = "chili-pepper" rate = "21" }
-        Ingredient{ type = "lime"         rate = "19" }
+        Ingredient{ type = "lime"         rate = "21" }
         Ingredient{ type = "mango"        rate = "0" }
         Ingredient{ type = "shoyu"        rate = "18" }
         Ingredient{ type = "bonus.spoon"      rate = "1" }
@@ -69,7 +69,7 @@ Level{
         title = "'Hawaiian 5'"
         noCustomers = "25"
         moneyGoal = "2500"
-        expertGoal = "3500"
+        expertGoal = "3200"
     }
     
     //level layout: customer stations, power-up buttons, decorations

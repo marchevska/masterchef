@@ -32,7 +32,7 @@ Level{
         Recipe{ type = "Chiles Renellos"           rate = "3" }
         Recipe{ type = "Avocado Stuffed Tacos"     rate = "0" }
         Recipe{ type = "Burrito"                   rate = "0" }
-        Recipe{ type = "Chili con Carne"           rate = "4" }
+        Recipe{ type = "Chili con Carne"           rate = "3" }
         Recipe{ type = "Quesadilla"                rate = "0" }
         Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "0" }
         Recipe{ type = "Avocado Salsa"             rate = "0" }
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Mexican 2'"
         noCustomers = "15"
-        moneyGoal = "1300"
-        expertGoal = "1900"
+        moneyGoal = "1200"
+        expertGoal = "1500"
     }
     
     //level layout: customer stations, power-up buttons, decorations

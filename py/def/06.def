@@ -27,12 +27,12 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Squash with Tomato Sauce"         rate = "0" }
-        Recipe{ type = "Pasta with Tomato Sauce"          rate = "3" }
-        Recipe{ type = "Pineapple Tomato Salad"           rate = "1" }
-        Recipe{ type = "Caribbean Spice Chicken"          rate = "1" }
+        Recipe{ type = "Pasta with Tomato Sauce"          rate = "2" }
+        Recipe{ type = "Pineapple Tomato Salad"           rate = "2" }
+        Recipe{ type = "Caribbean Spice Chicken"          rate = "2" }
         Recipe{ type = "Crispy Baked Chicken"             rate = "0" }
         Recipe{ type = "Chicken Squash Stir-Fry"          rate = "0" }
-        Recipe{ type = "Grilled Meat"                     rate = "3" }
+        Recipe{ type = "Grilled Meat"                     rate = "4" }
         Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "0" }
         Recipe{ type = "Pineapple Lasagna"                rate = "0" }
         Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "3" }
@@ -69,7 +69,7 @@ Level{
         title = "'American 6'"
         noCustomers = "15"
         moneyGoal = "1300"
-        expertGoal = "1600"
+        expertGoal = "1500"
     }
     
     //level layout: customer stations, power-up buttons, decorations

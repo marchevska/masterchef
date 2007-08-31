@@ -27,8 +27,8 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Nigiri Zushi"        rate = "0" }
-        Recipe{ type = "Sashimi"             rate = "3" }
-        Recipe{ type = "Seafood Tempura"     rate = "1" }
+        Recipe{ type = "Sashimi"             rate = "2" }
+        Recipe{ type = "Seafood Tempura"     rate = "2" }
         Recipe{ type = "TofuDengaku"         rate = "0" }
         Recipe{ type = "Tempura"             rate = "1" }
         Recipe{ type = "Koyungohan"          rate = "0" }
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Japanese 8'"
         noCustomers = "25"
-        moneyGoal = "2800"
-        expertGoal = "3800"
+        moneyGoal = "2600"
+        expertGoal = "3400"
     }
     
     //level layout: customer stations, power-up buttons, decorations

@@ -69,7 +69,7 @@ Level{
         title = "'American 7'"
         noCustomers = "20"
         moneyGoal = "1700"
-        expertGoal = "2300"
+        expertGoal = "2100"
     }
     
     //level layout: customer stations, power-up buttons, decorations

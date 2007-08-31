@@ -36,7 +36,7 @@ Level{
         Recipe{ type = "Quesadilla"                rate = "0" }
         Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "0" }
         Recipe{ type = "Avocado Salsa"             rate = "0" }
-        Recipe{ type = "Fajitas"                   rate = "1" }
+        Recipe{ type = "Fajitas"                   rate = "2" }
         Recipe{ type = "Football Fan Nachos"       rate = "0" }
     }
     
@@ -49,7 +49,7 @@ Level{
     IngredientRates{
         Ingredient{ type = "pork"         rate = "24" }
         Ingredient{ type = "chili-pepper" rate = "0" }
-        Ingredient{ type = "avocado"      rate = "24" }
+        Ingredient{ type = "avocado"      rate = "27" }
         Ingredient{ type = "cheese"       rate = "0" }
         Ingredient{ type = "tortilla"     rate = "21" }
         Ingredient{ type = "tomato"       rate = "18" }
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Mexican 5'"
         noCustomers = "18"
-        moneyGoal = "1900"
-        expertGoal = "2300"
+        moneyGoal = "1600"
+        expertGoal = "2000"
     }
     
     //level layout: customer stations, power-up buttons, decorations

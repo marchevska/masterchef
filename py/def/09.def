@@ -37,7 +37,7 @@ Level{
         Recipe{ type = "Pineapple Lasagna"                rate = "2" }
         Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "0" }
         Recipe{ type = "Chicken Pasta Casseroule"         rate = "0" }
-        Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "3" }
+        Recipe{ type = "Chicken Pineapple Pasta Pockets"  rate = "2" }
     }
     
     //ingredient appearance rates
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'American 9'"
         noCustomers = "20"
-        moneyGoal = "2000"
-        expertGoal = "2700"
+        moneyGoal = "1700"
+        expertGoal = "2100"
     }
     
     //level layout: customer stations, power-up buttons, decorations

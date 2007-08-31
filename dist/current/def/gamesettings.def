@@ -2,8 +2,8 @@ MasterChef {
     GameSettings {
         debugMode = "no"
         
-        newCustomerTimeMin = "1"
-        newCustomerTimeMax = "3"
+        newCustomerTimeMin = "2"
+        newCustomerTimeMax = "4"
         
         tokensFallingTime = "0.2"
         
@@ -204,37 +204,53 @@ MasterChef {
         
     }
     
+    //Parameters:
+    //Ordering time, s:
+    //fast - 2-3, normal - 3-4, slow - 4-6
+    //Got gift time, s:
+    //1-2 everyone
+    //Meal ready, Thank you and Go away time, s:
+    //1 everyone
+    //Patine time, s:
+    //fast - 15-18, normal - 25-30, slow - 30-40
+    //Tips, $:
+    //low -     2,  5,  7, 12, 20; { 1:  2, 2:  5, 3:  7, 4: 12, 5: 20 }
+    //normal -  5, 10, 15, 25, 40; { 1:  5, 2: 10, 3: 15, 4: 25, 5: 40 }
+    //big -    10, 20, 35, 50, 75; { 1: 10, 2: 20, 3: 35, 4: 50, 5: 75 }
+    
     Customers {
+        //Worker, speed - normal, tips - normal
         Customer(Worker)
         {
             src = "customer.worker"
             hilight = "customer.worker.hilight"
             animation = "animation.worker"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "3"
+            orderingTimeMax = "4"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
-            patientTimeMin = "20"
+            patientTimeMin = "25"
             patientTimeMax = "30"
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 10, 2: 20, 3: 30, 4: 40, 5: 50 }"
+            tips = "{ 1:  5, 2: 10, 3: 15, 4: 25, 5: 40 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "nothing"
             dislikes = "nothing"
         }
         
+        //Vegetarian, speed - normal, tips - normal
         Customer(Vegetarian)
         {
             src = "customer.vegetarian"
             hilight = "customer.vegetarian.hilight"
             animation = "animation.vegetarian"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "3"
+            orderingTimeMax = "4"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "20"
@@ -242,13 +258,14 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 10, 2: 20, 3: 30, 4: 40, 5: 50 }"
+            tips = "{ 1:  5, 2: 10, 3: 15, 4: 25, 5: 40 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "nothing"
             dislikes = "meat"
         }
         
+        //Schoolkid, speed - fast, tips - low
         Customer(Schoolkid)
         {
             src = "customer.schoolkid"
@@ -256,7 +273,7 @@ MasterChef {
             animation = "animation.schoolkid"
             heartsOnStart = "4"
             orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMax = "3"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "10"
@@ -264,21 +281,22 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 10, 2: 20, 3: 30, 4: 40, 5: 50 }"
+            tips = "{ 1:  2, 2:  5, 3:  7, 4: 12, 5: 20 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "sweet"
             dislikes = "nothing"
         }
         
+        //Student, speed - slow, tips - low
         Customer(Student)
         {
             src = "customer.student"
             hilight = "customer.student.hilight"
             animation = "animation.student"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "4"
+            orderingTimeMax = "6"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "40"
@@ -286,21 +304,22 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 5, 2: 10, 3: 15, 4: 20, 5: 25 }"
+            tips = "{ 1:  2, 2:  5, 3:  7, 4: 12, 5: 20 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "fruit"
             dislikes = "nothing"
         }
         
+        //Oldlady, speed - slow, tips - big
         Customer(Oldlady)
         {
             src = "customer.oldlady"
             hilight = "customer.oldlady.hilight"
             animation = "animation.oldlady"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "4"
+            orderingTimeMax = "6"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "40"
@@ -308,13 +327,14 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 20, 2: 40, 3: 60, 4: 80, 5: 100 }"
+            tips = "{ 1: 10, 2: 20, 3: 35, 4: 50, 5: 75 }"
             takesIncompleteOrder = "no"
             allowsExcessIngredients = "no"
             likes = "nothing"
             dislikes = "soy"
         }
         
+        //Critic, speed - fast, tips - big
         Customer(Critic)
         {
             src = "customer.critic"
@@ -322,7 +342,7 @@ MasterChef {
             animation = "animation.critic"
             heartsOnStart = "4"
             orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMax = "3"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "20"
@@ -330,13 +350,14 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 20, 2: 40, 3: 60, 4: 80, 5: 100 }"
+            tips = "{ 1: 10, 2: 20, 3: 35, 4: 50, 5: 75 }"
             takesIncompleteOrder = "no"
             allowsExcessIngredients = "no"
             likes = "nothing"
             dislikes = "nothing"
         }
         
+        //Business, speed - fast, tips - big
         Customer(Business)
         {
             src = "customer.business"
@@ -344,7 +365,7 @@ MasterChef {
             animation = "animation.business"
             heartsOnStart = "4"
             orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMax = "3"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "10"
@@ -352,21 +373,22 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 20, 2: 40, 3: 60, 4: 80, 5: 100 }"
+            tips = "{ 1: 10, 2: 20, 3: 35, 4: 50, 5: 75 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "nothing"
             dislikes = "nothing"
         }
         
+        //Tourist, speed - slow, tips - low
         Customer(Tourist Hawaiian)
         {
             src = "customer.tourist.hawaiian"
             hilight = "customer.tourist.hawaiian.hilight"
             animation = "animation.tourist.hawaiian"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "4"
+            orderingTimeMax = "6"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "40"
@@ -374,21 +396,22 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 5, 2: 10, 3: 15, 4: 20, 5: 25 }"
+            tips = "{ 1:  2, 2:  5, 3:  7, 4: 12, 5: 20 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "fish"
             dislikes = "nothing"
         }
         
+        //Tourist, speed - slow, tips - low
         Customer(Tourist Mexican)
         {
             src = "customer.tourist.mexican"
             hilight = "customer.tourist.mexican.hilight"
             animation = "animation.tourist.mexican"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "4"
+            orderingTimeMax = "6"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "40"
@@ -396,21 +419,22 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 5, 2: 10, 3: 15, 4: 20, 5: 25 }"
+            tips = "{ 1:  2, 2:  5, 3:  7, 4: 12, 5: 20 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "fish"
             dislikes = "nothing"
         }
         
+        //Tourist, speed - slow, tips - low
         Customer(Tourist Japanese)
         {
             src = "customer.tourist.japanese"
             hilight = "customer.tourist.japanese.hilight"
             animation = "animation.tourist.japanese"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "4"
+            orderingTimeMax = "6"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "40"
@@ -418,21 +442,22 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 5, 2: 10, 3: 15, 4: 20, 5: 25 }"
+            tips = "{ 1:  2, 2:  5, 3:  7, 4: 12, 5: 20 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "fish"
             dislikes = "nothing"
         }
         
+        //Tourist, speed - slow, tips - low
         Customer(Tourist Russian)
         {
             src = "customer.tourist.russian"
             hilight = "customer.tourist.russian.hilight"
             animation = "animation.tourist.russian"
             heartsOnStart = "4"
-            orderingTimeMin = "2"
-            orderingTimeMax = "5"
+            orderingTimeMin = "4"
+            orderingTimeMax = "6"
             gotGiftTimeMin = "1"
             gotGiftTimeMax = "2"
             patientTimeMin = "40"
@@ -440,7 +465,7 @@ MasterChef {
             thankYouTime = "1"
             mealReadyTime = "1"
             goAwayTime = "1"
-            tips = "{ 1: 5, 2: 10, 3: 15, 4: 20, 5: 25 }"
+            tips = "{ 1:  2, 2:  5, 3:  7, 4: 12, 5: 20 }"
             takesIncompleteOrder = "yes"
             allowsExcessIngredients = "yes"
             likes = "fish"

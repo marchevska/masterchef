@@ -31,8 +31,8 @@ Level{
         Recipe{ type = "Seafood Tempura"     rate = "0" }
         Recipe{ type = "TofuDengaku"         rate = "0" }
         Recipe{ type = "Tempura"             rate = "0" }
-        Recipe{ type = "Koyungohan"          rate = "3" }
-        Recipe{ type = "Ochazuke"            rate = "1" }
+        Recipe{ type = "Koyungohan"          rate = "2" }
+        Recipe{ type = "Ochazuke"            rate = "2" }
         Recipe{ type = "Tempura Shrimp Roll" rate = "0" }
         Recipe{ type = "Onigiri"             rate = "0" }
         Recipe{ type = "Osechi"              rate = "0" }
@@ -50,9 +50,9 @@ Level{
         Ingredient{ type = "salmon"   rate = "24" }
         Ingredient{ type = "shrimp"   rate = "0" }
         Ingredient{ type = "rice"     rate = "27" }
-        Ingredient{ type = "tofu"     rate = "18" }
+        Ingredient{ type = "tofu"     rate = "12" }
         Ingredient{ type = "veggymix" rate = "0" }
-        Ingredient{ type = "seaweed"  rate = "5" }
+        Ingredient{ type = "seaweed"  rate = "10" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
         Ingredient{ type = "bonus.sweet"      rate = "1" }
@@ -67,8 +67,8 @@ Level{
     LevelSettings{
         title = "'Japanese 2'"
         noCustomers = "20"
-        moneyGoal = "1800"
-        expertGoal = "2300"
+        moneyGoal = "1700"
+        expertGoal = "2100"
     }
     
     //level layout: customer stations, power-up buttons, decorations

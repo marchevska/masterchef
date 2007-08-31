@@ -31,7 +31,7 @@ Level{
         Recipe{ type = "Golubtsy"                 rate = "1" }
         Recipe{ type = "Fried Mushrooms"          rate = "1" }
         Recipe{ type = "Vareniki"                 rate = "0" }
-        Recipe{ type = "Baked Meat"               rate = "5" }
+        Recipe{ type = "Baked Meat"               rate = "4" }
         Recipe{ type = "Cutlets"                  rate = "0" }
         Recipe{ type = "Mushroom Ragout"          rate = "0" }
         Recipe{ type = "Cabbage Stuffed Pancakes" rate = "0" }
@@ -69,7 +69,7 @@ Level{
         title = "'Russian 4'"
         noCustomers = "20"
         moneyGoal = "1800"
-        expertGoal = "2500"
+        expertGoal = "2300"
     }
     
     //level layout: customer stations, power-up buttons, decorations

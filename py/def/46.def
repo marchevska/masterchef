@@ -31,7 +31,7 @@ Level{
         Recipe{ type = "Hulihuli Chicken"    rate = "0" }
         Recipe{ type = "Mango Mui"           rate = "3" }
         Recipe{ type = "Wonton"              rate = "1" }
-        Recipe{ type = "Shrimp Canton"       rate = "2" }
+        Recipe{ type = "Shrimp Canton"       rate = "1" }
         Recipe{ type = "Lime Chicken"        rate = "1" }
         Recipe{ type = "Mango Salsa"         rate = "0" }
         Recipe{ type = "Chicken Laulau"      rate = "0" }
@@ -47,12 +47,12 @@ Level{
     }
     
     IngredientRates{
-        Ingredient{ type = "shrimp"       rate = "24" }
+        Ingredient{ type = "shrimp"       rate = "22" }
         Ingredient{ type = "meat"         rate = "24" }
         Ingredient{ type = "chili-pepper" rate = "17" }
         Ingredient{ type = "lime"         rate = "21" }
         Ingredient{ type = "mango"        rate = "27" }
-        Ingredient{ type = "shoyu"        rate = "18" }
+        Ingredient{ type = "shoyu"        rate = "17" }
         Ingredient{ type = "bonus.spoon"      rate = "1" }
         Ingredient{ type = "bonus.gift"       rate = "1" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Hawaiian 6'"
         noCustomers = "25"
-        moneyGoal = "3000"
-        expertGoal = "4200"
+        moneyGoal = "2800"
+        expertGoal = "3700"
     }
     
     //level layout: customer stations, power-up buttons, decorations

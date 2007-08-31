@@ -28,9 +28,9 @@ Level{
     RecipeRates{
         Recipe{ type = "Cabbage Stew"             rate = "0" }
         Recipe{ type = "Pelmeni"                  rate = "0" }
-        Recipe{ type = "Golubtsy"                 rate = "1" }
+        Recipe{ type = "Golubtsy"                 rate = "2" }
         Recipe{ type = "Fried Mushrooms"          rate = "0" }
-        Recipe{ type = "Vareniki"                 rate = "3" }
+        Recipe{ type = "Vareniki"                 rate = "2" }
         Recipe{ type = "Baked Meat"               rate = "0" }
         Recipe{ type = "Cutlets"                  rate = "0" }
         Recipe{ type = "Mushroom Ragout"          rate = "0" }
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Russian 6'"
         noCustomers = "22"
-        moneyGoal = "2200"
-        expertGoal = "3000"
+        moneyGoal = "2100"
+        expertGoal = "2500"
     }
     
     //level layout: customer stations, power-up buttons, decorations

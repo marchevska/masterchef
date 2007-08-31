@@ -27,11 +27,11 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Tortilla Soup"             rate = "0" }
-        Recipe{ type = "Guacamole"                 rate = "6" }
+        Recipe{ type = "Guacamole"                 rate = "5" }
         Recipe{ type = "Cheese Nachos"             rate = "0" }
         Recipe{ type = "Chiles Renellos"           rate = "0" }
         Recipe{ type = "Avocado Stuffed Tacos"     rate = "0" }
-        Recipe{ type = "Burrito"                   rate = "1" }
+        Recipe{ type = "Burrito"                   rate = "2" }
         Recipe{ type = "Chili con Carne"           rate = "0" }
         Recipe{ type = "Quesadilla"                rate = "4" }
         Recipe{ type = "Tex-Mex Turkey Casseruole" rate = "0" }
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Mexican 6'"
         noCustomers = "20"
-        moneyGoal = "2000"
-        expertGoal = "2500"
+        moneyGoal = "1900"
+        expertGoal = "2300"
     }
     
     //level layout: customer stations, power-up buttons, decorations

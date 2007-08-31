@@ -44,6 +44,7 @@ class Gui(scraft.Dispatcher):
         self.NextState = PState_None
         self.SavedOptions = []
         self.LastQuestion = ""
+        self.LastLevelResults = None
            
         self.GraySprite = MakeSprite("gray.screen", Layer_Background+1)
             
@@ -679,12 +680,17 @@ class Gui(scraft.Dispatcher):
         globalvars.Musician.SetPause(flag)
         
     def CallLevelCompleteDialog(self, flag, params = {}):
+        self.LastLevelResults = (flag, params)
         self._SetState(PState_NextLevel)
         if flag:
             globalvars.Musician.PlaySound("level.win")
         else:
             globalvars.Musician.PlaySound("level.lose")
-            
+        
+    def _UpdateLevelResults(self, data):
+        flag = data[0]
+        params = data[1]
+        
         #фон и комментарий 
         tmpLevelName = globalvars.CurrentPlayer.GetLevel().GetContent()
         tmpLevelParams = globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName)
@@ -1736,6 +1742,7 @@ class Gui(scraft.Dispatcher):
         elif state == PState_NextLevel:
             globalvars.Board.Freeze(True)
             self._ShowDialog(self.LevelCompleteDialog, True)
+            self._UpdateLevelResults(self.LastLevelResults)
             
         elif state == PState_Players:
             self._ShowDialog(self.PlayersDialog, True)

@@ -31,9 +31,9 @@ Level{
         Recipe{ type = "Pineapple Tomato Salad"           rate = "0" }
         Recipe{ type = "Caribbean Spice Chicken"          rate = "1" }
         Recipe{ type = "Crispy Baked Chicken"             rate = "1" }
-        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "3" }
+        Recipe{ type = "Chicken Squash Stir-Fry"          rate = "1" }
         Recipe{ type = "Grilled Meat"                     rate = "0" }
-        Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "5" }
+        Recipe{ type = "Hubbard Squash Soup Du Jour"      rate = "2" }
         Recipe{ type = "Pineapple Lasagna"                rate = "0" }
         Recipe{ type = "Spaghetti with Turkey Meat Sauce" rate = "0" }
         Recipe{ type = "Chicken Pasta Casseroule"         rate = "0" }
@@ -48,7 +48,7 @@ Level{
     
     IngredientRates{
         Ingredient{ type = "meat"      rate = "24" }
-        Ingredient{ type = "milk"      rate = "18" }
+        Ingredient{ type = "milk"      rate = "17" }
         Ingredient{ type = "pasta"     rate = "0" }
         Ingredient{ type = "pineapple" rate = "5" }
         Ingredient{ type = "pumpkin"   rate = "24" }
@@ -69,7 +69,7 @@ Level{
         title = "'American 5'"
         noCustomers = "15"
         moneyGoal = "1200"
-        expertGoal = "1700"
+        expertGoal = "1400"
     }
     
     //level layout: customer stations, power-up buttons, decorations

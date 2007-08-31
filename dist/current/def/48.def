@@ -26,8 +26,8 @@ Level{
     
     //recipe appearance rates
     RecipeRates{
-        Recipe{ type = "Chicken Shrimp Soup" rate = "3" }
-        Recipe{ type = "Spicy Shrimps"       rate = "1" }
+        Recipe{ type = "Chicken Shrimp Soup" rate = "2" }
+        Recipe{ type = "Spicy Shrimps"       rate = "2" }
         Recipe{ type = "Hulihuli Chicken"    rate = "0" }
         Recipe{ type = "Mango Mui"           rate = "0" }
         Recipe{ type = "Wonton"              rate = "0" }
@@ -68,8 +68,8 @@ Level{
     LevelSettings{
         title = "'Hawaiian 8'"
         noCustomers = "30"
-        moneyGoal = "3500"
-        expertGoal = "4300"
+        moneyGoal = "3100"
+        expertGoal = "3700"
     }
     
     //level layout: customer stations, power-up buttons, decorations

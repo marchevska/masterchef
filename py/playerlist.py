@@ -217,9 +217,9 @@ class Player:
                     tmpOutroNode.SetIntAttr("place", tmpPlace)
                     
                 #сравниваем полученные результаты с уже имеющимися
-                if (tmpOutroNode.GetBoolAttr("beat1st") != tmpOldOutroNode.GetBoolAttr("beat1st")) or \
+                if ((tmpOutroNode.GetBoolAttr("beat1st") != tmpOldOutroNode.GetBoolAttr("beat1st")) or \
                         (tmpOutroNode.GetBoolAttr("beat2nd") != tmpOldOutroNode.GetBoolAttr("beat2nd")) or \
-                        (tmpOutroNode.GetBoolAttr("passed") != tmpOldOutroNode.GetBoolAttr("passed")) and \
+                        (tmpOutroNode.GetBoolAttr("passed") != tmpOldOutroNode.GetBoolAttr("passed"))) and \
                         tmpOutroNode.GetBoolAttr("unlocked"):
                     self.XML.SetStrAttr("newUnlocked", level.GetContent())
         except:

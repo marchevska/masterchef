@@ -27,3 +27,62 @@ Level{
     //recipe appearance rates
     RecipeRates{
         Recipe{ type = "Cabbage Stew"             rate = "2" }
+        Recipe{ type = "Pelmeni"                  rate = "0" }
+        Recipe{ type = "Golubtsy"                 rate = "0" }
+        Recipe{ type = "Fried Mushrooms"          rate = "0" }
+        Recipe{ type = "Vareniki"                 rate = "2" }
+        Recipe{ type = "Baked Meat"               rate = "0" }
+        Recipe{ type = "Cutlets"                  rate = "2" }
+        Recipe{ type = "Mushroom Ragout"          rate = "0" }
+        Recipe{ type = "Cabbage Stuffed Pancakes" rate = "0" }
+        Recipe{ type = "Kulebyaka"                rate = "0" }
+        Recipe{ type = "Shchi"                    rate = "2" }
+        Recipe{ type = "Mushroom Soup"            rate = "0" }
+    }
+    
+    //ingredient appearance rates
+    TokenRates {
+        Token{ type = "ingredient" rate = "97" }
+        Token{ type = "bonus" rate = "3" }
+    }
+    
+    IngredientRates{
+        Ingredient{ type = "pork"     rate = "24" }
+        Ingredient{ type = "mushroom" rate = "0" }
+        Ingredient{ type = "cabbage"  rate = "24" }
+        Ingredient{ type = "potato"   rate = "24" }
+        Ingredient{ type = "onion"    rate = "18" }
+        Ingredient{ type = "flour"    rate = "18" }
+        Ingredient{ type = "bonus.spoon"      rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "5" }
+        Ingredient{ type = "bonus.sweet"      rate = "5" }
+        Ingredient{ type = "bonus.magicwand"  rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.removerow"  rate = "5" }
+        Ingredient{ type = "bonus.scrollback" rate = "1" }
+        Ingredient{ type = "bonus.hearts"     rate = "0" }
+        Ingredient{ type = "bonus.shuffle"    rate = "0" }
+    }
+    
+    //level settings
+    LevelSettings{
+        title = "'Russian 7'"
+        noCustomers = "25"
+        moneyGoal = "2500"
+        expertGoal = "3200"
+    }
+    
+    //level layout: customer stations, power-up buttons, decorations
+    //layout of the game field
+    Layout{
+        theme = "Russian" 
+        CustomerStation{ type = "" x = "270" y = "300" occupied = "yes" }
+        CustomerStation{ type = "" x = "90" y = "410" occupied = "no" }
+        CustomerStation{ type = "" x = "270" y = "520" occupied = "no" }
+        //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
+        Collapsoid{ XSize = "9" YSize = "13" InitialRows = "5" SensorAt = "5" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }
+        CustomersQue { type = "" X = "100" Y = "0" TabletX = "40" TabletY = "120" }
+        //TrashCan{ type = "" size = "100" x = "350" y = "530" }
+    }
+    
+}

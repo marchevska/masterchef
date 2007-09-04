@@ -53,15 +53,15 @@ Level{
         Ingredient{ type = "tofu"     rate = "27" }
         Ingredient{ type = "veggymix" rate = "21" }
         Ingredient{ type = "seaweed"  rate = "18" }
-        Ingredient{ type = "bonus.spoon"      rate = "1" }
-        Ingredient{ type = "bonus.gift"       rate = "1" }
-        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.spoon"      rate = "5" }
+        Ingredient{ type = "bonus.gift"       rate = "10" }
+        Ingredient{ type = "bonus.sweet"      rate = "2" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
-        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "5" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }
-        Ingredient{ type = "bonus.scrollback" rate = "0" }
-        Ingredient{ type = "bonus.hearts"     rate = "0" }
-        Ingredient{ type = "bonus.shuffle"    rate = "1" }
+        Ingredient{ type = "bonus.scrollback" rate = "2" }
+        Ingredient{ type = "bonus.hearts"     rate = "3" }
+        Ingredient{ type = "bonus.shuffle"    rate = "12" }
     }
     
     //level settings
@@ -69,7 +69,7 @@ Level{
         title = "'Japanese 10'"
         noCustomers = "30"
         moneyGoal = "3200"
-        expertGoal = "4300"
+        expertGoal = "4200"
     }
     
     //level layout: customer stations, power-up buttons, decorations

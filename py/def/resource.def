@@ -489,6 +489,7 @@ MasterChef{
         sprite(comics.masterchef.intro.2) { bitmap = "img/comics/masterchef.intro.2.png" }
         sprite(comics.masterchef.intro.3) { bitmap = "img/comics/masterchef.intro.3.png" }
         sprite(comics.masterchef.outro) { bitmap = "img/comics/masterchef.outro.png" }
+        sprite(comics.masterchef.demo-outro) { bitmap = "img/comics/masterchef.demo-outro.png" }
         sprite(help.champ-rules) { bitmap = "img/gui/help-page3.png" }
     }
     

@@ -1,0 +1,117 @@
+MasterChef{
+    PlayerName = ''
+    
+    //Episodes{
+        episode(American) { unlocked = "no" points = "0" }
+        episode(Mexican) { unlocked = "no" points = "0" }
+        episode(Russian) { unlocked = "no" points = "0" }
+        episode(Japanese) { unlocked = "no" points = "0" }
+        episode(Hawaiian) { unlocked = "no" points = "0" }
+    //}
+    
+    //Levels{
+        level(def/00.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/01.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/02.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/03.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/04.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/05.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/06.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/07.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/08.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/09.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/10.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/11.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/12.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/13.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/14.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+        level(def/15.def){ played = "no" unlocked = "no" hiscore = "0" expert = "no" }
+    //}
+    
+    //Comics{
+        comic(MasterChef.intro.1) { seen = "no" unlocked = "yes" }
+        comic(MasterChef.intro.2) { seen = "no" unlocked = "no" }
+        comic(MasterChef.intro.3) { seen = "no" unlocked = "no" }
+        comic(MasterChef.demo-outro) { seen = "no" unlocked = "no" }
+        intro(intro.American) { seen = "no" unlocked = "no" }
+        intro(intro.Mexican) { seen = "no" unlocked = "no" }
+        intro(intro.Russian) { seen = "no" unlocked = "no" }
+        intro(intro.Japanese) { seen = "no" unlocked = "no" }
+        intro(intro.Hawaiian) { seen = "no" unlocked = "no" }
+        outro(outro.American) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Mexican) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Russian) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Japanese) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        outro(outro.Hawaiian) { seen = "no" unlocked = "no" beat1st = "no" beat2nd = "no" passed = "no" place = "8" }
+        comic(Help.Rules) { seen = "no" unlocked = "no" }
+    //}
+    
+    //Hints{
+        hint{ name = "" seen = "no" }
+    //}
+    
+    //Recipes{
+        //recipe(){ unlocked = "no" }
+        recipe(Squash with Tomato Sauce){ unlocked = "no" seen = "no" }
+        recipe(Chicken Squash Stir-Fry){ unlocked = "no" seen = "no" }
+        recipe(Pasta with Tomato Sauce){ unlocked = "no" seen = "no" }
+        recipe(Pineapple Tomato Salad){ unlocked = "no" seen = "no" }
+        recipe(Caribbean Spice Chicken){ unlocked = "no" seen = "no" }
+        recipe(Crispy Baked Chicken){ unlocked = "no" seen = "no" }
+        recipe(Pineapple Lasagna){ unlocked = "no" seen = "no" }
+        recipe(Hubbard Squash Soup Du Jour){ unlocked = "no" seen = "no" }
+        recipe(Grilled Meat){ unlocked = "no" seen = "no" }
+        recipe(Spaghetti with Turkey Meat Sauce){ unlocked = "no" seen = "no" }
+        recipe(Chicken Pasta Casseroule){ unlocked = "no" seen = "no" }
+        recipe(Chicken Pineapple Pasta Pockets){ unlocked = "no" seen = "no" }
+        recipe(Tortilla Soup){ unlocked = "no" seen = "no" }
+        recipe(Guacamole){ unlocked = "no" seen = "no" }
+        recipe(Cheese Nachos){ unlocked = "no" seen = "no" }
+        recipe(Chiles Renellos){ unlocked = "no" seen = "no" }
+        recipe(Avocado Stuffed Tacos){ unlocked = "no" seen = "no" }
+        recipe(Burrito){ unlocked = "no" seen = "no" }
+        recipe(Chili con Carne){ unlocked = "no" seen = "no" }
+        recipe(Quesadilla){ unlocked = "no" seen = "no" }
+        recipe(Tex-Mex Turkey Casseruole){ unlocked = "no" seen = "no" }
+        recipe(Avocado Salsa){ unlocked = "no" seen = "no" }
+        recipe(Football Fan Nachos){ unlocked = "no" seen = "no" }
+        recipe(Fajitas){ unlocked = "no" seen = "no" }
+        recipe(Cabbage Stew){ unlocked = "no" seen = "no" }
+        recipe(Pelmeni){ unlocked = "no" seen = "no" }
+        recipe(Golubtsy){ unlocked = "no" seen = "no" }
+        recipe(Fried Mushrooms){ unlocked = "no" seen = "no" }
+        recipe(Vareniki){ unlocked = "no" seen = "no" }
+        recipe(Baked Meat){ unlocked = "no" seen = "no" }
+        recipe(Cutlets){ unlocked = "no" seen = "no" }
+        recipe(Mushroom Ragout){ unlocked = "no" seen = "no" }
+        recipe(Cabbage Stuffed Pancakes){ unlocked = "no" seen = "no" }
+        recipe(Kulebyaka){ unlocked = "no" seen = "no" }
+        recipe(Shchi){ unlocked = "no" seen = "no" }
+        recipe(Mushroom Soup){ unlocked = "no" seen = "no" }
+        recipe(Nigiri Zushi){ unlocked = "no" seen = "no" }
+        recipe(Sashimi){ unlocked = "no" seen = "no" }
+        recipe(Seafood Tempura){ unlocked = "no" seen = "no" }
+        recipe(TofuDengaku){ unlocked = "no" seen = "no" }
+        recipe(Tempura){ unlocked = "no" seen = "no" }
+        recipe(Koyungohan){ unlocked = "no" seen = "no" }
+        recipe(Ochazuke){ unlocked = "no" seen = "no" }
+        recipe(Tempura Shrimp Roll){ unlocked = "no" seen = "no" }
+        recipe(Onigiri){ unlocked = "no" seen = "no" }
+        recipe(Osechi){ unlocked = "no" seen = "no" }
+        recipe(Yosenabe){ unlocked = "no" seen = "no" }
+        recipe(Temaki Zushi){ unlocked = "no" seen = "no" }
+        recipe(Chicken Shrimp Soup){ unlocked = "no" seen = "no" }
+        recipe(Spicy Shrimps){ unlocked = "no" seen = "no" }
+        recipe(Hulihuli Chicken){ unlocked = "no" seen = "no" }
+        recipe(Mango Mui){ unlocked = "no" seen = "no" }
+        recipe(Wonton){ unlocked = "no" seen = "no" }
+        recipe(Shrimp Canton){ unlocked = "no" seen = "no" }
+        recipe(Lime Chicken){ unlocked = "no" seen = "no" }
+        recipe(Mango Salsa){ unlocked = "no" seen = "no" }
+        recipe(Chicken Laulau){ unlocked = "no" seen = "no" }
+        recipe(Shrimp Mango Salad){ unlocked = "no" seen = "no" }
+        recipe(Pipikaula){ unlocked = "no" seen = "no" }
+        recipe(Mango Chicken){ unlocked = "no" seen = "no" }
+    //}
+    
+}

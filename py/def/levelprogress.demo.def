@@ -1,0 +1,280 @@
+MasterChef {
+    Levels {
+        comic(MasterChef.intro.1) {
+            image = "comics.masterchef.intro.1"
+            button = "continue-button"
+        }
+        comic(MasterChef.intro.2) {
+            image = "comics.masterchef.intro.2"
+            button = "continue-button"
+        }
+        comic(MasterChef.intro.3) {
+            image = "comics.masterchef.intro.3"
+            button = "continue-button"
+        }
+        comic(Help.Rules) {
+            image = "help.champ-rules"
+            button = "continue-button"
+        }
+        //Episode - American
+        intro(intro.American) {
+            episode = "American"
+            title = "AMERICAN OPEN"
+            text { str = "american.intro.1" layout = "episode-intro.1" }
+            text { str = "american.intro.2" layout = "episode-intro.2" }
+            text { str = "american.intro.3" layout = "episode-intro.3" }
+            text { str = "american.intro.4" layout = "episode-intro.4" }
+            text { str = "american.intro.5" layout = "episode-intro.5" }
+            text { str = "american.intro.6" layout = "episode-intro.6" }
+        }
+
+        //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
+
+        level(def/01.def) {
+            restaurant = "Rocky Ranch" day = "Day 1"
+            title = "Rocky Ranch - Day 1" name = "1-1" no = "1" x = "62" y = "175"
+            unlock = "[ 'Grilled Meat', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/01.def.intro.title', 'text': 'def/01.def.intro.text', 'picture': 'customer.worker', 'frno': 9 }"
+            passed = "{ 'layout': 'outro', 'text': 'def/01.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/01.def.failed.text' }"
+        }
+        level(def/02.def) {
+            restaurant = "Rocky Ranch" day = "Day 2"
+            title = "Rocky Ranch - Day 2" name = "1-2" no = "2" x = "46" y = "201"
+            unlock = "[ 'Pineapple Tomato Salad', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/02.def.intro.title', 'text': 'def/02.def.intro.text' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/02.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/02.def.failed.text' }"
+        }
+        level(def/03.def) {
+            restaurant = "Rocky Ranch" day = "Day 3"
+            title = "Rocky Ranch - Day 3" name = "1-3" no = "3" x = "41" y = "233"
+            unlock = "[ 'Caribbean Spice Chicken', 'Spaghetti with Turkey Meat Sauce', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/03.def.intro.title', 'text': 'def/03.def.intro.text', 'picture': 'customer.student', 'frno': 9 }"
+            passed = "{ 'layout': 'outro', 'text': 'def/03.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/03.def.failed.text' }"
+        }
+        level(def/04.def) {
+            restaurant = "Rocky Ranch" day = "Day 4"
+            title = "Rocky Ranch - Day 4" name = "1-4" no = "4" x = "48" y = "261"
+            unlock = "[ 'Crispy Baked Chicken', 'Pineapple Lasagna', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/04.def.intro.title', 'text': 'def/04.def.intro.text' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/04.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/04.def.failed.text' }"
+        }
+        level(def/05.def) {
+            restaurant = "Rocky Ranch" day = "Day 5"
+            title = "Rocky Ranch - Day 5" name = "1-5" no = "5" x = "60" y = "287"
+            unlock = "[ 'Chicken Squash Stir-Fry', 'Hubbard Squash Soup Du Jour', ]"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/05.def.intro.title', 'text': 'def/05.def.intro.text', 'picture': 'bonus.sweet' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/05.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/05.def.failed.text' }"
+        }
+        level(def/06.def) {
+            restaurant = "Rocky Ranch" day = "Day 6"
+            title = "Rocky Ranch - Day 6" name = "1-6" no = "6" x = "78" y = "308"
+            unlock = "[ 'Pasta with Tomato Sauce', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/06.def.intro.title', 'text': 'def/06.def.intro.text', 'picture': 'customer.business', 'frno': 9 }"
+            passed = "{ 'layout': 'outro', 'text': 'def/06.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/06.def.failed.text' }"
+        }
+        level(def/07.def) {
+            restaurant = "Rocky Ranch" day = "Day 7"
+            title = "Rocky Ranch - Day 7" name = "1-7" no = "7" x = "96" y = "327"
+            unlock = "[ 'Squash with Tomato Sauce', 'Chicken Pasta Casseroule', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/07.def.intro.title', 'text': 'def/07.def.intro.text' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/07.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/07.def.failed.text' }"
+        }
+        level(def/08.def) {
+            restaurant = "Rocky Ranch" day = "Day 8"
+            title = "Rocky Ranch - Day 8" name = "1-8" no = "8" x = "118" y = "342"
+            unlock = "[ 'Chicken Pineapple Pasta Pockets', ]"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/08.def.intro.title', 'text': 'def/08.def.intro.text', 'picture': 'bonus.removerow' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/08.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/08.def.failed.text' }"
+        }
+        level(def/09.def) {
+            restaurant = "Rocky Ranch" day = "Day 9"
+            title = "Rocky Ranch - Day 9" name = "1-9" no = "9" x = "141" y = "353"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/09.def.intro.title', 'text': 'def/09.def.intro.text', 'picture': 'customer.tourist.hawaiian', 'frno': 9 }"
+            passed = "{ 'layout': 'outro', 'text': 'def/09.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/09.def.failed.text' }"
+        }
+        level(def/10.def) {
+            restaurant = "Rocky Ranch" day = "Day 10"
+            title = "Rocky Ranch - Day 10" name = "1-10" no = "10" x = "167" y = "358"
+            unlock = "[ ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/10.def.intro.title', 'text': 'def/10.def.intro.text' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/10.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/10.def.failed.text' }"
+        }
+
+        outro(outro.American) {
+            sum = "[ 'def/01.def', 'def/02.def', 'def/03.def', 'def/04.def', 'def/05.def', 'def/06.def', 'def/07.def', 'def/08.def', 'def/09.def', 'def/10.def' ]"
+            x = "160" y = "90"
+            episode = "American"
+            title = "AMERICAN OPEN - RESULTS"
+            restaurant = "ROCKY RANCH"
+            day = "Round Results"
+            passIf = "{ 'American': 4 }"
+            passFurther = "4"
+            showWinners = "yes"
+            passedText {
+                text { str = "american.passed.1" layout = "episode-outro.1" }
+                text { str = "american.passed.2" layout = "episode-outro.2" }
+                text { str = "american.passed.3" layout = "episode-outro.3" }
+                text { str = "american.passed.4" layout = "episode-outro.4" }
+                text { str = "american.passed.5" layout = "episode-outro.5" }
+                text { str = "american.passed.6" layout = "episode-outro.6" }
+            }
+            failedText {
+            }
+        }
+
+        //Episode - Mexican
+        intro(intro.Mexican) {
+            episode = "Mexican"
+            title = "MEXICAN OPEN"
+            text { str = "mexican.intro.1" layout = "episode-intro.1" }
+            text { str = "mexican.intro.2" layout = "episode-intro.2" }
+            text { str = "mexican.intro.3" layout = "episode-intro.3" }
+            text { str = "mexican.intro.4" layout = "episode-intro.4" }
+            text { str = "mexican.intro.5" layout = "episode-intro.5" }
+            text { str = "mexican.intro.6" layout = "episode-intro.6" }
+        }
+
+        level(def/11.def) {
+            restaurant = "Lemon Lime" day = "Day 1"
+            title = "Lemon Lime - Day 1" name = "2-1" no = "11" x = "211" y = "272"
+            unlock = "[ 'Tortilla Soup', 'Burrito', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/11.def.intro.title', 'text': 'def/11.def.intro.text' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/11.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/11.def.failed.text' }"
+        }
+        level(def/12.def) {
+            restaurant = "Lemon Lime" day = "Day 2"
+            title = "Lemon Lime - Day 2" name = "2-2" no = "12" x = "201" y = "237"
+            unlock = "[ 'Chiles Renellos', 'Chili con Carne', ]"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/12.def.intro.title', 'text': 'def/12.def.intro.text', 'picture': 'bonus.bomb' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/12.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/12.def.failed.text' }"
+        }
+        level(def/13.def) {
+            restaurant = "Lemon Lime" day = "Day 3"
+            title = "Lemon Lime - Day 3" name = "2-3" no = "13" x = "195" y = "205"
+            unlock = "[ 'Tex-Mex Turkey Casseruole', ]"
+            intro = "{ 'layout': 'custpic', 'title': 'def/13.def.intro.title', 'text': 'def/13.def.intro.text', 'picture': 'customer.tourist.mexican', 'frno': 9 }"
+            passed = "{ 'layout': 'outro', 'text': 'def/13.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/13.def.failed.text' }"
+        }
+        level(def/14.def) {
+            restaurant = "Lemon Lime" day = "Day 4"
+            title = "Lemon Lime - Day 4" name = "2-4" no = "14" x = "197" y = "172"
+            unlock = "[ 'Guacamole', 'Avocado Salsa', ]"
+            intro = "{ 'layout': 'nopic', 'title': 'def/14.def.intro.title', 'text': 'def/14.def.intro.text' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/14.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/14.def.failed.text' }"
+        }
+        level(def/15.def) {
+            restaurant = "Lemon Lime" day = "Day 5"
+            title = "Lemon Lime - Day 5" name = "2-5" no = "15" x = "202" y = "141"
+            unlock = "[ 'Fajitas', ]"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/15.def.intro.title', 'text': 'def/15.def.intro.text', 'picture': 'bonus.scrollback' }"
+            passed = "{ 'layout': 'outro', 'text': 'def/15.def.passed.text' }"
+            failed = "{ 'layout': 'outro', 'text': 'def/15.def.failed.text' }"
+        }
+        
+        comic(MasterChef.demo-outro) {
+            image = "comics.masterchef.demo-outro"
+            button = "continue-button"
+        }
+    }
+    
+    //Episode images to display on the travel map
+    Episodes {
+        episode(American) { image = "episode.american" x = "120" y = "130" }
+        episode(Mexican) { image = "episode.mexican" x = "220" y = "320" }
+        episode(Russian) { image = "episode.russian" x = "360" y = "70" }
+        episode(Japanese) { image = "episode.japanese" x = "680" y = "130" }
+        episode(Hawaiian) { image = "episode.hawaiian" x = "630" y = "385" }
+    }
+    
+    //Competitors and their results
+    People {
+        episode(American) { people= "{'Elisa': { 'score': 54, 'xy': (55, 360) }, 'Emma': { 'score': 42, 'xy': (350, 265) }, 'Jenny': { 'score': 1, 'xy': (130, 570) }, 'Lora': { 'score': 60, 'xy': (200, 260) }, 'Marty': { 'score': 36, 'xy': (417, 285) }, 'Max': { 'score': 48, 'xy': (270, 250) }, 'Ronald': { 'score': 96, 'xy': (60, 490) }, 'Steve': { 'score': 68, 'xy': (127, 285) }, }" }
+        episode(Mexican) { people= "{'Alex': { 'score': 48, 'xy': (60, 370) }, 'Erica': { 'score': 42, 'xy': (65, 505) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Lora': { 'score': 54, 'xy': (280, 245) }, 'Michael': { 'score': 64, 'xy': (195, 260) }, 'Nina': { 'score': 76, 'xy': (420, 295) }, 'Ronald': { 'score': 96, 'xy': (120, 295) }, 'Steve': { 'score': 36, 'xy': (355, 260) }, }" }
+        episode(Russian) { people= "{'Alban': { 'score': 84, 'xy': (195, 260) }, 'Angela': { 'score': 54, 'xy': (125, 290) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Michael': { 'score': 48, 'xy': (60, 360) }, 'Naomi': { 'score': 72, 'xy': (280, 250) }, 'Nina': { 'score': 42, 'xy': (435, 320) }, 'Ronald': { 'score': 96, 'xy': (60, 495) }, 'Sam': { 'score': 36, 'xy': (360, 260) }, }" }
+        episode(Japanese) { people= "{'Alban': { 'score': 88, 'xy': (270, 255) }, 'Jenny': { 'score': 1, 'xy': (130, 580) }, 'Mary': { 'score': 54, 'xy': (60, 365) }, 'Naomi': { 'score': 42, 'xy': (355, 265) }, 'Paula': { 'score': 92, 'xy': (195, 255) }, 'Peter': { 'score': 48, 'xy': (435, 325) }, 'Ronald': { 'score': 96, 'xy': (60, 495) }, 'Scott': { 'score': 36, 'xy': (115, 280) }, }" }
+        episode(Hawaiian) { people= "{'Jenny': { 'score': 1, 'xy': (60, 520) }, 'Ronald': { 'score': 96, 'xy': (60, 350) }, }" }
+    }
+
+    //Level intro/outro layouts
+    Layouts {
+        layout(custpic) { 
+            titleFont = "arial-italic-20" titleXY = "(280,380)" titleColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(180,400)" textArea = "(270,100)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(130,540)" hotspot = "scraft.HotspotCenterBottom" 
+        }
+        layout(bonuspic) { 
+            titleFont = "arial-italic-20" titleXY = "(280,380)" titleColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(170,400)" textArea = "(290,150)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(130,425)" hotspot = "scraft.HotspotCenter" 
+        }
+        layout(nopic) { 
+            titleFont = "arial-italic-20" titleXY = "(280,380)" titleColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(100,400)" textArea = "(360,150)" textColor = "0x000000" 
+            hasPicture = "no" 
+        }
+        layout(outro) { textFont = "arial-italic-20" textXY = "(125,380)" textArea = "(300,170)" textColor = "0x000000" }
+
+        layout(episode-intro) { textFont = "arial-italic-18" textXY = "(125,280)" textArea = "(280,220)" textColor = "0x000000" }
+        layout(episode-intro.1) { textFont = "arial-italic-18" textXY = "(270,300)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.2) { textFont = "arial-italic-18" textXY = "(270,325)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.3) { textFont = "arial-italic-18" textXY = "(270,350)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.4) { textFont = "arial-italic-18" textXY = "(270,375)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.5) { textFont = "arial-italic-18" textXY = "(270,400)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.6) {  textFont = "arial-italic-18" textXY = "(270,425)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.7) { textFont = "arial-italic-18" textXY = "(270,450)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-intro.competitors) { textFont = "arial-italic-18" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-intro.names) { textFont = "arial-italic-18" textColor = "0x663300" hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.competitors) { textFont = "arial-italic-18" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.names-passed) { textFont = "arial-italic-18" textColor = "0x339900" }
+        layout(episode-outro.names-notpassed) { textFont = "arial-italic-18" textColor = "0x666666" }
+        layout(episode-outro.names-jenny-passed) { textFont = "arial-italic-20" textColor = "0x663300" }
+        layout(episode-outro.names-jenny-notpassed) { textFont = "arial-italic-20" textColor = "0x333333" }
+
+        layout(episode-outro.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.2) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.3) {  textFont = "arial-italic-18" textXY = "(210,445)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.4) { textFont = "arial-italic-18" textXY = "(210,470)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.5) { textFont = "arial-italic-18" textXY = "(210,495)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.6) { textFont = "arial-italic-18" textXY = "(210,520)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.winners) { textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.japanese.1) {  textFont = "arial-italic-18" textXY = "(210,360)" textColor = "0x993300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.3) {  textFont = "arial-italic-18" textXY = "(210,420)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.4) { textFont = "arial-italic-18" textXY = "(210,450)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.5) { textFont = "arial-italic-18" textXY = "(210,480)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.japanese.6) { textFont = "arial-italic-18" textXY = "(210,510)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.hawaiian.1) { textFont = "arial-italic-20" textXY = "(210,370)" textColor = "0xcc3300" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.2) { textFont = "arial-italic-20" textXY = "(210,405)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.3) { textFont = "arial-italic-20" textXY = "(210,440)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.4) { textFont = "arial-italic-20" textXY = "(210,475)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.hawaiian.5) { textFont = "arial-italic-20" textXY = "(210,510)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+
+        layout(episode-outro.failed.1) {  textFont = "arial-italic-18" textXY = "(210,365)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.2) {  textFont = "arial-italic-18" textXY = "(210,390)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.3) {  textFont = "arial-italic-18" textXY = "(210,415)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.4) { textFont = "arial-italic-18" textXY = "(210,440)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.5) { textFont = "arial-italic-18" textXY = "(210,465)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.6) { textFont = "arial-italic-18" textXY = "(210,490)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+        layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+    }
+
+}

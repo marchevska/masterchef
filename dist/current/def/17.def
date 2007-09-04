@@ -69,7 +69,7 @@ Level{
         title = "'Mexican 7'"
         noCustomers = "20"
         moneyGoal = "1800"
-        expertGoal = "2200"
+        expertGoal = "2100"
     }
     
     //level layout: customer stations, power-up buttons, decorations

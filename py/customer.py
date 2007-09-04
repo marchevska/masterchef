@@ -66,12 +66,12 @@ class Customer(scraft.Dispatcher):
     def AddHearts(self, no):
         self._SetHearts(self.Hearts + no)
         
-    def _SetHearts(self, no):
-        no = max(0, min(no, Const_MaxHearts))
+    def _SetHearts(self, newHearts):
+        no = max(0, min(newHearts, Const_MaxHearts))
         if self.State == CustomerState_Queue:
             self.Hearts = no
         elif no>0:
-            if self.HeartDecreaseTime <= 0:
+            if self.HeartDecreaseTime <= 0 or newHearts > Const_MaxHearts:
                 self.HeartDecreaseTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,
                                          globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMax")*1000)
             self.Hearts = no

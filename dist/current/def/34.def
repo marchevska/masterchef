@@ -68,7 +68,7 @@ Level{
         title = "'Japanese 4'"
         noCustomers = "22"
         moneyGoal = "2100"
-        expertGoal = "2800"
+        expertGoal = "2600"
     }
     
     //level layout: customer stations, power-up buttons, decorations

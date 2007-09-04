@@ -974,6 +974,8 @@ class Field(Storage):
                 tmpPos = self._CellByCoords((x, y))
                 if not self.Cells.has_key(tmpPos):
                     return
+                elif button == 1 and self.Cells[tmpPos] != Const_EmptyCell:
+                    self._HighlightCells(tmpPos, True)
                 tmpAllBonuses = map(lambda z: z.GetContent(),
                     filter(lambda y: y.GetStrAttr("type") == "bonus", globalvars.CuisineInfo.GetTag("Ingredients").Tags()))
                 

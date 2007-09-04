@@ -181,6 +181,7 @@ class Player:
                     eval(globalvars.LevelProgress.GetTag("People").GetSubtag(episode).GetStrAttr("people")).items()))
                 tmpResults[globalvars.GameSettings.GetStrAttr("charName")] = self.XML.GetSubtag(episode).GetIntAttr("points")
                 tmp = tmpResults.items()
+                #сортировка по убыванию количества очков
                 tmp.sort(lambda x,y: cmp(y[1], x[1]))
                 tmpPlace = tmp.index((globalvars.GameSettings.GetStrAttr("charName"), self.XML.GetSubtag(episode).GetIntAttr("points")))+1
                 #если такое же количество очков, как у занявшее следующее место - понизить место!
@@ -216,12 +217,14 @@ class Player:
                 if tmpPass:
                     tmpOutroNode.SetIntAttr("place", tmpPlace)
                     
-                #сравниваем полученные результаты с уже имеющимися
-                if ((tmpOutroNode.GetBoolAttr("beat1st") != tmpOldOutroNode.GetBoolAttr("beat1st")) or \
-                        (tmpOutroNode.GetBoolAttr("beat2nd") != tmpOldOutroNode.GetBoolAttr("beat2nd")) or \
-                        (tmpOutroNode.GetBoolAttr("passed") != tmpOldOutroNode.GetBoolAttr("passed"))) and \
-                        tmpOutroNode.GetBoolAttr("unlocked"):
-                    self.XML.SetStrAttr("newUnlocked", level.GetContent())
+            #сравниваем полученные результаты с уже имеющимися
+            if ((tmpOutroNode.GetBoolAttr("beat1st") != tmpOldOutroNode.GetBoolAttr("beat1st")) or \
+                    (tmpOutroNode.GetBoolAttr("beat2nd") != tmpOldOutroNode.GetBoolAttr("beat2nd")) or \
+                    (tmpOutroNode.GetBoolAttr("passed") != tmpOldOutroNode.GetBoolAttr("passed")) or \
+                    not (tmpOutroNode.GetBoolAttr("seen"))) and \
+                    tmpOutroNode.GetBoolAttr("unlocked"):
+                self.XML.SetStrAttr("newUnlocked", level.GetContent())
+                print "just unlocked", level.GetContent()
         except:
             oE.Log("Cannot update player profile")
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

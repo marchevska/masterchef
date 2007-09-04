@@ -334,8 +334,8 @@ MasterChef {
     text(Str_Menu_Quit) { str = "Quit" }
     text(Str_Paused1) { str = "Game paused. Click" }
     text(Str_Paused2) { str = "anywhere to continue" }
-    text(Str_HelpPrev) { str = "Page down" }
-    text(Str_HelpNext) { str = "Page up" }
+    text(Str_HelpPrev) { str = "Page up" }
+    text(Str_HelpNext) { str = "Page down" }
     text(Str_HelpClose) { str = "Close window" }
     text(Str_Players_Title) { str = "PLAY AS..." }
     text(Str_PlayersRemove) { str = "Remove player" }

@@ -54,14 +54,14 @@ Level{
         Ingredient{ type = "onion"    rate = "15" }
         Ingredient{ type = "flour"    rate = "14" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
-        Ingredient{ type = "bonus.gift"       rate = "1" }
-        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.gift"       rate = "5" }
+        Ingredient{ type = "bonus.sweet"      rate = "5" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
-        Ingredient{ type = "bonus.bomb"       rate = "0" }
+        Ingredient{ type = "bonus.bomb"       rate = "5" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }
-        Ingredient{ type = "bonus.scrollback" rate = "0" }
+        Ingredient{ type = "bonus.scrollback" rate = "1" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
-        Ingredient{ type = "bonus.shuffle"    rate = "1" }
+        Ingredient{ type = "bonus.shuffle"    rate = "10" }
     }
     
     //level settings
@@ -69,7 +69,7 @@ Level{
         title = "'Russian 10'"
         noCustomers = "30"
         moneyGoal = "3000"
-        expertGoal = "3800"
+        expertGoal = "3900"
     }
     
     //level layout: customer stations, power-up buttons, decorations

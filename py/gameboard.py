@@ -384,8 +384,10 @@ class GameBoard(scraft.Dispatcher):
                         
         #экстренное завершение уровня в отладочном режиме
         elif cmd == Cmd_DebugFinishLevel:       
+            #self.LevelScore = max(self.LevelScore,
+            #    globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneygoal"))
             self.LevelScore = max(self.LevelScore,
-                globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
+                globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertgoal"))
             self._SetState(GameState_EndLevel)
             
         elif cmd == Cmd_DebugLoseLevel:       

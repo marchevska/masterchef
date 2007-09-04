@@ -53,15 +53,15 @@ Level{
         Ingredient{ type = "lime"         rate = "18" }
         Ingredient{ type = "mango"        rate = "27" }
         Ingredient{ type = "shoyu"        rate = "18" }
-        Ingredient{ type = "bonus.spoon"      rate = "1" }
-        Ingredient{ type = "bonus.gift"       rate = "1" }
+        Ingredient{ type = "bonus.spoon"      rate = "5" }
+        Ingredient{ type = "bonus.gift"       rate = "10" }
         Ingredient{ type = "bonus.sweet"      rate = "0" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
-        Ingredient{ type = "bonus.bomb"       rate = "1" }
-        Ingredient{ type = "bonus.removerow"  rate = "0" }
-        Ingredient{ type = "bonus.scrollback" rate = "0" }
-        Ingredient{ type = "bonus.hearts"     rate = "1" }
-        Ingredient{ type = "bonus.shuffle"    rate = "1" }
+        Ingredient{ type = "bonus.bomb"       rate = "3" }
+        Ingredient{ type = "bonus.removerow"  rate = "1" }
+        Ingredient{ type = "bonus.scrollback" rate = "5" }
+        Ingredient{ type = "bonus.hearts"     rate = "3" }
+        Ingredient{ type = "bonus.shuffle"    rate = "10" }
     }
     
     //level settings

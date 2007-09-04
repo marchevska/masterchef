@@ -379,7 +379,7 @@ MasterChef {
 
         level(def/31.def) {
             restaurant = "Sushi Side" day = "Day 1"
-            title = "Sushi Side - Day 1" name = "4-1" no = "31" x = "726" y = "172"
+            title = "Sushi Side - Day 1" name = "4-1" no = "31" x = "714" y = "177"
             unlock = "[ 'Sashimi', 'Ochazuke', ]"
             intro = "{ 'layout': 'nopic', 'title': 'def/31.def.intro.title', 'text': 'def/31.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/31.def.passed.text' }"
@@ -387,7 +387,7 @@ MasterChef {
         }
         level(def/32.def) {
             restaurant = "Sushi Side" day = "Day 2"
-            title = "Sushi Side - Day 2" name = "4-2" no = "32" x = "738" y = "197"
+            title = "Sushi Side - Day 2" name = "4-2" no = "32" x = "734" y = "198"
             unlock = "[ 'Nigiri Zushi', 'Koyungohan', ]"
             intro = "{ 'layout': 'nopic', 'title': 'def/32.def.intro.title', 'text': 'def/32.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/32.def.passed.text' }"
@@ -429,7 +429,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 7"
             title = "Sushi Side - Day 7" name = "4-7" no = "37" x = "741" y = "332"
             unlock = "[ 'Tempura', ]"
-            intro = "{ 'layout': 'bonuspic', 'title': 'def/37.def.intro.title', 'text': 'def/37.def.intro.text', 'picture': 'bonus.hearts' }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/37.def.intro.title', 'text': 'def/37.def.intro.text', 'picture': 'bonus.heart' }"
             passed = "{ 'layout': 'outro', 'text': 'def/37.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/37.def.failed.text' }"
         }

@@ -55,7 +55,7 @@ Level{
         Ingredient{ type = "flour"    rate = "0" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
-        Ingredient{ type = "bonus.sweet"      rate = "0" }
+        Ingredient{ type = "bonus.sweet"      rate = "1" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
         Ingredient{ type = "bonus.bomb"       rate = "1" }
         Ingredient{ type = "bonus.removerow"  rate = "0" }
@@ -69,7 +69,7 @@ Level{
         title = "'Russian 5'"
         noCustomers = "22"
         moneyGoal = "2000"
-        expertGoal = "2400"
+        expertGoal = "2300"
     }
     
     //level layout: customer stations, power-up buttons, decorations

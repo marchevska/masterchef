@@ -920,6 +920,8 @@ class Gui(scraft.Dispatcher):
     #----------------------------
     def _UpdateMapWindow(self):
         #список кнопок на карте, обозначающих уровни, он же список файлов уровней - так проще получить этот список
+        
+        #рисуем значки эпизодов
         tmpOutroKeys = map(lambda x: x.GetContent(), globalvars.LevelProgress.GetTag("Levels").Tags("outro"))
         for level in tmpOutroKeys:
             #читаем запись из профиля игрока
@@ -937,6 +939,7 @@ class Gui(scraft.Dispatcher):
             else:
                 self.MapCareerDialog["Buttons"][level].SetState(ButtonState_Inert)
         
+        #рисуем значки уровней
         tmpLevelKeys = map(lambda x: x.GetContent(), globalvars.LevelProgress.GetTag("Levels").Tags("level"))
         for level in tmpLevelKeys:
             #читаем запись из профиля игрока
@@ -970,7 +973,7 @@ class Gui(scraft.Dispatcher):
                 globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant")
             self.MapCareerDialog["Text"]["RestaurantDay"].text = \
                 globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("day")
-        #исправить
+        #просмотр результатов уровня
         elif self.SelectedLevel in tmpOutroKeys and \
                     globalvars.CurrentPlayer.GetLevelParams(self.SelectedLevel).GetBoolAttr("unlocked"):
             self.MapCareerDialog["Buttons"]["ViewResults"].Show(True)
@@ -1608,8 +1611,14 @@ class Gui(scraft.Dispatcher):
         
         
     def _SetState(self, state):
+        #tmpRestored - значит состояние восстановлено, а не установлено вновь
         if globalvars.StateStack == [] or globalvars.StateStack[-1] != state:
             globalvars.StateStack.append(state)
+            tmpRestored = False
+        else:
+            tmpRestored = True
+        
+        #переключение музыки
         if state in (PState_Game, PState_NextLevel, PState_StartLevel,
                      PState_InGameMenu):
             globalvars.Musician.SetState(MusicState_Game)
@@ -1618,6 +1627,8 @@ class Gui(scraft.Dispatcher):
         elif state == PState_MapCareer or \
                     (len(globalvars.StateStack) > 2 and globalvars.StateStack[-2] == PState_MapCareer):
             globalvars.Musician.SetState(MusicState_Map)
+        elif state == PState_Pause:
+            pass
         else:
             globalvars.Musician.SetState(MusicState_Menu)
             
@@ -1632,21 +1643,22 @@ class Gui(scraft.Dispatcher):
             self.GraySprite.visible = False
             
         if state == PState_StartLevel:
-            globalvars.Musician.PlaySound("level.start")
-            globalvars.StateStack[-1] = PState_Game
-            globalvars.StateStack.append(PState_StartLevel)
-            self._ReleaseState(PState_MainMenu)
-            self._ReleaseState(PState_MapCareer)
-            self._ReleaseState(PState_PubLogo)
-            self._ReleaseState(PState_DevLogo)
-            self._ReleaseState(PState_Comics)
-            self._ReleaseState(PState_Intro)
-            self._ReleaseState(PState_Outro)
-            globalvars.Board.Show(True)
-            globalvars.Board.LaunchLevel()
-            globalvars.Board.Freeze(True)
-            self._ShowDialog(self.LevelGoalsDialog, True)
-            self._UpdateLevelGoals()
+            if not tmpRestored:
+                globalvars.Musician.PlaySound("level.start")
+                globalvars.StateStack[-1] = PState_Game
+                globalvars.StateStack.append(PState_StartLevel)
+                self._ReleaseState(PState_MainMenu)
+                self._ReleaseState(PState_MapCareer)
+                self._ReleaseState(PState_PubLogo)
+                self._ReleaseState(PState_DevLogo)
+                self._ReleaseState(PState_Comics)
+                self._ReleaseState(PState_Intro)
+                self._ReleaseState(PState_Outro)
+                globalvars.Board.Show(True)
+                globalvars.Board.LaunchLevel()
+                globalvars.Board.Freeze(True)
+                self._ShowDialog(self.LevelGoalsDialog, True)
+                self._UpdateLevelGoals()
             
         elif state == PState_Game:
             globalvars.Board.Freeze(False)
@@ -1708,18 +1720,19 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.PauseDialog, True)
             
         elif state == PState_MapCareer:
-            self._ReleaseState(PState_MainMenu)
-            #подсветка одного из уровней: либо последнего выбранного игроком,
-            #либо последнего открытого
-            if globalvars.CurrentPlayer.NewUnlockedLevel() != "":
-                globalvars.Musician.PlaySound("map.newlevel")
-                self.HilightedLevel = self.SelectedLevel = globalvars.CurrentPlayer.NewUnlockedLevel()
-                globalvars.CurrentPlayer.PopNewUnlockedLevel()
-            if self.SelectedLevel == "":
-                self.SelectedLevel = globalvars.CurrentPlayer.LastUnlockedLevel()
-                self.HilightedLevel = ""
-            self._ShowDialog(self.MapCareerDialog, True)
-            self._UpdateMapWindow()
+            if not tmpRestored:
+                self._ReleaseState(PState_MainMenu)
+                #подсветка одного из уровней: либо последнего выбранного игроком,
+                #либо последнего открытого
+                if globalvars.CurrentPlayer.NewUnlockedLevel() != "":
+                    globalvars.Musician.PlaySound("map.newlevel")
+                    self.HilightedLevel = self.SelectedLevel = globalvars.CurrentPlayer.NewUnlockedLevel()
+                    globalvars.CurrentPlayer.PopNewUnlockedLevel()
+                if self.SelectedLevel == "":
+                    self.SelectedLevel = globalvars.CurrentPlayer.LastUnlockedLevel()
+                    self.HilightedLevel = ""
+                self._ShowDialog(self.MapCareerDialog, True)
+                self._UpdateMapWindow()
             
         elif state == PState_Comics:
             self._ShowDialog(self.ComicScreen, True)

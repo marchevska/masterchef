@@ -83,7 +83,7 @@ while globalvars.StateStack[-1] != PState_EndGame:
         if oE.EvtKey() == scraft.Key_F4 and not oE.IsKeyPressed(scraft.Key_ALT):
             globalvars.GameConfig.SetBoolAttr("Fullscreen", not(globalvars.GameConfig.GetBoolAttr("Fullscreen")))
             config.ApplyOptions()
-    oE.DisplayEx(30)
+    oE.DisplayEx(60)
 
 if globalvars.RunMode == RunMode_Play:
     config.SaveGameConfig()

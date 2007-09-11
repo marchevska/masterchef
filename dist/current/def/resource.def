@@ -547,6 +547,12 @@ MasterChef{
         sprite(galka) { bitmap = "img/galka.png" type = "blend" }
         sprite(release-button) { bitmap = "img/release-button.png" layout = "1x3" type = "blend" }
         sprite(money-button) { bitmap = "img/money-button.png" layout = "1x3" type = "blend" }
+        sprite(outro.star) { bitmap = "img/gui/outro.star.png" type = "blend" type = "blend" }
+        
+        //Effects
+        sprite(particle) { bitmap = "img/fx/particle.png" type = "blend" }
+        sprite(star) { bitmap = "img/fx/star.png" type = "blend" }
+        sprite(star16) { bitmap = "img/fx/star16.png" type = "blend" }
         
         //Common elements
         sprite(gray.screen) { bitmap = "img/gui/gray.screen.png" type = "blend" }

@@ -18,6 +18,7 @@ from storage import Store, SingularStore, Field, TrashCan, Collapsoid
 from conveyor import Conveyor
 from blackboard import BlackBoard
 from extra import *
+from fxmanager import *
 from customer import *
 import config
 import defs

@@ -341,6 +341,10 @@ def MakeSprite(newKlass, newLayer, param = {}):
         tmpSpr.dispatcher = param["dispatcher"]
     if param.has_key("parent"):
         tmpSpr.parent = param["parent"]
+    if param.has_key("transparency"):
+        tmpSpr.transparency = param["transparency"]
+    if param.has_key("scale"):
+        tmpSpr.xScale, tmpSpr.yScale = param["scale"], param["scale"]
     return tmpSpr
     
 

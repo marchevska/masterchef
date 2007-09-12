@@ -9,8 +9,8 @@ MasterChef {
         emptySrc = "recipe.squash-tomato-sauce.empty"
         badge = "cookbook.squash-tomato-sauce"
         emptyBadge = "cookbook.squash-tomato-sauce.empty"
-        badgeX = "70"
-        badgeY = "280"
+        badgeX = "130"
+        badgeY = "340"
     }
 
     Recipe(Chicken Squash Stir-Fry) {
@@ -23,8 +23,8 @@ MasterChef {
         emptySrc = "recipe.chicken-squash-stir-fry.empty"
         badge = "cookbook.chicken-squash-stir-fry"
         emptyBadge = "cookbook.chicken-squash-stir-fry.empty"
-        badgeX = "225"
-        badgeY = "280"
+        badgeX = "285"
+        badgeY = "340"
     }
 
     Recipe(Pasta with Tomato Sauce) {
@@ -37,8 +37,8 @@ MasterChef {
         emptySrc = "recipe.pasta-with-tomato-sauce.empty"
         badge = "cookbook.pasta-with-tomato-sauce"
         emptyBadge = "cookbook.pasta-with-tomato-sauce.empty"
-        badgeX = "70"
-        badgeY = "400"
+        badgeX = "130"
+        badgeY = "460"
     }
 
     Recipe(Pineapple Tomato Salad) {
@@ -51,8 +51,8 @@ MasterChef {
         emptySrc = "recipe.pineapple-tomato-salad.empty"
         badge = "cookbook.pineapple-tomato-salad"
         emptyBadge = "cookbook.pineapple-tomato-salad.empty"
-        badgeX = "225"
-        badgeY = "400"
+        badgeX = "285"
+        badgeY = "460"
     }
 
     Recipe(Caribbean Spice Chicken) {
@@ -65,8 +65,8 @@ MasterChef {
         emptySrc = "recipe.caribbean-spice-chicken.empty"
         badge = "cookbook.caribbean-spice-chicken"
         emptyBadge = "cookbook.caribbean-spice-chicken.empty"
-        badgeX = "450"
-        badgeY = "40"
+        badgeX = "510"
+        badgeY = "100"
     }
 
     Recipe(Crispy Baked Chicken) {
@@ -79,8 +79,8 @@ MasterChef {
         emptySrc = "recipe.crispy-baked-chicken.empty"
         badge = "cookbook.crispy-baked-chicken"
         emptyBadge = "cookbook.crispy-baked-chicken.empty"
-        badgeX = "605"
-        badgeY = "40"
+        badgeX = "665"
+        badgeY = "100"
     }
 
     Recipe(Pineapple Lasagna) {
@@ -93,8 +93,8 @@ MasterChef {
         emptySrc = "recipe.pineapple-lasagna.empty"
         badge = "cookbook.pineapple-lasagna"
         emptyBadge = "cookbook.pineapple-lasagna.empty"
-        badgeX = "450"
-        badgeY = "160"
+        badgeX = "510"
+        badgeY = "220"
     }
 
     Recipe(Hubbard Squash Soup Du Jour) {
@@ -107,8 +107,8 @@ MasterChef {
         emptySrc = "recipe.hubbard-squash-soup.empty"
         badge = "cookbook.hubbard-squash-soup"
         emptyBadge = "cookbook.hubbard-squash-soup.empty"
-        badgeX = "605"
-        badgeY = "160"
+        badgeX = "665"
+        badgeY = "220"
     }
 
     Recipe(Grilled Meat) {
@@ -121,8 +121,8 @@ MasterChef {
         emptySrc = "recipe.grilled-meat.empty"
         badge = "cookbook.grilled-meat"
         emptyBadge = "cookbook.grilled-meat.empty"
-        badgeX = "450"
-        badgeY = "280"
+        badgeX = "510"
+        badgeY = "340"
     }
 
     Recipe(Spaghetti with Turkey Meat Sauce) {
@@ -135,8 +135,8 @@ MasterChef {
         emptySrc = "recipe.spaghetti-with-turkey-meat-sauce.empty"
         badge = "cookbook.spaghetti-with-turkey-meat-sauce"
         emptyBadge = "cookbook.spaghetti-with-turkey-meat-sauce.empty"
-        badgeX = "605"
-        badgeY = "280"
+        badgeX = "665"
+        badgeY = "340"
     }
 
     Recipe(Chicken Pasta Casseroule) {
@@ -149,8 +149,8 @@ MasterChef {
         emptySrc = "recipe.chicken-pasta-casseroule.empty"
         badge = "cookbook.chicken-pasta-casseroule"
         emptyBadge = "cookbook.chicken-pasta-casseroule.empty"
-        badgeX = "450"
-        badgeY = "400"
+        badgeX = "510"
+        badgeY = "460"
     }
 
     Recipe(Chicken Pineapple Pasta Pockets) {
@@ -163,8 +163,8 @@ MasterChef {
         emptySrc = "recipe.chicken-pineapple-pasta-pockets.empty"
         badge = "cookbook.chicken-pineapple-pasta-pockets"
         emptyBadge = "cookbook.chicken-pineapple-pasta-pockets.empty"
-        badgeX = "605"
-        badgeY = "400"
+        badgeX = "665"
+        badgeY = "460"
     }
 
     Recipe(Tortilla Soup) {
@@ -177,8 +177,8 @@ MasterChef {
         emptySrc = "recipe.tortilla-soup.empty"
         badge = "cookbook.tortilla-soup"
         emptyBadge = "cookbook.tortilla-soup.empty"
-        badgeX = "70"
-        badgeY = "280"
+        badgeX = "130"
+        badgeY = "340"
     }
 
     Recipe(Guacamole) {
@@ -191,8 +191,8 @@ MasterChef {
         emptySrc = "recipe.guacamole.empty"
         badge = "cookbook.guacamole"
         emptyBadge = "cookbook.guacamole.empty"
-        badgeX = "225"
-        badgeY = "280"
+        badgeX = "285"
+        badgeY = "340"
     }
 
     Recipe(Cheese Nachos) {
@@ -205,8 +205,8 @@ MasterChef {
         emptySrc = "recipe.cheese-nachos.empty"
         badge = "cookbook.cheese-nachos"
         emptyBadge = "cookbook.cheese-nachos.empty"
-        badgeX = "70"
-        badgeY = "400"
+        badgeX = "130"
+        badgeY = "460"
     }
 
     Recipe(Chiles Renellos) {
@@ -219,8 +219,8 @@ MasterChef {
         emptySrc = "recipe.chilies-renellos.empty"
         badge = "cookbook.chilies-renellos"
         emptyBadge = "cookbook.chilies-renellos.empty"
-        badgeX = "225"
-        badgeY = "400"
+        badgeX = "285"
+        badgeY = "460"
     }
 
     Recipe(Avocado Stuffed Tacos) {
@@ -233,8 +233,8 @@ MasterChef {
         emptySrc = "recipe.avocado-stuffed-tacos.empty"
         badge = "cookbook.avocado-stuffed-tacos"
         emptyBadge = "cookbook.avocado-stuffed-tacos.empty"
-        badgeX = "450"
-        badgeY = "40"
+        badgeX = "510"
+        badgeY = "100"
     }
 
     Recipe(Burrito) {
@@ -247,8 +247,8 @@ MasterChef {
         emptySrc = "recipe.burrito.empty"
         badge = "cookbook.burrito"
         emptyBadge = "cookbook.burrito.empty"
-        badgeX = "605"
-        badgeY = "40"
+        badgeX = "665"
+        badgeY = "100"
     }
 
     Recipe(Chili con Carne) {
@@ -261,8 +261,8 @@ MasterChef {
         emptySrc = "recipe.chili-con-carne.empty"
         badge = "cookbook.chili-con-carne"
         emptyBadge = "cookbook.chili-con-carne.empty"
-        badgeX = "450"
-        badgeY = "160"
+        badgeX = "510"
+        badgeY = "220"
     }
 
     Recipe(Quesadilla) {
@@ -275,8 +275,8 @@ MasterChef {
         emptySrc = "recipe.quesadilla.empty"
         badge = "cookbook.quesadilla"
         emptyBadge = "cookbook.quesadilla.empty"
-        badgeX = "605"
-        badgeY = "160"
+        badgeX = "665"
+        badgeY = "220"
     }
 
     Recipe(Tex-Mex Turkey Casseruole) {
@@ -289,8 +289,8 @@ MasterChef {
         emptySrc = "recipe.tex-mex-turkey-casseruole.empty"
         badge = "cookbook.tex-mex-turkey-casseruole"
         emptyBadge = "cookbook.tex-mex-turkey-casseruole.empty"
-        badgeX = "450"
-        badgeY = "280"
+        badgeX = "510"
+        badgeY = "340"
     }
 
     Recipe(Avocado Salsa) {
@@ -303,8 +303,8 @@ MasterChef {
         emptySrc = "recipe.avocado-salsa.empty"
         badge = "cookbook.avocado-salsa"
         emptyBadge = "cookbook.avocado-salsa.empty"
-        badgeX = "605"
-        badgeY = "280"
+        badgeX = "665"
+        badgeY = "340"
     }
 
     Recipe(Football Fan Nachos) {
@@ -317,8 +317,8 @@ MasterChef {
         emptySrc = "recipe.football-fan-nachos.empty"
         badge = "cookbook.football-fan-nachos"
         emptyBadge = "cookbook.football-fan-nachos.empty"
-        badgeX = "450"
-        badgeY = "400"
+        badgeX = "510"
+        badgeY = "460"
     }
 
     Recipe(Fajitas) {
@@ -331,8 +331,8 @@ MasterChef {
         emptySrc = "recipe.fajitas.empty"
         badge = "cookbook.fajitas"
         emptyBadge = "cookbook.fajitas.empty"
-        badgeX = "605"
-        badgeY = "400"
+        badgeX = "665"
+        badgeY = "460"
     }
 
     Recipe(Cabbage Stew) {
@@ -345,8 +345,8 @@ MasterChef {
         emptySrc = "recipe.cabbage-stew.empty"
         badge = "cookbook.cabbage-stew"
         emptyBadge = "cookbook.cabbage-stew.empty"
-        badgeX = "70"
-        badgeY = "280"
+        badgeX = "130"
+        badgeY = "340"
     }
 
     Recipe(Pelmeni) {
@@ -359,8 +359,8 @@ MasterChef {
         emptySrc = "recipe.pelmeni.empty"
         badge = "cookbook.pelmeni"
         emptyBadge = "cookbook.pelmeni.empty"
-        badgeX = "225"
-        badgeY = "280"
+        badgeX = "285"
+        badgeY = "340"
     }
 
     Recipe(Golubtsy) {
@@ -373,8 +373,8 @@ MasterChef {
         emptySrc = "recipe.golubtsy.empty"
         badge = "cookbook.golubtsy"
         emptyBadge = "cookbook.golubtsy.empty"
-        badgeX = "70"
-        badgeY = "400"
+        badgeX = "130"
+        badgeY = "460"
     }
 
     Recipe(Fried Mushrooms) {
@@ -387,8 +387,8 @@ MasterChef {
         emptySrc = "recipe.fried-mushrooms.empty"
         badge = "cookbook.fried-mushrooms"
         emptyBadge = "cookbook.fried-mushrooms.empty"
-        badgeX = "225"
-        badgeY = "400"
+        badgeX = "285"
+        badgeY = "460"
     }
 
     Recipe(Vareniki) {
@@ -401,8 +401,8 @@ MasterChef {
         emptySrc = "recipe.vareniki.empty"
         badge = "cookbook.vareniki"
         emptyBadge = "cookbook.vareniki.empty"
-        badgeX = "450"
-        badgeY = "40"
+        badgeX = "510"
+        badgeY = "100"
     }
 
     Recipe(Baked Meat) {
@@ -415,8 +415,8 @@ MasterChef {
         emptySrc = "recipe.baked-meat.empty"
         badge = "cookbook.baked-meat"
         emptyBadge = "cookbook.baked-meat.empty"
-        badgeX = "605"
-        badgeY = "40"
+        badgeX = "665"
+        badgeY = "100"
     }
 
     Recipe(Cutlets) {
@@ -429,8 +429,8 @@ MasterChef {
         emptySrc = "recipe.cutlets.empty"
         badge = "cookbook.cutlets"
         emptyBadge = "cookbook.cutlets.empty"
-        badgeX = "450"
-        badgeY = "160"
+        badgeX = "510"
+        badgeY = "220"
     }
 
     Recipe(Mushroom Ragout) {
@@ -443,8 +443,8 @@ MasterChef {
         emptySrc = "recipe.mushroom-ragout.empty"
         badge = "cookbook.mushroom-ragout"
         emptyBadge = "cookbook.mushroom-ragout.empty"
-        badgeX = "605"
-        badgeY = "160"
+        badgeX = "665"
+        badgeY = "220"
     }
 
     Recipe(Cabbage Stuffed Pancakes) {
@@ -457,8 +457,8 @@ MasterChef {
         emptySrc = "recipe.cabbage-stuffed-pancakes.empty"
         badge = "cookbook.cabbage-stuffed-pancakes"
         emptyBadge = "cookbook.cabbage-stuffed-pancakes.empty"
-        badgeX = "450"
-        badgeY = "280"
+        badgeX = "510"
+        badgeY = "340"
     }
 
     Recipe(Kulebyaka) {
@@ -471,8 +471,8 @@ MasterChef {
         emptySrc = "recipe.kulebyaka.empty"
         badge = "cookbook.kulebyaka"
         emptyBadge = "cookbook.kulebyaka.empty"
-        badgeX = "605"
-        badgeY = "280"
+        badgeX = "665"
+        badgeY = "340"
     }
 
     Recipe(Shchi) {
@@ -485,8 +485,8 @@ MasterChef {
         emptySrc = "recipe.shchi.empty"
         badge = "cookbook.shchi"
         emptyBadge = "cookbook.shchi.empty"
-        badgeX = "450"
-        badgeY = "400"
+        badgeX = "510"
+        badgeY = "460"
     }
 
     Recipe(Mushroom Soup) {
@@ -499,8 +499,8 @@ MasterChef {
         emptySrc = "recipe.mushroom-soup.empty"
         badge = "cookbook.mushroom-soup"
         emptyBadge = "cookbook.mushroom-soup.empty"
-        badgeX = "605"
-        badgeY = "400"
+        badgeX = "665"
+        badgeY = "460"
     }
 
     Recipe(Nigiri Zushi) {
@@ -513,8 +513,8 @@ MasterChef {
         emptySrc = "recipe.nigirizushi.empty"
         badge = "cookbook.nigirizushi"
         emptyBadge = "cookbook.nigirizushi.empty"
-        badgeX = "70"
-        badgeY = "280"
+        badgeX = "130"
+        badgeY = "340"
     }
 
     Recipe(Sashimi) {
@@ -527,8 +527,8 @@ MasterChef {
         emptySrc = "recipe.sashimi.empty"
         badge = "cookbook.sashimi"
         emptyBadge = "cookbook.sashimi.empty"
-        badgeX = "225"
-        badgeY = "280"
+        badgeX = "285"
+        badgeY = "340"
     }
 
     Recipe(Seafood Tempura) {
@@ -541,8 +541,8 @@ MasterChef {
         emptySrc = "recipe.seafood-tempura.empty"
         badge = "cookbook.seafood-tempura"
         emptyBadge = "cookbook.seafood-tempura.empty"
-        badgeX = "70"
-        badgeY = "400"
+        badgeX = "130"
+        badgeY = "460"
     }
 
     Recipe(TofuDengaku) {
@@ -555,8 +555,8 @@ MasterChef {
         emptySrc = "recipe.tofudengaku.empty"
         badge = "cookbook.tofudengaku"
         emptyBadge = "cookbook.tofudengaku.empty"
-        badgeX = "225"
-        badgeY = "400"
+        badgeX = "285"
+        badgeY = "460"
     }
 
     Recipe(Tempura) {
@@ -569,8 +569,8 @@ MasterChef {
         emptySrc = "recipe.tempura.empty"
         badge = "cookbook.tempura"
         emptyBadge = "cookbook.tempura.empty"
-        badgeX = "450"
-        badgeY = "40"
+        badgeX = "510"
+        badgeY = "100"
     }
 
     Recipe(Koyungohan) {
@@ -583,8 +583,8 @@ MasterChef {
         emptySrc = "recipe.koyungohan.empty"
         badge = "cookbook.koyungohan"
         emptyBadge = "cookbook.koyungohan.empty"
-        badgeX = "605"
-        badgeY = "40"
+        badgeX = "665"
+        badgeY = "100"
     }
 
     Recipe(Ochazuke) {
@@ -597,8 +597,8 @@ MasterChef {
         emptySrc = "recipe.ochazuke.empty"
         badge = "cookbook.ochazuke"
         emptyBadge = "cookbook.ochazuke.empty"
-        badgeX = "450"
-        badgeY = "160"
+        badgeX = "510"
+        badgeY = "220"
     }
 
     Recipe(Tempura Shrimp Roll) {
@@ -611,8 +611,8 @@ MasterChef {
         emptySrc = "recipe.tempura-shrimp-roll.empty"
         badge = "cookbook.tempura-shrimp-roll"
         emptyBadge = "cookbook.tempura-shrimp-roll.empty"
-        badgeX = "605"
-        badgeY = "160"
+        badgeX = "665"
+        badgeY = "220"
     }
 
     Recipe(Onigiri) {
@@ -625,8 +625,8 @@ MasterChef {
         emptySrc = "recipe.onigiri.empty"
         badge = "cookbook.onigiri"
         emptyBadge = "cookbook.onigiri.empty"
-        badgeX = "450"
-        badgeY = "280"
+        badgeX = "510"
+        badgeY = "340"
     }
 
     Recipe(Osechi) {
@@ -639,8 +639,8 @@ MasterChef {
         emptySrc = "recipe.osechi.empty"
         badge = "cookbook.osechi"
         emptyBadge = "cookbook.osechi.empty"
-        badgeX = "605"
-        badgeY = "280"
+        badgeX = "665"
+        badgeY = "340"
     }
 
     Recipe(Yosenabe) {
@@ -653,8 +653,8 @@ MasterChef {
         emptySrc = "recipe.yosenabe.empty"
         badge = "cookbook.yosenabe"
         emptyBadge = "cookbook.yosenabe.empty"
-        badgeX = "450"
-        badgeY = "400"
+        badgeX = "510"
+        badgeY = "460"
     }
 
     Recipe(Temaki Zushi) {
@@ -667,8 +667,8 @@ MasterChef {
         emptySrc = "recipe.temakizushi.empty"
         badge = "cookbook.temakizushi"
         emptyBadge = "cookbook.temakizushi.empty"
-        badgeX = "605"
-        badgeY = "400"
+        badgeX = "665"
+        badgeY = "460"
     }
 
     Recipe(Chicken Shrimp Soup) {
@@ -681,8 +681,8 @@ MasterChef {
         emptySrc = "recipe.chicken-shrimp-soup.empty"
         badge = "cookbook.chicken-shrimp-soup"
         emptyBadge = "cookbook.chicken-shrimp-soup.empty"
-        badgeX = "70"
-        badgeY = "280"
+        badgeX = "130"
+        badgeY = "340"
     }
 
     Recipe(Spicy Shrimps) {
@@ -695,8 +695,8 @@ MasterChef {
         emptySrc = "recipe.spicy-shrimps.empty"
         badge = "cookbook.spicy-shrimps"
         emptyBadge = "cookbook.spicy-shrimps.empty"
-        badgeX = "225"
-        badgeY = "280"
+        badgeX = "285"
+        badgeY = "340"
     }
 
     Recipe(Hulihuli Chicken) {
@@ -709,8 +709,8 @@ MasterChef {
         emptySrc = "recipe.hulihuli-chicken.empty"
         badge = "cookbook.hulihuli-chicken"
         emptyBadge = "cookbook.hulihuli-chicken.empty"
-        badgeX = "70"
-        badgeY = "400"
+        badgeX = "130"
+        badgeY = "460"
     }
 
     Recipe(Mango Mui) {
@@ -723,8 +723,8 @@ MasterChef {
         emptySrc = "recipe.mango-mui.empty"
         badge = "cookbook.mango-mui"
         emptyBadge = "cookbook.mango-mui.empty"
-        badgeX = "225"
-        badgeY = "400"
+        badgeX = "285"
+        badgeY = "460"
     }
 
     Recipe(Wonton) {
@@ -737,8 +737,8 @@ MasterChef {
         emptySrc = "recipe.wonton.empty"
         badge = "cookbook.wonton"
         emptyBadge = "cookbook.wonton.empty"
-        badgeX = "450"
-        badgeY = "40"
+        badgeX = "510"
+        badgeY = "100"
     }
 
     Recipe(Shrimp Canton) {
@@ -751,8 +751,8 @@ MasterChef {
         emptySrc = "recipe.shrimp-canton.empty"
         badge = "cookbook.shrimp-canton"
         emptyBadge = "cookbook.shrimp-canton.empty"
-        badgeX = "605"
-        badgeY = "40"
+        badgeX = "665"
+        badgeY = "100"
     }
 
     Recipe(Lime Chicken) {
@@ -765,8 +765,8 @@ MasterChef {
         emptySrc = "recipe.lime-chicken.empty"
         badge = "cookbook.lime-chicken"
         emptyBadge = "cookbook.lime-chicken.empty"
-        badgeX = "450"
-        badgeY = "160"
+        badgeX = "510"
+        badgeY = "220"
     }
 
     Recipe(Mango Salsa) {
@@ -779,8 +779,8 @@ MasterChef {
         emptySrc = "recipe.mango-salsa.empty"
         badge = "cookbook.mango-salsa"
         emptyBadge = "cookbook.mango-salsa.empty"
-        badgeX = "605"
-        badgeY = "160"
+        badgeX = "665"
+        badgeY = "220"
     }
 
     Recipe(Chicken Laulau) {
@@ -793,8 +793,8 @@ MasterChef {
         emptySrc = "recipe.chicken-laulau.empty"
         badge = "cookbook.chicken-laulau"
         emptyBadge = "cookbook.chicken-laulau.empty"
-        badgeX = "450"
-        badgeY = "280"
+        badgeX = "510"
+        badgeY = "340"
     }
 
     Recipe(Shrimp Mango Salad) {
@@ -807,8 +807,8 @@ MasterChef {
         emptySrc = "recipe.shrimp-mango-salad.empty"
         badge = "cookbook.shrimp-mango-salad"
         emptyBadge = "cookbook.shrimp-mango-salad.empty"
-        badgeX = "605"
-        badgeY = "280"
+        badgeX = "665"
+        badgeY = "340"
     }
 
     Recipe(Pipikaula) {
@@ -821,8 +821,8 @@ MasterChef {
         emptySrc = "recipe.pipikaula.empty"
         badge = "cookbook.pipikaula"
         emptyBadge = "cookbook.pipikaula.empty"
-        badgeX = "450"
-        badgeY = "400"
+        badgeX = "510"
+        badgeY = "460"
     }
 
     Recipe(Mango Chicken) {
@@ -835,8 +835,8 @@ MasterChef {
         emptySrc = "recipe.mango-chicken.empty"
         badge = "cookbook.mango-chicken"
         emptyBadge = "cookbook.mango-chicken.empty"
-        badgeX = "605"
-        badgeY = "400"
+        badgeX = "665"
+        badgeY = "460"
     }
 
 }

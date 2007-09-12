@@ -224,7 +224,6 @@ class Player:
                     not (tmpOutroNode.GetBoolAttr("seen"))) and \
                     tmpOutroNode.GetBoolAttr("unlocked"):
                 self.XML.SetStrAttr("newUnlocked", level.GetContent())
-                print "just unlocked", level.GetContent()
         except:
             oE.Log("Cannot update player profile")
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

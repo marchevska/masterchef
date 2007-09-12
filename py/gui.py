@@ -7,6 +7,7 @@ Project: Master Chef
 """
 
 import sys
+import math
 import string
 import scraft
 from scraft import engine as oE
@@ -14,6 +15,7 @@ from configconst import *
 from guiconst import *
 from guielements import *
 from customer import *
+from fxmanager import *
 import defs
 import playerlist
 import config
@@ -183,7 +185,7 @@ class Gui(scraft.Dispatcher):
         for i in range(self.TotalRecipesOnPage):
             self.CookbookDialog["Static"]["Recipe"+str(i+1)] = MakeSprite("$spritecraft$dummy$", Layer_CookbookBtnTxt)
         for i in range(self.MaxNewRecipes):
-            self.CookbookDialog["Static"]["NewRecipe"+str(i+1)] = MakeSprite("cookbook.new-recipe", Layer_CookbookBtnTxt-1)
+            self.CookbookDialog["Static"]["NewRecipe"+str(i+1)] = MakeSprite("cookbook.new-recipe", Layer_CookbookBtnTxt-2)
             self.CookbookDialog["Animations"]["NewRecipe"+str(i+1)] = \
                             CustomersAnimator(self.CookbookDialog["Static"]["NewRecipe"+str(i+1)],
                             globalvars.CustomerAnimations.GetSubtag("animation.cookbook.new-recipe"))
@@ -779,10 +781,30 @@ class Gui(scraft.Dispatcher):
                     self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 20
                     globalvars.CurrentPlayer.SetLevelParams(tmpRecipes[i], { "seen": True })
                     j = tmpNewRecipes.index(tmpRecipes[i])
-                    self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].x = self.CookbookDialog["Static"]["Recipe"+str(i+1)].x
-                    self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].y = self.CookbookDialog["Static"]["Recipe"+str(i+1)].y
+                    self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].x = \
+                            self.CookbookDialog["Static"]["Recipe"+str(i+1)].x - self.CookbookDialog["Static"]["Recipe"+str(i+1)].width/2
+                    self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].y = \
+                            self.CookbookDialog["Static"]["Recipe"+str(i+1)].y - self.CookbookDialog["Static"]["Recipe"+str(i+1)].height/2
                     self.CookbookDialog["Animations"]["NewRecipe"+str(j+1)].SetState("First")
                     self.CookbookDialog["Animations"]["NewRecipe"+str(j+1)].Freeze(False)
+                    
+                    #эффект обводки контура
+                    tmpCopy = map(lambda x: (-x[0], x[1]), list(Crd_CookbookStickerContourHalf))
+                    tmpCopy.reverse()
+                    tmpContour = 2*(list(Crd_CookbookStickerContourHalf) + tmpCopy)
+                    #движение с постоянной скоростью:
+                    tmpTimes = [Time_TrailInitialDelay] + map(lambda ii: \
+                            math.sqrt((tmpContour[ii][0]-tmpContour[ii+1][0])**2 + (tmpContour[ii][1]-tmpContour[ii+1][1])**2)/Crd_CookbookStickerTrailSpeed,
+                            range(len(tmpContour)-1))
+                    tmpTimesSums = map(lambda x: reduce(lambda a,b: a+b, tmpTimes[0:x+1],0), range(len(tmpContour)))
+                    tmp = map(lambda ii: (tmpTimesSums[ii],
+                                        tmpContour[ii][0] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].x,
+                                        tmpContour[ii][1] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].y),
+                                        range(len(tmpContour)))
+                    DrawTrailedContour({"klass": "star", "no": 20, "layer": Layer_CookbookBtnTxt-1,
+                            "incTrans": 4, "incScale": 4, "delay": 15},
+                            tmp)
+                    
                 else:
                     self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 0
             else:
@@ -1665,9 +1687,9 @@ class Gui(scraft.Dispatcher):
            
         elif state == PState_DevLogo:
             self._ShowDialog(self.DevLogo, True)
-            tmpOterStates = self.AllDialogs.keys()
-            tmpOterStates.remove(state)
-            for tmpState in tmpOterStates:
+            tmpOtherStates = self.AllDialogs.keys()
+            tmpOtherStates.remove(state)
+            for tmpState in tmpOtherStates:
                 self._ReleaseState(tmpState)
             self.NextStateTime = Time_DevLogoShow
             

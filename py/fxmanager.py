@@ -152,7 +152,7 @@ def PopupText(text, font, x, y,
 # Спрайты движутся по заданному контуру
 #------------ 
 def DrawTrailedContour(params, contour):
-    DefaultParams = { "klass": "star", "layer": 0, "no": 10, "incTrans": 5, "incScale": 3 }
+    DefaultParams = { "klass": "star", "layer": 0, "no": 10, "incTrans": 5, "incScale": 3, "delay": 20 }
     prm = {}
     for tmp in DefaultParams.keys():
         if params.has_key(tmp):
@@ -163,7 +163,7 @@ def DrawTrailedContour(params, contour):
                     { "x": contour[0][1], "y": contour[0][2], "hotspot": scraft.HotspotCenter,
                     "transparency": prm["incTrans"]*x,
                     "scale": 100 - prm["incScale"]*x }), xrange(prm["no"]))
-    tmp = Popup(TrailProxy(tmpSprites, 20), BounceMotion(contour), DefaultTransp(), DefaultScale(),
+    tmp = Popup(TrailProxy(tmpSprites, prm["delay"]), BounceMotion(contour), DefaultTransp(), DefaultScale(),
                 (2*contour[-1][0] - contour[-2][0])*1000)
 
 #------------ 

@@ -25,7 +25,7 @@ box.pattern=*.dat
 box.separate=0
 box.sepfile=
 box.ziplevel=1
-dir.addfiles=C:\Projects\proto games\Master Chef\dist\current
+dir.addfiles=C:\Projects\proto games\Master Chef\dist\current\img
 exe.crc=0
 exe.pack=1
 exe.packedfilesvisible=1
@@ -43,11 +43,11 @@ box.2.contents~
 00 img\heart.png
 00 img\money-button.png
 00 img\release-button.png
+00 img\comics\masterchef.demo-outro.png
 00 img\comics\masterchef.intro.1.png
 00 img\comics\masterchef.intro.2.png
 00 img\comics\masterchef.intro.3.png
 00 img\comics\masterchef.outro.png
-00 img\comics\masterchef.demo-outro.png
 00 img\comics\people\alban.png
 00 img\comics\people\alex.png
 00 img\comics\people\angela.png
@@ -333,6 +333,9 @@ box.2.contents~
 00 img\fonts\mainmenu.domcasual.inert.png
 00 img\fonts\mainmenu.domcasual.png
 00 img\fonts\simple.png
+00 img\fx\particle.png
+00 img\fx\star.png
+00 img\fx\star16.png
 00 img\gui\2nd-popup-background.png
 00 img\gui\button-4st-300.png
 00 img\gui\button-4st.png

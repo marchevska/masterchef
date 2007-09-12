@@ -171,7 +171,8 @@ def DrawTrailedContour(params, contour, state = None):
 #------------ 
 # Прокси: композитный спрайт
 # Спрайты движутся за первым в виде шлейфа
-# Задается задержка каждого спрайта относительно головы
+# Задается задержка каждого спрайта относительно предыдущего
+# (следующие спрайты повторяют движение первого, но с задержкой)
 # При создании получает список спрайтов
 #------------ 
 class TrailProxy(object):
@@ -179,6 +180,7 @@ class TrailProxy(object):
         self.Sprites = sprites
         self.Delay = delay
         self.StartTime = globalvars.Timer.millis
+        #история координат (x,y) головного спрайта
         self.HistoryX = []
         self.HistoryY = []
         #количество видимых спрайтов шлейфа
@@ -220,8 +222,12 @@ class TrailProxy(object):
         del self.Sprites
         
 
-def Interpolation(points, t):
-    eps = 1
+#------------ 
+# Линейная интерполяция значения 
+# функции на основе таблицы значений
+#------------ 
+def Interpolation(points, t, eps = 1):
+    t *= eps
     if t <= points[0][0] + eps:
         tmp = points[0][1]
     elif t >= points[-1][0] + eps:

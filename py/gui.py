@@ -803,7 +803,7 @@ class Gui(scraft.Dispatcher):
                                         range(len(tmpContour)))
                     DrawTrailedContour({"klass": "star", "no": 20, "layer": Layer_CookbookBtnTxt-1,
                             "incTrans": 4, "incScale": 4, "delay": 15},
-                            tmp)
+                            tmp, PState_Cookbook)
                     
                 else:
                     self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 0

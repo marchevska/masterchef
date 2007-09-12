@@ -169,7 +169,8 @@ class CustomerStation(scraft.Dispatcher):
             #спецэффект
             DrawTrailedContour({"klass": "star", "no": 10, "layer": Layer_Recipe-3,
                                 "incTrans": 6, "incScale": 5},
-                                map(lambda x: (x[0], x[1]+self.CrdX, x[2]+self.CrdY), Crd_RecipeContour))
+                                map(lambda x: (x[0], x[1]+self.CrdX, x[2]+self.CrdY), Crd_RecipeContour),
+                                PState_Game)
         if tmpRemaining == 0:
             self.MealReady = True
             

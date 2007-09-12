@@ -24,12 +24,13 @@ import globalvars
 
 class Popup(scraft.Dispatcher):
     def __init__(self, sprite,
-                 motionfunc, transpfunc, scalefunc, maxTime = 10000):
+                 motionfunc, transpfunc, scalefunc, maxTime = 10000, state = None):
         self.sprite = sprite
         self.MotionFunc = motionfunc
         self.TranspFunc = transpfunc
         self.ScaleFunc = scalefunc
         self.MaxTime = maxTime
+        self.State = state
         
         self.StartTime = globalvars.Timer.millis
         self.StartX = sprite.x
@@ -45,7 +46,8 @@ class Popup(scraft.Dispatcher):
         
         if FieldMinX <= self.sprite.x <= FieldMaxX \
             and FieldMinY <= self.sprite.y <= FieldMaxY \
-            and self.sprite.transparency < 100 and deltaT < self.MaxTime:
+            and deltaT < self.MaxTime \
+            and (self.State in (globalvars.StateStack[-1], None)):
             return scraft.CommandStateRepeat
         else:
             self.sprite.Dispose()
@@ -143,15 +145,15 @@ def BounceScale(points):
 
 def PopupText(text, font, x, y,
             motionfunc = DefaultMotion(), transpfunc = DefaultTransp(), scalefunc = DefaultScale(),
-            maxTime = 10000):
+            maxTime = 10000, state = None):
     spr = MakeTextSprite(font, Layer_Popups, x, y, scraft.HotspotCenter, text)
-    tmp = Popup(spr, motionfunc, transpfunc, scalefunc, maxTime)
+    tmp = Popup(spr, motionfunc, transpfunc, scalefunc, maxTime, state)
         
 
 #------------ 
 # Спрайты движутся по заданному контуру
 #------------ 
-def DrawTrailedContour(params, contour):
+def DrawTrailedContour(params, contour, state = None):
     DefaultParams = { "klass": "star", "layer": 0, "no": 10, "incTrans": 5, "incScale": 3, "delay": 20 }
     prm = {}
     for tmp in DefaultParams.keys():
@@ -164,7 +166,7 @@ def DrawTrailedContour(params, contour):
                     "transparency": prm["incTrans"]*x,
                     "scale": 100 - prm["incScale"]*x }), xrange(prm["no"]))
     tmp = Popup(TrailProxy(tmpSprites, prm["delay"]), BounceMotion(contour), DefaultTransp(), DefaultScale(),
-                (2*contour[-1][0] - contour[-2][0])*1000)
+                (2*contour[-1][0] - contour[-2][0])*1000, state)
 
 #------------ 
 # Прокси: композитный спрайт

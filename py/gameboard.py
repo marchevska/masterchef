@@ -240,7 +240,7 @@ class GameBoard(scraft.Dispatcher):
             self.AddScore(-self.NoErrors*len(tmp))
             for (x, y) in tmp:
                 PopupText(str(-self.NoErrors), "domcasual-20-red", x, y,
-                                InPlaceMotion(), BlinkTransp(400, 0.4, -50), BlinkScale(-100, 0.4, 150), 1500)
+                                InPlaceMotion(), BlinkTransp(400, 0.4, -50), BlinkScale(-100, 0.4, 150), 1500, PState_Game)
             
         elif cmd == Cmd_ClickStation:
             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
@@ -253,17 +253,17 @@ class GameBoard(scraft.Dispatcher):
                             globalvars.Musician.PlaySound("tokens.give")
                         PopupText("+"+str(tmpDeltaScore), "domcasual-20-green",
                                         parameter["station"].CrdX, parameter["station"].CrdY,
-                                        BubbleMotion(16, -100), FadeAwayTransp(50, -25))
+                                        BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
                         if tmpFrom.Collapsing:
                             tmpX, tmpY = tmpFrom.GetCentralCrd()
                             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokenForIncreadible"):
                                 PopupText(defs.GetGameString("Str_Incredible"), "domcasual-20-yellow", tmpX, tmpY,
                                     InPlaceMotion(), BlinkTransp(400, 0.4, -50),
-                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500)
+                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500, PState_Game)
                             elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokensForGreat"):
                                 PopupText(defs.GetGameString("Str_Great"), "domcasual-20-yellow", tmpX, tmpY,
                                     InPlaceMotion(), BlinkTransp(400, 0.4, -50),
-                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500)
+                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500, PState_Game)
                         self.TokensFrom.RemoveTokens()
                         self.SendCommand(Cmd_DropWhatYouCarry)
                         if tmpFrom in self.Fields:
@@ -364,15 +364,15 @@ class GameBoard(scraft.Dispatcher):
                     self.AddScore(parameter["tips"])
                     PopupText("+$"+str(parameter["amount"])+"+$"+str(parameter["tips"]), "domcasual-20-orange",
                             parameter["station"].CrdX-20, parameter["station"].CrdY-20,
-                            BubbleMotion(16, -100), FadeAwayTransp(50, -25))
+                            BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
                 else:
                     PopupText("+$"+str(parameter["amount"]), "domcasual-20-green",
                             parameter["station"].CrdX, parameter["station"].CrdY,
-                            BubbleMotion(16, -100), FadeAwayTransp(50, -25))
+                            BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
             elif parameter["amount"] < 0:
                 PopupText("-$"+str(-parameter["amount"]), "domcasual-20-red",
                             parameter["station"].CrdX, parameter["station"].CrdY,
-                            BubbleMotion(16, -100), FadeAwayTransp(50, -25))
+                            BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
             
         elif cmd == Cmd_PickPowerUp:
             self._PickPowerUp(parameter["type"], parameter["where"])

@@ -4,5 +4,6 @@ MasterChef {
         layout = "outro"
         minLevel = "5"
         maxLevel = "10"
+        showOnce = "yes"
     }
 }

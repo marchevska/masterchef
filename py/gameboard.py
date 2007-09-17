@@ -13,6 +13,7 @@ from scraft import engine as oE
 from constants import *
 from configconst import *
 from guielements import *
+from advisor import Advisor
 from customerstation import CustomerStation
 from storage import Store, SingularStore, Field, TrashCan, Collapsoid
 from conveyor import Conveyor
@@ -70,6 +71,7 @@ class GameBoard(scraft.Dispatcher):
                 Layer_InterfaceBtn, 28, 31, 40, 40)
         
         self.CustomersQue = None
+        self.Advisor = None
         self.Fields = []
         self.TrashCans = []
         self.CStations = []
@@ -195,6 +197,8 @@ class GameBoard(scraft.Dispatcher):
         #заполнение поля
         for tmp in self.Fields:
             tmp.InitialFilling()
+        
+        self.Advisor = Advisor()
         
         self._SetState(GameState_StartLevel)
         #globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
@@ -586,6 +590,9 @@ class GameBoard(scraft.Dispatcher):
             if self.CustomersQue != None:
                 self.CustomersQue.Kill()
                 self.CustomersQue = None
+            if self.Advisor != None:
+                self.Advisor.Kill()
+                self.Advisor = None
         except:
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
              
@@ -615,6 +622,7 @@ class GameBoard(scraft.Dispatcher):
         else:
             oE.executor.GetQueue(self.QueNo).Resume()
         if self.Playing:
+            self.Advisor.Freeze(flag)
             self.CustomersQue.Freeze(flag)
             for tmp in self.Stores+self.Fields+self.Conveyors:
                 tmp.Freeze(flag)

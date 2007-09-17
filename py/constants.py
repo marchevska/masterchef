@@ -85,6 +85,7 @@ Layer_Particles = 21
 BBTag_Ingredients = 0
 BBTag_Recipes = 1
 BBTag_Cursor = 2
+BBTag_Hints = 3
 
 #состояния игры
 GameState_None = 0

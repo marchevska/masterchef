@@ -1,0 +1,8 @@
+MasterChef {
+    hint(Customer.Business) {
+        text = "def/06.def.intro.text"
+        layout = "outro"
+        minLevel = "5"
+        maxLevel = "10"
+    }
+}

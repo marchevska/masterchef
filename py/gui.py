@@ -626,6 +626,10 @@ class Gui(scraft.Dispatcher):
                 "outro-pointers.notpass", [0, 1, 2, 3, 4], Layer_BtnText,
                 tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), 42, 42)
             
+        #окно подсказки (вызывается из игры)
+        self.HintsDialog = {"Static": {}, "Text": {}, "Buttons": {}}
+        
+        
         self.AllDialogs = {
             PState_DevLogo: self.DevLogo,
             PState_PubLogo: self.PubLogo,

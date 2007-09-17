@@ -69,6 +69,8 @@ class CustomerStation(scraft.Dispatcher):
             self._Hilight(True)
         else:
             self._Hilight(False)
+        globalvars.BlackBoard.Update(BBTag_Hints, { "event": "Customer."+customer.Type,
+                                                   "where": (self.CrdX, self.CrdY) })
         
     #--------------
     # "type" - название рецепта 

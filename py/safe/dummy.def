@@ -87,7 +87,7 @@ MasterChef{
     //}
     
     //Hints{
-        hint{ name = "" seen = "no" }
+        hint(){ seen = "no" }
     //}
     
     //Recipes{

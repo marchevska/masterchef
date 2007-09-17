@@ -21,7 +21,7 @@ class BlackBoard:
         
     def Update(self, tag, data = None):
         if not self.Records.has_key(tag):
-            self.Records[tag] = {}
+            self.ClearTag(tag)
         
         #о сделанных заказах
         #записываем информацию об ингредиентах
@@ -36,15 +36,30 @@ class BlackBoard:
         elif tag == BBTag_Cursor:
             for tmp in data.keys():
                 self.Records[BBTag_Cursor][tmp] = data[tmp]
+            
+        #о событиях, связанных с подсказками
+        #хранится очередь событий, которые удаляются
+        #по одной штуке в порядке появления
+        elif tag == BBTag_Hints:
+            self.Records[tag].append(data)
+        
         
     def ClearTag(self, tag):
-        self.Records[tag] = {}
+        if tag == BBTag_Hints:
+            self.Records[tag] = []
+        else:
+            self.Records[tag] = {}
         
     def Inspect(self, tag, parameter = None):
         if not self.Records.has_key(tag):
             self.Records[tag] = {}
         if tag in (BBTag_Ingredients, BBTag_Cursor, BBTag_Recipes):
             return self.Records[tag]
+        elif tag == BBTag_Hints:
+            if len(self.Records[tag]) > 0:
+                return self.Records[tag].pop(0)
+            else:
+                return None
         
     
     

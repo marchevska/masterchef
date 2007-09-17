@@ -44,6 +44,7 @@ def GetFileLocations():
     globalvars.File_GameConfigSafe = oE.rscpath + File_GameConfigSafeName
     globalvars.File_BestResultsSafe = oE.rscpath + File_BestResultsSafeName
 
+    globalvars.File_Hints = oE.rscpath + File_HintsName
     globalvars.File_Cuisine = oE.rscpath + File_CuisineName
     globalvars.File_Recipes = oE.rscpath + File_RecipesName
     globalvars.File_GameSettings = oE.rscpath + File_GameSettingsName

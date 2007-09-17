@@ -151,6 +151,8 @@
 </file>
 <file url="def/sound.def" id="7877FAE7-B16D-488D-A153-036487CCF7DE" name="sound.def">
 </file>
+<file url="def/fonts.def" id="4BCDEB23-2C81-4171-A9E5-43437D2E9D97" name="fonts.def">
+</file>
 </folder>
 <file url="defs.py" id="5FBC00FC-3486-4F9F-8151-BF49494F6D25" name="defs.py">
 <preference-set id="">

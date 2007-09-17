@@ -1,0 +1,114 @@
+MasterChef{
+    Fonts {
+        font(mainmenu.domcasual) {
+            bitmap = "img/fonts/mainmenu.domcasual.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- &"
+        }
+        font(mainmenu.domcasual.down) {
+            bitmap = "img/fonts/mainmenu.domcasual.down.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
+        }
+        font(mainmenu.domcasual.inert) {
+            bitmap = "img/fonts/mainmenu.domcasual.inert.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.- ."
+        }
+        font(domcasual-10) {
+            bitmap = "img/fonts/domcasual-10.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ,!?()"
+        }
+        font(domcasual-10-up) {
+            bitmap = "img/fonts/domcasual-10-up.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ,!?()"
+        }
+        font(domcasual-10-roll) {
+            bitmap = "img/fonts/domcasual-10-roll.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-10-down) {
+            bitmap = "img/fonts/domcasual-10-down.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-10-inert) {
+            bitmap = "img/fonts/domcasual-10-inert.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-11) {
+            bitmap = "img/fonts/domcasual-11.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-20-yellow) {
+            bitmap = "img/fonts/domcasual-20-yellow.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890-. ."
+        }
+        font(domcasual-20-green) {
+            bitmap = "img/fonts/domcasual-20-green.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "1234567890-+/ $"
+        }
+        font(domcasual-20-red) {
+            bitmap = "img/fonts/domcasual-20-red.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "1234567890-+/ $"
+        }
+        font(domcasual-20-orange) {
+            bitmap = "img/fonts/domcasual-20-orange.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "1234567890-+/ $"
+        }
+        font(domcasual-30-yellow) {
+            bitmap = "img/fonts/domcasual-30-yellow.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., !?-+'/()&"
+        }
+        font(hobor-17) {
+            bitmap = "img/fonts/hobor-17.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "1234567890"
+        }
+        font(simple) {
+            bitmap = "img/fonts/simple.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZ ."
+        }
+        font(arial-italic-20) {
+            bitmap = "img/fonts/arial-italic-20.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'"
+        }
+        font(arial-italic-18) {
+            bitmap = "img/fonts/arial-italic-18.png"
+            type = "blend"
+            filtering = "yes"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'”:;()"
+        }
+        
+    }
+
+}

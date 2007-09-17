@@ -78,8 +78,8 @@ Layer_InterfaceBg = 80
 Layer_InterfaceBtn = 79
 Layer_InterfaceTxt = 78
 Layer_InterfaceTools = 75
-Layer_Popups = 52
-Layer_Particles = 51
+Layer_Popups = 22
+Layer_Particles = 21
 
 #теги для черной доски
 BBTag_Ingredients = 0
@@ -181,9 +181,9 @@ Crd_RecipeMaskDy = -6
 
 Crd_CharOutroPositions = { 4: [(80,290), (180,290), (280,290), (380,290)], 2: [(130,290), (330,290)], 1: [(230, 290)] }
 Crd_RecipeContour = ((0, -31, -33), (0.25, 31, -33), (0.5, 31, 21), (0.75, -31, 21), (1.0, -31, -33), (1.1, -10, -33))
-Crd_CookbookStickerContourHalf = ((0, 47), (-12, 47), (-39, 51), (-61, 62), (-58, 46), (-61, 37), (-49, 28), (-35, 25),
+Crd_CookbookStickerContourHalf = ((12, 47), (-12, 47), (-39, 51), (-61, 62), (-58, 46), (-61, 37), (-49, 28), (-35, 25),
 (-45, 12), (-49, -8), (-45, -26), (-35, -43), (-19, -55), (-6, -58))
-Crd_CookbookStickerTrailSpeed = 300
+Crd_CookbookStickerTrailSpeed = 250
 Time_TrailInitialDelay = 1.0
 
 #координаты относительно курсора

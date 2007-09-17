@@ -399,10 +399,27 @@ class GameBoard(scraft.Dispatcher):
                 self.RemainingCustomers = 1 
             
     def AddScore(self, delta):
+        tmpOldScore = self.LevelScore
+        tmpTextEvent = False
+        tmpStr = ""
+        
         self.LevelScore = max(self.LevelScore + delta, 0)
         self._UpdateLevelInfo()
-        if self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal") and not self.Expert:
+        if tmpOldScore <= globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneyGoal") <= self.LevelScore:
             self._SwitchToExpert()
+            tmpTextEvent = True
+            tmpStr = defs.GetGameString("Str_LevelGoalReached")
+        elif tmpOldScore <= globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertGoal") <= self.LevelScore:
+            tmpTextEvent = True
+            tmpStr = defs.GetGameString("Str_ExpertGoalReached")
+        if tmpTextEvent:
+            PopupText( tmpStr,
+                    "domcasual-30-yellow", 400, 300,
+                    InPlaceMotion(),
+                    BounceTransp([(0, 30), (0.3, 0), (1.5, 0), (2.0, 100)]),
+                    BounceScale([(0, 50), (0.3, 100), (1.5, 120), (2.0, 150)]),
+                    2000, PState_Game)
+            globalvars.Musician.PlaySound("level.goalreached")
     
     #--------------------------
     # задает состояние игры

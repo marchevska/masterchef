@@ -75,6 +75,12 @@ sample = sound/customer.takemoney.ogg
 
 #game flow
 
+#level goal reached
+sound level.goalreached {
+#sample = sound/map.newlevel.ogg
+sample = sound/level.start.ogg
+}
+
 #start level
 sound level.start {
 sample = sound/level.start.ogg
@@ -112,6 +118,11 @@ sample = sound/episode.lose.ogg
 
 #new level available (new level unlocked)
 sound map.newlevel {
+sample = sound/map.newlevel.ogg
+}
+
+#new recipe unlocked
+sound cookbook.newrecipe {
 sample = sound/map.newlevel.ogg
 }
 

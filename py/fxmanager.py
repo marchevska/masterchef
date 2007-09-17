@@ -20,6 +20,7 @@ import globalvars
 
 #------------------------------------
 # Спрайт двигается по заданному пути
+# После завершения движения объект самоликвидируется
 #------------------------------------
 
 class Popup(scraft.Dispatcher):
@@ -56,6 +57,8 @@ class Popup(scraft.Dispatcher):
 #------------------------------------
 # motion functions
 #------------------------------------
+
+#всплытие пузырьком
 def DefaultMotion():
     def f(x0, y0, t):
         return (x0, y0 - 0.1*t)
@@ -111,6 +114,11 @@ def BlinkTransp(a, t0, b):
         return max(a*(0.001*t-t0)**2+b, 0)
     return f
 
+def BounceTransp(points):
+    def f(t):
+        return Interpolation(points, t, 0.001)
+    return f
+    
 #------------------------------------
 # scale functions
 #------------------------------------
@@ -143,12 +151,14 @@ def BounceScale(points):
     return f
 
 
+#------------ 
+# Всплывающая (двигающаяся) надпись
+#------------ 
 def PopupText(text, font, x, y,
             motionfunc = DefaultMotion(), transpfunc = DefaultTransp(), scalefunc = DefaultScale(),
             maxTime = 10000, state = None):
     spr = MakeTextSprite(font, Layer_Popups, x, y, scraft.HotspotCenter, text)
     tmp = Popup(spr, motionfunc, transpfunc, scalefunc, maxTime, state)
-        
 
 #------------ 
 # Спрайты движутся по заданному контуру
@@ -165,7 +175,11 @@ def DrawTrailedContour(params, contour, state = None):
                     { "x": contour[0][1], "y": contour[0][2], "hotspot": scraft.HotspotCenter,
                     "transparency": prm["incTrans"]*x,
                     "scale": 100 - prm["incScale"]*x }), xrange(prm["no"]))
-    tmp = Popup(TrailProxy(tmpSprites, prm["delay"]), BounceMotion(contour), DefaultTransp(), DefaultScale(),
+    if contour[0][0] == 0:
+        tmpTransFunc = DefaultTransp()
+    else:
+        tmpTransFunc = BounceTransp([(0, 100), (contour[0][0]-0.05, 100), (contour[0][0], 0), (100000, 0)])
+    tmp = Popup(TrailProxy(tmpSprites, prm["delay"]), BounceMotion(contour), tmpTransFunc, DefaultScale(),
                 (2*contour[-1][0] - contour[-2][0])*1000, state)
 
 #------------ 
@@ -180,6 +194,7 @@ class TrailProxy(object):
         self.Sprites = sprites
         self.Delay = delay
         self.StartTime = globalvars.Timer.millis
+        self.BasicTrans = map(lambda x: x.transparency, self.Sprites)
         #история координат (x,y) головного спрайта
         self.HistoryX = []
         self.HistoryY = []
@@ -216,10 +231,20 @@ class TrailProxy(object):
         
     y = property(GetY, SetY)
         
+    def SetTrans(self, value):
+        for i in range(len(self.Sprites)):
+            self.Sprites[i].transparency = self.BasicTrans[i] + value
+            
+    def GetTrans(self):
+        return self.Sprites[0].transparency
+        
+    transparency = property(GetTrans, SetTrans)
+        
     def Dispose(self):
         for spr in self.Sprites:
             spr.Dispose()
         del self.Sprites
+        
         
 
 #------------ 

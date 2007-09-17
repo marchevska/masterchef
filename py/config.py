@@ -48,6 +48,7 @@ def GetFileLocations():
     globalvars.File_Recipes = oE.rscpath + File_RecipesName
     globalvars.File_GameSettings = oE.rscpath + File_GameSettingsName
     globalvars.File_ResourceInfo = oE.rscpath + File_ResourceInfoName
+    globalvars.File_FontsInfo = oE.rscpath + File_FontsInfoName
     globalvars.File_Animations = oE.rscpath + File_AnimationsName
     globalvars.File_LevelProgress = oE.rscpath + File_LevelProgressName
     globalvars.File_GameTexts = oE.rscpath + File_GameTextsName

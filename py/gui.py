@@ -703,7 +703,7 @@ class Gui(scraft.Dispatcher):
             self.LevelCompleteDialog["Buttons"]["Comment"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
                 "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
                 "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
-            self.LevelCompleteDialog["Buttons"]["Comment"].SetText(globalvars.GameTexts.GetSubtag(tmpFailed["text"]).GetStrAttr("str"))
+            self.LevelCompleteDialog["Buttons"]["Comment"].SetText(defs.GetGameString(tmpFailed["text"]))
         else:
             if  params["expert"]:
                 self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.expert")
@@ -714,7 +714,7 @@ class Gui(scraft.Dispatcher):
             self.LevelCompleteDialog["Buttons"]["Comment"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
                 "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
                 "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
-            self.LevelCompleteDialog["Buttons"]["Comment"].SetText(globalvars.GameTexts.GetSubtag(tmpPassed["text"]).GetStrAttr("str"))
+            self.LevelCompleteDialog["Buttons"]["Comment"].SetText(defs.GetGameString(tmpPassed["text"]))
             
         self.LevelCompleteDialog["Text"]["TextServed"].text = str(params["served"])
         self.LevelCompleteDialog["Text"]["TextLost"].text = str(params["lost"])
@@ -772,26 +772,35 @@ class Gui(scraft.Dispatcher):
         tmpRecipes = filter(lambda x: globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("setting") == tmpSetting,
                                 map(lambda x: x.GetContent(), globalvars.RecipeInfo.Tags()))
         tmpNewRecipes = globalvars.CurrentPlayer.JustUnlockedRecipes(tmpSetting)
+        if len(tmpNewRecipes) > 0:
+            PopupText(defs.GetGameString("Str_NewRecipesLearned"),
+                    "domcasual-30-yellow", 400, 300,
+                    InPlaceMotion(),
+                    BounceTransp([(0, 30), (0.3, 0), (1.5, 0), (2.0, 100)]),
+                    BounceScale([(0, 50), (0.3, 100), (1.5, 120), (2.0, 150)]),
+                    2000, PState_Cookbook)
+            globalvars.Musician.PlaySound("cookbook.newrecipe")
+            
         for i in range(self.TotalRecipesOnPage):
             self.CookbookDialog["Static"]["Recipe"+str(i+1)].x = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeX")
             self.CookbookDialog["Static"]["Recipe"+str(i+1)].y = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeY")
             if globalvars.CurrentPlayer.GetLevelParams(tmpRecipes[i]).GetBoolAttr("unlocked"):
                 self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge"))
                 if tmpRecipes[i] in tmpNewRecipes:
-                    self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 20
+                    #self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 20
                     globalvars.CurrentPlayer.SetLevelParams(tmpRecipes[i], { "seen": True })
-                    j = tmpNewRecipes.index(tmpRecipes[i])
-                    self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].x = \
-                            self.CookbookDialog["Static"]["Recipe"+str(i+1)].x - self.CookbookDialog["Static"]["Recipe"+str(i+1)].width/2
-                    self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].y = \
-                            self.CookbookDialog["Static"]["Recipe"+str(i+1)].y - self.CookbookDialog["Static"]["Recipe"+str(i+1)].height/2
-                    self.CookbookDialog["Animations"]["NewRecipe"+str(j+1)].SetState("First")
-                    self.CookbookDialog["Animations"]["NewRecipe"+str(j+1)].Freeze(False)
+                    #j = tmpNewRecipes.index(tmpRecipes[i])
+                    #self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].x = \
+                    #        self.CookbookDialog["Static"]["Recipe"+str(i+1)].x - self.CookbookDialog["Static"]["Recipe"+str(i+1)].width/2
+                    #self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].y = \
+                    #        self.CookbookDialog["Static"]["Recipe"+str(i+1)].y - self.CookbookDialog["Static"]["Recipe"+str(i+1)].height/2
+                    #self.CookbookDialog["Animations"]["NewRecipe"+str(j+1)].SetState("First")
+                    #self.CookbookDialog["Animations"]["NewRecipe"+str(j+1)].Freeze(False)
                     
                     #эффект обводки контура
                     tmpCopy = map(lambda x: (-x[0], x[1]), list(Crd_CookbookStickerContourHalf))
                     tmpCopy.reverse()
-                    tmpContour = 2*(list(Crd_CookbookStickerContourHalf) + tmpCopy)
+                    tmpContour = (list(Crd_CookbookStickerContourHalf) + tmpCopy)
                     #движение с постоянной скоростью:
                     tmpTimes = [Time_TrailInitialDelay] + map(lambda ii: \
                             math.sqrt((tmpContour[ii][0]-tmpContour[ii+1][0])**2 + (tmpContour[ii][1]-tmpContour[ii+1][1])**2)/Crd_CookbookStickerTrailSpeed,
@@ -992,9 +1001,9 @@ class Gui(scraft.Dispatcher):
             else:
                 self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapNoHiscore")
             self.MapCareerDialog["Text"]["RestaurantTitle"].text = \
-                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant")
+                defs.GetGameString(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant"))
             self.MapCareerDialog["Text"]["RestaurantDay"].text = \
-                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("day")
+                defs.GetGameString(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("day"))
         #просмотр результатов уровня
         elif self.SelectedLevel in tmpOutroKeys and \
                     globalvars.CurrentPlayer.GetLevelParams(self.SelectedLevel).GetBoolAttr("unlocked"):
@@ -1003,9 +1012,10 @@ class Gui(scraft.Dispatcher):
             self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
             self.MapCareerDialog["Text"]["BestResult"].text = ""
             self.MapCareerDialog["Text"]["RestaurantTitle"].text = \
-                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant")
+                defs.GetGameString(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant"))
             self.MapCareerDialog["Text"]["RestaurantDay"].text = \
-                globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("day")
+                defs.GetGameString(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("day"))
+                
         else:
             self.MapCareerDialog["Buttons"]["ViewResults"].Show(False)
             self.MapCareerDialog["Buttons"]["Start"].Show(True)
@@ -1041,7 +1051,8 @@ class Gui(scraft.Dispatcher):
         tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).items()
         self.IntroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
         self.IntroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
-        self.IntroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
+        self.IntroScreen["Text"]["Title"].text = \
+                defs.GetGameString(globalvars.CurrentPlayer.GetLevel().GetStrAttr("title"))
         ApplyTextLayout(self.IntroScreen["Text"]["Competitors"],
                             globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro.competitors"))
         for i in range(self.MaxPeopleOnLevel):
@@ -1050,7 +1061,7 @@ class Gui(scraft.Dispatcher):
                     ChangeKlassTo(globalvars.CompetitorsInfo.GetSubtag(tmpCharacters[i][0]).GetStrAttr("src"))
                 self.IntroScreen["Static"]["Character"+str(i)].x, self.IntroScreen["Static"]["Character"+str(i)].y = tmpCharacters[i][1]["xy"]
                 self.IntroScreen["Static"]["Character"+str(i)].hotspot = scraft.HotspotCenterBottom
-                self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". "+tmpCharacters[i][0]
+                self.IntroScreen["Text"]["Character"+str(i)].text = str(i+1)+". " + defs.GetGameString(tmpCharacters[i][0])
                 ApplyTextLayout(self.IntroScreen["Text"]["Character"+str(i)],
                             globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-intro.names"))
             else:
@@ -1061,8 +1072,7 @@ class Gui(scraft.Dispatcher):
         for i in range(len(tmpTextLines)):
             ApplyTextLayout(self.IntroScreen["Text"]["Speech"+str(i)],
                             globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpTextLines[i].GetStrAttr("layout")))
-            self.IntroScreen["Text"]["Speech"+str(i)].text = globalvars.GameTexts.\
-                    GetSubtag(tmpTextLines[i].GetStrAttr("str")).GetStrAttr("str")
+            self.IntroScreen["Text"]["Speech"+str(i)].text = defs.GetGameString(tmpTextLines[i].GetStrAttr("str"))
         for i in range(len(tmpTextLines), self.MaxSpeechLines):
             self.IntroScreen["Text"]["Speech"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
         
@@ -1082,7 +1092,8 @@ class Gui(scraft.Dispatcher):
             
         self.OutroScreen["Buttons"]["Back"].SetButtonKlass(tmp.GetStrAttr("background"))
         self.OutroScreen["Static"]["IntroPane"].ChangeKlassTo(tmp.GetStrAttr("introPane"))
-        self.OutroScreen["Text"]["Title"].text = globalvars.CurrentPlayer.GetLevel().GetStrAttr("title")
+        self.OutroScreen["Text"]["Title"].text = \
+                defs.GetGameString(globalvars.CurrentPlayer.GetLevel().GetStrAttr("title"))
         ApplyTextLayout(self.OutroScreen["Text"]["Competitors"],
                             globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-outro.competitors"))
         ApplyTextLayout(self.OutroScreen["Text"]["Points"],
@@ -1095,15 +1106,15 @@ class Gui(scraft.Dispatcher):
         for i in range(len(tmpTextLines)):
             ApplyTextLayout(self.OutroScreen["Text"]["Speech"+str(i)],
                             globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpTextLines[i].GetStrAttr("layout")))
-            self.OutroScreen["Text"]["Speech"+str(i)].text = globalvars.GameTexts.\
-                    GetSubtag(tmpTextLines[i].GetStrAttr("str")).GetStrAttr("str")
+            self.OutroScreen["Text"]["Speech"+str(i)].text = defs.GetGameString(tmpTextLines[i].GetStrAttr("str"))
         for i in range(len(tmpTextLines), self.MaxSpeechLines):
             self.OutroScreen["Text"]["Speech"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
         if tmpLevel.GetBoolAttr("showWinners") == True:
             ApplyTextLayout(self.OutroScreen["Text"]["SpeechWinners"],
                             globalvars.LevelProgress.GetTag("Layouts").GetSubtag("episode-outro.winners"))
             self.OutroScreen["Text"]["SpeechWinners"].text = reduce(lambda x, y: x+y,
-                                    map(lambda i: tmpResults["scores"][i][0]+\
+                                    map(lambda i: \
+                                        defs.GetGameString(tmpResults["scores"][i][0])+\
                                         ", "*(i<tmpLevel.GetIntAttr("PassFurther")-2)+\
                                         " and "*(i==tmpLevel.GetIntAttr("PassFurther")-2),
                                     range(tmpLevel.GetIntAttr("PassFurther"))))
@@ -1122,7 +1133,7 @@ class Gui(scraft.Dispatcher):
                 self.OutroScreen["Static"]["Medallion"+str(i)].ChangeKlassTo(tmp.GetStrAttr("winnerSign"))
                 self.OutroScreen["Static"]["Medallion"+str(i)].hotspot = scraft.HotspotCenter
                 self.OutroScreen["Text"]["Number"+str(i)].text = str(i+1)
-                self.OutroScreen["Text"]["Name"+str(i)].text = tmpResults["scores"][i][0]
+                self.OutroScreen["Text"]["Name"+str(i)].text = defs.GetGameString(tmpResults["scores"][i][0])
             else:
                 self.OutroScreen["Static"]["Character"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
                 self.OutroScreen["Static"]["Light"+str(i)].ChangeKlassTo("$spritecraft$dummy$")
@@ -1131,7 +1142,7 @@ class Gui(scraft.Dispatcher):
                 self.OutroScreen["Text"]["Name"+str(i)].text = ""
         for i in range(self.MaxPeopleOnLevel):
             if i < len(tmpResults["scores"]):
-                self.OutroScreen["Text"]["Character"+str(i)].text = tmpResults["scores"][i][0]
+                self.OutroScreen["Text"]["Character"+str(i)].text = defs.GetGameString(tmpResults["scores"][i][0])
                 self.OutroScreen["Text"]["Score"+str(i)].text = str(tmpResults["scores"][i][1])
                 tmpLayoutName = "episode-outro.names-" + (i == tmpResults["place"]-1)*"jenny-" + \
                             (i >= tmpLevel.GetIntAttr("PassFurther"))*"not" + "passed"
@@ -1149,7 +1160,9 @@ class Gui(scraft.Dispatcher):
     def _UpdateLevelGoals(self):
         tmpLevelName = globalvars.CurrentPlayer.GetLevel().GetContent()
         tmpLevelParams = globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName)
-        self.LevelGoalsDialog["Text"]["Title"].text = tmpLevelParams.GetStrAttr("title")
+        self.LevelGoalsDialog["Text"]["Title"].text = \
+                defs.GetGameString(globalvars.CurrentPlayer.GetLevel().GetStrAttr("restaurant")) + " - " + \
+                defs.GetGameString(globalvars.CurrentPlayer.GetLevel().GetStrAttr("day"))
         self.LevelGoalsDialog["Text"]["TextLevel"].text = tmpLevelParams.GetStrAttr("name")
         self.LevelGoalsDialog["Text"]["TextGoal"].text = str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneyGoal"))
         self.LevelGoalsDialog["Text"]["TextExpert"].text = str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertGoal"))
@@ -1161,11 +1174,11 @@ class Gui(scraft.Dispatcher):
             eval(tmpLayout.GetStrAttr("titleXY"))
         self.LevelGoalsDialog["Text"]["IntroTitle"].cfilt.color = eval(tmpLayout.GetStrAttr("titleColor"))
         self.LevelGoalsDialog["Text"]["IntroTitle"].hotspot = scraft.HotspotCenter
-        self.LevelGoalsDialog["Text"]["IntroTitle"].text = globalvars.GameTexts.GetSubtag(tmpIntro["title"]).GetStrAttr("str")
+        self.LevelGoalsDialog["Text"]["IntroTitle"].text = defs.GetGameString(tmpIntro["title"])
         self.LevelGoalsDialog["Buttons"]["IntroText"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
             "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
             "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
-        self.LevelGoalsDialog["Buttons"]["IntroText"].SetText(globalvars.GameTexts.GetSubtag(tmpIntro["text"]).GetStrAttr("str"))
+        self.LevelGoalsDialog["Buttons"]["IntroText"].SetText(defs.GetGameString(tmpIntro["text"]))
         if tmpLayout.GetBoolAttr("hasPicture"):
             self.LevelGoalsDialog["Static"]["IntroPicture"].ChangeKlassTo(tmpIntro["picture"])
             if tmpIntro.has_key("frno"):
@@ -1295,7 +1308,6 @@ class Gui(scraft.Dispatcher):
                     self._SetState(PState_Help)
                 elif cmd == Cmd_Menu_Cookbook:
                     self._SetState(PState_Cookbook)
-                    #self._ShowCookBookPage(self.CurrentCookbookPage)
                 elif cmd == Cmd_Menu_Hiscores:
                     self._SetState(PState_Hiscores)
                 #elif cmd == Cmd_Menu_Quit:
@@ -1642,15 +1654,19 @@ class Gui(scraft.Dispatcher):
         
         #переключение музыки
         if state in (PState_Game, PState_NextLevel, PState_StartLevel,
-                     PState_InGameMenu):
+                     #PState_Comics, PState_Intro, PState_Outro,
+                     PState_InGameMenu,):
             globalvars.Musician.SetState(MusicState_Game)
         #elif state == PState_InGameMenu:
         #    globalvars.Musician.SetState(MusicState_Pause)
         elif state == PState_MapCareer or \
                     (len(globalvars.StateStack) > 2 and globalvars.StateStack[-2] == PState_MapCareer):
             globalvars.Musician.SetState(MusicState_Map)
-        elif state == PState_Pause:
+        elif state in (PState_Pause, PState_Cookbook):
             pass
+        #elif state == PState_Cookbook:
+        #    if self.NextState == PState_None:
+        #        globalvars.Musician.SetState(MusicState_Menu)
         else:
             globalvars.Musician.SetState(MusicState_Menu)
             

@@ -21,6 +21,7 @@ global File_Cuisine
 global File_Recipes
 global File_GameSettings
 global File_ResourceInfo
+global File_FontsInfo
 global File_Animations
 global File_LevelProgress
 global File_GameTexts

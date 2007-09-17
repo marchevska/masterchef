@@ -328,6 +328,7 @@ box.2.contents~
 00 img\fonts\domcasual-22-outlined.png
 00 img\fonts\domcasual-22.png
 00 img\fonts\domcasual-24-numbers.png
+00 img\fonts\domcasual-30-yellow.png
 00 img\fonts\hobor-17.png
 00 img\fonts\mainmenu.domcasual.down.png
 00 img\fonts\mainmenu.domcasual.inert.png
@@ -644,6 +645,7 @@ box.4.contents~
 00 masterchef.sst
 00 def\animations.def
 00 def\cuisine.def
+00 def\fonts.def
 00 def\gamesettings.def
 00 def\levelprogress.def
 00 def\recipes.def

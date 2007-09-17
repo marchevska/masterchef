@@ -23,6 +23,9 @@ def ReadResourceInfo():
         for tmpTags in oE.ParseDEF(globalvars.File_ResourceInfo).GetTag(DEF_Header).Tags():
             for sprTag in tmpTags:
                 oE.SstDefKlass(sprTag.GetContent(), sprTag)
+        for tmpTags in oE.ParseDEF(globalvars.File_FontsInfo).GetTag(DEF_Header).Tags():
+            for sprTag in tmpTags:
+                oE.SstDefKlass(sprTag.GetContent(), sprTag)
         
         #define customer classes
         for sprTag in oE.ParseDEF(globalvars.File_Animations).GetTag(DEF_Header).GetTag(u"CustomerKlasses").Tags():

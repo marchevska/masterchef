@@ -87,7 +87,7 @@ MasterChef{
     //}
     
     //Hints{
-        hint(){ seen = "no" }
+        hint(Customer.Business) { seen = "no" }
     //}
     
     //Recipes{

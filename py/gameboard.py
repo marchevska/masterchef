@@ -612,13 +612,14 @@ class GameBoard(scraft.Dispatcher):
         #    for tmp in self.CStations:
         #        tmp.Show(flag)
         
-    def Freeze(self, flag):
+    def Freeze(self, flag, fullFreeze = True):
         """
         Постановка паузы
         """
         if flag:
-            self.SendCommand(Cmd_DropWhatYouCarry)
             oE.executor.GetQueue(self.QueNo).Suspend()
+            if fullFreeze:
+                self.SendCommand(Cmd_DropWhatYouCarry)
         else:
             oE.executor.GetQueue(self.QueNo).Resume()
         if self.Playing:

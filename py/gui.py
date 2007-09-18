@@ -628,13 +628,28 @@ class Gui(scraft.Dispatcher):
             
         #окно подсказки (вызывается из игры)
         self.HintsDialog = {"Static": {}, "Text": {}, "Buttons": {}}
-        
+        self.HintsDialog["Buttons"]["Back"] = PushButton("",
+                self, Cmd_HintsClose, PState_Hints,
+                "$spritecraft$dummy$", [0, 0, 0], Layer_2ndPopupBg+1, 400, 300, 800, 600)
+        self.HintsDialog["Static"]["Back"] = MakeSimpleSprite("2nd-popup-background", Layer_2ndPopupBg)
+        self.HintsDialog["Buttons"]["Text"] = TextArea("arial-italic-20", Layer_2ndPopupBg-1)
+        self.HintsDialog["Buttons"]["Close"] = PushButton("Close",
+                self, Cmd_HintsClose, PState_Hints,
+                "button-4st", [0, 1, 2], 
+                Layer_2ndPopupBtnTxt, 330, 342, 120, 40,
+                defs.GetGameString("Str_Yes"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+        self.HintsDialog["Buttons"]["DisableHints"] = PushButton("DisableHints",
+                self, Cmd_HintsDisable, PState_Hints,
+                "button-4st", [0, 1, 2], 
+                Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
+                defs.GetGameString("Str_No"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
         self.AllDialogs = {
             PState_DevLogo: self.DevLogo,
             PState_PubLogo: self.PubLogo,
             PState_MainMenu: self.MainMenuDialog,
             PState_Pause: self.PauseDialog,
+            PState_Hints: self.HintsDialog,
             PState_MapCareer: self.MapCareerDialog,
             PState_Cookbook: self.CookbookDialog,
             PState_Comics: self.ComicScreen,
@@ -756,6 +771,14 @@ class Gui(scraft.Dispatcher):
         self.YesNoCancelDialog["Buttons"]["No"].SetText(answerNo)
         self.YesNoCancelDialog["Buttons"]["Cancel"].SetText(answerCancel)
         
+    def ShowHint(self, hint, params = None):
+        self._SetState(PState_Hints)
+        tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag("outro")
+        self.HintsDialog["Buttons"]["Text"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
+            "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
+            "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
+        self.HintsDialog["Buttons"]["Text"].SetText(defs.GetGameString(globalvars.HintsInfo.GetSubtag(hint).GetStrAttr("text")))
+        
     #----------------------------
     #отображает заданную страницу кулинарной книги
     #----------------------------
@@ -791,8 +814,8 @@ class Gui(scraft.Dispatcher):
             if globalvars.CurrentPlayer.GetLevelParams(tmpRecipes[i]).GetBoolAttr("unlocked"):
                 self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge"))
                 if tmpRecipes[i] in tmpNewRecipes:
-                    #self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 20
                     globalvars.CurrentPlayer.SetLevelParams(tmpRecipes[i], { "seen": True })
+                    #self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 20
                     #j = tmpNewRecipes.index(tmpRecipes[i])
                     #self.CookbookDialog["Static"]["NewRecipe"+str(j+1)].x = \
                     #        self.CookbookDialog["Static"]["Recipe"+str(i+1)].x - self.CookbookDialog["Static"]["Recipe"+str(i+1)].width/2
@@ -1323,6 +1346,14 @@ class Gui(scraft.Dispatcher):
                     self._ReleaseState(PState_Pause)
                     self.SetPauseState(False)
             
+            #hints
+            elif globalvars.StateStack[-1] == PState_Hints:
+                self._ReleaseState(PState_Hints)
+                if cmd == Cmd_HintsClose:
+                    pass
+                elif cmd == Cmd_HintsDisable:
+                    pass
+            
             #comics
             elif globalvars.StateStack[-1] == PState_Comics:
                 if cmd == Cmd_ComicsNext:
@@ -1754,6 +1785,12 @@ class Gui(scraft.Dispatcher):
             self.MainMenuDialog["Animations"]["JaneEyes"].Freeze(False)
             self.MainMenuDialog["Animations"]["Vapor"].SetState("Play")
             self.MainMenuDialog["Animations"]["Vapor"].Freeze(False)
+            
+        #подсказка в игре
+        elif state == PState_Hints:
+            globalvars.Frozen = True
+            globalvars.Board.Freeze(True, False)
+            self._ShowDialog(self.HintsDialog, True)
             
         #пауза в игре
         elif state == PState_Pause:

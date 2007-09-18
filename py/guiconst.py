@@ -31,6 +31,9 @@ Cmd_Menu_AskQuit = 309
 
 Cmd_PauseUnPause = 313
 
+Cmd_HintsClose = 314
+Cmd_HintsDisable = 315
+
 Cmd_HelpNext = 310
 Cmd_HelpPrev = 311
 Cmd_HelpClose = 312
@@ -113,6 +116,7 @@ PState_MapCareer = 16
 PState_MapEndless = 17
 PState_Cookbook = 22
 PState_Pause = 25
+PState_Hints = 26
 
 #длительность показа логотипов
 Time_DevLogoShow = 5000

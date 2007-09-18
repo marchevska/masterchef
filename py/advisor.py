@@ -27,14 +27,17 @@ class Advisor(scraft.Dispatcher):
             #пока не найдем ивент, порождающий подсказку
             tmp = globalvars.BlackBoard.Inspect(BBTag_Hints)
             if tmp != None:
-                if globalvars.HintsInfo.GetSubtag(tmp["event"]) != None:
+                tmpHintNode = globalvars.HintsInfo.GetSubtag(tmp["event"])
+                if tmpHintNode != None:
                     #проверяем: можно ли показать данную подсказку:
                     #она не была показана ранее или многоразовая и подсказки разрешены
-                    if not globalvars.CurrentPlayer.GetLevelParams(tmp["event"]).GetBoolAttr("seen") \
-                            and globalvars.GameConfig.GetBoolAttr("Hints"):
+                    if (tmpHintNode.GetBoolAttr("showOnce") and \
+                            tmpHintNode.GetIntAttr("minLevel") <= globalvars.CurrentPlayer.GetLevel().GetIntAttr("no") <= tmpHintNode.GetIntAttr("maxLevel") and \
+                            not globalvars.CurrentPlayer.GetLevelParams(tmp["event"]).GetBoolAttr("seen") \
+                            and globalvars.GameConfig.GetBoolAttr("Hints")):
                         
-                        #show!
                         globalvars.CurrentPlayer.SetLevelParams(tmp["event"], { "seen": True })
+                        globalvars.GUI.ShowHint(tmp["event"])
                         break
             else:
                 break

@@ -479,9 +479,11 @@ class GameBoard(scraft.Dispatcher):
                 if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
                     self.TokenSprite.x = oE.mouseX + Crd_TokenSpriteDx
                     self.TokenSprite.y = oE.mouseY + Crd_TokenSpriteDy
+                    self.TokenSprite.visible = oE.mouseIn
                 elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
                     self.ToolSprite.x = oE.mouseX + Crd_ToolSpriteDx
                     self.ToolSprite.y = oE.mouseY + Crd_ToolSpriteDy
+                    self.ToolSprite.visible = oE.mouseIn
                 #проверка на конец уровн€
                 if self.RemainingCustomers == 0:
                     tmpBusyStations = filter(lambda x: x.State == CStationState_Busy, self.CStations)
@@ -617,8 +619,9 @@ class GameBoard(scraft.Dispatcher):
         ѕостановка паузы
         """
         if flag:
-            oE.executor.GetQueue(self.QueNo).Suspend()
+            #oE.executor.GetQueue(self.QueNo).Suspend()
             if fullFreeze:
+                oE.executor.GetQueue(self.QueNo).Suspend()
                 self.SendCommand(Cmd_DropWhatYouCarry)
         else:
             oE.executor.GetQueue(self.QueNo).Resume()

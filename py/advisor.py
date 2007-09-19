@@ -37,7 +37,7 @@ class Advisor(scraft.Dispatcher):
                             and globalvars.GameConfig.GetBoolAttr("Hints")):
                         
                         globalvars.CurrentPlayer.SetLevelParams(tmp["event"], { "seen": True })
-                        globalvars.GUI.ShowHint(tmp["event"])
+                        globalvars.GUI.ShowHint(tmp["event"], tmp["where"])
                         break
             else:
                 break

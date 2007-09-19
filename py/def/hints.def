@@ -1,9 +1,157 @@
 MasterChef {
-    hint(Customer.Business) {
-        text = "def/06.def.intro.text"
-        layout = "outro"
-        minLevel = "5"
-        maxLevel = "10"
+    hint(Customer.Worker) {
+        text = "customer.worker.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
         showOnce = "yes"
+    }
+    hint(Customer.Student) {
+        text = "customer.student.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Business) {
+        text = "customer.business.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Oldlady) {
+        text = "customer.oldlady.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Critic) {
+        text = "customer.critic.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Schoolkid) {
+        text = "customer.schoolkid.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Vegetarian) {
+        text = "customer.vegetarian.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Hawaiian) {
+        text = "customer.tourist hawaiian.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Mexican) {
+        text = "customer.tourist mexican.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Russian) {
+        text = "customer.tourist russian.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Japanese) {
+        text = "customer.tourist japanese.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Spoon) {
+        text = "bonus.spoon.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Removerow) {
+        text = "bonus.removerow.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Bomb) {
+        text = "bonus.bomb.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Scrollback) {
+        text = "bonus.scrollback.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Shuffle) {
+        text = "bonus.shuffle.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Magicwand) {
+        text = "bonus.magicwand.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Sweet) {
+        text = "bonus.sweet.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Gift) {
+        text = "bonus.gift.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Bonus.Hearts) {
+        text = "bonus.hearts.hint"
+        layout = "outro"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(CustomerState.Wait) {
+        text = "customerstate.wait.hint"
+    }
+    hint(CustomerMood.2Hearts) {
+        text = "customermood.2hearts.hint"
+    }
+    hint(CustomerMood.1Hearts) {
+        text = "customermood.1hearts.hint"
+    }
+    hint(Field.Empty) {
+        text = "field.empty.hint"
+    }
+    hint(Field.Overflow) {
+        text = "field.overflow.hint"
     }
 }

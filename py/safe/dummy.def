@@ -87,7 +87,17 @@ MasterChef{
     //}
     
     //Hints{
+        hint(Customer.Worker) { seen = "no" }
+        hint(Customer.Student) { seen = "no" }
         hint(Customer.Business) { seen = "no" }
+        hint(Customer.Oldlady) { seen = "no" }
+        hint(Customer.Critic) { seen = "no" }
+        hint(Customer.Schoolkid) { seen = "no" }
+        hint(Customer.Vegetarian) { seen = "no" }
+        hint(Customer.Tourist Hawaiian) { seen = "no" }
+        hint(Customer.Tourist Mexican) { seen = "no" }
+        hint(Customer.Tourist Russian) { seen = "no" }
+        hint(Customer.Tourist Japanese) { seen = "no" }
     //}
     
     //Recipes{

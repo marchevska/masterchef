@@ -631,7 +631,7 @@ class Gui(scraft.Dispatcher):
         self.HintsDialog["Buttons"]["Back"] = PushButton("",
                 self, Cmd_HintsClose, PState_Hints,
                 "$spritecraft$dummy$", [0, 0, 0], Layer_2ndPopupBg+1, 400, 300, 800, 600)
-        self.HintsDialog["Static"]["Back"] = MakeSimpleSprite("2nd-popup-background", Layer_2ndPopupBg)
+        self.HintsDialog["Static"]["Back"] = MakeSimpleSprite("$spritecraft$dummy$", Layer_2ndPopupBg)
         self.HintsDialog["Buttons"]["Text"] = TextArea("arial-italic-20", Layer_2ndPopupBg-1)
         self.HintsDialog["Buttons"]["Close"] = PushButton("Close",
                 self, Cmd_HintsClose, PState_Hints,
@@ -691,12 +691,8 @@ class Gui(scraft.Dispatcher):
             if globalvars.StateStack[-1] in (PState_YesNo, PState_YesNoCancel, PState_EnterName):
                 self._ReleaseState(globalvars.StateStack[-1])
                 self.LastQuestion = ""
-            #if globalvars.StateStack[-1] in (PState_DevLogo, PState_PubLogo, PState_MainMenu,
-            #                                PState_MapCareer, PState_Cookbook, PState_Comics,
-            #                                PState_Intro, PState_Outro, PState_StartLevel,
-            #                                PState_NextLevel, PState_Game, PState_Players,
-            #                                PState_Help):
-            #    self._SetState(PState_Options)
+            if globalvars.StateStack[-1] in (PState_Hints,):
+                self._ReleaseState(globalvars.StateStack[-1])
             self._SetState(PState_Pause)
         globalvars.Musician.SetPause(flag)
         
@@ -771,13 +767,20 @@ class Gui(scraft.Dispatcher):
         self.YesNoCancelDialog["Buttons"]["No"].SetText(answerNo)
         self.YesNoCancelDialog["Buttons"]["Cancel"].SetText(answerCancel)
         
-    def ShowHint(self, hint, params = None):
+    def ShowHint(self, hint, baseCrd):
         self._SetState(PState_Hints)
-        tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag("outro")
-        self.HintsDialog["Buttons"]["Text"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
+        tmpHintNode = globalvars.HintsInfo.GetSubtag(hint)
+        tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpHintNode.GetStrAttr("layout"))
+        self.HintsDialog["Buttons"]["Text"].SetParams({
+            "xy": (lambda x,y: (x[0]+y[0], x[1]+y[1]))(eval(tmpLayout.GetStrAttr("textXY")), baseCrd),
             "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
             "cfilt-color": eval(tmpLayout.GetStrAttr("textColor")) })
-        self.HintsDialog["Buttons"]["Text"].SetText(defs.GetGameString(globalvars.HintsInfo.GetSubtag(hint).GetStrAttr("text")))
+        self.HintsDialog["Buttons"]["Text"].SetText(defs.GetGameString(tmpHintNode.GetStrAttr("text")))
+        self.HintsDialog["Static"]["Back"].ChangeKlassTo(tmpLayout.GetStrAttr("picture"))
+        self.HintsDialog["Static"]["Back"].x, self.HintsDialog["Static"]["Back"].y = \
+                    (lambda x,y: (x[0]+y[0], x[1]+y[1]))(eval(tmpLayout.GetStrAttr("pictureXY")), baseCrd)
+        self.HintsDialog["Buttons"]["Close"].MoveTo(self.HintsDialog["Static"]["Back"].x - 70, self.HintsDialog["Static"]["Back"].y + 60)
+        self.HintsDialog["Buttons"]["DisableHints"].MoveTo(self.HintsDialog["Static"]["Back"].x + 70, self.HintsDialog["Static"]["Back"].y + 60)
         
     #----------------------------
     #отображает заданную страницу кулинарной книги
@@ -1308,6 +1311,8 @@ class Gui(scraft.Dispatcher):
     def SendCommand(self, cmd):
         try:
             if cmd == Cmd_Menu_Quit:
+                if globalvars.StateStack[-1] in (PState_Hints,):
+                    self._ReleaseState(globalvars.StateStack[-1])
                 self._Ask(defs.GetGameString("Str_Question_ExitGame"))
                 globalvars.Frozen = True
                 globalvars.Board.Freeze(True)

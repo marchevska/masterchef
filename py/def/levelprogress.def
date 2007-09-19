@@ -34,7 +34,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 1"
             title = "Rocky Ranch - Day 1" name = "1-1" no = "1" x = "62" y = "175"
             unlock = "[ 'Grilled Meat', ]"
-            intro = "{ 1-1 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/01.def.intro.title', 'text': 'def/01.def.intro.text', 'picture': 'customer.worker', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/01.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/01.def.failed.text' }"
         }
@@ -42,7 +42,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 2"
             title = "Rocky Ranch - Day 2" name = "1-2" no = "2" x = "46" y = "201"
             unlock = "[ 'Pineapple Tomato Salad', ]"
-            intro = "{ 1-2 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/02.def.intro.title', 'text': 'def/02.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/02.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/02.def.failed.text' }"
         }
@@ -50,7 +50,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 3"
             title = "Rocky Ranch - Day 3" name = "1-3" no = "3" x = "41" y = "233"
             unlock = "[ 'Caribbean Spice Chicken', 'Spaghetti with Turkey Meat Sauce', ]"
-            intro = "{ 1-3 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/03.def.intro.title', 'text': 'def/03.def.intro.text', 'picture': 'customer.student', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/03.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/03.def.failed.text' }"
         }
@@ -58,7 +58,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 4"
             title = "Rocky Ranch - Day 4" name = "1-4" no = "4" x = "48" y = "261"
             unlock = "[ 'Crispy Baked Chicken', 'Pineapple Lasagna', ]"
-            intro = "{ 1-4 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/04.def.intro.title', 'text': 'def/04.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/04.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/04.def.failed.text' }"
         }
@@ -66,7 +66,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 5"
             title = "Rocky Ranch - Day 5" name = "1-5" no = "5" x = "60" y = "287"
             unlock = "[ 'Chicken Squash Stir-Fry', 'Hubbard Squash Soup Du Jour', ]"
-            intro = "{ 1-5 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/05.def.intro.title', 'text': 'def/05.def.intro.text', 'picture': 'bonus.sweet' }"
             passed = "{ 'layout': 'outro', 'text': 'def/05.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/05.def.failed.text' }"
         }
@@ -74,7 +74,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 6"
             title = "Rocky Ranch - Day 6" name = "1-6" no = "6" x = "78" y = "308"
             unlock = "[ 'Pasta with Tomato Sauce', ]"
-            intro = "{ 1-6 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/06.def.intro.title', 'text': 'def/06.def.intro.text', 'picture': 'customer.business', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/06.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/06.def.failed.text' }"
         }
@@ -82,7 +82,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 7"
             title = "Rocky Ranch - Day 7" name = "1-7" no = "7" x = "96" y = "327"
             unlock = "[ 'Squash with Tomato Sauce', 'Chicken Pasta Casseroule', ]"
-            intro = "{ 1-7 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/07.def.intro.title', 'text': 'def/07.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/07.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/07.def.failed.text' }"
         }
@@ -90,7 +90,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 8"
             title = "Rocky Ranch - Day 8" name = "1-8" no = "8" x = "118" y = "342"
             unlock = "[ 'Chicken Pineapple Pasta Pockets', ]"
-            intro = "{ 1-8 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/08.def.intro.title', 'text': 'def/08.def.intro.text', 'picture': 'bonus.removerow' }"
             passed = "{ 'layout': 'outro', 'text': 'def/08.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/08.def.failed.text' }"
         }
@@ -98,7 +98,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 9"
             title = "Rocky Ranch - Day 9" name = "1-9" no = "9" x = "141" y = "353"
             unlock = "[ ]"
-            intro = "{ 1-9 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/09.def.intro.title', 'text': 'def/09.def.intro.text', 'picture': 'customer.tourist.hawaiian', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/09.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/09.def.failed.text' }"
         }
@@ -106,7 +106,7 @@ MasterChef {
             restaurant = "Rocky Ranch" day = "Day 10"
             title = "Rocky Ranch - Day 10" name = "1-10" no = "10" x = "167" y = "358"
             unlock = "[ ]"
-            intro = "{ 1-10 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/10.def.intro.title', 'text': 'def/10.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/10.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/10.def.failed.text' }"
         }
@@ -149,7 +149,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 1"
             title = "Lemon Lime - Day 1" name = "2-1" no = "11" x = "211" y = "272"
             unlock = "[ 'Tortilla Soup', 'Burrito', ]"
-            intro = "{ 2-1 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/11.def.intro.title', 'text': 'def/11.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/11.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/11.def.failed.text' }"
         }
@@ -157,7 +157,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 2"
             title = "Lemon Lime - Day 2" name = "2-2" no = "12" x = "201" y = "237"
             unlock = "[ 'Chiles Renellos', 'Chili con Carne', ]"
-            intro = "{ 2-2 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/12.def.intro.title', 'text': 'def/12.def.intro.text', 'picture': 'bonus.bomb' }"
             passed = "{ 'layout': 'outro', 'text': 'def/12.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/12.def.failed.text' }"
         }
@@ -165,7 +165,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 3"
             title = "Lemon Lime - Day 3" name = "2-3" no = "13" x = "195" y = "205"
             unlock = "[ 'Tex-Mex Turkey Casseruole', ]"
-            intro = "{ 2-3 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/13.def.intro.title', 'text': 'def/13.def.intro.text', 'picture': 'customer.tourist.mexican', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/13.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/13.def.failed.text' }"
         }
@@ -173,7 +173,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 4"
             title = "Lemon Lime - Day 4" name = "2-4" no = "14" x = "197" y = "172"
             unlock = "[ 'Guacamole', 'Avocado Salsa', ]"
-            intro = "{ 2-4 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/14.def.intro.title', 'text': 'def/14.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/14.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/14.def.failed.text' }"
         }
@@ -181,7 +181,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 5"
             title = "Lemon Lime - Day 5" name = "2-5" no = "15" x = "202" y = "141"
             unlock = "[ 'Fajitas', ]"
-            intro = "{ 2-5 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/15.def.intro.title', 'text': 'def/15.def.intro.text', 'picture': 'bonus.scrollback' }"
             passed = "{ 'layout': 'outro', 'text': 'def/15.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/15.def.failed.text' }"
         }
@@ -189,7 +189,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 6"
             title = "Lemon Lime - Day 6" name = "2-6" no = "16" x = "215" y = "117"
             unlock = "[ 'Quesadilla', ]"
-            intro = "{ 2-6 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/16.def.intro.title', 'text': 'def/16.def.intro.text', 'picture': 'customer.oldlady', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/16.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/16.def.failed.text' }"
         }
@@ -197,7 +197,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 7"
             title = "Lemon Lime - Day 7" name = "2-7" no = "17" x = "230" y = "92"
             unlock = "[ 'Cheese Nachos', 'Football Fan Nachos', ]"
-            intro = "{ 2-7 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/17.def.intro.title', 'text': 'def/17.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/17.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/17.def.failed.text' }"
         }
@@ -205,7 +205,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 8"
             title = "Lemon Lime - Day 8" name = "2-8" no = "18" x = "253" y = "75"
             unlock = "[ 'Avocado Stuffed Tacos', ]"
-            intro = "{ 2-8 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/18.def.intro.title', 'text': 'def/18.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/18.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/18.def.failed.text' }"
         }
@@ -213,7 +213,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 9"
             title = "Lemon Lime - Day 9" name = "2-9" no = "19" x = "276" y = "65"
             unlock = "[ ]"
-            intro = "{ 2-9 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/19.def.intro.title', 'text': 'def/19.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/19.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/19.def.failed.text' }"
         }
@@ -221,7 +221,7 @@ MasterChef {
             restaurant = "Lemon Lime" day = "Day 10"
             title = "Lemon Lime - Day 10" name = "2-10" no = "20" x = "302" y = "61"
             unlock = "[ ]"
-            intro = "{ 2-10 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/20.def.intro.title', 'text': 'def/20.def.intro.text', 'picture': 'customer.critic', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/20.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/20.def.failed.text' }"
         }
@@ -265,7 +265,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 1"
             title = "Bread & Butter - Day 1" name = "3-1" no = "21" x = "416" y = "45"
             unlock = "[ 'Pelmeni', 'Cutlets', ]"
-            intro = "{ 3-1 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/21.def.intro.title', 'text': 'def/21.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/21.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/21.def.failed.text' }"
         }
@@ -273,7 +273,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 2"
             title = "Bread & Butter - Day 2" name = "3-2" no = "22" x = "443" y = "46"
             unlock = "[ 'Cabbage Stew', 'Cabbage Stuffed Pancakes', ]"
-            intro = "{ 3-2 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/22.def.intro.title', 'text': 'def/22.def.intro.text', 'picture': 'customer.tourist.russian', 'frno': 4 }"
             passed = "{ 'layout': 'outro', 'text': 'def/22.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/22.def.failed.text' }"
         }
@@ -281,7 +281,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 3"
             title = "Bread & Butter - Day 3" name = "3-3" no = "23" x = "469" y = "48"
             unlock = "[ 'Baked Meat', 'Kulebyaka', ]"
-            intro = "{ 3-3 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/23.def.intro.title', 'text': 'def/23.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/23.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/23.def.failed.text' }"
         }
@@ -289,7 +289,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 4"
             title = "Bread & Butter - Day 4" name = "3-4" no = "24" x = "495" y = "50"
             unlock = "[ 'Golubtsy', 'Fried Mushrooms', ]"
-            intro = "{ 3-4 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/24.def.intro.title', 'text': 'def/24.def.intro.text', 'picture': 'bonus.gift' }"
             passed = "{ 'layout': 'outro', 'text': 'def/24.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/24.def.failed.text' }"
         }
@@ -297,7 +297,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 5"
             title = "Bread & Butter - Day 5" name = "3-5" no = "25" x = "521" y = "56"
             unlock = "[ 'Mushroom Ragout', 'Mushroom Soup', ]"
-            intro = "{ 3-5 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/25.def.intro.title', 'text': 'def/25.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/25.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/25.def.failed.text' }"
         }
@@ -305,7 +305,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 6"
             title = "Bread & Butter - Day 6" name = "3-6" no = "26" x = "543" y = "63"
             unlock = "[ 'Vareniki', ]"
-            intro = "{ 3-6 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/26.def.intro.title', 'text': 'def/26.def.intro.text', 'picture': 'customer.vegetarian', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/26.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/26.def.failed.text' }"
         }
@@ -313,7 +313,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 7"
             title = "Bread & Butter - Day 7" name = "3-7" no = "27" x = "571" y = "71"
             unlock = "[ 'Shchi', ]"
-            intro = "{ 3-7 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/27.def.intro.title', 'text': 'def/27.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/27.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/27.def.failed.text' }"
         }
@@ -321,7 +321,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 8"
             title = "Bread & Butter - Day 8" name = "3-8" no = "28" x = "595" y = "79"
             unlock = "[ ]"
-            intro = "{ 3-8 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/28.def.intro.title', 'text': 'def/28.def.intro.text', 'picture': 'bonus.shuffle' }"
             passed = "{ 'layout': 'outro', 'text': 'def/28.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/28.def.failed.text' }"
         }
@@ -329,7 +329,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 9"
             title = "Bread & Butter - Day 9" name = "3-9" no = "29" x = "620" y = "90"
             unlock = "[ ]"
-            intro = "{ 3-9 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/29.def.intro.title', 'text': 'def/29.def.intro.text', 'picture': 'customer.schoolkid', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/29.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/29.def.failed.text' }"
         }
@@ -337,7 +337,7 @@ MasterChef {
             restaurant = "Bread & Butter" day = "Day 10"
             title = "Bread & Butter - Day 10" name = "3-10" no = "30" x = "642" y = "105"
             unlock = "[ ]"
-            intro = "{ 3-10 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/30.def.intro.title', 'text': 'def/30.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/30.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/30.def.failed.text' }"
         }
@@ -381,7 +381,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 1"
             title = "Sushi Side - Day 1" name = "4-1" no = "31" x = "726" y = "172"
             unlock = "[ 'Sashimi', 'Ochazuke', ]"
-            intro = "{ 4-1 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/31.def.intro.title', 'text': 'def/31.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/31.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/31.def.failed.text' }"
         }
@@ -389,7 +389,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 2"
             title = "Sushi Side - Day 2" name = "4-2" no = "32" x = "738" y = "197"
             unlock = "[ 'Nigiri Zushi', 'Koyungohan', ]"
-            intro = "{ 4-2 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/32.def.intro.title', 'text': 'def/32.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/32.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/32.def.failed.text' }"
         }
@@ -397,7 +397,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 3"
             title = "Sushi Side - Day 3" name = "4-3" no = "33" x = "746" y = "222"
             unlock = "[ 'Tempura Shrimp Roll', 'Osechi', ]"
-            intro = "{ 4-3 }"
+            intro = "{ 'layout': 'custpic', 'title': 'def/33.def.intro.title', 'text': 'def/33.def.intro.text', 'picture': 'customer.tourist.japanese', 'frno': 9 }"
             passed = "{ 'layout': 'outro', 'text': 'def/33.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/33.def.failed.text' }"
         }
@@ -405,7 +405,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 4"
             title = "Sushi Side - Day 4" name = "4-4" no = "34" x = "752" y = "249"
             unlock = "[ 'Seafood Tempura', 'Yosenabe', ]"
-            intro = "{ 4-4 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/34.def.intro.title', 'text': 'def/34.def.intro.text', 'picture': 'bonus.spoon' }"
             passed = "{ 'layout': 'outro', 'text': 'def/34.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/34.def.failed.text' }"
         }
@@ -413,7 +413,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 5"
             title = "Sushi Side - Day 5" name = "4-5" no = "35" x = "755" y = "278"
             unlock = "[ 'Onigiri', 'Temaki Zushi', ]"
-            intro = "{ 4-5 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/35.def.intro.title', 'text': 'def/35.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/35.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/35.def.failed.text' }"
         }
@@ -421,7 +421,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 6"
             title = "Sushi Side - Day 6" name = "4-6" no = "36" x = "752" y = "307"
             unlock = "[ 'TofuDengaku', ]"
-            intro = "{ 4-6 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/36.def.intro.title', 'text': 'def/36.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/36.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/36.def.failed.text' }"
         }
@@ -429,7 +429,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 7"
             title = "Sushi Side - Day 7" name = "4-7" no = "37" x = "741" y = "332"
             unlock = "[ 'Tempura', ]"
-            intro = "{ 4-7 }"
+            intro = "{ 'layout': 'bonuspic', 'title': 'def/37.def.intro.title', 'text': 'def/37.def.intro.text', 'picture': 'bonus.hearts' }"
             passed = "{ 'layout': 'outro', 'text': 'def/37.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/37.def.failed.text' }"
         }
@@ -437,7 +437,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 8"
             title = "Sushi Side - Day 8" name = "4-8" no = "38" x = "724" y = "357"
             unlock = "[ ]"
-            intro = "{ 4-8 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/38.def.intro.title', 'text': 'def/38.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/38.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/38.def.failed.text' }"
         }
@@ -445,7 +445,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 9"
             title = "Sushi Side - Day 9" name = "4-9" no = "39" x = "704" y = "374"
             unlock = "[ ]"
-            intro = "{ 4-9 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/39.def.intro.title', 'text': 'def/39.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/39.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/39.def.failed.text' }"
         }
@@ -453,7 +453,7 @@ MasterChef {
             restaurant = "Sushi Side" day = "Day 10"
             title = "Sushi Side - Day 10" name = "4-10" no = "40" x = "681" y = "388"
             unlock = "[ ]"
-            intro = "{ 4-10 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/40.def.intro.title', 'text': 'def/40.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/40.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/40.def.failed.text' }"
         }
@@ -507,7 +507,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 1"
             title = "Tiki Time - Day 1" name = "5-1" no = "41" x = "586" y = "407"
             unlock = "[ 'Hulihuli Chicken', 'Lime Chicken', ]"
-            intro = "{ 5-1 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/41.def.intro.title', 'text': 'def/41.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/41.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/41.def.failed.text' }"
         }
@@ -515,7 +515,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 2"
             title = "Tiki Time - Day 2" name = "5-2" no = "42" x = "561" y = "423"
             unlock = "[ 'Wonton', 'Shrimp Canton', ]"
-            intro = "{ 5-2 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/42.def.intro.title', 'text': 'def/42.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/42.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/42.def.failed.text' }"
         }
@@ -523,7 +523,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 3"
             title = "Tiki Time - Day 3" name = "5-3" no = "43" x = "545" y = "450"
             unlock = "[ 'Spicy Shrimps', 'Shrimp Mango Salad', ]"
-            intro = "{ 5-3 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/43.def.intro.title', 'text': 'def/43.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/43.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/43.def.failed.text' }"
         }
@@ -531,7 +531,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 4"
             title = "Tiki Time - Day 4" name = "5-4" no = "44" x = "545" y = "482"
             unlock = "[ 'Chicken Shrimp Soup', 'Mango Mui', ]"
-            intro = "{ 5-4 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/44.def.intro.title', 'text': 'def/44.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/44.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/44.def.failed.text' }"
         }
@@ -539,7 +539,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 5"
             title = "Tiki Time - Day 5" name = "5-5" no = "45" x = "555" y = "508"
             unlock = "[ 'Chicken Laulau', 'Pipikaula', ]"
-            intro = "{ 5-5 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/45.def.intro.title', 'text': 'def/45.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/45.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/45.def.failed.text' }"
         }
@@ -547,7 +547,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 6"
             title = "Tiki Time - Day 6" name = "5-6" no = "46" x = "573" y = "527"
             unlock = "[ 'Mango Chicken', ]"
-            intro = "{ 5-6 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/46.def.intro.title', 'text': 'def/46.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/46.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/46.def.failed.text' }"
         }
@@ -555,7 +555,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 7"
             title = "Tiki Time - Day 7" name = "5-7" no = "47" x = "599" y = "537"
             unlock = "[ 'Mango Salsa', ]"
-            intro = "{ 5-7 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/47.def.intro.title', 'text': 'def/47.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/47.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/47.def.failed.text' }"
         }
@@ -563,7 +563,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 8"
             title = "Tiki Time - Day 8" name = "5-8" no = "48" x = "626" y = "540"
             unlock = "[ ]"
-            intro = "{ 5-8 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/48.def.intro.title', 'text': 'def/48.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/48.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/48.def.failed.text' }"
         }
@@ -571,7 +571,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 9"
             title = "Tiki Time - Day 9" name = "5-9" no = "49" x = "654" y = "542"
             unlock = "[ ]"
-            intro = "{ 5-9 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/49.def.intro.title', 'text': 'def/49.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/49.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/49.def.failed.text' }"
         }
@@ -579,7 +579,7 @@ MasterChef {
             restaurant = "Tiki Time" day = "Day 10"
             title = "Tiki Time - Day 10" name = "5-10" no = "50" x = "683" y = "538"
             unlock = "[ ]"
-            intro = "{ 5-10 }"
+            intro = "{ 'layout': 'nopic', 'title': 'def/50.def.intro.title', 'text': 'def/50.def.intro.text' }"
             passed = "{ 'layout': 'outro', 'text': 'def/50.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/50.def.failed.text' }"
         }
@@ -701,6 +701,15 @@ MasterChef {
         layout(episode-outro.failed.5) { textFont = "arial-italic-18" textXY = "(210,465)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
         layout(episode-outro.failed.6) { textFont = "arial-italic-18" textXY = "(210,490)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
         layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+
+        layout(hint.left-arrow) { 
+            textFont = "arial-italic-18" textXY = "(60,-250)" textArea = "(260,120)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(190,-170)" picture = "hints.background-left-bottom" 
+        }
+        layout(hint.left-arrow) { 
+            textFont = "arial-italic-18" textXY = "(170,400)" textArea = "(290,150)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(130,425)" picture = "hints.background-right-bottom" 
+        }
     }
 
 }

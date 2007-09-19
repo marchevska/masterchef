@@ -445,4 +445,24 @@ MasterChef {
     text(Sam) { str = "Sam" }
     text(Scott) { str = "Scott" }
     text(Steve) { str = "Steve" }
+    text(customer.worker.hint) { str = "This is a worker. This is a worker. This is a worker. This is a worker. This is a worker. This is a worker. This is a worker. This is a worker. This is a worker. " }
+    text(customer.student.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.business.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.oldlady.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.critic.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.schoolkid.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.vegetarian.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.tourist hawaiian.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.tourist mexican.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.tourist russian.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(customer.tourist japanese.hint) { str = "This is a worker. This is a worker. This is a worker. " }
+    text(bonus.spoon.hint) { str = "" }
+    text(bonus.removerow.hint) { str = "" }
+    text(bonus.bomb.hint) { str = "" }
+    text(bonus.scrollback.hint) { str = "" }
+    text(bonus.shuffle.hint) { str = "" }
+    text(bonus.magicwand.hint) { str = "" }
+    text(bonus.sweet.hint) { str = "" }
+    text(bonus.gift.hint) { str = "" }
+    text(bonus.hearts.hint) { str = "" }
 }

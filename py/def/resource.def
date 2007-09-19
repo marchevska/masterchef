@@ -632,6 +632,10 @@ MasterChef{
         sprite(help-page3) { bitmap = "img/gui/help-page3.png" }
         sprite(help-page4) { bitmap = "img/gui/help-page4.png" }
         
+        //Hints
+        sprite(hints.background-left-bottom) { bitmap = "img/gui/hints.background-left-bottom.png" hotspot = "center" }
+        sprite(hints.background-right-bottom) { bitmap = "img/gui/hints.background-right-bottom.png" hotspot = "center" }
+        
     }
     
     

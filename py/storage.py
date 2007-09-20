@@ -29,6 +29,7 @@ class Storage(scraft.Dispatcher):
         self.Cols, self.Rows = cols, rows
         self.Collapsing = False
         
+        self.TokenEventsList = []
         self.Action = Const_HighlightPick
         self.Base = MakeSprite("$spritecraft$dummy$", Layer_Receptors, {"x": x, "y": y })
         self.HighlightedCells = []
@@ -516,6 +517,10 @@ class Field(Storage):
             
         
         tmp = RandomKeyByRates(tmpRecommendedRates)
+        
+        if tmp in tmpAllBonus:
+            self.TokenEventsList.append({ "type": tmp, "where": cell })
+            
         self.Cells[cell] = tmp
         self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(tmp).GetStrAttr("src"))
         #print tmp
@@ -716,7 +721,12 @@ class Field(Storage):
                 self.SetState(FieldState_Input)
                 
             elif self.State == FieldState_Input:
-                pass
+                if not self.Collapsing or self.DropperState == DropperState_Drop:
+                    for tmp in self.TokenEventsList:
+                        if self.MatchMap.has_key(tmp["where"]) and self.MatchMap[tmp["where"]] != -1:
+                            globalvars.BlackBoard.Update(BBTag_Hints, { "event": tmp["type"],
+                                                                       "where": self._AbsCellCoords(tmp["where"]) })
+                            self.TokenEventsList.remove(tmp)
                 
             #схлопывание блоков после удаления, по заданной программе
             elif self.State == FieldState_Collapse:
@@ -1165,6 +1175,8 @@ class Collapsoid(Field):
                 self.Selection.y = self.Crd_minY + Crd_deltaY/2
                 self.SelectedCells = map(lambda x: (x[0], x[1]-1), self.SelectedCells)
                 self._DrawSelection()
+                self.TokenEventsList = filter(lambda y: y["where"][1] >= 0,
+                    map(lambda x: { "type": x["type"], "where": (x["where"][0], x["where"][1]-1) }, self.TokenEventsList))
                 for i in range(self.Cols):
                     self.Receptors[i,0].Dispose()
                 for i in range(self.Cols):

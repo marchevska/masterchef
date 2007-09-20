@@ -35,7 +35,6 @@ class Advisor(scraft.Dispatcher):
                             tmpHintNode.GetIntAttr("minLevel") <= globalvars.CurrentPlayer.GetLevel().GetIntAttr("no") <= tmpHintNode.GetIntAttr("maxLevel") and \
                             not globalvars.CurrentPlayer.GetLevelParams(tmp["event"]).GetBoolAttr("seen") \
                             and globalvars.GameConfig.GetBoolAttr("Hints")):
-                        
                         globalvars.CurrentPlayer.SetLevelParams(tmp["event"], { "seen": True })
                         globalvars.GUI.ShowHint(tmp["event"], tmp["where"])
                         break

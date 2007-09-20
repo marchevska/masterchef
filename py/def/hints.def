@@ -76,65 +76,65 @@ MasterChef {
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Spoon) {
+    hint(bonus.spoon) {
         text = "bonus.spoon.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Removerow) {
+    hint(bonus.removerow) {
         text = "bonus.removerow.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Bomb) {
+    hint(bonus.bomb) {
         text = "bonus.bomb.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Scrollback) {
+    hint(bonus.scrollback) {
         text = "bonus.scrollback.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Shuffle) {
+    hint(bonus.shuffle) {
         text = "bonus.shuffle.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Magicwand) {
+    hint(bonus.magicwand) {
         text = "bonus.magicwand.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Sweet) {
+    hint(bonus.sweet) {
         text = "bonus.sweet.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Gift) {
+    hint(bonus.gift) {
         text = "bonus.gift.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
-    hint(Bonus.Hearts) {
+    hint(bonus.hearts) {
         text = "bonus.hearts.hint"
-        layout = "outro"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"

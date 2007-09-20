@@ -280,8 +280,8 @@ MasterChef {
             hasPicture = "yes" pictureXY = "(220,-170)" picture = "hints.background-left-bottom" 
         }
         layout(hint.right-arrow) { 
-            textFont = "arial-italic-18" textXY = "(170,400)" textArea = "(290,150)" textColor = "0x000000" 
-            hasPicture = "yes" pictureXY = "(130,425)" picture = "hints.background-right-bottom" 
+            textFont = "arial-italic-18" textXY = "(-270,400)" textArea = "(290,150)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(-430,-125)" picture = "hints.background-right-bottom" 
         }
     }
 

@@ -19,7 +19,7 @@ import config
 import globalvars
 import defs
 
-oE.logging = False
+oE.logging = True
 oE.Init(scraft.DevDisableDrvInfo)
 oE.vMode = Video_Mode
 oE.background.color = 0x402020

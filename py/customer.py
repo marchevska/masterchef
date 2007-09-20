@@ -37,6 +37,7 @@ class Customer(scraft.Dispatcher):
                         self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx,
                         self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy))
         self.HasOrder = False
+        self.Host = None
         self.PrevState = CustomerState_None
         self._SetState(CustomerState_Queue)
         self.QueNo = oE.executor.Schedule(self)
@@ -68,6 +69,9 @@ class Customer(scraft.Dispatcher):
         
     def _SetHearts(self, newHearts):
         no = max(0, min(newHearts, Const_MaxHearts))
+        if self.Host != None and self.State in (CustomerState_Wait,):
+            globalvars.BlackBoard.Update(BBTag_Hints, { "event": "CustomerMood."+str(no)+"Hearts",
+                                                   "where": (self.Host.CrdX, self.Host.CrdY) })
         if self.State == CustomerState_Queue:
             self.Hearts = no
         elif no>0:
@@ -86,6 +90,9 @@ class Customer(scraft.Dispatcher):
             self._SetState(CustomerState_GoAway)
         
     def _SetState(self, state):
+        if self.Host != None:
+            globalvars.BlackBoard.Update(BBTag_Hints, { "event": "CustomerState."+state,
+                                                   "where": (self.Host.CrdX, self.Host.CrdY) })
         self.State = state
         if state == CustomerState_Queue:
             self.NextStateTime = 0
@@ -197,7 +204,7 @@ class Customer(scraft.Dispatcher):
                             self.Host.SendCommand(Cmd_CustomerGoesAway)
                             
                         elif self.State == CustomerState_ThankYou:
-                            self._SetState(CustomerState_None)
+                            self._SetState(CustomerState_Remove)
                             self.Host.SendCommand(Cmd_Station_DeleteCustomer)
                             if not globalvars.GameSettings.GetBoolAttr("autoReleaseCustomer"):
                                 self.Host.SendCommand(Cmd_FreeStation)

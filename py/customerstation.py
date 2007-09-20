@@ -269,7 +269,8 @@ class CustomerStation(scraft.Dispatcher):
             tmp.Show(flag)
         
     def Freeze(self, flag):
-        if self.Active:
+        #if self.Active:
+        if self.Customer != None:
             self.Customer.Freeze(flag)
             
     def SendCommand(self, cmd, parameter = None):
@@ -313,6 +314,8 @@ class CustomerStation(scraft.Dispatcher):
             globalvars.Board.SendCommand(Cmd_TakeMoney, { "station": self,
                         "amount": globalvars.RecipeInfo.GetSubtag(self.OrderType).GetIntAttr("price"),
                         "tips": self.Tips})
+            globalvars.BlackBoard.Update(BBTag_Hints, { "event": "Station.TakeMoney",
+                                                   "where": (self.CrdX, self.CrdY) })
             
         elif cmd == Cmd_Station_DeleteCustomerAndLoseMoney:
             self.Active = False
@@ -325,6 +328,8 @@ class CustomerStation(scraft.Dispatcher):
             globalvars.Board.SendCommand(Cmd_FreeStation)
             globalvars.Board.SendCommand(Cmd_TakeMoney, { "station": self,
                         "amount": -globalvars.GameSettings.GetIntAttr("customerLossPrice") })
+            globalvars.BlackBoard.Update(BBTag_Hints, { "event": "Station.LoseMoney",
+                                                   "where": (self.CrdX, self.CrdY) })
             
         
     def Kill(self):

@@ -643,6 +643,12 @@ class Gui(scraft.Dispatcher):
                 "button-4st", [0, 1, 2], 
                 Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
                 defs.GetGameString("Str_No"), ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
+        #self.HintsDialog["Text"]["Label_Music"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 270,
+        #                                        scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMusic"))
+        #self.HintsDialog["Buttons"]["Mute"] = PushButton("OptionsMute",
+        #        self, Cmd_OptionsMute, PState_Options,
+        #        "options-checkbox", [0, 1, 2], 
+        #        Layer_PopupBtnTxt, 372, 330, 30, 30)
         
         self.AllDialogs = {
             PState_DevLogo: self.DevLogo,

@@ -98,6 +98,25 @@ MasterChef{
         hint(Customer.Tourist Mexican) { seen = "no" }
         hint(Customer.Tourist Russian) { seen = "no" }
         hint(Customer.Tourist Japanese) { seen = "no" }
+        hint(Bonus.Spoon) { seen = "no" }
+        hint(Bonus.Removerow) { seen = "no" }
+        hint(Bonus.Bomb) { seen = "no" }
+        hint(Bonus.Scrollback) { seen = "no" }
+        hint(Bonus.Shuffle) { seen = "no" }
+        hint(Bonus.Magicwand) { seen = "no" }
+        hint(Bonus.Sweet) { seen = "no" }
+        hint(Bonus.Gift) { seen = "no" }
+        hint(Bonus.Hearts) { seen = "no" }
+        hint(Station.TakeMoney) { seen = "no" }
+        hint(Station.LoseMoney) { seen = "no" }
+        hint(CustomerState.Wait) { seen = "no" }
+        hint(CustomerState.MealReady) { seen = "no" }
+        hint(CustomerState.Remove) { seen = "no" }
+        hint(CustomerMood.4Hearts) { seen = "no" }
+        hint(CustomerMood.2Hearts) { seen = "no" }
+        hint(CustomerMood.1Hearts) { seen = "no" }
+        hint(Field.Empty) { seen = "no" }
+        hint(Field.Overflow) { seen = "no" }
     //}
     
     //Recipes{

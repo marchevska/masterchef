@@ -139,19 +139,74 @@ MasterChef {
         maxLevel = "50"
         showOnce = "yes"
     }
+    hint(Station.TakeMoney) {
+        text = "station.takemoney.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(Station.LoseMoney) {
+        text = "station.losemoney.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
     hint(CustomerState.Wait) {
         text = "customerstate.wait.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(CustomerState.MealReady) {
+        text = "customerstate.mealready.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(CustomerState.Remove) {
+        text = "customerstate.remove.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(CustomerMood.4Hearts) {
+        text = "customermood.4hearts.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
     }
     hint(CustomerMood.2Hearts) {
         text = "customermood.2hearts.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
     }
     hint(CustomerMood.1Hearts) {
         text = "customermood.1hearts.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
     }
     hint(Field.Empty) {
         text = "field.empty.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
     }
     hint(Field.Overflow) {
         text = "field.overflow.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
     }
 }

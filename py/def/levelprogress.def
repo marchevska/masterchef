@@ -703,10 +703,10 @@ MasterChef {
         layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
 
         layout(hint.left-arrow) { 
-            textFont = "arial-italic-18" textXY = "(60,-250)" textArea = "(260,120)" textColor = "0x000000" 
-            hasPicture = "yes" pictureXY = "(190,-170)" picture = "hints.background-left-bottom" 
+            textFont = "arial-italic-18" textXY = "(70,-245)" textArea = "(320,120)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(220,-170)" picture = "hints.background-left-bottom" 
         }
-        layout(hint.left-arrow) { 
+        layout(hint.right-arrow) { 
             textFont = "arial-italic-18" textXY = "(170,400)" textArea = "(290,150)" textColor = "0x000000" 
             hasPicture = "yes" pictureXY = "(130,425)" picture = "hints.background-right-bottom" 
         }

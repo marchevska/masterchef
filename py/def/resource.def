@@ -635,6 +635,8 @@ MasterChef{
         //Hints
         sprite(hints.background-left-bottom) { bitmap = "img/gui/hints.background-left-bottom.png" type = "blend" hotspot = "center" }
         sprite(hints.background-right-bottom) { bitmap = "img/gui/hints.background-right-bottom.png" type = "blend" hotspot = "center" }
+        sprite(hints.background-left-top) { bitmap = "img/gui/hints.background-left-top.png" type = "blend" hotspot = "center" }
+        sprite(hints.background-right-top) { bitmap = "img/gui/hints.background-right-top.png" type = "blend" hotspot = "center" }
         
     }
     

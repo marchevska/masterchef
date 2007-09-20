@@ -1159,6 +1159,15 @@ class Collapsoid(Field):
             self.Dropped = 0
             self.NextDropTime = self.Delay
             
+            #проверить - не угрожает ли полю переполнение
+            #если да - сделать игроку подсказку
+            tmpBurningTokens = filter(lambda x: self.Cells[x]!=Const_EmptyCell and \
+                    x[1]<globalvars.GameSettings.GetIntAttr("burnCollapsoidRows"), self.Cells.keys())
+            if tmpBurningTokens != []:
+                globalvars.BlackBoard.Update(BBTag_Hints, { "event": "Field.Overflow",
+                                        "where": self._AbsCellCoords(choice(tmpBurningTokens)) })
+            
+            
         elif state == DropperState_Burn:
             self._ExplodeTokens(self.BurningTokens)
             #for cell in self.BurningTokens:

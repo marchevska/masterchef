@@ -466,7 +466,7 @@ MasterChef {
     text(bonus.gift.hint) { str = "" }
     text(bonus.hearts.hint) { str = "" }
     text(station.takemoney.hint) { str = "The happier your customer when he leaves, the more tips he'll give you." }
-    text(station.losemoney.hint) { str = "Each time a customer leaves unhappy, you're losing some money." }
+    text(station.losemoney.hint) { str = "1.Each time a customer leaves unhappy, you're losing some money." }
     text(customerstate.wait.hint) { str = "He wants a barbequed meat, and these are ingredients required to cook it." }
     text(customerstate.mealready.hint) { str = "The barbeque is ready! Now the customer will leave and give you the money." }
     text(customerstate.remove.hint) { str = "Pick up the money, and wait for the next customer at this table." }
@@ -474,5 +474,5 @@ MasterChef {
     text(customermood.2hearts.hint) { str = "" }
     text(customermood.1hearts.hint) { str = "" }
     text(field.empty.hint) { str = "" }
-    text(field.overflow.hint) { str = "" }
+    text(field.overflow.hint) { str = "Overflow warning!" }
 }

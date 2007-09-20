@@ -197,14 +197,14 @@ MasterChef {
     }
     hint(Field.Empty) {
         text = "field.empty.hint"
-        layout = "hint.left-arrow"
+        layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"
     }
     hint(Field.Overflow) {
         text = "field.overflow.hint"
-        layout = "hint.left-arrow"
+        layout = "hint.right-top-arrow"
         minLevel = "1"
         maxLevel = "50"
         showOnce = "yes"

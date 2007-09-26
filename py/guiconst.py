@@ -179,6 +179,6 @@ Channel_Default = 0
 #разные константы
 Const_AllChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 Max_NameLen = 12
-Max_Scores = 6
+Max_Scores = 5
 
 

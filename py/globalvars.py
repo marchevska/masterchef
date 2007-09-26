@@ -12,6 +12,7 @@ global File_GameConfig
 global File_Hiscores
 global File_BestResults
 global File_PlayersConfig
+global File_HiscoresSafe
 global File_PlayersConfigSafe
 global File_DummyProfile
 global File_GameConfigSafe

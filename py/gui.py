@@ -461,39 +461,35 @@ class Gui(scraft.Dispatcher):
         # рекорды
         #---------
         self.HiscoresDialog = {"Static": {}, "Text": {}, "Buttons": {}}
-        self.HiscoresDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
-        self.HiscoresDialog["Text"]["Title"] = MakeTextSprite("domcasual-10-up", Layer_PopupBtnTxt, 400, 165,
-                                                scraft.HotspotCenter, defs.GetGameString("Str_Hiscores_Title"))
+        self.HiscoresDialog["Static"]["Back"] = MakeSimpleSprite("background-big", Layer_PopupBg)
+        self.HiscoresDialog["Static"]["Title"] = MakeSimpleSprite("hiscores.title", Layer_PopupBtnTxt, 400, 38)
+        #self.HiscoresDialog["Text"]["Title"] = MakeTextSprite("domcasual-10-up", Layer_PopupBtnTxt, 400, 165,
+        #                                        scraft.HotspotCenter, defs.GetGameString("Str_Hiscores_Title"))
+        tmpHiscoreTags = map(lambda x: x.GetContent(), globalvars.Hiscores.Tags())
+        for i in range(len(tmpHiscoreTags)):
+            tmpX0, tmpY0 = 140+260*(i%3), 185+240*(i/3)
+            self.HiscoresDialog["Static"]["Frame_" + tmpHiscoreTags[i]] = MakeSimpleSprite("hiscores.frame",
+                            Layer_PopupBtnTxt, tmpX0, tmpY0)
+            self.HiscoresDialog["Static"]["Logo_" + tmpHiscoreTags[i]] = MakeSprite("hiscores.logos", Layer_PopupBtnTxt-1,
+                            { "x": tmpX0, "y": tmpY0 - 35, "frno": i*2 })
+            for j in range(Max_Scores):
+                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)] = MakeTextSprite("domcasual-10-up",
+                            Layer_PopupBtnTxt-1, tmpX0 - 110, tmpY0 - 35 + 25*(j+1), scraft.HotspotLeftCenter)
+                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)] = MakeTextSprite("domcasual-10-up",
+                            Layer_PopupBtnTxt-1, tmpX0 + 110, tmpY0 - 35 + 25*(j+1), scraft.HotspotRightCenter)
         self.HiscoresDialog["Buttons"]["Reset"] = PushButton("HiscoresReset",
                 self, Cmd_HiscoresReset, PState_Hiscores,
                 "button-4st", [0, 1, 2, 3], 
-                Layer_PopupBtnTxt, 330, 500, 120, 40,
+                Layer_PopupBtnTxt, 300, 570, 120, 40,
                 defs.GetGameString("Str_HiscoresReset"),
                 ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
         self.HiscoresDialog["Buttons"]["Close"] = PushButton("HiscoresClose",
                 self, Cmd_HiscoresClose, PState_Hiscores,
                 "button-4st", [0, 1, 2], 
-                Layer_PopupBtnTxt, 470, 500, 120, 40,
+                Layer_PopupBtnTxt, 500, 570, 120, 40,
                 defs.GetGameString("Str_HiscoresClose"),
                 ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down"])
         
-        tmpHiscoreTags = map(lambda x: x.GetContent(), globalvars.Hiscores.Tags())
-        for i in range(len(tmpHiscoreTags)):
-            tmpX0, tmpY0 = 150+250*(i%3), 100+300*(i/3)
-            self.HiscoresDialog["Static"]["Image_" + tmpHiscoreTags[i]] = MakeSimpleSprite("$spritecraft$dummy$",
-                            Layer_PopupBtnTxt, tmpX0, tmpY0)
-            for j in range(Max_Scores):
-                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)] = MakeTextSprite("domcasual-10-up",
-                            Layer_PopupBtnTxt, tmpX0 - 50, tmpY0 + 30* (j+1), scraft.HotspotLeftCenter)
-                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)] = MakeTextSprite("domcasual-10-up",
-                            Layer_PopupBtnTxt, tmpX0 + 50, tmpY0 + 30* (j+1), scraft.HotspotRightCenter)
-            
-        
-        #for i in range(Max_Scores):
-        #    self.HiscoresDialog["Text"]["Name_"+str(i)] = MakeTextSprite("domcasual-10-up",
-        #        Layer_PopupBtnTxt, 280, 220 + 30* i, scraft.HotspotLeftCenter)
-        #    self.HiscoresDialog["Text"]["Score_"+str(i)] = MakeTextSprite("domcasual-10-up",
-        #        Layer_PopupBtnTxt, 520, 220 + 30* i, scraft.HotspotRightCenter)
         
         #-------
         # экран с комиксом
@@ -973,14 +969,10 @@ class Gui(scraft.Dispatcher):
         tmpAllEpisodes = map(lambda x: x.GetContent(), globalvars.LevelProgress.GetTag("Episodes").Tags("episode"))
         for i in range(len(tmpHiscoreTags)):
             if tmpHiscoreTags[i] in tmpAllEpisodes:
-                self.HiscoresDialog["Static"]["Image_" + tmpHiscoreTags[i]].ChangeKlassTo(\
-                        globalvars.LevelProgress.GetTag("Episodes").GetSubtag(tmpHiscoreTags[i]).GetStrAttr("image"))
                 if globalvars.CurrentPlayer.GetLevelParams(tmpHiscoreTags[i]).GetBoolAttr("unlocked"):
-                    self.HiscoresDialog["Static"]["Image_" + tmpHiscoreTags[i]].frno = 0
+                    self.HiscoresDialog["Static"]["Logo_" + tmpHiscoreTags[i]].frno = 2*i
                 else:
-                    self.HiscoresDialog["Static"]["Image_" + tmpHiscoreTags[i]].frno = 1
-            else:
-                self.HiscoresDialog["Static"]["Image_" + tmpHiscoreTags[i]].ChangeKlassTo("$spritecraft$dummy$")
+                    self.HiscoresDialog["Static"]["Logo_" + tmpHiscoreTags[i]].frno = 2*i+1
             
             tmpTagScores = map(lambda x: (x.GetStrAttr("name"),x.GetStrAttr("score")),
                         globalvars.Hiscores.GetSubtag(tmpHiscoreTags[i]).Tags())
@@ -1923,7 +1915,7 @@ class Gui(scraft.Dispatcher):
             self._ShowHelpPage(self.CurrentHelpPage)
             
         elif state == PState_Hiscores:
-            self._ShowDialog(self.MainMenuDialog, True)
+            #self._ShowDialog(self.MainMenuDialog, True)
             config.UpdateHiscores()
             self._ShowDialog(self.HiscoresDialog, True)
             self._UpdateHiscoresDialog()

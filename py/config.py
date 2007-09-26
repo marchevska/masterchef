@@ -39,6 +39,7 @@ def GetFileLocations():
     globalvars.File_BestResults = globalvars.DataDirectory + File_BestResultsName
     globalvars.File_PlayersConfig = globalvars.DataDirectory + File_PlayersConfigName
     
+    globalvars.File_HiscoresSafe = oE.rscpath + File_HiscoresSafeName
     globalvars.File_PlayersConfigSafe = oE.rscpath + File_PlayersConfigSafeName
     globalvars.File_DummyProfile = oE.rscpath + File_DummyProfileName
     globalvars.File_GameConfigSafe = oE.rscpath + File_GameConfigSafeName

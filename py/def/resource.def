@@ -562,6 +562,7 @@ MasterChef{
         sprite(continue-button) { bitmap = "img/gui/continue-button.png" type = "blend" layout = "1x4" }
         sprite(popup-background) { bitmap = "img/gui/popup-background.png" type = "blend" }
         sprite(2nd-popup-background) { bitmap = "img/gui/2nd-popup-background.png" type = "blend" }
+        sprite(background-big) { bitmap = "img/gui/background-big.png" type = "blend" }
         
         //Logos
         sprite(developer-logo) { bitmap = "img/logos/developer-logo.png" }
@@ -620,6 +621,11 @@ MasterChef{
         sprite(players-list-background) { bitmap = "img/gui/players-list-background.png" type = "blend" }
         sprite(textcursor) { bitmap = "img/gui/textcursor.bmp" layout = "2x1" }
         sprite(entername.text-field) { bitmap = "img/gui/entername.text-field.png" type = "blend" }
+        
+        //Hiscores
+        sprite(hiscores.title) { bitmap = "img/gui/hiscores.title.png" type = "blend" }
+        sprite(hiscores.frame) { bitmap = "img/gui/hiscores.frame.png" type = "blend" }
+        sprite(hiscores.logos) { bitmap = "img/gui/hiscores.logos.png" type = "blend" layout = "2x6" hotspot = "120, 90" }
         
         //Options
         sprite(options-slider) { bitmap = "img/gui/options-slider.png" type = "blend" layout = "3x1" }

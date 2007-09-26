@@ -1,12 +1,14 @@
-MasterChef{
-  score() { Name = 'Someone' Score = 1952 }
-  score() { Name = 'Someone' Score = 1952 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
+MasterChef {
+    Scores(Game) {
+    }
+    Scores(American){
+    }
+    Scores(Mexican){
+    }
+    Scores(Russian){
+    }
+    Scores(Japanese){
+    }
+    Scores(Hawaiian){
+    }
 }

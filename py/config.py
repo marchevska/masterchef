@@ -126,29 +126,63 @@ def ClearHiscores():
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         sys.exit()
     
+#сортировка и отсев лишних записей
 def UpdateHiscores():
-    pass
-    #globalvars.HiscoresList.sort(lambda x,y: cmp(y["Score"], x["Score"]))
-    #if len(globalvars.HiscoresList) > Max_Scores:
-    #    for i in range(Max_Scores, len(globalvars.HiscoresList)):
-    #        del globalvars.HiscoresList[-1]
+    try:
+        for tmpTagNode in globalvars.Hiscores.Tags():
+            tmpScoresList = map(lambda x: (x.GetContent(), x.GetIntAttr("score")), tmpTagNode.Tags())
+            tmpScoresList.sort(lambda x,y: cmp(y[1], x[1]))
+            
+            #если более одного игрока имеют одинаковый результат,
+            #поднять текущего игрока
+            tmp = filter(lambda x: tmpScoresList[x][0] == globalvars.GameConfig.GetStrAttr("Player"),
+                                          range(len(tmpScoresList)))
+            if tmp == []:
+                tmpCurrentNo = -1
+            else:
+                tmpCurrentNo = tmp[0]
+                if tmpCurrentNo > 0:
+                    if tmpScoresList[tmpCurrentNo-1][1] == tmpScoresList[tmpCurrentNo][1]:
+                        tmpEl = tmpScoresList[tmpCurrentNo-1]
+                        tmpScoresList[tmpCurrentNo-1] = tmpScoresList[tmpCurrentNo]
+                        tmpScoresList[tmpCurrentNo] = tmpEl
+                        tmpCurrentNo -= 1
+            
+            #если результат текущего игрока не входит в первые Max_Scores,
+            #то поднять результат текущего игрока, чтобы он вошел в список
+            if len(tmpScoresList) > Max_Scores:
+                if tmpCurrentNo >= Max_Scores:
+                        tmpScoresList[Max_Scores-1] = tmpScoresList[tmpCurrentNo]
+                tmpScoresList = tmpScoresList[:Max_Scores]
+            
+            #оставить не более Max_Scores результатов
+            i = 0
+            for tmp in tmpTagNode.Tags():
+                if i < len(tmpScoresList):
+                    tmp.SetContent(tmpScoresList[i][0])
+                    tmp.SetIntAttr("score", tmpScoresList[i][1])
+                else:
+                    tmp.Erase()
+                i += 1
+        SaveHiscores()
+    except:
+        pass
 
-def IsInHiscores(score):
-    return True
-    #if len(globalvars.HiscoresList) < Max_Scores:
-    #    return True
-    #elif score > globalvars.HiscoresList[-1]["Score"]:
-    #    return True
-    #else:
-    #    return False
-    
-def AddScore():
-    pass
-    #for tmp in globalvars.HiscoresList:
-    #    tmp["Active"] = False
-    #globalvars.HiscoresList.append({ "Name": globalvars.CurrentPlayer["Name"], \
-    #                                "Score": globalvars.CurrentPlayer["GlobalScore"], "Active": True })
-    #UpdateHiscores()
+#добавить результат игрока
+def AddScores(scores):
+    try:
+        for tmp in scores.keys():
+            tmpTagNode = globalvars.Hiscores.GetSubtag(tmp)
+            tmpScoreNode = tmpTagNode.GetSubtag(globalvars.GameConfig.GetStrAttr("Player"))
+            if tmpScoreNode == None:
+                tmpScoreNode = tmpTagNode.Insert("player")
+                tmpScoreNode.SetContent(globalvars.GameConfig.GetStrAttr("Player"))
+                tmpScoreNode.SetIntAttr("score", scores[tmp])
+            if scores[tmp] > tmpScoreNode.GetIntAttr("score"):
+                tmpScoreNode.SetIntAttr("score", scores[tmp])
+    except:
+        pass
+    UpdateHiscores()
 
 #--------------------------------------
 # Функции для работы с файлом рекордов 

@@ -473,10 +473,10 @@ class Gui(scraft.Dispatcher):
             self.HiscoresDialog["Static"]["Logo_" + tmpHiscoreTags[i]] = MakeSprite("hiscores.logos", Layer_PopupBtnTxt-1,
                             { "x": tmpX0, "y": tmpY0 - 35, "frno": i*2 })
             for j in range(Max_Scores):
-                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)] = MakeTextSprite("domcasual-10-up",
-                            Layer_PopupBtnTxt-1, tmpX0 - 110, tmpY0 - 35 + 25*(j+1), scraft.HotspotLeftCenter)
-                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)] = MakeTextSprite("domcasual-10-up",
-                            Layer_PopupBtnTxt-1, tmpX0 + 110, tmpY0 - 35 + 25*(j+1), scraft.HotspotRightCenter)
+                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)] = MakeTextSprite("domcasual-11",
+                            Layer_PopupBtnTxt-1, tmpX0 - 110, tmpY0 - 36 + 25*(j+1), scraft.HotspotLeftCenter)
+                self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)] = MakeTextSprite("domcasual-11",
+                            Layer_PopupBtnTxt-1, tmpX0 + 110, tmpY0 - 36 + 25*(j+1), scraft.HotspotRightCenter)
         self.HiscoresDialog["Buttons"]["Reset"] = PushButton("HiscoresReset",
                 self, Cmd_HiscoresReset, PState_Hiscores,
                 "button-4st", [0, 1, 2, 3], 
@@ -974,36 +974,21 @@ class Gui(scraft.Dispatcher):
                 else:
                     self.HiscoresDialog["Static"]["Logo_" + tmpHiscoreTags[i]].frno = 2*i+1
             
-            tmpTagScores = map(lambda x: (x.GetStrAttr("name"),x.GetStrAttr("score")),
+            tmpTagScores = map(lambda x: (x.GetContent() ,x.GetStrAttr("score")),
                         globalvars.Hiscores.GetSubtag(tmpHiscoreTags[i]).Tags())
             for j in range(Max_Scores):
                 if j < len(tmpTagScores):
                     self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)].text = tmpTagScores[j][0]
                     self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)].text = tmpTagScores[j][1]
                 else:
-                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)].text = "empty"
-                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)].text = "-0-"
-                
-        #tmpTotalScores = len(globalvars.HiscoresList)
-        #for i in range(tmpTotalScores):
-        #    tmpScore = globalvars.HiscoresList[i]
-        #    self.HiscoresDialog["Text"]["Name_"+str(i)].text = tmpScore["Name"]
-        #    self.HiscoresDialog["Text"]["Score_"+str(i)].text = str(tmpScore["Score"])
-        #    if tmpScore["Active"]:
-        #        self.HiscoresDialog["Text"]["Name_"+str(i)].cfilt.color = CFilt_CurScore
-        #        self.HiscoresDialog["Text"]["Score_"+str(i)].cfilt.color = CFilt_CurScore
-        #        tmpScore["Active"] = False
-        #    else:
-        #        self.HiscoresDialog["Text"]["Name_"+str(i)].cfilt.color = CFilt_None
-        #        self.HiscoresDialog["Text"]["Score_"+str(i)].cfilt.color = CFilt_None
-        #if tmpTotalScores < Max_Scores:
-        #    for i in range(tmpTotalScores, Max_Scores):
-        #        self.HiscoresDialog["Text"]["Name_"+str(i)].text = ""
-        #        self.HiscoresDialog["Text"]["Score_"+str(i)].text = ""
-        #if tmpTotalScores == 0:
-        #    self.HiscoresDialog["Buttons"]["Reset"].SetState(ButtonState_Inert)
-        #else:
-        #    self.HiscoresDialog["Buttons"]["Reset"].SetState(ButtonState_Up)
+                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)].text = defs.GetGameString("Str_Hiscores_EmptyPlayer")
+                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)].text = ""
+                if self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)].text == globalvars.GameConfig.GetStrAttr("Player"):
+                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)].cfilt.color = CFilt_HiscoreCurrentPlayer
+                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)].cfilt.color = CFilt_HiscoreCurrentPlayer
+                else:
+                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Name_"+str(j)].cfilt.color = CFilt_HiscoreOther
+                    self.HiscoresDialog["Text"][tmpHiscoreTags[i]+"_Score_"+str(j)].cfilt.color = CFilt_HiscoreOther
         
     #----------------------------
     # перерисовывает окно карты
@@ -1567,6 +1552,7 @@ class Gui(scraft.Dispatcher):
                     #clear hiscores
                     elif self.LastQuestion == defs.GetGameString("Str_Question_ClearHiscores"):
                         config.ClearHiscores()
+                        self._UpdateHiscoresDialog()
                     #restart game
                     elif self.LastQuestion == defs.GetGameString("Str_Question_RestartLevel"):
                         self._ReleaseState(PState_Options)

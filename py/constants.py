@@ -212,6 +212,8 @@ CFilt_White = 0xFFFFFF
 CFilt_Red = 0xFFDDCC
 CFilt_Grey = 0x999999
 
+CFilt_HiscoreCurrentPlayer = 0xFF6600
+CFilt_HiscoreOther = 0x008020
 
 Anim_HeartAppear = [
         { "delay": 100, "frno": 5, },

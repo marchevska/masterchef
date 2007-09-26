@@ -29,6 +29,7 @@ class Player:
         self.Level = None       #указывает на ноду уровня в LevelProgress
         self.Filename = ""
         self.EpisodeResults = {}
+        self.Hiscores = {}
         try:
             self.XML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag(DEF_Header)
         except:
@@ -87,10 +88,25 @@ class Player:
         try:
             if globalvars.RunMode == RunMode_Play and self.Filename != "":
                 config.SaveToFile(self.XML.GetRoot(), self.Filename)
+            self._ResetHiscores()
         except:
             oE.Log("Cannot save player info for "+self.Name)
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
             sys.exit()
+        
+    #------------------------------------
+    # пересчитать hiscores
+    #------------------------------------
+    def _ResetHiscores(self):
+        try:
+            self.Hiscores = {}
+            for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("outro"):
+                self.Hiscores[tmp.GetStrAttr("episode")] = reduce(lambda x,y: x+y,
+                    map(lambda x: self.XML.GetSubtag(x).GetIntAttr("hiscore"), eval(tmp.GetStrAttr("sum"))))
+            self.Hiscores["Game"] = reduce(lambda x, y: x+y, self.Hiscores.values())
+            config.AddScores(self.Hiscores)
+        except:
+            pass
         
     #------------------------------------
     # название последнего открытого уровня
@@ -307,16 +323,6 @@ class Player:
             #за простое прохождение уровня - 5 очков, за экспертное - 10
             for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("outro"):
                 self._ReviewEpisodeResults(tmp)
-                #tmpSum = reduce(lambda x,y: x+y,
-                #    map(lambda x: self.XML.GetSubtag(x).GetIntAttr("hiscore"), eval(tmp.GetStrAttr("sum"))))
-                #tmpSum = reduce(lambda x,y: x+y,
-                #        map(lambda x: (x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("expertPoints")+\
-                #        (x.GetIntAttr("hiscore")>0 and not x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("levelPoints"),
-                #        map(lambda y: self.XML.GetSubtag(y), eval(tmp.GetStrAttr("sum")))))
-                #if tmpSum == globalvars.GameSettings.GetIntAttr("expertAll") and \
-                #        self.XML.GetSubtag(tmp.GetStrAttr("episode")).GetIntAttr("points") < tmpSum:
-                #    self.XML.SetStrAttr("newUnlocked", tmp.GetContent())
-                #self.XML.GetSubtag(tmp.GetStrAttr("episode")).SetIntAttr("points", tmpSum)
             self.Save()
         except:
             oE.Log("Cannot update player profile")

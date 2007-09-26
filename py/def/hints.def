@@ -3,7 +3,7 @@ MasterChef {
         text = "customer.worker.hint"
         layout = "hint.left-arrow"
         minLevel = "1"
-        maxLevel = "50"
+        maxLevel = "1"
         showOnce = "yes"
     }
     hint(Customer.Student) {
@@ -150,12 +150,12 @@ MasterChef {
         text = "station.losemoney.hint"
         layout = "hint.left-arrow"
         minLevel = "1"
-        maxLevel = "1"
+        maxLevel = "50"
         showOnce = "yes"
     }
     hint(CustomerState.Wait) {
         text = "customerstate.wait.hint"
-        layout = "hint.left-arrow"
+        layout = "hint.left-arrow-tutorial-2"
         minLevel = "1"
         maxLevel = "1"
         showOnce = "yes"
@@ -176,9 +176,9 @@ MasterChef {
     }
     hint(CustomerMood.4Hearts) {
         text = "customermood.4hearts.hint"
-        layout = "hint.left-arrow"
+        layout = "hint.right-arrow-tutorial-3"
         minLevel = "1"
-        maxLevel = "50"
+        maxLevel = "1"
         showOnce = "yes"
     }
     hint(CustomerMood.2Hearts) {
@@ -186,21 +186,21 @@ MasterChef {
         layout = "hint.left-arrow"
         minLevel = "1"
         maxLevel = "50"
-        showOnce = "yes"
+        showOnce = "no"
     }
     hint(CustomerMood.1Hearts) {
         text = "customermood.1hearts.hint"
         layout = "hint.left-arrow"
         minLevel = "1"
         maxLevel = "50"
-        showOnce = "yes"
+        showOnce = "no"
     }
     hint(Field.Empty) {
         text = "field.empty.hint"
         layout = "hint.right-arrow"
         minLevel = "1"
         maxLevel = "50"
-        showOnce = "yes"
+        showOnce = "no"
     }
     hint(Field.Overflow) {
         text = "field.overflow.hint"

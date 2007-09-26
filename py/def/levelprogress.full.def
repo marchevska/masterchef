@@ -116,7 +116,7 @@ MasterChef {
             x = "160" y = "90"
             episode = "American"
             title = "AMERICAN OPEN - RESULTS"
-            restaurant = "ROCKY RANCH"
+            restaurant = "Rocky Ranch"
             day = "Round Results"
             passIf = "{ 'American': 4 }"
             passFurther = "4"
@@ -230,8 +230,8 @@ MasterChef {
             sum = "[ 'def/11.def', 'def/12.def', 'def/13.def', 'def/14.def', 'def/15.def', 'def/16.def', 'def/17.def', 'def/18.def', 'def/19.def', 'def/20.def' ]"
             x = "225" y = "360"
             episode = "Mexican"
-            title = "MEXICAN OPEN – RESULTS"
-            restaurant = "LEMON LIME"
+            title = "MEXICAN OPEN - RESULTS"
+            restaurant = "Lemon Lime"
             day = "Round Results"
             passIf = "{ 'Mexican': 4 }"
             passFurther = "4"
@@ -346,8 +346,8 @@ MasterChef {
             sum = "[ 'def/21.def', 'def/22.def', 'def/23.def', 'def/24.def', 'def/25.def', 'def/26.def', 'def/27.def', 'def/28.def', 'def/29.def', 'def/30.def' ]"
             x = "330" y = "30"
             episode = "Russian"
-            title = "RUSSIAN OPEN – RESULTS"
-            restaurant = "BREAD&BUTTER"
+            title = "RUSSIAN OPEN - RESULTS"
+            restaurant = "Bread & Butter"
             day = "Round Results"
             passIf = "{ 'Russian': 4 }"
             passFurther = "4"
@@ -462,8 +462,8 @@ MasterChef {
             sum = "[ 'def/31.def', 'def/32.def', 'def/33.def', 'def/34.def', 'def/35.def', 'def/36.def', 'def/37.def', 'def/38.def', 'def/39.def', 'def/40.def' ]"
             x = "720" y = "115"
             episode = "Japanese"
-            title = "JAPANESE OPEN – RESULTS"
-            restaurant = "SUSHI SIDE"
+            title = "JAPANESE OPEN - RESULTS"
+            restaurant = "Sushi Side"
             day = "Round Results"
             passIf = "{ 'American': 2,  'Mexican': 2,  'Russian': 2,  'Japanese': 2 }"
             passScore = "{ 'American': 90,  'Mexican': 90,  'Russian': 90,  'Japanese': 90 }"
@@ -588,8 +588,8 @@ MasterChef {
             sum = "[ 'def/41.def', 'def/42.def', 'def/43.def', 'def/44.def', 'def/45.def', 'def/46.def', 'def/47.def', 'def/48.def', 'def/49.def', 'def/50.def' ]"
             x = "580" y = "350"
             episode = "Hawaiian"
-            title = "FINALS – RESULTS"
-            restaurant = "TIKI TIME"
+            title = "FINALS - RESULTS"
+            restaurant = "Tiki Time"
             day = "Round Results"
             passIf = "{ 'Hawaiian': 1 }"
             passFurther = "1"
@@ -703,19 +703,27 @@ MasterChef {
         layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
 
         layout(hint.left-arrow) { 
-            textFont = "arial-italic-18" textXY = "(70,-245)" textArea = "(320,120)" textColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(70,-245)" textArea = "(300,120)" textColor = "0x000000" 
             hasPicture = "yes" pictureXY = "(220,-170)" picture = "hints.background-left-bottom" 
         }
+        layout(hint.left-arrow-tutorial-2) { 
+            textFont = "arial-italic-18" textXY = "(150,-245)" textArea = "(300,120)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(300,-170)" picture = "hints.background-left-bottom" 
+        }
         layout(hint.right-arrow) { 
-            textFont = "arial-italic-18" textXY = "(-270,400)" textArea = "(290,150)" textColor = "0x000000" 
-            hasPicture = "yes" pictureXY = "(-430,-125)" picture = "hints.background-right-bottom" 
+            textFont = "arial-italic-18" textXY = "(-350,-190)" textArea = "(300,150)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(-200,-115)" picture = "hints.background-right-bottom" 
+        }
+        layout(hint.right-arrow-tutorial-3) { 
+            textFont = "arial-italic-18" textXY = "(70,-100)" textArea = "(300,150)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(220,-25)" picture = "hints.background-right-bottom" 
         }
         layout(hint.left-top-arrow) { 
-            textFont = "arial-italic-18" textXY = "(-500,45)" textArea = "(320,120)" textColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(-500,45)" textArea = "(300,120)" textColor = "0x000000" 
             hasPicture = "yes" pictureXY = "(-220,170)" picture = "hints.background-left-top" 
         }
         layout(hint.right-top-arrow) { 
-            textFont = "arial-italic-18" textXY = "(-350,35)" textArea = "(320,120)" textColor = "0x000000" 
+            textFont = "arial-italic-18" textXY = "(-350,35)" textArea = "(300,120)" textColor = "0x000000" 
             hasPicture = "yes" pictureXY = "(-200,110)" picture = "hints.background-right-top" 
         }
     }

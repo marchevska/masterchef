@@ -145,7 +145,10 @@ def ReadLevelSettings(filename):
 #------------------------
 
 def GetGameString(strname):
-    return globalvars.GameTexts.GetSubtag(strname).GetStrAttr("str")
+    try:
+        return globalvars.GameTexts.GetSubtag(strname).GetStrAttr("str")
+    except:
+        return ""
 
 #------------------------
 # Чтение размеров групп - для балансировки

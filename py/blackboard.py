@@ -41,6 +41,10 @@ class BlackBoard:
         #хранится очередь событий, которые удаляются
         #по одной штуке в порядке появления
         elif tag == BBTag_Hints:
+            if self.Records[tag] != list(self.Records[tag]):
+                print self.Records[tag]
+                print data
+                print 
             self.Records[tag].append(data)
         
         

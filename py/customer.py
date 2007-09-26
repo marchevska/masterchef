@@ -12,7 +12,7 @@ from scraft import engine as oE
 import globalvars
 from constants import *
 from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
-from extra import Animator, RandomKeyByRates
+from extra import Anima, Animator, RandomKeyByRates
 from random import randint
 
 #------------
@@ -25,12 +25,13 @@ class Customer(scraft.Dispatcher):
     def __init__(self, type):
         self.Type = type
         self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("src"), Layer_Customer,
-                        0, 0, scraft.HotspotCenterBottom)
+                        -100, -100, scraft.HotspotCenterBottom)
         self.HilightSprite = MakeSprite("$spritecraft$dummy$", Layer_Customer+1,
                         { "x":0, "y": 0, "parent": self.Sprite, "hotspot": scraft.HotspotCenterBottom })
         self.SpriteProxy = CustomerSpriteProxy(self.Sprite, self.HilightSprite)
         self.Animator = CustomersAnimator(self.SpriteProxy,
                 globalvars.CustomerAnimations.GetSubtag(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("animation"), "Animation"))
+        self.Hearts = 0
         self.HeartSprites = []
         for i in range(Const_MaxHearts):
             self.HeartSprites.append(MakeSimpleSprite("heart", Layer_Recipe,
@@ -51,7 +52,7 @@ class Customer(scraft.Dispatcher):
         for i in range(Const_MaxHearts):
             self.HeartSprites[i].x = self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx
             self.HeartSprites[i].y = self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy
-        self._SetHearts(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("heartsOnStart"))
+        #self._SetHearts(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("heartsOnStart"))
         self._SetState(CustomerState_Ordering)
         
     def GiveSweet(self):
@@ -68,26 +69,31 @@ class Customer(scraft.Dispatcher):
         self._SetHearts(self.Hearts + no)
         
     def _SetHearts(self, newHearts):
+        tmpOldHearts = self.Hearts
         no = max(0, min(newHearts, Const_MaxHearts))
         if self.Host != None and self.State in (CustomerState_Wait,):
             globalvars.BlackBoard.Update(BBTag_Hints, { "event": "CustomerMood."+str(no)+"Hearts",
                                                    "where": (self.Host.CrdX, self.Host.CrdY) })
-        if self.State == CustomerState_Queue:
-            self.Hearts = no
-        elif no>0:
-            if self.HeartDecreaseTime <= 0 or newHearts > Const_MaxHearts:
-                self.HeartDecreaseTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,
+        self.Hearts = no
+        if self.State != CustomerState_Queue:
+            if no>0:
+                if self.HeartDecreaseTime <= 0 or newHearts > Const_MaxHearts:
+                    self.HeartDecreaseTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMin")*1000,
                                          globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("patientTimeMax")*1000)
-            self.Hearts = no
-            for i in range(no):
-                self.HeartSprites[i].visible = True
-            for i in range(no, Const_MaxHearts):
-                self.HeartSprites[i].visible = False
-            self.Animator.SetState(str(self.Hearts)+"Hearts")
-        else:
+                self.Animator.SetState(str(self.Hearts)+"Hearts")
+            else:
+                self._SetState(CustomerState_GoAway)
+                
             for i in range(Const_MaxHearts):
-                self.HeartSprites[i].visible = False
-            self._SetState(CustomerState_GoAway)
+                if i < min(no, tmpOldHearts):
+                    tmp = Anima(self.HeartSprites[i], list(Anim_HeartVisible))
+                elif i >= max(no, tmpOldHearts):
+                    tmp = Anima(self.HeartSprites[i], list(Anim_HeartInvisible))
+                elif no > tmpOldHearts and tmpOldHearts <= i < no:
+                    tmp = Anima(self.HeartSprites[i], (i - tmpOldHearts)* list(Anim_HeartInvisible) + list(Anim_HeartAppear))
+                elif no < tmpOldHearts and no <= i < tmpOldHearts:
+                    tmp = Anima(self.HeartSprites[i], (tmpOldHearts - i)* list(Anim_HeartVisible) + list(Anim_HeartDisappear))
+            
         
     def _SetState(self, state):
         if self.Host != None:
@@ -103,8 +109,7 @@ class Customer(scraft.Dispatcher):
         elif state == CustomerState_Ordering:
             self.NextStateTime = randint(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMin")*1000,
                                          globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("orderingTimeMax")*1000)
-            if self.Hearts <= 0:
-                self._SetHearts(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("heartsOnStart"))
+            self._SetHearts(max(globalvars.CustomersInfo.GetSubtag(self.Type).GetIntAttr("heartsOnStart"), self.Hearts))
             self.Animator.SetState("Order")
             
         elif state == CustomerState_Wait:
@@ -134,14 +139,16 @@ class Customer(scraft.Dispatcher):
         
     def Show(self, flag = True):
         self.Sprite.visible = flag
-        if flag:
-            for i in range(self.Hearts):
-                self.HeartSprites[i].visible = True
-            for i in range(self.Hearts, Const_MaxHearts):
-                self.HeartSprites[i].visible = False
-        else:
-            for i in range(Const_MaxHearts):
-                self.HeartSprites[i].visible = False
+        for i in range(Const_MaxHearts):
+            self.HeartSprites[i].visible = flag
+        #if flag:
+        #    for i in range(self.Hearts):
+        #        self.HeartSprites[i].visible = True
+        #    for i in range(self.Hearts, Const_MaxHearts):
+        #        self.HeartSprites[i].visible = False
+        #else:
+        #    for i in range(Const_MaxHearts):
+        #        self.HeartSprites[i].visible = False
         
     def Freeze(self, flag):
         self.Animator.Freeze(flag)
@@ -176,8 +183,8 @@ class Customer(scraft.Dispatcher):
                 if self.State == CustomerState_Wait:
                     self.HeartDecreaseTime -= que.delta
                     if self.HeartDecreaseTime <= 0:
-                        self.Hearts -= 1
-                        self._SetHearts(self.Hearts)
+                        #self.Hearts -= 1
+                        self._SetHearts(self.Hearts - 1)
                         
                 else:
                     self.NextStateTime -= que.delta

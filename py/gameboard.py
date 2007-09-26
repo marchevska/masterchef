@@ -83,6 +83,7 @@ class GameBoard(scraft.Dispatcher):
         self.ToolSprite = None
         self.TokensFrom = None
         self.NoErrors = 0
+        self.StationsToOccupy = []
         
         self.Playing = False
         self.MyRand = oE.NewRandomizer()
@@ -110,6 +111,11 @@ class GameBoard(scraft.Dispatcher):
         self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
         self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
         self._UpdateLevelInfo()
+        
+    def ReallyStart(self):
+        for tmpStation in self.StationsToOccupy:
+            self._NextCustomerTo(tmpStation)
+        self.StationsToOccupy = []
         
     def Restart(self):
         self.Clear()
@@ -145,7 +151,8 @@ class GameBoard(scraft.Dispatcher):
         for tmp in globalvars.LevelSettings.GetTag("Layout").Tags("CustomerStation"):
             tmpStation = CustomerStation(tmp.GetIntAttr("x"), tmp.GetIntAttr("y"), tmpTheme)
             if tmp.GetBoolAttr("occupied"):
-                self._NextCustomerTo(tmpStation)
+                self.StationsToOccupy.append(tmpStation)
+                #self._NextCustomerTo(tmpStation)
             else:
                 tmpStation.SetState(CStationState_Free)
             self.CStations.append(tmpStation)

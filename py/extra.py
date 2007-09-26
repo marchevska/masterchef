@@ -111,32 +111,31 @@ class Anima(scraft.Dispatcher):
     def __init__(self, sprite, animation):
         self.sprite = sprite
         self.animation = animation
-        self.Stopped = False
+        self.NextFrameTime = 0
+        self.QueNo = oE.executor.Schedule(self)
         
     def _OnExecute(self, que):
-        if len(self.animation) > 0:
-            tmp = self.animation.pop(0)
-            if tmp.has_key("x"):
-                self.sprite.x = tmp["x"]
-            if tmp.has_key("y"):
-                self.sprite.y = tmp["y"]
-            if tmp.has_key("degree"):
-                self.sprite.degree = tmp["degree"]
-            if tmp.has_key("sublayer"):
-                self.sprite.sublayer = tmp["sublayer"]
-            if tmp.has_key("sound") and tmp.has_key("channel"):
-                globalvars.Musician.PlaySound(tmp["sound"], tmp["channel"])
-            if tmp.has_key("frno"):
-                self.sprite.frno = tmp["frno"]
-            if self.Stopped and tmp.has_key("cue"):
-                return scraft.CommandStateEnd
+        if self.NextFrameTime <= 0:
+            if len(self.animation) > 0:
+                tmp = self.animation.pop(0)
+                if tmp.has_key("x"):
+                    self.sprite.x = tmp["x"]
+                if tmp.has_key("y"):
+                    self.sprite.y = tmp["y"]
+                if tmp.has_key("degree"):
+                    self.sprite.degree = tmp["degree"]
+                if tmp.has_key("sublayer"):
+                    self.sprite.sublayer = tmp["sublayer"]
+                if tmp.has_key("sound") and tmp.has_key("channel"):
+                    globalvars.Musician.PlaySound(tmp["sound"], tmp["channel"])
+                if tmp.has_key("frno"):
+                    self.sprite.frno = tmp["frno"]
+                self.NextFrameTime += tmp["delay"]
             else:
-                return tmp["delay"]
-        else:
-            return scraft.CommandStateEnd
+                return scraft.CommandStateEnd
+        self.NextFrameTime -= que.delta
+        return scraft.CommandStateRepeat
         
-    def StopMotion(self):
-        self.Stopped = True
     
 #----------------------------------
 # Управление анимациеями персонажа

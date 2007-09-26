@@ -62,6 +62,10 @@ class Player:
                 oE.Log("Cannot read player info for "+name)
                 oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
                 sys.exit()
+        #append attributes from dummy profile if necessary
+        for tmpAttr in list(dummyXML.Attributes()):
+            if dummyXML.HasAttr(tmpAttr[0]) and not self.XML.HasAttr(tmpAttr[0]):
+                self.XML.SetStrAttr(tmpAttr[0], tmpAttr[1])
         #append nodes from dummy profile if necessary
         for tmpNode in dummyXML.Tags():
             tmp = self.XML.GetSubtag(tmpNode.GetContent(), tmpNode.GetName())

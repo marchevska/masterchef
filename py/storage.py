@@ -721,7 +721,7 @@ class Field(Storage):
                 self.SetState(FieldState_Input)
                 
             elif self.State == FieldState_Input:
-                if not self.Collapsing or self.DropperState == DropperState_Drop:
+                if (not self.Collapsing) or (self.DropperState == DropperState_Drop and self.Dropped == 0):
                     for tmp in self.TokenEventsList:
                         if self.MatchMap.has_key(tmp["where"]) and self.MatchMap[tmp["where"]] != -1:
                             globalvars.BlackBoard.Update(BBTag_Hints, { "event": tmp["type"],

@@ -47,7 +47,7 @@ else:
 
 config.ReadGameConfig()
 config.ApplyOptions()
-#config.ReadHiscores()
+config.ReadHiscores()
 config.ReadBestResults()
 
 globalvars.PlayerList = PlayerList()
@@ -88,7 +88,7 @@ while globalvars.StateStack[-1] != PState_EndGame:
 if globalvars.RunMode == RunMode_Play:
     config.SaveGameConfig()
     config.SaveBestResults()
-    #config.SaveHiscores()
+    config.SaveHiscores()
     globalvars.PlayerList.Save()
     globalvars.CurrentPlayer.Save()
 

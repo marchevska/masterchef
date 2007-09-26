@@ -95,54 +95,59 @@ def ApplyOptions():
 
 def ReadHiscores():
     """ Reads hiscores list """
-    pass
-    #globalvars.HiscoresList = []
-    #if FileValid(globalvars.File_Hiscores):
-    #    Data_Hiscores = oE.ParseDEF(globalvars.File_Hiscores)
-    #    HiscoresIterator = Data_Hiscores.GetTag(DEF_Header).IterateTag(u"score")
-    #    HiscoresIterator.Reset()
-    #    while HiscoresIterator.Next():
-    #        tmpScore = HiscoresIterator.Get()
-    #        globalvars.HiscoresList.append({ "Name": tmpScore.GetStrAttr(u"Name"), \
-    #                                        "Score": tmpScore.GetIntAttr(u"Score"),
-    #                                        "Active": False })
-    #UpdateHiscores()
+    try:
+        if FileValid(globalvars.File_Hiscores) and globalvars.RunMode == RunMode_Play:
+            globalvars.Hiscores = oE.ParseDEF(globalvars.File_Hiscores).GetTag(DEF_Header)
+        else:
+            globalvars.Hiscores = oE.ParseDEF(globalvars.File_HiscoresSafe).GetTag(DEF_Header)
+            SaveHiscores()
+    except:
+        oE.Log("Cannot read hiscores")
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+        sys.exit()
 
 def SaveHiscores():
     """ Saves hiscores list """
-    #tmpSaveStr = ""
-    #tmpSaveStr += "MasterChef{\n"
-    #for tmp in globalvars.HiscoresList:
-    #    tmpSaveStr += ("  score() { Name = '" + tmp["Name"] + \
-    #                "' Score = " + str(tmp["Score"]) + " }\n")
-    #tmpSaveStr += "}\n"
-    #SignAndSave(globalvars.File_Hiscores, tmpSaveStr)
-    pass
-
-def UpdateHiscores():
-    globalvars.HiscoresList.sort(lambda x,y: cmp(y["Score"], x["Score"]))
-    if len(globalvars.HiscoresList) > Max_Scores:
-        for i in range(Max_Scores, len(globalvars.HiscoresList)):
-            del globalvars.HiscoresList[-1]
+    try:
+        if globalvars.RunMode == RunMode_Play:
+            SaveToFile(globalvars.Hiscores.GetRoot(), globalvars.File_Hiscores)
+    except:
+        oE.Log("Cannot write hiscores")
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+        sys.exit()
 
 def ClearHiscores():
-    globalvars.HiscoresList = []
-    SaveHiscores()
+    try:
+        globalvars.Hiscores = oE.ParseDEF(globalvars.File_HiscoresSafe).GetTag(DEF_Header)
+        SaveHiscores()
+    except:
+        oE.Log("Clearing hiscores: cannot write hiscores")
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+        sys.exit()
     
+def UpdateHiscores():
+    pass
+    #globalvars.HiscoresList.sort(lambda x,y: cmp(y["Score"], x["Score"]))
+    #if len(globalvars.HiscoresList) > Max_Scores:
+    #    for i in range(Max_Scores, len(globalvars.HiscoresList)):
+    #        del globalvars.HiscoresList[-1]
+
 def IsInHiscores(score):
-    if len(globalvars.HiscoresList) < Max_Scores:
-        return True
-    elif score > globalvars.HiscoresList[-1]["Score"]:
-        return True
-    else:
-        return False
+    return True
+    #if len(globalvars.HiscoresList) < Max_Scores:
+    #    return True
+    #elif score > globalvars.HiscoresList[-1]["Score"]:
+    #    return True
+    #else:
+    #    return False
     
 def AddScore():
-    for tmp in globalvars.HiscoresList:
-        tmp["Active"] = False
-    globalvars.HiscoresList.append({ "Name": globalvars.CurrentPlayer["Name"], \
-                                    "Score": globalvars.CurrentPlayer["GlobalScore"], "Active": True })
-    UpdateHiscores()
+    pass
+    #for tmp in globalvars.HiscoresList:
+    #    tmp["Active"] = False
+    #globalvars.HiscoresList.append({ "Name": globalvars.CurrentPlayer["Name"], \
+    #                                "Score": globalvars.CurrentPlayer["GlobalScore"], "Active": True })
+    #UpdateHiscores()
 
 #--------------------------------------
 # Функции для работы с файлом рекордов 

@@ -211,3 +211,30 @@ Indexes = { "Col": 0, "Row": 1 }
 CFilt_White = 0xFFFFFF
 CFilt_Red = 0xFFDDCC
 CFilt_Grey = 0x999999
+
+
+Anim_HeartAppear = [
+        { "delay": 100, "frno": 5, },
+        { "delay": 100, "frno": 1, },
+        { "delay": 100, "frno": 0, },
+        { "delay": 120, "frno": 3, },
+        { "delay": 150, "frno": 2, },
+        { "delay": 120, "frno": 3, },
+        { "delay": 100, "frno": 0, },
+    ]
+Anim_HeartDisappear = [
+        { "delay": 100, "frno": 0, },
+        { "delay": 120, "frno": 2, },
+        { "delay": 150, "frno": 3, },
+        { "delay": 120, "frno": 2, },
+        { "delay": 150, "frno": 3, },
+        { "delay": 120, "frno": 4, },
+        { "delay": 150, "frno": 1, },
+        { "delay": 100, "frno": 5, },
+    ]
+Anim_HeartVisible = [
+        { "delay": 100, "frno": 0, },
+    ]
+Anim_HeartInvisible = [
+        { "delay": 100, "frno": 5, },
+    ]

@@ -133,6 +133,11 @@ sound gui.click {
 sample = sound/gui.click.ogg
 }
 
+#show hint
+sound gui.showhint {
+sample = sound/customer.thankyou.ogg
+}
+
 ##open new window - unused
 #sound gui.openwindow {
 #sample = sound/gui.openwindow.ogg

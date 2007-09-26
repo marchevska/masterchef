@@ -636,7 +636,7 @@ class GameBoard(scraft.Dispatcher):
             self.Advisor.Freeze(flag)
             self.CustomersQue.Freeze(flag)
             for tmp in self.Stores+self.Fields+self.Conveyors:
-                tmp.Freeze(flag)
+                tmp.Freeze(flag, fullFreeze)
             for tmp in self.CStations:
                 tmp.Freeze(flag)
         

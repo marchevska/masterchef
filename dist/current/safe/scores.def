@@ -1,15 +1,14 @@
-MasterChef{
-  score() { Name = 'Someone' Score = 1952 }
-  score() { Name = 'Someone' Score = 1952 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-  score() { Name = 'aaa' Score = 195 }
-}
-signature{
-  value(0x180x830x360x580xbd0x690xff0xe80x450x520x820x60x780xdb0x120x70)
+MasterChef {
+    Scores(Game) {
+    }
+    Scores(American){
+    }
+    Scores(Mexican){
+    }
+    Scores(Russian){
+    }
+    Scores(Japanese){
+    }
+    Scores(Hawaiian){
+    }
 }

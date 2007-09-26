@@ -116,7 +116,7 @@ MasterChef {
             x = "160" y = "90"
             episode = "American"
             title = "AMERICAN OPEN - RESULTS"
-            restaurant = "ROCKY RANCH"
+            restaurant = "Rocky Ranch"
             day = "Round Results"
             passIf = "{ 'American': 4 }"
             passFurther = "4"
@@ -185,7 +185,6 @@ MasterChef {
             passed = "{ 'layout': 'outro', 'text': 'def/15.def.passed.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/15.def.failed.text' }"
         }
-        
         comic(MasterChef.demo-outro) {
             image = "comics.masterchef.demo-outro"
             button = "continue-button"
@@ -275,6 +274,31 @@ MasterChef {
         layout(episode-outro.failed.5) { textFont = "arial-italic-18" textXY = "(210,465)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
         layout(episode-outro.failed.6) { textFont = "arial-italic-18" textXY = "(210,490)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
         layout(episode-outro.failed.7) { textFont = "arial-italic-18" textXY = "(210,515)" textColor = "0x000000" hotspot = "scraft.HotspotCenter" }
+
+        layout(hint.left-arrow) { 
+            textFont = "arial-italic-18" textXY = "(70,-245)" textArea = "(300,120)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(220,-170)" picture = "hints.background-left-bottom" 
+        }
+        layout(hint.left-arrow-tutorial-2) { 
+            textFont = "arial-italic-18" textXY = "(150,-245)" textArea = "(300,120)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(300,-170)" picture = "hints.background-left-bottom" 
+        }
+        layout(hint.right-arrow) { 
+            textFont = "arial-italic-18" textXY = "(-350,-190)" textArea = "(300,150)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(-200,-115)" picture = "hints.background-right-bottom" 
+        }
+        layout(hint.right-arrow-tutorial-3) { 
+            textFont = "arial-italic-18" textXY = "(70,-100)" textArea = "(300,150)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(220,-25)" picture = "hints.background-right-bottom" 
+        }
+        layout(hint.left-top-arrow) { 
+            textFont = "arial-italic-18" textXY = "(-500,45)" textArea = "(300,120)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(-220,170)" picture = "hints.background-left-top" 
+        }
+        layout(hint.right-top-arrow) { 
+            textFont = "arial-italic-18" textXY = "(-350,35)" textArea = "(300,120)" textColor = "0x000000" 
+            hasPicture = "yes" pictureXY = "(-200,110)" picture = "hints.background-right-top" 
+        }
     }
 
 }

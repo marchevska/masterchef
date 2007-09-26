@@ -1,0 +1,212 @@
+MasterChef {
+    hint(Customer.Worker) {
+        text = "customer.worker.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(Customer.Student) {
+        text = "customer.student.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Business) {
+        text = "customer.business.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Oldlady) {
+        text = "customer.oldlady.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Critic) {
+        text = "customer.critic.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Schoolkid) {
+        text = "customer.schoolkid.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Vegetarian) {
+        text = "customer.vegetarian.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Hawaiian) {
+        text = "customer.tourist hawaiian.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Mexican) {
+        text = "customer.tourist mexican.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Russian) {
+        text = "customer.tourist russian.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Customer.Tourist Japanese) {
+        text = "customer.tourist japanese.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.spoon) {
+        text = "bonus.spoon.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.removerow) {
+        text = "bonus.removerow.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.bomb) {
+        text = "bonus.bomb.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.scrollback) {
+        text = "bonus.scrollback.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.shuffle) {
+        text = "bonus.shuffle.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.magicwand) {
+        text = "bonus.magicwand.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.sweet) {
+        text = "bonus.sweet.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.gift) {
+        text = "bonus.gift.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(bonus.hearts) {
+        text = "bonus.hearts.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(Station.TakeMoney) {
+        text = "station.takemoney.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(Station.LoseMoney) {
+        text = "station.losemoney.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+    hint(CustomerState.Wait) {
+        text = "customerstate.wait.hint"
+        layout = "hint.left-arrow-tutorial-2"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(CustomerState.MealReady) {
+        text = "customerstate.mealready.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(CustomerState.Remove) {
+        text = "customerstate.remove.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(CustomerMood.4Hearts) {
+        text = "customermood.4hearts.hint"
+        layout = "hint.right-arrow-tutorial-3"
+        minLevel = "1"
+        maxLevel = "1"
+        showOnce = "yes"
+    }
+    hint(CustomerMood.2Hearts) {
+        text = "customermood.2hearts.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "no"
+    }
+    hint(CustomerMood.1Hearts) {
+        text = "customermood.1hearts.hint"
+        layout = "hint.left-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "no"
+    }
+    hint(Field.Empty) {
+        text = "field.empty.hint"
+        layout = "hint.right-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "no"
+    }
+    hint(Field.Overflow) {
+        text = "field.overflow.hint"
+        layout = "hint.right-top-arrow"
+        minLevel = "1"
+        maxLevel = "50"
+        showOnce = "yes"
+    }
+}

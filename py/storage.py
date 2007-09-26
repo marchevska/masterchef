@@ -102,8 +102,8 @@ class Storage(scraft.Dispatcher):
         self.Receptors = {}
         self.Cells = {}
         
-    def Freeze(self, flag):
-        if flag:
+    def Freeze(self, flag, fullFreeze = True):
+        if flag and fullFreeze:
             self.Highlight.Clear()
             self.Selection.Clear()
             self.HighlightedCells = []
@@ -1088,10 +1088,10 @@ class Field(Storage):
         if cmd == Cmd_StopDropper:
             pass
         
-    def Freeze(self, flag):
+    def Freeze(self, flag, fullFreeze = True):
         if flag:
             oE.executor.GetQueue(self.QueNo).Suspend()
-            Storage.Freeze(self, flag)
+            Storage.Freeze(self, flag, fullFreeze)
         else:
             oE.executor.GetQueue(self.QueNo).Resume()
             

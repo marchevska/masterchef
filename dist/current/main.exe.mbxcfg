@@ -25,7 +25,7 @@ box.pattern=*.dat
 box.separate=0
 box.sepfile=
 box.ziplevel=1
-dir.addfiles=C:\Projects\proto games\Master Chef\dist\current\img
+dir.addfiles=C:\Projects\proto games\Master Chef\dist\current
 exe.crc=0
 exe.pack=1
 exe.packedfilesvisible=1
@@ -338,6 +338,7 @@ box.2.contents~
 00 img\fx\star.png
 00 img\fx\star16.png
 00 img\gui\2nd-popup-background.png
+00 img\gui\background-big.png
 00 img\gui\button-4st-300.png
 00 img\gui\button-4st.png
 00 img\gui\continue-button.png
@@ -365,6 +366,13 @@ box.2.contents~
 00 img\gui\help-page2.png
 00 img\gui\help-page3.png
 00 img\gui\help-page4.png
+00 img\gui\hints.background-left-bottom.png
+00 img\gui\hints.background-left-top.png
+00 img\gui\hints.background-right-bottom.png
+00 img\gui\hints.background-right-top.png
+00 img\gui\hiscores.frame.png
+00 img\gui\hiscores.logos.png
+00 img\gui\hiscores.title.png
 00 img\gui\intro.balloon.png
 00 img\gui\intro.logo.png
 00 img\gui\level-pointers-expert.png
@@ -647,6 +655,7 @@ box.4.contents~
 00 def\cuisine.def
 00 def\fonts.def
 00 def\gamesettings.def
+00 def\hints.def
 00 def\levelprogress.def
 00 def\recipes.def
 00 def\resource.def

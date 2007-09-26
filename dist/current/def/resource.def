@@ -494,11 +494,11 @@ MasterChef{
     }
     
     Episodes{
-        sprite(episode.american) { bitmap = "img/gui/episode.american.png" type = "blend" layout = "2x1" }
-        sprite(episode.mexican) { bitmap = "img/gui/episode.mexican.png" type = "blend" layout = "2x1" }
-        sprite(episode.russian) { bitmap = "img/gui/episode.russian.png" type = "blend" layout = "2x1" }
-        sprite(episode.japanese) { bitmap = "img/gui/episode.japanese.png" type = "blend" layout = "2x1" }
-        sprite(episode.hawaiian) { bitmap = "img/gui/episode.hawaiian.png" type = "blend" layout = "2x1" }
+        sprite(episode.american) { bitmap = "img/gui/episode.american.png" type = "blend" hotspot = "center" layout = "2x1" }
+        sprite(episode.mexican) { bitmap = "img/gui/episode.mexican.png" type = "blend" hotspot = "center" layout = "2x1" }
+        sprite(episode.russian) { bitmap = "img/gui/episode.russian.png" type = "blend" hotspot = "center" layout = "2x1" }
+        sprite(episode.japanese) { bitmap = "img/gui/episode.japanese.png" type = "blend" hotspot = "center" layout = "2x1" }
+        sprite(episode.hawaiian) { bitmap = "img/gui/episode.hawaiian.png" type = "blend" hotspot = "center" layout = "2x1" }
     }
     
     People{
@@ -543,16 +543,17 @@ MasterChef{
         sprite(cell-action) { bitmap = "img/common/cell-action.png" type = "blend" layout = "5x8" }
         sprite(cell-use) { bitmap = "img/common/cell-use.png" type = "blend" layout = "5x8" }
         
-        sprite(heart) { bitmap = "img/heart.png" type = "blend" }
+        sprite(heart) { bitmap = "img/heart.png" type = "blend" layout = "1x6" hotspot = "center" }
         sprite(galka) { bitmap = "img/galka.png" type = "blend" }
         sprite(release-button) { bitmap = "img/release-button.png" layout = "1x3" type = "blend" }
         sprite(money-button) { bitmap = "img/money-button.png" layout = "1x3" type = "blend" }
-        sprite(outro.star) { bitmap = "img/gui/outro.star.png" type = "blend" type = "blend" }
+        sprite(outro.star) { bitmap = "img/gui/outro.star.png" type = "blend" }
         
         //Effects
         sprite(particle) { bitmap = "img/fx/particle.png" type = "blend" }
         sprite(star) { bitmap = "img/fx/star.png" type = "blend" }
         sprite(star16) { bitmap = "img/fx/star16.png" type = "blend" }
+        sprite(star30) { bitmap = "img/fx/star30.png" layout = "3x3" type = "blend" }
         
         //Common elements
         sprite(gray.screen) { bitmap = "img/gui/gray.screen.png" type = "blend" }
@@ -561,6 +562,7 @@ MasterChef{
         sprite(continue-button) { bitmap = "img/gui/continue-button.png" type = "blend" layout = "1x4" }
         sprite(popup-background) { bitmap = "img/gui/popup-background.png" type = "blend" }
         sprite(2nd-popup-background) { bitmap = "img/gui/2nd-popup-background.png" type = "blend" }
+        sprite(background-big) { bitmap = "img/gui/background-big.png" type = "blend" }
         
         //Logos
         sprite(developer-logo) { bitmap = "img/logos/developer-logo.png" }
@@ -620,6 +622,11 @@ MasterChef{
         sprite(textcursor) { bitmap = "img/gui/textcursor.bmp" layout = "2x1" }
         sprite(entername.text-field) { bitmap = "img/gui/entername.text-field.png" type = "blend" }
         
+        //Hiscores
+        sprite(hiscores.title) { bitmap = "img/gui/hiscores.title.png" type = "blend" }
+        sprite(hiscores.frame) { bitmap = "img/gui/hiscores.frame.png" type = "blend" }
+        sprite(hiscores.logos) { bitmap = "img/gui/hiscores.logos.png" type = "blend" layout = "2x6" hotspot = "120, 90" }
+        
         //Options
         sprite(options-slider) { bitmap = "img/gui/options-slider.png" type = "blend" layout = "3x1" }
         sprite(slider-background) { bitmap = "img/gui/slider-background.png" type = "blend" }
@@ -631,6 +638,12 @@ MasterChef{
         sprite(help-page2) { bitmap = "img/gui/help-page2.png" }
         sprite(help-page3) { bitmap = "img/gui/help-page3.png" }
         sprite(help-page4) { bitmap = "img/gui/help-page4.png" }
+        
+        //Hints
+        sprite(hints.background-left-bottom) { bitmap = "img/gui/hints.background-left-bottom.png" type = "blend" hotspot = "center" }
+        sprite(hints.background-right-bottom) { bitmap = "img/gui/hints.background-right-bottom.png" type = "blend" hotspot = "center" }
+        sprite(hints.background-left-top) { bitmap = "img/gui/hints.background-left-top.png" type = "blend" hotspot = "center" }
+        sprite(hints.background-right-top) { bitmap = "img/gui/hints.background-right-top.png" type = "blend" hotspot = "center" }
         
     }
     

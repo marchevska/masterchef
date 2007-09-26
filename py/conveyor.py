@@ -109,7 +109,7 @@ class Conveyor(scraft.Dispatcher):
     def RemoveTokens(self):
         pass
         
-    def Freeze(self, flag):
+    def Freeze(self, flag, fullFreeze = True):
         if flag:
             oE.executor.GetQueue(self.QueNo).Suspend()
         else:

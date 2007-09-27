@@ -223,7 +223,7 @@ def UpdateBestResults(level, name, score):
 #---------------------------
 def FileValid(filename):
     try:
-        if globalvars.GameSettings.GetBoolAttr("debugMode") == True:
+        if globalvars.GameSettings.GetBoolAttr("debugMode") == True and os.access(filename, os.W_OK):
             return True
         else:
             if not os.access(filename, os.W_OK):

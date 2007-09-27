@@ -101,8 +101,9 @@ class Player:
         try:
             self.Hiscores = {}
             for tmp in globalvars.LevelProgress.GetTag("Levels").Tags("outro"):
-                self.Hiscores[tmp.GetStrAttr("episode")] = reduce(lambda x,y: x+y,
-                    map(lambda x: self.XML.GetSubtag(x).GetIntAttr("hiscore"), eval(tmp.GetStrAttr("sum"))))
+                if self.GetLevelParams(tmp.GetStrAttr("episode")).GetBoolAttr("unlocked") == True:
+                    self.Hiscores[tmp.GetStrAttr("episode")] = reduce(lambda x,y: x+y,
+                            map(lambda x: self.XML.GetSubtag(x).GetIntAttr("hiscore"), eval(tmp.GetStrAttr("sum"))))
             self.Hiscores["Game"] = reduce(lambda x, y: x+y, self.Hiscores.values())
             config.AddScores(self.Hiscores)
         except:

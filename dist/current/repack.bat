@@ -10,6 +10,19 @@ call "abc english.bat"
 REM build full version
 copy .\def\levelprogress.full.def .\def\levelprogress.def
 copy .\safe\dummy.full.def .\safe\dummy.def
+
+REM **** BFG branding ****
+copy .\branding\bfg\branding.def .\def\branding.def
+copy .\branding\bfg\publisher-logo.png .\img\logos\publisher-logo.png
+"C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
+cd ..
+ren "%cd%\release\def.dat" "def.full.dat"
+move "%cd%\release\*.*" "%cd%\release\english full for BFG\"
+
+REM **** no branding ****
+cd %~dp0
+copy .\branding\none\branding.def .\def\branding.def
+copy .\branding\none\publisher-logo.png .\img\logos\publisher-logo.png
 "C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
 cd ..
 ren "%cd%\release\def.dat" "def.full.dat"

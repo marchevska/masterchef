@@ -37,6 +37,7 @@ File_HiscoresSafeName = "safe/scores.def"
 File_SST = "masterchef.sst"
 
 File_HintsName = "def/hints.def"
+File_BrandingName = "def/branding.def"
 File_CuisineName = "def/cuisine.def"
 File_RecipesName = "def/recipes.def"
 File_GameSettingsName = "def/gamesettings.def"

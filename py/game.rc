@@ -1,0 +1,36 @@
+
+1 VERSIONINFO
+ FILEVERSION 1,15,0,0
+ PRODUCTVERSION 1,15,0,0
+ FILEFLAGSMASK 0x20fcL
+ FILEFLAGS 0x0L
+ FILEOS 0x4L
+ FILETYPE 0x2L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "000004b0"
+        BEGIN
+            VALUE "Comments", "\0"
+            VALUE "CompanyName", "Teggo.FF\0"
+            VALUE "FileDescription", "Champion Chef\0"
+            VALUE "FileVersion", "1, 0, 0, 0\0"
+            VALUE "InternalName", "Champion Chef\0"
+            VALUE "LegalCopyright", "(C)2006-2007, Teggo\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "main.exe\0"
+            VALUE "PrivateBuild", "\0"
+            VALUE "ProductName", "\0"
+            VALUE "ProductVersion", "1, 0, 0, 0\0"
+            VALUE "SpecialBuild", "\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x0, 1200
+    END
+END
+
+1  ICON  DISCARDABLE  "main.ico"
+

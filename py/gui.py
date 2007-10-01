@@ -1357,8 +1357,10 @@ class Gui(scraft.Dispatcher):
             #developer logo
             elif globalvars.StateStack[-1] == PState_DevLogo:
                 if cmd == Cmd_DevLogoClose:
-                    self._SetState(PState_MainMenu)
-                    #self._SetState(PState_PubLogo)
+                    if globalvars.BrandingInfo.GetBoolAttr("branding"):
+                        self._SetState(PState_PubLogo)
+                    else:
+                        self._SetState(PState_MainMenu)
                 
             #publisher logo
             elif globalvars.StateStack[-1] == PState_PubLogo:
@@ -1793,6 +1795,8 @@ class Gui(scraft.Dispatcher):
             self._ShowDialog(self.PubLogo, True)
             self._ReleaseState(PState_DevLogo)
             self.NextStateTime = Time_PubLogoShow
+            if globalvars.BrandingInfo.HasAttr("background"):
+                oE.background.color = eval(globalvars.BrandingInfo.GetStrAttr("background"))
             
         #главное меню
         elif state == PState_MainMenu:

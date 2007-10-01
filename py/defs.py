@@ -62,6 +62,7 @@ def ReadLevelProgress():
         globalvars.LevelProgress = oE.ParseDEF(globalvars.File_LevelProgress).GetTag(DEF_Header)
         globalvars.GameTexts = oE.ParseDEF(globalvars.File_GameTexts).GetTag(DEF_Header)
         globalvars.HintsInfo = oE.ParseDEF(globalvars.File_Hints).GetTag(DEF_Header)
+        globalvars.BrandingInfo = oE.ParseDEF(globalvars.File_Branding).GetTag(DEF_Header)
     except:
         oE.Log(u"Cannot read levels list")
         oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

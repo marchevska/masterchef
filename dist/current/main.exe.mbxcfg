@@ -651,11 +651,14 @@ box.3.contents~
 box.4.contents~
 00 masterchef.sst
 00 def\animations.def
+00 def\branding.def
 00 def\cuisine.def
 00 def\fonts.def
 00 def\gamesettings.def
 00 def\hints.def
 00 def\levelprogress.def
+00 def\levelprogress.demo.def
+00 def\levelprogress.full.def
 00 def\recipes.def
 00 def\resource.def
 00 def\sound.def

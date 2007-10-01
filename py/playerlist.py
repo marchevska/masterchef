@@ -391,7 +391,6 @@ class PlayerList:
     def CreatePlayer(self, name):
         try:
             filename = globalvars.DataDirectory+name+".def"
-            #filename = "data/"+name+".def"
             tmp = scraft.Xdata("player(%s) { file = '%s' }" % (name, filename)).GetTag()
             tmp.SetContent(name)
             self.XML.InsertCopyOf(tmp)
@@ -399,6 +398,23 @@ class PlayerList:
             globalvars.CurrentPlayer = Player()
             globalvars.CurrentPlayer.Read(name)
             globalvars.CurrentPlayer.Save()
+            
+            #обработка hiscores: если уже имеется профиль
+            #с таким же именем, то его надо переименовать!
+            tmpExistingProfiles = [x.GetContent() for x in 
+                                    reduce(lambda a, b: list(a)+list(b), globalvars.Hiscores.Tags())]
+            if name in tmpExistingProfiles:
+                tmpNameVariants = [name+str(x) for x in range(1,10)+[0]]
+                tmpNotYetUsed = filter(lambda x: not x in tmpExistingProfiles, tmpNameVariants)
+                if tmpNotYetUsed != []:
+                    tmpAnotherName = tmpNotYetUsed[0]
+                else:
+                    tmpAnotherName = tmpNameVariants[-1]
+                for x in reduce(lambda a, b: list(a)+list(b), globalvars.Hiscores.Tags()):
+                    if x.GetContent() == name:
+                        x.SetContent(tmpAnotherName)
+                config.SaveHiscores()
+            
         except:
             oE.Log("Cannot create player "+name)
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))

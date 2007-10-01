@@ -35,7 +35,7 @@ defs.ReadCuisine()
 defs.ReadResourceInfo()
 defs.ReadGameSettings()
 
-# определяем режим запска - тест или реальная игра
+# определяем режим запуска - тест или реальная игра
 if len(sys.argv) >= 3 and globalvars.GameSettings.GetBoolAttr("debugMode"):
     if sys.argv[1] == "run" and globalvars.LevelProgress.GetTag("Levels").GetSubtag(sys.argv[2]) != None:
         globalvars.RunMode = RunMode_Test

@@ -42,8 +42,8 @@ Level{
     
     //ingredient appearance rates
     TokenRates {
-        Token{ type = "ingredient" rate = "97" }
-        Token{ type = "bonus" rate = "3" }
+        Token{ type = "ingredient" rate = "98" }
+        Token{ type = "bonus" rate = "2" }
     }
     
     IngredientRates{

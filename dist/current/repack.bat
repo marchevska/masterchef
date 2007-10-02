@@ -12,6 +12,7 @@ copy .\def\levelprogress.full.def .\def\levelprogress.def
 copy .\safe\dummy.full.def .\safe\dummy.def
 
 REM **** BFG branding ****
+cd %~dp0
 copy .\branding\bfg\branding.def .\def\branding.def
 copy .\branding\bfg\publisher-logo.png .\img\logos\publisher-logo.png
 "C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe

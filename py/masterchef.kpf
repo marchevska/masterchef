@@ -157,6 +157,8 @@
 </file>
 <file url="def/branding.def" id="0C21AF80-9315-409D-8158-16E951BA98F8" name="branding.def">
 </file>
+<file url="def/collapsoid.def" id="B37B5D71-7457-4F52-B94C-520E3B80AD93" name="collapsoid.def">
+</file>
 </folder>
 <file url="defs.py" id="5FBC00FC-3486-4F9F-8151-BF49494F6D25" name="defs.py">
 <preference-set id="">
@@ -373,16 +375,6 @@
 </preference-set>
 </file>
 <file url="groupcalculator.py" id="64E644FD-D492-44AF-B842-E2995D02B3DC" name="groupcalculator.py">
-</file>
-</folder>
-<folder id="295435A9-6CB0-4694-B25B-F1601D2FE622" name="data">
-<file url="data/scores.def" id="2743C19B-1E7D-447C-96A0-3A62FDF251C0" name="scores.def">
-</file>
-<file url="data/game.def" id="722F4D62-EC1A-4C21-9EA7-C18C7C593B5B" name="game.def">
-</file>
-<file url="data/olka.tpl" id="F85A298E-11CD-4071-8D1A-BE2AAFDED0F3" name="olka.tpl">
-</file>
-<file url="data/players.def" id="93408A95-ACF7-4EF2-A471-776C4E447492" name="players.def">
 </file>
 </folder>
 <folder id="ED3693DD-6A90-4BFD-B625-9793E7A2A988" name="safe files">

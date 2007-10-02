@@ -46,6 +46,7 @@ def GetFileLocations():
     globalvars.File_BestResultsSafe = oE.rscpath + File_BestResultsSafeName
 
     globalvars.File_Branding = oE.rscpath + File_BrandingName
+    globalvars.File_Collapsoid = oE.rscpath + File_CollapsoidName
     globalvars.File_Hints = oE.rscpath + File_HintsName
     globalvars.File_Cuisine = oE.rscpath + File_CuisineName
     globalvars.File_Recipes = oE.rscpath + File_RecipesName

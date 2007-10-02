@@ -55,11 +55,11 @@ Level{
         Ingredient{ type = "flour"    rate = "22" }
         Ingredient{ type = "bonus.spoon"      rate = "0" }
         Ingredient{ type = "bonus.gift"       rate = "0" }
-        Ingredient{ type = "bonus.sweet"      rate = "1" }
+        Ingredient{ type = "bonus.sweet"      rate = "10" }
         Ingredient{ type = "bonus.magicwand"  rate = "0" }
-        Ingredient{ type = "bonus.bomb"       rate = "0" }
-        Ingredient{ type = "bonus.removerow"  rate = "0" }
-        Ingredient{ type = "bonus.scrollback" rate = "1" }
+        Ingredient{ type = "bonus.bomb"       rate = "2" }
+        Ingredient{ type = "bonus.removerow"  rate = "2" }
+        Ingredient{ type = "bonus.scrollback" rate = "5" }
         Ingredient{ type = "bonus.hearts"     rate = "0" }
         Ingredient{ type = "bonus.shuffle"    rate = "0" }
     }

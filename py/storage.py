@@ -1243,23 +1243,25 @@ class Collapsoid(Field):
     def _OnExecute(self, que):
         try:
             if self.DropperState == DropperState_Drop:
-                tmpRows = map(lambda x: x[1],
-                              filter(lambda x: self.Cells[x] != Const_EmptyCell, self.Cells.keys()))
-                if tmpRows != []:
-                    tmpFilledRows = self.Rows - min(tmpRows)
-                else:
-                    tmpFilledRows = 0
-                if globalvars.GameSettings.GetBoolAttr("useCollapsoidSensor") and \
-                        tmpFilledRows < self.SensorAt:
-                    #self.SpeedMiltiplier = globalvars.GameSettings.GetIntAttr("underSensorSpeedIncrease")
-                    self.SpeedMiltiplier = 1.0*globalvars.GameSettings.GetIntAttr("underSensorSpeedIncrease")\
-                        *(self.SensorAt - tmpFilledRows)/self.SensorAt
-                else:
-                    self.SpeedMiltiplier = 1
+                #self.SpeedMiltiplier = self._GetSpeedMultiplier()
+                #tmpRows = map(lambda x: x[1],
+                #              filter(lambda x: self.Cells[x] != Const_EmptyCell, self.Cells.keys()))
+                #if tmpRows != []:
+                #    tmpFilledRows = self.Rows - min(tmpRows)
+                #else:
+                #    tmpFilledRows = 0
+                #if globalvars.GameSettings.GetBoolAttr("useCollapsoidSensor") and \
+                #        tmpFilledRows < self.SensorAt:
+                #    #self.SpeedMiltiplier = globalvars.GameSettings.GetIntAttr("underSensorSpeedIncrease")
+                #    self.SpeedMiltiplier = 1.0*globalvars.GameSettings.GetIntAttr("underSensorSpeedIncrease")\
+                #        *(self.SensorAt - tmpFilledRows)/self.SensorAt
+                #else:
+                #    self.SpeedMiltiplier = 1
                 self.NextDropTime -= que.delta*self.SpeedMiltiplier
                 if self.NextDropTime < 0:
                     if self.Dropped < self.Cols:
                         #globalvars.Musician.PlaySound("tokens.drop")
+                        self.SpeedMiltiplier = self._GetSpeedMultiplier()
                         self.Dropped += 1
                         self._PutRandomToken((self.Dropped-1, self.Rows))
                         self.NextDropTime += self.DropIn
@@ -1299,6 +1301,27 @@ class Collapsoid(Field):
         Field._OnExecute(self, que)
         return scraft.CommandStateRepeat
             
+    #--------------------------
+    # Коэффициент скорости коллапсоида - потом вынести наружу!
+    # Скорость определяется по количеству заполненных рядов - tmpFilledRows
+    # и количеству фишек на поле - tmpNoTokens
+    #--------------------------
+    def _GetSpeedMultiplier(self):
+        tmpFilledCells = filter(lambda x: self.Cells[x] != Const_EmptyCell, self.Cells.keys())
+        tmpNoTokens = len(tmpFilledCells)
+        tmpRows = map(lambda x: x[1], tmpFilledCells)
+        if tmpRows != []:
+            tmpFilledRows = self.Rows - min(tmpRows)
+        else:
+            tmpFilledRows = 0
+        tmp = filter(lambda x: x.GetIntAttr("filledRows") == tmpFilledRows and \
+            x.GetIntAttr("minTokens") <= tmpNoTokens <= x.GetIntAttr("maxTokens"),
+            globalvars.CollapsoidInfo.Tags())
+        if tmp != []:
+            return tmp[0].GetFltAttr("speed")
+        else:
+            return 1
+        
     #--------------------------
     # Быстрый сдвиг поля
     #--------------------------

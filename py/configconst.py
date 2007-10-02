@@ -36,15 +36,16 @@ File_HiscoresSafeName = "safe/scores.def"
 
 File_SST = "masterchef.sst"
 
-File_HintsName = "def/hints.def"
-File_BrandingName = "def/branding.def"
-File_CuisineName = "def/cuisine.def"
-File_RecipesName = "def/recipes.def"
-File_GameSettingsName = "def/gamesettings.def"
-File_ResourceInfoName = "def/resource.def"
-File_FontsInfoName = "def/fonts.def"
 File_AnimationsName = "def/animations.def"
+File_BrandingName = "def/branding.def"
+File_CollapsoidName = "def/collapsoid.def"
+File_CuisineName = "def/cuisine.def"
+File_FontsInfoName = "def/fonts.def"
+File_GameSettingsName = "def/gamesettings.def"
+File_HintsName = "def/hints.def"
 File_LevelProgressName = "def/levelprogress.def"
+File_RecipesName = "def/recipes.def"
+File_ResourceInfoName = "def/resource.def"
 File_GameTextsName = "def/text.def"
 
 RunMode_Test = 0

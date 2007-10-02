@@ -30,6 +30,7 @@ global File_LevelProgress
 global File_GameTexts
 
 global GameSettingsRoot
+global CollapsoidInfo
 global BrandingInfo
 global HintsInfo        #подсказки и туториал
 global CuisineInfo      #ингредиенты

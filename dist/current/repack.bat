@@ -19,6 +19,8 @@ copy .\branding\bfg\publisher-logo.png .\img\logos\publisher-logo.png
 cd ..
 ren "%cd%\release\def.dat" "def.full.dat"
 move "%cd%\release\*.*" "%cd%\release\english full for BFG\"
+cd ".\release\english full for BFG\"
+"c:\Projects\Jungle\zip.exe" "..\zip\ChampionChef_Teggo.zip" "*.*"
 
 REM **** no branding ****
 cd %~dp0
@@ -27,8 +29,9 @@ copy .\branding\none\publisher-logo.png .\img\logos\publisher-logo.png
 "C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
 cd ..
 ren "%cd%\release\def.dat" "def.full.dat"
-
 move "%cd%\release\*.*" "%cd%\release\english full\"
+cd ".\release\english full\"
+"c:\Projects\Jungle\zip.exe" "..\zip\ChampionChefReleaseEn.zip" "*.*"
 
 
 REM build demo version
@@ -39,9 +42,9 @@ copy .\safe\dummy.demo.def .\safe\dummy.def
 cd ..
 ren "%cd%\release\def.dat" "def.demo.dat"
 ren "%cd%\release\ChampionChefReleaseEn.exe" "ChampionChefDemoEn.exe"
-
 move "%cd%\release\*.*" "%cd%\release\english demo\"
-
+cd ".\release\english demo\"
+"c:\Projects\Jungle\zip.exe" "..\zip\ChampionChefDemoEn.zip" "*.*"
 
 REM restore to the previous state version
 cd %~dp0

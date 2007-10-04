@@ -120,7 +120,7 @@ GameCursorState_Tokens = 1
 GameCursorState_Tool = 2
 
 #состояния кастомера
-CustomerState_None = -1
+CustomerState_None = "None"
 CustomerState_Queue = "Queue"     
 CustomerState_Ordering = "Order" 
 CustomerState_Wait = "Wait"          
@@ -225,14 +225,14 @@ Anim_HeartAppear = [
         { "delay": 100, "frno": 0, },
     ]
 Anim_HeartDisappear = [
-        { "delay": 100, "frno": 0, },
-        { "delay": 120, "frno": 2, },
-        { "delay": 150, "frno": 3, },
-        { "delay": 120, "frno": 2, },
-        { "delay": 150, "frno": 3, },
-        { "delay": 120, "frno": 4, },
-        { "delay": 150, "frno": 1, },
-        { "delay": 100, "frno": 5, },
+        { "delay": 80, "frno": 0, },
+        { "delay": 100, "frno": 2, },
+        { "delay": 120, "frno": 3, },
+        { "delay": 100, "frno": 2, },
+        { "delay": 120, "frno": 3, },
+        { "delay": 100, "frno": 4, },
+        { "delay": 120, "frno": 1, },
+        { "delay": 80, "frno": 5, },
     ]
 Anim_HeartVisible = [
         { "delay": 100, "frno": 0, },

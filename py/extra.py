@@ -116,7 +116,7 @@ class Anima(scraft.Dispatcher):
         
     def _OnExecute(self, que):
         if self.NextFrameTime <= 0:
-            if len(self.animation) > 0:
+            if len(self.animation) > 0 and self.sprite.alive:
                 tmp = self.animation.pop(0)
                 if tmp.has_key("x"):
                     self.sprite.x = tmp["x"]

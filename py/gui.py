@@ -59,7 +59,7 @@ class Gui(scraft.Dispatcher):
                 Layer_Background, 400, 300, 800, 600)
         self.PubLogo = { "Static": {}, "Text": {}, "Buttons": {} }
         self.PubLogo["Buttons"]["Back"] = PushButton("",
-                self, Cmd_PubLogoClose, PState_PubLogo, "publisher-logo", [0, 0, 0], 
+                self, Cmd_PubLogoClose, PState_PubLogo, "$spritecraft$dummy$", [0, 0, 0], 
                 Layer_Background, 400, 300, 800, 600)
            
         #--------------
@@ -671,7 +671,11 @@ class Gui(scraft.Dispatcher):
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
         globalvars.BlackBoard.Update(BBTag_Cursor, {"red": False})
-        self._SetState(PState_DevLogo)    
+        #self._SetState(PState_DevLogo)    
+        if globalvars.BrandingInfo.GetBoolAttr("branding"):
+            self._SetState(PState_PubLogo)
+        else:
+            self._SetState(PState_DevLogo)
         self.QueNo = oE.executor.Schedule(self)
         
         
@@ -728,9 +732,10 @@ class Gui(scraft.Dispatcher):
         else:
             if  params["expert"]:
                 self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.expert")
+                tmpPassed = eval(tmpLevelParams.GetStrAttr("expert"))
             else:
                 self.LevelCompleteDialog["Static"]["Back"].ChangeKlassTo("level-results.bg.good")
-            tmpPassed = eval(tmpLevelParams.GetStrAttr("passed"))
+                tmpPassed = eval(tmpLevelParams.GetStrAttr("passed"))
             tmpLayout = globalvars.LevelProgress.GetTag("Layouts").GetSubtag(tmpPassed["layout"])
             self.LevelCompleteDialog["Buttons"]["Comment"].SetParams({ "xy": eval(tmpLayout.GetStrAttr("textXY")),
                 "area": eval(tmpLayout.GetStrAttr("textArea")), "klass": tmpLayout.GetStrAttr("textFont"),
@@ -761,17 +766,17 @@ class Gui(scraft.Dispatcher):
         self.LastQuestion = question
         self._SetState(PState_YesNo)
         self.YesNoDialog["Text"]["QuestionText"].text = question
-        self.YesNoDialog["Buttons"]["Yes"].SetText(answerYes)
-        self.YesNoDialog["Buttons"]["No"].SetText(answerNo)
+        self.YesNoDialog["Buttons"]["Yes"].SetText(defs.GetGameString("Str_Yes"))
+        self.YesNoDialog["Buttons"]["No"].SetText(defs.GetGameString("Str_No"))
         
     def _AskYnc(self, question, answerYes = "Yes", answerNo = "No", answerCancel = "Cancel"):
         self._ReleaseState(PState_Pause)
         self.LastQuestion = question
         self._SetState(PState_YesNoCancel)
         self.YesNoCancelDialog["Text"]["QuestionText"].text = question
-        self.YesNoCancelDialog["Buttons"]["Yes"].SetText(answerYes)
-        self.YesNoCancelDialog["Buttons"]["No"].SetText(answerNo)
-        self.YesNoCancelDialog["Buttons"]["Cancel"].SetText(answerCancel)
+        self.YesNoCancelDialog["Buttons"]["Yes"].SetText(defs.GetGameString("Str_Yes"))
+        self.YesNoCancelDialog["Buttons"]["No"].SetText(defs.GetGameString("Str_No"))
+        self.YesNoCancelDialog["Buttons"]["Cancel"].SetText(defs.GetGameString("Str_Cancel"))
         
     def ShowHint(self, hint, baseCrd):
         self._SetState(PState_Hints)
@@ -917,6 +922,11 @@ class Gui(scraft.Dispatcher):
                 self.FirstPlayer = 0
             else:
                 self.FirstPlayer = tmpInd - self.TotalPlayersOnScreen+1
+        else:
+            if self.FirstPlayer + self.TotalPlayersOnScreen > len(tmpList):
+                self.FirstPlayer = max(self.FirstPlayer-1, 0)
+            else:
+                self.FirstPlayer = 0
         self._UpdatePlayersList()
                 
     def _UpdatePlayersList(self):
@@ -1357,15 +1367,17 @@ class Gui(scraft.Dispatcher):
             #developer logo
             elif globalvars.StateStack[-1] == PState_DevLogo:
                 if cmd == Cmd_DevLogoClose:
-                    if globalvars.BrandingInfo.GetBoolAttr("branding"):
-                        self._SetState(PState_PubLogo)
-                    else:
-                        self._SetState(PState_MainMenu)
+                    #if globalvars.BrandingInfo.GetBoolAttr("branding"):
+                    #    self._SetState(PState_PubLogo)
+                    #else:
+                    #    self._SetState(PState_MainMenu)
+                    self._SetState(PState_MainMenu)
                 
             #publisher logo
             elif globalvars.StateStack[-1] == PState_PubLogo:
                 if cmd == Cmd_PubLogoClose:
-                    self._SetState(PState_MainMenu)
+                    #self._SetState(PState_MainMenu)
+                    self._SetState(PState_DevLogo)
                 
             #main menu
             elif globalvars.StateStack[-1] == PState_MainMenu:
@@ -1793,8 +1805,14 @@ class Gui(scraft.Dispatcher):
             
         elif state == PState_PubLogo:
             self._ShowDialog(self.PubLogo, True)
-            self._ReleaseState(PState_DevLogo)
+            #self._ReleaseState(PState_DevLogo)
+            tmpOtherStates = self.AllDialogs.keys()
+            tmpOtherStates.remove(state)
+            for tmpState in tmpOtherStates:
+                self._ReleaseState(tmpState)
             self.NextStateTime = Time_PubLogoShow
+            oE.SstDefKlass("publisher-logo", globalvars.BrandingInfo.GetSubtag("publisher-logo"))
+            self.PubLogo["Buttons"]["Back"].SetButtonKlass("publisher-logo")
             if globalvars.BrandingInfo.HasAttr("background"):
                 oE.background.color = eval(globalvars.BrandingInfo.GetStrAttr("background"))
             

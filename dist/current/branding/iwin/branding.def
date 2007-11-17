@@ -1,4 +1,5 @@
 MasterChef {
     branding = "yes"
     background = "0xffffff"
+    sprite(publisher-logo) { bitmap  = "splash-iwin_com_logo-withDotCom.png" truecolor = "yes" hotspot = "center" }
 }

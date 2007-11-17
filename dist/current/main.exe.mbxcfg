@@ -22,12 +22,12 @@ box.cmdline=
 box.encrypt=1
 box.packdefault=1
 box.pattern=*.dat
-box.separate=0
-box.sepfile=
+box.separate=1
+box.sepfile=cc.sep
 box.ziplevel=1
-dir.addfiles=C:\Projects\proto games\Master Chef\dist\current
+dir.addfiles=C:\Projects\proto games\Master Chef\dist\current\img\logos
 exe.crc=0
-exe.pack=1
+exe.pack=0
 exe.packedfilesvisible=1
 exe.source=C:\Projects\proto games\Master Chef\dist\current\main.exe
 exe.target=C:\Projects\proto games\Master Chef\dist\release\ChampionChefReleaseEn.exe
@@ -336,6 +336,7 @@ box.2.contents~
 00 img\fx\particle.png
 00 img\fx\star.png
 00 img\fx\star16.png
+00 img\fx\star30.png
 00 img\gui\2nd-popup-background.png
 00 img\gui\background-big.png
 00 img\gui\button-4st-300.png
@@ -475,6 +476,7 @@ box.2.contents~
 00 img\ingredients\veggymix.icon.png
 00 img\ingredients\veggymix.png
 00 img\jason\jason.png
+00 img\logos\developer-logo.png
 00 img\recipes\american\caribbean-spice-chicken.empty.png
 00 img\recipes\american\caribbean-spice-chicken.png
 00 img\recipes\american\chicken-pasta-casseroule.empty.png
@@ -651,7 +653,6 @@ box.3.contents~
 box.4.contents~
 00 masterchef.sst
 00 def\animations.def
-00 def\branding.def
 00 def\collapsoid.def
 00 def\cuisine.def
 00 def\fonts.def
@@ -672,8 +673,7 @@ box.4.contents~
 00 safe\scores.def
 ~
 box.5.contents~
-00 img\logos\developer-logo.png
-00 img\logos\publisher-logo.png
+00 def\branding.def
 ~
 box.6.contents~
 00 sound\customer.gotgift.ogg

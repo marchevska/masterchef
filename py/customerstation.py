@@ -199,6 +199,8 @@ class CustomerStation(scraft.Dispatcher):
                         (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \
                         globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
                 globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Down})
+        elif button == 2:
+            globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
             
     def _OnMouseUp(self, sprite, x, y, button):
         if button == 1:

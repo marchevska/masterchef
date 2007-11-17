@@ -1,0 +1,36 @@
+Champion Chef
+End-User License Agreement
+PLEASE READ THIS AGREEMENT ("AGREEMENT") CAREFULLY BEFORE PROCEEDING. 
+
+This license agreement ("EULA") is a legal agreement between you and Teggo concerning  computer game «Champion Chef» ("SOFTWARE"). The SOFTWARE also includes any updates and supplements to original SOFTWARE provided to you by Teggo or its partners. 
+
+By installing, copying, running, modifying or otherwise using the SOFTWARE, you agree to be bound by the terms of this EULA. If you do not agree to the terms of this EULA, you must remove all Champion Chef files from your computer.
+
+
+COPYRIGHT
+
+All copyrights to the SOFTWARE are exclusively owned by Teggo. All rights not expressly granted here are reserved by Teggo. 
+
+This SOFTWARE is protected by copyright laws and international copyright treaties, as well as other intellectual property laws and treaties.  The SOFTWARE is licensed, not sold.
+
+
+GRANT OF LICENSE
+
+You may:
+(a) use the Game for your own non-commercial purposes on a single computer;
+(b) use the Game on a second computer provided that the two copies are not used simultaneously;
+(c)  copy the Game for back-up, archival purposes provided any copy must contain all of the original Game's proprietary notices.
+
+LIMITATIONS
+
+You may not modify, create derivative works, decompile, disassemble, otherwise reverse engineer the SOFTWARE, or any of it's parts, except as provided by this agreement. 
+You may not rent, lease, sell, or transfer your license to another person without written permission from the copyright holder. You may not share your registered or full version of the Game with any other person.
+
+LIMITATION OF LIABILITY
+
+This SOFTWARE is distributed "as is". No warranty of any kind is expressed or implied. You use it at your own risk. The author will not be liable for data loss, damages, loss of profits or any other kind of loss while using or misusing this software.
+
+Teggo does not guarantee that SOFTWARE is error free. Teggo does not guarantee that this SOFTWARE meets your personal requirements.
+
+Thank you for using the SOFTWARE in accordance with the terms of this EULA.
+

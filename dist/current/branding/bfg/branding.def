@@ -1,4 +1,5 @@
 MasterChef {
     branding = "yes"
     background = "0xffffff"
+    sprite(publisher-logo) { bitmap  = "splash_forWhiteBg_800x600.png" truecolor = "yes" type = "blend" hotspot = "center" }
 }

@@ -11,17 +11,6 @@ REM build full version
 copy .\def\levelprogress.full.def .\def\levelprogress.def
 copy .\safe\dummy.full.def .\safe\dummy.def
 
-REM **** BFG branding ****
-cd %~dp0
-copy .\branding\bfg\branding.def .\def\branding.def
-copy .\branding\bfg\publisher-logo.png .\img\logos\publisher-logo.png
-"C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
-cd ..
-ren "%cd%\release\def.dat" "def.full.dat"
-move "%cd%\release\*.*" "%cd%\release\english full for BFG\"
-cd ".\release\english full for BFG\"
-"c:\Projects\Jungle\zip.exe" "..\zip\ChampionChef_Teggo.zip" "*.*"
-
 REM **** no branding ****
 cd %~dp0
 copy .\branding\none\branding.def .\def\branding.def
@@ -32,12 +21,36 @@ ren "%cd%\release\def.dat" "def.full.dat"
 move "%cd%\release\*.*" "%cd%\release\english full\"
 cd ".\release\english full\"
 "c:\Projects\Jungle\zip.exe" "..\zip\ChampionChefReleaseEn.zip" "*.*"
+copy "*.*" "..\english full for iWin\ChampionChef\nonbranded\"
 
+REM **** BFG branding ****
+cd %~dp0
+copy .\branding\bfg\branding.def .\def\branding.def
+"C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
+cd ..
+copy "%cd%\current\branding\bfg\splash_forWhiteBg_800x600.png" "%cd%\release\english full for BFG\splash_forWhiteBg_800x600.png"
+ren "%cd%\release\def.dat" "def.full.dat"
+move "%cd%\release\*.*" "%cd%\release\english full for BFG\"
+cd ".\release\english full for BFG\"
+"c:\Projects\Jungle\zip.exe" "..\zip\english full for BFG\ChampionChef_Teggo.zip" "*.*"
+
+REM **** iWin branding ****
+cd %~dp0
+copy .\branding\iwin\branding.def .\def\branding.def
+"C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
+cd ..
+copy "%cd%\current\branding\iwin\splash-iwin_com_logo-withDotCom.PNG" "%cd%\release\english full for iWin\ChampionChef\executable\splash-iwin_com_logo-withDotCom.PNG"
+ren "%cd%\release\def.dat" "def.full.dat"
+move "%cd%\release\*.*" "%cd%\release\english full for iWin\ChampionChef\executable\"
+cd ".\release\english full for iWin\"
+"c:\Projects\Jungle\zip.exe" -r "..\zip\english full for iWin\ChampionChef.zip" "*.*"
 
 REM build demo version
 cd %~dp0
 copy .\def\levelprogress.demo.def .\def\levelprogress.def
 copy .\safe\dummy.demo.def .\safe\dummy.def
+copy .\branding\none\branding.def .\def\branding.def
+copy .\branding\none\publisher-logo.png .\img\logos\publisher-logo.png
 "C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
 cd ..
 ren "%cd%\release\def.dat" "def.demo.dat"

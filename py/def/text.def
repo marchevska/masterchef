@@ -2,12 +2,12 @@ MasterChef {
     text(def/01.def.intro.title) { str = "New customer * Blue Collar" }
     text(def/01.def.intro.text) { str = "As we start the first round at Rocky Ranch, our first customers are blue collars. These guys work hard at their job and need some rest after the day." }
     text(def/01.def.passed.text) { str = "Good work! Continue this way, and we can win the competition." }
-    text(def/01.def.expert.text) { str = "Excellent! Continue this way, and we can win the competition." }
+    text(def/01.def.expert.text) { str = "Excellent work! Continue this way, and we can win the competition." }
     text(def/01.def.failed.text) { str = "We haven't made enough money today. Remember the basics: check what ingredients are required and pick them quickly!" }
     text(def/02.def.intro.title) { str = "New table" }
     text(def/02.def.intro.text) { str = "Serving two customers at a time was pretty easy, now let's see if we can deal with three customers." }
     text(def/02.def.passed.text) { str = "Good work! Now let's see how you can serve another customers." }
-    text(def/02.def.expert.text) { str = "Excellent! Now let's see how you can serve another customers." }
+    text(def/02.def.expert.text) { str = "Excellent work! Now let's see how you can serve another customers." }
     text(def/02.def.failed.text) { str = "We haven't made enough money today. To get more score points, pick bigger groups of ingredients." }
     text(def/03.def.intro.title) { str = "New customer * Student" }
     text(def/03.def.intro.text) { str = "College students are back from their vacations. Girls can stay at the restaurant for hours, though they have not much cash for tipping." }
@@ -17,10 +17,10 @@ MasterChef {
     text(def/04.def.intro.title) { str = "Get ready for more customers" }
     text(def/04.def.intro.text) { str = "The word is spreading about our restaurant, and we can expect more and more customers. Hungry students will love our lasagna, it's so rich and delicious." }
     text(def/04.def.passed.text) { str = "Good work! Now let's see if there is something to ease our job: say, a candy?" }
-    text(def/04.def.expert.text) { str = "We should learn serving customers that patient * if we're going to win the competition?" }
+    text(def/04.def.expert.text) { str = "Excellent work! Now let's see if there is something to ease our job: say, a candy?" }
     text(def/04.def.failed.text) { str = "We haven't made enough money today. We really should learn serving customers that patient, or we'll never win the competition." }
     text(def/05.def.intro.title) { str = "New bonus * Candy Sweet" }
-    text(def/05.def.intro.text) { str = "Here is the first bonus token * a candy sweet. If a customer is getting angry, you can improve his mode with a candy." }
+    text(def/05.def.intro.text) { str = "Here is the first bonus token * a candy sweet. If a customer is getting angry, you can improve his mood with a candy." }
     text(def/05.def.passed.text) { str = "Good work! Now when you learned to use sweets, you're ready for more difficult customers." }
     text(def/05.def.expert.text) { str = "Excellent work! Now when you learned to use sweets, you're ready for more difficult customers." }
     text(def/05.def.failed.text) { str = "We haven't made enough money today. Let's try again, and don't forget to use sweets if someone is getting upset." }
@@ -38,7 +38,7 @@ MasterChef {
     text(def/08.def.intro.text) { str = "This bonus will remove an entire row of tokens from the field." }
     text(def/08.def.passed.text) { str = "Good work! Now you can free some space on the board if necessary." }
     text(def/08.def.expert.text) { str = "Excellent work! Now you can free some space on the board if necessary." }
-    text(def/08.def.failed.text) { str = "We haven't made enough money today, but don't give up. If the field is overfilled, use bonuses to keep some free space." }
+    text(def/08.def.failed.text) { str = "We haven't made enough money today. We haven't made enough money today, but don't give up. If the field is overfilled, use bonuses to keep some free space." }
     text(def/09.def.intro.title) { str = "New customer * Tourist" }
     text(def/09.def.intro.text) { str = "Rocky Ranch just got into a local restaurant catalog, and we expect that some tourists to drop in. Tourists are very patient but won't tip much." }
     text(def/09.def.passed.text) { str = "Good work! Now, one more day, and we'll know who has passed the first stage." }
@@ -252,7 +252,7 @@ MasterChef {
     text(american.intro.1) { str = "Dear friends!" }
     text(american.intro.2) { str = "The first round of our" }
     text(american.intro.3) { str = "competition will take place" }
-    text(american.intro.4) { str = "place in the American" }
+    text(american.intro.4) { str = "in the cowboy*styled" }
     text(american.intro.5) { str = "restaurant 'Rocky Ranch'." }
     text(american.intro.6) { str = "Let the best chefs win!" }
     text(mexican.intro.1) { str = "Avocados," }
@@ -417,8 +417,8 @@ MasterChef {
     text(Day 9) { str = "Day 9" }
     text(Day 10) { str = "Day 10" }
     text(Round Results) { str = "Round Results" }
-    text(AMERICAN OPEN) { str = "AMERICAN OPEN" }
-    text(AMERICAN OPEN - RESULTS) { str = "AMERICAN OPEN - RESULTS" }
+    text(AMERICAN OPEN) { str = "USA OPEN" }
+    text(AMERICAN OPEN - RESULTS) { str = "USA OPEN - RESULTS" }
     text(MEXICAN OPEN) { str = "MEXICAN OPEN" }
     text(MEXICAN OPEN - RESULTS) { str = "MEXICAN OPEN - RESULTS" }
     text(RUSSIAN OPEN) { str = "RUSSIAN OPEN" }

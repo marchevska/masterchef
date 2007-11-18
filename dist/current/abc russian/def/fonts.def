@@ -106,7 +106,7 @@ MasterChef{
             bitmap = "img/fonts/arial-italic-18.png"
             type = "blend"
             filtering = "yes"
-            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'”:;()"
+            symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., *&!?'_:;()ְֱֲֳִֵֶַָֹÊֻּֽ־ֿ׀ׁׂ׃װױײ׳״ÙÚÛÜÝÞßאבגדהוזחטיךכלםמןנסעףפץצקרשתûü‎‏ÿ"
         }
         
     }

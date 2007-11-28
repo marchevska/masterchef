@@ -84,12 +84,6 @@ MasterChef{
             filtering = "yes"
             symbols = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789., -&!?'_:;()ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏĞÑÒÓÔÕÖ×ØÙÚÛÜİŞßàáâãäåæçèéêëìíîïğñòóôõö÷øùúûüışÿ"
         }
-        font(hobor-17) {
-            bitmap = "img/fonts/hobor-17.png"
-            type = "blend"
-            filtering = "yes"
-            symbols = "1234567890"
-        }
         font(simple) {
             bitmap = "img/fonts/simple.png"
             type = "blend"

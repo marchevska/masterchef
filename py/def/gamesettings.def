@@ -497,12 +497,4 @@ MasterChef {
         Competitor(Steve) { src = "competitor.steve" }
     }
     
-    GameTips {
-        Tip(id) { textId = "" firstLevel="" lastLevel="" }
-    }
-    
-    TutorialEvents {
-        Event(id) { name = "" textId = "" firstLevel="" lastLevel="" }
-    }
-    
 }

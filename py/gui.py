@@ -1648,17 +1648,12 @@ class Gui(scraft.Dispatcher):
                 if oE.EvtIsKeyDown():
                     self.EnterNameDialog["Text"]["NameErrors"].text = ""
                     tmpName = self.EnterNameDialog["Text"]["Name"].text
-                    if scraft.Key_A <= oE.EvtKey() <= scraft.Key_Z:
-                        tmpLetter = Const_AllChars[oE.EvtKey() - scraft.Key_A]
+                    if oE.EvtKey() in eval(defs.GetGameString("Str_KeyCodes")).keys():
                         if oE.IsKeyPressed(scraft.Key_SHIFT) or oE.IsKeyPressed(scraft.Key_RSHIFT):
-                            pass
+                            tmpLetter = str(eval(str(defs.GetGameString("Str_KeyCodesShift")))[oE.EvtKey()])
                         else:
-                            tmpLetter = string.lower(tmpLetter)
+                            tmpLetter = str(eval(str(defs.GetGameString("Str_KeyCodes")))[oE.EvtKey()])
                         tmpName += tmpLetter
-                    elif scraft.Key_0 <= oE.EvtKey() <= scraft.Key_9:
-                        tmpName += str(oE.EvtKey() - scraft.Key_0)
-                    elif oE.EvtKey() == scraft.Key_SPACE:
-                        tmpName += " "
                     elif oE.EvtKey() == scraft.Key_BACKSPACE:
                         tmpName = tmpName[0:len(tmpName)-1]
                     elif oE.EvtKey() == scraft.Key_ESC:
@@ -1667,6 +1662,7 @@ class Gui(scraft.Dispatcher):
                         self.SendCommand(Cmd_EnterNameOk)
                     if len(tmpName) > Max_NameLen:
                         tmpName = tmpName[0:len(tmpName)-1]
+                    
                     self.EnterNameDialog["Text"]["Name"].text = tmpName
                     self.EnterNameDialog["Static"]["TextCursor"].x = self.EnterNameDialog["Text"]["Name"].x + \
                         self.EnterNameDialog["Text"]["Name"].width/2

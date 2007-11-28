@@ -573,7 +573,7 @@ class Gui(scraft.Dispatcher):
             self.OutroScreen["Text"]["Score"+str(i)] = MakeSprite("domcasual-10-up", Layer_BtnText,
                 { "x": 710, "y": 305+30*i } )
         for i in range(self.MaxSpeechLines):
-            self.IntroScreen["Text"]["Speech"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
+            self.OutroScreen["Text"]["Speech"+str(i)] = MakeSprite("$spritecraft$dummy$", Layer_BtnText)
         
         #-------
         # карта карьерного режима

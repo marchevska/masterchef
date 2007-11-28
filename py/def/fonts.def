@@ -64,19 +64,19 @@ MasterChef{
             bitmap = "img/fonts/domcasual-20-green.png"
             type = "blend"
             filtering = "yes"
-            symbols = "1234567890-+/ $"
+            symbols = "0123456789-+/ $"
         }
         font(domcasual-20-red) {
             bitmap = "img/fonts/domcasual-20-red.png"
             type = "blend"
             filtering = "yes"
-            symbols = "1234567890-+/ $"
+            symbols = "0123456789-+/ $"
         }
         font(domcasual-20-orange) {
             bitmap = "img/fonts/domcasual-20-orange.png"
             type = "blend"
             filtering = "yes"
-            symbols = "1234567890-+/ $"
+            symbols = "0123456789-+/ $"
         }
         font(domcasual-30-yellow) {
             bitmap = "img/fonts/domcasual-30-yellow.png"

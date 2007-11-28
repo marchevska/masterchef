@@ -1358,7 +1358,7 @@ class Gui(scraft.Dispatcher):
     def SendCommand(self, cmd):
         try:
             if cmd == Cmd_Menu_Quit:
-                if globalvars.StateStack[-1] in (PState_Hints,):
+                if globalvars.StateStack[-1] in (PState_Hints, PState_EnterName):
                     self._ReleaseState(globalvars.StateStack[-1])
                 self._Ask(defs.GetGameString("Str_Question_ExitGame"))
                 globalvars.Frozen = True

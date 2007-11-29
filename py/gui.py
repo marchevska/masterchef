@@ -1772,8 +1772,9 @@ class Gui(scraft.Dispatcher):
         if state == PState_StartLevel:
             if not tmpRestored:
                 globalvars.Musician.PlaySound("level.start")
-                globalvars.StateStack[-1] = PState_Game
-                globalvars.StateStack.append(PState_StartLevel)
+                if not(len(globalvars.StateStack) > 2 and globalvars.StateStack[-2] == PState_Game):
+                    globalvars.StateStack[-1] = PState_Game
+                    globalvars.StateStack.append(PState_StartLevel)
                 self._ReleaseState(PState_MainMenu)
                 self._ReleaseState(PState_MapCareer)
                 self._ReleaseState(PState_PubLogo)

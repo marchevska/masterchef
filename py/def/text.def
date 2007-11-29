@@ -376,6 +376,7 @@ MasterChef {
     text(Str_OptionsRestart) { str = "Restart level" }
     text(Str_OptionsEndGame) { str = "Main menu" }
     text(Str_Hints_Close) { str = "Close" }
+    text(Str_Hints_LabelShow) { str = "Show hints" }
     text(Str_Hiscores_Title) { str = "HISCORES" }
     text(Str_Hiscores_EmptyPlayer) { str = "-empty-" }
     text(Str_HiscoresReset) { str = "RESET" }

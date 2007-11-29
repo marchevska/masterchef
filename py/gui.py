@@ -642,7 +642,7 @@ class Gui(scraft.Dispatcher):
         self.HintsDialog["Static"]["Back"] = MakeSimpleSprite("$spritecraft$dummy$", Layer_2ndPopupBg)
         self.HintsDialog["Buttons"]["Text"] = TextArea("arial-italic-20", Layer_2ndPopupBg-1)
         self.HintsDialog["Text"]["Label_Enable"] = MakeTextSprite("domcasual-10-up", Layer_2ndPopupBtnTxt, 390, 320,
-                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelHints"))
+                                                scraft.HotspotLeftCenter, defs.GetGameString("Str_Hints_LabelShow"))
         self.HintsDialog["Buttons"]["Enable"] = PushButton("",
                 self, Cmd_HintsDisable, PState_Hints,
                 "options-checkbox", [0, 1, 2], 

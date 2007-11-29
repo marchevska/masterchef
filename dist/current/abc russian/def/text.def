@@ -376,6 +376,7 @@ MasterChef {
     text(Str_OptionsRestart) { str = "Рестарт уровня" }
     text(Str_OptionsEndGame) { str = "Выход в меню" }
     text(Str_Hints_Close) { str = "Спасибо!" }
+    text(Str_Hints_LabelShow) { str = "Подсказки" }
     text(Str_Hiscores_Title) { str = "РЕКОРДЫ" }
     text(Str_Hiscores_EmptyPlayer) { str = "-пусто-" }
     text(Str_HiscoresReset) { str = "ОЧИСТИТЬ" }

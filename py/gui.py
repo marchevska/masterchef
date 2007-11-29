@@ -1170,8 +1170,7 @@ class Gui(scraft.Dispatcher):
             self.OutroScreen["Text"]["SpeechWinners"].text = reduce(lambda x, y: x+y,
                                     map(lambda i: \
                                         defs.GetGameString(tmpResults["scores"][i][0])+\
-                                        ", "*(i<tmpLevel.GetIntAttr("PassFurther")-2)+\
-                                        " and "*(i==tmpLevel.GetIntAttr("PassFurther")-2),
+                                        ", "*(i<tmpLevel.GetIntAttr("PassFurther")-1),
                                     range(tmpLevel.GetIntAttr("PassFurther"))))
         else:
             self.OutroScreen["Text"]["SpeechWinners"].ChangeKlassTo("$spritecraft$dummy$")

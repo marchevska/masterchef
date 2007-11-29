@@ -250,10 +250,10 @@ class Gui(scraft.Dispatcher):
         #------------
         self.EnterNameDialog = {"Static": {}, "Text": {}, "Buttons": {}}
         self.EnterNameDialog["Static"]["Back"] = MakeSimpleSprite("2nd-popup-background", Layer_2ndPopupBg)
-        self.EnterNameDialog["Static"]["TextField"] = MakeSimpleSprite("entername.text-field", Layer_2ndPopupStatic, 400, 293)
-        self.EnterNameDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 248,
+        self.EnterNameDialog["Static"]["TextField"] = MakeSimpleSprite("entername.text-field", Layer_2ndPopupStatic, 400, 283)
+        self.EnterNameDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 238,
                                                     scraft.HotspotCenterTop, defs.GetGameString("Str_EnterName_Title"))
-        self.EnterNameDialog["Static"]["TextCursor"] = MakeSimpleSprite("textcursor", Layer_2ndPopupBtnTxt, 400, 291)
+        self.EnterNameDialog["Static"]["TextCursor"] = MakeSimpleSprite("textcursor", Layer_2ndPopupBtnTxt, 400, 281)
         self.EnterNameDialog["Static"]["TextCursor"].AnimateLoop(2)
         self.EnterNameDialog["Buttons"]["Ok"] = PushButton("EnterNameOk",
                 self, Cmd_EnterNameOk, PState_EnterName,
@@ -267,9 +267,8 @@ class Gui(scraft.Dispatcher):
                 Layer_2ndPopupBtnTxt, 470, 342, 120, 40,
                 defs.GetGameString("Str_EnterNameCancel"),
                 ["domcasual-10-up", "domcasual-10-roll", "domcasual-10-down", "domcasual-10-inert"])
-        self.EnterNameDialog["Text"]["Name"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 293)
-        self.EnterNameDialog["Text"]["NameErrors"] = MakeTextSprite("domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 320)
-        self.EnterNameDialog["Text"]["NameErrors"].xScale, self.EnterNameDialog["Text"]["NameErrors"].yScale = 50,50
+        self.EnterNameDialog["Text"]["Name"] = MakeTextSprite("mainmenu.domcasual", Layer_2ndPopupBtnTxt, 400, 283)
+        self.EnterNameDialog["Text"]["NameErrors"] = MakeTextSprite("domcasual-10-up", Layer_2ndPopupBtnTxt, 400, 312)
         
         #------------------
         # старт уровня
@@ -313,31 +312,39 @@ class Gui(scraft.Dispatcher):
         self.LevelCompleteDialog["Static"]["Back"] = MakeSprite("$spritecraft$dummy$", Layer_PopupBg)
         self.LevelCompleteDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 470, 130,
                                                         scraft.HotspotCenter, defs.GetGameString("Str_LvComplete_Title"))
-        self.LevelCompleteDialog["Static"]["Indicator1"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 206)
-        self.LevelCompleteDialog["Static"]["Indicator2"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 241)
-        self.LevelCompleteDialog["Static"]["Indicator3"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 276)
+        #self.LevelCompleteDialog["Static"]["Indicator1"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 196)
+        #self.LevelCompleteDialog["Static"]["Indicator2"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 226)
+        #self.LevelCompleteDialog["Static"]["Indicator3"] = MakeSimpleSprite("level-results.indicator", Layer_PopupStatic, 620, 256)
         self.LevelCompleteDialog["Text"]["LabelServed"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 570, "y": 207, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Served") })
+                    { "x": 550, "y": 197, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Served") })
         self.LevelCompleteDialog["Text"]["LabelLost"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 570, "y": 242, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Lost") })
+                    { "x": 550, "y": 227, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Lost") })
         self.LevelCompleteDialog["Text"]["LabelEarned"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 570, "y": 277, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Score") })
+                    { "x": 550, "y": 257, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_Score") })
+        self.LevelCompleteDialog["Text"]["LabelLevelPoints"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
+                    { "x": 550, "y": 287, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_LevelPoints") })
+        self.LevelCompleteDialog["Text"]["LabelRoundPoints"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
+                    { "x": 550, "y": 317, "hotspot": scraft.HotspotRightCenter, "text": defs.GetGameString("Str_LvComplete_RoundPoints") })
         self.LevelCompleteDialog["Text"]["TextServed"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 583, "y": 207, "hotspot": scraft.HotspotLeftCenter })
+                    { "x": 550, "y": 197, "hotspot": scraft.HotspotLeftCenter })
         self.LevelCompleteDialog["Text"]["TextLost"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 583, "y": 242, "hotspot": scraft.HotspotLeftCenter })
+                    { "x": 550, "y": 227, "hotspot": scraft.HotspotLeftCenter })
         self.LevelCompleteDialog["Text"]["TextEarned"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
-                    { "x": 583, "y": 277, "hotspot": scraft.HotspotLeftCenter })
+                    { "x": 550, "y": 257, "hotspot": scraft.HotspotLeftCenter })
+        self.LevelCompleteDialog["Text"]["TextLevelPoints"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
+                    { "x": 550, "y": 287, "hotspot": scraft.HotspotLeftCenter })
+        self.LevelCompleteDialog["Text"]["TextRoundPoints"] = MakeSprite("mainmenu.domcasual", Layer_PopupBtnTxt,
+                    { "x": 550, "y": 317, "hotspot": scraft.HotspotLeftCenter })
         self.LevelCompleteDialog["Buttons"]["Comment"] = TextArea("arial-italic-20", Layer_PopupBtnTxt)
         
         self.LevelCompleteDialog["Static"]["BestSign"] = MakeSimpleSprite("level-results.best-sign",
-                                                        Layer_PopupStatic, 500, 365)
+                                                        Layer_PopupStatic, 500, 390)
         self.LevelCompleteDialog["Static"]["ExpertSign"] = MakeSimpleSprite("level-results.expert-sign",
-                                                        Layer_PopupStatic, 610, 365)
+                                                        Layer_PopupStatic, 610, 390)
         self.LevelCompleteDialog["Buttons"]["Continue"] = PushButton("LvCompleteNextLevel",
                 self, Cmd_LvCompleteNextLevel, PState_NextLevel,
                 "continue-button", [0, 1, 2], 
-                Layer_PopupBtnTxt, 600, 450, 140, 50)
+                Layer_PopupBtnTxt, 600, 470, 140, 50)
         self.LevelCompleteDialog["Buttons"]["Restart"] = PushButton("LvCompleteRestart",
                 self, Cmd_LvCompleteRestart, PState_NextLevel,
                 "button-4st", [0, 1, 2], 
@@ -397,21 +404,21 @@ class Gui(scraft.Dispatcher):
         self.OptionsDialog["Static"]["Back"] = MakeSimpleSprite("popup-background", Layer_PopupBg)
         self.OptionsDialog["Text"]["Title"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 460, 140,
                                                 scraft.HotspotCenter, defs.GetGameString("Str_Options_Title"))
-        self.OptionsDialog["Text"]["Label_Sound"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 220,
+        self.OptionsDialog["Text"]["Label_Sound"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 200,
                                                 scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelSound"))
-        self.OptionsDialog["Text"]["Label_Music"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 270,
+        self.OptionsDialog["Text"]["Label_Music"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 360, 265,
                                                 scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMusic"))
         self.OptionsDialog["Buttons"]["Slider_Sound"] = Slider("SliderSound", globalvars.GameConfig, 'Sound',
                 PState_Options, "options-slider", [0, 1, 2], 
-                Layer_PopupBtnTxt, 555, 220, 220, 30, (460, 650), (220, 220), "slider-background")
+                Layer_PopupBtnTxt, 555, 230, 220, 30, (460, 650), (230, 230), "slider-background")
         self.OptionsDialog["Buttons"]["Slider_Music"] = Slider("SliderMusic", globalvars.GameConfig, 'Music',
                 PState_Options, "options-slider", [0, 1, 2], 
-                Layer_PopupBtnTxt, 555, 270, 220, 30, (460, 650), (270, 270), "slider-background")
-        self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 320,
+                Layer_PopupBtnTxt, 555, 295, 220, 30, (460, 650), (295, 295), "slider-background")
+        self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 340,
                                                 scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMute"))
-        self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 365,
+        self.OptionsDialog["Text"]["Label_Hints"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 380,
                                                 scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelHints"))
-        self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 410,
+        self.OptionsDialog["Text"]["Label_Fullscreen"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 420,
                                                 scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelFullscreen"))
         #self.OptionsDialog["Text"]["Label_Mute"] = MakeTextSprite("mainmenu.domcasual", Layer_PopupBtnTxt, 390, 330,
         #                                        scraft.HotspotLeftCenter, defs.GetGameString("Str_Options_LabelMute"))
@@ -420,18 +427,18 @@ class Gui(scraft.Dispatcher):
         self.OptionsDialog["Buttons"]["Mute"] = PushButton("OptionsMute",
                 self, Cmd_OptionsMute, PState_Options,
                 "options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 372, 320, 30, 30)
+                Layer_PopupBtnTxt, 372, 340, 30, 30)
         self.OptionsDialog["Buttons"]["Hints"] = PushButton("OptionsHints",
                 self, Cmd_OptionsHints, PState_Options,
                 "options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 372, 365, 30, 30)
+                Layer_PopupBtnTxt, 372, 380, 30, 30)
         self.OptionsDialog["Buttons"]["Fullscreen"] = PushButton("OptionsFullscreen",
                 self, Cmd_OptionsFullscreen, PState_Options,
                 "options-checkbox", [0, 1, 2], 
-                Layer_PopupBtnTxt, 372, 410, 30, 30)
-        self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 320)
-        self.OptionsDialog["Static"]["Galka_Hints"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 365)
-        self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 410)
+                Layer_PopupBtnTxt, 372, 420, 30, 30)
+        self.OptionsDialog["Static"]["Galka_Mute"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 340)
+        self.OptionsDialog["Static"]["Galka_Hints"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 380)
+        self.OptionsDialog["Static"]["Galka_Fullscreen"] = MakeSimpleSprite("options-galka", Layer_PopupBtnTxt2, 372, 420)
         self.OptionsDialog["Buttons"]["Ok"] = PushButton("OptionsOk",
                 self, Cmd_OptionsOk, PState_Options,
                 "button-4st", [0, 1, 2], 
@@ -592,7 +599,9 @@ class Gui(scraft.Dispatcher):
         self.MapCareerDialog["Text"]["RestaurantDay"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
                                                 { "x": 170, "y": 450, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Text"]["BestResult"] = MakeSprite("domcasual-10-up", Layer_BtnText,
-                                                { "x": 170, "y": 490, "hotspot": scraft.HotspotCenter } )
+                                                { "x": 170, "y": 480, "hotspot": scraft.HotspotCenter } )
+        self.MapCareerDialog["Text"]["AchievedBy"] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                                                { "x": 170, "y": 500, "hotspot": scraft.HotspotCenter } )
         self.MapCareerDialog["Buttons"]["Start"] = PushButton("MapStart",
                 self, Cmd_MapStart, PState_MapCareer,
                 "map.play.button", [0, 1, 2, 3], 
@@ -745,6 +754,15 @@ class Gui(scraft.Dispatcher):
         self.LevelCompleteDialog["Text"]["TextServed"].text = str(params["served"])
         self.LevelCompleteDialog["Text"]["TextLost"].text = str(params["lost"])
         self.LevelCompleteDialog["Text"]["TextEarned"].text = str(params["score"])
+        self.LevelCompleteDialog["Text"]["TextLevelPoints"].text = \
+                str(flag*(globalvars.GameSettings.GetIntAttr("expertPoints")*params["expert"] + \
+                globalvars.GameSettings.GetIntAttr("levelPoints")*(1-params["expert"]))) + \
+                defs.GetGameString("Str_LvComplete_From") + \
+                str(globalvars.GameSettings.GetIntAttr("expertPoints"))
+        self.LevelCompleteDialog["Text"]["TextRoundPoints"].text = \
+                str(globalvars.CurrentPlayer.GetLevelParams(globalvars.LevelSettings.GetTag("Layout").GetStrAttr("theme")).GetIntAttr("points")) + \
+                defs.GetGameString("Str_LvComplete_From") + \
+                str(globalvars.GameSettings.GetIntAttr("expertAll"))
         
         #medals
         tmpBest = globalvars.BestResults.GetSubtag(globalvars.CurrentPlayer.GetLevel().GetContent())
@@ -1051,10 +1069,12 @@ class Gui(scraft.Dispatcher):
             tmpBest = globalvars.BestResults.GetSubtag(self.SelectedLevel)
             if tmpBest.GetIntAttr("hiscore") != 0 and tmpBest.GetStrAttr("player") != "":
                 self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapHiscore") + \
-                        str(tmpBest.GetIntAttr("hiscore")) + "\n\n" + \
-                        defs.GetGameString("Str_MapAchievedBy") + tmpBest.GetStrAttr("player")
+                        str(tmpBest.GetIntAttr("hiscore"))
+                self.MapCareerDialog["Text"]["AchievedBy"].text = defs.GetGameString("Str_MapAchievedBy") + \
+                        tmpBest.GetStrAttr("player")
             else:
                 self.MapCareerDialog["Text"]["BestResult"].text = defs.GetGameString("Str_MapNoHiscore")
+                self.MapCareerDialog["Text"]["AchievedBy"].text = ""
             self.MapCareerDialog["Text"]["RestaurantTitle"].text = \
                 defs.GetGameString(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant"))
             self.MapCareerDialog["Text"]["RestaurantDay"].text = \
@@ -1066,6 +1086,7 @@ class Gui(scraft.Dispatcher):
             self.MapCareerDialog["Buttons"]["Start"].Show(False)
             self.MapCareerDialog["Buttons"][self.SelectedLevel].SetState(ButtonState_Selected)
             self.MapCareerDialog["Text"]["BestResult"].text = ""
+            self.MapCareerDialog["Text"]["AchievedBy"].text = ""
             self.MapCareerDialog["Text"]["RestaurantTitle"].text = \
                 defs.GetGameString(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.SelectedLevel).GetStrAttr("restaurant"))
             self.MapCareerDialog["Text"]["RestaurantDay"].text = \
@@ -1076,7 +1097,7 @@ class Gui(scraft.Dispatcher):
             self.MapCareerDialog["Buttons"]["Start"].Show(True)
             self.MapCareerDialog["Buttons"]["Start"].SetState(ButtonState_Inert)
             self.MapCareerDialog["Text"]["BestResult"].text = ""
-            self.MapCareerDialog["Text"]["RestaurantTitle"].text = ""
+            self.MapCareerDialog["Text"]["RestaurantTitle"].text = defs.GetGameString("Str_MapSelect")
             self.MapCareerDialog["Text"]["RestaurantDay"].text = ""
         #отрисовать картинки эпизодов - разлочены они или нет
         for tmp in globalvars.LevelProgress.GetTag("Episodes").Tags("episode"):

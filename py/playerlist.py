@@ -190,7 +190,7 @@ class Player:
             tmpSum = reduce(lambda x,y: x+y,
                         map(lambda x: (x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("expertPoints")+\
                         (x.GetIntAttr("hiscore")>0 and not x.GetBoolAttr("expert"))*globalvars.GameSettings.GetIntAttr("levelPoints"),
-                        map(lambda y: self.XML.GetSubtag(y), eval(level.GetStrAttr("sum")))))
+                        map(lambda z: self.XML.GetSubtag(z), eval(level.GetStrAttr("sum")))))
             tmpEpisodeNode.SetIntAttr("points", tmpSum)
             
             #проверяем - пройден ли эпизод по условиям
@@ -303,11 +303,11 @@ class Player:
                 if params.has_key("played"):
                     tmpLevelNode.SetBoolAttr("played", True)
                 if params.has_key("hiscore"):
-                    if params["hiscore"] > tmpLevelNode.GetIntAttr("hiscore"):
+                    if params["hiscore"] > max(tmpLevelNode.GetIntAttr("hiscore"), globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneyGoal")):
                         tmpLevelNode.SetIntAttr("hiscore", params["hiscore"])
                     #проверить, достигнута ли цель уровня; 
                     #если да - разлочить следующий и разлочить рецепты
-                    if params["hiscore"] >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneyGoal"):
+                    if params["hiscore"] >= globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneyGoal"):
                         tmpNextLevelNode = self.XML.GetSubtag(self.Level.Next().GetContent())
                         if tmpNextLevelNode:
                             self._UnlockEntry(tmpNextLevelNode)

@@ -361,11 +361,14 @@ MasterChef {
     text(Str_LvComplete_Served) { str = "Customers served: " }
     text(Str_LvComplete_Lost) { str = "Customers lost: " }
     text(Str_LvComplete_Score) { str = "Money earned: " }
+    text(Str_LvComplete_LevelPoints) { str = "Day points: " }
+    text(Str_LvComplete_RoundPoints) { str = "Round points: " }
+    text(Str_LvComplete_From) { str = " of " }
     text(Str_Options_Title) { str = "OPTIONS" }
-    text(Str_Options_LabelSound) { str = "SOUND" }
-    text(Str_Options_LabelMusic) { str = "MUSIC" }
-    text(Str_Options_LabelMute) { str = "Mute" }
-    text(Str_Options_LabelHints) { str = "Show hints" }
+    text(Str_Options_LabelSound) { str = "Sound volume" }
+    text(Str_Options_LabelMusic) { str = "Music volume" }
+    text(Str_Options_LabelMute) { str = "Mute all sounds" }
+    text(Str_Options_LabelHints) { str = "Show gameplay hints" }
     text(Str_Options_LabelFullscreen) { str = "Fullscreen" }
     text(Str_OptionsOk) { str = "OK" }
     text(Str_OptionsCancel) { str = "CANCEL" }
@@ -377,6 +380,7 @@ MasterChef {
     text(Str_Hiscores_EmptyPlayer) { str = "-empty-" }
     text(Str_HiscoresReset) { str = "RESET" }
     text(Str_HiscoresClose) { str = "CLOSE" }
+    text(Str_MapSelect) { str = "Select a level" }
     text(Str_MapStart) { str = "START GAME" }
     text(Str_MapViewResults) { str = "VIEW RESULTS" }
     text(Str_MapHiscore) { str = "Hiscore " }

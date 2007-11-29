@@ -334,8 +334,8 @@ MasterChef {
     text(Str_Menu_Cookbook) { str = "Рецепты" }
     text(Str_Menu_Hiscores) { str = "Рекорды" }
     text(Str_Menu_Quit) { str = "Выход" }
-    text(Str_Paused1) { str = "Игра остановлена." }
-    text(Str_Paused2) { str = "Для продолжения нажми кнопку мыши." }
+    text(Str_Paused1) { str = "Пауза. Для продолжения" }
+    text(Str_Paused2) { str = "нажми кнопку мыши." }
     text(Str_HelpPrev) { str = "НАЗАД" }
     text(Str_HelpNext) { str = "ДАЛЬШЕ" }
     text(Str_HelpClose) { str = "ЗАКРЫТЬ" }
@@ -361,11 +361,14 @@ MasterChef {
     text(Str_LvComplete_Served) { str = "Сытые гости: " }
     text(Str_LvComplete_Lost) { str = "Голодные гости: " }
     text(Str_LvComplete_Score) { str = "Мы заработали: " }
+    text(Str_LvComplete_LevelPoints) { str = "Очки за день: " }
+    text(Str_LvComplete_RoundPoints) { str = "Счет в раунде: " }
+    text(Str_LvComplete_From) { str = " из " }
     text(Str_Options_Title) { str = "НАСТРОЙКИ" }
     text(Str_Options_LabelSound) { str = "Громкость звуков" }
     text(Str_Options_LabelMusic) { str = "Громкость музыки" }
     text(Str_Options_LabelMute) { str = "Выключить звук" }
-    text(Str_Options_LabelHints) { str = "Подсказки" }
+    text(Str_Options_LabelHints) { str = "Подсказки по игре" }
     text(Str_Options_LabelFullscreen) { str = "Во весь экран" }
     text(Str_OptionsOk) { str = "ОК" }
     text(Str_OptionsCancel) { str = "Отмена" }
@@ -377,6 +380,7 @@ MasterChef {
     text(Str_Hiscores_EmptyPlayer) { str = "-пусто-" }
     text(Str_HiscoresReset) { str = "ОЧИСТИТЬ" }
     text(Str_HiscoresClose) { str = "ЗАКРЫТЬ" }
+    text(Str_MapSelect) { str = "Выбери уровень" }
     text(Str_MapStart) { str = "ИГРАТЬ!" }
     text(Str_MapViewResults) { str = "РЕЗУЛЬТАТЫ" }
     text(Str_MapHiscore) { str = "Рекорд " }

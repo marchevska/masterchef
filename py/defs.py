@@ -63,6 +63,7 @@ def ReadLevelProgress():
         globalvars.GameTexts = oE.ParseDEF(globalvars.File_GameTexts).GetTag(DEF_Header)
         globalvars.HintsInfo = oE.ParseDEF(globalvars.File_Hints).GetTag(DEF_Header)
         globalvars.BrandingInfo = oE.ParseDEF(globalvars.File_Branding).GetTag(DEF_Header)
+        globalvars.BuildInfo = oE.ParseDEF(globalvars.File_Build).GetTag(DEF_Header)
         globalvars.CollapsoidInfo = oE.ParseDEF(globalvars.File_Collapsoid).GetTag(DEF_Header)
     except:
         oE.Log(u"Cannot read levels list")

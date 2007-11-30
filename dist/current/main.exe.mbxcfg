@@ -471,6 +471,7 @@ box.2.contents~
 00 img\ingredients\veggymix.png
 00 img\jason\jason.png
 00 img\logos\developer-logo.png
+00 img\logos\developer-logo-small.png
 00 img\recipes\american\caribbean-spice-chicken.empty.png
 00 img\recipes\american\caribbean-spice-chicken.png
 00 img\recipes\american\chicken-pasta-casseroule.empty.png
@@ -647,6 +648,7 @@ box.3.contents~
 box.4.contents~
 00 masterchef.sst
 00 def\animations.def
+00 def\build.def
 00 def\collapsoid.def
 00 def\cuisine.def
 00 def\fonts.def

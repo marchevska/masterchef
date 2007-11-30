@@ -334,6 +334,7 @@ MasterChef {
     text(Str_Menu_Cookbook) { str = "Рецепты" }
     text(Str_Menu_Hiscores) { str = "Рекорды" }
     text(Str_Menu_Quit) { str = "Выход" }
+    text(Str_Menu_Version) { str = "Версия " }
     text(Str_Paused1) { str = "Пауза. Для продолжения" }
     text(Str_Paused2) { str = "нажми кнопку мыши." }
     text(Str_HelpPrev) { str = "НАЗАД" }

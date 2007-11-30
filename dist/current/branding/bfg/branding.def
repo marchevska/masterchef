@@ -1,5 +1,8 @@
 MasterChef {
-    branding = "yes"
+    pubLogo = "yes"
     background = "0xffffff"
     sprite(publisher-logo) { bitmap  = "splash_forWhiteBg_800x600.png" truecolor = "yes" type = "blend" hotspot = "center" }
+    smallDevLogo { klass = "developer-logo-small" x = "700" y = "550" }
+    smallPubLogo { klass = "publisher-logo-small" x = "550" y = "550" }
+    sprite(publisher-logo-small) { bitmap  = "bfglogo_150x125.png" truecolor = "yes" type = "blend" hotspot = "center" }
 }

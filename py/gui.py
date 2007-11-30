@@ -67,6 +67,15 @@ class Gui(scraft.Dispatcher):
         #--------------
         self.MainMenuDialog = { "Static": {}, "Text": {}, "Buttons": {}, "Animations": {} }
         self.MainMenuDialog["Static"]["Back"] = MakeSimpleSprite("mainmenu-background", Layer_Background)
+        tmpDevLogoInfo = globalvars.BrandingInfo.GetTag("smallDevLogo")
+        self.MainMenuDialog["Static"]["DevLogoSmall"] = MakeSimpleSprite(tmpDevLogoInfo.GetStrAttr("klass"),
+                Layer_BtnText, tmpDevLogoInfo.GetIntAttr("x"), tmpDevLogoInfo.GetIntAttr("y"))
+        tmpPubLogoInfo = globalvars.BrandingInfo.GetTag("smallPubLogo")
+        if tmpPubLogoInfo.GetStrAttr("klass") != "$spritecraft$dummy$":
+            oE.SstDefKlass("publisher-logo-small", globalvars.BrandingInfo.GetSubtag("publisher-logo-small"))
+        self.MainMenuDialog["Static"]["PubLogoSmall"] = MakeSimpleSprite(tmpPubLogoInfo.GetStrAttr("klass"),
+                Layer_BtnText, tmpPubLogoInfo.GetIntAttr("x"), tmpPubLogoInfo.GetIntAttr("y"))
+        
         #self.MainMenuDialog["Static"]["Tablet"] = MakeSprite("mainmenu.tablet", Layer_Static,
         #        { "x": 675, "y": 100, "hotspot": scraft.HotspotCenter } )
         self.MainMenuDialog["Static"]["JaneEyes"] = MakeSprite("mainmenu.jane.eyes", Layer_BtnText,
@@ -127,6 +136,9 @@ class Gui(scraft.Dispatcher):
                 { "x": 765, "y": 110, "hotspot": scraft.HotspotRightCenter  } )
         self.MainMenuDialog["Text"]["WelcomeName"] = MakeSprite("mainmenu.domcasual", Layer_BtnText,
                 { "x": 765, "y": 135, "hotspot": scraft.HotspotRightCenter  } )
+        self.MainMenuDialog["Text"]["VersionNumber"] = MakeSprite("domcasual-10-up", Layer_BtnText,
+                { "x": 30, "y": 580, "hotspot": scraft.HotspotLeftCenter,
+                "text": defs.GetGameString("Str_Menu_Version")+globalvars.BuildInfo.GetStrAttr("buildNo") } )
         
         #---------
         # пауза
@@ -681,7 +693,7 @@ class Gui(scraft.Dispatcher):
         globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
         globalvars.BlackBoard.Update(BBTag_Cursor, {"red": False})
         #self._SetState(PState_DevLogo)    
-        if globalvars.BrandingInfo.GetBoolAttr("branding"):
+        if globalvars.BrandingInfo.GetBoolAttr("pubLogo"):
             self._SetState(PState_PubLogo)
         else:
             self._SetState(PState_DevLogo)

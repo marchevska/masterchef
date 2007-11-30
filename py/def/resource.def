@@ -566,6 +566,7 @@ MasterChef{
         
         //Logos
         sprite(developer-logo) { bitmap = "img/logos/developer-logo.png" type = "blend" }
+        sprite(developer-logo-small) { bitmap = "img/logos/developer-logo-small.png" type = "blend" }
         
         //Main menu
         sprite(mainmenu-background) { bitmap = "img/gui/mainmenu-background.png" truecolor = "yes" }

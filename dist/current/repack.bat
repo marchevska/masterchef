@@ -29,6 +29,7 @@ copy .\branding\bfg\branding.def .\def\branding.def
 "C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
 cd ..
 copy "%cd%\current\branding\bfg\splash_forWhiteBg_800x600.png" "%cd%\release\english full for BFG\splash_forWhiteBg_800x600.png"
+copy "%cd%\current\branding\bfg\bfglogo_150x125.png" "%cd%\release\english full for BFG\bfglogo_150x125.png"
 ren "%cd%\release\def.dat" "def.full.dat"
 move "%cd%\release\*.*" "%cd%\release\english full for BFG\"
 cd ".\release\english full for BFG\"
@@ -40,6 +41,7 @@ copy .\branding\iwin\branding.def .\def\branding.def
 "C:\Program Files\MoleBoxPro\mbox2c.exe" main.exe
 cd ..
 copy "%cd%\current\branding\iwin\splash-iwin_com_logo-withDotCom.PNG" "%cd%\release\english full for iWin\ChampionChef\executable\splash-iwin_com_logo-withDotCom.PNG"
+copy "%cd%\current\branding\iwin\iWin_logo_small-150px-flat-RGB.PNG" "%cd%\release\english full for iWin\ChampionChef\executable\iWin_logo_small-150px-flat-RGB.PNG"
 ren "%cd%\release\def.dat" "def.full.dat"
 move "%cd%\release\*.*" "%cd%\release\english full for iWin\ChampionChef\executable\"
 cd ".\release\english full for iWin\"

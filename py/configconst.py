@@ -38,6 +38,7 @@ File_SST = "masterchef.sst"
 
 File_AnimationsName = "def/animations.def"
 File_BrandingName = "def/branding.def"
+File_BuildName = "def/build.def"
 File_CollapsoidName = "def/collapsoid.def"
 File_CuisineName = "def/cuisine.def"
 File_FontsInfoName = "def/fonts.def"

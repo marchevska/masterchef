@@ -411,8 +411,6 @@
 </file>
 <file url="advisor.py" id="237DFBE7-597A-4AD3-AACD-19AFCBABB6AD" name="advisor.py">
 </file>
-<file url="game.rc" id="D8647B9A-3827-4C48-BCC4-344FE5E60F56" name="game.rc">
-</file>
 <folder id="D44DD2B1-F9C3-4EE1-B25C-F4835133BBD7" name="branding">
 <folder id="04306CE8-F821-4258-9BF5-0DA85849765C" name="no branding">
 <file url="def/branding.def" id="0C21AF80-9315-409D-8158-16E951BA98F8" name="branding.def">
@@ -426,5 +424,21 @@
 <file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/bfg/branding.def" id="4C33A298-8227-4F9D-9012-A57A828C0574" name="branding.def">
 </file>
 </folder>
+<folder id="C1D3CB74-76B0-499D-BA0A-9FF19FCED527" name="nevosoft">
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/nevosoft%20ru/branding.def" id="862C5C6D-BAA7-408E-824C-4878642FFE76" name="branding.def">
+</file>
+</folder>
+</folder>
+<folder id="EEFA3E9D-1DFA-4AF3-A114-E36371BAC1AE" name="compiling and packaging">
+<file url="game.rc" id="D8647B9A-3827-4C48-BCC4-344FE5E60F56" name="game.rc">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/main.exe.config" id="0A3D8B28-3585-4E7B-BF08-676259DCFDDF" name="main.exe.config">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/repack.bat" id="B33CDF74-ACD7-4465-9628-BD625007086F" name="repack.bat">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/main.exe.mbxcfg" id="9ABA0FC1-8ED4-43D9-B69A-79A0C4E48F86" name="main.exe.mbxcfg">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/repackfw.bat" id="3849AAA4-C4CE-41DF-B80A-97E5B108CB14" name="repackfw.bat">
+</file>
 </folder>
 </project>

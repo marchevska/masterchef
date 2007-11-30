@@ -32,5 +32,5 @@ BEGIN
     END
 END
 
-1  ICON  DISCARDABLE  "main.ico"
+1  ICON  DISCARDABLE  "main32.ico"
 

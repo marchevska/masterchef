@@ -2,7 +2,7 @@ MasterChef {
     pubLogo = "yes"
     background = "0xffffff"
     sprite(publisher-logo) { bitmap  = "splash-iwin_com_logo-withDotCom.png" truecolor = "yes" hotspot = "center" }
-    smallDevLogo { klass = "developer-logo-small" x = "700" y = "550" }
-    smallPubLogo { klass = "publisher-logo-small" x = "550" y = "550" }
+    smallDevLogo { klass = "developer-logo-small" x = "712" y = "573" }
+    smallPubLogo { klass = "publisher-logo-small" x = "555" y = "570" }
     sprite(publisher-logo-small) { bitmap  = "iWin_logo_small-150px-flat-RGB.png" truecolor = "yes" type = "blend" hotspot = "center" }
 }

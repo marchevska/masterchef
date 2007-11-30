@@ -6,6 +6,8 @@ Project: Master Chef
 Основной модуль
 """
 
+import os.path
+import pyteggo2
 import os, sys
 import scraft
 from scraft import engine as oE
@@ -18,6 +20,9 @@ from extra import *
 import config
 import globalvars
 import defs
+
+pyteggo2.InitRoEfs(0)
+pyteggo2.MountRoEfs("*.dat","b470c392669c5d767b552d30af0a5bab")
 
 oE.logging = False
 oE.Init(scraft.DevDisableDrvInfo)

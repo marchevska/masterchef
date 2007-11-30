@@ -1,5 +1,7 @@
 MasterChef {
-    branding = "yes"
+    pubLogo = "yes"
     background = "0xffffff"
     sprite(publisher-logo) { bitmap  = "splash1.jpg" truecolor = "yes" hotspot = "center" }
+    smallDevLogo { klass = "developer-logo-small" x = "675" y = "560" }
+    smallPubLogo { klass = "$spritecraft$dummy$" x = "0" y = "0" }
 }

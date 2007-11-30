@@ -76,7 +76,7 @@ Level{
     //layout of the game field
     Layout{
         theme = "American" 
-        CustomerStation{ type = "" x = "270" y = "300" occupied = "no" }
+        CustomerStation{ type = "" x = "270" y = "300" occupied = "yes" }
         CustomerStation{ type = "" x = "90" y = "410" occupied = "no" }
         CustomerStation{ type = "" x = "270" y = "520" occupied = "yes" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "5" SensorAt = "5" Delay = "1100" DropIn = "650" ShiftSpeed = "40" X0 = "420" Y0 = "20" }

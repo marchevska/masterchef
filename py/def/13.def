@@ -76,7 +76,7 @@ Level{
     //layout of the game field
     Layout{
         theme = "Mexican" 
-        CustomerStation{ type = "" x = "90" y = "300" occupied = "no" }
+        CustomerStation{ type = "" x = "90" y = "300" occupied = "yes" }
         CustomerStation{ type = "" x = "270" y = "410" occupied = "no" }
         CustomerStation{ type = "" x = "90" y = "520" occupied = "no" }
         //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }

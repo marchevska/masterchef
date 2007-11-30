@@ -77,7 +77,7 @@ Level{
     Layout{
         theme = "Mexican" 
         CustomerStation{ type = "" x = "270" y = "300" occupied = "no" }
-        CustomerStation{ type = "" x = "90" y = "410" occupied = "no" }
+        CustomerStation{ type = "" x = "90" y = "410" occupied = "yes" }
         CustomerStation{ type = "" x = "270" y = "520" occupied = "no" }
         //CustomerStation{ type = "" x = "260" y = "550" occupied = "yes" }
         Collapsoid{ XSize = "9" YSize = "13" InitialRows = "5" SensorAt = "5" Delay = "1000" DropIn = "600" ShiftSpeed = "40" X0 = "420" Y0 = "20" }

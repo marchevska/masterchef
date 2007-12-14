@@ -1,0 +1,107 @@
+
+Objects {
+    Dialog(DevLogo) {
+        layer = "100"
+        Image(Background) {
+            sprite = "developer-logo"
+            sublayer = "1"
+        }
+        Button(Close) {
+            style = "PushButton.WholeScreen"
+        }
+    }
+    
+    Dialog(Hiscores) {
+        layer = "50"
+        music = "Menu"
+//        Dialog.Hiscores(Frame1) { x = "0" y = "0" }
+//    }
+//    
+//    Composite(Dialog.Hiscores) {
+        sublayerBase = "-5"
+        Image(Background) {
+            sprite = "background-big"
+            sublayer = "5"
+        }
+        Hiscores.Tag(Game) { x = "30" y = "70" }
+        Hiscores.Tag(American) { x = "290" y = "70" }
+        Hiscores.Tag(Mexican) { x = "550" y = "70" }
+        Hiscores.Tag(Russian) { x = "30" y = "310" }
+        Hiscores.Tag(Japanese) { x = "290" y = "310" }
+        Hiscores.Tag(Hawaiian) { x = "550" y = "310" }
+        PushButton(HiscoresReset) {
+            style = "PushButton.Default"
+            x = "300" y = "570"
+            textDefault = "Str_HiscoresReset"
+        }
+        PushButton(HiscoresClose) {
+            style = "PushButton.Default"
+            x = "500" y = "570"
+            textDefault = "Str_HiscoresClose"
+            command = "Close_Cancel"
+        }
+    }
+    
+    Composite(Hiscores.Tag) {
+        Image(Background) {
+            sprite = "hiscores.frame"
+            //sprite { bitmap = "img/gui/hiscores.frame.png" type = "blend" }
+            x = "0" y = "0"
+            sublayer = "2"
+        }
+        Image(Logo) {
+            sprite = "hiscores.logos"
+            //sprite { bitmap = "img/gui/hiscores.logos.png" type = "blend" layout = "2x6" }
+            x = "120" y = "70"
+            sublayer = "1"
+        }
+        TextLabel (Player1) { style = "TextLabel.Hiscore.Player" x = "10" y = "80" }
+        TextLabel (Player2) { style = "TextLabel.Hiscore.Player" x = "10" y = "105" }
+        TextLabel (Player3) { style = "TextLabel.Hiscore.Player" x = "10" y = "130" }
+        TextLabel (Player4) { style = "TextLabel.Hiscore.Player" x = "10" y = "155" }
+        TextLabel (Player5) { style = "TextLabel.Hiscore.Player" x = "10" y = "180" }
+        TextLabel (Score1) { style = "TextLabel.Hiscore.Score" x = "210" y = "80" }
+        TextLabel (Score2) { style = "TextLabel.Hiscore.Score" x = "210" y = "105" }
+        TextLabel (Score3) { style = "TextLabel.Hiscore.Score" x = "210" y = "130" }
+        TextLabel (Score4) { style = "TextLabel.Hiscore.Score" x = "210" y = "155" }
+        TextLabel (Score5) { style = "TextLabel.Hiscore.Score" x = "210" y = "180" }
+    }
+}
+
+Styles {
+    Style(PushButton.WholeScreen) {
+        HitArea {
+            width = "800" height = "600"
+        }
+    }
+    
+    Style(PushButton.Default) {
+        sound = "gui.click"
+        HitArea {
+            width = "120" height = "40"
+        }
+        Background {
+            sublayer = "-1"
+            State(Default) { sprite = "button-4st" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            sublayer = "-2"
+            State(Up) { font = "domcasual-10-up" }
+            State(Roll) { font = "domcasual-10-roll" }
+            State(Down) { font = "domcasual-10-down" }
+            State(Inert) { font = "domcasual-10-inert" }
+        }
+    }
+    Style(TextLabel.Hiscore.Player) {
+        font = "domcasual-11" hotspot = "LeftTop"
+        cfilt-color = "0xFFDDCC"
+    }
+    Style(TextLabel.Hiscore.Score) {
+        font = "domcasual-11" hotspot = "RightTop"
+        cfilt-color = "0xFFDDCC"
+    }
+}

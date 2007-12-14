@@ -66,4 +66,4 @@ global Timer
 global Board
 global BlackBoard
 global GUI
-
+global GuiPresenter

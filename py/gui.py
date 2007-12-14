@@ -23,6 +23,8 @@ import globalvars
 import traceback
 from random import shuffle
 
+from teggo.games import guipresenter
+
 class Gui(scraft.Dispatcher):
     def __init__(self):
         globalvars.Frozen = False
@@ -1773,6 +1775,8 @@ class Gui(scraft.Dispatcher):
         else:
             tmpRestored = True
         
+        globalvars.GuiPresenter.BringToFront("Hiscores", False)
+        
         #переключение музыки
         if state in (PState_Game, PState_NextLevel, PState_StartLevel,
                      #PState_Comics, PState_Intro, PState_Outro,
@@ -1952,10 +1956,17 @@ class Gui(scraft.Dispatcher):
             self._ShowHelpPage(self.CurrentHelpPage)
             
         elif state == PState_Hiscores:
-            #self._ShowDialog(self.MainMenuDialog, True)
-            config.UpdateHiscores()
-            self._ShowDialog(self.HiscoresDialog, True)
-            self._UpdateHiscoresDialog()
+            try:
+                globalvars.GuiPresenter.ShowDialog("Hiscores", True)
+                globalvars.GuiPresenter.BringToFront("Hiscores", True)
+                #oE.logging = True
+                #oE.DumpObjectsList()
+            except:
+                print string.join(apply(traceback.format_exception, sys.exc_info()))
+            ##self._ShowDialog(self.MainMenuDialog, True)
+            #config.UpdateHiscores()
+            #self._ShowDialog(self.HiscoresDialog, True)
+            #self._UpdateHiscoresDialog()
             
         elif state == PState_Options:
             globalvars.Board.Freeze(True)

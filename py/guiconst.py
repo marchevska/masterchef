@@ -119,8 +119,8 @@ PState_Pause = 25
 PState_Hints = 26
 
 #длительность показа логотипов
-Time_DevLogoShow = 5000
-Time_PubLogoShow = 5000
+Time_DevLogoShow = 3500
+Time_PubLogoShow = 3500
 
 #состояния курсора
 CursorState_None = -1
@@ -177,7 +177,6 @@ Channel_Time = 2
 Channel_Default = 0
 
 #разные константы
-Const_AllChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 Max_NameLen = 12
 Max_Scores = 5
 

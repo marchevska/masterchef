@@ -21,8 +21,15 @@ import config
 import globalvars
 import defs
 
-pyteggo2.InitRoEfs(0)
-pyteggo2.MountRoEfs("*.dat","b470c392669c5d767b552d30af0a5bab")
+from teggo.games import guipresenter
+
+try:
+    import _jungle
+    if _jungle.compiled:
+        pyteggo2.InitRoEfs(0)
+        pyteggo2.MountRoEfs("*.dat","b470c392669c5d767b552d30af0a5bab")
+except:
+    pass
 
 oE.logging = False
 oE.Init(scraft.DevDisableDrvInfo)
@@ -64,6 +71,7 @@ globalvars.Timer = Timer()
 globalvars.Musician = Musician()
 globalvars.StateStack = []
 
+globalvars.GuiPresenter = guipresenter.GuiPresenter("def/gui.def")
 globalvars.GUI = Gui()
 globalvars.Board = GameBoard()
 globalvars.PausedState = False

@@ -10,17 +10,18 @@ class TextLabel(guiaux.GuiObject):
         self.ego = ego
         self.host = host
         self.style = styles.GetSubtag(node.GetStrAttr("style"))
-        if node.GetStrAttr("text") != "": #None:
-            self.defaultText = localizer.GetGameString(node.GetStrAttr("text"))
+        if node.GetStrAttr("textDefault") != "": #None:
+            self.textDefault = localizer.GetGameString(node.GetStrAttr("textDefault"))
         else:
-            self.defaultText = "-empty-" #""
+            self.textDefault = ""
         
         self.sprite = oE.NewSprite_("$spritecraft$font$", parent.layer)
         self.sprite.parent = parent
         self.sprite.x, self.sprite.y = node.GetIntAttr("x"), node.GetIntAttr("y")
         self.sprite.sublayer = parent.sublayer + node.GetIntAttr("sublayer")
         
-        self.sprite.cfilt.color = 0xCCCCCC
+        if self.style.GetStrAttr("cfilt-color") != "":
+            self.sprite.cfilt.color = eval(self.style.GetStrAttr("cfilt-color"))
         
         self.sprite.ChangeKlassTo(self.style.GetStrAttr("font"))
         self.sprite.hotspot = guiaux.GetHotspotValue(self.style.GetStrAttr("hotspot"))
@@ -37,7 +38,14 @@ class TextLabel(guiaux.GuiObject):
             if text != None:
                 self.sprite.text = text
             else:
-                self.sprite.text = self.defaultText
+                self.sprite.text = self.textDefault
+            cfilt = data.get(self.ego+"#cfilt")
+            if cfilt != None:
+                self.sprite.cfilt.color = cfilt
+            else:
+                if self.style.GetStrAttr("cfilt-color") != "":
+                    self.sprite.cfilt.color = eval(self.style.GetStrAttr("cfilt-color"))
+                
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         

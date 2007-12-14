@@ -13,9 +13,12 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
         self.ego = ego
         self.host = host
         self.style = styles.GetSubtag(node.GetStrAttr("style"))
-        self.defaultText = localizer.GetGameString(node.GetStrAttr("textDefault"))
+        self.textDefault = localizer.GetGameString(node.GetStrAttr("textDefault"))
         self.text = ""
-        self.command = node.GetStrAttr("command")
+        if node.GetStrAttr("command") != "":
+            self.command = node.GetStrAttr("command")
+        else:
+            self.command = None
         self.state = None
         
         self.Dummy = oE.NewSprite_("$spritecraft$dummy$", parent.layer)
@@ -23,7 +26,7 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
         self.Dummy.x, self.Dummy.y = node.GetIntAttr("x"), node.GetIntAttr("y")
         self.Dummy.xSize, self.Dummy.ySize = self.style.GetTag("HitArea").GetIntAttr("width"), self.style.GetTag("HitArea").GetIntAttr("height")
         self.Dummy.sublayer = parent.sublayer + node.GetIntAttr("sublayer") + self.style.GetTag("HitArea").GetIntAttr("sublayer")
-        self.Dummy.dispatcher = self
+        self.Dummy.dispatcher = scraft.Dispatcher(self)
         
         self.Background = oE.NewSprite_("$spritecraft$dummy$", parent.layer)
         self.Background.parent = self.Dummy
@@ -39,20 +42,36 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
         self._SetHotspot()
         
     def _SetState(self, state = "Up"):
-        self.state = state
-        if self.style.GetTag("Background").GetSubtag(state).HasAttr("sprite"):
-            backgroundKlass = self.style.GetTag("Background").GetSubtag(state).GetStrAttr("sprite")
-        else:
-            backgroundKlass = self.style.GetTag("Background").GetSubtag("Default").GetStrAttr("sprite")
-        self.Background.ChangeKlassTo(backgroundKlass)
-        self.Background.frno = self.style.GetTag("Background").GetSubtag(state).GetIntAttr("frno")
-        if self.style.GetTag("Text").GetSubtag(state).HasAttr("font"):
-            textKlass = self.style.GetTag("Text").GetSubtag(state).GetStrAttr("font")
-        else:
-            textKlass = self.style.GetTag("Text").GetSubtag("Default").GetStrAttr("font")
-        self.TextSprite.ChangeKlassTo(textKlass)
-        self.TextSprite.text = self.text
-        self._SetHotspot()
+        try:
+            self.state = state
+            if self.style.GetTag("Background").GetSubtag(state) != None and \
+                    self.style.GetTag("Background").GetSubtag(state).HasAttr("sprite"):
+                backgroundKlass = self.style.GetTag("Background").GetSubtag(state).GetStrAttr("sprite")
+            elif self.style.GetTag("Background").GetSubtag("Default") != None and \
+                    self.style.GetTag("Background").GetSubtag("Default").HasAttr("sprite"):
+                backgroundKlass = self.style.GetTag("Background").GetSubtag("Default").GetStrAttr("sprite")
+            else:
+                backgroundKlass = "$spritecraft$dummy$"
+            self.Background.ChangeKlassTo(backgroundKlass)
+            if self.style.GetTag("Background").GetSubtag(state) != None:
+                self.Background.frno = self.style.GetTag("Background").GetSubtag(state).GetIntAttr("frno")
+            else:
+                self.Background.frno = self.style.GetTag("Background").GetSubtag("Default").GetIntAttr("frno")
+            
+            if self.style.GetTag("Text").GetSubtag(state) != None and \
+                    self.style.GetTag("Text").GetSubtag(state).HasAttr("font"):
+                textKlass = self.style.GetTag("Text").GetSubtag(state).GetStrAttr("font")
+            elif self.style.GetTag("Text").GetSubtag("Default") != None and \
+                    self.style.GetTag("Text").GetSubtag("Default").HasAttr("font"):
+                textKlass = self.style.GetTag("Text").GetSubtag("Default").GetStrAttr("font")
+            else:
+                textKlass = "$spritecraft$dummy$"
+            self.TextSprite.ChangeKlassTo(textKlass)
+            self.TextSprite.text = self.text
+            self._SetHotspot()
+        except:
+            print string.join(apply(traceback.format_exception, sys.exc_info()))
+            
         
     def _SetHotspot(self):
         self.Dummy.hotspot = scraft.HotspotCenter
@@ -65,11 +84,13 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
             if text != None:
                 self.text = text
             else:
-                self.text = self.defaultText
+                self.text = self.textDefault
             if data.get(self.ego+"#disabled"):
                 self._SetState("Inert")
             else:
                 self._SetState("Up")
+            if self.command == None:
+                self.command = data.get(self.ego+"#action")
         except:
             pass
         
@@ -100,13 +121,16 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
     def _OnMouseDown(self, sprite, x, y, button):
         if self.state != "Inert":
             if button == 1:
-                host.LastButtonPressed = self.command
-                self.SetState(ButtonState_Down)
+                self.host.LastButtonPressed = self.ego
+                self._SetState("Down")
         
     def _OnMouseUp(self, sprite, x, y, button):
         if self.state != "Inert":
-            if button == 1:
+            if button == 1 and self.host.LastButtonPressed == self.ego:
                 self._SetState("Roll")
-                self.host.ButtonAction(self.command)
-                globalvars.Musician.PlaySound(self.style.GetStrAttr("sound"))
-            host.LastButtonPressed = None
+                if callable(self.command):
+                    self.command(self.ego)
+                else:
+                    self.host.ButtonAction(self.command)
+                #globalvars.Musician.PlaySound(self.style.GetStrAttr("sound"))
+            self.host.LastButtonPressed = None

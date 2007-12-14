@@ -37,35 +37,36 @@ class Cursor(scraft.Dispatcher):
         self.Dummy.visible = oE.mouseIn
         self.Dummy.x = oE.mouseX
         self.Dummy.y = oE.mouseY
-        
-        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Up:
-            self.FingerSprite.ChangeKlassTo("cursor.hand.up")
-        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Roll:
-            self.FingerSprite.ChangeKlassTo("cursor.hand.roll")
-        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Down:
-            self.FingerSprite.ChangeKlassTo("cursor.hand.down")
+        self.FingerSprite.ChangeKlassTo("cursor.hand.up")
+        #
+        #if globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Up:
+        #    self.FingerSprite.ChangeKlassTo("cursor.hand.up")
+        #elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Roll:
+        #    self.FingerSprite.ChangeKlassTo("cursor.hand.roll")
+        #elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Down:
+        #    self.FingerSprite.ChangeKlassTo("cursor.hand.down")
+        ##if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Default:
+        ##    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Up:
+        ##        self.UpperSprite.ChangeKlassTo("cursor.hand.up")
+        ##    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Roll:
+        ##        self.UpperSprite.ChangeKlassTo("cursor.hand.roll")
+        ##    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Down:
+        ##        self.UpperSprite.ChangeKlassTo("cursor.hand.down")
+        ##    self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
         #if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Default:
-        #    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Up:
-        #        self.UpperSprite.ChangeKlassTo("cursor.hand.up")
-        #    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Roll:
-        #        self.UpperSprite.ChangeKlassTo("cursor.hand.roll")
-        #    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["button"] == ButtonState_Down:
-        #        self.UpperSprite.ChangeKlassTo("cursor.hand.down")
+        #    self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
         #    self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
-        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Default:
-            self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
-            self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
-        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
-            if globalvars.BlackBoard.Inspect(BBTag_Cursor)["red"]:
-                self.UpperSprite.ChangeKlassTo("cursor.box.red.up")
-                self.DownSprite.ChangeKlassTo("cursor.box.red")
-            else:
-                self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
-                self.DownSprite.ChangeKlassTo("cursor.box.token")
-        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
-            self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
-            #self.DownSprite.ChangeKlassTo("cursor.box.tool")
-            self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
+        #elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
+        #    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["red"]:
+        #        self.UpperSprite.ChangeKlassTo("cursor.box.red.up")
+        #        self.DownSprite.ChangeKlassTo("cursor.box.red")
+        #    else:
+        #        self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
+        #        self.DownSprite.ChangeKlassTo("cursor.box.token")
+        #elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
+        #    self.UpperSprite.ChangeKlassTo("$spritecraft$dummy$")
+        #    #self.DownSprite.ChangeKlassTo("cursor.box.tool")
+        #    self.DownSprite.ChangeKlassTo("$spritecraft$dummy$")
         
         return scraft.CommandStateRepeat
     

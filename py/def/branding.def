@@ -1,5 +1,5 @@
 MasterChef {
     pubLogo = "no"
-    smallDevLogo { klass = "developer-logo-small" x = "675" y = "560" }
+    smallDevLogo { klass = "developer-logo-small" x = "605" y = "535" }
     smallPubLogo { klass = "$spritecraft$dummy$" x = "0" y = "0" }
 }

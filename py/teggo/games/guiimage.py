@@ -31,11 +31,17 @@ class Image(guiaux.GuiObject):
     def UpdateView(self, data):
         try:
             klassName = data.get(self.ego+"#klass")
-            frno = data.get(self.ego+"#frno")
             if klassName != None:
                 self.sprite.ChangeKlassTo(klassName)
+            frno = data.get(self.ego+"#frno")
             if frno != None:
                 self.sprite.frno = int(frno)
+            x = data.get(self.ego+"#x")
+            if x != None:
+                self.sprite.x = x
+            y = data.get(self.ego+"#y")
+            if y != None:
+                self.sprite.y = y
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         

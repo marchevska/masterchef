@@ -64,8 +64,7 @@ class GuiDialog(GuiComposite):
         
     def Activate(self, flag):
         self.LastButtonPressed = None
-        for el in self.Elements:
-            el.Activate(flag)
+        GuiComposite.Activate(self, flag)
         
     def _Close_Ok(self):
         #+actions
@@ -79,3 +78,5 @@ class GuiDialog(GuiComposite):
         if cmd in self.Actions.keys():
             self.Actions[cmd]()
         
+        
+    

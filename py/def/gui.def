@@ -2,34 +2,98 @@
 Objects {
     Dialog(DevLogo) {
         layer = "100"
-        Image(Background) {
-            sprite = "developer-logo"
-            sublayer = "1"
-        }
-        Button(Close) {
+        music = "Menu"
+        Image(Background) { sprite = "developer-logo" sublayer = "1" }
+        PushButton(Close) {
             style = "PushButton.WholeScreen"
+            command = "Close_Ok"
         }
+    }
+    
+    Dialog(PubLogo) {
+        layer = "100"
+        music = "Menu"
+        Image(Background) { sprite = "$spritecraft$dummy$" sublayer = "1" }
+        PushButton(Close) {
+            style = "PushButton.WholeScreen"
+            command = "Close_Ok"
+        }
+    }
+    
+    Dialog(MainMenu) {
+        layer = "100"
+        music = "Menu"
+        Image(Background) { sprite = "mainmenu-background" sublayer = "5" }
+        Image(DevLogoSmall) { sprite = "$spritecraft$dummy$" }
+        Image(PubLogoSmall) { sprite = "$spritecraft$dummy$" }
+        PushButton(Players) {
+            style = "PushButton.MainMenu.Players"
+            x = "675" y = "150"
+            textDefault = "Str_Menu_Players"
+        }
+        PushButton(PlayCareer) {
+            style = "PushButton.MainMenu.Play"
+            x = "675" y = "205"
+            textDefault = "Str_Menu_PlayCareer"
+        }
+        PushButton(Options) {
+            style = "PushButton.MainMenu.Default"
+            x = "675" y = "250"
+            textDefault = "Str_Menu_Options"
+        }
+        PushButton(Rules) {
+            style = "PushButton.MainMenu.Default"
+            x = "675" y = "290"
+            textDefault = "Str_Menu_Options"
+        }
+        PushButton(Cookbook) {
+            style = "PushButton.MainMenu.Default"
+            x = "675" y = "330"
+            textDefault = "Str_Menu_Cookbook"
+        }
+        PushButton(Hiscores) {
+            style = "PushButton.MainMenu.Default"
+            x = "675" y = "370"
+            textDefault = "Str_Menu_Hiscores"
+        }
+        PushButton(Quit) {
+            style = "PushButton.MainMenu.Default"
+            x = "675" y = "410"
+            textDefault = "Str_Menu_Quit"
+        }
+        TextLabel(WelcomeMessage) { style = "TextLabel.MainMenu.Welcome" x = "765" y = "80" textDefault = "Str_Menu_Welcome" }
+        TextLabel(WelcomeName) { style = "TextLabel.MainMenu.Welcome" x = "765" y = "105" }
+        TextLabel(VersionNumber) { style = "TextLabel.Domcasual-10" x = "30" y = "565" }
+    }
+    
+    Dialog(Pause) {
+        layer = "20"
+        music = "Menu"
+        Image(Background) { sprite = "2nd-popup-background" }
+        TextLabel(Text1) { style = "TextLabel.Domcasual.Other" x = "400" y = "258" textDefault = "Str_Paused1" }
+        TextLabel(Text2) { style = "TextLabel.Domcasual.Other" x = "400" y = "288" textDefault = "Str_Paused2" }
+        PushButton(Unpause) {
+            style = "PushButton.WholeScreen"
+            command = "Close_Ok"
+        }
+    }
+    
+    Dialog(Options) {
     }
     
     Dialog(Hiscores) {
         layer = "50"
         music = "Menu"
-//        Dialog.Hiscores(Frame1) { x = "0" y = "0" }
-//    }
-//    
-//    Composite(Dialog.Hiscores) {
         sublayerBase = "-5"
-        Image(Background) {
-            sprite = "background-big"
-            sublayer = "5"
-        }
+        Image(Background) { sprite = "background-big" sublayer = "5" }
+        Image(Title) { sprite = "hiscores.title" x = "332" y = "25" }
         Hiscores.Tag(Game) { x = "30" y = "70" }
         Hiscores.Tag(American) { x = "290" y = "70" }
         Hiscores.Tag(Mexican) { x = "550" y = "70" }
         Hiscores.Tag(Russian) { x = "30" y = "310" }
         Hiscores.Tag(Japanese) { x = "290" y = "310" }
         Hiscores.Tag(Hawaiian) { x = "550" y = "310" }
-        PushButton(HiscoresReset) {
+        PushButton(HiscoresReset) { 
             style = "PushButton.Default"
             x = "300" y = "570"
             textDefault = "Str_HiscoresReset"
@@ -55,11 +119,11 @@ Objects {
             x = "120" y = "70"
             sublayer = "1"
         }
-        TextLabel (Player1) { style = "TextLabel.Hiscore.Player" x = "10" y = "80" }
-        TextLabel (Player2) { style = "TextLabel.Hiscore.Player" x = "10" y = "105" }
-        TextLabel (Player3) { style = "TextLabel.Hiscore.Player" x = "10" y = "130" }
-        TextLabel (Player4) { style = "TextLabel.Hiscore.Player" x = "10" y = "155" }
-        TextLabel (Player5) { style = "TextLabel.Hiscore.Player" x = "10" y = "180" }
+        TextLabel (Player1) { style = "TextLabel.Hiscore.Player" x = "10" y = "80" textDefault = "Str_Hiscores_EmptyPlayer" }
+        TextLabel (Player2) { style = "TextLabel.Hiscore.Player" x = "10" y = "105" textDefault = "Str_Hiscores_EmptyPlayer" }
+        TextLabel (Player3) { style = "TextLabel.Hiscore.Player" x = "10" y = "130" textDefault = "Str_Hiscores_EmptyPlayer" }
+        TextLabel (Player4) { style = "TextLabel.Hiscore.Player" x = "10" y = "155" textDefault = "Str_Hiscores_EmptyPlayer" }
+        TextLabel (Player5) { style = "TextLabel.Hiscore.Player" x = "10" y = "180" textDefault = "Str_Hiscores_EmptyPlayer" }
         TextLabel (Score1) { style = "TextLabel.Hiscore.Score" x = "210" y = "80" }
         TextLabel (Score2) { style = "TextLabel.Hiscore.Score" x = "210" y = "105" }
         TextLabel (Score3) { style = "TextLabel.Hiscore.Score" x = "210" y = "130" }
@@ -73,15 +137,22 @@ Styles {
         HitArea {
             width = "800" height = "600"
         }
+        Background {
+            State(Default) { sprite = "$spritecraft$dummy$" }
+        }
+        Text {
+            State(Default) { sprite = "$spritecraft$font$" }
+        }
     }
     
     Style(PushButton.Default) {
         sound = "gui.click"
         HitArea {
+            hotspot = "Center"
             width = "120" height = "40"
         }
         Background {
-            sublayer = "-1"
+            sublayer = "-1" hotspot = "Center"
             State(Default) { sprite = "button-4st" }
             State(Up) { frno = "0" }
             State(Roll) { frno = "1" }
@@ -89,19 +160,124 @@ Styles {
             State(Inert) { frno = "3" }
         }
         Text {
-            sublayer = "-2"
+            sublayer = "-2" hotspot = "Center"
             State(Up) { font = "domcasual-10-up" }
             State(Roll) { font = "domcasual-10-roll" }
             State(Down) { font = "domcasual-10-down" }
             State(Inert) { font = "domcasual-10-inert" }
         }
     }
+    
+    Style(PushButton.MainMenu.Default) {
+        sound = "gui.click"
+        HitArea {
+            hotspot = "Center"
+            width = "200" height = "40"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "mainmenu.yellow-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            sublayer = "-2" hotspot = "Center" 
+            State(Up) { font = "mainmenu.domcasual" }
+            State(Roll) { font = "mainmenu.domcasual" }
+            State(Down) { font = "mainmenu.domcasual.down" }
+            State(Inert) { font = "mainmenu.domcasual.inert" }
+        }
+    }
+    
+    Style(PushButton.MainMenu.Play) {
+        sound = "gui.click"
+        HitArea {
+            hotspot = "Center"
+            width = "210" height = "50"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "mainmenu.green-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            sublayer = "-2" hotspot = "Center" 
+            State(Up) { font = "mainmenu.domcasual" }
+            State(Roll) { font = "mainmenu.domcasual" }
+            State(Down) { font = "mainmenu.domcasual.down" }
+            State(Inert) { font = "mainmenu.domcasual.inert" }
+        }
+    }
+    
+    Style(PushButton.MainMenu.Players) {
+        sound = "gui.click"
+        HitArea {
+            hotspot = "Center"
+            width = "190" height = "30"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "mainmenu-players-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            sublayer = "-2" hotspot = "Center" 
+            State(Up) { font = "domcasual-10-up" }
+            State(Roll) { font = "domcasual-10-roll" }
+            State(Down) { font = "domcasual-10-down" }
+            State(Inert) { font = "domcasual-10-inert" }
+        }
+    }
+    
+    Style(CheckBox.Default) {
+        sound = "gui.click"
+        HitArea {
+            width = "adjust" height = "30"
+        }
+        Box {
+            sublayer = "-1"
+            State(Default) { sprite = "options-checkbox" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "0" }
+        }
+        Check {
+            sublayer = "-2"
+            State(Default) { sprite = "options-galka" }
+        }
+        Text {
+            sublayer = "-1" x = "40" y = "5"
+            State(Up) { font = "mainmenu.domcasual" }
+            State(Roll) { font = "mainmenu.domcasual" }
+            State(Down) { font = "mainmenu.domcasual.down" }
+            State(Inert) { font = "mainmenu.domcasual.inert" }
+        }
+    }
+    
+    Style(TextLabel.Domcasual-10) {
+        font = "domcasual-10-up" hotspot = "LeftTop"
+    }
+    Style(TextLabel.MainMenu.Welcome){
+        font = "mainmenu.domcasual" hotspot = "RightTop"
+    }
+    Style(TextLabel.Domcasual.Other){
+        font = "mainmenu.domcasual" hotspot = "Center"
+    }
     Style(TextLabel.Hiscore.Player) {
         font = "domcasual-11" hotspot = "LeftTop"
-        cfilt-color = "0xFFDDCC"
+        cfilt-color = "0x008020"
     }
     Style(TextLabel.Hiscore.Score) {
         font = "domcasual-11" hotspot = "RightTop"
-        cfilt-color = "0xFFDDCC"
+        cfilt-color = "0x008020"
     }
 }

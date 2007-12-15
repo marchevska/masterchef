@@ -5,6 +5,9 @@ import globalvars
 from constants import *
 from teggo.games import localizer
 
+Const_TotalHelpPages = 4
+
+#отображение главного меню        
 def ShowMenu(*a):
     globalvars.GuiPresenter.data["MainMenu.Play#action"] = PlayGame
     globalvars.GuiPresenter.data["MainMenu.Players#action"] = ShowPlayers
@@ -54,7 +57,40 @@ def ShowOptions(*a):
     pass
 
 def ShowRules(*a):
-    pass
+    try:
+        if not globalvars.GuiPresenter.data.get("Rules#page"):
+            globalvars.GuiPresenter.data["Rules#page"] = 0
+        globalvars.GuiPresenter.data["Rules.Background#klass"] = "help-page"+str(globalvars.GuiPresenter.data["Rules#page"]+1)
+        if globalvars.GuiPresenter.data["Rules#page"] == 0:
+            globalvars.GuiPresenter.data["Rules.Prev#disabled"] = True
+        else:
+            globalvars.GuiPresenter.data["Rules.Prev#disabled"] = False
+            globalvars.GuiPresenter.data["Rules.Prev#action"] = RulesPrevPage
+        if globalvars.GuiPresenter.data["Rules#page"] == Const_TotalHelpPages - 1:
+            globalvars.GuiPresenter.data["Rules.Next#disabled"] = True
+        else:
+            globalvars.GuiPresenter.data["Rules.Next#disabled"] = False
+            globalvars.GuiPresenter.data["Rules.Next#action"] = RulesNextPage
+        globalvars.GuiPresenter.ShowDialog("Rules", True)
+        globalvars.GuiPresenter.BringToFront("Rules", True)
+    except:
+        pass
+
+def RulesPrevPage(*a):
+    try:
+        if globalvars.GuiPresenter.data["Rules#page"] > 0:
+            globalvars.GuiPresenter.data["Rules#page"] -= 1
+    except:
+        pass
+    ShowRules()
+
+def RulesNextPage(*a):
+    try:
+        if globalvars.GuiPresenter.data["Rules#page"] < Const_TotalHelpPages - 1:
+            globalvars.GuiPresenter.data["Rules#page"] += 1
+    except:
+        pass
+    ShowRules()
 
 def ShowCookbook(*a):
     pass
@@ -62,6 +98,8 @@ def ShowCookbook(*a):
 def ShowHelp(*a):
     pass
 
+#отображение рекордов
+#данные считываются из файла
 def ShowHiscoresDialog(*a):
     tmpHiscoreTags = map(lambda x: x.GetContent(), globalvars.Hiscores.Tags())
     tmpAllEpisodes = map(lambda x: x.GetContent(), globalvars.LevelProgress.GetTag("Episodes").Tags("episode"))
@@ -98,16 +136,17 @@ def ShowEnterNameDialog(*a):
     pass
 
 def QuitGame(*a):
-    pass
+    globalvars.ExitFlag = True
 
 def PlayGame(*a):
     pass
 
 def SetPause(flag):
-    #globalvars.GuiPresenter.data["Pause.Unpause#action"] = UnSetPause
-    #globalvars.GuiPresenter.data["Pause.Text1#text"] = ""
-    globalvars.GuiPresenter.ShowDialog("Pause", flag)
-    globalvars.GuiPresenter.BringToFront("Pause", flag)
+    if flag:
+        globalvars.GuiPresenter.ShowDialog("Pause", True)
+        globalvars.GuiPresenter.BringToFront("Pause", flag)
+    else:
+        globalvars.GuiPresenter.ShowDialog("Pause", False)
         
     #if flag:
         #if globalvars.StateStack[-1] in (PState_YesNo, PState_YesNoCancel, PState_EnterName):

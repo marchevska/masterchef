@@ -44,7 +44,7 @@ Objects {
         PushButton(Rules) {
             style = "PushButton.MainMenu.Default"
             x = "675" y = "290"
-            textDefault = "Str_Menu_Options"
+            textDefault = "Str_Menu_Rules"
         }
         PushButton(Cookbook) {
             style = "PushButton.MainMenu.Default"
@@ -69,13 +69,38 @@ Objects {
     Dialog(Pause) {
         layer = "20"
         music = "Menu"
-        Image(Background) { sprite = "2nd-popup-background" }
+        Image(Background) { sprite = "2nd-popup-background" sublayer = "1" }
         TextLabel(Text1) { style = "TextLabel.Domcasual.Other" x = "400" y = "258" textDefault = "Str_Paused1" }
         TextLabel(Text2) { style = "TextLabel.Domcasual.Other" x = "400" y = "288" textDefault = "Str_Paused2" }
         PushButton(Unpause) {
             style = "PushButton.WholeScreen"
             command = "Close_Ok"
         }
+    }
+    
+    Dialog(Rules) {
+        layer = "80"
+        music = "Menu"
+        Image(Background) { sprite = "$spritecraft$dummy$" sublayer = "5" }
+        PushButton(Prev) {
+            style = "PushButton.Default"
+            x = "100" y = "570"
+            textDefault = "Str_HelpPrev"
+        }
+        PushButton(Next) {
+            style = "PushButton.Default"
+            x = "260" y = "570"
+            textDefault = "Str_HelpNext"
+        }
+        PushButton(Close) {
+            style = "PushButton.Default"
+            x = "700" y = "570"
+            textDefault = "Str_HelpClose"
+            command = "Close_Cancel"
+        }
+    }
+
+    Dialog(Cookbook) {
     }
     
     Dialog(Options) {

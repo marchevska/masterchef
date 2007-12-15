@@ -45,7 +45,6 @@ class TextLabel(guiaux.GuiObject):
             else:
                 if self.style.GetStrAttr("cfilt-color") != "":
                     self.sprite.cfilt.color = eval(self.style.GetStrAttr("cfilt-color"))
-                
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         

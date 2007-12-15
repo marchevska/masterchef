@@ -81,6 +81,7 @@ gamegui.ShowMenu()
 #globalvars.GUI = Gui()
 globalvars.Board = GameBoard()
 globalvars.PausedState = False
+globalvars.ExitFlag = False
     
 # начало кода запуска заданного уровня
 if globalvars.RunMode == RunMode_Test:
@@ -91,10 +92,11 @@ if globalvars.RunMode == RunMode_Test:
         sys.exit()
 # конец кода запуска заданного уровня
 
-while True: #globalvars.StateStack[-1] != PState_EndGame:
+while not globalvars.ExitFlag: #globalvars.StateStack[-1] != PState_EndGame:
     oE.NextEvent()
-    #if oE.EvtIsESC() or oE.EvtIsQuit() :
-    #    break
+    if oE.EvtIsESC() or oE.EvtIsQuit() :
+        globalvars.ExitFlag = True
+        #break
     if oE.windowIsActive == globalvars.PausedState:
         globalvars.PausedState = not globalvars.PausedState
         #globalvars.GUI.SetPauseState(globalvars.PausedState)

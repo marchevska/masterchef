@@ -99,7 +99,7 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         
     def Dispose(self):
-        self.TextSprite.Dsipose()
+        self.TextSprite.Dispose()
         self.Background.Dispose()
         self.Dummy.Dispose()
         
@@ -138,3 +138,25 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
                     self.host.ButtonAction(self.command)
                 #globalvars.Musician.PlaySound(self.style.GetStrAttr("sound"))
             self.host.LastButtonPressed = None
+
+class RadioButton(PushButton):
+    def __init__(self, host, parent, node, styles, ego):
+        PushButton.__init__(self, host, parent, node, styles, ego)
+        self.host = node.GetStrAttr("group")
+
+    def UpdateView(self, data):
+        try:
+            PushButton.UpdateView(self, data)
+            if data.get(self.ego+"#selected"):
+                self._SetState("Select")
+            else:
+                self._SetState("Up")
+        except:
+            pass
+        
+        
+    
+class RadioButtonsGroup(guiaux.GuiObject):
+    def __init__(self):
+        pass
+    

@@ -6,10 +6,11 @@ import string, sys, traceback
 import scraft
 from scraft import engine as oE
 
-from guibutton import PushButton
+from guibutton import * 
 from guiimage import Image
 from guitext import TextLabel
 from guicomposite import GuiComposite, GuiDialog
+from guilistbox import GuiListbox
 
 import guiaux
 import localizer
@@ -42,10 +43,15 @@ class GuiPresenter:
             el = Image(host, parent, node, name)
         elif _StrCompNoCase(tmpTagName, "PushButton"):
             el = PushButton(host, parent, node, self.DefData.GetTag("Styles"), name)
+        elif _StrCompNoCase(tmpTagName, "RadioButton"):
+            el = RadioButton(host, parent, node, self.DefData.GetTag("Styles"), name)
         elif _StrCompNoCase(tmpTagName, "TextLabel"):
             el = TextLabel(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName) != None:
+        elif self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName, "Composite") != None:
             el = GuiComposite(host, parent, node,
+                              self.ProcessStructure(self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName)), name, self)
+        elif self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName, "Listbox") != None:
+            el = GuiListbox(host, parent, node,
                               self.ProcessStructure(self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName)), name, self)
         else:
             el = None

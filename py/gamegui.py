@@ -238,7 +238,40 @@ def ShowHiscoresDialog(*a):
     globalvars.GuiPresenter.BringToFront("Hiscores", True)
     
 def ShowPlayers(*a):
-    pass
+    globalvars.GuiPresenter.data["Players.List#Values"] = globalvars.PlayerList.GetPlayerList()
+    if not globalvars.GuiPresenter.data.get("Players.List#first"):
+        globalvars.GuiPresenter.data["Players.List#first"] = 0
+    if not globalvars.GuiPresenter.data.get("Players.List#Selected"):
+        globalvars.GuiPresenter.data["Players.List#Selected"] = []
+    
+    #прокрутка списка при открытии диалога
+    tmpList = globalvars.PlayerList.GetPlayerList()
+    tmpFirstPlayer = 0
+    if globalvars.GuiPresenter.data["Players.List#Selected"] != []:
+        tmpSelectedPlayer = tmpList[globalvars.GuiPresenter.data["Players.List#Selected"][0]]
+    else:
+        tmpSelectedPlayer = ""
+    if globalvars.GameConfig.GetStrAttr("Player") != "":
+        tmpName = globalvars.GameConfig.GetStrAttr("Player")
+        if tmpSelectedPlayer == "":
+            tmpSelectedPlayer = tmpName
+    if tmpList.count(tmpSelectedPlayer) > 0:
+        tmpInd = tmpList.index(tmpSelectedPlayer)
+        globalvars.GuiPresenter.data["Players.List#Selected"] = [tmpInd]
+        if tmpInd < globalvars.GuiPresenter.data["Players.List#height"]:
+            tmpFirstPlayer = 0
+        else:
+            tmpFirstPlayer = tmpInd - globalvars.GuiPresenter.data["Players.List#height"]+1
+    else:
+        if tmpFirstPlayer + globalvars.GuiPresenter.data["Players.List#Values"] > len(tmpList):
+            tmpFirstPlayer = max(self.FirstPlayer-1, 0)
+        else:
+            tmpFirstPlayer = 0
+
+    globalvars.GuiPresenter.data["Players.List#first"] = tmpFirstPlayer
+    
+    globalvars.GuiPresenter.ShowDialog("Players", True)
+    globalvars.GuiPresenter.BringToFront("Players", True)
 
 def ShowEnterNameDialog(*a):
     pass

@@ -128,6 +128,43 @@ Objects {
         }
     }
 
+    Dialog(Players) {
+        layer = "50"
+        music = "Menu"
+        sublayerBase = "-5"
+        Image(Background) { sprite = "popup-background" sublayer = "5" }
+        Players.List(List) { x = "340" y = "230" }
+    }
+    
+    Listbox(Players.List) {
+        height = "6"
+        multiple = "False"
+        Image(Background) {
+            sublayer = "2" 
+            sprite = "players-list-background"
+        }
+        Repeat {
+            Variable(i) { start = "0" finish = "5" step = "1" }
+            Node {
+                RadioButton(Player$i$) {
+                    style = "RadioButton.Players"
+                    x = "135" y = "30+$i$*30"
+                    command = "$i$"
+                }
+            }
+        }
+        PushButton(ScrollUp) {
+            style = "PushButton.Players.ScrollUp"
+            x = "287" y = "17"
+            command = "ScrollUp"
+        }
+        PushButton(ScrollDn) {
+            style = "PushButton.Players.ScrollDn"
+            x = "287" y = "184"
+            command = "ScrollDn"
+        }
+    }
+    
     
     Dialog(Options) {
     }
@@ -351,6 +388,62 @@ Styles {
         }
         Text {
             State(Default) { sprite = "$spritecraft$font$" }
+        }
+    }
+    
+    Style(PushButton.Players.ScrollUp) {
+        HitArea {
+            width = "30" height = "30"
+        }
+        Background {
+            State(Default) { sprite = "players-arrow-up" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            State(Default) { sprite = "$spritecraft$font$" }
+        }
+    }
+    
+    Style(PushButton.Players.ScrollDn) {
+        HitArea {
+            width = "30" height = "30"
+        }
+        Background {
+            State(Default) { sprite = "players-arrow-down" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            State(Default) { sprite = "$spritecraft$font$" }
+        }
+    }
+    
+    Style(RadioButton.Players) {
+        sound = "gui.click"
+        HitArea {
+            width = "240" height = "30"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "players-select-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "4" }
+            State(Select) { frno = "3" }
+        }
+        Text {
+            sublayer = "-2" hotspot = "Center" 
+            State(Up) { font = "domcasual-10-up" }
+            State(Roll) { font = "domcasual-10-roll" }
+            State(Down) { font = "domcasual-10-down" }
+            State(Inert) { font = "domcasual-10-inert" }
+            State(Select) { font = "domcasual-10-up" }
         }
     }
     

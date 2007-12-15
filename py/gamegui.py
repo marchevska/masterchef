@@ -1,11 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: cp1251 -*-
 
+import string, sys, traceback
+
+import scraft
+from scraft import engine as oE
+
 import globalvars
 from constants import *
 from teggo.games import localizer
 
 Const_TotalHelpPages = 4
+Const_MaxRecipesOnPage = 12
 
 #отображение главного меню        
 def ShowMenu(*a):
@@ -94,11 +100,14 @@ def RulesNextPage(*a):
 
 def ShowCookbook(*a):
     try:
+        globalvars.GuiPresenter.data["Cookbook#from"] = a[0]
         if not globalvars.GuiPresenter.data.get("Cookbook#page"):
             globalvars.GuiPresenter.data["Cookbook#page"] = 0
         #коррекция в случае переключения на другой профиль игрока:
         #не показывать не разлоченные страницы книги
         tmpAllSettings = eval(globalvars.GameSettings.GetStrAttr("settings"))
+        #no - номер страницы книги
+        no = globalvars.GuiPresenter.data["Cookbook#page"]
         while not globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no]).GetBoolAttr("unlocked") and no>0:
             no -= 1
         tmpSetting = tmpAllSettings[no]
@@ -121,11 +130,11 @@ def ShowCookbook(*a):
         #            2000, PState_Cookbook)
         #    globalvars.Musician.PlaySound("cookbook.newrecipe")
             
-        for i in range(self.TotalRecipesOnPage):
-            self.CookbookDialog["Static"]["Recipe"+str(i+1)].x = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeX")
-            self.CookbookDialog["Static"]["Recipe"+str(i+1)].y = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeY")
+        for i in range(Const_MaxRecipesOnPage):
+            globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#x"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeX")
+            globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#y"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeY")
             if globalvars.CurrentPlayer.GetLevelParams(tmpRecipes[i]).GetBoolAttr("unlocked"):
-                self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge"))
+                globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#klass"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge")
                 #if tmpRecipes[i] in tmpNewRecipes:
                 #    globalvars.CurrentPlayer.SetLevelParams(tmpRecipes[i], { "seen": True })
                 #    
@@ -149,37 +158,53 @@ def ShowCookbook(*a):
                 #else:
                 #    self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 0
             else:
-                self.CookbookDialog["Static"]["Recipe"+str(i+1)].ChangeKlassTo(globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("emptyBadge"))
+                globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#klass"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("emptyBadge")
         
         #кнопки пролистывания ниги
         #если книга открыта из главного меню
-        if self.NextState == PState_None:
-            self.CookbookDialog["Buttons"]["CookbookClose"].SetState(ButtonState_Up)
-            self.CookbookDialog["Buttons"]["CookbookPrev"].Show((no>0))
+        if string.find(str(a[0]), "MainMenu") >= 0:
+            globalvars.GuiPresenter.data["Cookbook.Continue#hidden"] = True
+            globalvars.GuiPresenter.data["Cookbook.Close#disabled"] = False
+            
+            globalvars.GuiPresenter.data["Cookbook.Prev#hidden"] = not(no>0)
             if no>0:
-                if globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no-1]).GetBoolAttr("unlocked"):
-                    self.CookbookDialog["Buttons"]["CookbookPrev"].SetState(ButtonState_Up)
-                else:
-                    self.CookbookDialog["Buttons"]["CookbookPrev"].SetState(ButtonState_Inert)
-            self.CookbookDialog["Buttons"]["CookbookNext"].Show((no<len(tmpAllSettings)-1))
+                globalvars.GuiPresenter.data["Cookbook.Prev#disabled"] = \
+                        not(globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no-1]).GetBoolAttr("unlocked"))
+            
+            globalvars.GuiPresenter.data["Cookbook.Next#hidden"] = not(no<len(tmpAllSettings)-1)
             if no<len(tmpAllSettings)-1:
-                if globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no+1]).GetBoolAttr("unlocked"):
-                    self.CookbookDialog["Buttons"]["CookbookNext"].SetState(ButtonState_Up)
-                else:
-                    self.CookbookDialog["Buttons"]["CookbookNext"].SetState(ButtonState_Inert)
-            self.CookbookDialog["Buttons"]["CookbookContinue"].Show(False)
+                globalvars.GuiPresenter.data["Cookbook.Next#disabled"] = \
+                        not(globalvars.CurrentPlayer.GetLevelParams(tmpAllSettings[no+1]).GetBoolAttr("unlocked"))
+                
         #иначе - книга открыта после прохождения уровня
         else:
-            self.CookbookDialog["Buttons"]["CookbookClose"].SetState(ButtonState_Inert)
-            self.CookbookDialog["Buttons"]["CookbookContinue"].Show(True)
-            self.CookbookDialog["Buttons"]["CookbookPrev"].Show(False)
-            self.CookbookDialog["Buttons"]["CookbookNext"].Show(False)
+            globalvars.GuiPresenter.data["Cookbook.Close#disabled"] = True
+            globalvars.GuiPresenter.data["Cookbook.Continue#hidden"] = False
+            globalvars.GuiPresenter.data["Cookbook.Prev#hidden"] = True
+            globalvars.GuiPresenter.data["Cookbook.Next#hidden"] = True
+        
+        globalvars.GuiPresenter.data["Cookbook.Prev#action"] = CookbookPrevPage
+        globalvars.GuiPresenter.data["Cookbook.Next#action"] = CookbookNextPage
+        globalvars.GuiPresenter.ShowDialog("Cookbook", True)
+        globalvars.GuiPresenter.BringToFront("Cookbook", True)
+    except:
+        print string.join(apply(traceback.format_exception, sys.exc_info()))
+
+def CookbookPrevPage(*a):
+    try:
+        #if globalvars.GuiPresenter.data["Cookbook#page"] > 0:
+            globalvars.GuiPresenter.data["Cookbook#page"] -= 1
     except:
         pass
+    ShowCookbook(globalvars.GuiPresenter.data["Cookbook#from"])
 
-
-def ShowHelp(*a):
-    pass
+def CookbookNextPage(*a):
+    try:
+        #if globalvars.GuiPresenter.data["Cookbook#page"] < Const_TotalHelpPages - 1:
+            globalvars.GuiPresenter.data["Cookbook#page"] += 1
+    except:
+        pass
+    ShowCookbook(globalvars.GuiPresenter.data["Cookbook#from"])
 
 #отображение рекордов
 #данные считываются из файла

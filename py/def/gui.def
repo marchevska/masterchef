@@ -106,15 +106,19 @@ Objects {
         sublayerBase = "-5"
         Image(Background) { sublayer = "5" }
         Image(Logo) { x = "50" y = "50" }
-//        Repeat(i) {
-//            start = "1" finish = "12" step = "1"
-//            Image(Recipe$i$)
-//        }
+        Repeat {
+            Variable(i) { start = "1" finish = "12" step = "1" }
+            Node {
+                Image(Recipe$i$)
+            }
+        }
         PushButton(Close) {
             style = "PushButton.Cookbook.Close" x = "390" y = "527"
+            command = "Close_Cancel"
         }
         PushButton(Continue) {
             style = "PushButton.Continue" x = "600" y = "550"
+            command = "Close_Ok"
         }
         PushButton(Next) {
             style = "PushButton.Cookbook.Next" x = "700" y = "550"
@@ -156,13 +160,11 @@ Objects {
     Composite(Hiscores.Tag) {
         Image(Background) {
             sprite = "hiscores.frame"
-            //sprite { bitmap = "img/gui/hiscores.frame.png" type = "blend" }
             x = "0" y = "0"
             sublayer = "2"
         }
         Image(Logo) {
             sprite = "hiscores.logos"
-            //sprite { bitmap = "img/gui/hiscores.logos.png" type = "blend" layout = "2x6" }
             x = "120" y = "70"
             sublayer = "1"
         }

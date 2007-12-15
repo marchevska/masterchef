@@ -89,10 +89,14 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
                 self._SetState("Inert")
             else:
                 self._SetState("Up")
+            if data.get(self.ego+"#hidden"):
+                self.Show(False)
+            else:
+                self.Show(True)
             if self.command == None:
                 self.command = data.get(self.ego+"#action")
         except:
-            pass
+            print string.join(apply(traceback.format_exception, sys.exc_info()))
         
     def Dispose(self):
         self.TextSprite.Dsipose()
@@ -100,7 +104,7 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
         self.Dummy.Dispose()
         
     def Show(self, flag):
-        self.Dummy.vsible = flag
+        self.Dummy.visible = flag
         self.Background.visible = flag
         self.TextSprite.visible = flag
         

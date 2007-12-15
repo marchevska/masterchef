@@ -75,14 +75,27 @@ class GuiPresenter:
     #обработка структуры с циклами     
     def ProcessStructure(self, structure):
         for tmp in structure.Tags("Repeat"):
-            var = "$"+tmp.GetContent()+"$"
-            values = range(tmp.GetIntAttr("start"), tmp.GetIntAttr("finish") + tmp.GetIntAttr("step"), tmp.GetIntAttr("step"))
-            for tmp2 in tmp.Tags():
-                for i in values:
+            variables = {}
+            for var in tmp.Tags("Variable"):
+                newVar = "$"+var.GetContent()+"$"
+                if var.HasAttr("values"):
+                    newVals = eval(var.GetStrAttr("values"))
+                else:
+                    newVals = range(var.GetIntAttr("start"), var.GetIntAttr("finish") + var.GetIntAttr("step"), var.GetIntAttr("step"))
+                variables[newVar] = newVals
+                
+            totalValues = min(map(lambda x: len(variables[x]), variables.keys()))
+            for tmp2 in tmp.GetTag("Node").Tags():
+                for i in range(totalValues):
                     newElement = tmp2.Clone()
-                    newElement.SetContent(newElement.GetContent().replace(var, str(i)))
+                    tmpContent = newElement.GetContent()
+                    for var in variables.keys():
+                        tmpContent = tmpContent.replace(var, str(variables[var][i]))
+                    newElement.SetContent(tmpContent)
                     for attr in list(newElement.Attributes()):
-                        newAttr = str(attr[1]).replace(var, str(i))
+                        newAttr = attr[1]
+                        for var in variables.keys():
+                            newAttr = newAttr.replace(var, str(variables[var][i]))
                         try:
                             newAttr = str(eval(newAttr))
                         except:

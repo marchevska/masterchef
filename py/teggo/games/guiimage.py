@@ -15,7 +15,10 @@ class Image(guiaux.GuiObject):
         #self.sprite = oE.NewSprite_(self.klassName, parent.layer)
         #oE.SstUndefKlass(self.klassName)
         
-        self.klassName = node.GetStrAttr("sprite")
+        if node.GetStrAttr("sprite") != "":
+            self.klassName = node.GetStrAttr("sprite")
+        else:
+            self.klassName = "$spritecraft$dummy$"
         self.sprite = oE.NewSprite_(self.klassName, parent.layer)
         
         self.sprite.parent = parent

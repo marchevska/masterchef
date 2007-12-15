@@ -101,7 +101,29 @@ Objects {
     }
 
     Dialog(Cookbook) {
+        layer = "50"
+        music = "Menu"
+        sublayerBase = "-5"
+        Image(Background) { sublayer = "5" }
+        Image(Logo) { x = "50" y = "50" }
+//        Repeat(i) {
+//            start = "1" finish = "12" step = "1"
+//            Image(Recipe$i$)
+//        }
+        PushButton(Close) {
+            style = "PushButton.Cookbook.Close" x = "390" y = "527"
+        }
+        PushButton(Continue) {
+            style = "PushButton.Continue" x = "600" y = "550"
+        }
+        PushButton(Next) {
+            style = "PushButton.Cookbook.Next" x = "700" y = "550"
+        }
+        PushButton(Prev) {
+            style = "PushButton.Cookbook.Prev" x = "100" y = "550"
+        }
     }
+
     
     Dialog(Options) {
     }
@@ -144,16 +166,18 @@ Objects {
             x = "120" y = "70"
             sublayer = "1"
         }
-        Repeat(i) {
-            start = "1" finish = "5" step = "1"
-            TextLabel (Player$i$) {
-                style = "TextLabel.Hiscore.Player"
-                x = "10" y = "55+$i$*25"
-                textDefault = "Str_Hiscores_EmptyPlayer"
-            }
-            TextLabel (Score$i$) {
-                style = "TextLabel.Hiscore.Score"
-                x = "230" y = "55+$i$*25"
+        Repeat {
+            Variable(i) { start = "1" finish = "5" step = "1" }
+            Node {
+                TextLabel (Player$i$) {
+                    style = "TextLabel.Hiscore.Player"
+                    x = "10" y = "55+$i$*25"
+                    textDefault = "Str_Hiscores_EmptyPlayer"
+                }
+                TextLabel (Score$i$) {
+                    style = "TextLabel.Hiscore.Score"
+                    x = "230" y = "55+$i$*25"
+                }
             }
         }
     }
@@ -261,6 +285,70 @@ Styles {
             State(Roll) { font = "domcasual-10-roll" }
             State(Down) { font = "domcasual-10-down" }
             State(Inert) { font = "domcasual-10-inert" }
+        }
+    }
+    
+    Style(PushButton.Cookbook.Close) {
+        HitArea {
+            width = "100" height = "130"
+        }
+        Background {
+            State(Default) { sprite = "cookbook.close-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            State(Default) { sprite = "$spritecraft$font$" }
+        }
+    }
+    
+    Style(PushButton.Cookbook.Next) {
+        HitArea {
+            width = "50" height = "50"
+        }
+        Background {
+            State(Default) { sprite = "cookbook.next-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            State(Default) { sprite = "$spritecraft$font$" }
+        }
+    }
+    
+    Style(PushButton.Cookbook.Prev) {
+        HitArea {
+            width = "50" height = "50"
+        }
+        Background {
+            State(Default) { sprite = "cookbook.prev-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            State(Default) { sprite = "$spritecraft$font$" }
+        }
+    }
+    
+    Style(PushButton.Continue) {
+        HitArea {
+            width = "140" height = "50"
+        }
+        Background {
+            State(Default) { sprite = "continue-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            State(Default) { sprite = "$spritecraft$font$" }
         }
     }
     

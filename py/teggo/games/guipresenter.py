@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: cp1251 -*-
+
 import string, sys, traceback
 
 import scraft
@@ -16,6 +19,9 @@ class GuiPresenter:
         self.DefData = oE.ParseDEF(filename)
         self.data = {}
         
+        #parse repeating nodes
+        
+        
         #parse object styles if necessary
         
         self.Dialogs = {}
@@ -26,8 +32,9 @@ class GuiPresenter:
         self.DialogsStack = []
         
     def CreateDialog(self, name):
-        self.Dialogs[name] = GuiDialog(self.DefData.GetTag("Objects").GetSubtag(name, "Dialog"), name, self)
-        
+        self.Dialogs[name] = GuiDialog(self.ProcessStructure(self.DefData.GetTag("Objects").GetSubtag(name, "Dialog")),
+                                       name, self)
+       
         
     def CreateObject(self, host, parent, node, name):
         tmpTagName = node.GetName()
@@ -38,7 +45,8 @@ class GuiPresenter:
         elif _StrCompNoCase(tmpTagName, "TextLabel"):
             el = TextLabel(host, parent, node, self.DefData.GetTag("Styles"), name)
         elif self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName) != None:
-            el = GuiComposite(host, parent, node, self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName), name, self)
+            el = GuiComposite(host, parent, node,
+                              self.ProcessStructure(self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName)), name, self)
         else:
             el = None
         return el
@@ -63,6 +71,27 @@ class GuiPresenter:
         for tmp in tmpOtherDialogs:
             self.Dialogs[tmp].Activate(False)
         self.Dialogs[name].Activate(flag)
+    
+    #обработка структуры с циклами     
+    def ProcessStructure(self, structure):
+        for tmp in structure.Tags("Repeat"):
+            var = "$"+tmp.GetContent()+"$"
+            values = range(tmp.GetIntAttr("start"), tmp.GetIntAttr("finish") + tmp.GetIntAttr("step"), tmp.GetIntAttr("step"))
+            for tmp2 in tmp.Tags():
+                for i in values:
+                    newElement = tmp2.Clone()
+                    newElement.SetContent(newElement.GetContent().replace(var, str(i)))
+                    for attr in list(newElement.Attributes()):
+                        newAttr = str(attr[1]).replace(var, str(i))
+                        try:
+                            newAttr = str(eval(newAttr))
+                        except:
+                            pass
+                        newElement.SetStrAttr(attr[0], newAttr)
+                    structure.InsertCopyOf(newElement)
+        for tmp in structure.Tags("Repeat"):
+            tmp.Erase()
+        return structure
     
     
 def _StrCompNoCase(str1, str2):

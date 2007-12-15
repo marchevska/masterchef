@@ -144,16 +144,18 @@ Objects {
             x = "120" y = "70"
             sublayer = "1"
         }
-        TextLabel (Player1) { style = "TextLabel.Hiscore.Player" x = "10" y = "80" textDefault = "Str_Hiscores_EmptyPlayer" }
-        TextLabel (Player2) { style = "TextLabel.Hiscore.Player" x = "10" y = "105" textDefault = "Str_Hiscores_EmptyPlayer" }
-        TextLabel (Player3) { style = "TextLabel.Hiscore.Player" x = "10" y = "130" textDefault = "Str_Hiscores_EmptyPlayer" }
-        TextLabel (Player4) { style = "TextLabel.Hiscore.Player" x = "10" y = "155" textDefault = "Str_Hiscores_EmptyPlayer" }
-        TextLabel (Player5) { style = "TextLabel.Hiscore.Player" x = "10" y = "180" textDefault = "Str_Hiscores_EmptyPlayer" }
-        TextLabel (Score1) { style = "TextLabel.Hiscore.Score" x = "210" y = "80" }
-        TextLabel (Score2) { style = "TextLabel.Hiscore.Score" x = "210" y = "105" }
-        TextLabel (Score3) { style = "TextLabel.Hiscore.Score" x = "210" y = "130" }
-        TextLabel (Score4) { style = "TextLabel.Hiscore.Score" x = "210" y = "155" }
-        TextLabel (Score5) { style = "TextLabel.Hiscore.Score" x = "210" y = "180" }
+        Repeat(i) {
+            start = "1" finish = "5" step = "1"
+            TextLabel (Player$i$) {
+                style = "TextLabel.Hiscore.Player"
+                x = "10" y = "55+$i$*25"
+                textDefault = "Str_Hiscores_EmptyPlayer"
+            }
+            TextLabel (Score$i$) {
+                style = "TextLabel.Hiscore.Score"
+                x = "230" y = "55+$i$*25"
+            }
+        }
     }
 }
 

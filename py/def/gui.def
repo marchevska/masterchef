@@ -133,9 +133,23 @@ Objects {
         music = "Menu"
         sublayerBase = "-5"
         Image(Background) { sprite = "popup-background" sublayer = "5" }
+        TextLabel(Title) { style = "TextLabel.DomCasualCenter" x = "460" y = "140" textDefault = "Str_Players_Title" }
         Players.List(List) { x = "340" y = "230" }
+        PushButton(Remove) {
+            style = "PushButton.Default" x = "310" y = "460"
+            textDefault = "Str_PlayersRemove"
+        }
+        PushButton(Ok) {
+            style = "PushButton.Default" x = "450" y = "460"
+            textDefault = "Str_PlayersOk"
+        }
+        PushButton(Close) {
+            style = "PushButton.Default" x = "590" y = "460"
+            textDefault = "Str_PlayersCancel"
+            command = "Close_Cancel"
+        }
     }
-    
+
     Listbox(Players.List) {
         height = "6"
         multiple = "False"
@@ -436,6 +450,8 @@ Styles {
             State(Down) { frno = "2" }
             State(Inert) { frno = "4" }
             State(Select) { frno = "3" }
+            State(SelectRoll) { frno = "3" }
+            State(SelectDown) { frno = "3" }
         }
         Text {
             sublayer = "-2" hotspot = "Center" 
@@ -444,6 +460,8 @@ Styles {
             State(Down) { font = "domcasual-10-down" }
             State(Inert) { font = "domcasual-10-inert" }
             State(Select) { font = "domcasual-10-up" }
+            State(SelectRoll) { font = "domcasual-10-up" }
+            State(SelectDown) { font = "domcasual-10-up" }
         }
     }
     
@@ -478,6 +496,9 @@ Styles {
     }
     Style(TextLabel.MainMenu.Welcome){
         font = "mainmenu.domcasual" hotspot = "RightTop"
+    }
+    Style(TextLabel.DomCasualCenter){
+        font = "mainmenu.domcasual" hotspot = "Center"
     }
     Style(TextLabel.Domcasual.Other){
         font = "mainmenu.domcasual" hotspot = "Center"

@@ -29,6 +29,7 @@ def ShowMenu(*a):
     if tmpUnlockedSettings == []:
         globalvars.GuiPresenter.data["MainMenu.Cookbook#disabled"] = True
     else:
+        globalvars.GuiPresenter.data["MainMenu.Cookbook#disabled"] = False
         globalvars.GuiPresenter.data["MainMenu.Cookbook#action"] = ShowCookbook
 
     #брендинг
@@ -263,15 +264,24 @@ def ShowPlayers(*a):
         else:
             tmpFirstPlayer = tmpInd - globalvars.GuiPresenter.data["Players.List#height"]+1
     else:
-        if tmpFirstPlayer + globalvars.GuiPresenter.data["Players.List#Values"] > len(tmpList):
+        if tmpFirstPlayer + globalvars.GuiPresenter.data["Players.List#height"] > len(tmpList):
             tmpFirstPlayer = max(self.FirstPlayer-1, 0)
         else:
             tmpFirstPlayer = 0
 
     globalvars.GuiPresenter.data["Players.List#first"] = tmpFirstPlayer
-    
+
+    globalvars.GuiPresenter.data["Players.Ok#action"] = SelectPlayer
+    globalvars.GuiPresenter.ShowDialog("MainMenu", True)
     globalvars.GuiPresenter.ShowDialog("Players", True)
     globalvars.GuiPresenter.BringToFront("Players", True)
+
+def SelectPlayer(*a):
+    if len(globalvars.GuiPresenter.data["Players.List#Selected"]) == 1:
+        globalvars.PlayerList.SelectPlayer(globalvars.PlayerList.GetPlayerList()[globalvars.GuiPresenter.data["Players.List#Selected"][0]])
+        globalvars.GuiPresenter.ShowDialog("Players", False)
+        globalvars.GuiPresenter.BringToFront("Players", False)
+        ShowMenu()
 
 def ShowEnterNameDialog(*a):
     pass

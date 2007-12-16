@@ -142,21 +142,53 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
 class RadioButton(PushButton):
     def __init__(self, host, parent, node, styles, ego):
         PushButton.__init__(self, host, parent, node, styles, ego)
-        self.host = node.GetStrAttr("group")
+        self.selected = False
+        #self.host = node.GetStrAttr("group")
 
     def UpdateView(self, data):
         try:
             PushButton.UpdateView(self, data)
-            if data.get(self.ego+"#selected"):
+            self.selected = (data.get(self.ego+"#selected"))
+            if self.selected:
                 self._SetState("Select")
             else:
                 self._SetState("Up")
         except:
             pass
         
+    def _OnMouseOver(self, sprite, flag):
+        if self.state != "Inert":
+            if self.selected:
+                if flag:
+                    self._SetState("SelectRoll")
+                else:
+                    self._SetState("Select")
+            else:
+                if flag:
+                    self._SetState("Roll")
+                else:
+                    self._SetState("Up")
         
-    
-class RadioButtonsGroup(guiaux.GuiObject):
-    def __init__(self):
-        pass
-    
+    def _OnMouseDown(self, sprite, x, y, button):
+        if self.state != "Inert":
+            if button == 1:
+                self.host.LastButtonPressed = self.ego
+                if self.selected:
+                    self._SetState("SelectDown")
+                else:
+                    self._SetState("Down")
+        
+    def _OnMouseUp(self, sprite, x, y, button):
+        if self.state != "Inert":
+            if button == 1 and self.host.LastButtonPressed == self.ego:
+                if self.selected:
+                    self._SetState("SelectRoll")
+                else:
+                    self._SetState("Roll")
+                if callable(self.command):
+                    self.command(self.ego)
+                else:
+                    self.host.ButtonAction(self.command)
+                #globalvars.Musician.PlaySound(self.style.GetStrAttr("sound"))
+            self.host.LastButtonPressed = None
+

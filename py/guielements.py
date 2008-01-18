@@ -89,7 +89,8 @@ class PushButton(scraft.Dispatcher):
         
     def _OnMouseOver(self, sprite, flag):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
-            if flag and globalvars.StateStack[-1] == self.ActiveWhen:
+            #if flag and globalvars.StateStack[-1] == self.ActiveWhen:
+            if flag and not globalvars.Board.Frozen:
                 #if globalvars.LastCookie == sprite.cookie:
                 #    self.SetState(ButtonState_Down)
                 #else:
@@ -99,15 +100,18 @@ class PushButton(scraft.Dispatcher):
         
     def _OnMouseDown(self, sprite, x, y, button):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
-            if button == 1 and globalvars.StateStack[-1] == self.ActiveWhen:
+            #if button == 1 and globalvars.StateStack[-1] == self.ActiveWhen:
+            if button == 1 and not globalvars.Board.Frozen:
                 globalvars.LastCookie = sprite.cookie
                 self.SetState(ButtonState_Down)
         
     def _OnMouseUp(self, sprite, x, y, button):
-        if button == 1 and globalvars.StateStack[-1] == self.ActiveWhen:
+        #if button == 1 and globalvars.StateStack[-1] == self.ActiveWhen:
+        if button == 1 and not globalvars.Board.Frozen:
             if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
                 self.SetState(ButtonState_Roll)
-                if globalvars.LastCookie == sprite.cookie and globalvars.StateStack[-1] == self.ActiveWhen:
+                #if globalvars.LastCookie == sprite.cookie and globalvars.StateStack[-1] == self.ActiveWhen:
+                if globalvars.LastCookie == sprite.cookie and not globalvars.Board.Frozen:
                     globalvars.Musician.PlaySound(self.Sound)
                     self.Whose.SendCommand(sprite.cookie)
             globalvars.LastCookie = Cmd_None

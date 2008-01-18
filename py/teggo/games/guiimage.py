@@ -9,6 +9,7 @@ class Image(guiaux.GuiObject):
     def __init__(self, host, parent, node, ego):
         self.ego = ego
         self.host = host
+        self.hotspotDefault = node.GetStrAttr("hotspot")
         
         #self.klassName = guiaux.GenerateUniqueKlassName()
         #oE.SstDefKlass(self.klassName, node.GetTag("sprite"))
@@ -36,6 +37,11 @@ class Image(guiaux.GuiObject):
             klassName = data.get(self.ego+"#klass")
             if klassName != None:
                 self.sprite.ChangeKlassTo(klassName)
+            hotspot = data.get(self.ego+"#hotspot")
+            if hotspot != None:
+                self.sprite.hotspot = guiaux.GetHotspotValue(hotspot)
+            elif self.hotspotDefault != "":
+                self.sprite.hotspot = guiaux.GetHotspotValue(self.hotspotDefault)
             frno = data.get(self.ego+"#frno")
             if frno != None:
                 self.sprite.frno = int(frno)
@@ -45,6 +51,9 @@ class Image(guiaux.GuiObject):
             y = data.get(self.ego+"#y")
             if y != None:
                 self.sprite.y = y
+            visible = data.get(self.ego+"#visible")
+            if visible != None:
+                self.sprite.visible = visible
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         

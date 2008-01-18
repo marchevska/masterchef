@@ -10,6 +10,8 @@ import scraft
 from scraft import engine as oE
 import globalvars
 from constants import *
+from configconst import *
+import gamegui
 
 #------------
 # Советник
@@ -26,7 +28,7 @@ class Advisor(scraft.Dispatcher):
             #читаем очередь ивентов,
             #пока не найдем ивент, порождающий подсказку
             tmp = globalvars.BlackBoard.Inspect(BBTag_Hints)
-            if tmp != None:
+            if tmp != None and globalvars.RunMode == RunMode_Play:
                 tmpHintNode = globalvars.HintsInfo.GetSubtag(tmp["event"])
                 if tmpHintNode != None:
                     #проверяем: можно ли показать данную подсказку:
@@ -36,7 +38,8 @@ class Advisor(scraft.Dispatcher):
                             not globalvars.CurrentPlayer.GetLevelParams(tmp["event"]).GetBoolAttr("seen") \
                             and globalvars.CurrentPlayer.XML.GetBoolAttr("Hints")):
                         globalvars.CurrentPlayer.SetLevelParams(tmp["event"], { "seen": True })
-                        globalvars.GUI.ShowHint(tmp["event"], tmp["where"])
+                        gamegui.ShowHint(tmp["event"], tmp["where"])
+                        #globalvars.GUI.ShowHint(tmp["event"], tmp["where"])
                         break
             else:
                 break

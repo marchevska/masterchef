@@ -47,8 +47,9 @@ class Popup(scraft.Dispatcher):
         
         if FieldMinX <= self.sprite.x <= FieldMaxX \
             and FieldMinY <= self.sprite.y <= FieldMaxY \
-            and deltaT < self.MaxTime \
-            and (self.State in (globalvars.StateStack[-1], None)):
+            and deltaT < self.MaxTime:
+            #and deltaT < self.MaxTime \
+            #and (self.State in (globalvars.StateStack[-1], None)):
             return scraft.CommandStateRepeat
         else:
             self.sprite.Dispose()

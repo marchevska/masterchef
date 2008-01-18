@@ -1,12 +1,16 @@
 
 Objects {
+
+//---------------------------------------------------------------------
+// Developer and Publisher Logo Screens
+//---------------------------------------------------------------------
+    
     Dialog(DevLogo) {
         layer = "100"
         music = "Menu"
         Image(Background) { sprite = "developer-logo" sublayer = "1" }
         PushButton(Close) {
             style = "PushButton.WholeScreen"
-            command = "Close_Ok"
         }
     }
     
@@ -16,9 +20,12 @@ Objects {
         Image(Background) { sprite = "$spritecraft$dummy$" sublayer = "1" }
         PushButton(Close) {
             style = "PushButton.WholeScreen"
-            command = "Close_Ok"
         }
     }
+    
+//---------------------------------------------------------------------
+// Main Menu
+//---------------------------------------------------------------------
     
     Dialog(MainMenu) {
         layer = "100"
@@ -66,6 +73,10 @@ Objects {
         TextLabel(VersionNumber) { style = "TextLabel.Domcasual-10" x = "30" y = "565" }
     }
     
+//---------------------------------------------------------------------
+// "Pause" Dialog 
+//---------------------------------------------------------------------
+    
     Dialog(Pause) {
         layer = "20"
         music = "Menu"
@@ -77,6 +88,10 @@ Objects {
             command = "Close_Ok"
         }
     }
+    
+//---------------------------------------------------------------------
+// "Rules" Dialog shows game rules
+//---------------------------------------------------------------------
     
     Dialog(Rules) {
         layer = "80"
@@ -100,6 +115,10 @@ Objects {
         }
     }
 
+//---------------------------------------------------------------------
+// "Cookbook" Dialog shows cookbook contents
+//---------------------------------------------------------------------
+    
     Dialog(Cookbook) {
         layer = "50"
         music = "Menu"
@@ -128,6 +147,10 @@ Objects {
         }
     }
 
+//---------------------------------------------------------------------
+// "Players" Dialog shows and handles a list of players
+//---------------------------------------------------------------------
+    
     Dialog(Players) {
         layer = "50"
         music = "Menu"
@@ -135,6 +158,10 @@ Objects {
         Image(Background) { sprite = "popup-background" sublayer = "5" }
         TextLabel(Title) { style = "TextLabel.DomCasualCenter" x = "460" y = "140" textDefault = "Str_Players_Title" }
         Players.List(List) { x = "340" y = "230" }
+        PushButton(New) {
+            style = "PushButton.300px" x = "490" y = "200"
+            textDefault = "Str_PlayersNew"
+        }
         PushButton(Remove) {
             style = "PushButton.Default" x = "310" y = "460"
             textDefault = "Str_PlayersRemove"
@@ -153,6 +180,8 @@ Objects {
     Listbox(Players.List) {
         height = "6"
         multiple = "False"
+        scrolling = "True"
+        disableControl = "True"
         Image(Background) {
             sublayer = "2" 
             sprite = "players-list-background"
@@ -179,9 +208,358 @@ Objects {
         }
     }
     
+//---------------------------------------------------------------------
+// "EnterName" Dialog allows entering new player name
+//---------------------------------------------------------------------
+    
+    Dialog (EnterName) {
+        layer = "40"
+        music = "Menu"
+        sublayerBase = "-5"
+        Image(Background) { sprite = "2nd-popup-background" sublayer = "5" }
+        TextLabel(Title) { style = "TextLabel.DomCasualCenter" x = "400" y = "252" textDefault = "Str_EnterName_Title" }
+        TextEntry(NewPlayerName) { style = "TextEntry.PlayerName" x = "275" y = "265" focus = "True" }
+        TextLabel(ErrorMessage) { style = "TextLabel.Domcasual-10-Center" x = "400" y = "312" }
+        PushButton(Ok) {
+            style = "PushButton.Default" x = "330" y = "340"
+            textDefault = "Str_EnterNameOk"
+        }
+        PushButton(Cancel) {
+            style = "PushButton.Default" x = "470" y = "340"
+            textDefault = "Str_EnterNameCancel"
+        }
+    }
+    
+//---------------------------------------------------------------------
+// "Comics" Dialog 
+//---------------------------------------------------------------------
+    
+    Dialog(Comics) {
+        layer = "60"
+        music = "Menu"
+        sublayerBase = "-5"
+        Image(Background) { sublayer = "5" }
+        PushButton(Close) {
+            style = "PushButton.WholeScreen" sublayer = "1"
+        }
+        PushButton(Continue) {
+            style = "PushButton.Continue" x = "730" y = "578"
+        }
+        
+    }
+    
+//---------------------------------------------------------------------
+// "EpisodeIntro" Dialog 
+//---------------------------------------------------------------------
+    
+    Dialog(EpisodeIntro) {
+        layer = "60"
+        music = "Game"
+        sublayerBase = "-5"
+        Parameter(MaxPeopleOnLevel) { type = "integer" value = "8" }
+        Variant(Theme) {
+            Repeat{
+                Variable(Episode) { values = "'American', 'Mexican', 'Russian', 'Japanese', 'Hawaiian'" }
+                Node {
+                    Case($Episode$) {
+                        Image(Background) { sprite = "'theme.'+string.lower('$Episode$')+'.background'" sublayer = "5" }
+                        Image(IntroPane) { sprite = "'theme.'+string.lower('$Episode$')+'.intro-pane'" sublayer = "4" x = "490" y = "18" }
+                        TextLabel(Title) { style = "TextLabel.Domcasual-10-Center" x = "360" y = "35" textDefault = "string.upper('$Episode$')+' OPEN'" }
+                        Repeat {
+                            Variable(i) { start = "1" finish = "7" step = "1" }
+                            Node {
+                                TextLabel(IntroSpeech$i$) { style = "TextLabel.EpisodeIntro.Text" x = "270" y = "275+25*$i$" textDefault = "string.lower('$Episode$')+'.intro.'+str($i$)" }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        Image(Logo) { sprite = "intro.logo" sublayer = "1" x = "6" y = "1" }
+        Image(Presenter) { sprite = "comics.presenter" sublayer = "3" x = "460" y = "520" hotspot = "CenterBottom" }
+        Image(Balloon) { sprite = "intro.balloon" sublayer = "1" x = "270" y = "370" hotspot = "Center" }
+        TextLabel(Competitors) { style = "TextLabel.EpisodeIntro.Competitors" x = "640" y = "273" textDefault = "Str_IntroCompetitors" }
+        Repeat {
+            Variable(i) { start = "0" finish = "7" step = "1" }
+            Node {
+                Image(Character$i$)
+                TextLabel(CharacterName$i$) { style = "TextLabel.EpisodeIntro.Names" x = "640" y = "315+30*$i$" }
+            }
+        }
+        PushButton(Close) {
+            style = "PushButton.WholeScreen" sublayer = "1"
+        }
+        PushButton(Continue) {
+            style = "PushButton.Continue" x = "730" y = "578"
+        }
+    }
+    
+//---------------------------------------------------------------------
+// "EpisodeOutro" Dialog 
+//---------------------------------------------------------------------
+    
+    Dialog(EpisodeOutro) {
+        layer = "60"
+        music = "Game"
+        sublayerBase = "-5"
+        Parameter(MaxPeopleOnLevel) { type = "integer" value = "8" }
+        Parameter(MaxPeoplePassingFurther) { type = "integer" value = "4" }
+        Image(Logo) { sublayer = "2" sprite = "outro.bg-pane" x = "37" y = "18" }
+        TextLabel(Competitors) { style = "TextLabel.Domcasual-10-Center" x = "570" y = "270" textDefault = "Str_OutroCompetitors" }
+        TextLabel(Points) { style = "TextLabel.Domcasual-10-Center" x = "710" y = "270" textDefault = "Str_OutroPoints" }
+        Image(Separator) { sprite = "outro.separator" sublayer = "3" x = "670" y = "254" }
+        Image(Presenter) { sprite = "comics.presenter" sublayer = "3" x = "460" y = "520" hotspot = "CenterBottom" }
+        Image(Balloon) { sprite = "outro.balloon" sublayer = "1" x = "220" y = "440" hotspot = "Center" }
+        
+        Variant(Theme) {
+            Repeat{
+                Variable(Episode) { values = "'American', 'Mexican', 'Russian', 'Japanese', 'Hawaiian'" }
+                Node {
+                    Case($Episode$) {
+                        Image(Background) { sprite = "'theme.'+string.lower('$Episode$')+'.background'" sublayer = "5" }
+                        Image(IntroPane) { sprite = "'theme.'+string.lower('$Episode$')+'.intro-pane'" sublayer = "4" x = "490" y = "18" }
+                        TextLabel(Title) { style = "TextLabel.Domcasual-10-Center" x = "360" y = "35" textDefault = "string.upper('$Episode$')+' OPEN'" }
+                    }
+                }
+            }
+        }
+        
+        Variant(OutroSpeech) {
+            Case(American_Passed) {
+                TextLabel(SpeechWinners) { style = "TextLabel.EpisodeOutro.Winners" x = "210" y = "390" }
+                Repeat {
+                    Variable(i) { start = "1" finish = "6" step = "1" }
+                    Variable(y) { values = "(360, 420, 445, 470, 495, 520)" }
+                    Node {
+                        TextLabel(SpeechLine$i$) { style = "TextLabel.EpisodeOutro.Text" x = "210" y = "$y$" textDefault = "american.passed.$i$" }
+                    }
+                }
+            }
+            Case(Mexican_Passed) {
+                TextLabel(SpeechWinners) { style = "TextLabel.EpisodeOutro.Winners" x = "210" y = "390" }
+                Repeat {
+                    Variable(i) { start = "1" finish = "6" step = "1" }
+                    Variable(y) { values = "(360, 420, 445, 470, 495, 520)" }
+                    Node {
+                        TextLabel(SpeechLine$i$) { style = "TextLabel.EpisodeOutro.Text" x = "210" y = "$y$" textDefault = "mexican.passed.$i$" }
+                    }
+                }
+            }
+            Case(Russian_Passed) {
+                TextLabel(SpeechWinners) { style = "TextLabel.EpisodeOutro.Winners" x = "210" y = "390" }
+                Repeat {
+                    Variable(i) { start = "1" finish = "6" step = "1" }
+                    Variable(y) { values = "(360, 420, 445, 470, 495, 520)" }
+                    Node {
+                        TextLabel(SpeechLine$i$) { style = "TextLabel.EpisodeOutro.Text" x = "210" y = "$y$" textDefault = "russian.passed.$i$" }
+                    }
+                }
+            }
+            Case(Japanese_Passed) {
+                TextLabel(SpeechLine1) { style = "TextLabel.EpisodeOutro.Winners" x = "210" y = "360" textDefault = "japanese.passed.1" }
+                Repeat {
+                    Variable(i) { start = "2" finish = "6" step = "1" }
+                    Node {
+                        TextLabel(SpeechLine$i$) { style = "TextLabel.EpisodeOutro.Text" x = "210" y = "330+30*$i$" textDefault = "japanese.passed.$i$" }
+                    }
+                }
+            }
+            Case(Hawaiian_Passed) {
+                TextLabel(SpeechLine1) { style = "TextLabel.EpisodeOutro.Winners.Hawaiian" x = "210" y = "370" textDefault = "hawaiian.passed.1" }
+                Repeat {
+                    Variable(i) { start = "2" finish = "5" step = "1" }
+                    Node {
+                        TextLabel(SpeechLine$i$) { style = "TextLabel.EpisodeOutro.Text" x = "210" y = "335+35*$i$" textDefault = "hawaiian.passed.$i$" }
+                    }
+                }
+            }
+            Case(Japanese_Failed) {
+                Repeat {
+                    Variable(i) { start = "1" finish = "7" step = "1" }
+                    Node {
+                        TextLabel(SpeechLine$i$) { style = "TextLabel.EpisodeOutro.Text" x = "210" y = "340+25*$i$" textDefault = "japanese.failed.$i$" }
+                    }
+                }
+            }
+            Case(Hawaiian_Failed) {
+                Repeat {
+                    Variable(i) { start = "1" finish = "7" step = "1" }
+                    Node {
+                        TextLabel(SpeechLine$i$) { style = "TextLabel.EpisodeOutro.Text" x = "210" y = "340+25*$i$" textDefault = "hawaiian.failed.$i$" }
+                    }
+                }
+            }
+        }
+        Repeat {
+            Variable(i) { start = "0" finish = "3" step = "1" }
+            Node {
+                CharacterInTheLight(Character$i$)
+            }
+        }
+        Repeat {
+            Variable(i) { start = "0" finish = "7" step = "1" }
+            Node {
+                TextLabel(CharacterName$i$) { style = "TextLabel.EpisodeOutro.Names.NotPassed" x = "550" y = "305+30*$i$" }
+                TextLabel(CharacterScore$i$) { style = "TextLabel.EpisodeOutro.Names.NotPassed" x = "710" y = "305+30*$i$" }
+            }
+        }
+        PushButton(Close) {
+            style = "PushButton.WholeScreen" sublayer = "1"
+        }
+        PushButton(Continue) {
+            style = "PushButton.Continue" x = "730" y = "578"
+        }
+    }
+
+    Composite(CharacterInTheLight) {
+        Image(Character) { sublayer = "3" hotspot = "CenterBottom" }
+        Image(Medallion) { sublayer = "2" x = "0" y = "-200" hotspot = "Center" }
+        Image(Light) { sprite = "outro.light" sublayer = "4" x = "0" y = "40" hotspot = "CenterBottom" }
+        TextLabel(Number) { style = "TextLabel.EpisodeOutro.WinnerNumber" sublayer = "1" x = "0" y = "-200" }
+        TextLabel(Name) { style = "TextLabel.DomCasualCenter" x = "0" y = "-165" }
+    }
+
+//---------------------------------------------------------------------
+// "LevelGoals" Dialog displays day goals before starting a new level
+//---------------------------------------------------------------------
+    
+    Dialog(LevelGoals) {
+        layer = "45"
+        music = "Menu"
+        Image(Background) { sprite = "level-start.background" sublayer = "5" }
+        Repeat {
+            Variable(i) { start = "1" finish = "3" step = "1" }
+            Node {
+                Image(Indicator$i$) { sprite = "level-results.indicator" x = "570" y = "155+50*$i$" sublayer = "3" }
+            }
+        }
+        TextLabel(Title) { style = "TextLabel.DomCasualCenter" x = "470" y = "130" textDefault = "Str_LvGoals_Title" }
+        TextLabel(LabelLevel) { style = "TextLabel.DomCasualLeft" x = "360" y = "205" textDefault = "Str_LvGoals_Level" }
+        TextLabel(LabelGoal) { style = "TextLabel.DomCasualLeft" x = "360" y = "255" textDefault = "Str_LvGoals_Goal" }
+        TextLabel(LabelExpert) { style = "TextLabel.DomCasualLeft" x = "360" y = "305" textDefault = "Str_LvGoals_Expert" }
+        TextLabel(TextLevel) { style = "TextLabel.DomCasualLeft" x = "583" y = "205" }
+        TextLabel(TextGoal) { style = "TextLabel.DomCasualLeft" x = "583" y = "255" }
+        TextLabel(TextExpert) { style = "TextLabel.DomCasualLeft" x = "583" y = "305" }
+        Variant(LevelIntro) {
+            valueDefault = "NoPicture"
+            Case(CustomerPicture) {
+                TextLabel(IntroTitle) { style = "TextLabel.LevelIntro.Title" x = "280" y = "380" }
+                Image(IntroPicture) { x = "130" y = "540" hotspot = "CenterBottom" }
+                TextArea(IntroText) { style = "TextArea.LevelIntro.CustomerPicture" x = "180" y = "400" }
+            }
+            Case(BonusPicture) {
+                TextLabel(IntroTitle) { style = "TextLabel.LevelIntro.Title" x = "280" y = "380" }
+                Image(IntroPicture) { x = "130" y = "425" hotspot = "Center" }
+                TextArea(IntroText) { style = "TextArea.LevelIntro.BonusPicture" x = "170" y = "400" }
+            }
+            Case(NoPicture) {
+                TextLabel(IntroTitle) { style = "TextLabel.LevelIntro.Title" x = "280" y = "380" }
+                TextArea(IntroText) { style = "TextArea.LevelIntro.NoPicture" x = "100" y = "400" }
+            }
+        }
+        PushButton(Continue) {
+            style = "PushButton.Continue" x = "600" y = "450"
+        }
+    }
+    
+//---------------------------------------------------------------------
+// "LevelResults" Dialog 
+//---------------------------------------------------------------------
+    
+    Dialog(LevelResults) {
+        layer = "45"
+        music = "Menu"
+        sublayerBase = "-5"
+        Variant(Background) {
+            Case(Failed) {
+                //sound = "episode.lose"
+                Image(Background) { sprite = "level-results.bg.bad" sublayer = "5" }
+            }
+            Case(Passed) {
+                //sound = "episode.win"
+                Image(Background) { sprite = "level-results.bg.good" sublayer = "5" }
+            }
+            Case(Expert) {
+                //sound = "episode.win"
+                Image(Background) { sprite = "level-results.bg.expert" sublayer = "5" }
+            }
+        }
+        TextLabel(Title) { style = "TextLabel.DomCasualCenter" x = "470" y = "130" textDefault = "Str_LvComplete_Title" }
+        TextLabel(LabelServed) { style = "TextLabel.DomCasualRight" x = "550" y = "180" textDefault = "Str_LvComplete_Served" }
+        TextLabel(LabelLost) { style = "TextLabel.DomCasualRight" x = "550" y = "210" textDefault = "Str_LvComplete_Lost" }
+        TextLabel(LabelEarned) { style = "TextLabel.DomCasualRight" x = "550" y = "240" textDefault = "Str_LvComplete_Score" }
+        TextLabel(LabelLevelPoints) { style = "TextLabel.DomCasualRight" x = "550" y = "270" textDefault = "Str_LvComplete_LevelPoints" }
+        TextLabel(LabelRoundPoints) { style = "TextLabel.DomCasualRight" x = "550" y = "300" textDefault = "Str_LvComplete_RoundPoints" }
+        TextLabel(TextServed) { style = "TextLabel.DomCasualLeft" x = "550" y = "180" }
+        TextLabel(TextLost) { style = "TextLabel.DomCasualLeft" x = "550" y = "210" }
+        TextLabel(TextEarned) { style = "TextLabel.DomCasualLeft" x = "550" y = "240" }
+        TextLabel(TextLevelPoints) { style = "TextLabel.DomCasualLeft" x = "550" y = "270" }
+        TextLabel(TextRoundPoints) { style = "TextLabel.DomCasualLeft" x = "550" y = "300" }
+        TextArea(Comment) { style = "TextArea.LevelOutro.Comments" x = "125" y = "380" }
+        Image(BestSign) { sprite = "level-results.best-sign" x = "460" y = "330" }
+        Image(ExpertSign) { sprite = "level-results.expert-sign" x = "570" y = "330" }
+        Variant(Buttons) {
+            Case(Failed) {
+                PushButton(Restart) {
+                    style = "PushButton.Default" x = "600" y = "400"
+                    textDefault = "Str_LvCompleteRestart"
+                }
+                PushButton(MainMenu) {
+                    style = "PushButton.Default" x = "600" y = "450"
+                    textDefault = "Str_LvCompleteMainMenu"
+                }
+            }
+            Case(Passed) {
+                PushButton(Continue) {
+                    style = "PushButton.Continue" x = "600" y = "470"
+                }
+            }
+        }
+    }
+
+//---------------------------------------------------------------------
+// "Options" Dialog allows options editing
+//---------------------------------------------------------------------
     
     Dialog(Options) {
+        layer = "45"
+        music = "Menu"
+        sublayerBase = "-5"
+        Image(Background) { sprite = "popup-background" sublayer = "5" }
+        CheckBox(Mute) { style = "CheckBox.Default" x = "370" y = "340" textDefault = "Str_Options_LabelMute" }
+        CheckBox(Hints) { style = "CheckBox.Default" x = "370" y = "380" textDefault = "Str_Options_LabelHints" }
+        CheckBox(Fullscreen) { style = "CheckBox.Default" x = "370" y = "420" textDefault = "Str_Options_LabelFullscreen" }
+        TextLabel(SoundLabel) { style = "TextLabel.DomCasualLeft" x = "360" y = "200" textDefault = "Str_Options_LabelSound" }
+        TextLabel(MusicLabel) { style = "TextLabel.DomCasualLeft" x = "360" y = "265" textDefault = "Str_Options_LabelMusic" }
+        Slider(Sound) { style = "Slider.Default" x = "550" y = "250" minValue = "0" maxValue = "100" }
+        Slider(Music) { style = "Slider.Default" x = "550" y = "315" minValue = "0" maxValue = "100" }
+        Variant(Buttons) {
+            Case(Game) {
+                PushButton(Resume) {
+                    style = "PushButton.Default" x = "310" y = "460"
+                    textDefault = "Str_OptionsResume"
+                }
+                PushButton(Restart) {
+                    style = "PushButton.Default" x = "450" y = "460"
+                    textDefault = "Str_OptionsRestart"
+                }
+                PushButton(EndGame) {
+                    style = "PushButton.Default" x = "590" y = "460"
+                    textDefault = "Str_OptionsEndGame"
+                }
+            }
+            Case(Menu) {
+                PushButton(Ok) {
+                    style = "PushButton.Default" x = "450" y = "460"
+                    textDefault = "Str_OptionsOk"
+                }
+            }
+        }
     }
+
+//---------------------------------------------------------------------
+// "Hiscores" Dialog recorded best scores
+//---------------------------------------------------------------------
     
     Dialog(Hiscores) {
         layer = "50"
@@ -234,18 +612,160 @@ Objects {
             }
         }
     }
+    
+//---------------------------------------------------------------------
+// "MapCareer" Dialog allows map navigation
+//---------------------------------------------------------------------
+    
+    Dialog(MapCareer) {
+        layer = "80"
+        music = "Map"
+        sublayerBase = "-5"
+        Image(Background) { sprite = "map-background" sublayer = "5" }
+        Image(Jenny) { sprite = "map.jane" x = "300" y = "140" sublayer = "4" }
+        Image(JennyEyes) { sprite = "map.jane.eyes" x = "400" y = "270" sublayer = "3" }
+        Image(Tablet) { sprite = "map.tablet" x = "30" y = "385" sublayer = "3" }
+        TextLabel(RestaurantTitle) { style = "TextLabel.DomCasualCenter" x = "170" y = "420" }
+        TextLabel(RestaurantDay) { style = "TextLabel.DomCasualCenter" x = "170" y = "450" }
+        TextLabel(BestResult) { style = "TextLabel.Domcasual-10-Center" x = "170" y = "480" }
+        TextLabel(AchievedBy) { style = "TextLabel.Domcasual-10-Center" x = "170" y = "500" }
+        Repeat {
+            Variable(i) { start = "0" finish = "4" step = "1" }
+            Node {
+                Image(Episode$i$) {  }
+            }
+        }
+        Map.Levels(Levels) { x = "0" y = "0" }
+        PushButton(Start) {
+            style = "PushButton.Map.Start"
+            x = "170" y = "540"
+            textDefault = "Str_MapStart"
+        }
+        PushButton(ViewResults) {
+            style = "PushButton.Map.Start"
+            x = "170" y = "540"
+            textDefault = "Str_MapViewResults"
+        }
+        PushButton(Close) {
+            style = "PushButton.Map.Back"
+            x = "30" y = "25"
+            command = "Close_Cancel"
+        }
+        
+    }
+    
+    ListBox(Map.Levels) {
+        height = "55"
+        multiple = "False"
+        scrolling = "False"
+        disableControl = "False"
+        Repeat {
+            Variable(i) { start = "1" finish = "50" step = "1" }
+            Node {
+                RadioButton(Level$i$) {
+                    style = "RadioButton.Levels"
+                    command = "$i$-1"
+                }
+            }
+        }
+        Repeat {
+            Variable(i) { start = "1" finish = "5" step = "1" }
+            Node {
+                RadioButton(Episode$i$) {
+                    style = "RadioButton.Episodes"
+                    command = "$i$+49"
+                }
+            }
+        }
+        
+    }
+    
+//---------------------------------------------------------------------
+// "YeNo" Dialog - asking questions
+//---------------------------------------------------------------------
+    
+    Dialog(YesNo) {
+        layer = "30"
+        music = "Menu"
+        Image(Background) { sprite = "2nd-popup-background" sublayer = "1" }
+        TextArea(Question) { style = "TextArea.Question" x = "400" y = "250" }
+        PushButton(Ok) {
+            style = "PushButton.Default" x = "330" y = "340"
+            textDefault = "Str_Yes"
+        }
+        PushButton(Cancel) {
+            style = "PushButton.Default" x = "470" y = "340"
+            textDefault = "Str_No"
+            command = "Close_Cancel"
+        }
+    }
+
+//---------------------------------------------------------------------
+// "Hints" Dialog - tutorial events
+//---------------------------------------------------------------------
+    
+    Dialog(Hints) {
+        layer = "40"
+        music = "Game"
+        sublayerBase = "-5"
+        Variant(Background) {
+            Case(LeftBottom) {
+                Image(Background) { sublayer = "1" sprite = "hints.background-left-bottom" hotspot = "LeftTop" }
+            }
+            Case(LeftTop) {
+                Image(Background) { sublayer = "1" sprite = "hints.background-left-top" hotspot = "LeftTop" }
+            }
+            Case(RightBottom) {
+                Image(Background) { sublayer = "1" sprite = "hints.background-right-bottom" hotspot = "LeftTop" }
+            }
+            Case(RightTop) {
+                Image(Background) { sublayer = "1" sprite = "hints.background-right-top" hotspot = "LeftTop" }
+            }
+        }
+        TextArea(HintsText) { style = "TextArea.Hint" x = "60" y = "60" }
+        CheckBox(ShowHints) { style = "CheckBox.Default" x = "60" y = "190" textDefault = "Str_Hints_LabelShow" }
+        PushButton(Continue) {
+            style = "PushButton.WholeScreen" sublayer = "1"
+        }
+        PushButton(Close) {
+            style = "PushButton.Default" x = "310" y = "190" textDefault = "Str_Hints_Close"
+        }
+    }
+    
+    
+//---------------------------------------------------------------------
+// "GameHUD" Dialog displays level goals and results during playing
+//---------------------------------------------------------------------
+    
+    Dialog(GameHUD) {
+        layer = "80"
+        music = "Game"
+        sublayerBase = "-5"
+        Image(InfoPane) { x = "1" y = "0" sublayer = "5" }
+        TextLabel(LevelText) { style = "TextLabel.HUD.Header" x = "77" y = "18" textDefault = "Str_HUD_LevelText" }
+        TextLabel(ScoreText) { style = "TextLabel.HUD.Header" x = "150" y = "18" textDefault = "Str_HUD_ScoreText" }
+        TextLabel(GoalText) { style = "TextLabel.HUD.Header" x = "235" y = "18" textDefault = "Str_HUD_GoalText" }
+        TextLabel(NoPeopleText) { style = "TextLabel.HUD.Header" x = "298" y = "18" textDefault = "Str_HUD_NoPeopleText" }
+        TextLabel(LevelName) { style = "TextLabel.HUD.Values" x = "77" y = "37" }
+        TextLabel(Score) { style = "TextLabel.HUD.Score" x = "150" y = "40" }
+        TextLabel(Goal) { style = "TextLabel.HUD.Values" x = "235" y = "37" }
+        TextLabel(NoPeople) { style = "TextLabel.HUD.Values" x = "298" y = "37" }
+        PushButton(Menu) {
+            style = "PushButton.HUD-Menu"
+            x = "28" y = "31"
+        }
+    }
+
+
 }
 
 Styles {
     Style(PushButton.WholeScreen) {
         HitArea {
-            width = "800" height = "600"
+            width = "800" height = "600" hotspot = "LeftTop"
         }
         Background {
             State(Default) { sprite = "$spritecraft$dummy$" }
-        }
-        Text {
-            State(Default) { sprite = "$spritecraft$font$" }
         }
     }
     
@@ -272,6 +792,29 @@ Styles {
         }
     }
     
+    Style(PushButton.300px) {
+        sound = "gui.click"
+        HitArea {
+            hotspot = "Center"
+            width = "300" height = "30"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "button-4st-300" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+        Text {
+            sublayer = "-2" hotspot = "Center"
+            State(Up) { font = "domcasual-10-up" }
+            State(Roll) { font = "domcasual-10-roll" }
+            State(Down) { font = "domcasual-10-down" }
+            State(Inert) { font = "domcasual-10-inert" }
+        }
+    }
+
     Style(PushButton.MainMenu.Default) {
         sound = "gui.click"
         HitArea {
@@ -352,9 +895,6 @@ Styles {
             State(Down) { frno = "2" }
             State(Inert) { frno = "3" }
         }
-        Text {
-            State(Default) { sprite = "$spritecraft$font$" }
-        }
     }
     
     Style(PushButton.Cookbook.Next) {
@@ -367,9 +907,6 @@ Styles {
             State(Roll) { frno = "1" }
             State(Down) { frno = "2" }
             State(Inert) { frno = "3" }
-        }
-        Text {
-            State(Default) { sprite = "$spritecraft$font$" }
         }
     }
     
@@ -384,9 +921,6 @@ Styles {
             State(Down) { frno = "2" }
             State(Inert) { frno = "3" }
         }
-        Text {
-            State(Default) { sprite = "$spritecraft$font$" }
-        }
     }
     
     Style(PushButton.Continue) {
@@ -400,8 +934,38 @@ Styles {
             State(Down) { frno = "2" }
             State(Inert) { frno = "3" }
         }
+    }
+    
+    Style(PushButton.Map.Start) {
+        HitArea {
+            width = "130" height = "50"
+        }
+        Background {
+            State(Default) { sprite = "map.play.button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
         Text {
-            State(Default) { sprite = "$spritecraft$font$" }
+            sublayer = "-2" hotspot = "Center" 
+            State(Up) { font = "domcasual-10-up" }
+            State(Roll) { font = "domcasual-10-roll" }
+            State(Down) { font = "domcasual-10-down" }
+            State(Inert) { font = "domcasual-10-inert" }
+        }
+    }
+    
+    Style(PushButton.Map.Back) {
+        HitArea {
+            width = "130" height = "50"
+        }
+        Background {
+            State(Default) { sprite = "map.back-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
         }
     }
     
@@ -416,9 +980,6 @@ Styles {
             State(Down) { frno = "2" }
             State(Inert) { frno = "3" }
         }
-        Text {
-            State(Default) { sprite = "$spritecraft$font$" }
-        }
     }
     
     Style(PushButton.Players.ScrollDn) {
@@ -431,9 +992,6 @@ Styles {
             State(Roll) { frno = "1" }
             State(Down) { frno = "2" }
             State(Inert) { frno = "3" }
-        }
-        Text {
-            State(Default) { sprite = "$spritecraft$font$" }
         }
     }
     
@@ -465,14 +1023,205 @@ Styles {
         }
     }
     
+    Style(RadioButton.Episodes) {
+        sound = "gui.click"
+        HitArea {
+            width = "42" height = "42"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "outro-pointers.notpass" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+            State(Select) { frno = "4" }
+            State(SelectRoll) { frno = "4" }
+            State(SelectDown) { frno = "4" }
+        }
+    }
+
+    Style(RadioButton.Episodes.Pass) {
+        sound = "gui.click"
+        HitArea {
+            width = "42" height = "42"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "outro-pointers.pass" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+            State(Select) { frno = "4" }
+            State(SelectRoll) { frno = "4" }
+            State(SelectDown) { frno = "4" }
+        }
+    }
+
+    Style(RadioButton.Episodes.1st) {
+        sound = "gui.click"
+        HitArea {
+            width = "42" height = "42"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "outro-pointers.1st" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+            State(Select) { frno = "4" }
+            State(SelectRoll) { frno = "4" }
+            State(SelectDown) { frno = "4" }
+        }
+    }
+
+    Style(RadioButton.Episodes.2nd) {
+        sound = "gui.click"
+        HitArea {
+            width = "42" height = "42"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "outro-pointers.2nd" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+            State(Select) { frno = "4" }
+            State(SelectRoll) { frno = "4" }
+            State(SelectDown) { frno = "4" }
+        }
+    }
+
+    Style(RadioButton.Levels) {
+        sound = "gui.click"
+        HitArea {
+            width = "30" height = "30"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "level-pointers" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+            State(Select) { frno = "4" }
+            State(SelectRoll) { frno = "4" }
+            State(SelectDown) { frno = "4" }
+        }
+    }
+
+    Style(RadioButton.LevelsExpert) {
+        sound = "gui.click"
+        HitArea {
+            width = "30" height = "30"
+        }
+        Background {
+            sublayer = "-1" hotspot = "Center"
+            State(Default) { sprite = "level-pointers-expert" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+            State(Select) { frno = "4" }
+            State(SelectRoll) { frno = "4" }
+            State(SelectDown) { frno = "4" }
+        }
+    }
+
+    Style(PushButton.HUD-Menu) {
+        HitArea {
+            width = "40" height = "40"
+        }
+        Background {
+            State(Default) { sprite = "$spritecraft$dummy$" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+    }
+    
+    Style(PushButton.HUD-Menu.American) {
+        HitArea {
+            width = "40" height = "40"
+        }
+        Background {
+            State(Default) { sprite = "theme.american.menu-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+    }
+    
+    Style(PushButton.HUD-Menu.Mexican) {
+        HitArea {
+            width = "40" height = "40"
+        }
+        Background {
+            State(Default) { sprite = "theme.mexican.menu-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+    }
+    
+    Style(PushButton.HUD-Menu.Russian) {
+        HitArea {
+            width = "40" height = "40"
+        }
+        Background {
+            State(Default) { sprite = "theme.russian.menu-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+    }
+    
+    Style(PushButton.HUD-Menu.Japanese) {
+        HitArea {
+            width = "40" height = "40"
+        }
+        Background {
+            State(Default) { sprite = "theme.japanese.menu-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+    }
+    
+    Style(PushButton.HUD-Menu.Hawaiian) {
+        HitArea {
+            width = "40" height = "40"
+        }
+        Background {
+            State(Default) { sprite = "theme.hawaiian.menu-button" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+            State(Inert) { frno = "3" }
+        }
+    }
+    
+//-------------------
+// CheckBox Styles
+//-------------------
+    
     Style(CheckBox.Default) {
         sound = "gui.click"
         HitArea {
-            width = "adjust" height = "30"
+            width = "1" height = "30"
+            adjustWidth = "True" minDX = "5"
         }
-        Box {
-            sublayer = "-1"
-            State(Default) { sprite = "options-checkbox" }
+        Background {
+            sublayer = "-1" x = "0" y = "0"
+            State(Default) { sprite = "options-checkbox"  }
             State(Up) { frno = "0" }
             State(Roll) { frno = "1" }
             State(Down) { frno = "2" }
@@ -480,25 +1229,77 @@ Styles {
         }
         Check {
             sublayer = "-2"
-            State(Default) { sprite = "options-galka" }
+            sprite = "options-galka"
         }
         Text {
-            sublayer = "-1" x = "40" y = "5"
+            sublayer = "-1" x = "40" y = "0"
             State(Up) { font = "mainmenu.domcasual" }
             State(Roll) { font = "mainmenu.domcasual" }
             State(Down) { font = "mainmenu.domcasual.down" }
             State(Inert) { font = "mainmenu.domcasual.inert" }
         }
     }
+
+//-------------------
+// Slider Styles
+//-------------------
     
+    Style(Slider.Default) {
+        direction = "Horizontal"
+        HitArea {
+            width = "220" height = "30"
+        }
+        SensitiveArea {
+            width = "300" height = "100"
+        }
+        Zipper {
+            hotspot = "Center"
+            x0 = "-100" x1 = "100"
+            y0 = "0" y1 = "0"
+            width = "30" height = "30"
+            State(Default) { sprite = "options-slider" }
+            State(Up) { frno = "0" }
+            State(Roll) { frno = "1" }
+            State(Down) { frno = "2" }
+        }
+        Background {
+            sprite = "slider-background" sublayer = "1"
+        }
+    }
+    
+    
+//-------------------
+// TextLabel Styles
+//-------------------
+    
+    Style(TextLabel.HUD.Header) {
+        font = "simple" hotspot = "Center"
+        cfilt-color = "0x604020"
+    }
+    Style(TextLabel.HUD.Values) {
+        font = "domcasual-11" hotspot = "Center"
+        cfilt-color = "0xC04020"
+    }
+    Style(TextLabel.HUD.Score) {
+        font = "domcasual-20-green" hotspot = "Center"
+    }
     Style(TextLabel.Domcasual-10) {
         font = "domcasual-10-up" hotspot = "LeftTop"
+    }
+    Style(TextLabel.Domcasual-10-Center) {
+        font = "domcasual-10-up" hotspot = "Center"
     }
     Style(TextLabel.MainMenu.Welcome){
         font = "mainmenu.domcasual" hotspot = "RightTop"
     }
     Style(TextLabel.DomCasualCenter){
         font = "mainmenu.domcasual" hotspot = "Center"
+    }
+    Style(TextLabel.DomCasualLeft){
+        font = "mainmenu.domcasual" hotspot = "LeftTop"
+    }
+    Style(TextLabel.DomCasualRight){
+        font = "mainmenu.domcasual" hotspot = "RightTop"
     }
     Style(TextLabel.Domcasual.Other){
         font = "mainmenu.domcasual" hotspot = "Center"
@@ -511,4 +1312,121 @@ Styles {
         font = "domcasual-11" hotspot = "RightTop"
         cfilt-color = "0x008020"
     }
+    Style(TextLabel.Hiscore.Player.CurrentPlayer) {
+        font = "domcasual-11" hotspot = "LeftTop"
+        cfilt-color = "0xFF6600"
+    }
+    Style(TextLabel.Hiscore.Score.CurrentPlayer) {
+        font = "domcasual-11" hotspot = "RightTop"
+        cfilt-color = "0xFF6600"
+    }
+    Style(TextLabel.EpisodeIntro.Competitors) {
+        font = "arial-italic-18" hotspot = "Center"
+        cfilt-color = "0x993300"
+    }
+    Style(TextLabel.EpisodeIntro.Names) {
+        font = "arial-italic-18" hotspot = "Center"
+        cfilt-color = "0x663300"
+    }
+    Style(TextLabel.EpisodeIntro.Text) {
+        font = "arial-italic-18" hotspot = "Center"
+        cfilt-color = "0x000000"
+    }
+    Style(TextLabel.LevelIntro.Title) {
+        font = "arial-italic-20" hotspot = "Center"
+        cfilt-color = "0x000000"
+    }
+    Style(TextLabel.EpisodeOutro.Text) {
+        font = "arial-italic-18" hotspot = "Center"
+        cfilt-color = "0x000000"
+    }
+    Style(TextLabel.EpisodeOutro.Winners) {
+        font = "arial-italic-18" hotspot = "Center"
+        cfilt-color = "0x993300"
+    }
+    Style(TextLabel.EpisodeOutro.Winners.Hawaiian) {
+        font = "arial-italic-18" hotspot = "Center"
+        cfilt-color = "0xcc3300"
+    }
+    Style(TextLabel.EpisodeOutro.WinnerNumber) {
+        font = "domcasual-20-orange" hotspot = "Center"
+        cfilt-color = "0xffffff"
+    }
+    Style(TextLabel.EpisodeOutro.Names.Passed) {
+        font = "arial-italic-18" hotspot = "LeftTop"
+        cfilt-color = "0x339900"
+    }
+    Style(TextLabel.EpisodeOutro.Names.NotPassed) {
+        font = "arial-italic-18" hotspot = "LeftTop"
+        cfilt-color = "0x666666"
+    }
+    Style(TextLabel.EpisodeOutro.Jenny.Passed) {
+        font = "arial-italic-20" hotspot = "LeftTop"
+        cfilt-color = "0x663300"
+    }
+    Style(TextLabel.EpisodeOutro.Jenny.NotPassed) {
+        font = "arial-italic-20" hotspot = "LeftTop"
+        cfilt-color = "0x333333"
+    }
+
+
+//-------------------
+// TextArea Styles
+//-------------------
+    
+    Style(TextArea.LevelIntro.NoPicture) {
+        font = "arial-italic-18" hotspot = "LeftTop"
+        width = "360" height = "200" lineheight = "25"
+        cfilt-color = "0x000000"
+    }
+    Style(TextArea.LevelIntro.BonusPicture) {
+        font = "arial-italic-18" hotspot = "LeftTop"
+        width = "290" height = "200" lineheight = "25"
+        cfilt-color = "0x000000"
+    }
+    Style(TextArea.LevelIntro.CustomerPicture) {
+        font = "arial-italic-18" hotspot = "LeftTop"
+        width = "270" height = "200" lineheight = "25"
+        cfilt-color = "0x000000"
+    }
+    Style(TextArea.LevelOutro.Comments) {
+        font = "arial-italic-20" hotspot = "LeftTop"
+        width = "300" height = "175" lineheight = "25"
+        cfilt-color = "0x000000"
+    }
+    Style(TextArea.Question) {
+        font = "domcasual-11" hotspot = "CenterTop"
+        width = "260" height = "50" lineheight = "25"
+        cfilt-color = "0x000000"
+    }
+    Stye(TextArea.Hint) {
+        font = "arial-italic-18" hotspot = "LeftTop"
+        width = "300" height = "125" lineheight = "25"
+        cfilt-color = "0x000000"
+    }
+    
+//-------------------
+// TextEntry Styles
+//-------------------
+    
+    Style(TextEntry.PlayerName) {
+        HitArea {
+            width = "250" height = "40"
+        }
+        Background {
+            sprite = "entername.text-field" x = "5" y = "5"
+            sublayer = "1"
+        }
+        Text {
+            font = "mainmenu.domcasual"
+            x = "10" y = "5"
+            hotspot = "LeftCenter"
+            length = "12"
+        }
+        Cursor {
+            sprite = "textcursor" fps = "2"
+            textDX = "10" textDY = "0"
+        }
+    }
+    
 }

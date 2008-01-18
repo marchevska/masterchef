@@ -20,6 +20,10 @@ class GuiObject(object):
         pass
     def Activate(self, flag):
         pass
+    def GetFocus(self):
+        pass
+    def LoseFocus(self):
+        pass
     
     
 def GetHotspotValue(str):

@@ -84,7 +84,8 @@ def SaveGameConfig():
     
 def ApplyOptions():
     oE.fullscreen = globalvars.GameConfig.GetBoolAttr("Fullscreen")
-    oE.PlaceWindowAt(scraft.PositionCenter)
+    if oE.windowX == 0 and oE.windowY == 0:
+        oE.PlaceWindowAt(scraft.PositionCenter)
     if globalvars.GameConfig.GetBoolAttr("Mute"):
         oE.volume = 0
     else:

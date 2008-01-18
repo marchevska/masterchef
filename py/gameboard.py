@@ -25,6 +25,7 @@ import config
 import defs
 import playerlist
 import globalvars
+import gamegui
 
 class GameBoard(scraft.Dispatcher):
     
@@ -34,41 +35,41 @@ class GameBoard(scraft.Dispatcher):
         self.BgReceptor = MakeDummySprite(self, Cmd_BgReceptor,
                         400, 300, 800, 600, Layer_BgReceptor)
         
-        #create text sprites
-        self.HudElements = {}
-        self.HudElements["InfoPane"] = MakeSprite("$spritecraft$dummy$", Layer_InterfaceBg, { "x": 1, "y": 0 })
-        self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
-                                    {"x": 77, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": defs.GetGameString("Str_HUD_LevelText"), "cfilt-color": 0x604020})
-        self.HudElements["ScoreText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
-                                    {"x": 150, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": defs.GetGameString("Str_HUD_ScoreText"), "cfilt-color": 0x604020})
-        self.HudElements["GoalText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
-                                    {"x": 235, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": defs.GetGameString("Str_HUD_GoalText"), "cfilt-color": 0x604020})
-        self.HudElements["NoPeopleText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
-                                    {"x": 298, "y": 18, "hotspot": scraft.HotspotCenter,
-                                     "text": defs.GetGameString("Str_HUD_NoPeopleText"), "cfilt-color": 0x604020})
-        self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"x": 77, "y": 37, "hotspot": scraft.HotspotCenter,
-                                     "cfilt-color": 0xC04020})
-        self.HudElements["Score"] = MakeSprite(u"domcasual-20-green", Layer_InterfaceTxt,
-                                    {"x": 150, "y": 40, "hotspot": scraft.HotspotCenter,
-                                     "cfilt-color": 0xFFFFF})
-        self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"x": 235, "y": 37, "hotspot": scraft.HotspotCenter,
-                                     "cfilt-color": 0xC04020})
-        self.HudElements["NoPeople"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
-                                    {"x": Crd_QueueMarker_TextX, "y": Crd_QueueMarker_TextY,
-                                     "hotspot": scraft.HotspotCenter,
-                                     "cfilt-color": 0xC04020})
-        
-        #create buttons
-        self.GameButtons = {}
-        self.GameButtons["Menu"] = PushButton("Menu",
-                self, Cmd_Menu, PState_Game,
-                "$spritecraft$dummy$", [0, 1, 2, 3, 4], 
-                Layer_InterfaceBtn, 28, 31, 40, 40)
+        ##create text sprites
+        #self.HudElements = {}
+        #self.HudElements["InfoPane"] = MakeSprite("$spritecraft$dummy$", Layer_InterfaceBg, { "x": 1, "y": 0 })
+        #self.HudElements["LevelText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
+        #                            {"x": 77, "y": 18, "hotspot": scraft.HotspotCenter,
+        #                             "text": defs.GetGameString("Str_HUD_LevelText"), "cfilt-color": 0x604020})
+        #self.HudElements["ScoreText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
+        #                            {"x": 150, "y": 18, "hotspot": scraft.HotspotCenter,
+        #                             "text": defs.GetGameString("Str_HUD_ScoreText"), "cfilt-color": 0x604020})
+        #self.HudElements["GoalText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
+        #                            {"x": 235, "y": 18, "hotspot": scraft.HotspotCenter,
+        #                             "text": defs.GetGameString("Str_HUD_GoalText"), "cfilt-color": 0x604020})
+        #self.HudElements["NoPeopleText"] = MakeSprite(u"simple", Layer_InterfaceTxt,
+        #                            {"x": 298, "y": 18, "hotspot": scraft.HotspotCenter,
+        #                             "text": defs.GetGameString("Str_HUD_NoPeopleText"), "cfilt-color": 0x604020})
+        #self.HudElements["LevelName"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+        #                            {"x": 77, "y": 37, "hotspot": scraft.HotspotCenter,
+        #                             "cfilt-color": 0xC04020})
+        #self.HudElements["Score"] = MakeSprite(u"domcasual-20-green", Layer_InterfaceTxt,
+        #                            {"x": 150, "y": 40, "hotspot": scraft.HotspotCenter,
+        #                             "cfilt-color": 0xFFFFF})
+        #self.HudElements["Goal"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+        #                            {"x": 235, "y": 37, "hotspot": scraft.HotspotCenter,
+        #                             "cfilt-color": 0xC04020})
+        #self.HudElements["NoPeople"] = MakeSprite(u"domcasual-11", Layer_InterfaceTxt,
+        #                            {"x": Crd_QueueMarker_TextX, "y": Crd_QueueMarker_TextY,
+        #                             "hotspot": scraft.HotspotCenter,
+        #                             "cfilt-color": 0xC04020})
+        #
+        ##create buttons
+        #self.GameButtons = {}
+        #self.GameButtons["Menu"] = PushButton("Menu",
+        #        self, Cmd_Menu, PState_Game,
+        #        "$spritecraft$dummy$", [0, 1, 2, 3, 4], 
+        #        Layer_InterfaceBtn, 28, 31, 40, 40)
         
         self.CustomersQue = None
         self.Advisor = None
@@ -85,6 +86,7 @@ class GameBoard(scraft.Dispatcher):
         self.NoErrors = 0
         self.StationsToOccupy = []
         
+        self.Frozen = False
         self.Playing = False
         self.MyRand = oE.NewRandomizer()
         self._SetState(GameState_None)
@@ -100,17 +102,21 @@ class GameBoard(scraft.Dispatcher):
         self.Freeze(False)
         try:
             self.Load()
+            self.Expert = False
+            gamegui.ResetGameHUD()
+            self._UpdateLevelInfo()
         except:
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
-        self._StartLevel()
+        #self._StartLevel()
         
-    def _StartLevel(self):
-        self.Expert = False
-        self.HudElements["LevelName"].text = self.LevelName
-        self.HudElements["GoalText"].text = defs.GetGameString("Str_HUD_GoalText")
-        self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
-        self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
-        self._UpdateLevelInfo()
+    #def _StartLevel(self):
+    #    self.Expert = False
+    #    gamegui.ResetGameHUD()
+    #    #self.HudElements["LevelName"].text = self.LevelName
+    #    #self.HudElements["GoalText"].text = defs.GetGameString("Str_HUD_GoalText")
+    #    #self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal"))
+    #    #self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
+    #    self._UpdateLevelInfo()
         
     def ReallyStart(self):
         for tmpStation in self.StationsToOccupy:
@@ -134,13 +140,13 @@ class GameBoard(scraft.Dispatcher):
         self.CustomersServed = 0
         self.CustomersLost = 0
         self.NoErrors = 0
-        self.LevelName = globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
+        #self.LevelName = globalvars.CurrentPlayer.GetLevel().GetStrAttr(u"name")
         
         tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
         self.BgSprite.ChangeKlassTo(tmpTheme.GetStrAttr("background"))
         self.DoorSprite.ChangeKlassTo("$spritecraft$dummy$")
-        self.HudElements["InfoPane"].ChangeKlassTo(tmpTheme.GetStrAttr("infopane"))
-        self.GameButtons["Menu"].SetButtonKlass(tmpTheme.GetStrAttr("menuButton"))
+        #self.HudElements["InfoPane"].ChangeKlassTo(tmpTheme.GetStrAttr("infopane"))
+        #self.GameButtons["Menu"].SetButtonKlass(tmpTheme.GetStrAttr("menuButton"))
         
         #reset customer dispatcher
         self.RemainingCustomers = globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers")
@@ -211,6 +217,8 @@ class GameBoard(scraft.Dispatcher):
         #globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Default})
         #globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
         
+        gamegui.UpdateGameHUD()
+        
     #--------------------------
     # Поместить следующего покупателя к заданному стейшену
     #--------------------------
@@ -218,7 +226,8 @@ class GameBoard(scraft.Dispatcher):
         station.SetState(CStationState_Busy)
         station.AttachCustomer(self.CustomersQue.PopCustomer())
         self.RemainingCustomers -= 1
-        self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
+        self._UpdateLevelInfo()
+        #self.HudElements["NoPeople"].text = str(self.RemainingCustomers)
         if self.RemainingCustomers <= 0:
             tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
             self.DoorSprite.ChangeKlassTo(tmpTheme.GetStrAttr("door"))
@@ -233,9 +242,9 @@ class GameBoard(scraft.Dispatcher):
     # обработка входящих команд
     #--------------------------
     def SendCommand(self, cmd, parameter = None):
-        if cmd == Cmd_Menu:
-            globalvars.GUI.CallInternalMenu() 
-            globalvars.Musician.PlaySound("gui.click")
+        #if cmd == Cmd_Menu:
+        #    globalvars.GUI.CallInternalMenu() 
+        #    globalvars.Musician.PlaySound("gui.click")
             
         if cmd == Cmd_MovementFinished:
             if self.State == GameState_StartLevel:
@@ -456,7 +465,10 @@ class GameBoard(scraft.Dispatcher):
             for tmp in self.Fields:
                 tmp.SetState(FieldState_EndLevel)
             if parameter == False:
-                globalvars.GUI.CallLevelCompleteDialog(False,
+                #globalvars.GUI.CallLevelCompleteDialog(False,
+                #        { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
+                #         "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
+                gamegui.ShowLevelResults(False,
                         { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
                          "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
             else:
@@ -467,10 +479,12 @@ class GameBoard(scraft.Dispatcher):
                         globalvars.GameConfig.GetStrAttr("Player"), self.LevelScore)
                 globalvars.CurrentPlayer.RecordLevelResults({"expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal"),
                             "hiscore": self.LevelScore, "played": True})
-                globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
+                #globalvars.GUI.CallLevelCompleteDialog((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
+                #        { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
+                #         "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
+                gamegui.ShowLevelResults((self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("moneygoal")),
                         { "served": self.CustomersServed, "lost": self.CustomersLost, "score": self.LevelScore,
                          "expert": self.LevelScore >= globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("expertgoal") } )
-                #print "level", self.LevelName, "time", (oE.millis-self.StartTime)/1000
         
         
     #--------------------------
@@ -561,12 +575,18 @@ class GameBoard(scraft.Dispatcher):
         self.TokensFrom = None
         
     def _UpdateLevelInfo(self):
-        self.HudElements["Score"].text = str(self.LevelScore)
+        gamegui.UpdateGameHUD({ "RemainingCustomers": self.RemainingCustomers,
+                               "LevelScore": self.LevelScore,
+                               "Expert": self.Expert })
+        #self.HudElements["Score"].text = str(self.LevelScore)
         
     def _SwitchToExpert(self):
-        self.HudElements["GoalText"].text = defs.GetGameString("Str_HUD_ExpertText")
-        self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertgoal"))
+        #self.HudElements["GoalText"].text = defs.GetGameString("Str_HUD_ExpertText")
+        #self.HudElements["Goal"].text = str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertgoal"))
         self.Expert = True
+        gamegui.UpdateGameHUD({ "RemainingCustomers": self.RemainingCustomers,
+                               "LevelScore": self.LevelScore,
+                               "Expert": self.Expert })
         
     #--------------------------
     # очистка игрового поля
@@ -612,10 +632,10 @@ class GameBoard(scraft.Dispatcher):
         self.BgSprite.visible = flag
         self.DoorSprite.visible = flag
         self.BgReceptor.visible = flag
-        for spr in self.HudElements.values():
-            spr.visible = flag
-        for btn in self.GameButtons.values():
-            btn.Show(flag)
+        #for spr in self.HudElements.values():
+        #    spr.visible = flag
+        #for btn in self.GameButtons.values():
+        #    btn.Show(flag)
         #if self.Playing:
         #    self.CustomersQue.Show(flag)
         #    for tmp in self.CStations:
@@ -625,6 +645,7 @@ class GameBoard(scraft.Dispatcher):
         """
         Постановка паузы
         """
+        self.Frozen = flag
         if flag:
             #oE.executor.GetQueue(self.QueNo).Suspend()
             if fullFreeze:

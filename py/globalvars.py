@@ -68,3 +68,4 @@ global Board
 global BlackBoard
 global GUI
 global GuiPresenter
+global GuiQueue

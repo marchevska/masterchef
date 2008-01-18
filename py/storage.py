@@ -29,6 +29,7 @@ class Storage(scraft.Dispatcher):
         self.Cols, self.Rows = cols, rows
         self.Collapsing = False
         
+        self.Frozen = False
         self.TokenEventsList = []
         self.Action = Const_HighlightPick
         self.Base = MakeSprite("$spritecraft$dummy$", Layer_Receptors, {"x": x, "y": y })
@@ -103,6 +104,7 @@ class Storage(scraft.Dispatcher):
         self.Cells = {}
         
     def Freeze(self, flag, fullFreeze = True):
+        self.Frozen = flag
         if flag and fullFreeze:
             self.Highlight.Clear()
             self.Selection.Clear()
@@ -129,7 +131,8 @@ class Storage(scraft.Dispatcher):
     # подбор токенов при нажатии на группу
     #def _OnMouseClick(self, sprite, x, y, button):
     def _OnMouseDown(self, sprite, x, y, button):
-        if globalvars.StateStack[-1] == PState_Game:
+        if not self.Frozen:
+        #if globalvars.StateStack[-1] == PState_Game:
             if button == 2:
                 globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
             #elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
@@ -303,7 +306,8 @@ class Store(Storage):
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
         try:
-            if globalvars.StateStack[-1] == PState_Game:
+            if not self.Frozen:
+            #if globalvars.StateStack[-1] == PState_Game:
                 if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
@@ -379,7 +383,8 @@ class SingularStore(Storage):
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
         try:
-            if globalvars.StateStack[-1] == PState_Game:
+            if not self.Frozen:
+            #if globalvars.StateStack[-1] == PState_Game:
                 if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
@@ -958,7 +963,8 @@ class Field(Storage):
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
         try:
-            if globalvars.StateStack[-1] == PState_Game and \
+            #if globalvars.StateStack[-1] == PState_Game and \
+            if not self.Frozen and \
                     self.State not in (FieldState_Shuffle, FieldState_MagicWandConverting):
             #if self.State == FieldState_Input:
                 if sprite.cookie == Cmd_Receptor:
@@ -977,7 +983,8 @@ class Field(Storage):
     #--------------------------
     #def _OnMouseClick(self, sprite, x, y, button):
     def _OnMouseDown(self, sprite, x, y, button):
-        if globalvars.StateStack[-1] == PState_Game:
+        if not self.Frozen:
+        #if globalvars.StateStack[-1] == PState_Game:
         #if self.State == FieldState_Input:
             try:
                 #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
@@ -1058,7 +1065,8 @@ class Field(Storage):
                 oE.Log(unicode(string.join(apply(traceback.format_exception, sys.exc_info()))))
             
     def _OnMouseUp(self, sprite, x, y, button):
-        if globalvars.StateStack[-1] == PState_Game:
+        if not self.Frozen:
+        #if globalvars.StateStack[-1] == PState_Game:
         #if self.State == FieldState_Input:
             try:
                 #проверяем использование бонуса с курсора
@@ -1089,6 +1097,7 @@ class Field(Storage):
             pass
         
     def Freeze(self, flag, fullFreeze = True):
+        self.Frozen = flag
         if flag:
             oE.executor.GetQueue(self.QueNo).Suspend()
             Storage.Freeze(self, flag, fullFreeze)
@@ -1365,7 +1374,8 @@ class Collapsoid(Field):
     #--------------------------
     #def _OnMouseClick(self, sprite, x, y, button):
     def _OnMouseDown(self, sprite, x, y, button):
-        if globalvars.StateStack[-1] == PState_Game:
+        if not self.Frozen:
+        #if globalvars.StateStack[-1] == PState_Game:
             if (button == 1 and globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool) \
                     or button == 2:
                 #Field._OnMouseClick(self, sprite, x, y, button)

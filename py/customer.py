@@ -11,9 +11,11 @@ import scraft
 from scraft import engine as oE
 import globalvars
 from constants import *
-from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
+#from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
 from extra import Anima, Animator, RandomKeyByRates
 from random import randint
+
+from teggo.games import spriteworks
 
 #------------
 # Покупатель; имеет настроение, выраженное в сердечках
@@ -24,9 +26,9 @@ from random import randint
 class Customer(scraft.Dispatcher):
     def __init__(self, type):
         self.Type = type
-        self.Sprite = MakeSimpleSprite(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("src"), Layer_Customer,
-                        -100, -100, scraft.HotspotCenterBottom)
-        self.HilightSprite = MakeSprite("$spritecraft$dummy$", Layer_Customer+1,
+        self.Sprite = spriteworks.MakeSprite(globalvars.CustomersInfo.GetSubtag(type).GetStrAttr("src"), Layer_Customer,
+                        { "x": -100, "y": -100, "hotspot": scraft.HotspotCenterBottom })
+        self.HilightSprite = spriteworks.MakeSprite("$spritecraft$dummy$", Layer_Customer+1,
                         { "x":0, "y": 0, "parent": self.Sprite, "hotspot": scraft.HotspotCenterBottom })
         self.SpriteProxy = CustomerSpriteProxy(self.Sprite, self.HilightSprite)
         self.Animator = CustomersAnimator(self.SpriteProxy,
@@ -34,9 +36,9 @@ class Customer(scraft.Dispatcher):
         self.Hearts = 0
         self.HeartSprites = []
         for i in range(Const_MaxHearts):
-            self.HeartSprites.append(MakeSimpleSprite("heart", Layer_Recipe,
-                        self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx,
-                        self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy))
+            self.HeartSprites.append(spriteworks.MakeSprite("heart", Layer_Recipe,
+                        { "x": self.Sprite.x + Crd_HeartsDx + i*Crd_HeartSpritesDx,
+                        "y": self.Sprite.y + Crd_HeartsDy + i*Crd_HeartSpritesDy }))
         self.HasOrder = False
         self.Host = None
         self.PrevState = CustomerState_None
@@ -357,7 +359,7 @@ class CustomersQue(scraft.Dispatcher):
 #-------------------------------
 class Hero:
     def __init__(self, x, y):
-        self.Sprite = MakeSimpleSprite(u"hero", Layer_Hero, x, y, scraft.HotspotCenterBottom)
+        self.Sprite = spriteworks.MakeSprite("hero", Layer_Hero, { "x": x, "y": y, "hotspot": scraft.HotspotCenterBottom })
         self.Animator = CustomersAnimator(self.Sprite, globalvars.CustomerAnimations.GetSubtag("animation.hero"))
         self.Animator.SetState("None")
         

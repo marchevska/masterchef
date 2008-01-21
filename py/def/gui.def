@@ -31,6 +31,10 @@ Objects {
         layer = "100"
         music = "Menu"
         Image(Background) { sprite = "mainmenu-background" sublayer = "5" }
+        Image(Eyes) {
+            sprite = "mainmenu.jane.eyes" x = "190" y = "220"
+            animation = "(0, 2000, 3000), (1, 500, 700), (0, 1000, 2000),  (2, 300, 300)"
+        }
         Image(DevLogoSmall) { sprite = "$spritecraft$dummy$" }
         Image(PubLogoSmall) { sprite = "$spritecraft$dummy$" }
         PushButton(Players) {
@@ -413,10 +417,10 @@ Objects {
 
     Composite(CharacterInTheLight) {
         Image(Character) { sublayer = "3" hotspot = "CenterBottom" }
-        Image(Medallion) { sublayer = "2" x = "0" y = "-200" hotspot = "Center" }
+        Image(Medallion) { sublayer = "1" x = "0" y = "-200" hotspot = "Center" }
         Image(Light) { sprite = "outro.light" sublayer = "4" x = "0" y = "40" hotspot = "CenterBottom" }
-        TextLabel(Number) { style = "TextLabel.EpisodeOutro.WinnerNumber" sublayer = "1" x = "0" y = "-200" }
-        TextLabel(Name) { style = "TextLabel.DomCasualCenter" x = "0" y = "-165" }
+        TextLabel(Number) { style = "TextLabel.EpisodeOutro.WinnerNumber" sublayer = "0" x = "0" y = "-200" }
+        TextLabel(Name) { style = "TextLabel.DomCasualCenter" x = "0" y = "-165" sublayer = "-1" }
     }
 
 //---------------------------------------------------------------------
@@ -623,7 +627,10 @@ Objects {
         sublayerBase = "-5"
         Image(Background) { sprite = "map-background" sublayer = "5" }
         Image(Jenny) { sprite = "map.jane" x = "300" y = "140" sublayer = "4" }
-        Image(JennyEyes) { sprite = "map.jane.eyes" x = "400" y = "270" sublayer = "3" }
+        Image(JennyEyes) {
+            sprite = "map.jane.eyes" x = "400" y = "270" sublayer = "3" 
+            animation = "(1, 1800, 2200), (0, 200, 300), (1, 1800, 2200), (0, 200, 250), (1, 200, 250), (0, 200, 250)"
+        }
         Image(Tablet) { sprite = "map.tablet" x = "30" y = "385" sublayer = "3" }
         TextLabel(RestaurantTitle) { style = "TextLabel.DomCasualCenter" x = "170" y = "420" }
         TextLabel(RestaurantDay) { style = "TextLabel.DomCasualCenter" x = "170" y = "450" }
@@ -1428,5 +1435,5 @@ Styles {
             textDX = "10" textDY = "0"
         }
     }
-    
+
 }

@@ -8,7 +8,7 @@ Project: Master Chef
 
 import os.path
 import pyteggo2
-import os, sys
+import os, sys, traceback, string
 import profile
 import scraft
 from scraft import engine as oE

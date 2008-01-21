@@ -11,12 +11,13 @@ import scraft
 from scraft import engine as oE
 import math, string
 from random import randint, choice
-from guiconst import *
-from configconst import *
-from constants import *
-from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
-import globalvars
 
+import spriteworks
+
+def CreateEffect(host, name, crd):
+    tmpNode = oE.ParseDEF("def/effects.def").GetTag("Effects").GetSubtag(name)
+    if string.lower(tmpNode.GetName()) == "particles":
+        return ParticleEffect(host, tmpNode, crd)
 
 class Effect:
     def __init__(self, node, crd):
@@ -79,11 +80,6 @@ class ParticleEffect(Effect, scraft.Dispatcher):
         self.p.Dispose()
 
 
-def CreateEffect(host, name, crd):
-    tmpNode = oE.ParseDEF("def/effects.def").GetTag("Effects").GetSubtag(name)
-    if string.lower(tmpNode.GetName()) == "particles":
-        return ParticleEffect(host, tmpNode, crd)
-
 
 #------------------------------------
 # Спрайт двигается по заданному пути
@@ -100,27 +96,31 @@ class Popup(scraft.Dispatcher):
         self.MaxTime = maxTime
         self.State = state
         
-        self.StartTime = globalvars.Timer.millis
+        self.StartTime = oE.millis
+        self.Timer = 0
         self.StartX = sprite.x
         self.StartY = sprite.y
-        oE.executor.Schedule(self)
+        self.Queno = oE.executor.Schedule(self)
         
     def _OnExecute(self, que):
-        deltaT = globalvars.Timer.millis - self.StartTime
-        (self.sprite.x, self.sprite.y) = \
-            self.MotionFunc(self.StartX, self.StartY, deltaT)
-        self.sprite.transparency = self.TranspFunc(deltaT)
-        self.sprite.xScale, self.sprite.yScale = self.ScaleFunc(deltaT)
-        
-        if FieldMinX <= self.sprite.x <= FieldMaxX \
-            and FieldMinY <= self.sprite.y <= FieldMaxY \
-            and deltaT < self.MaxTime:
-            #and deltaT < self.MaxTime \
-            #and (self.State in (globalvars.StateStack[-1], None)):
+        self.Timer += que.delta
+        (self.sprite.x, self.sprite.y) = self.MotionFunc(self.StartX, self.StartY, self.Timer)
+        self.sprite.transparency = self.TranspFunc(self.Timer)
+        self.sprite.xScale, self.sprite.yScale = self.ScaleFunc(self.Timer)
+        if self.Timer < self.MaxTime:
             return scraft.CommandStateRepeat
         else:
-            self.sprite.Dispose()
+            self.Dispose()
             return scraft.CommandStateEnd
+        
+    def Activate(self, flag):
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Resume()
+        else:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+        
+    def Dispose(self):
+        self.sprite.Dispose()
         
 #------------------------------------
 # motion functions
@@ -239,7 +239,7 @@ def DrawTrailedContour(params, contour, state = None):
             prm[tmp] = params[tmp]
         else:
             prm[tmp] = DefaultParams[tmp]
-    tmpSprites = map(lambda x: MakeSprite(prm["klass"], prm["layer"],
+    tmpSprites = map(lambda x: spriteworks.MakeSprite(prm["klass"], prm["layer"],
                     { "x": contour[0][1], "y": contour[0][2], "hotspot": scraft.HotspotCenter,
                     "transparency": prm["incTrans"]*x,
                     "scale": 100 - prm["incScale"]*x }), xrange(prm["no"]))
@@ -257,11 +257,11 @@ def DrawTrailedContour(params, contour, state = None):
 # (следующие спрайты повторяют движение первого, но с задержкой)
 # При создании получает список спрайтов
 #------------ 
-class TrailProxy(object):
+class TrailProxy(scraft.Dispatcher, object):
     def __init__(self, sprites, delay):
         self.Sprites = sprites
         self.Delay = delay
-        self.StartTime = globalvars.Timer.millis
+        self.Timer = 0
         self.BasicTrans = map(lambda x: x.transparency, self.Sprites)
         #история координат (x,y) головного спрайта
         self.HistoryX = []
@@ -270,16 +270,16 @@ class TrailProxy(object):
         self.count = 0
         for i in range(len(self.Sprites)):
             self.Sprites[i].visible = False
+        self.Queno = oE.executor.Schedule(self)
             
     def SetX(self, value):
-        self.count = min(int((globalvars.Timer.millis - self.StartTime)/self.Delay), len(self.Sprites))
+        self.count = min(int(self.Timer/self.Delay), len(self.Sprites))
         for i in range(self.count):
             self.Sprites[i].visible = True
         
-        self.HistoryX.append((globalvars.Timer.millis, value))
+        self.HistoryX.append((self.Timer, value))
         for i in range(self.count-1, 0, -1):
-            self.Sprites[i].x = Interpolation(self.HistoryX, globalvars.Timer.millis - i*self.Delay)
-            #self.Sprites[i].x = self.Sprites[i-1].x
+            self.Sprites[i].x = Interpolation(self.HistoryX, self.Timer - i*self.Delay)
         self.Sprites[0].x = value
         
     def GetX(self):
@@ -288,10 +288,9 @@ class TrailProxy(object):
     x = property(GetX, SetX)
         
     def SetY(self, value):
-        self.HistoryY.append((globalvars.Timer.millis, value))
+        self.HistoryY.append((self.Timer, value))
         for i in range(len(self.Sprites)-1, 0, -1):
-            self.Sprites[i].y = Interpolation(self.HistoryY, globalvars.Timer.millis - i*self.Delay)
-            #self.Sprites[i].y = self.Sprites[i-1].y
+            self.Sprites[i].y = Interpolation(self.HistoryY, self.Timer - i*self.Delay)
         self.Sprites[0].y = value
         
     def GetY(self):
@@ -308,11 +307,21 @@ class TrailProxy(object):
         
     transparency = property(GetTrans, SetTrans)
         
+    def _OnExecute(self, que):
+        self.Timer += que.delta
+        return scraft.CommandStateRepeat
+        
+    def Activate(self, flag):
+        if flag:
+            oE.executor.GetQueue(self.QueNo).Resume()
+        else:
+            oE.executor.GetQueue(self.QueNo).Suspend()
+        
     def Dispose(self):
         for spr in self.Sprites:
             spr.Dispose()
         del self.Sprites
-        
+        oE.executor.DismissQueue(self.QueNo)
         
 
 #------------ 

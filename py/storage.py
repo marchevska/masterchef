@@ -19,6 +19,8 @@ import traceback, string
 from random import choice, shuffle, random
 import time
 
+from teggo.games import spriteworks
+
 #--------------------------------------------
 # Storage - базовый класс контейнера токенов
 #--------------------------------------------

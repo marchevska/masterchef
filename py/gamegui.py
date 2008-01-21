@@ -11,6 +11,7 @@ import config
 from constants import *
 from teggo.games import localizer
 from teggo.games import guipresenter
+from teggo.games import fxmanager
 
 Const_TotalHelpPages = 4
 Const_MaxRecipesOnPage = 12
@@ -473,7 +474,7 @@ def UpdatePlayersButtons(*a):
     globalvars.GuiPresenter.data["Players.Close#disabled"] = (globalvars.GameConfig.GetStrAttr("Player") == "")
     globalvars.GuiPresenter.data["Players#kbdCommands"] = \
         [{ "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ClosePlayers }]*(not globalvars.GuiPresenter.data["Players.Close#disabled"]) + \
-        [{ "condition": [{"func": oE.EvtKey, "value": scraft.Key_ENER}], "call": SelectPlayer }]*(not globalvars.GuiPresenter.data["Players.Ok#disabled"])
+        [{ "condition": [{"func": oE.EvtKey, "value": scraft.Key_ENTER}], "call": SelectPlayer }]*(not globalvars.GuiPresenter.data["Players.Ok#disabled"])
     globalvars.GuiPresenter.ShowDialog("Players", True)
 
 def ClosePlayers(*a):
@@ -844,26 +845,10 @@ def ShowEpisodeOutro(*a):
             globalvars.GuiPresenter.data["EpisodeOutro.Character"+str(i)+".Number#text"] = str(i+1)
             globalvars.GuiPresenter.data["EpisodeOutro.Character"+str(i)+".Name#text"] = localizer.GetGameString(tmpResults["scores"][i][0])
             
-    #        if not self.OutroScreen["Particles"].has_key("Light"+str(i)):
-    #            p = oE.NewParticles_("star30", Layer_Static-2)
-    #            p.SetEmissionQuantity(5)
-    #            p.SetEmissionPeriod(165)
-    #            p.count = 100
-    #            p.SetEmitterCf(1, -math.pi, math.pi)
-    #            p.SetEmitterCf(2, 100, 120)
-    #            p.SetEmitterCf(3, 0, 8)
-    #            p.SetEmitterCf(4, 100, 120)
-    #            p.SetEmitterCf(5, math.pi - 0.17, math.pi + 0.17)
-    #            #p.SetEmitterCf(6, -50, 50)
-    #            p.SetEmitterCf(7, -20, 20)
-    #            p.SetEmitterCf(8, -1, 1)
-    #            p.SetEmitterCf(9, -18, -22)
-    #            p.SetEmitterCf(10, 12, 20)
-    #            p.cycled = True
-    #            p.x = Crd_CharOutroPositions[tmpLevel.GetIntAttr("PassFurther")][i][0]
-    #            p.y = -100
-    #            p.StartEmission()
-    #            self.OutroScreen["Particles"]["Light"+str(i)] = p
+            tmpEffect = fxmanager.CreateEffect(globalvars.GuiPresenter.Dialogs["EpisodeOutro"],
+                        "Particles.OutroCharacterStars", Crd_CharOutroPositions[tmpLevel.GetIntAttr("PassFurther")][i])
+            globalvars.GuiPresenter.Dialogs["EpisodeOutro"].AttachEffect(tmpEffect)
+            
         else:
             globalvars.GuiPresenter.data["EpisodeOutro.Character"+str(i)+"#visible"] = False
     

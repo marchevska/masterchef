@@ -1,0 +1,95 @@
+
+Effects {
+    Particles(Particles.OutroCharacterStars) {
+        klass = "star30"
+        layer = "60"
+        sublayer = "-3"
+        cycled = "yes"
+        count = "100"
+        quant = "5" period = "165"
+        source = "0, -370"
+        angle = "-math.pi, math.pi"
+        transparency = "100, 120"
+        frno = "0, 8"
+        speed = "100, 120"
+        direction = "math.pi - 0.17, math.pi + 0.17"
+        area = "0, 0"
+        scale = "-20, 20"
+        angleinc = "-1, 1"
+        transparencyinc = "-18, -22"
+        scaleinc = "12, 20"
+        program = "default"
+    }
+    
+    //removing a group of tokens with an illusion of gravity
+    Particles(Particles.RemoveGroupWithGravity) {
+        program = "
+            mov   em0,x           
+            rot   (0;1),em2.0,a0      
+            mul   a0,em1.0,v         
+            rnd   -0.1,0.1,a
+            rot   v,a,v
+            indep
+            updateonly
+            mul   em3,dt,a0   
+            add   a0,v,v
+            mul   v,dt,a0 
+            add   x,a0,x  
+        "
+    }
+        
+    Particles(Particles.RemoveTokenProgram) {
+        program = "
+            mov   em0,x
+            rnd   em4.0,em4.1,v.1 
+            neg   v.1,v.1
+            rnd   -0.1,0.1,a
+            rot   v,a,v
+            indep
+            updateonly 
+            mul   em4,dt,a0   
+            add   a0,v,v
+            mul   v,dt,a0
+            add   x,a0,x 
+        "
+    }
+    
+    
+    Trail(Trail.CookbookNewRecipe) {
+        count = "20"
+        sprite = "star"
+        layer = ""
+        sublayer = ""
+        delay = ""
+        Scale {
+        }
+        Transparency {
+        }
+        Motion {
+            speed = "250"
+            time0 = "1000"
+            contour = "(
+                (75, 107), (51, 107), (24, 111), (2, 122), (5, 106), (2, 97), (14, 88),
+                (28, 85), (18, 72), (14, 52), (18, 34), (28, 17), (44, 5), (57, 2),
+                (69, 2), (82, 5), (98, 17), (108, 34), (112, 52), (108, 72), (98, 85),
+                (112, 88), (124, 97), (121, 106), (124, 122), (102, 111), (75, 107), (51, 107), 
+                )"
+        }
+        Frno {
+        }
+    }
+
+                    #движение с постоянной скоростью:
+                    tmpTimes = [Time_TrailInitialDelay] + map(lambda ii: \
+                            math.sqrt((tmpContour[ii][0]-tmpContour[ii+1][0])**2 + (tmpContour[ii][1]-tmpContour[ii+1][1])**2)/Crd_CookbookStickerTrailSpeed,
+                            range(len(tmpContour)-1))
+                    tmpTimesSums = map(lambda x: reduce(lambda a,b: a+b, tmpTimes[0:x+1],0), range(len(tmpContour)))
+                    tmp = map(lambda ii: (tmpTimesSums[ii],
+                                        tmpContour[ii][0] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].x,
+                                        tmpContour[ii][1] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].y),
+                                        range(len(tmpContour)))
+                    DrawTrailedContour({"klass": "star", "no": 20, "layer": Layer_CookbookBtnTxt-1,
+                            "incTrans": 4, "incScale": 4, "delay": 15},
+                            tmp, PState_Cookbook)
+
+}

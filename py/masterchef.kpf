@@ -9,9 +9,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
-  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
+  <string id="filename">C:\projects\proto games\_sample\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -20,7 +20,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="filename">C:\projects\proto games\_sample\py\main.py</string>
+  <string id="userEnvironment"></string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -34,9 +34,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
-  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
+  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -45,7 +45,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
+  <string id="userEnvironment"></string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -63,9 +63,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
+  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
-  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -74,7 +74,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="userEnvironment"></string>
+  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -92,9 +92,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
-  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
+  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -103,7 +103,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
+  <string id="userEnvironment"></string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -117,9 +117,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
+  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
-  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -128,7 +128,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="userEnvironment"></string>
+  <string id="filename">C:\projects\proto games\master chef\py\main.py</string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -161,6 +161,8 @@
 </file>
 <file url="def/gui.def" id="33B52014-C417-4F96-A945-95344D6E2836" name="gui.def">
 </file>
+<file url="def/effects.def" id="28F903A8-F70A-4307-BB44-3BD8DD622E3C" name="effects.def">
+</file>
 </folder>
 <file url="defs.py" id="5FBC00FC-3486-4F9F-8151-BF49494F6D25" name="defs.py">
 <preference-set id="">
@@ -168,9 +170,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
-  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
+  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -179,7 +181,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
+  <string id="userEnvironment"></string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -327,9 +329,9 @@
 <preference-set id="Invocations">
 <preference-set id="default">
   <string id="postparams"></string>
+  <string id="userEnvironment"></string>
   <string id="getparams"></string>
   <boolean id="use-console">0</boolean>
-  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
   <string id="executable-params"></string>
   <boolean id="show-dialog">1</boolean>
   <string id="request-method">GET</string>
@@ -338,7 +340,7 @@
   <string id="posttype">application/x-www-form-urlencoded</string>
   <string id="documentRoot"></string>
   <string id="cookieparams"></string>
-  <string id="userEnvironment"></string>
+  <string id="filename">C:\Projects\proto games\Master Chef\py\main.py</string>
   <boolean id="sim-cgi">0</boolean>
   <string id="cwd"></string>
   <string id="userCGIEnvironment"></string>
@@ -348,6 +350,93 @@
 </file>
 <file url="masterchef.sst" id="0225BA6A-8CCF-43CF-8595-7673E7A3294A" name="masterchef.sst">
 </file>
+<folder id="ED3693DD-6A90-4BFD-B625-9793E7A2A988" name="safe files">
+<file url="safe/scores.def" id="FD36C2B2-1D52-4B72-904C-4FDE3DFA3450" name="scores.def">
+</file>
+<file url="safe/game.def" id="8F78B7EA-1080-42D5-A3AD-02CB11CA651E" name="game.def">
+</file>
+<file url="safe/players.def" id="38B8D1DA-8C13-4EC1-A910-2DD1D302C2CC" name="players.def">
+</file>
+<file url="safe/dummy.def" id="B0F00756-CE42-42F0-B100-DEFE47508130" name="dummy.def">
+</file>
+<file url="safe/best.def" id="8A77A6C9-3BC1-471E-914E-72B9572580AF" name="best.def">
+</file>
+<file url="safe/all%20unlocked.def" id="B1AFC6B9-67C5-4B1A-8AB1-257B84D34A7D" name="all unlocked.def">
+</file>
+<file url="safe/dummy.full.def" id="D1C70FE2-8A1D-4DDB-87CF-F605DADDABE8" name="dummy.full.def">
+</file>
+<file url="safe/dummy.demo.def" id="F233BB9C-4E1E-4D9A-949C-C070B7213E39" name="dummy.demo.def">
+</file>
+</folder>
+<file url="blackboard.py" id="A25F4FDB-3934-48B0-9C31-5AFC4C2939F5" name="blackboard.py">
+</file>
+<file url="particles.py" id="EFF17DD9-66A7-4459-A4EC-8BB8F3273536" name="particles.py">
+</file>
+<file url="fxmanager.py" id="5C999288-E982-476B-9A0A-FDA9508D63E3" name="fxmanager.py">
+</file>
+<file url="advisor.py" id="237DFBE7-597A-4AD3-AACD-19AFCBABB6AD" name="advisor.py">
+</file>
+<folder id="39FDE572-0E68-4448-82B9-B374C9EA84A3" name="src.teggo.games">
+<file url="teggo/games/guitext.py" id="9FBC5B2E-2BDF-4363-89F0-3223F8BD8EB9" name="guitext.py">
+</file>
+<file url="teggo/games/guibutton.py" id="FC68123C-F99D-462A-88B5-0E56B14C673A" name="guibutton.py">
+</file>
+<file url="teggo/games/guicomposite.py" id="7D0FA6E1-9446-4BB4-9EBE-ECFFA4B64174" name="guicomposite.py">
+</file>
+<file url="teggo/games/guiimage.py" id="1BAA909A-4CA1-4DF5-A6CE-B90BB6354793" name="guiimage.py">
+</file>
+<file url="teggo/games/guipresenter.py" id="FAF00C71-FE82-494C-856B-0B53EF9DF8C5" name="guipresenter.py">
+</file>
+<file url="teggo/games/guiaux.py" id="17E7B8E8-2D8A-477D-BAD3-E63E671E3164" name="guiaux.py">
+</file>
+<file url="teggo/games/localizer.py" id="115C58BB-876E-4784-8592-725AB60E7A69" name="localizer.py">
+</file>
+<file url="teggo/games/guilistbox.py" id="2BF84CF0-27A1-41F2-9FCD-69BF2F5546D5" name="guilistbox.py">
+</file>
+<file url="teggo/games/guislider.py" id="EACDC34F-5B62-4315-82DF-4B7E7AD9B237" name="guislider.py">
+</file>
+<file url="teggo/games/fxmanager.py" id="20FD575E-041B-4278-9D41-C8987C869B70" name="fxmanager.py">
+</file>
+<file url="teggo/games/spriteworks.py" id="9CEACD70-D2A4-49B7-BEC3-76FF97B6A4F1" name="spriteworks.py">
+</file>
+</folder>
+<file url="gamegui.py" id="FAD2F9A1-96D4-464A-A8C7-5572FD6F5B17" name="gamegui.py">
+</file>
+<folder id="1F63C80B-B8F0-467A-AA16-0B60A48EA180" name="_distribution">
+<folder id="EEFA3E9D-1DFA-4AF3-A114-E36371BAC1AE" name="compiling and packaging">
+<file url="game.rc" id="D8647B9A-3827-4C48-BCC4-344FE5E60F56" name="game.rc">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/main.exe.config" id="0A3D8B28-3585-4E7B-BF08-676259DCFDDF" name="main.exe.config">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/repack.bat" id="B33CDF74-ACD7-4465-9628-BD625007086F" name="repack.bat">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/main.exe.mbxcfg" id="9ABA0FC1-8ED4-43D9-B69A-79A0C4E48F86" name="main.exe.mbxcfg">
+</file>
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/repackfw.bat" id="3849AAA4-C4CE-41DF-B80A-97E5B108CB14" name="repackfw.bat">
+</file>
+</folder>
+<folder id="D44DD2B1-F9C3-4EE1-B25C-F4835133BBD7" name="branding">
+<folder id="04306CE8-F821-4258-9BF5-0DA85849765C" name="no branding">
+<file url="def/branding.def" id="0C21AF80-9315-409D-8158-16E951BA98F8" name="branding.def">
+</file>
+</folder>
+<folder id="830CD755-D9A5-4016-828C-D5CC9B2534C9" name="iwin branding">
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/iwin/branding.def" id="400DC484-8C69-4968-BB82-A3597898C66F" name="branding.def">
+</file>
+</folder>
+<folder id="0F2A7974-DADC-43FA-9252-6DDA6D53FCF1" name="bfg branding">
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/bfg/branding.def" id="4C33A298-8227-4F9D-9012-A57A828C0574" name="branding.def">
+</file>
+</folder>
+<folder id="C1D3CB74-76B0-499D-BA0A-9FF19FCED527" name="nevosoft">
+<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/nevosoft%20ru/branding.def" id="862C5C6D-BAA7-408E-824C-4878642FFE76" name="branding.def">
+</file>
+</folder>
+</folder>
+</folder>
+<folder id="9039362E-C38A-481A-B555-3C5856045C70" name="_tech">
+<preference-set id="">
+</preference-set>
 <folder id="939B0228-158A-49F9-B7ED-BDA00431B247" name="level balancing">
 <preference-set id="">
 </preference-set>
@@ -379,90 +468,17 @@
 <file url="groupcalculator.py" id="64E644FD-D492-44AF-B842-E2995D02B3DC" name="groupcalculator.py">
 </file>
 </folder>
-<folder id="ED3693DD-6A90-4BFD-B625-9793E7A2A988" name="safe files">
-<file url="safe/scores.def" id="FD36C2B2-1D52-4B72-904C-4FDE3DFA3450" name="scores.def">
-</file>
-<file url="safe/game.def" id="8F78B7EA-1080-42D5-A3AD-02CB11CA651E" name="game.def">
-</file>
-<file url="safe/players.def" id="38B8D1DA-8C13-4EC1-A910-2DD1D302C2CC" name="players.def">
-</file>
-<file url="safe/dummy.def" id="B0F00756-CE42-42F0-B100-DEFE47508130" name="dummy.def">
-</file>
-<file url="safe/best.def" id="8A77A6C9-3BC1-471E-914E-72B9572580AF" name="best.def">
-</file>
-<file url="safe/all%20unlocked.def" id="B1AFC6B9-67C5-4B1A-8AB1-257B84D34A7D" name="all unlocked.def">
-</file>
-<file url="safe/dummy.full.def" id="D1C70FE2-8A1D-4DDB-87CF-F605DADDABE8" name="dummy.full.def">
-</file>
-<file url="safe/dummy.demo.def" id="F233BB9C-4E1E-4D9A-949C-C070B7213E39" name="dummy.demo.def">
-</file>
-</folder>
 <folder id="9337C089-359D-4B6D-A05E-3F640C1B8A39" name="mechanics testing">
 <file url="test-match3.py" id="35338204-B8F2-43A6-B2C1-3534A145B852" name="test-match3.py">
 </file>
 <file url="test-conveyor.py" id="A479EA12-DB0E-4F46-B129-D975DCAC6D6B" name="test-conveyor.py">
 </file>
 </folder>
+<folder id="BF914AEF-3F97-412E-AFFF-DDDE81C7F59C" name="obsolete and unused">
 <file url="conveyor.py" id="024BF7A2-3637-4363-A6E0-2E2F8BB7C876" name="conveyor.py">
 </file>
-<file url="blackboard.py" id="A25F4FDB-3934-48B0-9C31-5AFC4C2939F5" name="blackboard.py">
-</file>
-<file url="particles.py" id="EFF17DD9-66A7-4459-A4EC-8BB8F3273536" name="particles.py">
-</file>
-<file url="fxmanager.py" id="5C999288-E982-476B-9A0A-FDA9508D63E3" name="fxmanager.py">
-</file>
-<file url="advisor.py" id="237DFBE7-597A-4AD3-AACD-19AFCBABB6AD" name="advisor.py">
-</file>
-<folder id="D44DD2B1-F9C3-4EE1-B25C-F4835133BBD7" name="branding">
-<folder id="04306CE8-F821-4258-9BF5-0DA85849765C" name="no branding">
-<file url="def/branding.def" id="0C21AF80-9315-409D-8158-16E951BA98F8" name="branding.def">
-</file>
-</folder>
-<folder id="830CD755-D9A5-4016-828C-D5CC9B2534C9" name="iwin branding">
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/iwin/branding.def" id="400DC484-8C69-4968-BB82-A3597898C66F" name="branding.def">
-</file>
-</folder>
-<folder id="0F2A7974-DADC-43FA-9252-6DDA6D53FCF1" name="bfg branding">
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/bfg/branding.def" id="4C33A298-8227-4F9D-9012-A57A828C0574" name="branding.def">
-</file>
-</folder>
-<folder id="C1D3CB74-76B0-499D-BA0A-9FF19FCED527" name="nevosoft">
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/branding/nevosoft%20ru/branding.def" id="862C5C6D-BAA7-408E-824C-4878642FFE76" name="branding.def">
-</file>
 </folder>
 </folder>
-<folder id="EEFA3E9D-1DFA-4AF3-A114-E36371BAC1AE" name="compiling and packaging">
-<file url="game.rc" id="D8647B9A-3827-4C48-BCC4-344FE5E60F56" name="game.rc">
-</file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/main.exe.config" id="0A3D8B28-3585-4E7B-BF08-676259DCFDDF" name="main.exe.config">
-</file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/repack.bat" id="B33CDF74-ACD7-4465-9628-BD625007086F" name="repack.bat">
-</file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/main.exe.mbxcfg" id="9ABA0FC1-8ED4-43D9-B69A-79A0C4E48F86" name="main.exe.mbxcfg">
-</file>
-<file url="file:///C:/Projects/proto%20games/Master%20Chef/dist/current/repackfw.bat" id="3849AAA4-C4CE-41DF-B80A-97E5B108CB14" name="repackfw.bat">
-</file>
-</folder>
-<folder id="39FDE572-0E68-4448-82B9-B374C9EA84A3" name="src.gui">
-<file url="teggo/games/guitext.py" id="9FBC5B2E-2BDF-4363-89F0-3223F8BD8EB9" name="guitext.py">
-</file>
-<file url="teggo/games/guibutton.py" id="FC68123C-F99D-462A-88B5-0E56B14C673A" name="guibutton.py">
-</file>
-<file url="teggo/games/guicomposite.py" id="7D0FA6E1-9446-4BB4-9EBE-ECFFA4B64174" name="guicomposite.py">
-</file>
-<file url="teggo/games/guiimage.py" id="1BAA909A-4CA1-4DF5-A6CE-B90BB6354793" name="guiimage.py">
-</file>
-<file url="teggo/games/guipresenter.py" id="FAF00C71-FE82-494C-856B-0B53EF9DF8C5" name="guipresenter.py">
-</file>
-<file url="teggo/games/guiaux.py" id="17E7B8E8-2D8A-477D-BAD3-E63E671E3164" name="guiaux.py">
-</file>
-<file url="teggo/games/localizer.py" id="115C58BB-876E-4784-8592-725AB60E7A69" name="localizer.py">
-</file>
-<file url="teggo/games/guilistbox.py" id="2BF84CF0-27A1-41F2-9FCD-69BF2F5546D5" name="guilistbox.py">
-</file>
-<file url="teggo/games/guislider.py" id="EACDC34F-5B62-4315-82DF-4B7E7AD9B237" name="guislider.py">
-</file>
-</folder>
-<file url="gamegui.py" id="FAD2F9A1-96D4-464A-A8C7-5572FD6F5B17" name="gamegui.py">
+<file url="gamefx.py" id="FC876BCF-8B9C-4BB7-9B0F-54655A9CFA52" name="gamefx.py">
 </file>
 </project>

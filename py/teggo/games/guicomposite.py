@@ -43,6 +43,7 @@ class GuiComposite(guiaux.GuiObject):
                     presenter.data[self.ego+"#"+tmp.GetContent()] = tmp.GetStrAttr("value")
             else:
                 self.Elements[tmp.GetContent()] = presenter.CreateObject(host, self.Dummy, tmp, self.ego + "." + tmp.GetContent())
+        self.Effects = []
         
     def Dispose(self):
         for tmp in self.Elements.values():
@@ -50,11 +51,14 @@ class GuiComposite(guiaux.GuiObject):
         self.Dummy.Dispose()
         
     def Activate(self, flag):
-        for el in self.Elements.values():
+        for el in self.Elements.values()+self.Effects:
             el.Activate(flag)
         
     def Show(self, flag):
         self.Dummy.visible = flag
+        if not flag:
+            for el in self.Effects:
+                el.Dispose()
         
     def UpdateView(self, data):
         try:
@@ -72,6 +76,14 @@ class GuiComposite(guiaux.GuiObject):
         for el in self.Elements.values():
             el.UpdateView(data)
             
+    def AttachEffect(self, effectObject):
+        self.Effects.append(effectObject)
+        
+    def DetachEffect(self, effectObject):
+        if effectObject in self.Effects:
+            effectObject.Dispose()
+            self.Effects.remove(effectObject)
+        
     
 #-------------------------------------
 # Диалоговое окно

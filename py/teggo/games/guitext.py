@@ -98,6 +98,7 @@ class TextEntry(guiaux.GuiObject, scraft.Dispatcher):
         self.CursorTextDX, self.CursorTextDY = self.style.GetTag("Cursor").GetIntAttr("textDX"), self.style.GetTag("Cursor").GetIntAttr("textDY")
         self.CursorFps = self.style.GetTag("Cursor").GetIntAttr("fps")
         
+        self.onUpdate = None
         if self.HasFocus:
             self.statehost.SetFocusTo(self)
         
@@ -120,6 +121,8 @@ class TextEntry(guiaux.GuiObject, scraft.Dispatcher):
     
     def UpdateView(self, data):
         try:
+            if self.onUpdate == None:
+                self.onUpdate = data.get(self.ego+"#onUpdate")
             text = data.get(self.ego+"#text")
             if text != None:
                 self.TextSprite.text = text
@@ -161,7 +164,10 @@ class TextEntry(guiaux.GuiObject, scraft.Dispatcher):
                 tmpProcessed = True
             if len(tmpText) > self.MaxLen:
                 tmpText = tmpText[0:len(tmpText)-1]
+            tmpChanged = (data[self.ego+"#text"] != tmpText)
             data[self.ego+"#text"] = tmpText
+            if tmpChanged and callable(self.onUpdate):
+                self.onUpdate(self.ego)
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         return tmpProcessed

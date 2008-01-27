@@ -6,7 +6,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(DevLogo) {
-        layer = "100"
+        layer = "102"
         music = "Menu"
         Image(Background) { sprite = "developer-logo" sublayer = "1" }
         PushButton(Close) {
@@ -15,7 +15,7 @@ Objects {
     }
     
     Dialog(PubLogo) {
-        layer = "100"
+        layer = "101"
         music = "Menu"
         Image(Background) { sprite = "$spritecraft$dummy$" sublayer = "1" }
         PushButton(Close) {
@@ -89,7 +89,11 @@ Objects {
         TextLabel(Text2) { style = "TextLabel.Domcasual.Other" x = "400" y = "288" textDefault = "Str_Paused2" }
         PushButton(Unpause) {
             style = "PushButton.WholeScreen"
-            command = "Close_Ok"
+        }
+        Activator(Shadow) {
+            Case(True) {
+                Image(Background) { sprite = "gray.screen" sublayer = "10" }
+            }
         }
     }
     
@@ -98,8 +102,9 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(Rules) {
-        layer = "80"
+        layer = "91"
         music = "Menu"
+        Parameter(TotalHelpPages) { type = "integer" value = "4" }
         Image(Background) { sprite = "$spritecraft$dummy$" sublayer = "5" }
         PushButton(Prev) {
             style = "PushButton.Default"
@@ -115,7 +120,6 @@ Objects {
             style = "PushButton.Default"
             x = "700" y = "570"
             textDefault = "Str_HelpClose"
-            command = "Close_Cancel"
         }
     }
 
@@ -124,9 +128,12 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(Cookbook) {
-        layer = "50"
+        layer = "51"
         music = "Menu"
         sublayerBase = "-5"
+        Parameter(MaxRecipesOnPage) { type = "integer" value = "12" }
+        Parameter(EffectsLayer) { type = "integer" value = "50" }
+        Parameter(EffectsSublayer) { type = "integer" value = "-100" }
         Image(Background) { sublayer = "5" }
         Image(Logo) { x = "50" y = "50" }
         Repeat {
@@ -137,11 +144,9 @@ Objects {
         }
         PushButton(Close) {
             style = "PushButton.Cookbook.Close" x = "390" y = "527"
-            command = "Close_Cancel"
         }
         PushButton(Continue) {
             style = "PushButton.Continue" x = "600" y = "550"
-            command = "Close_Ok"
         }
         PushButton(Next) {
             style = "PushButton.Cookbook.Next" x = "700" y = "550"
@@ -156,7 +161,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(Players) {
-        layer = "50"
+        layer = "52"
         music = "Menu"
         sublayerBase = "-5"
         Image(Background) { sprite = "popup-background" sublayer = "5" }
@@ -177,7 +182,11 @@ Objects {
         PushButton(Close) {
             style = "PushButton.Default" x = "590" y = "460"
             textDefault = "Str_PlayersCancel"
-            command = "Close_Cancel"
+        }
+        Activator(Shadow) {
+            Case(True) {
+                Image(Background) { sprite = "gray.screen" sublayer = "10" }
+            }
         }
     }
 
@@ -217,7 +226,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog (EnterName) {
-        layer = "40"
+        layer = "21"
         music = "Menu"
         sublayerBase = "-5"
         Image(Background) { sprite = "2nd-popup-background" sublayer = "5" }
@@ -232,6 +241,11 @@ Objects {
             style = "PushButton.Default" x = "470" y = "340"
             textDefault = "Str_EnterNameCancel"
         }
+        Activator(Shadow) {
+            Case(True) {
+                Image(Background) { sprite = "gray.screen" sublayer = "10" }
+            }
+        }
     }
     
 //---------------------------------------------------------------------
@@ -239,7 +253,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(Comics) {
-        layer = "60"
+        layer = "55"
         music = "Menu"
         sublayerBase = "-5"
         Image(Background) { sublayer = "5" }
@@ -257,7 +271,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(EpisodeIntro) {
-        layer = "60"
+        layer = "56"
         music = "Game"
         sublayerBase = "-5"
         Parameter(MaxPeopleOnLevel) { type = "integer" value = "8" }
@@ -303,7 +317,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(EpisodeOutro) {
-        layer = "60"
+        layer = "57"
         music = "Game"
         sublayerBase = "-5"
         Parameter(MaxPeopleOnLevel) { type = "integer" value = "8" }
@@ -428,7 +442,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(LevelGoals) {
-        layer = "45"
+        layer = "53"
         music = "Menu"
         Image(Background) { sprite = "level-start.background" sublayer = "5" }
         Repeat {
@@ -464,6 +478,11 @@ Objects {
         PushButton(Continue) {
             style = "PushButton.Continue" x = "600" y = "450"
         }
+        Activator(Shadow) {
+            Case(True) {
+                Image(Background) { sprite = "gray.screen" sublayer = "10" }
+            }
+        }
     }
     
 //---------------------------------------------------------------------
@@ -471,7 +490,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(LevelResults) {
-        layer = "45"
+        layer = "54"
         music = "Menu"
         sublayerBase = "-5"
         Variant(Background) {
@@ -519,6 +538,11 @@ Objects {
                 }
             }
         }
+        Activator(Shadow) {
+            Case(True) {
+                Image(Background) { sprite = "gray.screen" sublayer = "10" }
+            }
+        }
     }
 
 //---------------------------------------------------------------------
@@ -526,17 +550,18 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(Options) {
-        layer = "45"
+        layer = "50"
         music = "Menu"
         sublayerBase = "-5"
         Image(Background) { sprite = "popup-background" sublayer = "5" }
+        TextLabel(Title) { style = "TextLabel.DomCasualCenter" x = "470" y = "140" textDefault = "Str_Options_Title" }
         CheckBox(Mute) { style = "CheckBox.Default" x = "370" y = "340" textDefault = "Str_Options_LabelMute" }
         CheckBox(Hints) { style = "CheckBox.Default" x = "370" y = "380" textDefault = "Str_Options_LabelHints" }
         CheckBox(Fullscreen) { style = "CheckBox.Default" x = "370" y = "420" textDefault = "Str_Options_LabelFullscreen" }
-        TextLabel(SoundLabel) { style = "TextLabel.DomCasualLeft" x = "360" y = "200" textDefault = "Str_Options_LabelSound" }
-        TextLabel(MusicLabel) { style = "TextLabel.DomCasualLeft" x = "360" y = "265" textDefault = "Str_Options_LabelMusic" }
-        Slider(Sound) { style = "Slider.Default" x = "550" y = "250" minValue = "0" maxValue = "100" }
-        Slider(Music) { style = "Slider.Default" x = "550" y = "315" minValue = "0" maxValue = "100" }
+        TextLabel(SoundLabel) { style = "TextLabel.DomCasualLeft" x = "360" y = "185" textDefault = "Str_Options_LabelSound" }
+        TextLabel(MusicLabel) { style = "TextLabel.DomCasualLeft" x = "360" y = "250" textDefault = "Str_Options_LabelMusic" }
+        Slider(Sound) { style = "Slider.Default" x = "550" y = "230" minValue = "0" maxValue = "100" }
+        Slider(Music) { style = "Slider.Default" x = "550" y = "295" minValue = "0" maxValue = "100" }
         Variant(Buttons) {
             Case(Game) {
                 PushButton(Resume) {
@@ -559,6 +584,11 @@ Objects {
                 }
             }
         }
+        Activator(Shadow) {
+            Case(True) {
+                Image(Background) { sprite = "gray.screen" sublayer = "10" }
+            }
+        }
     }
 
 //---------------------------------------------------------------------
@@ -566,7 +596,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(Hiscores) {
-        layer = "50"
+        layer = "92"
         music = "Menu"
         sublayerBase = "-5"
         Image(Background) { sprite = "background-big" sublayer = "5" }
@@ -586,7 +616,6 @@ Objects {
             style = "PushButton.Default"
             x = "500" y = "570"
             textDefault = "Str_HiscoresClose"
-            command = "Close_Cancel"
         }
     }
     
@@ -622,7 +651,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(MapCareer) {
-        layer = "80"
+        layer = "90"
         music = "Map"
         sublayerBase = "-5"
         Image(Background) { sprite = "map-background" sublayer = "5" }
@@ -656,7 +685,6 @@ Objects {
         PushButton(Close) {
             style = "PushButton.Map.Back"
             x = "30" y = "25"
-            command = "Close_Cancel"
         }
         
     }
@@ -692,7 +720,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(YesNo) {
-        layer = "30"
+        layer = "23"
         music = "Menu"
         Image(Background) { sprite = "2nd-popup-background" sublayer = "1" }
         TextArea(Question) { style = "TextArea.Question" x = "400" y = "250" }
@@ -703,7 +731,11 @@ Objects {
         PushButton(Cancel) {
             style = "PushButton.Default" x = "470" y = "340"
             textDefault = "Str_No"
-            command = "Close_Cancel"
+        }
+        Activator(Shadow) {
+            Case(True) {
+                Image(Background) { sprite = "gray.screen" sublayer = "10" }
+            }
         }
     }
 
@@ -712,7 +744,7 @@ Objects {
 //---------------------------------------------------------------------
     
     Dialog(Hints) {
-        layer = "40"
+        layer = "22"
         music = "Game"
         sublayerBase = "-5"
         Variant(Background) {
@@ -748,6 +780,8 @@ Objects {
         layer = "80"
         music = "Game"
         sublayerBase = "-5"
+        Parameter(EffectsLayer) { type = "integer" value = "49" }
+        Parameter(EffectsSublayer) { type = "integer" value = "0" }
         Image(InfoPane) { x = "1" y = "0" sublayer = "5" }
         TextLabel(LevelText) { style = "TextLabel.HUD.Header" x = "77" y = "18" textDefault = "Str_HUD_LevelText" }
         TextLabel(ScoreText) { style = "TextLabel.HUD.Header" x = "150" y = "18" textDefault = "Str_HUD_ScoreText" }
@@ -762,7 +796,6 @@ Objects {
             x = "28" y = "31"
         }
     }
-
 
 }
 

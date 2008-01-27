@@ -5,6 +5,7 @@ import string, sys, traceback
 
 import scraft
 from scraft import engine as oE
+
 import guiaux
 import localizer
 
@@ -43,7 +44,6 @@ class GuiComposite(guiaux.GuiObject):
                     presenter.data[self.ego+"#"+tmp.GetContent()] = tmp.GetStrAttr("value")
             else:
                 self.Elements[tmp.GetContent()] = presenter.CreateObject(host, self.Dummy, tmp, self.ego + "." + tmp.GetContent())
-        self.Effects = []
         
     def Dispose(self):
         for tmp in self.Elements.values():
@@ -51,14 +51,16 @@ class GuiComposite(guiaux.GuiObject):
         self.Dummy.Dispose()
         
     def Activate(self, flag):
-        for el in self.Elements.values()+self.Effects:
+        for el in self.Elements.values():
             el.Activate(flag)
+        #for el in self.Elements.values()+self.Effects:
+        #    el.Activate(flag)
         
     def Show(self, flag):
         self.Dummy.visible = flag
-        if not flag:
-            for el in self.Effects:
-                el.Dispose()
+        #if not flag:
+        #    for el in self.Effects:
+        #        el.Dispose()
         
     def UpdateView(self, data):
         try:
@@ -76,14 +78,6 @@ class GuiComposite(guiaux.GuiObject):
         for el in self.Elements.values():
             el.UpdateView(data)
             
-    def AttachEffect(self, effectObject):
-        self.Effects.append(effectObject)
-        
-    def DetachEffect(self, effectObject):
-        if effectObject in self.Effects:
-            effectObject.Dispose()
-            self.Effects.remove(effectObject)
-        
     
 #-------------------------------------
 # Диалоговое окно
@@ -104,11 +98,16 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
         for el in self.Elements.values():
             if el != self.FocusOn:
                 el.LoseFocus()
+        self.Effects = []
         self.QueNo = oE.executor.Schedule(self)
+        
+    def GetLayer(self):
+        return self.Dummy.layer
         
     def Activate(self, flag):
         self.LastButtonPressed = None
-        GuiComposite.Activate(self, flag)
+        for el in self.Elements.values()+self.Effects:
+            el.Activate(flag)
         try:
             if flag:
                 oE.executor.GetQueue(self.QueNo).Resume()
@@ -126,6 +125,12 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         GuiComposite.UpdateView(self, data)
             
+    def Show(self, flag):
+        GuiComposite.Show(self, flag)
+        if not flag:
+            for el in self.Effects:
+                el.Dispose()
+                
     def _Close_Ok(self):
         #+actions
         self.presenter.ShowDialog(self.ego, False)
@@ -161,9 +166,6 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
                             self.presenter.MarkEventProcessed()
                             tmp["call"]()
                             break
-                    #tmpKbdEvent = { "key": oE.EvtKey(),
-                    #               "ALT": oE.IsKeyPressed(scraft.Key_ALT),
-                    #               "SHIFT": oE.IsKeyPressed(scraft.Key_SHIFT) }
                     #if oE.EvtKey() == scraft.Key_ESC:
                     #    self._Close_Cancel()
                     #elif oE.EvtKey() == scraft.Key_ENTER:
@@ -171,6 +173,14 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         return scraft.CommandStateRepeat
+        
+    def AttachEffect(self, effectObject):
+        self.Effects.append(effectObject)
+        
+    def DetachEffect(self, effectObject):
+        if effectObject in self.Effects:
+            effectObject.Dispose()
+            self.Effects.remove(effectObject)
         
 #-------------------------------------
 # Variant содержит несколько композитов
@@ -201,3 +211,20 @@ class GuiVariant(GuiComposite):
                     self.Elements[val].Show(False)
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
+
+#-------------------------------------
+# Activator - тип Варианта
+#-------------------------------------
+class GuiActivator(GuiComposite):
+    def __init__(self, host, parent, node, structure, ego, presenter):
+        GuiComposite.__init__(self, host, parent, node, structure, ego, presenter)
+        self.valueDefault = node.GetStrAttr("valueDefault")
+        self.value = None
+        
+    def Activate(self, flag):
+        for val in self.Elements.keys():
+            self.Elements[val].Show(val == str(flag))
+            self.Elements[val].Activate(val == str(flag))
+        
+    
+    

@@ -14,7 +14,8 @@ from constants import *
 from configconst import *
 from guielements import MakeSimpleSprite, MakeDummySprite, PushButton
 from extra import *
-from fxmanager import *
+
+import gamegui
 
 #---------------------------------------------
 # Блок из кастомера и заказа
@@ -170,10 +171,8 @@ class CustomerStation(scraft.Dispatcher):
                 self.ReleaseButton.Show(True)
             
             #спецэффект - контур вокруг силуэта рецепта
-            DrawTrailedContour({"klass": "star", "no": 10, "layer": Layer_Recipe-3,
-                                "incTrans": 6, "incScale": 5},
-                                map(lambda x: (x[0], x[1]+self.CrdX, x[2]+self.CrdY), Crd_RecipeContour),
-                                PState_Game)
+            gamegui.ShowGameEffect("Trail.OrderComplete", (self.CrdX, self.CrdY))
+            
         if tmpRemaining == 0:
             self.MealReady = True
             

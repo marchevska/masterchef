@@ -25,6 +25,7 @@ import defs
 import gamegui
 
 def Loading():
+    #проверить - упакованы ресурсы или нет
     try:
         import _jungle
         if _jungle.compiled:
@@ -76,10 +77,6 @@ def Loading():
     gamegui.InitGUI()
     #gamegui.ShowLogoSequence()
     
-    #globalvars.GuiPresenter.ShowDialog("MainMenu", True)
-    #globalvars.GuiPresenter.BringToFront("MainMenu", True)
-    
-    #globalvars.GUI = Gui()
     globalvars.Board = GameBoard()
     globalvars.PausedState = False
     globalvars.ExitFlag = False
@@ -95,7 +92,6 @@ def MainLoop():
             config.ApplyOptions()
             globalvars.CurrentPlayer.Level = globalvars.LevelProgress.GetTag("Levels").GetSubtag(sys.argv[2])
             gamegui.PlayLevel()
-            #globalvars.GUI.JustRun()
         except:
             sys.exit()
     # конец кода запуска заданного уровня
@@ -103,14 +99,10 @@ def MainLoop():
     while not globalvars.ExitFlag: #globalvars.StateStack[-1] != PState_EndGame:
         oE.NextEvent()
         gamegui.RaiseEvent()
-        #if oE.EvtIsESC() or oE.EvtIsQuit():
         if oE.EvtIsQuit():
             gamegui.AskForQuitGame()
-            #globalvars.ExitFlag = True
-            #break
         if oE.windowIsActive == globalvars.PausedState:
             globalvars.PausedState = not globalvars.PausedState
-            #globalvars.GUI.SetPauseState(globalvars.PausedState)
             gamegui.SetPause(globalvars.PausedState)
         if oE.EvtIsKeyDown():
             if oE.EvtKey() == scraft.Key_F4 and not oE.IsKeyPressed(scraft.Key_ALT):

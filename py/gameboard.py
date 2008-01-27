@@ -18,13 +18,13 @@ from storage import Store, SingularStore, Field, TrashCan, Collapsoid
 from conveyor import Conveyor
 from blackboard import BlackBoard
 from extra import *
-from fxmanager import *
 from customer import *
 import config
 import defs
 import playerlist
 import globalvars
 import gamegui
+
 from teggo.games import spriteworks, fxmanager
 
 class GameBoard(scraft.Dispatcher):
@@ -210,8 +210,7 @@ class GameBoard(scraft.Dispatcher):
             self.NoErrors = min(self.NoErrors+1, globalvars.GameSettings.GetIntAttr("maxColapsoidErrors"))
             self.AddScore(-self.NoErrors*len(tmp))
             for (x, y) in tmp:
-                PopupText(str(-self.NoErrors), "domcasual-20-red", x, y,
-                                InPlaceMotion(), BlinkTransp(400, 0.4, -50), BlinkScale(-100, 0.4, 150), 1500, PState_Game)
+                gamegui.ShowGameText("score", -self.NoErrors, (x, y))
             
         elif cmd == Cmd_ClickStation:
             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
@@ -222,19 +221,12 @@ class GameBoard(scraft.Dispatcher):
                         self.AddScore(tmpDeltaScore)
                         if tmpDeltaScore > 0:
                             globalvars.Musician.PlaySound("tokens.give")
-                        PopupText("+"+str(tmpDeltaScore), "domcasual-20-green",
-                                        parameter["station"].CrdX, parameter["station"].CrdY,
-                                        BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
+                            gamegui.ShowGameText("score", tmpDeltaScore, (parameter["station"].CrdX, parameter["station"].CrdY))
                         if tmpFrom.Collapsing:
-                            tmpX, tmpY = tmpFrom.GetCentralCrd()
                             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokenForIncreadible"):
-                                PopupText(defs.GetGameString("Str_Incredible"), "domcasual-20-yellow", tmpX, tmpY,
-                                    InPlaceMotion(), BlinkTransp(400, 0.4, -50),
-                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500, PState_Game)
+                                gamegui.ShowGameText("commend", "Str_Incredible", tmpFrom.GetCentralCrd())
                             elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokensForGreat"):
-                                PopupText(defs.GetGameString("Str_Great"), "domcasual-20-yellow", tmpX, tmpY,
-                                    InPlaceMotion(), BlinkTransp(400, 0.4, -50),
-                                    BounceScale([(0, 50), (0.3, 100), (0.8, 110), (1.2, 140), (1.5, 200)]), 1500, PState_Game)
+                                gamegui.ShowGameText("commend", "Str_Great", tmpFrom.GetCentralCrd())
                         self.TokensFrom.RemoveTokens()
                         self.SendCommand(Cmd_DropWhatYouCarry)
                         if tmpFrom in self.Fields:
@@ -330,20 +322,12 @@ class GameBoard(scraft.Dispatcher):
                 
         elif cmd == Cmd_TakeMoney:
             self.AddScore(parameter["amount"])
-            if parameter["amount"] > 0:
-                if parameter.has_key("tips"):
-                    self.AddScore(parameter["tips"])
-                    PopupText("+$"+str(parameter["amount"])+"+$"+str(parameter["tips"]), "domcasual-20-orange",
-                            parameter["station"].CrdX-20, parameter["station"].CrdY-20,
-                            BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
-                else:
-                    PopupText("+$"+str(parameter["amount"]), "domcasual-20-green",
-                            parameter["station"].CrdX, parameter["station"].CrdY,
-                            BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
-            elif parameter["amount"] < 0:
-                PopupText("-$"+str(-parameter["amount"]), "domcasual-20-red",
-                            parameter["station"].CrdX, parameter["station"].CrdY,
-                            BubbleMotion(16, -100), FadeAwayTransp(50, -25), DefaultScale(), 1500, PState_Game)
+            tmpCrd = (parameter["station"].CrdX, parameter["station"].CrdY)
+            if parameter.has_key("tips"):
+                self.AddScore(parameter["tips"])
+                gamegui.ShowGameText("money", (parameter["amount"], parameter["tips"]), tmpCrd)
+            else:
+                gamegui.ShowGameText("money", (parameter["amount"],), tmpCrd)
             
         elif cmd == Cmd_PickPowerUp:
             self._PickPowerUp(parameter["type"], parameter["where"])
@@ -378,17 +362,12 @@ class GameBoard(scraft.Dispatcher):
         self._UpdateLevelInfo()
         if tmpOldScore <= globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneyGoal") <= self.LevelScore:
             tmpTextEvent = True
-            tmpStr = defs.GetGameString("Str_LevelGoalReached")
+            tmpStr = "Str_LevelGoalReached"
         elif tmpOldScore <= globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("expertGoal") <= self.LevelScore:
             tmpTextEvent = True
-            tmpStr = defs.GetGameString("Str_ExpertGoalReached")
+            tmpStr = "Str_ExpertGoalReached"
         if tmpTextEvent:
-            PopupText( tmpStr,
-                    "domcasual-30-yellow", 400, 300,
-                    InPlaceMotion(),
-                    BounceTransp([(0, 30), (0.3, 0), (1.5, 0), (2.0, 100)]),
-                    BounceScale([(0, 50), (0.3, 100), (1.5, 120), (2.0, 150)]),
-                    2000, PState_Game)
+            gamegui.ShowGameText("goalreached", tmpStr)
             globalvars.Musician.PlaySound("level.goalreached")
     
     #--------------------------

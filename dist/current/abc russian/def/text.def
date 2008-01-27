@@ -433,8 +433,8 @@ MasterChef {
     text(RUSSIAN OPEN - RESULTS) { str = " ”¡Œ  –Œ——»» - –≈«”À‹“¿“€" }
     text(JAPANESE OPEN) { str = " ”¡Œ  ﬂœŒÕ»»" }
     text(JAPANESE OPEN - RESULTS) { str = " ”¡Œ  ﬂœŒÕ»» - –≈«”À‹“¿“€" }
-    text(FINALS) { str = "‘»Õ¿À" }
-    text(FINALS - RESULTS) { str = "‘»Õ¿À - –≈«”À‹“¿“€" }
+    text(HAWAIIAN OPEN) { str = "‘»Õ¿À" }
+    text(HAWAIIAN OPEN - RESULTS) { str = "‘»Õ¿À - –≈«”À‹“¿“€" }
     text(Alban) { str = "¿Î·‡Ì" }
     text(Alex) { str = "¿ÎÂÍÒ" }
     text(Angela) { str = "¿ÌÊÂÎ‡" }

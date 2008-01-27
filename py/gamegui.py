@@ -13,9 +13,6 @@ from teggo.games import localizer
 from teggo.games import guipresenter
 from teggo.games import fxmanager
 
-Const_TotalHelpPages = 4
-Const_MaxRecipesOnPage = 12
-
 #------------------------------
 # используется для однократного вызова диспетчером одной функции
 #------------------------------
@@ -55,7 +52,6 @@ def ShowPubLogo(*a):
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": ClosePubLogo },
         ]
     globalvars.GuiPresenter.ShowDialog("PubLogo", True)
-    globalvars.GuiPresenter.BringToFront("PubLogo", True)
 
 def ClosePubLogo(*a):
     globalvars.GuiQueue.Clear()
@@ -70,7 +66,6 @@ def ShowDevLogo(*a):
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": CloseDevLogo },
         ]
     globalvars.GuiPresenter.ShowDialog("DevLogo", True)
-    globalvars.GuiPresenter.BringToFront("DevLogo", True)
 
 def CloseDevLogo(*a):
     globalvars.GuiQueue.Clear()
@@ -127,7 +122,6 @@ def ShowMenu(*a):
         globalvars.GuiPresenter.data["MainMenu.WelcomeMessage#text"] = localizer.GetGameString("Str_Menu_Welcome")
         globalvars.GuiPresenter.data["MainMenu.WelcomeName#text"] = globalvars.GameConfig.GetStrAttr("Player")
         globalvars.GuiPresenter.ShowDialog("MainMenu", True)
-        globalvars.GuiPresenter.BringToFront("MainMenu", True)
 
 def AskForQuitGame(*a):
     Ask(localizer.GetGameString("Str_Question_ExitGame"), QuitGame)
@@ -158,7 +152,6 @@ def ShowOptions(*a):
     globalvars.GuiPresenter.data["Options.Hints#checked"] = globalvars.CurrentPlayer.XML.GetBoolAttr("Hints")
     globalvars.GuiPresenter.data["Options.Fullscreen#checked"] = globalvars.GameConfig.GetBoolAttr("Fullscreen")
     globalvars.GuiPresenter.ShowDialog("Options", True)
-    globalvars.GuiPresenter.BringToFront("Options", True)
 
 #close and apply options
 def CloseOptions(*a):
@@ -221,16 +214,16 @@ def ShowRules(*a):
         else:
             globalvars.GuiPresenter.data["Rules.Prev#disabled"] = False
             globalvars.GuiPresenter.data["Rules.Prev#action"] = RulesPrevPage
-        if globalvars.GuiPresenter.data["Rules#page"] == Const_TotalHelpPages - 1:
+        if globalvars.GuiPresenter.data["Rules#page"] == globalvars.GuiPresenter.data.get("Rules#TotalHelpPages") - 1:
             globalvars.GuiPresenter.data["Rules.Next#disabled"] = True
         else:
             globalvars.GuiPresenter.data["Rules.Next#disabled"] = False
             globalvars.GuiPresenter.data["Rules.Next#action"] = RulesNextPage
+        globalvars.GuiPresenter.data["Rules.Close#action"] = CloseRules
         globalvars.GuiPresenter.data["Rules#kbdCommands"] = [
             { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseRules },
         ]
         globalvars.GuiPresenter.ShowDialog("Rules", True)
-        globalvars.GuiPresenter.BringToFront("Rules", True)
     except:
         pass
 
@@ -244,7 +237,7 @@ def RulesPrevPage(*a):
 
 def RulesNextPage(*a):
     try:
-        if globalvars.GuiPresenter.data["Rules#page"] < Const_TotalHelpPages - 1:
+        if globalvars.GuiPresenter.data["Rules#page"] < globalvars.GuiPresenter.data.get("Rules#TotalHelpPages") - 1:
             globalvars.GuiPresenter.data["Rules#page"] += 1
     except:
         pass
@@ -280,43 +273,32 @@ def ShowCookbook(*a):
         #проверить рецепты: известные или нет, новые или старые
         tmpRecipes = filter(lambda x: globalvars.RecipeInfo.GetSubtag(x).GetStrAttr("setting") == tmpSetting,
                                 map(lambda x: x.GetContent(), globalvars.RecipeInfo.Tags()))
-        #tmpNewRecipes = globalvars.CurrentPlayer.JustUnlockedRecipes(tmpSetting)
-        #if len(tmpNewRecipes) > 0:
-        #    PopupText(localizer.GetGameString("Str_NewRecipesLearned"),
-        #            "domcasual-30-yellow", 400, 300,
-        #            InPlaceMotion(),
-        #            BounceTransp([(0, 30), (0.3, 0), (1.5, 0), (2.0, 100)]),
-        #            BounceScale([(0, 50), (0.3, 100), (1.5, 120), (2.0, 150)]),
-        #            2000, PState_Cookbook)
-        #    globalvars.Musician.PlaySound("cookbook.newrecipe")
+        tmpNewRecipes = globalvars.CurrentPlayer.JustUnlockedRecipes(tmpSetting)
+        if len(tmpNewRecipes) > 0:
+            if globalvars.GuiPresenter.data.get("Cookbook#EffectsLayer") != None:
+                layer = globalvars.GuiPresenter.data["Cookbook#EffectsLayer"]
+            else:
+                layer = globalvars.GuiPresenter.DefData.GetTag("Objects").GetSubtag("Cookbook").GetIntAttr("layer")
+            if globalvars.GuiPresenter.data.get("Cookbook#EffectsSublayer") != None:
+                sublayer = globalvars.GuiPresenter.data["Cookbook#EffectsSublayer"]
+            else:
+                sublayer = 0
+            globalvars.GuiPresenter.Dialogs["Cookbook"].AttachEffect(\
+                fxmanager.CreateEffect(globalvars.GuiPresenter.Dialogs["Cookbook"],
+                "Popup.Game.GoalReached", { "text": (localizer.GetGameString("Str_NewRecipesLearned")),
+                "crd": (400, 300), "layer": layer, "sublayer": sublayer }))
             
-        for i in range(Const_MaxRecipesOnPage):
-            globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#x"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeX")
-            globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#y"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeY")
+        for i in range(globalvars.GuiPresenter.data["Cookbook#MaxRecipesOnPage"]):
+            recipeCrd = (globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeX"), globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetIntAttr("badgeY"))
+            globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#x"] = recipeCrd[0]
+            globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#y"] = recipeCrd[1]
             if globalvars.CurrentPlayer.GetLevelParams(tmpRecipes[i]).GetBoolAttr("unlocked"):
                 globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#klass"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("badge")
-                #if tmpRecipes[i] in tmpNewRecipes:
-                #    globalvars.CurrentPlayer.SetLevelParams(tmpRecipes[i], { "seen": True })
-                #    
-                #    #эффект обводки контура
-                #    tmpCopy = map(lambda x: (-x[0], x[1]), list(Crd_CookbookStickerContourHalf))
-                #    tmpCopy.reverse()
-                #    tmpContour = (list(Crd_CookbookStickerContourHalf) + tmpCopy)
-                #    #движение с постоянной скоростью:
-                #    tmpTimes = [Time_TrailInitialDelay] + map(lambda ii: \
-                #            math.sqrt((tmpContour[ii][0]-tmpContour[ii+1][0])**2 + (tmpContour[ii][1]-tmpContour[ii+1][1])**2)/Crd_CookbookStickerTrailSpeed,
-                #            range(len(tmpContour)-1))
-                #    tmpTimesSums = map(lambda x: reduce(lambda a,b: a+b, tmpTimes[0:x+1],0), range(len(tmpContour)))
-                #    tmp = map(lambda ii: (tmpTimesSums[ii],
-                #                        tmpContour[ii][0] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].x,
-                #                        tmpContour[ii][1] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].y),
-                #                        range(len(tmpContour)))
-                #    DrawTrailedContour({"klass": "star", "no": 20, "layer": Layer_CookbookBtnTxt-1,
-                #            "incTrans": 4, "incScale": 4, "delay": 15},
-                #            tmp, PState_Cookbook)
-                #    
-                #else:
-                #    self.CookbookDialog["Static"]["Recipe"+str(i+1)].transparency = 0
+                if tmpRecipes[i] in tmpNewRecipes:
+                    globalvars.CurrentPlayer.SetLevelParams(tmpRecipes[i], { "seen": True })
+                    globalvars.GuiPresenter.Dialogs["Cookbook"].AttachEffect(\
+                            fxmanager.CreateEffect(globalvars.GuiPresenter.Dialogs["Cookbook"],
+                            "Trail.CookbookNewRecipe", { "crd": recipeCrd }))
             else:
                 globalvars.GuiPresenter.data["Cookbook.Recipe" + str(i+1) + "#klass"] = globalvars.RecipeInfo.GetSubtag(tmpRecipes[i]).GetStrAttr("emptyBadge")
         
@@ -345,11 +327,12 @@ def ShowCookbook(*a):
         
         globalvars.GuiPresenter.data["Cookbook.Prev#action"] = CookbookPrevPage
         globalvars.GuiPresenter.data["Cookbook.Next#action"] = CookbookNextPage
+        globalvars.GuiPresenter.data["Cookbook.Close#action"] = CloseCookbook
+        globalvars.GuiPresenter.data["Cookbook.Continue#action"] = CloseCookbook
         globalvars.GuiPresenter.data["Cookbook#kbdCommands"] = [
             { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseCookbook },
         ]
         globalvars.GuiPresenter.ShowDialog("Cookbook", True)
-        globalvars.GuiPresenter.BringToFront("Cookbook", True)
     except:
         print string.join(apply(traceback.format_exception, sys.exc_info()))
 
@@ -369,6 +352,11 @@ def CookbookNextPage(*a):
 
 def CloseCookbook(*a):
     globalvars.GuiPresenter.ShowDialog("Cookbook", False)
+    if string.find(str(globalvars.GuiPresenter.data["Cookbook#from"]), "LevelResults") >= 0:
+        globalvars.GuiPresenter.ShowDialog("GameHUD", False)
+        globalvars.Board.Clear()
+        globalvars.Board.Show(False)
+        NextCareerStage()
 
 #------------------------------
 # отображение рекордов
@@ -408,9 +396,9 @@ def ShowHiscoresDialog(*a):
     globalvars.GuiPresenter.data["Hiscores#kbdCommands"] = [
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseHiscores },
         ]
+    globalvars.GuiPresenter.data["Hiscores.HiscoresClose#action"] = CloseHiscores
     globalvars.GuiPresenter.data["Hiscores.HiscoresReset#action"] = AskForClear
     globalvars.GuiPresenter.ShowDialog("Hiscores", True)
-    globalvars.GuiPresenter.BringToFront("Hiscores", True)
 
 def CloseHiscores(*a):
     globalvars.GuiPresenter.ShowDialog("Hiscores", False)
@@ -463,10 +451,10 @@ def ShowPlayers(*a):
     globalvars.GuiPresenter.data["Players.New#action"] = ShowEnterNameDialog
     globalvars.GuiPresenter.data["Players.Remove#action"] = AskForRemovingPlayer
     globalvars.GuiPresenter.data["Players.Ok#action"] = SelectPlayer
+    globalvars.GuiPresenter.data["Players.Close#action"] = ClosePlayers
     UpdatePlayersButtons()
     globalvars.GuiPresenter.ShowDialog("MainMenu", True)
     globalvars.GuiPresenter.ShowDialog("Players", True)
-    globalvars.GuiPresenter.BringToFront("Players", True)
 
 def UpdatePlayersButtons(*a):
     globalvars.GuiPresenter.data["Players.Ok#disabled"] = (globalvars.GuiPresenter.data["Players.List#Selected"] == [])
@@ -484,7 +472,6 @@ def SelectPlayer(*a):
     if len(globalvars.GuiPresenter.data["Players.List#Selected"]) == 1:
         globalvars.PlayerList.SelectPlayer(globalvars.PlayerList.GetPlayerList()[globalvars.GuiPresenter.data["Players.List#Selected"][0]])
         globalvars.GuiPresenter.ShowDialog("Players", False)
-        globalvars.GuiPresenter.BringToFront("Players", False)
         ShowMenu()
 
 def AskForRemovingPlayer(*a):
@@ -508,6 +495,7 @@ def ShowEnterNameDialog(*a):
         globalvars.GuiPresenter.data["EnterName.NewPlayerName#text"] = ""
     if not globalvars.GuiPresenter.data.get("EnterName.ErrorMessage#text"):
         globalvars.GuiPresenter.data["EnterName.ErrorMessage#text"] = ""
+    globalvars.GuiPresenter.data["EnterName.NewPlayerName#onUpdate"] = UpdateNameEntry
     globalvars.GuiPresenter.data["EnterName.Ok#action"] = CreateNewPlayerOk
     globalvars.GuiPresenter.data["EnterName.Cancel#action"] = CloseEnterNameDialog
     globalvars.GuiPresenter.data["EnterName#kbdCommands"] = [
@@ -515,9 +503,8 @@ def ShowEnterNameDialog(*a):
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ENTER}], "call": CreateNewPlayerOk },
         ]
     globalvars.GuiPresenter.ShowDialog("EnterName", True)
-    globalvars.GuiPresenter.BringToFront("EnterName", True)
 
-def CreateNewPlayerOk(*a):
+def CheckNameErrors(*a):
     tmpErrorMessage = ""
     tmpName = globalvars.GuiPresenter.data["EnterName.NewPlayerName#text"]
     if len(tmpName) == 0:
@@ -527,11 +514,20 @@ def CreateNewPlayerOk(*a):
     elif globalvars.PlayerList.GetPlayerList().count(tmpName) > 0:
         tmpErrorMessage = localizer.GetGameString("Str_EnterName_Error_Exist")
     globalvars.GuiPresenter.data["EnterName.ErrorMessage#text"] = tmpErrorMessage
+    #if tmpErrorMessage != "":
+    #    globalvars.GuiPresenter.ShowDialog("EnterName", True)
+    globalvars.GuiPresenter.ShowDialog("EnterName", True)
 
-    if tmpErrorMessage != "":
+def UpdateNameEntry(*a):
+    if globalvars.GuiPresenter.data["EnterName.ErrorMessage#text"] != "":
+        #CheckNameErrors()
+        globalvars.GuiPresenter.data["EnterName.ErrorMessage#text"] = ""
         globalvars.GuiPresenter.ShowDialog("EnterName", True)
-    else:
-        globalvars.PlayerList.CreatePlayer(tmpName)
+
+def CreateNewPlayerOk(*a):
+    CheckNameErrors()
+    if globalvars.GuiPresenter.data["EnterName.ErrorMessage#text"] == "":
+        globalvars.PlayerList.CreatePlayer(globalvars.GuiPresenter.data["EnterName.NewPlayerName#text"])
         globalvars.GuiPresenter.data["Players.List#Selected"] = [len(globalvars.PlayerList.GetPlayerList())-1]
         CloseEnterNameDialog()
 
@@ -680,13 +676,13 @@ def ShowMap(*a):
     globalvars.GuiPresenter.data["MapCareer.Levels#action"] = UpdateMapTablet
     globalvars.GuiPresenter.data["MapCareer.Start#action"] = PlayLevelFromMap
     globalvars.GuiPresenter.data["MapCareer.ViewResults#action"] = ViewResults
+    globalvars.GuiPresenter.data["MapCareer.Close#action"] = CloseMap
     globalvars.GuiPresenter.data["MapCareer#kbdCommands"] = [
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseMap },
         ]
 
     UpdateMapTablet()
     #globalvars.GuiPresenter.ShowDialog("MapCareer", True)
-    #globalvars.GuiPresenter.BringToFront("MapCareer", True)
 
 #обновить надписи на табличке
 #при смене состояния карты
@@ -744,10 +740,10 @@ def UpdateMapTablet(*a):
         globalvars.GuiPresenter.data["MapCareer.RestaurantDay#text"] = ""
         
     globalvars.GuiPresenter.ShowDialog("MapCareer", True)
-    globalvars.GuiPresenter.BringToFront("MapCareer", True)
 
 def CloseMap(*a):
     globalvars.GuiPresenter.ShowDialog("MapCareer", False)
+    ShowMenu()
 
 #------------------------------
 # комикс 
@@ -763,7 +759,6 @@ def ShowComics(*a):
     globalvars.GuiPresenter.ShowDialog("MapCareer", False)
     globalvars.GuiPresenter.ShowDialog("MainMenu", False)
     globalvars.GuiPresenter.ShowDialog("Comics", True)
-    globalvars.GuiPresenter.BringToFront("Comics", True)
 
 def CloseComics(*a):
     globalvars.GuiPresenter.ShowDialog("Comics", False)
@@ -800,7 +795,6 @@ def ShowEpisodeIntro(*a):
     globalvars.GuiPresenter.ShowDialog("MapCareer", False)
     globalvars.GuiPresenter.ShowDialog("MainMenu", False)
     globalvars.GuiPresenter.ShowDialog("EpisodeIntro", True)
-    globalvars.GuiPresenter.BringToFront("EpisodeIntro", True)
     
 def CloseEpisodeIntro(*a):    
     globalvars.GuiPresenter.ShowDialog("EpisodeIntro", False)
@@ -872,7 +866,6 @@ def ShowEpisodeOutro(*a):
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": CloseEpisodeOutro },
         ]
     globalvars.GuiPresenter.ShowDialog("EpisodeOutro", True)
-    globalvars.GuiPresenter.BringToFront("EpisodeOutro", True)
             
     
 def CloseEpisodeOutro(*a):    
@@ -904,7 +897,6 @@ def PlayLevel(*a):
     
 def StartPlaying(*a):
     globalvars.GuiPresenter.ShowDialog("LevelGoals", False)
-    globalvars.GuiPresenter.BringToFront("GameHUD", True)
     globalvars.Board.ReallyStart()
     globalvars.Board.Freeze(False)
 
@@ -937,7 +929,6 @@ def ShowLevelGoals(*a):
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": StartPlaying },
         ]
     globalvars.GuiPresenter.ShowDialog("LevelGoals", True)
-    globalvars.GuiPresenter.BringToFront("LevelGoals", True)
     
 #------------------------------
 # игровая инфо-панель
@@ -949,7 +940,6 @@ def ShowGameHUD(*a):
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ShowOptionsFromGame },
         ]
     globalvars.GuiPresenter.ShowDialog("GameHUD", True)
-    globalvars.GuiPresenter.BringToFront("GameHUD", True)
 
 #обновить панель информации при старте уровня
 def ResetGameHUD(*a):
@@ -1024,8 +1014,11 @@ def ShowLevelResults(*a):
             { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ExitToMenuFromLevelResults },
             { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": RestartLevelAfterLevelResults },
             ]
+    globalvars.GuiQueue.ScheduleSleep(1600)
+    globalvars.GuiQueue.Schedule(RunCMD(ShowLevelResultsDialog))
+    
+def ShowLevelResultsDialog(*a):
     globalvars.GuiPresenter.ShowDialog("LevelResults", True)
-    globalvars.GuiPresenter.BringToFront("LevelResults", True)
 
 def CloseLevelResults(*a):
     globalvars.GuiPresenter.ShowDialog("LevelResults", False)
@@ -1033,8 +1026,8 @@ def CloseLevelResults(*a):
     if globalvars.CurrentPlayer.JustUnlockedRecipes(tmpSetting) != []:
         tmpAllSettings = eval(globalvars.GameSettings.GetStrAttr("settings"))
         globalvars.GuiPresenter.data["Cookbook#page"] = tmpAllSettings.index(tmpSetting)
-        globalvars.GuiPresenter.data["Cookbook#from"] = "Game"
-        ShowCookbook()
+        #globalvars.GuiPresenter.data["Cookbook#from"] = "Game"
+        ShowCookbook(a)
     else:
         globalvars.GuiPresenter.ShowDialog("GameHUD", False)
         globalvars.Board.Clear()
@@ -1070,7 +1063,6 @@ def ShowHint(*a):
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": CloseHint },
         ]
     globalvars.GuiPresenter.ShowDialog("Hints", True)
-    globalvars.GuiPresenter.BringToFront("Hints", True)
     globalvars.Board.Freeze(True, False)
         
 def CloseHint(*a):
@@ -1086,13 +1078,13 @@ def CloseHint(*a):
 def Ask(*a):
     globalvars.GuiPresenter.data["YesNo.Question#text"] = a[0]
     globalvars.GuiPresenter.data["YesNo.Ok#action"] = CloseQuestionYes
+    globalvars.GuiPresenter.data["YesNo.Cancel#action"] = CloseQuestionNo
     globalvars.GuiPresenter.data["YesNo#YesAction"] = a[1]
     globalvars.GuiPresenter.data["YesNo#kbdCommands"] = [
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ENTER}], "call": CloseQuestionYes },
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseQuestionNo },
         ]
     globalvars.GuiPresenter.ShowDialog("YesNo", True)
-    globalvars.GuiPresenter.BringToFront("YesNo", True)
 
 def CloseQuestionYes(*a):
     globalvars.GuiPresenter.ShowDialog("YesNo", False)
@@ -1108,18 +1100,17 @@ def CloseQuestionNo(*a):
 def SetPause(flag):
     #globalvars.Board.Freeze(flag)
     if flag:
+        globalvars.GuiPresenter.data["Pause.Unpause#action"] = UnPause
         globalvars.GuiPresenter.data["Pause#kbdCommands"] = [
             { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": UnPause },
         ]
         globalvars.GuiPresenter.ShowDialog("Pause", True)
-        globalvars.GuiPresenter.BringToFront("Pause", flag)
     else:
         globalvars.GuiPresenter.ShowDialog("Pause", False)
         
     #if flag:
         #if globalvars.StateStack[-1] in (PState_YesNo, PState_YesNoCancel, PState_EnterName):
             #globalvars.GuiPresenter.ShowDialog("Pause", flag)
-            #globalvars.GuiPresenter.BringToFront("Pause", flag)
             #self._ReleaseState(globalvars.StateStack[-1])
             #self.LastQuestion = ""
         #if globalvars.StateStack[-1] in (PState_Hints,):
@@ -1130,3 +1121,75 @@ def SetPause(flag):
 def UnPause(*a):
     globalvars.PausedState = not globalvars.PausedState
     SetPause(False)
+
+#------------------------------
+# текстовые сообщения во время игры
+# a[0] - код события
+# a[1] - текст или число для вывода
+# a[2] - координаты (необходимость этого параметра определяется по коду события)
+#------------------------------
+
+def ShowGameText(*a):
+    if globalvars.GuiPresenter.data.get("GameHUD#EffectsLayer") != None:
+        layer = globalvars.GuiPresenter.data["GameHUD#EffectsLayer"]
+    else:
+        layer = globalvars.GuiPresenter.DefData.GetTag("Objects").GetSubtag("GameHUD").GetIntAttr("layer")
+    if globalvars.GuiPresenter.data.get("GameHUD#EffectsSublayer") != None:
+        sublayer = globalvars.GuiPresenter.data["GameHUD#EffectsSublayer"]
+    else:
+        sublayer = 0
+    
+    #изменение счета за использование или потерю фишек
+    if a[0] == "score":
+        if a[1] > 0:
+            style = "Popup.Game.AddScore"
+            text = "+"+str(a[1])
+        else:
+            style = "Popup.Game.SubtractScore"
+            text = str(a[1])
+        crd = a[2]
+    #сбор или потеря денег при ходе покупателя
+    elif a[0] == "money":
+        if len(a[1]) == 2:
+            style = "Popup.Game.TakeMoney"
+            text = "+$"+str(a[1][0])+"+$"+str(a[1][1])
+        elif len(a[1]) == 1:
+            if a[1][0] > 0:
+                style = "Popup.Game.AddScore"
+                text = "+$"+str(a[1][0])
+            else:
+                style = "Popup.Game.LoseMoney"
+                text = "-$"+str(-a[1][0])
+        crd = a[2]
+    #похвала за удаление большого количества фишек
+    elif a[0] == "commend":
+        style = "Popup.Game.Commend"
+        text = localizer.GetGameString(str(a[1]))
+        crd = a[2]
+    #достижэение базовой или экспертной цели уровня
+    elif a[0] == "goalreached":
+        style = "Popup.Game.GoalReached"
+        text = localizer.GetGameString(str(a[1]))
+        crd = (400, 300)
+        
+    globalvars.GuiPresenter.Dialogs["GameHUD"].AttachEffect(\
+                fxmanager.CreateEffect(globalvars.GuiPresenter.Dialogs["GameHUD"],
+                style, { "text": text, "crd": crd, "layer": layer, "sublayer": sublayer }))
+            
+#------------------------------
+# отображение других эффектов
+# a[0] - код события
+# a[1] - координаты 
+#------------------------------
+def ShowGameEffect(*a):
+    if globalvars.GuiPresenter.data.get("GameHUD#EffectsLayer") != None:
+        layer = globalvars.GuiPresenter.data["GameHUD#EffectsLayer"]
+    else:
+        layer = globalvars.GuiPresenter.DefData.GetTag("Objects").GetSubtag("GameHUD").GetIntAttr("layer")
+    if globalvars.GuiPresenter.data.get("GameHUD#EffectsSublayer") != None:
+        sublayer = globalvars.GuiPresenter.data["GameHUD#EffectsSublayer"]
+    else:
+        sublayer = 0
+    globalvars.GuiPresenter.Dialogs["GameHUD"].AttachEffect(\
+                fxmanager.CreateEffect(globalvars.GuiPresenter.Dialogs["GameHUD"],
+                a[0], { "crd": a[1], "layer": layer, "sublayer": sublayer }))

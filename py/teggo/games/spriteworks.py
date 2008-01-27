@@ -37,4 +37,10 @@ def MakeSprite(newKlass, newLayer, param = {}):
         tmpSpr.transparency = param["transparency"]
     if param.has_key("scale"):
         tmpSpr.xScale, tmpSpr.yScale = param["scale"], param["scale"]
+    if param.has_key("xyScale"):
+        tmpSpr.xScale, tmpSpr.yScale = param["xyScale"][0], param["xyScale"][1]
+    if param.has_key("xScale"):
+        tmpSpr.xScale = param["xScale"]
+    if param.has_key("yScale"):
+        tmpSpr.xScale = param["yScale"]
     return tmpSpr

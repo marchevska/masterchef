@@ -2,7 +2,7 @@
 Effects {
     Particles(Particles.OutroCharacterStars) {
         klass = "star30"
-        layer = "60"
+        layer = "57"
         sublayer = "-3"
         cycled = "yes"
         count = "100"
@@ -54,42 +54,102 @@ Effects {
         "
     }
     
+//---------------------------------------------------------------------
+// Score changes
+//---------------------------------------------------------------------
     
-    Trail(Trail.CookbookNewRecipe) {
-        count = "20"
-        sprite = "star"
-        layer = ""
-        sublayer = ""
-        delay = ""
-        Scale {
-        }
-        Transparency {
-        }
-        Motion {
-            speed = "250"
-            time0 = "1000"
-            contour = "(
-                (75, 107), (51, 107), (24, 111), (2, 122), (5, 106), (2, 97), (14, 88),
-                (28, 85), (18, 72), (14, 52), (18, 34), (28, 17), (44, 5), (57, 2),
-                (69, 2), (82, 5), (98, 17), (108, 34), (112, 52), (108, 72), (98, 85),
-                (112, 88), (124, 97), (121, 106), (124, 122), (102, 111), (75, 107), (51, 107), 
-                )"
-        }
-        Frno {
-        }
+    Popup(Popup.Game.AddScore) {
+        sprite = "domcasual-20-green"
+        time = "1500"
+        Transparency { type = "fadeaway" a0 = "50" a1 = "-25" }
+        Motion { type = "bubble" a0 = "16" a1 = "-100" }
     }
 
-                    #движение с постоянной скоростью:
-                    tmpTimes = [Time_TrailInitialDelay] + map(lambda ii: \
-                            math.sqrt((tmpContour[ii][0]-tmpContour[ii+1][0])**2 + (tmpContour[ii][1]-tmpContour[ii+1][1])**2)/Crd_CookbookStickerTrailSpeed,
-                            range(len(tmpContour)-1))
-                    tmpTimesSums = map(lambda x: reduce(lambda a,b: a+b, tmpTimes[0:x+1],0), range(len(tmpContour)))
-                    tmp = map(lambda ii: (tmpTimesSums[ii],
-                                        tmpContour[ii][0] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].x,
-                                        tmpContour[ii][1] + self.CookbookDialog["Static"]["Recipe"+str(i+1)].y),
-                                        range(len(tmpContour)))
-                    DrawTrailedContour({"klass": "star", "no": 20, "layer": Layer_CookbookBtnTxt-1,
-                            "incTrans": 4, "incScale": 4, "delay": 15},
-                            tmp, PState_Cookbook)
+    Popup(Popup.Game.SubtractScore) {
+        sprite = "domcasual-20-red"
+        time = "1500"
+        Transparency { type = "blink" a = "400" t0 = "400" b = "-50" }
+        Scale { type = "blink" a = "-100" t0 = "400" b = "150" c = "100" }
+    }
+    
+    Popup(Popup.Game.TakeMoney) {
+        sprite = "domcasual-20-orange"
+        time = "1500"
+        Transparency { type = "fadeaway" a0 = "50" a1 = "-25" }
+        Motion { type = "bubble" a0 = "16" a1 = "-100" }
+    }
+
+    Popup(Popup.Game.LoseMoney) {
+        sprite = "domcasual-20-red"
+        time = "1500"
+        Transparency { type = "fadeaway" a0 = "50" a1 = "-25" }
+        Motion { type = "bubble" a0 = "16" a1 = "-100" }
+    }
+
+//---------------------------------------------------------------------
+// Game popping messages
+//---------------------------------------------------------------------
+    
+    Popup(Popup.Game.Commend) {
+        sprite = "domcasual-20-yellow"
+        time = "1500"
+        Transparency { type = "blink" a = "400" t0 = "400" b = "-50" }
+        Scale { type = "bounce" points = "[(0, 50), (300, 100), (800, 110), (1200, 140), (1500, 200)]" }
+    }
+
+    Popup(Popup.Game.GoalReached) {
+        sprite = "domcasual-30-yellow"
+        time = "2000"
+        Transparency { type = "bounce" points = "[(0, 30), (300, 0), (1500, 0), (2000, 100)]" }
+        Scale { type = "bounce" points = "[(0, 50), (300, 100), (1500, 120), (2000, 150)]" }
+    }
+
+//---------------------------------------------------------------------
+// Effect: newly unlocked recipe in Cookbook
+//---------------------------------------------------------------------
+
+    Trail(Trail.CookbookNewRecipe) {
+        sprite = "star"
+        count = "20"
+        delay = "20"
+        time = "5000"
+        Transparency {
+            type = "bounce"
+            points = "[(0, 100), (995, 100), (1000, 0), (2800, 0), (3200, 100)]"
+        }
+        Motion {
+            type = "contour"
+            speed = "250"
+            t0 = "1000"
+            contour = "(
+                (12, 47), (-12, 47), (-39, 51), (-61, 62), (-58, 46), (-61, 37), (-49, 28),
+                (-35, 25), (-45, 12), (-49, -8), (-45, -26), (-35, -43), (-19, -55), (-6, -58),
+                (6, -58), (19, -55), (35, -43), (45, -26), (49, -8), (45, 12), (35, 25),
+                (49, 28), (61, 37), (58, 46), (61, 62), (39, 51), (12, 47), (-12, 47), 
+                )"
+        }
+        TrailTransp { type = "func" func = "4*i" var = "i" }
+        TrailScale { type = "func" func = "100-3*i" var = "i" }
+    }
+
+//---------------------------------------------------------------------
+// Effect: order complete
+//---------------------------------------------------------------------
+    
+    Trail(Trail.OrderComplete) {
+        sprite = "star"
+        count = "10"
+        delay = "20"
+        time = "1200"
+        Motion {
+            type = "contour"
+            speed = "250"
+            contour = "(
+                (-31, -33), (31, -33), (31, 21), (-31, 21), (-31, -33), (-10, -33) 
+                )"
+        }
+        TrailTransp { type = "func" func = "6*i" var = "i" }
+        TrailScale { type = "func" func = "100-5*i" var = "i" }
+    }
 
 }

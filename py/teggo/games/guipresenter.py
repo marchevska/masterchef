@@ -9,7 +9,7 @@ from scraft import engine as oE
 from guibutton import * 
 from guiimage import Image
 from guitext import TextLabel, TextEntry, TextArea
-from guicomposite import GuiComposite, GuiDialog, GuiVariant
+from guicomposite import GuiComposite, GuiDialog, GuiVariant, GuiActivator
 from guilistbox import GuiListbox
 from guislider import Slider
 
@@ -21,7 +21,9 @@ class GuiPresenter:
         self.DefData = oE.ParseDEF(filename)
         self.data = {}
         
-        #parse repeating nodes
+        #список видимых диалогов, сортированный снизу вверх
+        self.DialogsList = []
+        self.ActiveDialog = None
         
         
         #parse object styles if necessary
@@ -31,7 +33,7 @@ class GuiPresenter:
             self.CreateDialog(tmp.GetContent())
         for tmp in self.Dialogs.values():
             tmp.Show(False)
-        self.DialogsStack = []
+            tmp.Activate(False)
         self.LastEventProcessed = False
         
     def CreateDialog(self, name):
@@ -59,6 +61,8 @@ class GuiPresenter:
             el = TextArea(host, parent, node, self.DefData.GetTag("Styles"), name)
         elif _StrCompNoCase(tmpTagName, "Variant"):
             el = GuiVariant(host, parent, node, self.ProcessStructure(node), name, self)
+        elif _StrCompNoCase(tmpTagName, "Activator"):
+            el = GuiActivator(host, parent, node, self.ProcessStructure(node), name, self)
         elif _StrCompNoCase(tmpTagName, "Case"):
             el = GuiComposite(host, parent, node, self.ProcessStructure(node), name, self)
         elif self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName, "Composite") != None:
@@ -73,26 +77,28 @@ class GuiPresenter:
         
     def ShowDialog(self, name, flag):
         if flag:
-            #if not(self.DialogsStack != [] and self.DialogsStack[-1] == name):
-            if not(self.DialogsStack != [] and self.DialogsStack.count(name)>0):
-                self.DialogsStack.append(name)
-            self.Dialogs[name].Show(True)
-            self.Dialogs[name].UpdateView(self.data)
+            if self.DialogsList.count(name) == 0:
+                self.DialogsList.append(name)
+                self.DialogsList.sort(lambda x,y: cmp(self.Dialogs[y].GetLayer(), self.Dialogs[x].GetLayer()))
+            #self.Dialogs[name].Show(True)
+            #self.Dialogs[name].UpdateView(self.data)
         else:
-            self.Dialogs[name].Show(False)
-            if self.DialogsStack != [] and self.DialogsStack[-1] == name:
-                self.DialogsStack.pop()
-                if self.DialogsStack != []:
-                    self.ShowDialog(self.DialogsStack[-1], True)
-                    self.BringToFront(self.DialogsStack[-1], True)
+            #self.Dialogs[name].Show(False)
+            if self.DialogsList.count(name)>0:
+                self.DialogsList.remove(name)
+        self.Dialogs[name].UpdateView(self.data)
+        self.Dialogs[name].Show(flag)
+        self._UpdateActiveDialog()
         
-    def BringToFront(self, name, flag):
-        tmpOtherDialogs = self.Dialogs.keys()
-        tmpOtherDialogs.remove(name)
-        for tmp in tmpOtherDialogs:
-            self.Dialogs[tmp].Activate(False)
-        self.Dialogs[name].Activate(flag)
-    
+    def _UpdateActiveDialog(self):
+        if self.ActiveDialog in self.Dialogs.keys():
+            self.Dialogs[self.ActiveDialog].Activate(False)
+        if self.DialogsList != []:
+            self.ActiveDialog = self.DialogsList[-1]
+            self.Dialogs[self.ActiveDialog].Activate(True)
+        else:
+            self.ActiveDialog = None
+        
     #рекурсивная обработка структуры с циклами     
     def ProcessStructure(self, structure):
         for tmp in structure.Tags("Repeat"):

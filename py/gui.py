@@ -1956,13 +1956,6 @@ class Gui(scraft.Dispatcher):
             self._ShowHelpPage(self.CurrentHelpPage)
             
         elif state == PState_Hiscores:
-            #try:
-            #    globalvars.GuiPresenter.ShowDialog("Hiscores", True)
-            #    #oE.logging = True
-            #    #oE.DumpObjectsList()
-            #except:
-            #    print string.join(apply(traceback.format_exception, sys.exc_info()))
-            #self._ShowDialog(self.MainMenuDialog, True)
             config.UpdateHiscores()
             self._ShowDialog(self.HiscoresDialog, True)
             self._UpdateHiscoresDialog()

@@ -93,9 +93,11 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
         self.LastButtonPressed = None
         self.FocusOn = None
         GuiComposite.__init__(self, self, None, node, node, ego, presenter)
-        self.Actions = {}
-        self.Actions["Close_Ok"] = self._Close_Ok
-        self.Actions["Close_Cancel"] = self._Close_Cancel
+        #self.Actions = {}
+        #self.Actions["Close_Ok"] = self._Close_Ok
+        #self.Actions["Close_Cancel"] = self._Close_Cancel
+        self.onActivate = None
+        self.onDeactivate = None
         self.KeyboardCommands = []
         for el in self.Elements.values():
             if el != self.FocusOn:
@@ -112,6 +114,11 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
             el.Activate(flag)
         if flag:
             musicsound.SetState(self.MusicTheme)
+            if callable(self.onActivate):
+                self.onActivate(self.ego)
+        else:
+            if callable(self.onDeactivate):
+                self.onDeactivate(self.ego)
         try:
             if flag:
                 oE.executor.GetQueue(self.QueNo).Resume()
@@ -125,6 +132,12 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
             cmds = data.get(self.ego+"#kbdCommands")
             if cmds != None:
                 self.KeyboardCommands = cmds
+            onActivate = data.get(self.ego+"#onActivate")
+            if onActivate != None:
+                self.onActivate = onActivate
+            onDeactivate = data.get(self.ego+"#onDeactivate")
+            if onDeactivate != None:
+                self.onDeactivate = onDeactivate
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         GuiComposite.UpdateView(self, data)
@@ -135,13 +148,13 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
             for el in self.Effects:
                 el.Dispose()
                 
-    def _Close_Ok(self):
-        #+actions
-        self.presenter.ShowDialog(self.ego, False)
-        
-    def _Close_Cancel(self):
-        #+actions
-        self.presenter.ShowDialog(self.ego, False)
+    #def _Close_Ok(self):
+    #    #+actions
+    #    self.presenter.ShowDialog(self.ego, False)
+    #    
+    #def _Close_Cancel(self):
+    #    #+actions
+    #    self.presenter.ShowDialog(self.ego, False)
         
     def SetFocusTo(self, el):
         if self.FocusOn != None:
@@ -152,8 +165,8 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
     
     def ButtonAction(self, cmd):
         self.SetFocusTo(None)
-        if cmd in self.Actions.keys():
-            self.Actions[cmd]()
+        #if cmd in self.Actions.keys():
+        #    self.Actions[cmd]()
     
     def _OnExecute(self, que):
         try:

@@ -173,20 +173,15 @@ def CloseOptions(*a):
     globalvars.GuiPresenter.ShowDialog("Options", False)
     
 def ShowOptionsFromGame(*a):    
-    globalvars.Board.Freeze(True)
     globalvars.GuiPresenter.data["Options.Buttons#value"] = "Game"
-    globalvars.GuiPresenter.data["Options.Buttons.Game.Resume#action"] = CloseOptionsAndResumeGame
+    globalvars.GuiPresenter.data["Options.Buttons.Game.Resume#action"] = CloseOptions
     globalvars.GuiPresenter.data["Options.Buttons.Game.Restart#action"] = RestartGameFromOptions
     globalvars.GuiPresenter.data["Options.Buttons.Game.EndGame#action"] = ExitFromGameToMenu
     globalvars.GuiPresenter.data["Options#kbdCommands"] = [
-        { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseOptionsAndResumeGame },
+        { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseOptions },
         ]
     ShowOptions()
     
-def CloseOptionsAndResumeGame(*a):
-    CloseOptions()
-    globalvars.Board.Freeze(False)
-
 def RestartGameFromOptions(*a):
     Ask(localizer.GetGameString("Str_Question_RestartLevel"), RestartGame)
 
@@ -196,7 +191,6 @@ def RestartGame(*a):
     
 def ExitFromGameToMenu(*a):
     CloseOptions()
-    globalvars.Board.Freeze(True)
     globalvars.Board.Clear()
     globalvars.Board.Show(False)
     globalvars.GuiPresenter.ShowDialog("GameHUD", False)
@@ -932,14 +926,12 @@ def CloseEpisodeOutro(*a):
 def PlayLevel(*a):
     globalvars.Board.Show(True)
     globalvars.Board.LaunchLevel()
-    globalvars.Board.Freeze(True)
     ShowGameHUD()
     ShowLevelGoals()
     
 def StartPlaying(*a):
     globalvars.GuiPresenter.ShowDialog("LevelGoals", False)
     globalvars.Board.ReallyStart()
-    globalvars.Board.Freeze(False)
 
 #------------------------------
 # цели уровня
@@ -988,6 +980,8 @@ def ShowGameHUD(*a):
         globalvars.GuiPresenter.data["GameHUD#kbdCommands"] = [
             { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ShowOptionsFromGame },
             ]
+    globalvars.GuiPresenter.data["GameHUD#onActivate"] = UnFreezeGame
+    globalvars.GuiPresenter.data["GameHUD#onDeactivate"] = FreezeGame
     globalvars.GuiPresenter.ShowDialog("GameHUD", True)
 
 def DebugFinishLevel(*a):
@@ -1022,6 +1016,12 @@ def UpdateGameHUD(*a):
         pass
     globalvars.GuiPresenter.Dialogs["GameHUD"].UpdateView(globalvars.GuiPresenter.data)
 
+def UnFreezeGame(*a):
+    globalvars.Board.Freeze(False)
+
+def FreezeGame(*a):
+    globalvars.Board.Freeze(True)
+
 #------------------------------
 # результаты уровня
 #------------------------------
@@ -1030,7 +1030,6 @@ def ShowLevelResults(*a):
     #a[0] = passing flag
     #a[1] = parameters (score, expert, etc)
     
-    globalvars.Board.Freeze(True)
     tmpLevelName = globalvars.CurrentPlayer.GetLevel().GetContent()
     tmpLevelParams = globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpLevelName)
     
@@ -1118,12 +1117,11 @@ def ShowHint(*a):
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": CloseHint },
         ]
     globalvars.GuiPresenter.ShowDialog("Hints", True)
-    globalvars.Board.Freeze(True, False)
+    #globalvars.Board.Freeze(True, False)
         
 def CloseHint(*a):
     globalvars.CurrentPlayer.XML.SetBoolAttr("Hints", globalvars.GuiPresenter.data["Hints.ShowHints#checked"])
     globalvars.GuiPresenter.ShowDialog("Hints", False)
-    globalvars.Board.Freeze(False)
 
 
 #------------------------------
@@ -1139,6 +1137,9 @@ def Ask(*a):
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ENTER}], "call": CloseQuestionYes },
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseQuestionNo },
         ]
+    globalvars.GuiPresenter.ShowDialog("Hints", False)
+    globalvars.GuiPresenter.ShowDialog("EnterName", False)
+    globalvars.GuiPresenter.ShowDialog("Pause", False)
     globalvars.GuiPresenter.ShowDialog("YesNo", True)
 
 def CloseQuestionYes(*a):
@@ -1153,12 +1154,14 @@ def CloseQuestionNo(*a):
 #------------------------------
 
 def SetPause(flag):
-    #globalvars.Board.Freeze(flag)
     if flag:
         globalvars.GuiPresenter.data["Pause.Unpause#action"] = UnPause
         globalvars.GuiPresenter.data["Pause#kbdCommands"] = [
             { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": UnPause },
         ]
+        globalvars.GuiPresenter.ShowDialog("Hints", False)
+        globalvars.GuiPresenter.ShowDialog("EnterName", False)
+        globalvars.GuiPresenter.ShowDialog("YesNo", False)
         globalvars.GuiPresenter.ShowDialog("Pause", True)
     else:
         globalvars.GuiPresenter.ShowDialog("Pause", False)

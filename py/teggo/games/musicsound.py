@@ -49,10 +49,15 @@ def PlaySound(sound, channel = None):
 
 class Musician(scraft.Dispatcher):
     def __init__(self, filename):
-        self.DefData = oE.ParseDEF(filename)
-        self.State = None
-        self.NextStates = []
-        self.QueNo = oE.executor.Schedule(self)
+        try:
+            self.DefData = oE.ParseDEF(filename)
+            self.State = None
+            self.NextStates = []
+            self.QueNo = oE.executor.Schedule(self)
+        except:
+            oE.Log("Cannot create Musician object")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+            sys.exit()
         
     def SetState(self, state):
         if state in [x.GetContent() for x in self.DefData.GetTag("MusicThemes").Tags("State")]:

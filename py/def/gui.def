@@ -443,7 +443,7 @@ Objects {
     
     Dialog(LevelGoals) {
         layer = "53"
-        music = "Menu"
+        music = "Game"
         Image(Background) { sprite = "level-start.background" sublayer = "5" }
         Repeat {
             Variable(i) { start = "1" finish = "3" step = "1" }
@@ -491,7 +491,7 @@ Objects {
     
     Dialog(LevelResults) {
         layer = "54"
-        music = "Menu"
+        music = "Game"
         sublayerBase = "-5"
         Variant(Background) {
             Case(Failed) {
@@ -721,7 +721,7 @@ Objects {
     
     Dialog(YesNo) {
         layer = "23"
-        music = "Menu"
+        //music = "Menu"
         Image(Background) { sprite = "2nd-popup-background" sublayer = "1" }
         TextArea(Question) { style = "TextArea.Question" x = "400" y = "250" }
         PushButton(Ok) {
@@ -925,6 +925,7 @@ Styles {
     }
     
     Style(PushButton.Cookbook.Close) {
+        sound = "gui.click"
         HitArea {
             width = "100" height = "130"
         }
@@ -938,6 +939,7 @@ Styles {
     }
     
     Style(PushButton.Cookbook.Next) {
+        sound = "gui.click"
         HitArea {
             width = "50" height = "50"
         }
@@ -951,6 +953,7 @@ Styles {
     }
     
     Style(PushButton.Cookbook.Prev) {
+        sound = "gui.click"
         HitArea {
             width = "50" height = "50"
         }
@@ -964,6 +967,7 @@ Styles {
     }
     
     Style(PushButton.Continue) {
+        sound = "gui.click"
         HitArea {
             width = "140" height = "50"
         }
@@ -997,6 +1001,7 @@ Styles {
     }
     
     Style(PushButton.Map.Back) {
+        sound = "gui.click"
         HitArea {
             width = "130" height = "50"
         }
@@ -1010,6 +1015,7 @@ Styles {
     }
     
     Style(PushButton.Players.ScrollUp) {
+        sound = "gui.click"
         HitArea {
             width = "30" height = "30"
         }
@@ -1023,6 +1029,7 @@ Styles {
     }
     
     Style(PushButton.Players.ScrollDn) {
+        sound = "gui.click"
         HitArea {
             width = "30" height = "30"
         }
@@ -1172,6 +1179,7 @@ Styles {
     }
 
     Style(PushButton.HUD-Menu) {
+        sound = "gui.click"
         HitArea {
             width = "40" height = "40"
         }
@@ -1185,6 +1193,7 @@ Styles {
     }
     
     Style(PushButton.HUD-Menu.American) {
+        sound = "gui.click"
         HitArea {
             width = "40" height = "40"
         }
@@ -1198,6 +1207,7 @@ Styles {
     }
     
     Style(PushButton.HUD-Menu.Mexican) {
+        sound = "gui.click"
         HitArea {
             width = "40" height = "40"
         }
@@ -1211,6 +1221,7 @@ Styles {
     }
     
     Style(PushButton.HUD-Menu.Russian) {
+        sound = "gui.click"
         HitArea {
             width = "40" height = "40"
         }
@@ -1224,6 +1235,7 @@ Styles {
     }
     
     Style(PushButton.HUD-Menu.Japanese) {
+        sound = "gui.click"
         HitArea {
             width = "40" height = "40"
         }
@@ -1237,6 +1249,7 @@ Styles {
     }
     
     Style(PushButton.HUD-Menu.Hawaiian) {
+        sound = "gui.click"
         HitArea {
             width = "40" height = "40"
         }

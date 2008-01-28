@@ -112,7 +112,7 @@ class PushButton(scraft.Dispatcher):
                 self.SetState(ButtonState_Roll)
                 #if globalvars.LastCookie == sprite.cookie and globalvars.StateStack[-1] == self.ActiveWhen:
                 if globalvars.LastCookie == sprite.cookie and not globalvars.Board.Frozen:
-                    globalvars.Musician.PlaySound(self.Sound)
+                    #globalvars.Musician.PlaySound(self.Sound)
                     self.Whose.SendCommand(sprite.cookie)
             globalvars.LastCookie = Cmd_None
         

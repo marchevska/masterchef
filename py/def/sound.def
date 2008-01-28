@@ -1,6 +1,11 @@
-MasterChef{
-    //sound events
+//Channels
+Channel_Default = "0"
+Channel_Music = "1"
     
-    
-
+//Musisc themes
+MusicThemes {
+    State(Menu) { tracks = "'track.menu'," }
+    State(Game) { tracks = "'track.game'," }
+    State(Map) { tracks = "'track.map'," }
 }
+

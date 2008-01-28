@@ -5,8 +5,11 @@ import string, sys, traceback
 
 import scraft
 from scraft import engine as oE
+
 import guiaux
 import localizer
+import musicsound
+
 
 class PushButton(guiaux.GuiObject, scraft.Dispatcher):
     def __init__(self, host, parent, node, styles, ego):
@@ -161,7 +164,7 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
                     self.command(self.ego)
                 else:
                     self.host.ButtonAction(self.command)
-                #globalvars.Musician.PlaySound(self.style.GetStrAttr("sound"))
+                musicsound.PlaySound(self.style.GetStrAttr("sound"))
             self.statehost.LastButtonPressed = None
 
 class RadioButton(PushButton):
@@ -215,12 +218,13 @@ class RadioButton(PushButton):
                     self.command(self.ego)
                 else:
                     self.host.ButtonAction(self.command)
-                #globalvars.Musician.PlaySound(self.style.GetStrAttr("sound"))
+                musicsound.PlaySound(self.style.GetStrAttr("sound"))
             self.statehost.LastButtonPressed = None
 
 class CheckBox(PushButton):
     def __init__(self, host, parent, node, styles, ego):
         PushButton.__init__(self, host, parent, node, styles, ego)
+        self.onUpdate = None
         self.hotspotDefault = scraft.HotspotLeftCenter
         self.CheckSprite = oE.NewSprite_("$spritecraft$dummy$", parent.layer)
         self.CheckSprite.parent = self.Dummy
@@ -247,6 +251,9 @@ class CheckBox(PushButton):
         
     def UpdateView(self, data):
         try:
+            onUpdate = data.get(self.ego+"#onUpdate")
+            if onUpdate != None:
+                self.onUpdate = onUpdate
             checked = data.get(self.ego+"#checked")
             if checked != None:
                 self.Checked = checked
@@ -263,8 +270,10 @@ class CheckBox(PushButton):
             if button == 1 and self.statehost.LastButtonPressed == self.ego:
                 self.Checked = not self.Checked
                 self.statehost.presenter.data[self.ego+"#checked"] = self.Checked
+                if callable(self.onUpdate):
+                    self.onUpdate(self.ego)
                 self._SetState("Roll")
-                #globalvars.Musician.PlaySound(self.style.GetStrAttr("sound"))
+                musicsound.PlaySound(self.style.GetStrAttr("sound"))
             self.statehost.LastButtonPressed = None
 
     

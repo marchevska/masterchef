@@ -8,6 +8,7 @@ from scraft import engine as oE
 
 import guiaux
 import localizer
+import musicsound
 
 #-------------------------------------
 # Композит - общий случай составного объекта
@@ -88,6 +89,7 @@ class GuiComposite(guiaux.GuiObject):
 class GuiDialog(GuiComposite, scraft.Dispatcher):
     def __init__(self, node, ego, presenter):
         self.presenter = presenter
+        self.MusicTheme = node.GetStrAttr("music")
         self.LastButtonPressed = None
         self.FocusOn = None
         GuiComposite.__init__(self, self, None, node, node, ego, presenter)
@@ -108,6 +110,8 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
         self.LastButtonPressed = None
         for el in self.Elements.values()+self.Effects:
             el.Activate(flag)
+        if flag:
+            musicsound.SetState(self.MusicTheme)
         try:
             if flag:
                 oE.executor.GetQueue(self.QueNo).Resume()

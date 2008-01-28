@@ -25,7 +25,7 @@ import playerlist
 import globalvars
 import gamegui
 
-from teggo.games import spriteworks, fxmanager
+from teggo.games import spriteworks, fxmanager, musicsound
 
 class GameBoard(scraft.Dispatcher):
     
@@ -220,7 +220,7 @@ class GameBoard(scraft.Dispatcher):
                         tmpDeltaScore = parameter["station"].AddTokens()
                         self.AddScore(tmpDeltaScore)
                         if tmpDeltaScore > 0:
-                            globalvars.Musician.PlaySound("tokens.give")
+                            musicsound.PlaySound("tokens.give")
                             gamegui.ShowGameText("score", tmpDeltaScore, (parameter["station"].CrdX, parameter["station"].CrdY))
                         if tmpFrom.Collapsing:
                             if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"] > globalvars.GameSettings.GetIntAttr("tokenForIncreadible"):
@@ -236,10 +236,10 @@ class GameBoard(scraft.Dispatcher):
             elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool:
                 if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift'):
                     if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.sweet':
-                        globalvars.Musician.PlaySound("customer.gotgift")
+                        musicsound.PlaySound("customer.gotgift")
                         parameter["station"].Customer.GiveSweet()
                     elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.gift':
-                        globalvars.Musician.PlaySound("customer.gotgift")
+                        musicsound.PlaySound("customer.gotgift")
                         parameter["station"].Customer.GiveGift()
                     tmpFrom = self.TokensFrom
                     self.TokensFrom.RemoveTokens()
@@ -368,7 +368,7 @@ class GameBoard(scraft.Dispatcher):
             tmpStr = "Str_ExpertGoalReached"
         if tmpTextEvent:
             gamegui.ShowGameText("goalreached", tmpStr)
-            globalvars.Musician.PlaySound("level.goalreached")
+            musicsound.PlaySound("level.goalreached")
     
     #--------------------------
     # задает состояние игры
@@ -473,7 +473,7 @@ class GameBoard(scraft.Dispatcher):
         globalvars.BlackBoard.Update(BBTag_Cursor, {"state": GameCursorState_Tokens,
                                                 "tokentype": type, "tokenno": 1 })
         self.TokensFrom = where
-        globalvars.Musician.PlaySound("tokens.pick")
+        musicsound.PlaySound("tokens.pick")
         
         
     def _PickTokensFrom(self, where, type, no):
@@ -486,7 +486,7 @@ class GameBoard(scraft.Dispatcher):
                                                 "tokentype": type, "tokenno": no })
         self.TokensFrom = where
         if no > 0:
-            globalvars.Musician.PlaySound("tokens.pick")
+            musicsound.PlaySound("tokens.pick")
         
     def _DropTokensTo(self, where):
         if where != None:

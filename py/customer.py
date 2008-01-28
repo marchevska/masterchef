@@ -15,7 +15,7 @@ from constants import *
 from extra import Anima, Animator, RandomKeyByRates
 from random import randint
 
-from teggo.games import spriteworks
+from teggo.games import spriteworks, musicsound
 
 #------------
 # Покупатель; имеет настроение, выраженное в сердечках
@@ -203,12 +203,12 @@ class Customer(scraft.Dispatcher):
                             #    self._SetState(CustomerState_Ordering)
                             
                         elif self.State == CustomerState_GoAway:
-                            globalvars.Musician.PlaySound("customer.lost")
+                            musicsound.PlaySound("customer.lost")
                             self._SetState(CustomerState_None)
                             self.Host.SendCommand(Cmd_Station_DeleteCustomerAndLoseMoney)
                             
                         elif self.State == CustomerState_MealReady:
-                            globalvars.Musician.PlaySound("customer.thankyou")
+                            musicsound.PlaySound("customer.thankyou")
                             self._SetState(CustomerState_ThankYou)
                             self.Host.SendCommand(Cmd_CustomerGoesAway)
                             
@@ -224,7 +224,7 @@ class Customer(scraft.Dispatcher):
         
     # сделать заказ
     def _MakeOrder(self):
-        globalvars.Musician.PlaySound("customer.putorder")
+        musicsound.PlaySound("customer.putorder")
         
         tmpLevelRecipeRates = dict(map(lambda x: (x.GetStrAttr("type"), x.GetIntAttr("rate")),
             globalvars.LevelSettings.GetTag("RecipeRates").Tags("Recipe")))

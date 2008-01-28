@@ -149,6 +149,7 @@ def ShowOptions(*a):
     globalvars.GuiPresenter.data["Options.Music#onModify"] = UpdateMusicVolume
 
     globalvars.GuiPresenter.data["Options.Mute#checked"] = globalvars.GameConfig.GetBoolAttr("Mute")
+    globalvars.GuiPresenter.data["Options.Mute#onUpdate"] = UpdateMuteSoudnsOption
     globalvars.GuiPresenter.data["Options.Hints#checked"] = globalvars.CurrentPlayer.XML.GetBoolAttr("Hints")
     globalvars.GuiPresenter.data["Options.Fullscreen#checked"] = globalvars.GameConfig.GetBoolAttr("Fullscreen")
     globalvars.GuiPresenter.ShowDialog("Options", True)
@@ -192,6 +193,10 @@ def ExitFromGameToMenu(*a):
     globalvars.GuiPresenter.ShowDialog("GameHUD", False)
     ShowMenu()
     
+def UpdateMuteSoudnsOption(*a):
+    globalvars.GameConfig.SetBoolAttr("Mute", globalvars.GuiPresenter.data["Options.Mute#checked"])
+    config.ApplyOptions()
+
 def UpdateSoundVolume(*a):
     globalvars.GameConfig.SetIntAttr("Sound", a[0])
     config.ApplyOptions()
@@ -680,7 +685,6 @@ def ShowMap(*a):
         tmpSelectedLevel = globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]]
     tmpHilightedLevel = ""
     if globalvars.CurrentPlayer.NewUnlockedLevel() != "":
-        #globalvars.Musician.PlaySound("map.newlevel")
         tmpHilightedLevel = tmpSelectedLevel = globalvars.CurrentPlayer.NewUnlockedLevel()
         globalvars.CurrentPlayer.PopNewUnlockedLevel()
     if tmpSelectedLevel == "":

@@ -17,12 +17,13 @@ from gui import Gui
 from gameboard import GameBoard
 from playerlist import Player, PlayerList
 from blackboard import BlackBoard
-from extra import *
+from extra import Timer, Cursor
 import config
 import globalvars
 import defs
 
 import gamegui
+from teggo.games import musicsound
 
 def Loading():
     #проверить - упакованы ресурсы или нет
@@ -71,7 +72,8 @@ def Loading():
     globalvars.BlackBoard = BlackBoard()
     globalvars.Cursor = Cursor()
     globalvars.Timer = Timer()
-    globalvars.Musician = Musician()
+    
+    musicsound.Init("def/sound.def")
     globalvars.StateStack = []
     
     gamegui.InitGUI()

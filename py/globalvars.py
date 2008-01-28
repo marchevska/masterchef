@@ -61,7 +61,6 @@ global CurrentPlayer     #профиль игрока + информация о 
 global HiscoresList
 global BestResults       #лучшие результаты по уровням
 
-global Musician
 global Cursor
 global Timer
 global Board

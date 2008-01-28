@@ -9,9 +9,7 @@ from scraft import engine as oE
 import globalvars
 import config
 from constants import *
-from teggo.games import localizer
-from teggo.games import guipresenter
-from teggo.games import fxmanager
+from teggo.games import localizer, guipresenter, fxmanager, musicsound
 
 #------------------------------
 # используется для однократного вызова диспетчером одной функции
@@ -800,7 +798,7 @@ def CloseComics(*a):
 #------------------------------
 
 def ShowEpisodeIntro(*a):
-    #globalvars.Musician.PlaySound("episode.intro")
+    musicsound.PlaySound("episode.intro")
     tmpLevel = globalvars.CurrentPlayer.GetLevel()
     tmpEpisode = tmpLevel.GetStrAttr("episode")
     tmpCharacters = eval(globalvars.LevelProgress.GetTag("People").GetSubtag(tmpEpisode).GetStrAttr("people")).items()
@@ -840,10 +838,10 @@ def ShowEpisodeOutro(*a):
     tmp = globalvars.ThemesInfo.GetSubtag(tmpEpisode)
     tmpResults = globalvars.CurrentPlayer.GetScoresPlaceAndCondition()
     
-    #if tmpResults["pass"]:
-    #    globalvars.Musician.PlaySound("episode.win")
-    #else:
-    #    globalvars.Musician.PlaySound("episode.lose")
+    if tmpResults["pass"]:
+        musicsound.PlaySound("episode.win")
+    else:
+        musicsound.PlaySound("episode.lose")
         
     globalvars.GuiPresenter.data["EpisodeOutro.Theme#value"] = tmpEpisode
         
@@ -1163,7 +1161,7 @@ def SetPause(flag):
         #if globalvars.StateStack[-1] in (PState_Hints,):
         #    self._ReleaseState(globalvars.StateStack[-1])
         #self._SetState(PState_Pause)
-    #globalvars.Musician.SetPause(flag)
+    #musicsound.SetPause(flag)
 
 def UnPause(*a):
     globalvars.PausedState = not globalvars.PausedState

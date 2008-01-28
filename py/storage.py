@@ -19,7 +19,7 @@ import traceback, string
 from random import choice, shuffle, random
 import time
 
-from teggo.games import spriteworks
+from teggo.games import spriteworks, musicsound
 
 #--------------------------------------------
 # Storage - базовый класс контейнера токенов
@@ -814,7 +814,7 @@ class Field(Storage):
                 self.Grid[cell].y = self._CellCoords(cell)[1] - \
                     int(self.FallingBlocks[cell]*self.FallingTime/1000)
             #if self.FallingBlocks != {}:
-            #    globalvars.Musician.PlaySound("tokens.collapse")
+            #    musicsound.PlaySound("tokens.collapse")
             self._GenerateMatchMap()
                 
         #перемешивание токенов на поле
@@ -943,7 +943,7 @@ class Field(Storage):
                 self.Grid[tmpNewKeys[i]].x, self.Grid[tmpNewKeys[i]].y = self._CellCoordsLeft(tmpOldKeys[i])
                 self.ShufflingBlocks[tmpNewKeys[i]] = ((tmpNewKeys[i][0]-tmpOldKeys[i][0])*tmpBasicSpeedX,
                     (tmpNewKeys[i][1]-tmpOldKeys[i][1])*tmpBasicSpeedY)
-            globalvars.Musician.PlaySound("tokens.shuffle")
+            musicsound.PlaySound("tokens.shuffle")
             
         #превращение волшебной палочкой
         elif state == FieldState_MagicWandConverting:
@@ -954,7 +954,7 @@ class Field(Storage):
             for cell in self.ConvertedCells:
                 self.Cells[cell] = parameter
                 self.Grid[cell].ChangeKlassTo(globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(self.Cells[cell]).GetStrAttr("src"))
-            globalvars.Musician.PlaySound("tokens.shuffle")
+            musicsound.PlaySound("tokens.shuffle")
                 
         #конец уровня; задать способ удаления блоков с поля
         elif state == FieldState_EndLevel:
@@ -1012,14 +1012,14 @@ class Field(Storage):
                         self._ExplodeTokens(self.HighlightedCells)
                         self._HighlightCells((0,0), False)
                         self.SetState(FieldState_Collapse)
-                        globalvars.Musician.PlaySound("tokens.remove")
+                        musicsound.PlaySound("tokens.remove")
                         
                     #удаление строки
                     elif self.Cells[tmpPos] == 'bonus.removerow':
                         self._ExplodeTokens(self.HighlightedCells)
                         self._HighlightCells((0,0), False)
                         self.SetState(FieldState_Collapse)
-                        globalvars.Musician.PlaySound("tokens.remove")
+                        musicsound.PlaySound("tokens.remove")
                     
                     #обратная прокрутка
                     elif self.Cells[tmpPos] == 'bonus.scrollback' and self.Collapsing:
@@ -1032,7 +1032,7 @@ class Field(Storage):
                         self._HighlightCells((0,0), False)
                         self._RemoveTokenFrom(tmpPos, False, True)
                         globalvars.Board.SendCommand(Cmd_UtilizePowerUp, 'bonus.hearts')
-                        globalvars.Musician.PlaySound("customer.gotgift")
+                        musicsound.PlaySound("customer.gotgift")
                             
                 ##проверяем использование бонуса с курсора
                 #elif button == 1 and self.Action == Const_HighlightAct:
@@ -1044,7 +1044,7 @@ class Field(Storage):
                 #            self._ExplodeTokens(self.HighlightedCells)
                 #            self._HighlightCells((0,0), False)
                 #            self.SetState(FieldState_Collapse)
-                #            globalvars.Musician.PlaySound("tokens.remove")
+                #            musicsound.PlaySound("tokens.remove")
                 #        
                 #    #волшебная палочка - превращение токенов
                 #    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
@@ -1081,7 +1081,7 @@ class Field(Storage):
                             self._ExplodeTokens(self.HighlightedCells)
                             self._HighlightCells((0,0), False)
                             self.SetState(FieldState_Collapse)
-                            globalvars.Musician.PlaySound("tokens.remove")
+                            musicsound.PlaySound("tokens.remove")
                         
                     #волшебная палочка - превращение токенов
                     elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
@@ -1184,7 +1184,7 @@ class Collapsoid(Field):
             #for cell in self.BurningTokens:
             #    self._RemoveTokenFrom(cell, True)
             self.BurningTime = int(1000*globalvars.GameSettings.GetFltAttr("burnCollapsoidTime"))
-            globalvars.Musician.PlaySound("tokens.burn")
+            musicsound.PlaySound("tokens.burn")
             
         elif state == DropperState_Move:
             #начало движения: сдвиг базы вниз и
@@ -1216,7 +1216,7 @@ class Collapsoid(Field):
                 self.DestCrd = 0
                 self.Speed = -self.ShiftSpeed
                 self.MovingTime = int(1.0*1000*Crd_deltaY/self.ShiftSpeed)
-                globalvars.Musician.PlaySound("tokens.shift")
+                musicsound.PlaySound("tokens.shift")
             
         elif state == DropperState_ScrollBack:
             #обратный сдвиг: сжигаем лишние токены, делаем быстрый сдвиг
@@ -1245,7 +1245,7 @@ class Collapsoid(Field):
             self.DestCrd = 0
             self.MovingTime = int(1.0*1000*globalvars.GameSettings.GetFltAttr("scrollBackTime"))
             self.Speed = int(noRows*Crd_deltaY/globalvars.GameSettings.GetFltAttr("scrollBackTime"))
-            globalvars.Musician.PlaySound("tokens.shift")
+            musicsound.PlaySound("tokens.shift")
             
         
     #--------------------------
@@ -1271,7 +1271,7 @@ class Collapsoid(Field):
                 self.NextDropTime -= que.delta*self.SpeedMiltiplier
                 if self.NextDropTime < 0:
                     if self.Dropped < self.Cols:
-                        #globalvars.Musician.PlaySound("tokens.drop")
+                        #musicsound.PlaySound("tokens.drop")
                         self.SpeedMiltiplier = self._GetSpeedMultiplier()
                         self.Dropped += 1
                         self._PutRandomToken((self.Dropped-1, self.Rows))

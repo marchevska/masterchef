@@ -23,7 +23,20 @@ class RunCMD(scraft.Dispatcher):
 
 def InitGUI(*a):
     globalvars.GuiPresenter = guipresenter.GuiPresenter("def/gui.def")
-    globalvars.GuiQueue = oE.executor.CreateQueue()
+
+GuiQueue = None
+
+def ScheduleFunction(func, delta):
+    global GuiQueue
+    if GuiQueue == None:
+        GuiQueue = oE.executor.CreateQueue()
+    GuiQueue.ScheduleSleep(delta)
+    GuiQueue.Schedule(RunCMD(func))
+
+def CancelSchedule():
+    global GuiQueue
+    if GuiQueue != None:
+        GuiQueue.Clear()
 
 def RaiseEvent():
     globalvars.GuiPresenter.RaiseEvent()
@@ -39,8 +52,7 @@ def ShowLogoSequence(*a):
         ShowDevLogo()
 
 def ShowPubLogo(*a):
-    globalvars.GuiQueue.ScheduleSleep(3000)
-    globalvars.GuiQueue.Schedule(RunCMD(ClosePubLogo))
+    ScheduleFunction(ClosePubLogo, 3000)
     oE.SstDefKlass("publisher-logo", globalvars.BrandingInfo.GetSubtag("publisher-logo"))
     globalvars.GuiPresenter.data["PubLogo.Background#klass"] = "publisher-logo"
     if globalvars.BrandingInfo.HasAttr("background"):
@@ -52,13 +64,12 @@ def ShowPubLogo(*a):
     globalvars.GuiPresenter.ShowDialog("PubLogo", True)
 
 def ClosePubLogo(*a):
-    globalvars.GuiQueue.Clear()
+    CancelSchedule()
     globalvars.GuiPresenter.ShowDialog("PubLogo", False)
     ShowDevLogo()
 
 def ShowDevLogo(*a):
-    globalvars.GuiQueue.ScheduleSleep(3000)
-    globalvars.GuiQueue.Schedule(RunCMD(CloseDevLogo))
+    ScheduleFunction(CloseDevLogo, 3000)
     globalvars.GuiPresenter.data["DevLogo.Close#action"] = CloseDevLogo
     globalvars.GuiPresenter.data["DevLogo#kbdCommands"] = [
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": CloseDevLogo },
@@ -66,7 +77,7 @@ def ShowDevLogo(*a):
     globalvars.GuiPresenter.ShowDialog("DevLogo", True)
 
 def CloseDevLogo(*a):
-    globalvars.GuiQueue.Clear()
+    CancelSchedule()
     globalvars.GuiPresenter.ShowDialog("DevLogo", False)
     ShowMenu()
 
@@ -1059,8 +1070,7 @@ def ShowLevelResults(*a):
             { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ExitToMenuFromLevelResults },
             { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": RestartLevelAfterLevelResults },
             ]
-    globalvars.GuiQueue.ScheduleSleep(1600)
-    globalvars.GuiQueue.Schedule(RunCMD(ShowLevelResultsDialog))
+    ScheduleFunction(ShowLevelResultsDialog, 1500)
     
 def ShowLevelResultsDialog(*a):
     globalvars.GuiPresenter.ShowDialog("LevelResults", True)

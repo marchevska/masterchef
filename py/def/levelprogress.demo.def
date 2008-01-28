@@ -19,7 +19,6 @@ MasterChef {
         //Episode - American
         intro(intro.American) {
             episode = "American"
-            title = "AMERICAN OPEN"
         }
 
         //level(def/00.def) { name = "TUT" no = "0" x = "90" y = "285" }
@@ -32,6 +31,7 @@ MasterChef {
             passed = "{ 'layout': 'outro', 'text': 'def/01.def.passed.text' }"
             expert = "{ 'layout': 'outro', 'text': 'def/01.def.expert.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/01.def.failed.text' }"
+            before = "('MasterChef.intro.1', 'MasterChef.intro.2', 'MasterChef.intro.3', 'Help.Rules', 'intro.American')"
         }
         level(def/02.def) {
             restaurant = "Rocky Ranch" day = "Day 2"
@@ -129,7 +129,6 @@ MasterChef {
         //Episode - Mexican
         intro(intro.Mexican) {
             episode = "Mexican"
-            title = "MEXICAN OPEN"
         }
 
         level(def/11.def) {
@@ -140,6 +139,7 @@ MasterChef {
             passed = "{ 'layout': 'outro', 'text': 'def/11.def.passed.text' }"
             expert = "{ 'layout': 'outro', 'text': 'def/11.def.expert.text' }"
             failed = "{ 'layout': 'outro', 'text': 'def/11.def.failed.text' }"
+            before = "('intro.Mexican',)"
         }
         level(def/12.def) {
             restaurant = "Lemon Lime" day = "Day 2"

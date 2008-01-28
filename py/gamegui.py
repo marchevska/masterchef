@@ -542,45 +542,60 @@ def CloseEnterNameDialog(*a):
 #------------------------------
 
 def NextCareerStage(*a):
-    try:
-        #проходим по списку уровней и находим последний разлоченный
-        tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr("unlocked"),
-                                    globalvars.LevelProgress.GetTag("Levels").Tags())
-        tmpLastUnlocked = tmpAllUnlocked[-1]
-        tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == "level", tmpAllUnlocked))
-        tmpNewUnlocked = globalvars.CurrentPlayer.NewUnlockedLevel() #str
-            
-        #результаты эпизода
-        if tmpNewUnlocked != "" and \
-                globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpNewUnlocked).GetName() == "outro":
-            globalvars.CurrentPlayer.PopNewUnlockedLevel()
-            globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpNewUnlocked))
+    newLevel = globalvars.CurrentPlayer.GetNextLevelInsight()
+    if newLevel != None:
+        globalvars.CurrentPlayer.GotoYourNextLevel()
+        if newLevel.GetName() == "comic":
+            ShowComics()
+        elif newLevel.GetName() == "outro":
             ShowEpisodeOutro()
-        #если последний разлоченный - комикс, то показать комикс
-        elif tmpLastUnlocked.GetName() == "comic":
-            #если это последний комикс, и его уже видели - показать опять карту
-            if not tmpLastUnlocked.Next() and \
-                    globalvars.CurrentPlayer.GetLevelParams(tmpLastUnlocked.GetContent()).GetBoolAttr("seen"):
-                ShowMap()
-            else:
-                globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
-                ShowComics()
-        #вводная страница эпизода
-        elif tmpLastUnlocked.GetName() == "intro":
-            globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
+        elif newLevel.GetName() == "intro":
             ShowEpisodeIntro()
-        #иначе: смотрим количество разлоченных уровней
-        #если больше 1, то показываем карту
-        elif tmpNoUnlockedLevels > 1:
-            ShowMap()
-        #иначе запускаем первый уровень
         else:
-            globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
             PlayLevel()
-    except:
-        oE.Log("Next stage fatal error")
-        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
-        sys.exit()
+    else:
+        ShowMap()   
+    
+    pass
+    #try:
+    #    #проходим по списку уровней и находим последний разлоченный
+    #    tmpAllUnlocked = filter(lambda x: globalvars.CurrentPlayer.GetLevelParams(x.GetContent()).GetBoolAttr("unlocked"),
+    #                                globalvars.LevelProgress.GetTag("Levels").Tags())
+    #    tmpLastUnlocked = tmpAllUnlocked[-1]
+    #    tmpNoUnlockedLevels = len(filter(lambda x: x.GetName() == "level", tmpAllUnlocked))
+    #    tmpNewUnlocked = globalvars.CurrentPlayer.NewUnlockedLevel() #str
+    #        
+    #    #результаты эпизода
+    #    if tmpNewUnlocked != "" and \
+    #            globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpNewUnlocked).GetName() == "outro":
+    #        globalvars.CurrentPlayer.PopNewUnlockedLevel()
+    #        globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(tmpNewUnlocked))
+    #        ShowEpisodeOutro()
+    #    #если последний разлоченный - комикс, то показать комикс
+    #    elif tmpLastUnlocked.GetName() == "comic":
+    #        #если это последний комикс, и его уже видели - показать опять карту
+    #        if not tmpLastUnlocked.Next() and \
+    #                globalvars.CurrentPlayer.GetLevelParams(tmpLastUnlocked.GetContent()).GetBoolAttr("seen"):
+    #            ShowMap()
+    #        else:
+    #            globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
+    #            ShowComics()
+    #    #вводная страница эпизода
+    #    elif tmpLastUnlocked.GetName() == "intro":
+    #        globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
+    #        ShowEpisodeIntro()
+    #    #иначе: смотрим количество разлоченных уровней
+    #    #если больше 1, то показываем карту
+    #    elif tmpNoUnlockedLevels > 1:
+    #        ShowMap()
+    #    #иначе запускаем первый уровень
+    #    else:
+    #        globalvars.CurrentPlayer.SetLevel(tmpLastUnlocked)
+    #        PlayLevel()
+    #except:
+    #    oE.Log("Next stage fatal error")
+    #    oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+    #    sys.exit()
     
 #------------------------------
 # карта
@@ -674,8 +689,10 @@ def ShowMap(*a):
         globalvars.GuiPresenter.data["MapCareer.Levels#Selected"] = [globalvars.GuiPresenter.data["MapCareer.Levels#Values"].index(tmpSelectedLevel)]
 
     globalvars.GuiPresenter.data["MapCareer.Levels#action"] = UpdateMapTablet
-    globalvars.GuiPresenter.data["MapCareer.Start#action"] = PlayLevelFromMap
-    globalvars.GuiPresenter.data["MapCareer.ViewResults#action"] = ViewResults
+    #globalvars.GuiPresenter.data["MapCareer.Start#action"] = PlayLevelFromMap
+    #globalvars.GuiPresenter.data["MapCareer.ViewResults#action"] = ViewResults
+    globalvars.GuiPresenter.data["MapCareer.Start#action"] = DoMapSelection
+    globalvars.GuiPresenter.data["MapCareer.ViewResults#action"] = DoMapSelection
     globalvars.GuiPresenter.data["MapCareer.Close#action"] = CloseMap
     globalvars.GuiPresenter.data["MapCareer#kbdCommands"] = [
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseMap },
@@ -745,6 +762,17 @@ def CloseMap(*a):
     globalvars.GuiPresenter.ShowDialog("MapCareer", False)
     ShowMenu()
 
+def DoMapSelection(*a):
+    globalvars.GuiPresenter.ShowDialog("MapCareer", False)
+    globalvars.CurrentPlayer.SuggestLevel(globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]])
+    if globalvars.CurrentPlayer.GetNextLevelInsight() != None:
+        NextCareerStage()
+    else:
+        oE.Log("Level selection fatal error, level %s", globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]])
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+        sys.exit()
+        
+
 #------------------------------
 # комикс 
 #------------------------------
@@ -756,7 +784,6 @@ def ShowComics(*a):
     globalvars.GuiPresenter.data["Comics#kbdCommands"] = [
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": CloseComics },
         ]
-    globalvars.GuiPresenter.ShowDialog("MapCareer", False)
     globalvars.GuiPresenter.ShowDialog("MainMenu", False)
     globalvars.GuiPresenter.ShowDialog("Comics", True)
 
@@ -792,7 +819,6 @@ def ShowEpisodeIntro(*a):
     globalvars.GuiPresenter.data["EpisodeIntro#kbdCommands"] = [
         { "condition": [{"func": oE.EvtIsKeyDown, "value": True}], "call": CloseEpisodeIntro },
         ]
-    globalvars.GuiPresenter.ShowDialog("MapCareer", False)
     globalvars.GuiPresenter.ShowDialog("MainMenu", False)
     globalvars.GuiPresenter.ShowDialog("EpisodeIntro", True)
     
@@ -872,22 +898,24 @@ def CloseEpisodeOutro(*a):
     globalvars.GuiPresenter.ShowDialog("EpisodeOutro", False)
     NextCareerStage()
     
-def ViewResults(*a):
-    globalvars.GuiPresenter.ShowDialog("MapCareer", False)
-    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").\
-                    GetSubtag(globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]]))
-    ShowEpisodeOutro()
+#def ViewResults(*a):
+#    globalvars.CurrentPlayer.SuggestLevel(globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]])
+#    globalvars.GuiPresenter.ShowDialog("MapCareer", False)
+#    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").\
+#                    GetSubtag(globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]]))
+#    ShowEpisodeOutro()
 
 #------------------------------
 # играть уровень...
 #------------------------------
 
-def PlayLevelFromMap(*a):
-    globalvars.GuiPresenter.ShowDialog("MapCareer", False)
-    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").\
-                    GetSubtag(globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]]))
-    PlayLevel()
-    
+#def PlayLevelFromMap(*a):
+#    globalvars.CurrentPlayer.SuggestLevel(globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]])
+#    globalvars.GuiPresenter.ShowDialog("MapCareer", False)
+#    globalvars.CurrentPlayer.SetLevel(globalvars.LevelProgress.GetTag("Levels").\
+#                    GetSubtag(globalvars.GuiPresenter.data["MapCareer.Levels#Values"][globalvars.GuiPresenter.data["MapCareer.Levels#Selected"][0]]))
+#    PlayLevel()
+#    
 def PlayLevel(*a):
     globalvars.Board.Show(True)
     globalvars.Board.LaunchLevel()
@@ -936,10 +964,25 @@ def ShowLevelGoals(*a):
 
 def ShowGameHUD(*a):
     globalvars.GuiPresenter.data["GameHUD.Menu#action"] = ShowOptionsFromGame
-    globalvars.GuiPresenter.data["GameHUD#kbdCommands"] = [
-        { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ShowOptionsFromGame },
-        ]
+    if globalvars.GameSettings.GetBoolAttr("debugMode"):
+        globalvars.GuiPresenter.data["GameHUD#kbdCommands"] = [
+            { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ShowOptionsFromGame },
+            { "condition": [{"func": oE.EvtKey, "value": scraft.Key_F6}], "call": DebugFinishLevel },
+            { "condition": [{"func": oE.EvtKey, "value": scraft.Key_F7}], "call": DebugLastCustomer },
+            { "condition": [{"func": oE.EvtKey, "value": scraft.Key_F8}], "call": DebugLoseLevel },
+            ]
+    else:
+        globalvars.GuiPresenter.data["GameHUD#kbdCommands"] = [
+            { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": ShowOptionsFromGame },
+            ]
     globalvars.GuiPresenter.ShowDialog("GameHUD", True)
+
+def DebugFinishLevel(*a):
+    globalvars.Board.SendCommand(Cmd_DebugFinishLevel)
+def DebugLastCustomer(*a):
+    globalvars.Board.SendCommand(Cmd_DebugLastCustomer)
+def DebugLoseLevel(*a):
+    globalvars.Board.SendCommand(Cmd_DebugLoseLevel)
 
 #обновить панель информации при старте уровня
 def ResetGameHUD(*a):

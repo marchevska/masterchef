@@ -642,7 +642,7 @@ class TrailProxy(object):
     def Dispose(self):
         for spr in self.Sprites:
             spr.Dispose()
-        del self.Sprites
+        self.Sprites = []
         
 
 #------------ 

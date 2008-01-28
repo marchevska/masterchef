@@ -10,7 +10,7 @@ MasterChef {
     //}
     
     //Levels{
-        level(def/00.def) { unlocked = "no" played = "no" expert = "no" hiscore = "0"  }
+        level(def/00.def) { unlocked = "yes" played = "no" expert = "no" hiscore = "0"  }
         level(def/01.def) { unlocked = "no" played = "no" expert = "no" hiscore = "0"  }
         level(def/02.def) { unlocked = "no" played = "no" expert = "no" hiscore = "0"  }
         level(def/03.def) { unlocked = "no" played = "no" expert = "no" hiscore = "0"  }
@@ -29,7 +29,7 @@ MasterChef {
     //}
     
     //Comics{
-        comic(MasterChef.intro.1) { seen = "no" unlocked = "yes"  }
+        comic(MasterChef.intro.1) { seen = "no" unlocked = "no"  }
         comic(MasterChef.intro.2) { seen = "no" unlocked = "no"  }
         comic(MasterChef.intro.3) { seen = "no" unlocked = "no"  }
         comic(Help.Rules) { seen = "no" unlocked = "no"  }

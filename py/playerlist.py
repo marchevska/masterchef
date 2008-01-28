@@ -30,6 +30,7 @@ class Player:
         self.Filename = ""
         self.EpisodeResults = {}
         self.Hiscores = {}
+        self.LevelSequence = []
         try:
             self.XML = oE.ParseDEF(globalvars.File_DummyProfile).GetTag(DEF_Header)
         except:
@@ -130,7 +131,49 @@ class Player:
     def _UnlockEntry(self, entry):
         if not entry.GetBoolAttr("unlocked") and entry.GetName() in ("comic", "intro", "outro", "level"):
             self.XML.SetStrAttr("newUnlocked", entry.GetContent())
+            #если outro было только что разлочено - приписать его к сиквенсу
+            if entry.GetName() == "outro":
+                self.LevelSequence.append(entry.GetContent())
         entry.SetBoolAttr("unlocked", True)
+        
+    #------------------------------------
+    # предложить следующий уровень (например, с карты)
+    # на входе - имя уровня
+    #------------------------------------
+    def SuggestLevel(self, levelName):
+        level = globalvars.LevelProgress.GetTag("Levels").GetSubtag(levelName)
+        if level.GetName() in ("level", "outro"):
+            if level.HasAttr("before"):
+                beforeLevels = list(eval(level.GetStrAttr("before")))
+            else:
+                beforeLevels = []
+            if level.HasAttr("after"):
+                afterLevels = list(eval(level.GetStrAttr("after")))
+            else:
+                afterLevels = []
+            self.LevelSequence = beforeLevels + [levelName] + afterLevels
+        
+    #------------------------------------
+    # запросить у игрока следующий уровень
+    #------------------------------------
+    def GetNextLevelInsight(self):
+        # если сиквенса нет, проверить первый уровень
+        if self.LevelSequence == []:
+            tmp = filter(lambda x: x.GetBoolAttr("unlocked"), list(self.XML.Tags("level"))+list(self.XML.Tags("outro")))
+            if len(tmp) <= 1:
+                self.SuggestLevel(globalvars.LevelProgress.GetTag("Levels").GetTag("level").GetContent())
+        if self.LevelSequence != []:
+            return globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.LevelSequence[0])
+        else:
+            return None
+        
+    def GotoYourNextLevel(self):
+        try:
+            self.SetLevel(globalvars.LevelProgress.GetTag("Levels").GetSubtag(self.LevelSequence.pop(0)))
+        except:
+            oE.Log("Cannot pass to the next level")
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+            sys.exit()
         
     #------------------------------------
     # установить текущий уровень
@@ -159,9 +202,14 @@ class Player:
                 self._ReviewEpisodeResults(level)
                 #проверить условие для разлочивания следующего уровня
                 if level.Next() and self.EpisodeResults[level.GetStrAttr("episode")]["pass"]:
-                    tmpNextLevel = self.XML.GetSubtag(level.Next().GetContent())
-                    if tmpNextLevel.HasAttr("unlocked"):
-                        self._UnlockEntry(tmpNextLevel)
+                    #найти следующий уровень с типом level; если найдем - разлочить
+                    tmpNextLevel = level
+                    while tmpNextLevel.GetName() != "level" and tmpNextLevel.Next() != None:
+                        tmpNextLevel = tmpNextLevel.Next()
+                    if tmpNextLevel.GetName() == "level":
+                        tmpNextLevelProfileEntry = self.XML.GetSubtag(tmpNextLevel.GetContent())
+                        if tmpNextLevelProfileEntry.HasAttr("unlocked"):
+                            self._UnlockEntry(tmpNextLevelProfileEntry)
             
             elif level.GetName() == "level":
                 #если уровень: отметить в профиле игрока уровень как начатый

@@ -780,7 +780,7 @@ Objects {
         layer = "80"
         music = "Game"
         sublayerBase = "-5"
-        Parameter(EffectsLayer) { type = "integer" value = "49" }
+        Parameter(EffectsLayer) { type = "integer" value = "59" }
         Parameter(EffectsSublayer) { type = "integer" value = "0" }
         Image(InfoPane) { x = "1" y = "0" sublayer = "5" }
         TextLabel(LevelText) { style = "TextLabel.HUD.Header" x = "77" y = "18" textDefault = "Str_HUD_LevelText" }

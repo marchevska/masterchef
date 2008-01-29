@@ -85,7 +85,7 @@ class PushButton(scraft.Dispatcher):
             self.TextSprite.hotspot = scraft.HotspotCenter
         #if self.ButtonSprite.mouseOver:
         #    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
-        globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
+        #globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
         
     def _OnMouseOver(self, sprite, flag):
         if self.State in (ButtonState_Up, ButtonState_Roll, ButtonState_Down):
@@ -179,8 +179,8 @@ class Slider(scraft.Dispatcher):
     def SetState(self, state):
         self.State = state
         self.SliderSprite.frno = self.SliderFrames[state]
-        if self.SliderSprite.mouseOver:
-            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
+        #if self.SliderSprite.mouseOver:
+        #    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": RefStates[state]})
         
     def SetValue(self, value):
         self.SliderSprite.x = self.XRange[0] + int(value*(self.XRange[1] - self.XRange[0])/100)

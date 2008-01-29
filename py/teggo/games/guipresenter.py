@@ -15,6 +15,7 @@ from guislider import Slider
 
 import guiaux
 import localizer
+import cursor
 
 class GuiPresenter:
     def __init__(self, filename):
@@ -27,6 +28,7 @@ class GuiPresenter:
         
         
         #parse object styles if necessary
+        cursor.Init(self.DefData.GetTag("Objects").GetSubtag("Cursor"), self)
         
         self.Dialogs = {}
         for tmp in self.DefData.GetTag("Objects").Tags("Dialog"):

@@ -84,7 +84,6 @@ Layer_Particles = 21
 #теги для черной доски
 BBTag_Ingredients = 0
 BBTag_Recipes = 1
-BBTag_Cursor = 2
 BBTag_Hints = 3
 
 #состояния игры
@@ -113,11 +112,6 @@ DropperState_Drop = 1   #выброс токенов
 DropperState_Burn = 2   #задержка сдвига для сжигания верхних рядов
 DropperState_Move = 3   #сдвиг поля
 DropperState_ScrollBack = 4   #обратный скроллинг
-
-#состояния игрового курсора
-GameCursorState_Default = 0
-GameCursorState_Tokens = 1
-GameCursorState_Tool = 2
 
 #состояния кастомера
 CustomerState_None = "None"

@@ -36,11 +36,6 @@ class BlackBoard:
                 if self.Records[tag][data["type"]] == 0:
                     self.Records[tag].pop(data["type"])
                     
-            #о курсоре и его содержимом
-            elif tag == BBTag_Cursor:
-                for tmp in data.keys():
-                    self.Records[BBTag_Cursor][tmp] = data[tmp]
-                
             #о событиях, связанных с подсказками
             #хранится очередь событий, которые удаляются
             #по одной штуке в порядке появления
@@ -61,7 +56,7 @@ class BlackBoard:
             if not self.Records.has_key(tag):
                 self.ClearTag(tag)
                 #self.Records[tag] = {}
-            if tag in (BBTag_Ingredients, BBTag_Cursor, BBTag_Recipes):
+            if tag in (BBTag_Ingredients, BBTag_Recipes):
                 return self.Records[tag]
             elif tag == BBTag_Hints:
                 if len(self.Records[tag]) > 0:

@@ -8,7 +8,7 @@ from scraft import engine as oE
 
 import guiaux
 import localizer
-import musicsound
+import musicsound, cursor
 
 
 class PushButton(guiaux.GuiObject, scraft.Dispatcher):
@@ -147,14 +147,17 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
         if self.state != "Inert":
             if flag:
                 self._SetState("Roll")
+                cursor.SetState("Roll")
             else:
                 self._SetState("Up")
+                cursor.SetState("Up")
         
     def _OnMouseDown(self, sprite, x, y, button):
         if self.state != "Inert":
             if button == 1:
                 self.statehost.LastButtonPressed = self.ego
                 self._SetState("Down")
+                cursor.SetState("Down")
         
     def _OnMouseUp(self, sprite, x, y, button):
         if self.state != "Inert":
@@ -164,6 +167,7 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
                     self.command(self.ego)
                 else:
                     self.host.ButtonAction(self.command)
+                cursor.SetState("Roll")
                 musicsound.PlaySound(self.style.GetStrAttr("sound"))
             self.statehost.LastButtonPressed = None
 
@@ -187,16 +191,18 @@ class RadioButton(PushButton):
         
     def _OnMouseOver(self, sprite, flag):
         if self.state != "Inert":
-            if self.selected:
-                if flag:
+            if flag:
+                if self.selected:
                     self._SetState("SelectRoll")
                 else:
-                    self._SetState("Select")
-            else:
-                if flag:
                     self._SetState("Roll")
+                cursor.SetState("Roll")
+            else:
+                if self.selected:
+                    self._SetState("Select")
                 else:
                     self._SetState("Up")
+                cursor.SetState("Up")
         
     def _OnMouseDown(self, sprite, x, y, button):
         if self.state != "Inert":
@@ -206,6 +212,7 @@ class RadioButton(PushButton):
                     self._SetState("SelectDown")
                 else:
                     self._SetState("Down")
+                cursor.SetState("Down")
         
     def _OnMouseUp(self, sprite, x, y, button):
         if self.state != "Inert":
@@ -218,6 +225,7 @@ class RadioButton(PushButton):
                     self.command(self.ego)
                 else:
                     self.host.ButtonAction(self.command)
+                cursor.SetState("Roll")
                 musicsound.PlaySound(self.style.GetStrAttr("sound"))
             self.statehost.LastButtonPressed = None
 
@@ -273,6 +281,7 @@ class CheckBox(PushButton):
                 if callable(self.onUpdate):
                     self.onUpdate(self.ego)
                 self._SetState("Roll")
+                cursor.SetState("Roll")
                 musicsound.PlaySound(self.style.GetStrAttr("sound"))
             self.statehost.LastButtonPressed = None
 

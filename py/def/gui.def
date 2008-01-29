@@ -1,6 +1,41 @@
 
 Objects {
 
+    Composite(Cursor) {
+        layer = "0"
+        Variant(Pointer) {
+            valueDefault = "Up"
+            Case(Up) {
+                Image(Finger) { sprite = "cursor.hand.up" x = "-5" }
+            }
+            Case(Down) {
+                Image(Finger) { sprite = "cursor.hand.down" x = "-5" }
+            }
+            Case(Roll) {
+                Image(Finger) { sprite = "cursor.hand.roll" x = "-5" }
+            }
+        }
+        Variant(Token) {
+            valueDefault = "Empty"
+            Case(Empty) {}
+            Case(Token) {
+                Image(Bg) { sprite = "cursor.box.token" x = "35" y = "10" sublayer = "1" }
+                Image(Token) { x = "27" y = "4" sublayer = "0" }
+                TextLabel(Number) { style = "TextLabel.Domcasual-11" x = "70" y = "23" sublayer = "-1" }
+            }
+            Case(Tool) {
+                Image(Tool) { x = "27" y = "5" sublayer = "0" }
+            }
+        }
+        Variant(Blocker) {
+            valueDefault = "False"
+            Case(False) {}
+            Case(True) {
+                Image(Upper) { sprite = "cursor.box.red.up" x = "35" y = "10" sublayer = "-1" }
+            }
+        }
+    }
+
 //---------------------------------------------------------------------
 // Developer and Publisher Logo Screens
 //---------------------------------------------------------------------
@@ -1335,6 +1370,10 @@ Styles {
     }
     Style(TextLabel.HUD.Score) {
         font = "domcasual-20-green" hotspot = "Center"
+    }
+    Style(TextLabel.Domcasual-11) {
+        font = "domcasual-11" hotspot = "Center"
+        cfilt-color = "0x000000"
     }
     Style(TextLabel.Domcasual-10) {
         font = "domcasual-10-up" hotspot = "LeftTop"

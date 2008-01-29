@@ -70,8 +70,6 @@ def Loading():
     globalvars.PlayerList.Read()
     
     globalvars.BlackBoard = BlackBoard()
-    globalvars.Cursor = Cursor()
-    globalvars.Timer = Timer()
     
     musicsound.Init("def/sound.def")
     globalvars.StateStack = []

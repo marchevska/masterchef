@@ -9,7 +9,7 @@ from scraft import engine as oE
 import globalvars
 import config
 from constants import *
-from teggo.games import localizer, guipresenter, fxmanager, musicsound
+from teggo.games import localizer, guipresenter, fxmanager, musicsound, cursor
 
 #------------------------------
 # используется для однократного вызова диспетчером одной функции
@@ -1251,3 +1251,31 @@ def ShowGameEffect(*a):
     globalvars.GuiPresenter.Dialogs["GameHUD"].AttachEffect(\
                 fxmanager.CreateEffect(globalvars.GuiPresenter.Dialogs["GameHUD"],
                 a[0], { "crd": a[1], "layer": layer, "sublayer": sublayer }))
+
+#------------------------------
+# функция для установки специфических для игры параметров курсора
+#------------------------------
+def SetCursorState(param):
+    if globalvars.GuiPresenter.data.get("Cursor#params") == None:
+        globalvars.GuiPresenter.data["Cursor#params"] = {}
+    for tmp in param.keys():
+        globalvars.GuiPresenter.data["Cursor#params"][tmp] = param[tmp]
+    if param.has_key("button"):
+        cursor.SetState(param["button"])
+        
+    if param.has_key("state"):
+        globalvars.GuiPresenter.data["Cursor.Token#value"] = param["state"]
+    if param.get("state") == "Token":
+        if param.has_key("tokentype") and param.has_key("tokenno"):
+            globalvars.GuiPresenter.data["Cursor.Token.Token.Token#klass"] = \
+                    globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(param["tokentype"]).GetStrAttr("iconSrc")
+            globalvars.GuiPresenter.data["Cursor.Token.Token.Number#text"] = str(param["tokenno"])
+    elif param.get("state") == "Tool":
+        if param.has_key("tooltype"):
+            globalvars.GuiPresenter.data["Cursor.Token.Tool.Tool#klass"] = \
+                    globalvars.CuisineInfo.GetTag("Ingredients").GetSubtag(param["tooltype"]).GetStrAttr("src")
+    if param.has_key("red"):
+        globalvars.GuiPresenter.data["Cursor.Blocker#value"] = str(param["red"])
+
+def GetCursorState(paramName):
+    return globalvars.GuiPresenter.data["Cursor#params"].get(paramName)

@@ -121,7 +121,7 @@ class CustomerStation(scraft.Dispatcher):
         if globalvars.GameSettings.GetBoolAttr("allowExtraIngredients"):
             return True
         else:
-            tmp = filter(lambda x: self.TokensNeeded[x]["item"] == globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokentype"],
+            tmp = filter(lambda x: self.TokensNeeded[x]["item"] == gamegui.GetCursorState("tokentype"),
                     range(len(self.TokensNeeded)))
             if tmp == []:
                 return False
@@ -134,8 +134,8 @@ class CustomerStation(scraft.Dispatcher):
     # добавить "no" токенов типа "food" + проверки
     #--------------
     def AddTokens(self):
-        food = globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokentype"]
-        no = globalvars.BlackBoard.Inspect(BBTag_Cursor)["tokenno"]
+        food = gamegui.GetCursorState("tokentype")
+        no = gamegui.GetCursorState("tokenno")
         #tmp - номер нужного ингредиента, для обновления индикаторов
         tmp = filter(lambda x: self.TokensNeeded[x]["item"] == food, range(len(self.TokensNeeded)))
         
@@ -196,21 +196,21 @@ class CustomerStation(scraft.Dispatcher):
         
     def _OnMouseDown(self, sprite, x, y, button):
         if button == 1:
-            if (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
-                        (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \
-                        globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
-                globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Down})
+            if (gamegui.GetCursorState("state") == "Token" and self.CanAddTokens()) or \
+                        (gamegui.GetCursorState("state") == "Tool" and \
+                        gamegui.GetCursorState("tooltype") in ('bonus.sweet', 'bonus.gift')):
+                gamegui.SetCursorState({"button": "Down"})
         elif button == 2:
             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
             
     def _OnMouseUp(self, sprite, x, y, button):
         if button == 1:
-            #if (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
-            #            (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \
-            #            globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
-            #    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Roll})
+            #if (gamegui.GetCursorState("state") == "Token" and self.CanAddTokens()) or \
+            #            gamegui.GetCursorState("state") == "Tool" and \
+            #            gamegui.GetCursorState("tooltype") in ('bonus.sweet', 'bonus.gift')):
+            #    gamegui.SetCursorState({"button": "Roll"})
             #else:
-                globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+                gamegui.SetCursorState({"button": "Up"})
         #if globalvars.StateStack[-1] == PState_Game:
         if not globalvars.Board.Frozen:
             if sprite.cookie == Cmd_CustomerStation and self.Active:
@@ -231,28 +231,28 @@ class CustomerStation(scraft.Dispatcher):
         else:
             self.TableSprite.frno = 0
             self.MaskSprite.frno = 0
-        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Tool, GameCursorState_Tokens):
+        if gamegui.GetCursorState("state") in ("Tool", "Token"):
             if not flag or \
-                    (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens and self.CanAddTokens()) or \
-                    (globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool and \
-                    globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.sweet', 'bonus.gift')):
+                    (gamegui.GetCursorState("state") == "Token" and self.CanAddTokens()) or \
+                    (gamegui.GetCursorState("state") == "Tool" and \
+                    gamegui.GetCursorState("tooltype") in ('bonus.sweet', 'bonus.gift')):
                 self.Customer.Sprite.cfilt.color = CFilt_White
                 self.TableSprite.cfilt.color = CFilt_White
                 self.MaskSprite.cfilt.color = CFilt_White
                 self.RecipeInfoSprite.cfilt.color = CFilt_White
-                globalvars.BlackBoard.Update(BBTag_Cursor, {"red": False})
+                gamegui.SetCursorState({"red": False})
                 if flag:
-                    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Roll})
+                    gamegui.SetCursorState({"button": "Roll"})
                 else:
-                    globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+                    gamegui.SetCursorState({"button": "Up"})
             else:
                 self.Customer.Sprite.cfilt.color = CFilt_Red
                 self.TableSprite.cfilt.color = CFilt_Red
                 self.MaskSprite.cfilt.color = CFilt_Red
                 self.RecipeInfoSprite.cfilt.color = CFilt_Red
-                globalvars.BlackBoard.Update(BBTag_Cursor, {"red": True, "button": ButtonState_Up})
-        elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Default:
-            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+                gamegui.SetCursorState({"button": "Up", "red": True })
+        elif gamegui.GetCursorState("state") == "Empty":
+            gamegui.SetCursorState({"button": "Up"})
         
     def Show(self, flag):
         self.Dummy.visible = flag

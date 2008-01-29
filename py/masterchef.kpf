@@ -372,6 +372,8 @@
 </file>
 <file url="teggo/games/musicsound.py" id="8BD64EA5-47A1-41A4-B7C3-6A86C30DF911" name="musicsound.py">
 </file>
+<file url="teggo/games/cursor.py" id="27ED77B6-D43D-4233-A3AD-D7ADC6ED067A" name="cursor.py">
+</file>
 </folder>
 <file url="gamegui.py" id="FAD2F9A1-96D4-464A-A8C7-5572FD6F5B17" name="gamegui.py">
 </file>

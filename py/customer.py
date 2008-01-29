@@ -12,7 +12,7 @@ from scraft import engine as oE
 import globalvars
 from constants import *
 #from guielements import MakeSimpleSprite, MakeTextSprite, MakeSprite
-from extra import Anima, Animator, RandomKeyByRates
+from extra import Anima, RandomKeyByRates
 from random import randint
 
 from teggo.games import spriteworks, musicsound

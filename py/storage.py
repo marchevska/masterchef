@@ -20,6 +20,7 @@ from random import choice, shuffle, random
 import time
 
 from teggo.games import spriteworks, musicsound
+import gamegui
 
 #--------------------------------------------
 # Storage - базовый класс контейнера токенов
@@ -126,9 +127,9 @@ class Storage(scraft.Dispatcher):
         
     def _OnMouseOver(self, sprite, flag):
         if flag:
-            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Roll})
+            gamegui.SetCursorState({"button": "Roll"})
         else:
-            globalvars.BlackBoard.Update(BBTag_Cursor, {"button": ButtonState_Up})
+            gamegui.SetCursorState({"button": "Up"})
         
     # подбор токенов при нажатии на группу
     #def _OnMouseClick(self, sprite, x, y, button):
@@ -137,7 +138,7 @@ class Storage(scraft.Dispatcher):
         #if globalvars.StateStack[-1] == PState_Game:
             if button == 2:
                 globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
-            #elif globalvars.Board.GameCursorState in (GameCursorState_Default, GameCursorState_Tokens):
+            #elif gamegui.GetCursorState("state") in ("Empty", "Token"):
             else:
                 if sprite.cookie == Cmd_Receptor:
                     #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
@@ -150,7 +151,7 @@ class Storage(scraft.Dispatcher):
                             globalvars.Board.SendCommand(Cmd_PickFromStorage,
                                     {"where": self, "type": self.Cells[self.SelectedCells[0]], "no": len(self.HighlightedCells)})        
                     else:
-                        if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tokens:
+                        if gamegui.GetCursorState("state") == "Token":
                             #put tokens from mouse
                             globalvars.Board.SendCommand(Cmd_ClickStorage, {"where": self, "pos": tmpPos})        
     
@@ -310,7 +311,7 @@ class Store(Storage):
         try:
             if not self.Frozen:
             #if globalvars.StateStack[-1] == PState_Game:
-                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
+                if gamegui.GetCursorState("state") in ("Empty", "Token"):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
@@ -387,7 +388,7 @@ class SingularStore(Storage):
         try:
             if not self.Frozen:
             #if globalvars.StateStack[-1] == PState_Game:
-                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
+                if gamegui.GetCursorState("state") in ("Empty", "Token"):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                         tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
@@ -688,14 +689,14 @@ class Field(Storage):
             #если под курсором обычный токен - проверяем, что на курсоре
             else:
                 #если на курсоре бонус, который действует на токены - подсвечиваем активную область
-                if globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool \
-                        and globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] in ('bonus.spoon', 'bonus.magicwand'):
+                if gamegui.GetCursorState("state") == "Tool" \
+                        and gamegui.GetCursorState("tooltype") in ('bonus.spoon', 'bonus.magicwand'):
                     #ложка - подсветить все клетки поля того же типа
-                    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
+                    if gamegui.GetCursorState("tooltype") == 'bonus.spoon':
                         self.HighlightedCells = filter(lambda x: self.Cells[x] == self.Cells[pos] and x[1] < self.Rows, self.Cells.keys())
                         self.Action = Const_HighlightAct
                     #волшебная палочка - подсветить круг - и проверить, что мы не размножаем бонусы!
-                    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
+                    elif gamegui.GetCursorState("tooltype") == 'bonus.magicwand':
                         if globalvars.GameSettings.GetBoolAttr("allowBonusConvertion"):
                             tmpNonConvertable = [Const_EmptyCell]
                         else:
@@ -1037,7 +1038,7 @@ class Field(Storage):
                 ##проверяем использование бонуса с курсора
                 #elif button == 1 and self.Action == Const_HighlightAct:
                 #    #ложка - удалить подсвеченные токены
-                #    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
+                #    if gamegui.GetCursorState("tooltype") == 'bonus.spoon':
                 #        if len(self.HighlightedCells) >0:
                 #            self._RemoveTokenFrom(self.SelectedCells[0], False, False)
                 #            globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
@@ -1047,7 +1048,7 @@ class Field(Storage):
                 #            musicsound.PlaySound("tokens.remove")
                 #        
                 #    #волшебная палочка - превращение токенов
-                #    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
+                #    elif gamegui.GetCursorState("tooltype") == 'bonus.magicwand':
                 #        if len(self.HighlightedCells) >0:
                 #            self.ConvertedCells = list(self.HighlightedCells)
                 #            self.SetState(FieldState_MagicWandConverting, self.Cells[tmpPos])
@@ -1074,7 +1075,7 @@ class Field(Storage):
                 #проверяем использование бонуса с курсора
                 if button == 1 and self.Action == Const_HighlightAct:
                     #ложка - удалить подсвеченные токены
-                    if globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.spoon':
+                    if gamegui.GetCursorState("tooltype") == 'bonus.spoon':
                         if len(self.HighlightedCells) >0:
                             self._RemoveTokenFrom(self.SelectedCells[0], False, False)
                             globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
@@ -1084,7 +1085,7 @@ class Field(Storage):
                             musicsound.PlaySound("tokens.remove")
                         
                     #волшебная палочка - превращение токенов
-                    elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["tooltype"] == 'bonus.magicwand':
+                    elif gamegui.GetCursorState("tooltype") == 'bonus.magicwand':
                         if len(self.HighlightedCells) >0:
                             self.ConvertedCells = list(self.HighlightedCells)
                             self.SetState(FieldState_MagicWandConverting, self.Cells[tmpPos])
@@ -1378,11 +1379,11 @@ class Collapsoid(Field):
     def _OnMouseDown(self, sprite, x, y, button):
         if not self.Frozen:
         #if globalvars.StateStack[-1] == PState_Game:
-            if (button == 1 and globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] == GameCursorState_Tool) \
+            if (button == 1 and gamegui.GetCursorState("state") == "Tool") \
                     or button == 2:
                 #Field._OnMouseClick(self, sprite, x, y, button)
                 Field._OnMouseDown(self, sprite, x, y, button)
-            elif globalvars.BlackBoard.Inspect(BBTag_Cursor)["state"] in (GameCursorState_Default, GameCursorState_Tokens):
+            elif gamegui.GetCursorState("state") in ("Empty", "Token"):
                 if sprite.cookie == Cmd_Receptor:
                     tmpPos = self._CellByCoords((sprite.scrX, sprite.scrY))
                     #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))

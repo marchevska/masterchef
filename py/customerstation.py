@@ -66,7 +66,6 @@ class CustomerStation(scraft.Dispatcher):
         self.Customer = customer
         customer.AttachTo(self)
         self.Active = True
-        #if self.Dummy.mouseOver and globalvars.StateStack[-1] == PState_Game:
         if self.Dummy.mouseOver and not globalvars.Board.Frozen:
             self._Hilight(True)
         else:
@@ -189,7 +188,6 @@ class CustomerStation(scraft.Dispatcher):
         return eval(globalvars.GameSettings.GetStrAttr("tokenScores"))[tmpOld - tmpNew]
         
     def _OnMouseOver(self, sprite, flag):
-        #if globalvars.StateStack[-1] == PState_Game and self.State != CStationState_None:
         if not globalvars.Board.Frozen and self.State != CStationState_None:
             if sprite.cookie == Cmd_CustomerStation and self.Customer != None:
                 self._Hilight(flag)    
@@ -211,13 +209,12 @@ class CustomerStation(scraft.Dispatcher):
             #    gamegui.SetCursorState({"button": "Roll"})
             #else:
                 gamegui.SetCursorState({"button": "Up"})
-        #if globalvars.StateStack[-1] == PState_Game:
         if not globalvars.Board.Frozen:
             if sprite.cookie == Cmd_CustomerStation and self.Active:
                 globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
                                                             "mealReady": self.MealReady})
     #def _OnMouseClick(self, sprite, button, x, y):
-    #    if globalvars.StateStack[-1] == PState_Game:
+        #if not globalvars.Board.Frozen:
     #        if sprite.cookie == Cmd_CustomerStation and self.Active:
     #            globalvars.Board.SendCommand(Cmd_ClickStation, {"station": self, "hasOrder": self.HasOrder,
     #                                                        "mealReady": self.MealReady})

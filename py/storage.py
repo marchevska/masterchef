@@ -135,7 +135,6 @@ class Storage(scraft.Dispatcher):
     #def _OnMouseClick(self, sprite, x, y, button):
     def _OnMouseDown(self, sprite, x, y, button):
         if not self.Frozen:
-        #if globalvars.StateStack[-1] == PState_Game:
             if button == 2:
                 globalvars.Board.SendCommand(Cmd_DropWhatYouCarry)
             #elif gamegui.GetCursorState("state") in ("Empty", "Token"):
@@ -310,7 +309,6 @@ class Store(Storage):
     def _OnMouseOver(self, sprite, flag):
         try:
             if not self.Frozen:
-            #if globalvars.StateStack[-1] == PState_Game:
                 if gamegui.GetCursorState("state") in ("Empty", "Token"):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
@@ -387,7 +385,6 @@ class SingularStore(Storage):
     def _OnMouseOver(self, sprite, flag):
         try:
             if not self.Frozen:
-            #if globalvars.StateStack[-1] == PState_Game:
                 if gamegui.GetCursorState("state") in ("Empty", "Token"):
                     if sprite.cookie == Cmd_Receptor:
                         #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
@@ -966,7 +963,6 @@ class Field(Storage):
     #--------------------------
     def _OnMouseOver(self, sprite, flag):
         try:
-            #if globalvars.StateStack[-1] == PState_Game and \
             if not self.Frozen and \
                     self.State not in (FieldState_Shuffle, FieldState_MagicWandConverting):
             #if self.State == FieldState_Input:
@@ -987,8 +983,6 @@ class Field(Storage):
     #def _OnMouseClick(self, sprite, x, y, button):
     def _OnMouseDown(self, sprite, x, y, button):
         if not self.Frozen:
-        #if globalvars.StateStack[-1] == PState_Game:
-        #if self.State == FieldState_Input:
             try:
                 #tmpPos = (sprite.GetItem(Indexes["Col"]), sprite.GetItem(Indexes["Row"]))
                 tmpPos = self._CellByCoords((x, y))
@@ -1069,8 +1063,6 @@ class Field(Storage):
             
     def _OnMouseUp(self, sprite, x, y, button):
         if not self.Frozen:
-        #if globalvars.StateStack[-1] == PState_Game:
-        #if self.State == FieldState_Input:
             try:
                 #проверяем использование бонуса с курсора
                 if button == 1 and self.Action == Const_HighlightAct:
@@ -1378,7 +1370,6 @@ class Collapsoid(Field):
     #def _OnMouseClick(self, sprite, x, y, button):
     def _OnMouseDown(self, sprite, x, y, button):
         if not self.Frozen:
-        #if globalvars.StateStack[-1] == PState_Game:
             if (button == 1 and gamegui.GetCursorState("state") == "Tool") \
                     or button == 2:
                 #Field._OnMouseClick(self, sprite, x, y, button)

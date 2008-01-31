@@ -72,8 +72,6 @@ def Loading():
     globalvars.BlackBoard = BlackBoard()
     
     musicsound.Init("def/sound.def")
-    globalvars.StateStack = []
-    
     gamegui.InitGUI()
     #gamegui.ShowLogoSequence()
     
@@ -96,7 +94,7 @@ def MainLoop():
             sys.exit()
     # конец кода запуска заданного уровня
     
-    while not globalvars.ExitFlag: #globalvars.StateStack[-1] != PState_EndGame:
+    while not globalvars.ExitFlag:
         oE.NextEvent()
         gamegui.RaiseEvent()
         if oE.EvtIsQuit():

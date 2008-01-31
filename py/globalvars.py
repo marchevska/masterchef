@@ -50,7 +50,6 @@ global LevelSettings    #сюда парсится файл уровня, это
 global Layout
 
 global GameConfig
-global StateStack
 global LastCookie
 global RunMode
 global PausedState

@@ -1165,16 +1165,7 @@ def SetPause(flag):
         globalvars.GuiPresenter.ShowDialog("Pause", True)
     else:
         globalvars.GuiPresenter.ShowDialog("Pause", False)
-        
-    #if flag:
-        #if globalvars.StateStack[-1] in (PState_YesNo, PState_YesNoCancel, PState_EnterName):
-            #globalvars.GuiPresenter.ShowDialog("Pause", flag)
-            #self._ReleaseState(globalvars.StateStack[-1])
-            #self.LastQuestion = ""
-        #if globalvars.StateStack[-1] in (PState_Hints,):
-        #    self._ReleaseState(globalvars.StateStack[-1])
-        #self._SetState(PState_Pause)
-    #musicsound.SetPause(flag)
+    musicsound.Pause(flag)
 
 def UnPause(*a):
     globalvars.PausedState = not globalvars.PausedState

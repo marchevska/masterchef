@@ -47,7 +47,6 @@ global CustomerAnimations
 global PowerUpsInfo
 global GameSettings     #сюда парсятся общие насптройки игры, это XML-дерево
 global LevelSettings    #сюда парсится файл уровня, это XML-дерево
-global Layout
 
 global GameConfig
 global LastCookie
@@ -62,5 +61,4 @@ global BestResults       #лучшие результаты по уровням
 
 global Board
 global BlackBoard
-global GuiPresenter
 global GuiQueue

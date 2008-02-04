@@ -54,14 +54,9 @@ class GuiComposite(guiaux.GuiObject):
     def Activate(self, flag):
         for el in self.Elements.values():
             el.Activate(flag)
-        #for el in self.Elements.values()+self.Effects:
-        #    el.Activate(flag)
         
     def Show(self, flag):
         self.Dummy.visible = flag
-        #if not flag:
-        #    for el in self.Effects:
-        #        el.Dispose()
         
     def UpdateView(self, data):
         try:
@@ -86,16 +81,13 @@ class GuiComposite(guiaux.GuiObject):
 # явл€етс€ хостом верхнего уровн€ (statehost) дл€ своих активных элементов
 # ќтвечает за обработку событий
 #-------------------------------------
-class GuiDialog(GuiComposite, scraft.Dispatcher):
+class GuiDialog(GuiComposite):
     def __init__(self, node, ego, presenter):
         self.presenter = presenter
         self.MusicTheme = node.GetStrAttr("music")
         self.LastButtonPressed = None
         self.FocusOn = None
         GuiComposite.__init__(self, self, None, node, node, ego, presenter)
-        #self.Actions = {}
-        #self.Actions["Close_Ok"] = self._Close_Ok
-        #self.Actions["Close_Cancel"] = self._Close_Cancel
         self.onActivate = None
         self.onDeactivate = None
         self.KeyboardCommands = []
@@ -103,7 +95,6 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
             if el != self.FocusOn:
                 el.LoseFocus()
         self.Effects = []
-        self.QueNo = oE.executor.Schedule(self)
         
     def GetLayer(self):
         return self.Dummy.layer
@@ -119,13 +110,6 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
         else:
             if callable(self.onDeactivate):
                 self.onDeactivate(self.ego)
-        try:
-            if flag:
-                oE.executor.GetQueue(self.QueNo).Resume()
-            else:
-                oE.executor.GetQueue(self.QueNo).Suspend()
-        except:
-            print self.QueNo, "failed to activate", flag
         
     def UpdateView(self, data):
         try:
@@ -148,14 +132,6 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
             for el in self.Effects:
                 el.Dispose()
                 
-    #def _Close_Ok(self):
-    #    #+actions
-    #    self.presenter.ShowDialog(self.ego, False)
-    #    
-    #def _Close_Cancel(self):
-    #    #+actions
-    #    self.presenter.ShowDialog(self.ego, False)
-        
     def SetFocusTo(self, el):
         if self.FocusOn != None:
             self.FocusOn.LoseFocus()
@@ -165,32 +141,22 @@ class GuiDialog(GuiComposite, scraft.Dispatcher):
     
     def ButtonAction(self, cmd):
         self.SetFocusTo(None)
-        #if cmd in self.Actions.keys():
-        #    self.Actions[cmd]()
     
-    def _OnExecute(self, que):
-        try:
-            if oE.EvtIsKeyDown() and not self.presenter.IsEventProcessed():
-                if self.FocusOn != None and self.FocusOn.ProcessInput(self.presenter.data):
-                    self.FocusOn.UpdateView(self.presenter.data)
-                else:
-                    for tmp in self.KeyboardCommands:
-                        val = True
-                        for cond in tmp["condition"]:
-                            if cond["func"]() != cond["value"]:
-                                val = False
-                        if val:
-                            self.presenter.MarkEventProcessed()
-                            tmp["call"]()
-                            break
-                    #if oE.EvtKey() == scraft.Key_ESC:
-                    #    self._Close_Cancel()
-                    #elif oE.EvtKey() == scraft.Key_ENTER:
-                    #    self._Close_Ok()
-        except:
-            print string.join(apply(traceback.format_exception, sys.exc_info()))
-        return scraft.CommandStateRepeat
-        
+    def ProcessInput(self, data):
+        if self.FocusOn != None and self.FocusOn.ProcessInput(self.presenter.data):
+            self.FocusOn.UpdateView(self.presenter.data)
+            return True
+        else:
+            for tmp in self.KeyboardCommands:
+                val = True
+                for cond in tmp["condition"]:
+                    if cond["func"]() != cond["value"]:
+                        val = False
+                if val:
+                    tmp["call"]()
+                    return True
+        return False
+    
     def AttachEffect(self, effectObject):
         self.Effects.append(effectObject)
         

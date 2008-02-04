@@ -3,31 +3,6 @@
 <project id="F7406327-11ED-4353-9A86-FB0926FB2B7A" name="masterchef" kpf_version="2">
 <preference-set id="">
 </preference-set>
-<file url="main.py" id="004AD163-E73E-4A15-8DDC-C7D9A61E784B" name="main.py">
-<preference-set id="">
-  <string id="lastInvocation">default</string>
-<preference-set id="Invocations">
-<preference-set id="default">
-  <string id="postparams"></string>
-  <string id="getparams"></string>
-  <boolean id="use-console">0</boolean>
-  <string id="filename">C:\projects\proto games\_sample\py\main.py</string>
-  <string id="executable-params"></string>
-  <boolean id="show-dialog">1</boolean>
-  <string id="request-method">GET</string>
-  <string id="params"></string>
-  <string id="mpostparams"></string>
-  <string id="posttype">application/x-www-form-urlencoded</string>
-  <string id="documentRoot"></string>
-  <string id="cookieparams"></string>
-  <string id="userEnvironment"></string>
-  <boolean id="sim-cgi">0</boolean>
-  <string id="cwd"></string>
-  <string id="userCGIEnvironment"></string>
-</preference-set>
-</preference-set>
-</preference-set>
-</file>
 <file url="gameboard.py" id="F76E72E1-BD42-44AB-A0DB-C0E133600199" name="gameboard.py">
 <preference-set id="">
   <string id="lastInvocation">default</string>
@@ -112,6 +87,8 @@
 </preference-set>
 </file>
 <folder id="8BFF06F5-D653-4F05-9D61-4CE1ECD0F6E8" name="def">
+<preference-set id="">
+</preference-set>
 <file url="def/gamesettings.def" id="2D21E7A7-3F3B-4FC3-B40F-D19C891D705F" name="gamesettings.def">
 </file>
 <file url="def/cuisine.def" id="2A9C13B3-9662-4267-A986-498B1EF86F00" name="cuisine.def">
@@ -137,6 +114,33 @@
 <file url="def/gui.def" id="33B52014-C417-4F96-A945-95344D6E2836" name="gui.def">
 </file>
 <file url="def/effects.def" id="28F903A8-F70A-4307-BB44-3BD8DD622E3C" name="effects.def">
+</file>
+<file url="masterchef.sst" id="0225BA6A-8CCF-43CF-8595-7673E7A3294A" name="masterchef.sst">
+</file>
+<file url="main.py" id="004AD163-E73E-4A15-8DDC-C7D9A61E784B" name="main.py">
+<preference-set id="">
+  <string id="lastInvocation">default</string>
+<preference-set id="Invocations">
+<preference-set id="default">
+  <string id="postparams"></string>
+  <string id="userEnvironment"></string>
+  <string id="getparams"></string>
+  <boolean id="use-console">0</boolean>
+  <string id="executable-params"></string>
+  <boolean id="show-dialog">1</boolean>
+  <string id="request-method">GET</string>
+  <string id="params"></string>
+  <string id="mpostparams"></string>
+  <string id="posttype">application/x-www-form-urlencoded</string>
+  <string id="documentRoot"></string>
+  <string id="cookieparams"></string>
+  <string id="filename">C:\projects\proto games\_sample\py\main.py</string>
+  <boolean id="sim-cgi">0</boolean>
+  <string id="cwd"></string>
+  <string id="userCGIEnvironment"></string>
+</preference-set>
+</preference-set>
+</preference-set>
 </file>
 </folder>
 <file url="defs.py" id="5FBC00FC-3486-4F9F-8151-BF49494F6D25" name="defs.py">
@@ -293,8 +297,6 @@
 </file>
 <file url="constants.py" id="51E9C0CF-3A65-43D8-B2D2-6FF30F9AED26" name="constants.py">
 </file>
-<file url="guiconst.py" id="36920084-E9F2-41F2-A774-75617E08119C" name="guiconst.py">
-</file>
 <file url="globalvars.py" id="82F7C638-3C7B-49C3-9704-DDDF785A6B4F" name="globalvars.py">
 </file>
 </folder>
@@ -322,8 +324,6 @@
 </preference-set>
 </preference-set>
 </preference-set>
-</file>
-<file url="masterchef.sst" id="0225BA6A-8CCF-43CF-8595-7673E7A3294A" name="masterchef.sst">
 </file>
 <folder id="ED3693DD-6A90-4BFD-B625-9793E7A2A988" name="safe files">
 <file url="safe/scores.def" id="FD36C2B2-1D52-4B72-904C-4FDE3DFA3450" name="scores.def">
@@ -483,6 +483,10 @@
 </preference-set>
 </preference-set>
 </file>
+<file url="guiconst.py" id="36920084-E9F2-41F2-A774-75617E08119C" name="guiconst.py">
+</file>
 </folder>
 </folder>
+<file url="main.py" id="B9935E22-F59C-455F-8CAF-28431A08D3B1" name="main.py">
+</file>
 </project>

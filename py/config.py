@@ -11,11 +11,15 @@ import string
 import scraft
 from scraft import engine as oE
 from configconst import *
-from guiconst import *
 import globalvars
 import playerlist
 import md5
 import os, os.path
+
+Max_Scores = 5
+Channel_Music = 1
+Channel_Time = 2
+Channel_Default = 0
 
 #------------------------------------------
 # найти каталог для записи данных -

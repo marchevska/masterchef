@@ -23,8 +23,6 @@ import globalvars
 import traceback
 from random import shuffle
 
-from teggo.games import guipresenter
-
 class Gui(scraft.Dispatcher):
     def __init__(self):
         globalvars.Frozen = False

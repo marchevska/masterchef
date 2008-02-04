@@ -23,7 +23,7 @@ def CreateEffect(host, name, param):
         return CreateTrailEffect(host, tmpNode, param)
 
 class Effect:
-    def __init__(self, host, node, crd):
+    def __init__(self, host, node, param):
         pass
         
     def Activate(self, flag):
@@ -36,7 +36,7 @@ class Effect:
         pass
 
 class ParticleEffect(Effect, scraft.Dispatcher):
-    def __init__(self, host, node, crd):
+    def __init__(self, host, node, param):
         try:
             self.host = host
             self.p = oE.NewParticles_(node.GetStrAttr("klass"), node.GetIntAttr("layer"))
@@ -51,7 +51,7 @@ class ParticleEffect(Effect, scraft.Dispatcher):
                 nodeCrd = eval(node.GetStrAttr("source"))
             except:
                 nodeCrd = (0,0)
-            self.p.x, self.p.y = crd[0]+nodeCrd[0], crd[1]+nodeCrd[1]
+            self.p.x, self.p.y = param["crd"][0]+nodeCrd[0], param["crd"][1]+nodeCrd[1]
             #other parameters
             paramCodes = { "angle": 1, "transparency": 2, "frno": 3, "speed": 4, "direction": 5,
                           "area": 6, "scale": 7, "angleinc": 8, "transparencyinc": 9, "scaleinc": 10 }

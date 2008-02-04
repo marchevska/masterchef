@@ -73,7 +73,6 @@ def Loading():
     
     musicsound.Init("def/sound.def")
     gamegui.InitGUI()
-    #gamegui.ShowLogoSequence()
     
     globalvars.Board = GameBoard()
     globalvars.PausedState = False
@@ -96,7 +95,6 @@ def MainLoop():
     
     while not globalvars.ExitFlag:
         oE.NextEvent()
-        gamegui.RaiseEvent()
         if oE.EvtIsQuit():
             gamegui.AskForQuitGame()
         if oE.windowIsActive == globalvars.PausedState:

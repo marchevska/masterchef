@@ -46,7 +46,6 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
             self.TextSprite.hierarchy.xScale, self.TextSprite.hierarchy.yScale = False, False
             self.TextSprite.sublayer = parent.sublayer + node.GetIntAttr("sublayer") + self.style.GetTag("Text").GetIntAttr("sublayer")
             self.TextSprite.x, self.TextSprite.y = self.style.GetTag("Text").GetIntAttr("x"), self.style.GetTag("Text").GetIntAttr("y")
-        #self._SetHotspot()
         
     def _SetState(self, state = "Up"):
         try:

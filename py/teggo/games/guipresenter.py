@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: cp1251 -*-
 
-import string, sys, traceback
+import string, sys, traceback, operator
 
 import scraft
 from scraft import engine as oE
@@ -16,83 +16,145 @@ from guislider import Slider
 import guiaux
 import localizer
 import cursor
+import fxmanager
 
-class GuiPresenter:
-    def __init__(self, filename):
-        self.DefData = oE.ParseDEF(filename)
-        self.data = {}
+ThePresenter = None
+
+#-------------------------------------
+# подключает файл с описаниями GUI
+# информация добавляется последовательно; более страые файлы имеют приоритет!
+#-------------------------------------
+def UseFile(filename):
+    global ThePresenter
+    if ThePresenter == None:
+        ThePresenter = GuiPresenter()
+    ThePresenter.UseFile(filename)
         
-        #список видимых диалогов, сортированный снизу вверх
+def ShowDialog(name, flag):
+    global ThePresenter
+    if ThePresenter == None:
+        ThePresenter = GuiPresenter()
+    ThePresenter.ShowDialog(name, flag)
+
+def SetData(name, value):
+    global ThePresenter
+    if ThePresenter == None:
+        ThePresenter = GuiPresenter()
+    ThePresenter.SetData(name, value)
+
+def GetData(name):
+    global ThePresenter
+    if ThePresenter == None:
+        ThePresenter = GuiPresenter()
+    return ThePresenter.GetData(name)
+
+def GetStyle(name):
+    global ThePresenter
+    if ThePresenter == None:
+        ThePresenter = GuiPresenter()
+    return ThePresenter.GetStyle(name)
+
+def CreateEffect(hostname, effectname, effectparam):
+    global ThePresenter
+    if ThePresenter == None:
+        ThePresenter = GuiPresenter()
+    ThePresenter.CreateEffect(hostname, effectname, effectparam)
+
+class GuiPresenter(scraft.Dispatcher):
+    def __init__(self):
+        self.ObjectsData = scraft.Xdata()
+        self.StylesData = scraft.Xdata()
+        self.data = {}
+        self.Dialogs = {}
         self.DialogsList = []
         self.ActiveDialog = None
+        self.QueNo = oE.executor.Schedule(self)
         
-        
-        #parse object styles if necessary
-        cursor.Init(self.DefData.GetTag("Objects").GetSubtag("Cursor"), self)
-        
-        self.Dialogs = {}
-        for tmp in self.DefData.GetTag("Objects").Tags("Dialog"):
-            self.CreateDialog(tmp.GetContent())
-        for tmp in self.Dialogs.values():
-            tmp.Show(False)
-            tmp.Activate(False)
         self.LastEventProcessed = False
         
-    def CreateDialog(self, name):
-        self.Dialogs[name] = GuiDialog(self.ProcessStructure(self.DefData.GetTag("Objects").GetSubtag(name, "Dialog")),
-                                       name, self)
-       
+    def UseFile(self, filename):
+        try:
+            tmpDefData = oE.ParseDEF(filename)
+            if tmpDefData.GetTag("Objects") != None:
+                for tmp in tmpDefData.GetTag("Objects").Tags():
+                    self.ObjectsData.InsertCopyOf(tmp)
+            if tmpDefData.GetTag("Styles") != None:
+                for tmp in tmpDefData.GetTag("Styles").Tags():
+                    self.StylesData.InsertCopyOf(tmp)
+        except:
+            oE.Log("Unable to parse the following file: %s", filename)
+            oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
         
-    def CreateObject(self, host, parent, node, name):
-        tmpTagName = node.GetName()
-        if _StrCompNoCase(tmpTagName, "Image"):
-            el = Image(host, parent, node, name)
-        elif _StrCompNoCase(tmpTagName, "PushButton"):
-            el = PushButton(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif _StrCompNoCase(tmpTagName, "CheckBox"):
-            el = CheckBox(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif _StrCompNoCase(tmpTagName, "RadioButton"):
-            el = RadioButton(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif _StrCompNoCase(tmpTagName, "TextLabel"):
-            el = TextLabel(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif _StrCompNoCase(tmpTagName, "Slider"):
-            el = Slider(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif _StrCompNoCase(tmpTagName, "TextEntry"):
-            el = TextEntry(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif _StrCompNoCase(tmpTagName, "TextArea"):
-            el = TextArea(host, parent, node, self.DefData.GetTag("Styles"), name)
-        elif _StrCompNoCase(tmpTagName, "Variant"):
-            el = GuiVariant(host, parent, node, self.ProcessStructure(node), name, self)
-        elif _StrCompNoCase(tmpTagName, "Activator"):
-            el = GuiActivator(host, parent, node, self.ProcessStructure(node), name, self)
-        elif _StrCompNoCase(tmpTagName, "Case"):
-            el = GuiComposite(host, parent, node, self.ProcessStructure(node), name, self)
-        elif self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName, "Composite") != None:
-            el = GuiComposite(host, parent, node,
-                              self.ProcessStructure(self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName)), name, self)
-        elif self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName, "Listbox") != None:
-            el = GuiListbox(host, parent, node,
-                              self.ProcessStructure(self.DefData.GetTag("Objects").GetSubtagNocase(tmpTagName)), name, self)
+    #создать диалог, если он еще не создан
+    # если данных по диалогу нет, - аварийный выход
+    def _EnsureDialog(self, name):
+        if name == "Cursor":
+            if not cursor.IsCreated() and self.ObjectsData.GetSubtag("Cursor") != None:
+                cursor.Init(self.ObjectsData.GetSubtag("Cursor"), self)
+            return
         else:
-            el = None
-        return el
+            if not name in self.Dialogs.keys():
+                if self.ObjectsData.GetSubtag(name, "Dialog") != None:
+                    self.Dialogs[name] = self.CreateObject(None, None, self.ObjectsData.GetSubtag(name, "Dialog"), name)
+                    self.Dialogs[name].Show(False)
+                    self.Dialogs[name].Activate(False)
+                else:
+                    oE.Log("Unable to find data for the following dialog: %s", name)
+                    oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
+                    sys.exit()
         
     def ShowDialog(self, name, flag):
+        self._EnsureDialog(name)
         if flag:
             if self.DialogsList.count(name) == 0:
                 self.DialogsList.append(name)
                 self.DialogsList.sort(lambda x,y: cmp(self.Dialogs[y].GetLayer(), self.Dialogs[x].GetLayer()))
-            #self.Dialogs[name].Show(True)
-            #self.Dialogs[name].UpdateView(self.data)
         else:
-            #self.Dialogs[name].Show(False)
             if self.DialogsList.count(name)>0:
                 self.DialogsList.remove(name)
         self.Dialogs[name].UpdateView(self.data)
         self.Dialogs[name].Show(flag)
         self._UpdateActiveDialog()
         
+    def CreateObject(self, host, parent, node, name):
+        tmpTagName = node.GetName()
+        if _StrCompNoCase(tmpTagName, "Dialog"):
+            el = GuiDialog(self.ProcessStructure(node), name, self)
+        elif _StrCompNoCase(tmpTagName, "Image"):
+            el = Image(host, parent, node, name)
+        elif _StrCompNoCase(tmpTagName, "PushButton"):
+            el = PushButton(host, parent, node, self.StylesData, name)
+        elif _StrCompNoCase(tmpTagName, "CheckBox"):
+            el = CheckBox(host, parent, node, self.StylesData, name)
+        elif _StrCompNoCase(tmpTagName, "RadioButton"):
+            el = RadioButton(host, parent, node, self.StylesData, name)
+        elif _StrCompNoCase(tmpTagName, "TextLabel"):
+            el = TextLabel(host, parent, node, self.StylesData, name)
+        elif _StrCompNoCase(tmpTagName, "Slider"):
+            el = Slider(host, parent, node, self.StylesData, name)
+        elif _StrCompNoCase(tmpTagName, "TextEntry"):
+            el = TextEntry(host, parent, node, self.StylesData, name)
+        elif _StrCompNoCase(tmpTagName, "TextArea"):
+            el = TextArea(host, parent, node, self.StylesData, name)
+        elif _StrCompNoCase(tmpTagName, "Variant"):
+            el = GuiVariant(host, parent, node, self.ProcessStructure(node), name, self)
+        elif _StrCompNoCase(tmpTagName, "Activator"):
+            el = GuiActivator(host, parent, node, self.ProcessStructure(node), name, self)
+        elif _StrCompNoCase(tmpTagName, "Case"):
+            el = GuiComposite(host, parent, node, self.ProcessStructure(node), name, self)
+        elif self.ObjectsData.GetSubtagNocase(tmpTagName, "Composite") != None:
+            el = GuiComposite(host, parent, node,
+                              self.ProcessStructure(self.ObjectsData.GetSubtagNocase(tmpTagName)), name, self)
+        elif self.ObjectsData.GetSubtagNocase(tmpTagName, "Listbox") != None:
+            el = GuiListbox(host, parent, node,
+                              self.ProcessStructure(self.ObjectsData.GetSubtagNocase(tmpTagName)), name, self)
+        else:
+            el = None
+        return el
+            
     def _UpdateActiveDialog(self):
+        if self.DialogsList != [] and self.ActiveDialog == self.DialogsList[-1]:
+            return
         if self.ActiveDialog in self.Dialogs.keys():
             self.Dialogs[self.ActiveDialog].Activate(False)
         if self.DialogsList != []:
@@ -100,6 +162,15 @@ class GuiPresenter:
             self.Dialogs[self.ActiveDialog].Activate(True)
         else:
             self.ActiveDialog = None
+        
+    def _OnExecute(self, que):
+        try:
+            if oE.EvtIsKeyDown():
+                if self.ActiveDialog != None and self.Dialogs[self.ActiveDialog].ProcessInput(self.data):
+                    self.Dialogs[self.ActiveDialog].UpdateView(self.data)
+        except:
+            print string.join(apply(traceback.format_exception, sys.exc_info()))
+        return scraft.CommandStateRepeat
         
     #рекурсивная обработка структуры с циклами     
     def ProcessStructure(self, structure):
@@ -125,16 +196,36 @@ class GuiPresenter:
             tmp.Erase()
         return structure
     
-    #функции, связанные с обработкой событий
-    def RaiseEvent(self):
-        self.LastEventProcessed = False
+    def SetData(self, name, value):
+        self.data[name] = value
         
-    def MarkEventProcessed(self):
-        self.LastEventProcessed = True
+    def GetData(self, name):
+        hostname = name[0:min((name+".").find("."), (name+"#").find("#"))]
+        self._EnsureDialog(hostname)
+        return self.data.get(name)
         
-    def IsEventProcessed(self):
-        return self.LastEventProcessed
-    
+    def GetStyle(self, name):
+        return self.StylesData.GetSubtag(name)
+        
+    def CreateEffect(self, hostname, effectname, effectparam):
+        self._EnsureDialog(hostname)
+        
+        if self.GetData(hostname+"#EffectsLayer") != None:
+            layer = self.GetData(hostname+"#EffectsLayer")
+        else:
+            layer = self.Dialogs[hostname].GetLayer()
+        if self.GetData(hostname+"#EffectsSublayer") != None:
+            sublayer = self.GetData(hostname+"#EffectsSublayer")
+        else:
+            sublayer = 0
+        
+        if not operator.isMappingType(effectparam):
+            effectparam = {}
+        effectparam["layer"] = layer
+        effectparam["sublayer"] = sublayer
+        self.Dialogs[hostname].AttachEffect(fxmanager.CreateEffect(self.Dialogs[hostname], effectname, effectparam))
+        
+  
 #рекурсивная замена переменных на заданный набор значений
 def ReplaceVariables(node, vars):
     tmpContent = node.GetContent()

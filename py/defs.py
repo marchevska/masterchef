@@ -97,7 +97,6 @@ def ReadLevelSettings(filename):
         if string.find(filename, oE.rscpath) == -1:
             filename = oE.rscpath + filename
         globalvars.LevelSettings = oE.ParseDEF(filename).GetTag(u"Level")
-        globalvars.Layout = {}
         ReadGameSettings()
         
         #override global game settings

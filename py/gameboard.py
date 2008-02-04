@@ -25,7 +25,7 @@ import playerlist
 import globalvars
 import gamegui
 
-from teggo.games import spriteworks, fxmanager, musicsound
+from teggo.games import spriteworks, musicsound
 
 class GameBoard(scraft.Dispatcher):
     

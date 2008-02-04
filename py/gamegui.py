@@ -9,7 +9,7 @@ from scraft import engine as oE
 import globalvars
 import config
 from constants import *
-from teggo.games import localizer, guipresenter, fxmanager, musicsound, cursor
+from teggo.games import localizer, guipresenter, musicsound, cursor
 
 #------------------------------
 # используется для однократного вызова диспетчером одной функции

@@ -8,23 +8,22 @@ from scraft import engine as oE
 
 from guicomposite import GuiComposite
 
-import guiaux
+import guiaux, guipresenter
 import localizer
 
 class GuiListbox(GuiComposite):
-    def __init__(self, host, parent, node, structure, ego, presenter):
+    def __init__(self, host, parent, node, structure, ego):
         self.MultiSelect = structure.GetBoolAttr("multiple")
         self.height = structure.GetIntAttr("height")
         self.disableControl = structure.GetBoolAttr("disableControl")
-        GuiComposite.__init__(self, host, parent, node, structure, ego, presenter)
-        self.presenter = presenter
+        GuiComposite.__init__(self, host, parent, node, structure, ego)
         for el in self.Elements.values():
             el.host = self
         
         self.Actions = {}
         self.Actions["ScrollUp"] = self._ScrollUp
         self.Actions["ScrollDn"] = self._ScrollDn
-        presenter.data[self.ego+"#height"] = self.height
+        guipresenter.SetData(self.ego+"#height", self.height)
         
         self.command = None
         
@@ -39,47 +38,48 @@ class GuiListbox(GuiComposite):
         for tmp in structure.Tags("RadioButton"):
             self.Buttons.append(tmp.GetContent())
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            self.FirstValue = data[self.ego+"#first"]
-            self.Values = data[self.ego+"#Values"]
-            self.SelectedValues = data[self.ego+"#Selected"]
+            self.FirstValue = guipresenter.GetData(self.ego+"#first")
+            self.Values = guipresenter.GetData(self.ego+"#Values")
+            self.SelectedValues = guipresenter.GetData(self.ego+"#Selected")
             tmpActiveButtons = min(self.height, len(self.Values) - self.FirstValue)
             
             #текст на кнопках в списке
             for i in range(tmpActiveButtons):
-                data[self.ego+"."+self.Buttons[i]+"#text"] = self.Values[i + self.FirstValue]
+                guipresenter.SetData(self.ego+"."+self.Buttons[i]+"#text", self.Values[i + self.FirstValue])
                 if self.disableControl:
-                    data[self.ego+"."+self.Buttons[i]+"#disabled"] = False
+                    guipresenter.SetData(self.ego+"."+self.Buttons[i]+"#disabled", False)
             if tmpActiveButtons < self.height:
                 for i in range(tmpActiveButtons, self.height):
-                    data[self.ego+"."+self.Buttons[i]+"#text"] = ""
+                    guipresenter.SetData(self.ego+"."+self.Buttons[i]+"#text", "")
                     if self.disableControl:
-                        data[self.ego+"."+self.Buttons[i]+"#disabled"] = True
+                        guipresenter.SetData(self.ego+"."+self.Buttons[i]+"#disabled", True)
             
             for i in range(self.height):
-                data[self.ego+"."+self.Buttons[i]+"#selected"] = ((i + self.FirstValue) in data[self.ego+"#Selected"])
+                guipresenter.SetData(self.ego+"."+self.Buttons[i]+"#selected",
+                        ((i + self.FirstValue) in guipresenter.GetData(self.ego+"#Selected")))
                     
-            data[self.ego+".ScrollUp#disabled"] = (self.FirstValue == 0)
-            data[self.ego+".ScrollDn#disabled"] = (self.FirstValue + self.height >= len(self.Values))
+            guipresenter.SetData(self.ego+".ScrollUp#disabled", (self.FirstValue == 0))
+            guipresenter.SetData(self.ego+".ScrollDn#disabled", (self.FirstValue + self.height >= len(self.Values)))
             
             for el in self.Elements.values():
-                el.UpdateView(data)
+                el.UpdateView()
             if self.command == None:
-                self.command = data.get(self.ego+"#action")
+                self.command = guipresenter.GetData(self.ego+"#action")
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
             
         
     def _ScrollUp(self):
         if self.FirstValue > 0:
-            self.presenter.data[self.ego+"#first"] -= 1
-        self.UpdateView(self.presenter.data)
+            guipresenter.SetData(self.ego+"#first",  guipresenter.GetData(self.ego+"#first") - 1)
+        self.UpdateView()
         
     def _ScrollDn(self):
         if self.FirstValue + self.height < len(self.Values):
-            self.presenter.data[self.ego+"#first"] += 1
-        self.UpdateView(self.presenter.data)
+            guipresenter.SetData(self.ego+"#first",  guipresenter.GetData(self.ego+"#first") + 1)
+        self.UpdateView()
         
     def ButtonAction(self, cmd):
         if cmd in self.Actions.keys():
@@ -93,11 +93,10 @@ class GuiListbox(GuiComposite):
                     self.SelectedValues.append(tmpNo)
             else:
                 self.SelectedValues = [tmpNo]
-            self.presenter.data[self.ego+"#Selected"] = self.SelectedValues
-            self.UpdateView(self.presenter.data)
+            guipresenter.SetData(self.ego+"#Selected", self.SelectedValues)
+            self.UpdateView()
             #вызов команды обновления родительского диалога, если она присвоена
             if callable(self.command):
-                #self.command(map(lambda x: self.Values[x], self.SelectedValues))
                 self.command()
             
             

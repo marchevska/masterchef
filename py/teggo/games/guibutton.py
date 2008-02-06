@@ -6,17 +6,17 @@ import string, sys, traceback
 import scraft
 from scraft import engine as oE
 
-import guiaux
+import guiaux, guipresenter
 import localizer
 import musicsound, cursor
 
 
 class PushButton(guiaux.GuiObject, scraft.Dispatcher):
-    def __init__(self, host, parent, node, styles, ego):
+    def __init__(self, host, parent, node, ego):
         self.ego = ego
         self.host = host
         self.statehost = host
-        self.style = styles.GetSubtag(node.GetStrAttr("style"))
+        self.style = guipresenter.GetStyle(node.GetStrAttr("style"))
         self.textDefault = localizer.GetGameString(node.GetStrAttr("textDefault"))
         self.styleDefault = self.style
         self.text = ""
@@ -94,34 +94,34 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
         else:
             self.TextSprite.hotspot = self.hotspotDefault
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            style = data.get(self.ego+"#style")
+            style = guipresenter.GetData(self.ego+"#style")
             if style != None:
-                self.style = style
+                self.style = guipresenter.GetStyle(style)
             else:
                 self.style = self.styleDefault
-            text = data.get(self.ego+"#text")
+            text = guipresenter.GetData(self.ego+"#text")
             if text != None:
                 self.text = text
             else:
                 self.text = self.textDefault
-            x = data.get(self.ego+"#x")
+            x = guipresenter.GetData(self.ego+"#x")
             if x != None:
                 self.Dummy.x = x
-            y = data.get(self.ego+"#y")
+            y = guipresenter.GetData(self.ego+"#y")
             if y != None:
                 self.Dummy.y = y
-            if data.get(self.ego+"#disabled"):
+            if guipresenter.GetData(self.ego+"#disabled"):
                 self._SetState("Inert")
             else:
                 self._SetState("Up")
-            if data.get(self.ego+"#hidden"):
+            if guipresenter.GetData(self.ego+"#hidden"):
                 self.Show(False)
             else:
                 self.Show(True)
             if self.command == None:
-                self.command = data.get(self.ego+"#action")
+                self.command = guipresenter.GetData(self.ego+"#action")
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         
@@ -171,17 +171,17 @@ class PushButton(guiaux.GuiObject, scraft.Dispatcher):
             self.statehost.LastButtonPressed = None
 
 class RadioButton(PushButton):
-    def __init__(self, host, parent, node, styles, ego):
-        PushButton.__init__(self, host, parent, node, styles, ego)
+    def __init__(self, host, parent, node, ego):
+        PushButton.__init__(self, host, parent, node, ego)
         self.selected = False
 
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            PushButton.UpdateView(self, data)
-            self.selected = (data.get(self.ego+"#selected"))
+            PushButton.UpdateView(self)
+            self.selected = (guipresenter.GetData(self.ego+"#selected"))
             if self.selected:
                 self._SetState("Select")
-            elif data.get(self.ego+"#disabled"):
+            elif guipresenter.GetData(self.ego+"#disabled"):
                 self._SetState("Inert")
             else:
                 self._SetState("Up")
@@ -229,8 +229,8 @@ class RadioButton(PushButton):
             self.statehost.LastButtonPressed = None
 
 class CheckBox(PushButton):
-    def __init__(self, host, parent, node, styles, ego):
-        PushButton.__init__(self, host, parent, node, styles, ego)
+    def __init__(self, host, parent, node, ego):
+        PushButton.__init__(self, host, parent, node, ego)
         self.onUpdate = None
         self.hotspotDefault = scraft.HotspotLeftCenter
         self.CheckSprite = oE.NewSprite_("$spritecraft$dummy$", parent.layer)
@@ -240,7 +240,7 @@ class CheckBox(PushButton):
         self.CheckSprite.x, self.CheckSprite.y = self.style.GetTag("Check").GetIntAttr("x"), self.style.GetTag("Check").GetIntAttr("y")
         
         self.Checked = node.GetBoolAttr("checked")
-        self.statehost.presenter.data[self.ego+"#checked"] = self.Checked            
+        guipresenter.SetData(self.ego+"#checked", self.Checked)
         
     def _SetState(self, state = "Up"):
         self.CheckSprite.ChangeKlassTo(self.style.GetTag("Check").GetStrAttr("sprite"))
@@ -256,15 +256,15 @@ class CheckBox(PushButton):
             self.CheckSprite.hotspot = self.hotspotDefault
         PushButton._SetHotspot(self)
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            onUpdate = data.get(self.ego+"#onUpdate")
+            onUpdate = guipresenter.GetData(self.ego+"#onUpdate")
             if onUpdate != None:
                 self.onUpdate = onUpdate
-            checked = data.get(self.ego+"#checked")
+            checked = guipresenter.GetData(self.ego+"#checked")
             if checked != None:
                 self.Checked = checked
-            PushButton.UpdateView(self, data)
+            PushButton.UpdateView(self)
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         
@@ -276,7 +276,7 @@ class CheckBox(PushButton):
         if self.state != "Inert":
             if button == 1 and self.statehost.LastButtonPressed == self.ego:
                 self.Checked = not self.Checked
-                self.statehost.presenter.data[self.ego+"#checked"] = self.Checked
+                guipresenter.SetData(self.ego+"#checked", self.Checked)
                 if callable(self.onUpdate):
                     self.onUpdate(self.ego)
                 self._SetState("Roll")

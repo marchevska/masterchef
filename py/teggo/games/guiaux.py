@@ -14,7 +14,7 @@ class GuiObject(object):
         pass
     def UpdateModel(self, data):
         pass
-    def UpdateView(self, data = {}):
+    def UpdateView(self):
         pass
     def Show(self, flag):
         pass

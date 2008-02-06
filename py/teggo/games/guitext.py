@@ -5,14 +5,14 @@ import string, sys, traceback
 
 import scraft
 from scraft import engine as oE
-import guiaux
+import guiaux, guipresenter
 import localizer
 
 class TextLabel(guiaux.GuiObject):
-    def __init__(self, host, parent, node, styles, ego):
+    def __init__(self, host, parent, node, ego):
         self.ego = ego
         self.host = host
-        self.style = styles.GetSubtag(node.GetStrAttr("style"))
+        self.style = guipresenter.GetStyle(node.GetStrAttr("style"))
         self.styleDefault = self.style
         if node.GetStrAttr("textDefault") != "": #None:
             self.textDefault = localizer.GetGameString(node.GetStrAttr("textDefault"))
@@ -32,25 +32,19 @@ class TextLabel(guiaux.GuiObject):
     def Show(self, flag):
         self.sprite.visible = flag
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            text = data.get(self.ego+"#text")
+            text = guipresenter.GetData(self.ego+"#text")
             if text != None:
                 self.sprite.text = text
             else:
                 self.sprite.text = self.textDefault
-            style = data.get(self.ego+"#style")
+            style = guipresenter.GetData(self.ego+"#style")
             if style != None:
-                self.style = style
+                self.style = guipresenter.GetStyle(style)
             else:
                 self.style = self.styleDefault
             self._UpdateTextStyle()
-            #cfilt = data.get(self.ego+"#cfilt")
-            #if cfilt != None:
-            #    self.sprite.cfilt.color = cfilt
-            #else:
-            #    if self.style.GetStrAttr("cfilt-color") != "":
-            #        self.sprite.cfilt.color = eval(self.style.GetStrAttr("cfilt-color"))
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         
@@ -62,11 +56,12 @@ class TextLabel(guiaux.GuiObject):
         
 
 class TextEntry(guiaux.GuiObject, scraft.Dispatcher):
-    def __init__(self, host, parent, node, styles, ego):
+    def __init__(self, host, parent, node, ego):
         self.ego = ego
         self.host = host
         self.statehost = host
-        self.style = styles.GetSubtag(node.GetStrAttr("style"))
+        self.style = guipresenter.GetStyle(node.GetStrAttr("style"))
+        self.styleDefault = self.style
         self.textDefault = localizer.GetGameString(node.GetStrAttr("textDefault"))
         self.text = ""
         self.HasFocus = node.GetBoolAttr("focus")
@@ -119,11 +114,11 @@ class TextEntry(guiaux.GuiObject, scraft.Dispatcher):
         self.Cursor.visible = False
         self.Cursor.StopAnimation()
     
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
             if self.onUpdate == None:
-                self.onUpdate = data.get(self.ego+"#onUpdate")
-            text = data.get(self.ego+"#text")
+                self.onUpdate = guipresenter.GetData(self.ego+"#onUpdate")
+            text = guipresenter.GetData(self.ego+"#text")
             if text != None:
                 self.TextSprite.text = text
             if self.HasFocus:
@@ -149,7 +144,7 @@ class TextEntry(guiaux.GuiObject, scraft.Dispatcher):
     def ProcessInput(self, data):
         tmpProcessed = False
         try:
-            if not data.get(self.ego+"#text"):
+            if not guipresenter.GetData(self.ego+"#text"):
                 data[self.ego+"#text"] = ""
             tmpText = data[self.ego+"#text"]
             if oE.EvtKey() in eval(localizer.GetGameString("Str_KeyCodes")).keys():
@@ -174,10 +169,11 @@ class TextEntry(guiaux.GuiObject, scraft.Dispatcher):
     
 
 class TextArea(guiaux.GuiObject):
-    def __init__(self, host, parent, node, styles, ego):
+    def __init__(self, host, parent, node, ego):
         self.ego = ego
         self.host = host
-        self.style = styles.GetSubtag(node.GetStrAttr("style"))
+        self.style = guipresenter.GetStyle(node.GetStrAttr("style"))
+        self.styleDefault = self.style
         if node.GetStrAttr("textDefault") != "": #None:
             self.textDefault = localizer.GetGameString(node.GetStrAttr("textDefault"))
         else:
@@ -192,18 +188,20 @@ class TextArea(guiaux.GuiObject):
         
         self.Sprites = []
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            x = data.get(self.ego+"#x")
+            x = guipresenter.GetData(self.ego+"#x")
             if x != None:
                 self.Dummy.x = x
-            y = data.get(self.ego+"#y")
+            y = guipresenter.GetData(self.ego+"#y")
             if y != None:
                 self.Dummy.y = y
-            style = data.get(self.ego+"#style")
+            style = guipresenter.GetData(self.ego+"#style")
             if style != None:
-                self.style = style
-            text = data.get(self.ego+"#text")
+                self.style = guipresenter.GetStyle(style)
+            else:
+                self.style = self.styleDefault
+            text = guipresenter.GetData(self.ego+"#text")
             if text != None:
                 self.text = text
             else:

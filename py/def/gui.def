@@ -1,7 +1,7 @@
 
 Objects {
 
-    Composite(Cursor) {
+    Cursor(Cursor) {
         layer = "0"
         Variant(Pointer) {
             valueDefault = "Up"

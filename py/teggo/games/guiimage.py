@@ -7,7 +7,7 @@ from random import randint
 
 import scraft
 from scraft import engine as oE
-import guiaux
+import guiaux, guipresenter
 
 class Image(guiaux.GuiObject):
     def __init__(self, host, parent, node, ego):
@@ -29,6 +29,7 @@ class Image(guiaux.GuiObject):
             
         self.sprite.parent = parent
         self.sprite.x, self.sprite.y = node.GetIntAttr("x"), node.GetIntAttr("y")
+        self.sprite.frno = node.GetIntAttr("frno")
         self.sprite.sublayer = parent.sublayer + node.GetIntAttr("sublayer")
         
     def Dispose(self):
@@ -40,30 +41,30 @@ class Image(guiaux.GuiObject):
     def Show(self, flag):
         self.sprite.visible = flag
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            klassName = data.get(self.ego+"#klass")
+            klassName = guipresenter.GetData(self.ego+"#klass")
             if klassName != None:
                 self.sprite.ChangeKlassTo(klassName)
-            hotspot = data.get(self.ego+"#hotspot")
+            hotspot = guipresenter.GetData(self.ego+"#hotspot")
             if hotspot != None:
                 self.sprite.hotspot = guiaux.GetHotspotValue(hotspot)
             elif self.hotspotDefault != "":
                 self.sprite.hotspot = guiaux.GetHotspotValue(self.hotspotDefault)
-            frno = data.get(self.ego+"#frno")
+            frno = guipresenter.GetData(self.ego+"#frno")
             if frno != None:
                 self.sprite.frno = int(frno)
-            x = data.get(self.ego+"#x")
+            x = guipresenter.GetData(self.ego+"#x")
             if x != None:
                 self.sprite.x = x
-            y = data.get(self.ego+"#y")
+            y = guipresenter.GetData(self.ego+"#y")
             if y != None:
                 self.sprite.y = y
-            visible = data.get(self.ego+"#visible")
+            visible = guipresenter.GetData(self.ego+"#visible")
             if visible != None:
                 self.sprite.visible = visible
-            if data.has_key(self.ego+"#animation"):
-                self.animation = data[self.ego+"#animation"]
+            if guipresenter.GetData(self.ego+"#animation") != None:
+                self.animation = guipresenter.GetData(self.ego+"#animation")
             if self.Animator == None and self.animation != None:
                 self.Animator = ImageLoopAnimator(self.sprite, self.animation)
             elif self.Animator != None and self.animation == None:

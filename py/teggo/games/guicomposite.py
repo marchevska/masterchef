@@ -6,7 +6,7 @@ import string, sys, traceback
 import scraft
 from scraft import engine as oE
 
-import guiaux
+import guiaux, guipresenter
 import localizer
 import musicsound
 
@@ -20,8 +20,7 @@ class GuiComposite(guiaux.GuiObject):
     # node - нода из родительского объекта, описывающая кооринаты
     # structure - описание структуры, состав объекта
     # ego - имя
-    # presenter - фабрика объектов
-    def __init__(self, host, parent, node, structure, ego, presenter):
+    def __init__(self, host, parent, node, structure, ego):
         self.ego = ego
         self.host = host
         self.parent = parent
@@ -40,11 +39,11 @@ class GuiComposite(guiaux.GuiObject):
         for tmp in structure.Tags():
             if string.lower(tmp.GetName()) == "parameter":
                 if tmp.GetStrAttr("type") == "integer":
-                    presenter.data[self.ego+"#"+tmp.GetContent()] = tmp.GetIntAttr("value")
+                    guipresenter.SetData(self.ego+"#"+tmp.GetContent(), tmp.GetIntAttr("value"))
                 else:
-                    presenter.data[self.ego+"#"+tmp.GetContent()] = tmp.GetStrAttr("value")
+                    guipresenter.SetData(self.ego+"#"+tmp.GetContent(), tmp.GetStrAttr("value"))
             else:
-                self.Elements[tmp.GetContent()] = presenter.CreateObject(host, self.Dummy, tmp, self.ego + "." + tmp.GetContent())
+                self.Elements[tmp.GetContent()] = guipresenter.CreateObject(host, self.Dummy, tmp, self.ego + "." + tmp.GetContent())
         
     def Dispose(self):
         for tmp in self.Elements.values():
@@ -58,21 +57,21 @@ class GuiComposite(guiaux.GuiObject):
     def Show(self, flag):
         self.Dummy.visible = flag
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            x = data.get(self.ego+"#x")
+            x = guipresenter.GetData(self.ego+"#x")
             if x != None:
                 self.Dummy.x = x
-            y = data.get(self.ego+"#y")
+            y = guipresenter.GetData(self.ego+"#y")
             if y != None:
                 self.Dummy.y = y
-            visible = data.get(self.ego+"#visible")
+            visible = guipresenter.GetData(self.ego+"#visible")
             if visible != None:
                 self.Dummy.visible = visible
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         for el in self.Elements.values():
-            el.UpdateView(data)
+            el.UpdateView()
             
     
 #-------------------------------------
@@ -82,12 +81,11 @@ class GuiComposite(guiaux.GuiObject):
 # Отвечает за обработку событий
 #-------------------------------------
 class GuiDialog(GuiComposite):
-    def __init__(self, node, ego, presenter):
-        self.presenter = presenter
+    def __init__(self, node, ego):
         self.MusicTheme = node.GetStrAttr("music")
         self.LastButtonPressed = None
         self.FocusOn = None
-        GuiComposite.__init__(self, self, None, node, node, ego, presenter)
+        GuiComposite.__init__(self, self, None, node, node, ego)
         self.onActivate = None
         self.onDeactivate = None
         self.KeyboardCommands = []
@@ -111,20 +109,20 @@ class GuiDialog(GuiComposite):
             if callable(self.onDeactivate):
                 self.onDeactivate(self.ego)
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            cmds = data.get(self.ego+"#kbdCommands")
+            cmds = guipresenter.GetData(self.ego+"#kbdCommands")
             if cmds != None:
                 self.KeyboardCommands = cmds
-            onActivate = data.get(self.ego+"#onActivate")
+            onActivate = guipresenter.GetData(self.ego+"#onActivate")
             if onActivate != None:
                 self.onActivate = onActivate
-            onDeactivate = data.get(self.ego+"#onDeactivate")
+            onDeactivate = guipresenter.GetData(self.ego+"#onDeactivate")
             if onDeactivate != None:
                 self.onDeactivate = onDeactivate
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
-        GuiComposite.UpdateView(self, data)
+        GuiComposite.UpdateView(self)
             
     def Show(self, flag):
         GuiComposite.Show(self, flag)
@@ -142,9 +140,9 @@ class GuiDialog(GuiComposite):
     def ButtonAction(self, cmd):
         self.SetFocusTo(None)
     
-    def ProcessInput(self, data):
-        if self.FocusOn != None and self.FocusOn.ProcessInput(self.presenter.data):
-            self.FocusOn.UpdateView(self.presenter.data)
+    def ProcessInput(self):
+        if self.FocusOn != None and self.FocusOn.ProcessInput():
+            self.FocusOn.UpdateView()
             return True
         else:
             for tmp in self.KeyboardCommands:
@@ -170,8 +168,8 @@ class GuiDialog(GuiComposite):
 # из которых в каждый момент виден только один
 #-------------------------------------
 class GuiVariant(GuiComposite):
-    def __init__(self, host, parent, node, structure, ego, presenter):
-        GuiComposite.__init__(self, host, parent, node, structure, ego, presenter)
+    def __init__(self, host, parent, node, structure, ego):
+        GuiComposite.__init__(self, host, parent, node, structure, ego)
         self.valueDefault = node.GetStrAttr("valueDefault")
         self.value = None
         
@@ -179,9 +177,9 @@ class GuiVariant(GuiComposite):
         for val in self.Elements.keys():
             self.Elements[val].Activate((val == self.value) and flag)
         
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            value = data.get(self.ego+"#value")
+            value = guipresenter.GetData(self.ego+"#value")
             if value != None:
                 self.value = value
             else:
@@ -189,7 +187,7 @@ class GuiVariant(GuiComposite):
             for val in self.Elements.keys():
                 if val == self.value:
                     self.Elements[val].Show(True)
-                    self.Elements[val].UpdateView(data)
+                    self.Elements[val].UpdateView()
                 else:
                     self.Elements[val].Show(False)
         except:
@@ -199,8 +197,8 @@ class GuiVariant(GuiComposite):
 # Activator - тип Варианта
 #-------------------------------------
 class GuiActivator(GuiComposite):
-    def __init__(self, host, parent, node, structure, ego, presenter):
-        GuiComposite.__init__(self, host, parent, node, structure, ego, presenter)
+    def __init__(self, host, parent, node, structure, ego):
+        GuiComposite.__init__(self, host, parent, node, structure, ego)
         self.valueDefault = node.GetStrAttr("valueDefault")
         self.value = None
         

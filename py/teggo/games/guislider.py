@@ -6,15 +6,15 @@ import string, sys, traceback
 import scraft
 from scraft import engine as oE
 
-import guiaux
+import guiaux, guipresenter
 import localizer
 
 class Slider(guiaux.GuiObject, scraft.Dispatcher):
-    def __init__(self, host, parent, node, styles, ego):
+    def __init__(self, host, parent, node, ego):
         self.ego = ego
         self.host = host
         self.statehost = host
-        self.style = styles.GetSubtag(node.GetStrAttr("style"))
+        self.style = guipresenter.GetStyle(node.GetStrAttr("style"))
         self.styleDefault = self.style
         self.hotspotDefault = scraft.HotspotCenter
         self.state = None
@@ -96,9 +96,9 @@ class Slider(guiaux.GuiObject, scraft.Dispatcher):
             print string.join(apply(traceback.format_exception, sys.exc_info()))
             
 
-    def UpdateView(self, data):
+    def UpdateView(self):
         try:
-            value = data.get(self.ego+"#value")
+            value = guipresenter.GetData(self.ego+"#value")
             if value != None:
                 value = _Nearest(value, (self.MinValue, self.MaxValue))
                 self.value = value
@@ -109,7 +109,7 @@ class Slider(guiaux.GuiObject, scraft.Dispatcher):
             else:
                 self._SetState("Down")
             if self.command == None:
-                self.command = data.get(self.ego+"#onModify")
+                self.command = guipresenter.GetData(self.ego+"#onModify")
         except:
             print string.join(apply(traceback.format_exception, sys.exc_info()))
         
@@ -188,7 +188,7 @@ class Slider(guiaux.GuiObject, scraft.Dispatcher):
             newValue = self.MinValue + int(1.0*(y - self.Dummy.y - self.ZipperYRange[0])*(self.MaxValue - self.MinValue)/(self.ZipperYRange[1] - self.ZipperYRange[0]))
         newValue = _Nearest(newValue, (self.MinValue, self.MaxValue))
         self.value = newValue
-        self.statehost.presenter.data[self.ego+"#value"] = newValue
+        guipresenter.SetData(self.ego+"#value", newValue)
         if callable(self.command):
             self.command(newValue)
 

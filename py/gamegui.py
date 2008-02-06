@@ -372,11 +372,11 @@ def ShowHiscoresDialog(*a):
                 guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Player" + str(j+1) + "#text", localizer.GetGameString("Str_Hiscores_EmptyPlayer"))
                 guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Score" + str(j+1) + "#text", "")
             if guipresenter.GetData("Hiscores." + tmpHiscoreTags[i] + ".Player" + str(j+1) + "#text") == globalvars.GameConfig.GetStrAttr("Player"):
-                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Player" + str(j+1) + "#style", guipresenter.GetStyle("TextLabel.Hiscore.Player.CurrentPlayer"))
-                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Score" + str(j+1) + "#style", guipresenter.GetStyle("TextLabel.Hiscore.Score.CurrentPlayer"))
+                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Player" + str(j+1) + "#style", "TextLabel.Hiscore.Player.CurrentPlayer")
+                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Score" + str(j+1) + "#style", "TextLabel.Hiscore.Score.CurrentPlayer")
             else:
-                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Player" + str(j+1) + "#style", guipresenter.GetStyle("TextLabel.Hiscore.Player"))
-                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Score" + str(j+1) + "#style", guipresenter.GetStyle("TextLabel.Hiscore.Score"))
+                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Player" + str(j+1) + "#style", "TextLabel.Hiscore.Player")
+                guipresenter.SetData("Hiscores." + tmpHiscoreTags[i] + ".Score" + str(j+1) + "#style", "TextLabel.Hiscore.Score")
 
     guipresenter.SetData("Hiscores#kbdCommands", [
         { "condition": [{"func": oE.EvtKey, "value": scraft.Key_ESC}], "call": CloseHiscores },
@@ -576,13 +576,13 @@ def ShowMap(*a):
         #читаем запись из профиля игрока
         tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(tmpOutros[i].GetContent())
         if tmpPlayerResult.GetBoolAttr("beat1st"):
-            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", guipresenter.GetStyle("RadioButton.Episodes.1st"))
+            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", "RadioButton.Episodes.1st")
         elif tmpPlayerResult.GetBoolAttr("beat2nd"):
-            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", guipresenter.GetStyle("RadioButton.Episodes.2nd"))
+            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", "RadioButton.Episodes.2nd")
         elif tmpPlayerResult.GetBoolAttr("passed"):
-            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", guipresenter.GetStyle("RadioButton.Episodes.Pass"))
+            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", "RadioButton.Episodes.Pass")
         else:
-            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", guipresenter.GetStyle("RadioButton.Episodes.Episodes"))
+            guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#style", "RadioButton.Episodes")
         guipresenter.SetData("MapCareer.Levels.Episode"+str(i+1)+"#disabled", not(tmpPlayerResult.GetBoolAttr("unlocked")))
                 
     #разместить и нарисовать значки уровней
@@ -593,9 +593,9 @@ def ShowMap(*a):
         
         tmpPlayerResult = globalvars.CurrentPlayer.GetLevelParams(tmpLevels[i].GetContent())
         if tmpPlayerResult.GetBoolAttr("expert"):
-            guipresenter.SetData("MapCareer.Levels.Level"+str(i+1)+"#style", guipresenter.GetStyle("RadioButton.LevelsExpert"))
+            guipresenter.SetData("MapCareer.Levels.Level"+str(i+1)+"#style", "RadioButton.LevelsExpert")
         else:
-            guipresenter.SetData("MapCareer.Levels.Level"+str(i+1)+"#style", guipresenter.GetStyle("RadioButton.Levels"))
+            guipresenter.SetData("MapCareer.Levels.Level"+str(i+1)+"#style", "RadioButton.Levels")
         guipresenter.SetData("MapCareer.Levels.Level"+str(i+1)+"#disabled", not(tmpPlayerResult.GetBoolAttr("unlocked")))
 
     guipresenter.SetData("MapCareer.Levels#Values", map(lambda x: x.GetContent(), tmpLevels+tmpOutros))
@@ -806,10 +806,9 @@ def ShowEpisodeOutro(*a):
     
     for i in range(guipresenter.GetData("EpisodeOutro#MaxPeopleOnLevel")):
         if i < len(tmpResults["scores"]):
-            tmpTextStyleName = guipresenter.GetStyle(\
-                        "TextLabel.EpisodeOutro." + (i == tmpResults["place"]-1)*"Jenny" + \
-                        (1 - (i == tmpResults["place"]-1))*"Names" + "." + \
-                        (i >= tmpLevel.GetIntAttr("PassFurther"))*"Not" + "Passed")
+            tmpTextStyleName = "TextLabel.EpisodeOutro." + (i == tmpResults["place"]-1)*"Jenny" + \
+                                (1 - (i == tmpResults["place"]-1))*"Names" + "." + \
+                                (i >= tmpLevel.GetIntAttr("PassFurther"))*"Not" + "Passed"
             guipresenter.SetData("EpisodeOutro.CharacterName" + str(i) + "#style", tmpTextStyleName)
             guipresenter.SetData("EpisodeOutro.CharacterScore" + str(i) + "#style", tmpTextStyleName)
             guipresenter.SetData("EpisodeOutro.CharacterName" + str(i) + "#text", localizer.GetGameString(tmpResults["scores"][i][0]))
@@ -920,7 +919,7 @@ def DebugLoseLevel(*a):
 def ResetGameHUD(*a):
     tmpSetting = globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme")
     guipresenter.SetData("GameHUD.InfoPane#klass", globalvars.ThemesInfo.GetSubtag(tmpSetting).GetStrAttr("infopane"))
-    guipresenter.SetData("GameHUD.Menu#style", guipresenter.GetStyle("PushButton.HUD-Menu."+tmpSetting))
+    guipresenter.SetData("GameHUD.Menu#style", "PushButton.HUD-Menu."+tmpSetting)
     guipresenter.SetData("GameHUD.LevelName#text", globalvars.CurrentPlayer.GetLevel().GetStrAttr("name"))
 
 def UpdateGameHUD(*a):

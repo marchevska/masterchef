@@ -76,6 +76,7 @@ class GuiPresenter(scraft.Dispatcher):
     def __init__(self):
         self.ObjectsData = scraft.Xdata()
         self.StylesData = scraft.Xdata()
+        self.EffectsData = scraft.Xdata()
         self.data = {}
         self.Dialogs = {}
         self.DialogsList = []
@@ -91,6 +92,9 @@ class GuiPresenter(scraft.Dispatcher):
             for tmpTags in tmpDefData.Tags("Styles"):
                 for tmp in tmpTags.Tags():
                     self.StylesData.InsertCopyOf(tmp)
+            for tmpTags in tmpDefData.Tags("Effects"):
+                for tmp in tmpTags.Tags():
+                    self.EffectsData.InsertCopyOf(tmp)
         except:
             oE.Log("Unable to parse the following file: %s", filename)
             oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
@@ -235,7 +239,9 @@ class GuiPresenter(scraft.Dispatcher):
             effectparam = {}
         effectparam["layer"] = layer
         effectparam["sublayer"] = sublayer
-        self.Dialogs[hostname].AttachEffect(fxmanager.CreateEffect(self.Dialogs[hostname], effectname, effectparam))
+        #self.Dialogs[hostname].AttachEffect(fxmanager.CreateEffect(self.Dialogs[hostname], effectname, effectparam))
+        self.Dialogs[hostname].AttachEffect(fxmanager.CreateEffect(self.Dialogs[hostname],
+                                            self.EffectsData.GetSubtag(effectname), effectparam))
         
   
 #рекурсивная замена переменных на заданный набор значений

@@ -23,6 +23,7 @@ class RunCMD(scraft.Dispatcher):
 
 def InitGUI(*a):
     guipresenter.UseFile("def/gui.def")
+    guipresenter.UseFile("def/effects.def")
 
 GuiQueue = None
 

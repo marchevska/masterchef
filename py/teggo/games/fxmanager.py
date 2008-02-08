@@ -13,14 +13,13 @@ from random import randint, choice
 
 import spriteworks
 
-def CreateEffect(host, name, param):
-    tmpNode = oE.ParseDEF("def/effects.def").GetTag("Effects").GetSubtag(name)
-    if string.lower(tmpNode.GetName()) == "particles":
-        return ParticleEffect(host, tmpNode, param)
-    elif string.lower(tmpNode.GetName()) == "popup":
-        return PopupEffect(host, tmpNode, param)
-    elif string.lower(tmpNode.GetName()) == "trail":
-        return CreateTrailEffect(host, tmpNode, param)
+def CreateEffect(host, node, param):
+    if string.lower(node.GetName()) == "particles":
+        return ParticleEffect(host, node, param)
+    elif string.lower(node.GetName()) == "popup":
+        return PopupEffect(host, node, param)
+    elif string.lower(node.GetName()) == "trail":
+        return CreateTrailEffect(host, node, param)
 
 class Effect:
     def __init__(self, host, node, param):

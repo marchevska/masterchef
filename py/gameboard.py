@@ -30,9 +30,6 @@ from teggo.games import spriteworks, musicsound
 class GameBoard(scraft.Dispatcher):
     
     def __init__(self):
-        self.BgSprite = spriteworks.MakeSprite("$spritecraft$dummy$", Layer_GameBg)
-        self.DoorSprite = spriteworks.MakeSprite("$spritecraft$dummy$", Layer_Door,
-                                { "x": Crd_DoorX, "y": Crd_DoorY, "hotspot": scraft.HotspotCenter })
         self.BgReceptor = spriteworks.MakeSprite("$spritecraft$dummy$", Layer_BgReceptor,
                                 { "x": 400, "y": 300, "xSize": 800, "ySize": 600,
                                 "hotspot": scraft.HotspotCenter,
@@ -41,8 +38,8 @@ class GameBoard(scraft.Dispatcher):
         self.CustomersQue = None
         self.Advisor = None
         self.Fields = []
-        self.TrashCans = []
         self.CStations = []
+        self.TrashCans = []
         self.Stores = []
         self.Conveyors = []
         self.Static = []
@@ -96,8 +93,6 @@ class GameBoard(scraft.Dispatcher):
         self.NoErrors = 0
         
         tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
-        self.BgSprite.ChangeKlassTo(tmpTheme.GetStrAttr("background"))
-        self.DoorSprite.ChangeKlassTo("$spritecraft$dummy$")
         
         #reset customer dispatcher
         self.RemainingCustomers = globalvars.LevelSettings.GetTag(u"LevelSettings").GetIntAttr("noCustomers")
@@ -169,8 +164,6 @@ class GameBoard(scraft.Dispatcher):
         self._SetState(GameState_StartLevel)
         gamegui.SetCursorState({"state": "Empty" })
         
-        gamegui.UpdateGameHUD()
-        
     #--------------------------
     # Поместить следующего покупателя к заданному стейшену
     #--------------------------
@@ -179,10 +172,6 @@ class GameBoard(scraft.Dispatcher):
         station.AttachCustomer(self.CustomersQue.PopCustomer())
         self.RemainingCustomers -= 1
         self._UpdateLevelInfo()
-        if self.RemainingCustomers <= 0:
-            tmpTheme = globalvars.ThemesInfo.GetSubtag(globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme"))
-            self.DoorSprite.ChangeKlassTo(tmpTheme.GetStrAttr("door"))
-            tmp = globalvars.LevelSettings.GetTag("Layout").GetTag("Door")
         
     def _OnMouseClick(self, sprite, x, y, button):
         if button == 2:
@@ -506,8 +495,6 @@ class GameBoard(scraft.Dispatcher):
         """
         Показать - спрятать
         """    
-        self.BgSprite.visible = flag
-        self.DoorSprite.visible = flag
         self.BgReceptor.visible = flag
         #if self.Playing:
         #    self.CustomersQue.Show(flag)

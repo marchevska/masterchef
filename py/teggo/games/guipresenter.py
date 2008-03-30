@@ -12,6 +12,7 @@ from guitext import TextLabel, TextEntry, TextArea
 from guicomposite import GuiComposite, GuiDialog, GuiVariant, GuiActivator
 from guilistbox import GuiListbox
 from guislider import Slider
+from guibar import Bar
 
 import guiaux
 import localizer
@@ -148,6 +149,8 @@ class GuiPresenter(scraft.Dispatcher):
             el = TextLabel(host, parent, node, name)
         elif _StrCompNoCase(tmpTagName, "Slider"):
             el = Slider(host, parent, node, name)
+        elif _StrCompNoCase(tmpTagName, "Bar"):
+            el = Bar(host, parent, node, name)
         elif _StrCompNoCase(tmpTagName, "TextEntry"):
             el = TextEntry(host, parent, node, name)
         elif _StrCompNoCase(tmpTagName, "TextArea"):

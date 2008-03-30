@@ -807,34 +807,15 @@ Objects {
     }
     
     
-//---------------------------------------------------------------------
-// "GameHUD" Dialog displays level goals and results during playing
-//---------------------------------------------------------------------
-    
-    Dialog(GameHUD) {
-        layer = "80"
-        music = "Game"
-        sublayerBase = "-5"
-        Parameter(EffectsLayer) { type = "integer" value = "59" }
-        Parameter(EffectsSublayer) { type = "integer" value = "0" }
-        Image(InfoPane) { x = "1" y = "0" sublayer = "5" }
-        TextLabel(LevelText) { style = "TextLabel.HUD.Header" x = "77" y = "18" textDefault = "Str_HUD_LevelText" }
-        TextLabel(ScoreText) { style = "TextLabel.HUD.Header" x = "150" y = "18" textDefault = "Str_HUD_ScoreText" }
-        TextLabel(GoalText) { style = "TextLabel.HUD.Header" x = "235" y = "18" textDefault = "Str_HUD_GoalText" }
-        TextLabel(NoPeopleText) { style = "TextLabel.HUD.Header" x = "298" y = "18" textDefault = "Str_HUD_NoPeopleText" }
-        TextLabel(LevelName) { style = "TextLabel.HUD.Values" x = "77" y = "37" }
-        TextLabel(Score) { style = "TextLabel.HUD.Score" x = "150" y = "40" }
-        TextLabel(Goal) { style = "TextLabel.HUD.Values" x = "235" y = "37" }
-        TextLabel(NoPeople) { style = "TextLabel.HUD.Values" x = "298" y = "37" }
-        PushButton(Menu) {
-            style = "PushButton.HUD-Menu"
-            x = "28" y = "31"
-        }
-    }
 
 }
 
 Styles {
+
+//-------------------
+// PushButton Styles
+//-------------------
+    
     Style(PushButton.WholeScreen) {
         HitArea {
             width = "800" height = "600" hotspot = "LeftTop"
@@ -1213,90 +1194,6 @@ Styles {
         }
     }
 
-    Style(PushButton.HUD-Menu) {
-        sound = "gui.click"
-        HitArea {
-            width = "40" height = "40"
-        }
-        Background {
-            State(Default) { sprite = "$spritecraft$dummy$" }
-            State(Up) { frno = "0" }
-            State(Roll) { frno = "1" }
-            State(Down) { frno = "2" }
-            State(Inert) { frno = "3" }
-        }
-    }
-    
-    Style(PushButton.HUD-Menu.American) {
-        sound = "gui.click"
-        HitArea {
-            width = "40" height = "40"
-        }
-        Background {
-            State(Default) { sprite = "theme.american.menu-button" }
-            State(Up) { frno = "0" }
-            State(Roll) { frno = "1" }
-            State(Down) { frno = "2" }
-            State(Inert) { frno = "3" }
-        }
-    }
-    
-    Style(PushButton.HUD-Menu.Mexican) {
-        sound = "gui.click"
-        HitArea {
-            width = "40" height = "40"
-        }
-        Background {
-            State(Default) { sprite = "theme.mexican.menu-button" }
-            State(Up) { frno = "0" }
-            State(Roll) { frno = "1" }
-            State(Down) { frno = "2" }
-            State(Inert) { frno = "3" }
-        }
-    }
-    
-    Style(PushButton.HUD-Menu.Russian) {
-        sound = "gui.click"
-        HitArea {
-            width = "40" height = "40"
-        }
-        Background {
-            State(Default) { sprite = "theme.russian.menu-button" }
-            State(Up) { frno = "0" }
-            State(Roll) { frno = "1" }
-            State(Down) { frno = "2" }
-            State(Inert) { frno = "3" }
-        }
-    }
-    
-    Style(PushButton.HUD-Menu.Japanese) {
-        sound = "gui.click"
-        HitArea {
-            width = "40" height = "40"
-        }
-        Background {
-            State(Default) { sprite = "theme.japanese.menu-button" }
-            State(Up) { frno = "0" }
-            State(Roll) { frno = "1" }
-            State(Down) { frno = "2" }
-            State(Inert) { frno = "3" }
-        }
-    }
-    
-    Style(PushButton.HUD-Menu.Hawaiian) {
-        sound = "gui.click"
-        HitArea {
-            width = "40" height = "40"
-        }
-        Background {
-            State(Default) { sprite = "theme.hawaiian.menu-button" }
-            State(Up) { frno = "0" }
-            State(Roll) { frno = "1" }
-            State(Down) { frno = "2" }
-            State(Inert) { frno = "3" }
-        }
-    }
-    
 //-------------------
 // CheckBox Styles
 //-------------------
@@ -1360,17 +1257,6 @@ Styles {
 // TextLabel Styles
 //-------------------
     
-    Style(TextLabel.HUD.Header) {
-        font = "simple" hotspot = "Center"
-        cfilt-color = "0x604020"
-    }
-    Style(TextLabel.HUD.Values) {
-        font = "domcasual-11" hotspot = "Center"
-        cfilt-color = "0xC04020"
-    }
-    Style(TextLabel.HUD.Score) {
-        font = "domcasual-20-green" hotspot = "Center"
-    }
     Style(TextLabel.Domcasual-11) {
         font = "domcasual-11" hotspot = "Center"
         cfilt-color = "0x000000"

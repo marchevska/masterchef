@@ -85,7 +85,7 @@ def ReadGameSettings():
         globalvars.CompetitorsInfo = globalvars.GameSettingsRoot.GetTag("Competitors")
         
     except:
-        oE.Log(u"Cannot read global game settings")
+        oE.Log("Cannot read global game settings")
         #sys.exit()
         
 #------------------------

@@ -23,6 +23,7 @@ class RunCMD(scraft.Dispatcher):
 
 def InitGUI(*a):
     guipresenter.UseFile("def/gui.def")
+    guipresenter.UseFile("def/gui.gamehud.def")
     guipresenter.UseFile("def/effects.def")
 
 GuiQueue = None
@@ -113,8 +114,11 @@ def ShowMenu(*a):
         guipresenter.SetData("MainMenu.PubLogoSmall#x", tmpPubLogoInfo.GetIntAttr("x"))
         guipresenter.SetData("MainMenu.PubLogoSmall#y", tmpPubLogoInfo.GetIntAttr("y"))
 
+    #номер версии
     guipresenter.SetData("MainMenu.VersionNumber#text",
                 localizer.GetGameString("Str_Menu_Version")+globalvars.BuildInfo.GetStrAttr("buildNo"))
+    
+    #приветствие игроку
     if globalvars.GameConfig.GetStrAttr("Player") == "":
         guipresenter.SetData("MainMenu.WelcomeMessage#text", "")
         guipresenter.SetData("MainMenu.WelcomeName#text", "")
@@ -919,14 +923,18 @@ def DebugLoseLevel(*a):
 #обновить панель информации при старте уровня
 def ResetGameHUD(*a):
     tmpSetting = globalvars.LevelSettings.GetTag("Layout").GetStrAttr(u"theme")
-    guipresenter.SetData("GameHUD.InfoPane#klass", globalvars.ThemesInfo.GetSubtag(tmpSetting).GetStrAttr("infopane"))
+    #guipresenter.SetData("GameHUD.InfoPane#klass", globalvars.ThemesInfo.GetSubtag(tmpSetting).GetStrAttr("infopane"))
     guipresenter.SetData("GameHUD.Menu#style", "PushButton.HUD-Menu."+tmpSetting)
     guipresenter.SetData("GameHUD.LevelName#text", globalvars.CurrentPlayer.GetLevel().GetStrAttr("name"))
+    
+    guipresenter.SetData("GameHUD.Setting#value", tmpSetting)
 
 def UpdateGameHUD(*a):
     try:
         if a[0].has_key("RemainingCustomers"):
             guipresenter.SetData("GameHUD.NoPeople#text", str(a[0]["RemainingCustomers"]))
+            guipresenter.SetData("GameHUD.Setting."+globalvars.LevelSettings.GetTag("Layout").GetStrAttr("theme")+".Door#value",
+                        (a[0]["RemainingCustomers"]<=0)*"Closed" + (a[0]["RemainingCustomers"]>0)*"Open")
         if a[0].has_key("LevelScore"):
             guipresenter.SetData("GameHUD.Score#text", str(a[0]["LevelScore"]))
         if a[0].has_key("Expert"):
@@ -936,8 +944,9 @@ def UpdateGameHUD(*a):
             else:
                 guipresenter.SetData("GameHUD.GoalText#text", localizer.GetGameString("Str_HUD_GoalText"))
                 guipresenter.SetData("GameHUD.Goal#text", str(globalvars.LevelSettings.GetTag("LevelSettings").GetIntAttr("moneygoal")))
+                
     except:
-        pass
+        oE.Log(string.join(apply(traceback.format_exception, sys.exc_info())))
     guipresenter.ShowDialog("GameHUD", True)
 
 def UnFreezeGame(*a):
@@ -1131,7 +1140,7 @@ def ShowGameText(*a):
         style = "Popup.Game.Commend"
         text = localizer.GetGameString(str(a[1]))
         crd = a[2]
-    #достижэение базовой или экспертной цели уровня
+    #достижение базовой или экспертной цели уровня
     elif a[0] == "goalreached":
         style = "Popup.Game.GoalReached"
         text = localizer.GetGameString(str(a[1]))
